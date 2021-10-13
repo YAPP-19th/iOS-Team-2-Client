@@ -7,7 +7,6 @@
 
 import UIKit
 
-// swiftlint:disable line_length
 final class TeamRecruitmentWritingViewController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!

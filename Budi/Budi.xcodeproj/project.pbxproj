@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7C2060A1B418A53F47747CDA /* Pods_Budi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D20131AEAD19181CEF5CF7C /* Pods_Budi.framework */; };
-		B97DBB9527147D970018C1D2 /* UIViewController+identifery.swift in Sources */ = {isa = PBXBuildFile; fileRef = B97DBB9427147D970018C1D2 /* UIViewController+identifery.swift */; };
+		B97DBB9527147D970018C1D2 /* UIViewController+identifer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B97DBB9427147D970018C1D2 /* UIViewController+identifer.swift */; };
 		B9BF787427004094000BE0EF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9BF787327004094000BE0EF /* AppDelegate.swift */; };
 		B9BF787627004095000BE0EF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9BF787527004095000BE0EF /* SceneDelegate.swift */; };
 		B9BF787B27004095000BE0EF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B9BF787927004095000BE0EF /* Main.storyboard */; };
@@ -23,13 +23,16 @@
 		B9D66EC82714707000668490 /* MyBudiCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9D66EC72714707000668490 /* MyBudiCoordinator.swift */; };
 		B9D66ECC2714716400668490 /* TeamRecruitmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9D66ECB2714716400668490 /* TeamRecruitmentViewController.swift */; };
 		B9D66ECE27147AEA00668490 /* TeamRecruitmentWritingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9D66ECD27147AEA00668490 /* TeamRecruitmentWritingViewController.swift */; };
+		CE79E3112717239400935133 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = CE79E3102717239400935133 /* .swiftlint.yml */; };
+		CED5ADAC2716BBFD00CDCAA9 /* TeamRecruitmentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED5ADAA2716BBFD00CDCAA9 /* TeamRecruitmentCollectionViewCell.swift */; };
+		CED5ADAD2716BBFD00CDCAA9 /* TeamRecruitmentCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CED5ADAB2716BBFD00CDCAA9 /* TeamRecruitmentCollectionViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		3D20131AEAD19181CEF5CF7C /* Pods_Budi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Budi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AEC87C415DF15561273F3FF /* Pods-Budi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Budi.debug.xcconfig"; path = "Target Support Files/Pods-Budi/Pods-Budi.debug.xcconfig"; sourceTree = "<group>"; };
 		84D727CBB17AD63DD79D7083 /* Pods-Budi.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Budi.release.xcconfig"; path = "Target Support Files/Pods-Budi/Pods-Budi.release.xcconfig"; sourceTree = "<group>"; };
-		B97DBB9427147D970018C1D2 /* UIViewController+identifery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+identifery.swift"; sourceTree = "<group>"; };
+		B97DBB9427147D970018C1D2 /* UIViewController+identifer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+identifer.swift"; sourceTree = "<group>"; };
 		B9BF787027004094000BE0EF /* Budi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Budi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9BF787327004094000BE0EF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B9BF787527004095000BE0EF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -46,6 +49,9 @@
 		B9D66EC72714707000668490 /* MyBudiCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyBudiCoordinator.swift; sourceTree = "<group>"; };
 		B9D66ECB2714716400668490 /* TeamRecruitmentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamRecruitmentViewController.swift; sourceTree = "<group>"; };
 		B9D66ECD27147AEA00668490 /* TeamRecruitmentWritingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamRecruitmentWritingViewController.swift; sourceTree = "<group>"; };
+		CE79E3102717239400935133 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
+		CED5ADAA2716BBFD00CDCAA9 /* TeamRecruitmentCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamRecruitmentCollectionViewCell.swift; sourceTree = "<group>"; };
+		CED5ADAB2716BBFD00CDCAA9 /* TeamRecruitmentCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TeamRecruitmentCollectionViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +106,7 @@
 			children = (
 				B9D66EB2271469AB00668490 /* Resource */,
 				B9D66EB12714693700668490 /* Source */,
+				CE79E3102717239400935133 /* .swiftlint.yml */,
 			);
 			path = Budi;
 			sourceTree = "<group>";
@@ -143,6 +150,8 @@
 				B9D66EBE27146F2F00668490 /* TeamRecruitmentCoordinator.swift */,
 				B9D66ECB2714716400668490 /* TeamRecruitmentViewController.swift */,
 				B9D66ECD27147AEA00668490 /* TeamRecruitmentWritingViewController.swift */,
+				CED5ADAA2716BBFD00CDCAA9 /* TeamRecruitmentCollectionViewCell.swift */,
+				CED5ADAB2716BBFD00CDCAA9 /* TeamRecruitmentCollectionViewCell.xib */,
 			);
 			path = TeamRecruitment;
 			sourceTree = "<group>";
@@ -193,7 +202,7 @@
 		B9D66ECF27147B0E00668490 /* extension */ = {
 			isa = PBXGroup;
 			children = (
-				B97DBB9427147D970018C1D2 /* UIViewController+identifery.swift */,
+				B97DBB9427147D970018C1D2 /* UIViewController+identifer.swift */,
 			);
 			path = extension;
 			sourceTree = "<group>";
@@ -257,8 +266,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE79E3112717239400935133 /* .swiftlint.yml in Resources */,
 				B9BF788027004096000BE0EF /* LaunchScreen.storyboard in Resources */,
 				B9BF787D27004096000BE0EF /* Assets.xcassets in Resources */,
+				CED5ADAD2716BBFD00CDCAA9 /* TeamRecruitmentCollectionViewCell.xib in Resources */,
 				B9BF787B27004095000BE0EF /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -317,9 +328,10 @@
 				B9D66EBB27146E1F00668490 /* MainTabBarCoordinator.swift in Sources */,
 				B9D66EC62714706700668490 /* ChattingCoordinator.swift in Sources */,
 				B9BF787427004094000BE0EF /* AppDelegate.swift in Sources */,
-				B97DBB9527147D970018C1D2 /* UIViewController+identifery.swift in Sources */,
+				B97DBB9527147D970018C1D2 /* UIViewController+identifer.swift in Sources */,
 				B9D66EB927146DF900668490 /* TabBarCoordinator.swift in Sources */,
 				B9D66EBF27146F2F00668490 /* TeamRecruitmentCoordinator.swift in Sources */,
+				CED5ADAC2716BBFD00CDCAA9 /* TeamRecruitmentCollectionViewCell.swift in Sources */,
 				B9D66EC82714707000668490 /* MyBudiCoordinator.swift in Sources */,
 				B9D66EBD27146E4300668490 /* NavigationCoordinator.swift in Sources */,
 				B9BF787627004095000BE0EF /* SceneDelegate.swift in Sources */,
@@ -400,7 +412,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -455,7 +467,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

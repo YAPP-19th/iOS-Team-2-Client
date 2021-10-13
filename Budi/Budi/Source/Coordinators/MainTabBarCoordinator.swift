@@ -7,7 +7,6 @@
 
 import UIKit
 
-// swiftlint:disable line_length
 final class MainTabBarCoordinator: TabBarCoordinator {
 
     var tabBarController: UITabBarController

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="locationCell" id="gTV-IL-0wX" customClass="LocationCollectionViewCell" customModule="Budi" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="346" height="55"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="346" height="55"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="80p-QK-pv8">
+                        <rect key="frame" x="0.0" y="0.0" width="346" height="55"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="프로젝트 지역" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="koo-Cx-BUs">
+                                <rect key="frame" x="8" y="11" width="150" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="ydj-7G-ZPo"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lND-QV-Ug6">
+                                <rect key="frame" x="188" y="11" width="150" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="09K-CW-4EH"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="lND-QV-Ug6" firstAttribute="top" secondItem="80p-QK-pv8" secondAttribute="top" constant="11" id="15d-yJ-Uux"/>
+                            <constraint firstItem="koo-Cx-BUs" firstAttribute="top" secondItem="80p-QK-pv8" secondAttribute="top" constant="11" id="KJr-aT-xeQ"/>
+                            <constraint firstItem="koo-Cx-BUs" firstAttribute="leading" secondItem="80p-QK-pv8" secondAttribute="leading" constant="8" id="LvJ-ft-dfX"/>
+                            <constraint firstItem="lND-QV-Ug6" firstAttribute="leading" secondItem="koo-Cx-BUs" secondAttribute="trailing" constant="30" id="VAj-cl-y0z"/>
+                            <constraint firstAttribute="bottom" secondItem="lND-QV-Ug6" secondAttribute="bottom" constant="10" id="aEy-MJ-db1"/>
+                            <constraint firstAttribute="bottom" secondItem="koo-Cx-BUs" secondAttribute="bottom" constant="10" id="hdx-wC-Ruc"/>
+                            <constraint firstAttribute="trailing" secondItem="lND-QV-Ug6" secondAttribute="trailing" constant="8" id="rKt-0Q-gJR"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstItem="80p-QK-pv8" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="EVJ-LL-Dbf"/>
+                <constraint firstAttribute="trailing" secondItem="80p-QK-pv8" secondAttribute="trailing" id="W0f-S0-xeN"/>
+                <constraint firstAttribute="bottom" secondItem="80p-QK-pv8" secondAttribute="bottom" id="elS-49-sss"/>
+                <constraint firstItem="80p-QK-pv8" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="fHg-WA-nA6"/>
+            </constraints>
+            <size key="customSize" width="346" height="55"/>
+            <connections>
+                <outlet property="typePicker" destination="lND-QV-Ug6" id="MDO-9e-9z3"/>
+            </connections>
+            <point key="canvasLocation" x="197.10144927536234" y="109.48660714285714"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5ED22500271756440013CEB8 /* TeamRecruitmentWritingDescriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED224FE271756440013CEB8 /* TeamRecruitmentWritingDescriptionCell.swift */; };
+		5ED22501271756440013CEB8 /* TeamRecruitmentWritingDescriptionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5ED224FF271756440013CEB8 /* TeamRecruitmentWritingDescriptionCell.xib */; };
+		5ED22504271757D00013CEB8 /* TeamRecruitmentWritingPartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED22502271757D00013CEB8 /* TeamRecruitmentWritingPartCell.swift */; };
+		5ED22505271757D00013CEB8 /* TeamRecruitmentWritingPartCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5ED22503271757D00013CEB8 /* TeamRecruitmentWritingPartCell.xib */; };
+		5ED225082717DF5C0013CEB8 /* TeamRecruitmentWritingMemberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED225062717DF5C0013CEB8 /* TeamRecruitmentWritingMemberCell.swift */; };
+		5ED225092717DF5C0013CEB8 /* TeamRecruitmentWritingMemberCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5ED225072717DF5C0013CEB8 /* TeamRecruitmentWritingMemberCell.xib */; };
+		5ED2250C2717DF8E0013CEB8 /* TeamRecruitmentWritingLocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED2250A2717DF8D0013CEB8 /* TeamRecruitmentWritingLocationCell.swift */; };
+		5ED2250D2717DF8E0013CEB8 /* TeamRecruitmentWritingLocationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5ED2250B2717DF8E0013CEB8 /* TeamRecruitmentWritingLocationCell.xib */; };
 		7C2060A1B418A53F47747CDA /* Pods_Budi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D20131AEAD19181CEF5CF7C /* Pods_Budi.framework */; };
 		B97DBB9527147D970018C1D2 /* UIViewController+identifer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B97DBB9427147D970018C1D2 /* UIViewController+identifer.swift */; };
 		B9BF787427004094000BE0EF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9BF787327004094000BE0EF /* AppDelegate.swift */; };
@@ -31,6 +39,14 @@
 /* Begin PBXFileReference section */
 		3D20131AEAD19181CEF5CF7C /* Pods_Budi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Budi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AEC87C415DF15561273F3FF /* Pods-Budi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Budi.debug.xcconfig"; path = "Target Support Files/Pods-Budi/Pods-Budi.debug.xcconfig"; sourceTree = "<group>"; };
+		5ED224FE271756440013CEB8 /* TeamRecruitmentWritingDescriptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamRecruitmentWritingDescriptionCell.swift; sourceTree = "<group>"; };
+		5ED224FF271756440013CEB8 /* TeamRecruitmentWritingDescriptionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TeamRecruitmentWritingDescriptionCell.xib; sourceTree = "<group>"; };
+		5ED22502271757D00013CEB8 /* TeamRecruitmentWritingPartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamRecruitmentWritingPartCell.swift; sourceTree = "<group>"; };
+		5ED22503271757D00013CEB8 /* TeamRecruitmentWritingPartCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TeamRecruitmentWritingPartCell.xib; sourceTree = "<group>"; };
+		5ED225062717DF5C0013CEB8 /* TeamRecruitmentWritingMemberCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamRecruitmentWritingMemberCell.swift; sourceTree = "<group>"; };
+		5ED225072717DF5C0013CEB8 /* TeamRecruitmentWritingMemberCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TeamRecruitmentWritingMemberCell.xib; sourceTree = "<group>"; };
+		5ED2250A2717DF8D0013CEB8 /* TeamRecruitmentWritingLocationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamRecruitmentWritingLocationCell.swift; sourceTree = "<group>"; };
+		5ED2250B2717DF8E0013CEB8 /* TeamRecruitmentWritingLocationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TeamRecruitmentWritingLocationCell.xib; sourceTree = "<group>"; };
 		84D727CBB17AD63DD79D7083 /* Pods-Budi.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Budi.release.xcconfig"; path = "Target Support Files/Pods-Budi/Pods-Budi.release.xcconfig"; sourceTree = "<group>"; };
 		B97DBB9427147D970018C1D2 /* UIViewController+identifer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+identifer.swift"; sourceTree = "<group>"; };
 		B9BF787027004094000BE0EF /* Budi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Budi.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -152,6 +168,14 @@
 				B9D66ECD27147AEA00668490 /* TeamRecruitmentWritingViewController.swift */,
 				CED5ADAA2716BBFD00CDCAA9 /* TeamRecruitmentCollectionViewCell.swift */,
 				CED5ADAB2716BBFD00CDCAA9 /* TeamRecruitmentCollectionViewCell.xib */,
+				5ED2250A2717DF8D0013CEB8 /* TeamRecruitmentWritingLocationCell.swift */,
+				5ED2250B2717DF8E0013CEB8 /* TeamRecruitmentWritingLocationCell.xib */,
+				5ED225062717DF5C0013CEB8 /* TeamRecruitmentWritingMemberCell.swift */,
+				5ED225072717DF5C0013CEB8 /* TeamRecruitmentWritingMemberCell.xib */,
+				5ED224FE271756440013CEB8 /* TeamRecruitmentWritingDescriptionCell.swift */,
+				5ED224FF271756440013CEB8 /* TeamRecruitmentWritingDescriptionCell.xib */,
+				5ED22502271757D00013CEB8 /* TeamRecruitmentWritingPartCell.swift */,
+				5ED22503271757D00013CEB8 /* TeamRecruitmentWritingPartCell.xib */,
 			);
 			path = TeamRecruitment;
 			sourceTree = "<group>";
@@ -267,6 +291,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE79E3112717239400935133 /* .swiftlint.yml in Resources */,
+				5ED22505271757D00013CEB8 /* TeamRecruitmentWritingPartCell.xib in Resources */,
+				5ED225092717DF5C0013CEB8 /* TeamRecruitmentWritingMemberCell.xib in Resources */,
+				5ED2250D2717DF8E0013CEB8 /* TeamRecruitmentWritingLocationCell.xib in Resources */,
+				5ED22501271756440013CEB8 /* TeamRecruitmentWritingDescriptionCell.xib in Resources */,
 				B9BF788027004096000BE0EF /* LaunchScreen.storyboard in Resources */,
 				B9BF787D27004096000BE0EF /* Assets.xcassets in Resources */,
 				CED5ADAD2716BBFD00CDCAA9 /* TeamRecruitmentCollectionViewCell.xib in Resources */,
@@ -326,12 +354,16 @@
 				B9D66ECE27147AEA00668490 /* TeamRecruitmentWritingViewController.swift in Sources */,
 				B9D66ECC2714716400668490 /* TeamRecruitmentViewController.swift in Sources */,
 				B9D66EBB27146E1F00668490 /* MainTabBarCoordinator.swift in Sources */,
+				5ED2250C2717DF8E0013CEB8 /* TeamRecruitmentWritingLocationCell.swift in Sources */,
+				5ED22504271757D00013CEB8 /* TeamRecruitmentWritingPartCell.swift in Sources */,
 				B9D66EC62714706700668490 /* ChattingCoordinator.swift in Sources */,
 				B9BF787427004094000BE0EF /* AppDelegate.swift in Sources */,
+				5ED225082717DF5C0013CEB8 /* TeamRecruitmentWritingMemberCell.swift in Sources */,
 				B97DBB9527147D970018C1D2 /* UIViewController+identifer.swift in Sources */,
 				B9D66EB927146DF900668490 /* TabBarCoordinator.swift in Sources */,
 				B9D66EBF27146F2F00668490 /* TeamRecruitmentCoordinator.swift in Sources */,
 				CED5ADAC2716BBFD00CDCAA9 /* TeamRecruitmentCollectionViewCell.swift in Sources */,
+				5ED22500271756440013CEB8 /* TeamRecruitmentWritingDescriptionCell.swift in Sources */,
 				B9D66EC82714707000668490 /* MyBudiCoordinator.swift in Sources */,
 				B9D66EBD27146E4300668490 /* NavigationCoordinator.swift in Sources */,
 				B9BF787627004095000BE0EF /* SceneDelegate.swift in Sources */,

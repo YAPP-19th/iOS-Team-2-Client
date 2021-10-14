@@ -12,12 +12,17 @@ final class TeamRecruitmentWritingViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureNavigationBar()
-
-        collectionView.collectionViewLayout = createLayout()
-        collectionView.dataSource = self
         collectionView.delegate = self
-
+        collectionView.dataSource = self
+        configureNavigationBar()
+        configureCells()
+    }
+    
+    func configureCells() {
+        collectionView.register(.init(nibName: "CalendarCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "calendarCell")
+        collectionView.register(.init(nibName: "SelectPhotoCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "selectPhotoCell")
+        collectionView.register(.init(nibName: "ProjectNameCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "projectNameCell")
+        collectionView.register(.init(nibName: "LocationCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "locationCell")
         collectionView.register(.init(nibName: TeamRecruitmentWritingLocationCell.identifier, bundle: nil), forCellWithReuseIdentifier: TeamRecruitmentWritingLocationCell.identifier)
         collectionView.register(.init(nibName: TeamRecruitmentWritingMemberCell.identifier, bundle: nil), forCellWithReuseIdentifier: TeamRecruitmentWritingMemberCell.identifier)
         collectionView.register(.init(nibName: TeamRecruitmentWritingDescriptionCell.identifier, bundle: nil), forCellWithReuseIdentifier: TeamRecruitmentWritingDescriptionCell.identifier)
@@ -53,21 +58,6 @@ extension TeamRecruitmentWritingViewController: UICollectionViewDelegateFlowLayo
 }
 
 private extension TeamRecruitmentWritingViewController {
-    func createLayout() -> UICollectionViewCompositionalLayout {
-        return UICollectionViewCompositionalLayout { _, _ in
-            let inset: CGFloat = 16
-
-            let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalWidth(0.4)))
-            item.contentInsets = .init(top: 0, leading: 0, bottom: 0, trailing: 0)
-
-            let group = NSCollectionLayoutGroup.vertical(layoutSize: .init(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(100)), subitems: [item])
-
-            let section = NSCollectionLayoutSection(group: group)
-            section.contentInsets = .init(top: 0, leading: inset, bottom: 0, trailing: inset)
-            return section
-        }
-    }
-
     func configureNavigationBar() {
         navigationItem.rightBarButtonItem = .init(systemItem: .done)
         title = "팀원 모집"

@@ -16,6 +16,14 @@
 		5ED2250C2717DF8E0013CEB8 /* TeamRecruitmentWritingLocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED2250A2717DF8D0013CEB8 /* TeamRecruitmentWritingLocationCell.swift */; };
 		5ED2250D2717DF8E0013CEB8 /* TeamRecruitmentWritingLocationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5ED2250B2717DF8E0013CEB8 /* TeamRecruitmentWritingLocationCell.xib */; };
 		7C2060A1B418A53F47747CDA /* Pods_Budi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D20131AEAD19181CEF5CF7C /* Pods_Budi.framework */; };
+		A865B7C62717F4B6006E244F /* SelectPhotoCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A865B7BE2717F4B6006E244F /* SelectPhotoCollectionViewCell.xib */; };
+		A865B7C72717F4B6006E244F /* LocationCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A865B7BF2717F4B6006E244F /* LocationCollectionViewCell.swift */; };
+		A865B7C82717F4B6006E244F /* CalendarCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A865B7C02717F4B6006E244F /* CalendarCollectionViewCell.xib */; };
+		A865B7C92717F4B6006E244F /* LocationCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A865B7C12717F4B6006E244F /* LocationCollectionViewCell.xib */; };
+		A865B7CA2717F4B6006E244F /* CalendarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A865B7C22717F4B6006E244F /* CalendarCollectionViewCell.swift */; };
+		A865B7CD2717F4B6006E244F /* SelectPhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A865B7C52717F4B6006E244F /* SelectPhotoCollectionViewCell.swift */; };
+		A865B7D02717F8AE006E244F /* ProjectNameCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A865B7CE2717F8AE006E244F /* ProjectNameCollectionViewCell.xib */; };
+		A865B7D12717F8AE006E244F /* ProjectNameCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A865B7CF2717F8AE006E244F /* ProjectNameCollectionViewCell.swift */; };
 		B97DBB9527147D970018C1D2 /* UIViewController+identifer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B97DBB9427147D970018C1D2 /* UIViewController+identifer.swift */; };
 		B9BF787427004094000BE0EF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9BF787327004094000BE0EF /* AppDelegate.swift */; };
 		B9BF787627004095000BE0EF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9BF787527004095000BE0EF /* SceneDelegate.swift */; };
@@ -48,6 +56,14 @@
 		5ED2250A2717DF8D0013CEB8 /* TeamRecruitmentWritingLocationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamRecruitmentWritingLocationCell.swift; sourceTree = "<group>"; };
 		5ED2250B2717DF8E0013CEB8 /* TeamRecruitmentWritingLocationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TeamRecruitmentWritingLocationCell.xib; sourceTree = "<group>"; };
 		84D727CBB17AD63DD79D7083 /* Pods-Budi.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Budi.release.xcconfig"; path = "Target Support Files/Pods-Budi/Pods-Budi.release.xcconfig"; sourceTree = "<group>"; };
+		A865B7BE2717F4B6006E244F /* SelectPhotoCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectPhotoCollectionViewCell.xib; sourceTree = "<group>"; };
+		A865B7BF2717F4B6006E244F /* LocationCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationCollectionViewCell.swift; sourceTree = "<group>"; };
+		A865B7C02717F4B6006E244F /* CalendarCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CalendarCollectionViewCell.xib; sourceTree = "<group>"; };
+		A865B7C12717F4B6006E244F /* LocationCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LocationCollectionViewCell.xib; sourceTree = "<group>"; };
+		A865B7C22717F4B6006E244F /* CalendarCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarCollectionViewCell.swift; sourceTree = "<group>"; };
+		A865B7C52717F4B6006E244F /* SelectPhotoCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectPhotoCollectionViewCell.swift; sourceTree = "<group>"; };
+		A865B7CE2717F8AE006E244F /* ProjectNameCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProjectNameCollectionViewCell.xib; sourceTree = "<group>"; };
+		A865B7CF2717F8AE006E244F /* ProjectNameCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectNameCollectionViewCell.swift; sourceTree = "<group>"; };
 		B97DBB9427147D970018C1D2 /* UIViewController+identifer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+identifer.swift"; sourceTree = "<group>"; };
 		B9BF787027004094000BE0EF /* Budi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Budi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9BF787327004094000BE0EF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -97,6 +113,21 @@
 				3D20131AEAD19181CEF5CF7C /* Pods_Budi.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A865B7BD2717F47F006E244F /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				A865B7CF2717F8AE006E244F /* ProjectNameCollectionViewCell.swift */,
+				A865B7CE2717F8AE006E244F /* ProjectNameCollectionViewCell.xib */,
+				A865B7C22717F4B6006E244F /* CalendarCollectionViewCell.swift */,
+				A865B7C02717F4B6006E244F /* CalendarCollectionViewCell.xib */,
+				A865B7BF2717F4B6006E244F /* LocationCollectionViewCell.swift */,
+				A865B7C12717F4B6006E244F /* LocationCollectionViewCell.xib */,
+				A865B7C52717F4B6006E244F /* SelectPhotoCollectionViewCell.swift */,
+				A865B7BE2717F4B6006E244F /* SelectPhotoCollectionViewCell.xib */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		B9BF786727004094000BE0EF = {
@@ -163,6 +194,7 @@
 		B9D66EB4271469DE00668490 /* TeamRecruitment */ = {
 			isa = PBXGroup;
 			children = (
+				A865B7BD2717F47F006E244F /* Cells */,
 				B9D66EBE27146F2F00668490 /* TeamRecruitmentCoordinator.swift */,
 				B9D66ECB2714716400668490 /* TeamRecruitmentViewController.swift */,
 				B9D66ECD27147AEA00668490 /* TeamRecruitmentWritingViewController.swift */,
@@ -295,10 +327,14 @@
 				5ED225092717DF5C0013CEB8 /* TeamRecruitmentWritingMemberCell.xib in Resources */,
 				5ED2250D2717DF8E0013CEB8 /* TeamRecruitmentWritingLocationCell.xib in Resources */,
 				5ED22501271756440013CEB8 /* TeamRecruitmentWritingDescriptionCell.xib in Resources */,
+				A865B7C62717F4B6006E244F /* SelectPhotoCollectionViewCell.xib in Resources */,
 				B9BF788027004096000BE0EF /* LaunchScreen.storyboard in Resources */,
 				B9BF787D27004096000BE0EF /* Assets.xcassets in Resources */,
+				A865B7C82717F4B6006E244F /* CalendarCollectionViewCell.xib in Resources */,
+				A865B7D02717F8AE006E244F /* ProjectNameCollectionViewCell.xib in Resources */,
 				CED5ADAD2716BBFD00CDCAA9 /* TeamRecruitmentCollectionViewCell.xib in Resources */,
 				B9BF787B27004095000BE0EF /* Main.storyboard in Resources */,
+				A865B7C92717F4B6006E244F /* LocationCollectionViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -360,13 +396,17 @@
 				B9BF787427004094000BE0EF /* AppDelegate.swift in Sources */,
 				5ED225082717DF5C0013CEB8 /* TeamRecruitmentWritingMemberCell.swift in Sources */,
 				B97DBB9527147D970018C1D2 /* UIViewController+identifer.swift in Sources */,
+				A865B7D12717F8AE006E244F /* ProjectNameCollectionViewCell.swift in Sources */,
 				B9D66EB927146DF900668490 /* TabBarCoordinator.swift in Sources */,
 				B9D66EBF27146F2F00668490 /* TeamRecruitmentCoordinator.swift in Sources */,
+				A865B7CD2717F4B6006E244F /* SelectPhotoCollectionViewCell.swift in Sources */,
 				CED5ADAC2716BBFD00CDCAA9 /* TeamRecruitmentCollectionViewCell.swift in Sources */,
 				5ED22500271756440013CEB8 /* TeamRecruitmentWritingDescriptionCell.swift in Sources */,
+				A865B7CA2717F4B6006E244F /* CalendarCollectionViewCell.swift in Sources */,
 				B9D66EC82714707000668490 /* MyBudiCoordinator.swift in Sources */,
 				B9D66EBD27146E4300668490 /* NavigationCoordinator.swift in Sources */,
 				B9BF787627004095000BE0EF /* SceneDelegate.swift in Sources */,
+				A865B7C72717F4B6006E244F /* LocationCollectionViewCell.swift in Sources */,
 				B9D66EC42714703B00668490 /* TeamSearchCoordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

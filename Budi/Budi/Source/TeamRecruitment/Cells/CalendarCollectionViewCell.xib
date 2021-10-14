@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="calendarCell" id="gTV-IL-0wX" customClass="CalendarCollectionViewCell" customModule="Budi" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="60"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="600" height="60"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="la4-9I-gsV">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="60"/>
+                        <subviews>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" translatesAutoresizingMaskIntoConstraints="NO" id="knf-gJ-uJj">
+                                <rect key="frame" x="150" y="0.0" width="450" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="450" id="NlZ-Ze-vfM"/>
+                                    <constraint firstAttribute="height" constant="60" id="iNe-x3-5DS"/>
+                                </constraints>
+                                <locale key="locale" localeIdentifier="ko"/>
+                            </datePicker>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="날짜 선택" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TIK-ws-Plp">
+                                <rect key="frame" x="32" y="20" width="64" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="TIK-ws-Plp" firstAttribute="top" secondItem="la4-9I-gsV" secondAttribute="top" constant="20" symbolic="YES" id="1Tb-qP-NmX"/>
+                            <constraint firstAttribute="bottom" secondItem="knf-gJ-uJj" secondAttribute="bottom" id="7up-sC-GZX"/>
+                            <constraint firstItem="TIK-ws-Plp" firstAttribute="leading" secondItem="la4-9I-gsV" secondAttribute="leading" constant="32" id="ADv-de-CMH"/>
+                            <constraint firstItem="knf-gJ-uJj" firstAttribute="top" secondItem="la4-9I-gsV" secondAttribute="top" id="KIV-TH-TX7"/>
+                            <constraint firstAttribute="bottom" secondItem="TIK-ws-Plp" secondAttribute="bottom" constant="19" id="PBv-ym-2Ly"/>
+                            <constraint firstItem="knf-gJ-uJj" firstAttribute="leading" secondItem="TIK-ws-Plp" secondAttribute="trailing" constant="54" id="cQq-Rb-8a4"/>
+                            <constraint firstItem="knf-gJ-uJj" firstAttribute="leading" secondItem="la4-9I-gsV" secondAttribute="leading" constant="150" id="dhw-Jr-uvz"/>
+                            <constraint firstAttribute="trailing" secondItem="knf-gJ-uJj" secondAttribute="trailing" id="dwP-2S-4RH"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstItem="la4-9I-gsV" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="2VM-w1-VwT"/>
+                <constraint firstItem="la4-9I-gsV" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="4Zj-DX-AOH"/>
+                <constraint firstAttribute="trailing" secondItem="la4-9I-gsV" secondAttribute="trailing" id="NiN-A3-xyi"/>
+                <constraint firstAttribute="bottom" secondItem="la4-9I-gsV" secondAttribute="bottom" id="THA-wd-8p1"/>
+            </constraints>
+            <size key="customSize" width="600" height="60"/>
+            <connections>
+                <outlet property="datePickerView" destination="knf-gJ-uJj" id="raW-4e-lVP"/>
+            </connections>
+            <point key="canvasLocation" x="11.594202898550726" y="97.767857142857139"/>
+        </collectionViewCell>
+    </objects>
+</document>

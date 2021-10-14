@@ -8,26 +8,50 @@
 
 /* Begin PBXBuildFile section */
 		7C2060A1B418A53F47747CDA /* Pods_Budi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D20131AEAD19181CEF5CF7C /* Pods_Budi.framework */; };
+		B97DBB9527147D970018C1D2 /* UIViewController+identifer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B97DBB9427147D970018C1D2 /* UIViewController+identifer.swift */; };
 		B9BF787427004094000BE0EF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9BF787327004094000BE0EF /* AppDelegate.swift */; };
 		B9BF787627004095000BE0EF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9BF787527004095000BE0EF /* SceneDelegate.swift */; };
-		B9BF787827004095000BE0EF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9BF787727004095000BE0EF /* ViewController.swift */; };
 		B9BF787B27004095000BE0EF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B9BF787927004095000BE0EF /* Main.storyboard */; };
 		B9BF787D27004096000BE0EF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B9BF787C27004096000BE0EF /* Assets.xcassets */; };
 		B9BF788027004096000BE0EF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B9BF787E27004096000BE0EF /* LaunchScreen.storyboard */; };
+		B9D66EB927146DF900668490 /* TabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9D66EB827146DF900668490 /* TabBarCoordinator.swift */; };
+		B9D66EBB27146E1F00668490 /* MainTabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9D66EBA27146E1F00668490 /* MainTabBarCoordinator.swift */; };
+		B9D66EBD27146E4300668490 /* NavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9D66EBC27146E4300668490 /* NavigationCoordinator.swift */; };
+		B9D66EBF27146F2F00668490 /* TeamRecruitmentCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9D66EBE27146F2F00668490 /* TeamRecruitmentCoordinator.swift */; };
+		B9D66EC42714703B00668490 /* TeamSearchCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9D66EC32714703B00668490 /* TeamSearchCoordinator.swift */; };
+		B9D66EC62714706700668490 /* ChattingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9D66EC52714706700668490 /* ChattingCoordinator.swift */; };
+		B9D66EC82714707000668490 /* MyBudiCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9D66EC72714707000668490 /* MyBudiCoordinator.swift */; };
+		B9D66ECC2714716400668490 /* TeamRecruitmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9D66ECB2714716400668490 /* TeamRecruitmentViewController.swift */; };
+		B9D66ECE27147AEA00668490 /* TeamRecruitmentWritingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9D66ECD27147AEA00668490 /* TeamRecruitmentWritingViewController.swift */; };
+		CE79E3112717239400935133 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = CE79E3102717239400935133 /* .swiftlint.yml */; };
+		CED5ADAC2716BBFD00CDCAA9 /* TeamRecruitmentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED5ADAA2716BBFD00CDCAA9 /* TeamRecruitmentCollectionViewCell.swift */; };
+		CED5ADAD2716BBFD00CDCAA9 /* TeamRecruitmentCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CED5ADAB2716BBFD00CDCAA9 /* TeamRecruitmentCollectionViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		3D20131AEAD19181CEF5CF7C /* Pods_Budi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Budi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AEC87C415DF15561273F3FF /* Pods-Budi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Budi.debug.xcconfig"; path = "Target Support Files/Pods-Budi/Pods-Budi.debug.xcconfig"; sourceTree = "<group>"; };
 		84D727CBB17AD63DD79D7083 /* Pods-Budi.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Budi.release.xcconfig"; path = "Target Support Files/Pods-Budi/Pods-Budi.release.xcconfig"; sourceTree = "<group>"; };
+		B97DBB9427147D970018C1D2 /* UIViewController+identifer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+identifer.swift"; sourceTree = "<group>"; };
 		B9BF787027004094000BE0EF /* Budi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Budi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9BF787327004094000BE0EF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B9BF787527004095000BE0EF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		B9BF787727004095000BE0EF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		B9BF787A27004095000BE0EF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B9BF787C27004096000BE0EF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B9BF787F27004096000BE0EF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B9BF788127004096000BE0EF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B9D66EB827146DF900668490 /* TabBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarCoordinator.swift; sourceTree = "<group>"; };
+		B9D66EBA27146E1F00668490 /* MainTabBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarCoordinator.swift; sourceTree = "<group>"; };
+		B9D66EBC27146E4300668490 /* NavigationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationCoordinator.swift; sourceTree = "<group>"; };
+		B9D66EBE27146F2F00668490 /* TeamRecruitmentCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamRecruitmentCoordinator.swift; sourceTree = "<group>"; };
+		B9D66EC32714703B00668490 /* TeamSearchCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamSearchCoordinator.swift; sourceTree = "<group>"; };
+		B9D66EC52714706700668490 /* ChattingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingCoordinator.swift; sourceTree = "<group>"; };
+		B9D66EC72714707000668490 /* MyBudiCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyBudiCoordinator.swift; sourceTree = "<group>"; };
+		B9D66ECB2714716400668490 /* TeamRecruitmentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamRecruitmentViewController.swift; sourceTree = "<group>"; };
+		B9D66ECD27147AEA00668490 /* TeamRecruitmentWritingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamRecruitmentWritingViewController.swift; sourceTree = "<group>"; };
+		CE79E3102717239400935133 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
+		CED5ADAA2716BBFD00CDCAA9 /* TeamRecruitmentCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamRecruitmentCollectionViewCell.swift; sourceTree = "<group>"; };
+		CED5ADAB2716BBFD00CDCAA9 /* TeamRecruitmentCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TeamRecruitmentCollectionViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,15 +104,107 @@
 		B9BF787227004094000BE0EF /* Budi */ = {
 			isa = PBXGroup;
 			children = (
-				B9BF787327004094000BE0EF /* AppDelegate.swift */,
-				B9BF787527004095000BE0EF /* SceneDelegate.swift */,
-				B9BF787727004095000BE0EF /* ViewController.swift */,
-				B9BF787927004095000BE0EF /* Main.storyboard */,
-				B9BF787C27004096000BE0EF /* Assets.xcassets */,
-				B9BF787E27004096000BE0EF /* LaunchScreen.storyboard */,
-				B9BF788127004096000BE0EF /* Info.plist */,
+				B9D66EB2271469AB00668490 /* Resource */,
+				B9D66EB12714693700668490 /* Source */,
+				CE79E3102717239400935133 /* .swiftlint.yml */,
 			);
 			path = Budi;
+			sourceTree = "<group>";
+		};
+		B9D66EB12714693700668490 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				B9D66ECF27147B0E00668490 /* extension */,
+				B9D66EB627146B5000668490 /* Storyborads */,
+				B9D66EB727146DB600668490 /* Coordinators */,
+				B9D66EB4271469DE00668490 /* TeamRecruitment */,
+				B9D66EC027146FFC00668490 /* TeamSearch */,
+				B9D66EC12714700900668490 /* Chatting */,
+				B9D66EC22714701000668490 /* MyBudi */,
+				B9D66EB3271469C700668490 /* System */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		B9D66EB2271469AB00668490 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				B9BF787C27004096000BE0EF /* Assets.xcassets */,
+				B9BF788127004096000BE0EF /* Info.plist */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		B9D66EB3271469C700668490 /* System */ = {
+			isa = PBXGroup;
+			children = (
+				B9BF787327004094000BE0EF /* AppDelegate.swift */,
+				B9BF787527004095000BE0EF /* SceneDelegate.swift */,
+			);
+			path = System;
+			sourceTree = "<group>";
+		};
+		B9D66EB4271469DE00668490 /* TeamRecruitment */ = {
+			isa = PBXGroup;
+			children = (
+				B9D66EBE27146F2F00668490 /* TeamRecruitmentCoordinator.swift */,
+				B9D66ECB2714716400668490 /* TeamRecruitmentViewController.swift */,
+				B9D66ECD27147AEA00668490 /* TeamRecruitmentWritingViewController.swift */,
+				CED5ADAA2716BBFD00CDCAA9 /* TeamRecruitmentCollectionViewCell.swift */,
+				CED5ADAB2716BBFD00CDCAA9 /* TeamRecruitmentCollectionViewCell.xib */,
+			);
+			path = TeamRecruitment;
+			sourceTree = "<group>";
+		};
+		B9D66EB627146B5000668490 /* Storyborads */ = {
+			isa = PBXGroup;
+			children = (
+				B9BF787E27004096000BE0EF /* LaunchScreen.storyboard */,
+				B9BF787927004095000BE0EF /* Main.storyboard */,
+			);
+			path = Storyborads;
+			sourceTree = "<group>";
+		};
+		B9D66EB727146DB600668490 /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+				B9D66EB827146DF900668490 /* TabBarCoordinator.swift */,
+				B9D66EBA27146E1F00668490 /* MainTabBarCoordinator.swift */,
+				B9D66EBC27146E4300668490 /* NavigationCoordinator.swift */,
+			);
+			path = Coordinators;
+			sourceTree = "<group>";
+		};
+		B9D66EC027146FFC00668490 /* TeamSearch */ = {
+			isa = PBXGroup;
+			children = (
+				B9D66EC32714703B00668490 /* TeamSearchCoordinator.swift */,
+			);
+			path = TeamSearch;
+			sourceTree = "<group>";
+		};
+		B9D66EC12714700900668490 /* Chatting */ = {
+			isa = PBXGroup;
+			children = (
+				B9D66EC52714706700668490 /* ChattingCoordinator.swift */,
+			);
+			path = Chatting;
+			sourceTree = "<group>";
+		};
+		B9D66EC22714701000668490 /* MyBudi */ = {
+			isa = PBXGroup;
+			children = (
+				B9D66EC72714707000668490 /* MyBudiCoordinator.swift */,
+			);
+			path = MyBudi;
+			sourceTree = "<group>";
+		};
+		B9D66ECF27147B0E00668490 /* extension */ = {
+			isa = PBXGroup;
+			children = (
+				B97DBB9427147D970018C1D2 /* UIViewController+identifer.swift */,
+			);
+			path = extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -150,8 +266,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE79E3112717239400935133 /* .swiftlint.yml in Resources */,
 				B9BF788027004096000BE0EF /* LaunchScreen.storyboard in Resources */,
 				B9BF787D27004096000BE0EF /* Assets.xcassets in Resources */,
+				CED5ADAD2716BBFD00CDCAA9 /* TeamRecruitmentCollectionViewCell.xib in Resources */,
 				B9BF787B27004095000BE0EF /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -205,9 +323,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B9BF787827004095000BE0EF /* ViewController.swift in Sources */,
+				B9D66ECE27147AEA00668490 /* TeamRecruitmentWritingViewController.swift in Sources */,
+				B9D66ECC2714716400668490 /* TeamRecruitmentViewController.swift in Sources */,
+				B9D66EBB27146E1F00668490 /* MainTabBarCoordinator.swift in Sources */,
+				B9D66EC62714706700668490 /* ChattingCoordinator.swift in Sources */,
 				B9BF787427004094000BE0EF /* AppDelegate.swift in Sources */,
+				B97DBB9527147D970018C1D2 /* UIViewController+identifer.swift in Sources */,
+				B9D66EB927146DF900668490 /* TabBarCoordinator.swift in Sources */,
+				B9D66EBF27146F2F00668490 /* TeamRecruitmentCoordinator.swift in Sources */,
+				CED5ADAC2716BBFD00CDCAA9 /* TeamRecruitmentCollectionViewCell.swift in Sources */,
+				B9D66EC82714707000668490 /* MyBudiCoordinator.swift in Sources */,
+				B9D66EBD27146E4300668490 /* NavigationCoordinator.swift in Sources */,
 				B9BF787627004095000BE0EF /* SceneDelegate.swift in Sources */,
+				B9D66EC42714703B00668490 /* TeamSearchCoordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -284,7 +412,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -339,7 +467,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -357,7 +485,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = V37X2D6JM3;
-				INFOPLIST_FILE = Budi/Info.plist;
+				INFOPLIST_FILE = Budi/Resource/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -377,7 +505,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = V37X2D6JM3;
-				INFOPLIST_FILE = Budi/Info.plist;
+				INFOPLIST_FILE = Budi/Resource/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

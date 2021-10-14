@@ -27,7 +27,6 @@ final class TeamRecruitmentWritingViewController: UIViewController {
         collectionView.register(projectName, forCellWithReuseIdentifier: "projectNameCell")
         collectionView.register(location, forCellWithReuseIdentifier: "locationCell")
     }
-    
 }
 
 extension TeamRecruitmentWritingViewController: UICollectionViewDataSource {
@@ -36,20 +35,6 @@ extension TeamRecruitmentWritingViewController: UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let calenderCell = collectionView.dequeueReusableCell(withReuseIdentifier: "calendarCell", for: indexPath) as? CalendarCollectionViewCell else { return UICollectionViewCell() }
-        guard let selectCell = collectionView.dequeueReusableCell(withReuseIdentifier: "selectPhotoCell", for: indexPath) as? SelectPhotoCollectionViewCell else { return UICollectionViewCell() }
-        guard let projectNameCell = collectionView.dequeueReusableCell(withReuseIdentifier: "projectNameCell", for: indexPath) as? ProjectNameCollectionViewCell else { return UICollectionViewCell() }
-        guard let locationCell = collectionView.dequeueReusableCell(withReuseIdentifier: "locationCell", for: indexPath) as? LocationCollectionViewCell else { return UICollectionViewCell() }
-        
-        if indexPath.row == 0 {
-            return selectCell
-        } else if indexPath.row == 1 {
-            return projectNameCell
-        } else if indexPath.row == 2 {
-            return calenderCell
-        } else {
-            return locationCell
-        }
         return UICollectionViewCell()
     }
 }

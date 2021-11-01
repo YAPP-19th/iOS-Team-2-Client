@@ -15,10 +15,9 @@ final class TeamRecruitmentViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureNavigationBar()
-        collectionView.collectionViewLayout = createLayout()
         collectionView.dataSource = self
         collectionView.delegate = self
-        collectionView.register(.init(nibName: TeamRecruitmentCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: TeamRecruitmentCollectionViewCell.identifier)
+        collectionView.backgroundColor = .white
     }
 
     @IBAction func writeButtonDidTouchUpInside(_ sender: UIButton) {
@@ -29,17 +28,16 @@ final class TeamRecruitmentViewController: UIViewController {
 
 extension TeamRecruitmentViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        10
+        0
     }
 
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        1
+       0
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TeamRecruitmentCollectionViewCell.identifier, for: indexPath) as UICollectionViewCell
 
-        return cell
+        return UICollectionViewCell()
     }
 }
 
@@ -48,19 +46,6 @@ extension TeamRecruitmentViewController: UICollectionViewDelegate {
 }
 
 private extension TeamRecruitmentViewController {
-    func createLayout() -> UICollectionViewCompositionalLayout {
-        return UICollectionViewCompositionalLayout { _, _ in
-            let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .fractionalWidth(0.7)))
-            item.contentInsets = .init(top: 0, leading: 5, bottom: 16, trailing: 5)
-
-            let group = NSCollectionLayoutGroup.vertical(layoutSize: .init(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(200)), subitems: [item])
-
-            let section = NSCollectionLayoutSection(group: group)
-            section.contentInsets = .init(top: 0, leading: 16, bottom: 0, trailing: 16)
-            return section
-        }
-    }
-
     func configureNavigationBar() {
         let editButton = UIButton()
         editButton.setImage(.init(systemName: "line.3.horizontal"), for: .normal)

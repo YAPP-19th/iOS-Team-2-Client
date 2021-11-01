@@ -24,8 +24,6 @@
 		B9D66ECC2714716400668490 /* TeamRecruitmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9D66ECB2714716400668490 /* TeamRecruitmentViewController.swift */; };
 		B9D66ECE27147AEA00668490 /* TeamRecruitmentWritingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9D66ECD27147AEA00668490 /* TeamRecruitmentWritingViewController.swift */; };
 		CE79E3112717239400935133 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = CE79E3102717239400935133 /* .swiftlint.yml */; };
-		CED5ADAC2716BBFD00CDCAA9 /* TeamRecruitmentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED5ADAA2716BBFD00CDCAA9 /* TeamRecruitmentCollectionViewCell.swift */; };
-		CED5ADAD2716BBFD00CDCAA9 /* TeamRecruitmentCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CED5ADAB2716BBFD00CDCAA9 /* TeamRecruitmentCollectionViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,8 +48,6 @@
 		B9D66ECB2714716400668490 /* TeamRecruitmentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamRecruitmentViewController.swift; sourceTree = "<group>"; };
 		B9D66ECD27147AEA00668490 /* TeamRecruitmentWritingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamRecruitmentWritingViewController.swift; sourceTree = "<group>"; };
 		CE79E3102717239400935133 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
-		CED5ADAA2716BBFD00CDCAA9 /* TeamRecruitmentCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamRecruitmentCollectionViewCell.swift; sourceTree = "<group>"; };
-		CED5ADAB2716BBFD00CDCAA9 /* TeamRecruitmentCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TeamRecruitmentCollectionViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,8 +146,6 @@
 				B9D66EBE27146F2F00668490 /* TeamRecruitmentCoordinator.swift */,
 				B9D66ECB2714716400668490 /* TeamRecruitmentViewController.swift */,
 				B9D66ECD27147AEA00668490 /* TeamRecruitmentWritingViewController.swift */,
-				CED5ADAA2716BBFD00CDCAA9 /* TeamRecruitmentCollectionViewCell.swift */,
-				CED5ADAB2716BBFD00CDCAA9 /* TeamRecruitmentCollectionViewCell.xib */,
 			);
 			path = TeamRecruitment;
 			sourceTree = "<group>";
@@ -269,7 +263,6 @@
 				CE79E3112717239400935133 /* .swiftlint.yml in Resources */,
 				B9BF788027004096000BE0EF /* LaunchScreen.storyboard in Resources */,
 				B9BF787D27004096000BE0EF /* Assets.xcassets in Resources */,
-				CED5ADAD2716BBFD00CDCAA9 /* TeamRecruitmentCollectionViewCell.xib in Resources */,
 				B9BF787B27004095000BE0EF /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -331,7 +324,6 @@
 				B97DBB9527147D970018C1D2 /* UIViewController+identifer.swift in Sources */,
 				B9D66EB927146DF900668490 /* TabBarCoordinator.swift in Sources */,
 				B9D66EBF27146F2F00668490 /* TeamRecruitmentCoordinator.swift in Sources */,
-				CED5ADAC2716BBFD00CDCAA9 /* TeamRecruitmentCollectionViewCell.swift in Sources */,
 				B9D66EC82714707000668490 /* MyBudiCoordinator.swift in Sources */,
 				B9D66EBD27146E4300668490 /* NavigationCoordinator.swift in Sources */,
 				B9BF787627004095000BE0EF /* SceneDelegate.swift in Sources */,

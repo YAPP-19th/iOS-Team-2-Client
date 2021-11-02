@@ -61,13 +61,17 @@ extension HomeDetailViewController: UICollectionViewDelegateFlowLayout {
         switch indexPath.row {
         case 0: return CGSize(width: view.frame.width, height: 436)
         case 1: return CGSize(width: view.frame.width, height: 181)
-        case 2: return CGSize(width: view.frame.width, height: 200)
+        case 2: return CGSize(width: view.frame.width, height: 578)
         case 3: return CGSize(width: view.frame.width, height: 200)
         case 4: return CGSize(width: view.frame.width, height: 200)
         default: break
         }
 
         return CGSize.zero
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        0
     }
 }
 

@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		7C2060A1B418A53F47747CDA /* Pods_Budi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D20131AEAD19181CEF5CF7C /* Pods_Budi.framework */; };
+		A82E49DD273111C50068218A /* LoginSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82E49DC273111C50068218A /* LoginSelectViewController.swift */; };
+		A82E49DF273111E50068218A /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82E49DE273111E50068218A /* LoginCoordinator.swift */; };
 		B97DBB9527147D970018C1D2 /* UIViewController+identifer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B97DBB9427147D970018C1D2 /* UIViewController+identifer.swift */; };
 		B9BF787427004094000BE0EF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9BF787327004094000BE0EF /* AppDelegate.swift */; };
 		B9BF787627004095000BE0EF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9BF787527004095000BE0EF /* SceneDelegate.swift */; };
@@ -30,6 +32,8 @@
 		3D20131AEAD19181CEF5CF7C /* Pods_Budi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Budi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AEC87C415DF15561273F3FF /* Pods-Budi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Budi.debug.xcconfig"; path = "Target Support Files/Pods-Budi/Pods-Budi.debug.xcconfig"; sourceTree = "<group>"; };
 		84D727CBB17AD63DD79D7083 /* Pods-Budi.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Budi.release.xcconfig"; path = "Target Support Files/Pods-Budi/Pods-Budi.release.xcconfig"; sourceTree = "<group>"; };
+		A82E49DC273111C50068218A /* LoginSelectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSelectViewController.swift; sourceTree = "<group>"; };
+		A82E49DE273111E50068218A /* LoginCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
 		B97DBB9427147D970018C1D2 /* UIViewController+identifer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+identifer.swift"; sourceTree = "<group>"; };
 		B9BF787027004094000BE0EF /* Budi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Budi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9BF787327004094000BE0EF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -79,6 +83,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		A82E49DB273111050068218A /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				A82E49DC273111C50068218A /* LoginSelectViewController.swift */,
+				A82E49DE273111E50068218A /* LoginCoordinator.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
 		B9BF786727004094000BE0EF = {
 			isa = PBXGroup;
 			children = (
@@ -110,6 +123,7 @@
 		B9D66EB12714693700668490 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				A82E49DB273111050068218A /* Login */,
 				B9D66ECF27147B0E00668490 /* extension */,
 				B9D66EB627146B5000668490 /* Storyborads */,
 				B9D66EB727146DB600668490 /* Coordinators */,
@@ -317,6 +331,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				B9D66ECE27147AEA00668490 /* TeamRecruitmentWritingViewController.swift in Sources */,
+				A82E49DD273111C50068218A /* LoginSelectViewController.swift in Sources */,
+				A82E49DF273111E50068218A /* LoginCoordinator.swift in Sources */,
 				B9D66ECC2714716400668490 /* TeamRecruitmentViewController.swift in Sources */,
 				B9D66EBB27146E1F00668490 /* MainTabBarCoordinator.swift in Sources */,
 				B9D66EC62714706700668490 /* ChattingCoordinator.swift in Sources */,

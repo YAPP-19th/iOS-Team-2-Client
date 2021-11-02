@@ -11,9 +11,12 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var coordinator: MainTabBarCoordinator?
+    //var coordinator: LoginCoordinator?
     var window: UIWindow?
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+        /* 원래 코드 */
+
         let tabBarController = UITabBarController()
         guard let windowScene = scene as? UIWindowScene else { return }
 
@@ -22,6 +25,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         coordinator?.start()
         window?.rootViewController = tabBarController
         window?.makeKeyAndVisible()
+
+        /*
+        let navigationController = UINavigationController()
+        guard let windowScene = scene as? UIWindowScene else { return }
+
+        window = UIWindow(windowScene: windowScene)
+        coordinator = LoginCoordinator(navigationController: navigationController)
+        coordinator?.start()
+        window?.rootViewController = navigationController
+        window?.makeKeyAndVisible()
+        */
     }
 
 }

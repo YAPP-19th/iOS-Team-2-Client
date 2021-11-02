@@ -60,7 +60,7 @@ extension HomeDetailViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         switch indexPath.row {
         case 0: return CGSize(width: view.frame.width, height: 436)
-        case 1: return CGSize(width: view.frame.width, height: 200)
+        case 1: return CGSize(width: view.frame.width, height: 181)
         case 2: return CGSize(width: view.frame.width, height: 200)
         case 3: return CGSize(width: view.frame.width, height: 200)
         case 4: return CGSize(width: view.frame.width, height: 200)

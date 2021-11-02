@@ -12,14 +12,14 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="HomeDetailIntroCollectionViewCell" customModule="Budi" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jlO-Ns-Gl1">
-                        <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
                         <color key="backgroundColor" systemColor="systemTealColor"/>
                     </view>
                 </subviews>
@@ -31,8 +31,8 @@
                 <constraint firstItem="jlO-Ns-Gl1" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="iZ5-nB-Be3"/>
                 <constraint firstItem="jlO-Ns-Gl1" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="pqo-C6-aQN"/>
             </constraints>
-            <size key="customSize" width="240" height="128"/>
-            <point key="canvasLocation" x="269.56521739130437" y="107.8125"/>
+            <size key="customSize" width="389" height="114"/>
+            <point key="canvasLocation" x="377.536231884058" y="112.5"/>
         </collectionViewCell>
     </objects>
     <resources>

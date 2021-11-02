@@ -1,5 +1,5 @@
 //
-//  TeamRecruitmentCoordinator.swift
+//  HomeCoordinator.swift
 //  Budi
 //
 //  Created by 최동규 on 2021/10/11.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class TeamRecruitmentCoordinator: NavigationCoordinator {
+final class HomeCoordinator: NavigationCoordinator {
 
     weak var parentCoordinator: MainTabBarCoordinator?
     weak var navigationController: UINavigationController?
@@ -18,23 +18,23 @@ final class TeamRecruitmentCoordinator: NavigationCoordinator {
     }
 
     func start() {
-        let viewController: TeamRecruitmentViewController = storyboard.instantiateViewController(
-            identifier: TeamRecruitmentViewController.identifier)
+        let viewController: HomeViewController = storyboard.instantiateViewController(
+            identifier: HomeViewController.identifier)
         viewController.coordinator = self
         navigationController?.pushViewController(viewController, animated: true)
     }
 }
 
-extension TeamRecruitmentCoordinator {
+extension HomeCoordinator {
     func showWriting() {
-        let viewController: TeamRecruitmentWritingViewController = storyboard.instantiateViewController(
-            identifier: TeamRecruitmentWritingViewController.identifier)
+        let viewController: HomeWritingViewController = storyboard.instantiateViewController(
+            identifier: HomeWritingViewController.identifier)
         navigationController?.pushViewController(viewController, animated: true)
     }
 
     func showDetail() {
-        let viewController: TeamRecruitmentDetailViewController = storyboard.instantiateViewController(
-            identifier: TeamRecruitmentDetailViewController.identifier)
+        let viewController: HomeDetailViewController = storyboard.instantiateViewController(
+            identifier: HomeDetailViewController.identifier)
         navigationController?.pushViewController(viewController, animated: true)
     }
 }

@@ -1,5 +1,5 @@
 //
-//  TeamRecrutimentViewController.swift
+//  HomeViewController.swift
 //  Budi
 //
 //  Created by 최동규 on 2021/10/11.
@@ -7,10 +7,10 @@
 
 import UIKit
 
-final class TeamRecruitmentViewController: UIViewController {
+final class HomeViewController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
-    weak var coordinator: TeamRecruitmentCoordinator?
+    weak var coordinator: HomeCoordinator?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,7 +19,7 @@ final class TeamRecruitmentViewController: UIViewController {
         collectionView.collectionViewLayout = createLayout()
         collectionView.dataSource = self
         collectionView.delegate = self
-        collectionView.register(.init(nibName: TeamRecruitmentCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: TeamRecruitmentCollectionViewCell.identifier)
+        collectionView.register(.init(nibName: HomeCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: HomeCollectionViewCell.identifier)
         collectionView.backgroundColor = .white
     }
 
@@ -28,7 +28,7 @@ final class TeamRecruitmentViewController: UIViewController {
     }
 }
 
-extension TeamRecruitmentViewController: UICollectionViewDataSource {
+extension HomeViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         3
     }
@@ -38,22 +38,21 @@ extension TeamRecruitmentViewController: UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TeamRecruitmentCollectionViewCell.identifier, for: indexPath) as UICollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeCollectionViewCell.identifier, for: indexPath) as UICollectionViewCell
         cell.backgroundColor = .systemGroupedBackground
         return cell
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(indexPath.row)
         coordinator?.showDetail()
     }
 }
 
-extension TeamRecruitmentViewController: UICollectionViewDelegate {
+extension HomeViewController: UICollectionViewDelegate {
 
 }
 
-private extension TeamRecruitmentViewController {
+private extension HomeViewController {
     func createLayout() -> UICollectionViewCompositionalLayout {
         return UICollectionViewCompositionalLayout { _, _ in
             let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .fractionalWidth(0.5)))

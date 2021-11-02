@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Team Recruitment View Controller-->
+        <!--Home View Controller-->
         <scene sceneID="6cj-1a-OT6">
             <objects>
-                <viewController storyboardIdentifier="TeamRecruitmentViewController" id="s75-tg-skG" customClass="TeamRecruitmentViewController" customModule="Budi" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HomeViewController" id="s75-tg-skG" customClass="HomeViewController" customModule="Budi" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ePK-Y5-MKH">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -57,10 +57,10 @@
             </objects>
             <point key="canvasLocation" x="-546" y="1"/>
         </scene>
-        <!--Team Recruitment Writing View Controller-->
+        <!--Home Writing View Controller-->
         <scene sceneID="Pof-xI-vza">
             <objects>
-                <viewController storyboardIdentifier="TeamRecruitmentWritingViewController" id="lJ2-SF-D5K" customClass="TeamRecruitmentWritingViewController" customModule="Budi" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HomeWritingViewController" id="lJ2-SF-D5K" customClass="HomeWritingViewController" customModule="Budi" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="mxo-i1-Pze">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -94,10 +94,10 @@
             </objects>
             <point key="canvasLocation" x="487" y="9"/>
         </scene>
-        <!--Team Recruitment Detail View Controller-->
+        <!--Home Detail View Controller-->
         <scene sceneID="6W9-r9-Dwr">
             <objects>
-                <viewController storyboardIdentifier="TeamRecruitmentDetailViewController" id="Y5V-2l-l0f" customClass="TeamRecruitmentDetailViewController" customModule="Budi" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HomeDetailViewController" id="Y5V-2l-l0f" customClass="HomeDetailViewController" customModule="Budi" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="lRJ-qa-rjH">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

@@ -1,5 +1,5 @@
 //
-//  TeamRecruitmentWritingViewController.swift
+//  HomeWritingViewController.swift
 //  Budi
 //
 //  Created by 최동규 on 2021/10/11.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class TeamRecruitmentWritingViewController: UIViewController {
+final class HomeWritingViewController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
     override func viewDidLoad() {
@@ -16,7 +16,7 @@ final class TeamRecruitmentWritingViewController: UIViewController {
     }
 }
 
-extension TeamRecruitmentWritingViewController: UICollectionViewDataSource {
+extension HomeWritingViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 0
     }
@@ -25,11 +25,11 @@ extension TeamRecruitmentWritingViewController: UICollectionViewDataSource {
         return UICollectionViewCell()
     }
 }
-extension TeamRecruitmentWritingViewController: UICollectionViewDelegateFlowLayout {
+extension HomeWritingViewController: UICollectionViewDelegateFlowLayout {
 
 }
 
-private extension TeamRecruitmentWritingViewController {
+private extension HomeWritingViewController {
     func configureNavigationBar() {
         navigationItem.rightBarButtonItem = .init(systemItem: .done)
         title = "팀원 모집"

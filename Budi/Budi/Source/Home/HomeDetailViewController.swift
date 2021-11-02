@@ -1,5 +1,5 @@
 //
-//  TeamRecruitmentDetailViewController.swift
+//  HomeDetailViewController.swift
 //  Budi
 //
 //  Created by leeesangheee on 2021/11/02.
@@ -7,10 +7,10 @@
 
 import UIKit
 
-final class TeamRecruitmentDetailViewController: UIViewController {
+final class HomeDetailViewController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
-    weak var coordinator: TeamRecruitmentCoordinator?
+    weak var coordinator: HomeCoordinator?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,32 +19,36 @@ final class TeamRecruitmentDetailViewController: UIViewController {
         collectionView.collectionViewLayout = createLayout()
         collectionView.dataSource = self
         collectionView.delegate = self
-        collectionView.register(.init(nibName: TeamRecruitmentDetailCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: TeamRecruitmentDetailCollectionViewCell.identifier)
+        collectionView.register(.init(nibName: HomeDetailCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: HomeDetailCollectionViewCell.identifier)
         collectionView.backgroundColor = .white
     }
 }
 
-extension TeamRecruitmentDetailViewController: UICollectionViewDataSource {
+extension HomeDetailViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        3
-    }
-
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
         1
     }
 
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        5
+    }
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TeamRecruitmentDetailCollectionViewCell.identifier, for: indexPath) as UICollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeDetailCollectionViewCell.identifier, for: indexPath) as UICollectionViewCell
         cell.backgroundColor = .systemGroupedBackground
         return cell
     }
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print(indexPath.section)
+    }
 }
 
-extension TeamRecruitmentDetailViewController: UICollectionViewDelegate {
+extension HomeDetailViewController: UICollectionViewDelegate {
 
 }
 
-private extension TeamRecruitmentDetailViewController {
+private extension HomeDetailViewController {
     func createLayout() -> UICollectionViewCompositionalLayout {
         return UICollectionViewCompositionalLayout { _, _ in
             let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .fractionalWidth(0.5)))
@@ -59,6 +63,14 @@ private extension TeamRecruitmentDetailViewController {
     }
 
     func configureNavigationBar() {
-        navigationItem.rightBarButtonItem = .init(systemItem: .done)
+        let actionButton = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(actionButtonTapped))
+        navigationItem.rightBarButtonItem = actionButton
+        navigationController?.navigationBar.tintColor = .white
+    }
+}
+
+private extension HomeDetailViewController {
+    @objc func actionButtonTapped() {
+        print("actionButtonTapped")
     }
 }

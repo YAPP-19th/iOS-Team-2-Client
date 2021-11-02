@@ -15,6 +15,8 @@ final class HomeDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureNavigationBar()
+        configureTabBar()
+        configureCollectionView()
 
         collectionView.dataSource = self
         collectionView.delegate = self
@@ -23,7 +25,19 @@ final class HomeDetailViewController: UIViewController {
         collectionView.register(.init(nibName: HomeDetailIntroCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: HomeDetailIntroCollectionViewCell.identifier)
         collectionView.register(.init(nibName: HomeDetailLeaderCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: HomeDetailLeaderCollectionViewCell.identifier)
         collectionView.register(.init(nibName: HomeDetailMemberCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: HomeDetailMemberCollectionViewCell.identifier)
-        collectionView.register(.init(nibName: DividerCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: DividerCollectionViewCell.identifier)
+        collectionView.backgroundColor = .white
+    }
+}
+
+private extension HomeDetailViewController {
+    func configureCollectionView() {
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        collectionView.register(.init(nibName: HomeDetailMainCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: HomeDetailMainCollectionViewCell.identifier)
+        collectionView.register(.init(nibName: HomeDetailStateCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: HomeDetailStateCollectionViewCell.identifier)
+        collectionView.register(.init(nibName: HomeDetailIntroCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: HomeDetailIntroCollectionViewCell.identifier)
+        collectionView.register(.init(nibName: HomeDetailLeaderCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: HomeDetailLeaderCollectionViewCell.identifier)
+        collectionView.register(.init(nibName: HomeDetailMemberCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: HomeDetailMemberCollectionViewCell.identifier)
         collectionView.backgroundColor = .white
     }
 }
@@ -81,6 +95,10 @@ private extension HomeDetailViewController {
         let actionButton = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(actionButtonTapped))
         navigationItem.rightBarButtonItem = actionButton
         navigationController?.navigationBar.tintColor = .systemGray
+    }
+
+    func configureTabBar() {
+        tabBarController?.tabBar.isHidden = true
     }
 }
 

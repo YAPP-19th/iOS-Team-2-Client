@@ -23,6 +23,7 @@ final class HomeDetailViewController: UIViewController {
         collectionView.register(.init(nibName: HomeDetailIntroCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: HomeDetailIntroCollectionViewCell.identifier)
         collectionView.register(.init(nibName: HomeDetailLeaderCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: HomeDetailLeaderCollectionViewCell.identifier)
         collectionView.register(.init(nibName: HomeDetailMemberCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: HomeDetailMemberCollectionViewCell.identifier)
+        collectionView.register(.init(nibName: DividerCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: DividerCollectionViewCell.identifier)
         collectionView.backgroundColor = .white
     }
 }
@@ -62,8 +63,8 @@ extension HomeDetailViewController: UICollectionViewDelegateFlowLayout {
         case 0: return CGSize(width: view.frame.width, height: 436)
         case 1: return CGSize(width: view.frame.width, height: 181)
         case 2: return CGSize(width: view.frame.width, height: 578)
-        case 3: return CGSize(width: view.frame.width, height: 200)
-        case 4: return CGSize(width: view.frame.width, height: 200)
+        case 3: return CGSize(width: view.frame.width, height: 176)
+        case 4: return CGSize(width: view.frame.width, height: 374)
         default: break
         }
 

@@ -4,6 +4,8 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -103,7 +105,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="GGU-K4-uik">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="758"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="5r4-LB-kbe">
                                     <size key="itemSize" width="128" height="128"/>
@@ -113,27 +115,111 @@
                                 </collectionViewFlowLayout>
                                 <cells/>
                             </collectionView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jwd-We-9lw">
+                                <rect key="frame" x="0.0" y="801" width="414" height="95"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tjj-Dm-myE">
+                                        <rect key="frame" x="80" y="8" width="318" height="48"/>
+                                        <color key="backgroundColor" name="Green"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="48" id="kqH-DH-3u4"/>
+                                        </constraints>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="지원하기">
+                                            <fontDescription key="titleFontDescription" type="boldSystem" pointSize="20"/>
+                                        </buttonConfiguration>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="8"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="submitButtonTapped:" destination="Y5V-2l-l0f" eventType="touchUpInside" id="dpG-UP-zxr"/>
+                                        </connections>
+                                    </button>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zLo-n4-0uJ">
+                                        <rect key="frame" x="16" y="8" width="48" height="48"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="512" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AeF-ZZ-XYU">
+                                                <rect key="frame" x="14.5" y="34" width="19" height="14"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                <color key="textColor" name="Gray"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="31s-IQ-W8L">
+                                                <rect key="frame" x="8" y="2" width="32" height="32"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="32" id="Cpu-0p-iGd"/>
+                                                    <constraint firstAttribute="height" constant="32" id="QZf-WE-Zbe"/>
+                                                </constraints>
+                                                <color key="tintColor" name="Gray"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal">
+                                                    <imageReference key="image" image="heart" catalog="system" symbolScale="default"/>
+                                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="23" scale="default" weight="semibold"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="heartButtonTapped:" destination="Y5V-2l-l0f" eventType="touchUpInside" id="W16-KT-Ihk"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="AeF-ZZ-XYU" secondAttribute="bottom" id="5iK-L7-2li"/>
+                                            <constraint firstItem="AeF-ZZ-XYU" firstAttribute="centerX" secondItem="zLo-n4-0uJ" secondAttribute="centerX" id="B83-0d-OIm"/>
+                                            <constraint firstAttribute="height" constant="48" id="E8f-xw-xla"/>
+                                            <constraint firstAttribute="width" constant="48" id="FyP-0W-blG"/>
+                                            <constraint firstItem="AeF-ZZ-XYU" firstAttribute="top" secondItem="31s-IQ-W8L" secondAttribute="bottom" id="eQf-j2-43d"/>
+                                            <constraint firstItem="31s-IQ-W8L" firstAttribute="centerX" secondItem="zLo-n4-0uJ" secondAttribute="centerX" id="zJr-hN-d9p"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="95" id="9f7-qz-wNw"/>
+                                    <constraint firstItem="Tjj-Dm-myE" firstAttribute="leading" secondItem="zLo-n4-0uJ" secondAttribute="trailing" constant="16" id="ZNO-En-wF8"/>
+                                    <constraint firstItem="Tjj-Dm-myE" firstAttribute="top" secondItem="Jwd-We-9lw" secondAttribute="top" constant="8" id="iQA-NU-OIa"/>
+                                    <constraint firstItem="zLo-n4-0uJ" firstAttribute="leading" secondItem="Jwd-We-9lw" secondAttribute="leading" constant="16" id="nxZ-Gp-kzP"/>
+                                    <constraint firstAttribute="trailing" secondItem="Tjj-Dm-myE" secondAttribute="trailing" constant="16" id="yfi-EY-w1K"/>
+                                    <constraint firstItem="zLo-n4-0uJ" firstAttribute="top" secondItem="Jwd-We-9lw" secondAttribute="top" constant="8" id="zfY-nc-783"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="lwq-qj-cti"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="GGU-K4-uik" firstAttribute="leading" secondItem="lwq-qj-cti" secondAttribute="leading" id="1Ie-OW-tDR"/>
+                            <constraint firstItem="Jwd-We-9lw" firstAttribute="leading" secondItem="lwq-qj-cti" secondAttribute="leading" id="63y-HA-iwU"/>
                             <constraint firstItem="GGU-K4-uik" firstAttribute="top" secondItem="lwq-qj-cti" secondAttribute="top" id="I2Q-Vf-krq"/>
-                            <constraint firstItem="GGU-K4-uik" firstAttribute="bottom" secondItem="lwq-qj-cti" secondAttribute="bottom" id="I9A-ED-Qp2"/>
                             <constraint firstItem="GGU-K4-uik" firstAttribute="trailing" secondItem="lwq-qj-cti" secondAttribute="trailing" id="SiP-vU-2zA"/>
+                            <constraint firstItem="Jwd-We-9lw" firstAttribute="trailing" secondItem="lwq-qj-cti" secondAttribute="trailing" id="pLc-mY-09n"/>
+                            <constraint firstAttribute="bottom" secondItem="Jwd-We-9lw" secondAttribute="bottom" id="qCL-a2-tyg"/>
+                            <constraint firstItem="lwq-qj-cti" firstAttribute="bottom" secondItem="GGU-K4-uik" secondAttribute="bottom" constant="60" id="rBA-ob-uEw"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="HeartCountLabel" destination="B83-0d-OIm" id="rSv-PZ-PIl"/>
+                        <outlet property="bottomView" destination="Jwd-We-9lw" id="1bN-jt-4g2"/>
                         <outlet property="collectionView" destination="GGU-K4-uik" id="VTz-ZZ-DfL"/>
+                        <outlet property="heartCountLabel" destination="AeF-ZZ-XYU" id="pf9-96-3cv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jiR-c0-Va7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="361" y="1"/>
+            <point key="canvasLocation" x="360.86956521739131" y="0.6696428571428571"/>
         </scene>
     </scenes>
     <resources>
+        <image name="heart" catalog="system" width="128" height="109"/>
         <image name="plus.circle.fill" catalog="system" width="128" height="121"/>
+        <namedColor name="Gray">
+            <color red="0.0" green="0.0" blue="0.0" alpha="0.38" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Green">
+            <color red="0.32941176470588235" green="0.7803921568627451" blue="0.58823529411764708" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

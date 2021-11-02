@@ -10,6 +10,14 @@ import UIKit
 final class HomeDetailViewController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var bottomView: UIView!
+    @IBOutlet weak var heartCountLabel: UILabel!
+
+    @IBAction func heartButtonTapped(_ sender: Any) {
+    }
+    @IBAction func submitButtonTapped(_ sender: Any) {
+    }
+
     weak var coordinator: HomeCoordinator?
 
     override func viewDidLoad() {
@@ -17,6 +25,8 @@ final class HomeDetailViewController: UIViewController {
         configureNavigationBar()
         configureTabBar()
         configureCollectionView()
+
+        bottomView.layer.addTopBorder()
 
         collectionView.dataSource = self
         collectionView.delegate = self
@@ -104,6 +114,5 @@ private extension HomeDetailViewController {
 
 private extension HomeDetailViewController {
     @objc func actionButtonTapped() {
-        print("actionButtonTapped")
     }
 }

@@ -31,4 +31,10 @@ extension TeamRecruitmentCoordinator {
             identifier: TeamRecruitmentWritingViewController.identifier)
         navigationController?.pushViewController(viewController, animated: true)
     }
+
+    func showDetail() {
+        let viewController: TeamRecruitmentDetailViewController = storyboard.instantiateViewController(
+            identifier: TeamRecruitmentDetailViewController.identifier)
+        navigationController?.pushViewController(viewController, animated: true)
+    }
 }

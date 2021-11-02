@@ -30,12 +30,15 @@
                                 </collectionViewFlowLayout>
                                 <cells/>
                             </collectionView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gUU-CD-N18">
-                                <rect key="frame" x="331" y="744" width="33" height="36"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gUU-CD-N18">
+                                <rect key="frame" x="334" y="782" width="64" height="64"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="64" id="JXd-5j-16j"/>
+                                    <constraint firstAttribute="width" constant="64" id="hnU-Qb-AE9"/>
+                                </constraints>
+                                <color key="tintColor" name="Green"/>
                                 <state key="normal" image="plus.circle.fill" catalog="system">
-                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large" weight="black"/>
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="64" scale="large" weight="black"/>
                                 </state>
                                 <connections>
                                     <action selector="writeButtonDidTouchUpInside:" destination="s75-tg-skG" eventType="touchUpInside" id="Vqs-v7-Izi"/>
@@ -45,8 +48,10 @@
                         <viewLayoutGuide key="safeArea" id="zfP-PW-EY3"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="zfP-PW-EY3" firstAttribute="trailing" secondItem="gUU-CD-N18" secondAttribute="trailing" constant="16" id="8kD-MI-ImK"/>
                             <constraint firstItem="JFO-5E-eA9" firstAttribute="leading" secondItem="zfP-PW-EY3" secondAttribute="leading" id="Cij-7L-Ziz"/>
                             <constraint firstItem="zfP-PW-EY3" firstAttribute="bottom" secondItem="JFO-5E-eA9" secondAttribute="bottom" id="O4A-wk-YGX"/>
+                            <constraint firstItem="zfP-PW-EY3" firstAttribute="bottom" secondItem="gUU-CD-N18" secondAttribute="bottom" constant="16" id="XH8-Em-AcH"/>
                             <constraint firstItem="JFO-5E-eA9" firstAttribute="top" secondItem="zfP-PW-EY3" secondAttribute="top" id="ikT-zo-JgF"/>
                             <constraint firstItem="zfP-PW-EY3" firstAttribute="trailing" secondItem="JFO-5E-eA9" secondAttribute="trailing" id="kvP-sl-n4g"/>
                         </constraints>
@@ -57,7 +62,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9T1-oX-ePR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-546" y="1"/>
+            <point key="canvasLocation" x="-546.37681159420299" y="0.6696428571428571"/>
         </scene>
         <!--Home Writing View Controller-->
         <scene sceneID="Pof-xI-vza">

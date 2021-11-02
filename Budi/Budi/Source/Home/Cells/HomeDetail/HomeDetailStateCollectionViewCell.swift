@@ -11,7 +11,6 @@ class HomeDetailStateCollectionViewCell: UICollectionViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
 }

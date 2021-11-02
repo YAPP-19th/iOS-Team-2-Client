@@ -10,8 +10,16 @@
 		5EA453692731412A00943C94 /* HomeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA453672731412A00943C94 /* HomeCollectionViewCell.swift */; };
 		5EA4536A2731412A00943C94 /* HomeCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EA453682731412A00943C94 /* HomeCollectionViewCell.xib */; };
 		5EA45370273144C200943C94 /* HomeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA4536F273144C200943C94 /* HomeDetailViewController.swift */; };
-		5EA453752731470400943C94 /* HomeDetailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA453732731470400943C94 /* HomeDetailCollectionViewCell.swift */; };
-		5EA453762731470400943C94 /* HomeDetailCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EA453742731470400943C94 /* HomeDetailCollectionViewCell.xib */; };
+		5EA453902731774100943C94 /* HomeDetailMemberCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA4538E2731774100943C94 /* HomeDetailMemberCollectionViewCell.swift */; };
+		5EA453912731774100943C94 /* HomeDetailMemberCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EA4538F2731774100943C94 /* HomeDetailMemberCollectionViewCell.xib */; };
+		5EA453942731775600943C94 /* HomeDetailLeaderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA453922731775600943C94 /* HomeDetailLeaderCollectionViewCell.swift */; };
+		5EA453952731775600943C94 /* HomeDetailLeaderCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EA453932731775600943C94 /* HomeDetailLeaderCollectionViewCell.xib */; };
+		5EA453982731776900943C94 /* HomeDetailStateCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA453962731776900943C94 /* HomeDetailStateCollectionViewCell.swift */; };
+		5EA453992731776900943C94 /* HomeDetailStateCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EA453972731776900943C94 /* HomeDetailStateCollectionViewCell.xib */; };
+		5EA4539C2731777500943C94 /* HomeDetailIntroCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA4539A2731777500943C94 /* HomeDetailIntroCollectionViewCell.swift */; };
+		5EA4539D2731777500943C94 /* HomeDetailIntroCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EA4539B2731777500943C94 /* HomeDetailIntroCollectionViewCell.xib */; };
+		5EA453A02731778000943C94 /* HomeDetailMainCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA4539E2731778000943C94 /* HomeDetailMainCollectionViewCell.swift */; };
+		5EA453A12731778000943C94 /* HomeDetailMainCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EA4539F2731778000943C94 /* HomeDetailMainCollectionViewCell.xib */; };
 		7C2060A1B418A53F47747CDA /* Pods_Budi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D20131AEAD19181CEF5CF7C /* Pods_Budi.framework */; };
 		B97DBB9527147D970018C1D2 /* UIViewController+identifer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B97DBB9427147D970018C1D2 /* UIViewController+identifer.swift */; };
 		B9BF787427004094000BE0EF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9BF787327004094000BE0EF /* AppDelegate.swift */; };
@@ -37,8 +45,16 @@
 		5EA453672731412A00943C94 /* HomeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewCell.swift; sourceTree = "<group>"; };
 		5EA453682731412A00943C94 /* HomeCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeCollectionViewCell.xib; sourceTree = "<group>"; };
 		5EA4536F273144C200943C94 /* HomeDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailViewController.swift; sourceTree = "<group>"; };
-		5EA453732731470400943C94 /* HomeDetailCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailCollectionViewCell.swift; sourceTree = "<group>"; };
-		5EA453742731470400943C94 /* HomeDetailCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeDetailCollectionViewCell.xib; sourceTree = "<group>"; };
+		5EA4538E2731774100943C94 /* HomeDetailMemberCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailMemberCollectionViewCell.swift; sourceTree = "<group>"; };
+		5EA4538F2731774100943C94 /* HomeDetailMemberCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeDetailMemberCollectionViewCell.xib; sourceTree = "<group>"; };
+		5EA453922731775600943C94 /* HomeDetailLeaderCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailLeaderCollectionViewCell.swift; sourceTree = "<group>"; };
+		5EA453932731775600943C94 /* HomeDetailLeaderCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeDetailLeaderCollectionViewCell.xib; sourceTree = "<group>"; };
+		5EA453962731776900943C94 /* HomeDetailStateCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailStateCollectionViewCell.swift; sourceTree = "<group>"; };
+		5EA453972731776900943C94 /* HomeDetailStateCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeDetailStateCollectionViewCell.xib; sourceTree = "<group>"; };
+		5EA4539A2731777500943C94 /* HomeDetailIntroCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailIntroCollectionViewCell.swift; sourceTree = "<group>"; };
+		5EA4539B2731777500943C94 /* HomeDetailIntroCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeDetailIntroCollectionViewCell.xib; sourceTree = "<group>"; };
+		5EA4539E2731778000943C94 /* HomeDetailMainCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailMainCollectionViewCell.swift; sourceTree = "<group>"; };
+		5EA4539F2731778000943C94 /* HomeDetailMainCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeDetailMainCollectionViewCell.xib; sourceTree = "<group>"; };
 		84D727CBB17AD63DD79D7083 /* Pods-Budi.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Budi.release.xcconfig"; path = "Target Support Files/Pods-Budi/Pods-Budi.release.xcconfig"; sourceTree = "<group>"; };
 		B97DBB9427147D970018C1D2 /* UIViewController+identifer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+identifer.swift"; sourceTree = "<group>"; };
 		B9BF787027004094000BE0EF /* Budi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Budi.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -94,8 +110,16 @@
 		5EA4537727316C8800943C94 /* HomeDetail */ = {
 			isa = PBXGroup;
 			children = (
-				5EA453732731470400943C94 /* HomeDetailCollectionViewCell.swift */,
-				5EA453742731470400943C94 /* HomeDetailCollectionViewCell.xib */,
+				5EA4539E2731778000943C94 /* HomeDetailMainCollectionViewCell.swift */,
+				5EA4539F2731778000943C94 /* HomeDetailMainCollectionViewCell.xib */,
+				5EA453962731776900943C94 /* HomeDetailStateCollectionViewCell.swift */,
+				5EA453972731776900943C94 /* HomeDetailStateCollectionViewCell.xib */,
+				5EA4539A2731777500943C94 /* HomeDetailIntroCollectionViewCell.swift */,
+				5EA4539B2731777500943C94 /* HomeDetailIntroCollectionViewCell.xib */,
+				5EA453922731775600943C94 /* HomeDetailLeaderCollectionViewCell.swift */,
+				5EA453932731775600943C94 /* HomeDetailLeaderCollectionViewCell.xib */,
+				5EA4538E2731774100943C94 /* HomeDetailMemberCollectionViewCell.swift */,
+				5EA4538F2731774100943C94 /* HomeDetailMemberCollectionViewCell.xib */,
 			);
 			path = HomeDetail;
 			sourceTree = "<group>";
@@ -292,11 +316,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE79E3112717239400935133 /* .swiftlint.yml in Resources */,
+				5EA453A12731778000943C94 /* HomeDetailMainCollectionViewCell.xib in Resources */,
+				5EA4539D2731777500943C94 /* HomeDetailIntroCollectionViewCell.xib in Resources */,
 				B9BF788027004096000BE0EF /* LaunchScreen.storyboard in Resources */,
 				5EA4536A2731412A00943C94 /* HomeCollectionViewCell.xib in Resources */,
-				5EA453762731470400943C94 /* HomeDetailCollectionViewCell.xib in Resources */,
 				B9BF787D27004096000BE0EF /* Assets.xcassets in Resources */,
+				5EA453912731774100943C94 /* HomeDetailMemberCollectionViewCell.xib in Resources */,
 				B9BF787B27004095000BE0EF /* Main.storyboard in Resources */,
+				5EA453952731775600943C94 /* HomeDetailLeaderCollectionViewCell.xib in Resources */,
+				5EA453992731776900943C94 /* HomeDetailStateCollectionViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -350,9 +378,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				B9D66ECE27147AEA00668490 /* HomeWritingViewController.swift in Sources */,
+				5EA453A02731778000943C94 /* HomeDetailMainCollectionViewCell.swift in Sources */,
 				B9D66ECC2714716400668490 /* HomeViewController.swift in Sources */,
-				5EA453752731470400943C94 /* HomeDetailCollectionViewCell.swift in Sources */,
 				B9D66EBB27146E1F00668490 /* MainTabBarCoordinator.swift in Sources */,
+				5EA4539C2731777500943C94 /* HomeDetailIntroCollectionViewCell.swift in Sources */,
+				5EA453982731776900943C94 /* HomeDetailStateCollectionViewCell.swift in Sources */,
 				B9D66EC62714706700668490 /* ChattingCoordinator.swift in Sources */,
 				B9BF787427004094000BE0EF /* AppDelegate.swift in Sources */,
 				B97DBB9527147D970018C1D2 /* UIViewController+identifer.swift in Sources */,
@@ -360,9 +390,11 @@
 				B9D66EBF27146F2F00668490 /* HomeCoordinator.swift in Sources */,
 				5EA453692731412A00943C94 /* HomeCollectionViewCell.swift in Sources */,
 				B9D66EC82714707000668490 /* MyBudiCoordinator.swift in Sources */,
+				5EA453942731775600943C94 /* HomeDetailLeaderCollectionViewCell.swift in Sources */,
 				B9D66EBD27146E4300668490 /* NavigationCoordinator.swift in Sources */,
 				B9BF787627004095000BE0EF /* SceneDelegate.swift in Sources */,
 				B9D66EC42714703B00668490 /* TeamSearchCoordinator.swift in Sources */,
+				5EA453902731774100943C94 /* HomeDetailMemberCollectionViewCell.swift in Sources */,
 				5EA45370273144C200943C94 /* HomeDetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

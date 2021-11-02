@@ -16,31 +16,39 @@ final class HomeDetailViewController: UIViewController {
         super.viewDidLoad()
         configureNavigationBar()
 
-        collectionView.collectionViewLayout = createLayout()
         collectionView.dataSource = self
         collectionView.delegate = self
-        collectionView.register(.init(nibName: HomeDetailCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: HomeDetailCollectionViewCell.identifier)
+        collectionView.register(.init(nibName: HomeDetailMainCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: HomeDetailMainCollectionViewCell.identifier)
+        collectionView.register(.init(nibName: HomeDetailStateCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: HomeDetailStateCollectionViewCell.identifier)
+        collectionView.register(.init(nibName: HomeDetailIntroCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: HomeDetailIntroCollectionViewCell.identifier)
+        collectionView.register(.init(nibName: HomeDetailLeaderCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: HomeDetailLeaderCollectionViewCell.identifier)
+        collectionView.register(.init(nibName: HomeDetailMemberCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: HomeDetailMemberCollectionViewCell.identifier)
         collectionView.backgroundColor = .white
     }
 }
 
 extension HomeDetailViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        1
-    }
-
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
         5
     }
 
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeDetailCollectionViewCell.identifier, for: indexPath) as UICollectionViewCell
-        cell.backgroundColor = .systemGroupedBackground
-        return cell
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        1
     }
 
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(indexPath.section)
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        var cell = UICollectionViewCell()
+
+        switch indexPath.row {
+        case 0: cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeDetailMainCollectionViewCell.identifier, for: indexPath) as UICollectionViewCell
+        case 1: cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeDetailStateCollectionViewCell.identifier, for: indexPath) as UICollectionViewCell
+        case 2: cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeDetailIntroCollectionViewCell.identifier, for: indexPath) as UICollectionViewCell
+        case 3: cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeDetailLeaderCollectionViewCell.identifier, for: indexPath) as UICollectionViewCell
+        case 4: cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeDetailMemberCollectionViewCell.identifier, for: indexPath) as UICollectionViewCell
+        default: break
+        }
+
+        return cell
     }
 }
 
@@ -48,24 +56,26 @@ extension HomeDetailViewController: UICollectionViewDelegate {
 
 }
 
-private extension HomeDetailViewController {
-    func createLayout() -> UICollectionViewCompositionalLayout {
-        return UICollectionViewCompositionalLayout { _, _ in
-            let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .fractionalWidth(0.5)))
-            item.contentInsets = .init(top: 0, leading: 0, bottom: 16, trailing: 0)
-
-            let group = NSCollectionLayoutGroup.vertical(layoutSize: .init(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(100)), subitems: [item])
-
-            let section = NSCollectionLayoutSection(group: group)
-            section.contentInsets = .init(top: 0, leading: 16, bottom: 0, trailing: 16)
-            return section
+extension HomeDetailViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        switch indexPath.row {
+        case 0: return CGSize(width: view.frame.width, height: 436)
+        case 1: return CGSize(width: view.frame.width, height: 200)
+        case 2: return CGSize(width: view.frame.width, height: 200)
+        case 3: return CGSize(width: view.frame.width, height: 200)
+        case 4: return CGSize(width: view.frame.width, height: 200)
+        default: break
         }
-    }
 
+        return CGSize.zero
+    }
+}
+
+private extension HomeDetailViewController {
     func configureNavigationBar() {
         let actionButton = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(actionButtonTapped))
         navigationItem.rightBarButtonItem = actionButton
-        navigationController?.navigationBar.tintColor = .white
+        navigationController?.navigationBar.tintColor = .systemGray
     }
 }
 

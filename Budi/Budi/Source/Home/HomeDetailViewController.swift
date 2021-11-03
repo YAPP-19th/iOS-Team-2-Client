@@ -16,6 +16,7 @@ final class HomeDetailViewController: UIViewController {
     @IBAction func heartButtonTapped(_ sender: Any) {
     }
     @IBAction func submitButtonTapped(_ sender: Any) {
+        submitButtonTapped()
     }
 
     weak var coordinator: HomeCoordinator?
@@ -104,5 +105,12 @@ private extension HomeDetailViewController {
 
 private extension HomeDetailViewController {
     @objc func actionButtonTapped() {
+    }
+
+    func submitButtonTapped() {
+        let alert = GreetingAlertViewController()
+        alert.modalPresentationStyle = .overCurrentContext
+        alert.modalTransitionStyle = .crossDissolve
+        present(alert, animated: true, completion: nil)
     }
 }

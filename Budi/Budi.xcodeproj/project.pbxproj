@@ -124,6 +124,13 @@
 			path = Alerts;
 			sourceTree = "<group>";
 		};
+		5E7EFE292732E68D007817C3 /* BottomSheets */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = BottomSheets;
+			sourceTree = "<group>";
+		};
 		5EA4536B2731413000943C94 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -225,6 +232,7 @@
 		B9D66EB4271469DE00668490 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				5E7EFE292732E68D007817C3 /* BottomSheets */,
 				5E2554462732D6F800033723 /* Alerts */,
 				5EA4536B2731413000943C94 /* Cells */,
 				B9D66EBE27146F2F00668490 /* HomeCoordinator.swift */,

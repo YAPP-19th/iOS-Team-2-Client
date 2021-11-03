@@ -22,15 +22,21 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jlO-Ns-Gl1">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="578"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="프로젝트 소개" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8YT-5F-IAh">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="프로젝트 소개" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8YT-5F-IAh">
                                 <rect key="frame" x="16" y="20" width="109" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="24" id="gO3-Gn-CHJ"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                 <color key="textColor" name="Black"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" lineBreakMode="tailTruncation" numberOfLines="30" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZZa-fX-SSR">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="30" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZZa-fX-SSR">
                                 <rect key="frame" x="20" y="68" width="339" height="478"/>
-                                <mutableString key="text">안녕하세요. 기부 플랫폼 캔디 프로젝트에서 사이드 프로젝트로 참여할 프론트엔드 팀원을 찾습니다 :-)
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="478" id="fYh-4n-MPD"/>
+                                </constraints>
+                                <string key="text">안녕하세요. 기부 플랫폼 캔디 프로젝트에서 사이드 프로젝트로 참여할 프론트엔드 팀원을 찾습니다 :-)
 지우너자 팀원께서는 캔티 n년차 이상의 프론트엔드 개발자분과 함께 개발을 진행할 예정입니다.
 
 [주요 업무]
@@ -50,7 +56,7 @@
 • 사회적 가치에 관심이 많은 분
 • 기부를 하고 계시거나 기부에 관심이 많은 분
 • 개발 포트폴리오를 작성하고 계신 분
-• Fin-tech 개발 경험이 있는 분</mutableString>
+• Fin-tech 개발 경험이 있는 분</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <color key="textColor" name="Black"/>
                                 <nil key="highlightedColor"/>
@@ -91,7 +97,7 @@
     </objects>
     <resources>
         <namedColor name="Black">
-            <color red="0.0" green="0.0" blue="0.0" alpha="0.87" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.0" blue="0.0" alpha="0.87000000476837158" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemGroupedBackgroundColor">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

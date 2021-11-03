@@ -110,13 +110,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="GGU-K4-uik">
-                                <rect key="frame" x="0.0" y="44" width="414" height="758"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="5r4-LB-kbe">
                                     <size key="itemSize" width="128" height="128"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="100"/>
                                 </collectionViewFlowLayout>
                                 <cells/>
                             </collectionView>
@@ -201,7 +201,7 @@
                             <constraint firstItem="GGU-K4-uik" firstAttribute="trailing" secondItem="lwq-qj-cti" secondAttribute="trailing" id="SiP-vU-2zA"/>
                             <constraint firstItem="Jwd-We-9lw" firstAttribute="trailing" secondItem="lwq-qj-cti" secondAttribute="trailing" id="pLc-mY-09n"/>
                             <constraint firstAttribute="bottom" secondItem="Jwd-We-9lw" secondAttribute="bottom" id="qCL-a2-tyg"/>
-                            <constraint firstItem="lwq-qj-cti" firstAttribute="bottom" secondItem="GGU-K4-uik" secondAttribute="bottom" constant="60" id="rBA-ob-uEw"/>
+                            <constraint firstItem="lwq-qj-cti" firstAttribute="bottom" secondItem="GGU-K4-uik" secondAttribute="bottom" id="rBA-ob-uEw"/>
                         </constraints>
                     </view>
                     <connections>
@@ -220,10 +220,10 @@
         <image name="heart" catalog="system" width="128" height="109"/>
         <image name="plus.circle.fill" catalog="system" width="128" height="121"/>
         <namedColor name="Gray">
-            <color red="0.0" green="0.0" blue="0.0" alpha="0.38" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.0" blue="0.0" alpha="0.37999999523162842" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Green">
-            <color red="0.32941176470588235" green="0.7803921568627451" blue="0.58823529411764708" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.32899999618530273" green="0.77999997138977051" blue="0.58799999952316284" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

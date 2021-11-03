@@ -29,7 +29,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="o2X-NK-rVI">
-                                <rect key="frame" x="16" y="68" width="343" height="242"/>
+                                <rect key="frame" x="16" y="68" width="343" height="286"/>
                                 <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="sKL-6P-EtL">
                                     <size key="itemSize" width="128" height="128"/>
@@ -45,7 +45,7 @@
                             <constraint firstItem="1jb-BF-vrb" firstAttribute="top" secondItem="lUk-ld-P7p" secondAttribute="top" constant="24" id="Bde-HB-ear"/>
                             <constraint firstItem="o2X-NK-rVI" firstAttribute="leading" secondItem="lUk-ld-P7p" secondAttribute="leading" constant="16" id="H7X-Q8-Shv"/>
                             <constraint firstItem="1jb-BF-vrb" firstAttribute="leading" secondItem="lUk-ld-P7p" secondAttribute="leading" constant="16" id="fGW-eU-fGx"/>
-                            <constraint firstAttribute="bottom" secondItem="o2X-NK-rVI" secondAttribute="bottom" constant="64" id="wQX-KP-AKg"/>
+                            <constraint firstAttribute="bottom" secondItem="o2X-NK-rVI" secondAttribute="bottom" constant="20" id="wQX-KP-AKg"/>
                             <constraint firstItem="o2X-NK-rVI" firstAttribute="top" secondItem="1jb-BF-vrb" secondAttribute="bottom" constant="20" id="xsJ-4f-f55"/>
                         </constraints>
                     </view>
@@ -64,7 +64,7 @@
     </objects>
     <resources>
         <namedColor name="Black">
-            <color red="0.0" green="0.0" blue="0.0" alpha="0.87" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.0" blue="0.0" alpha="0.87000000476837158" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemGroupedBackgroundColor">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

@@ -25,7 +25,7 @@ final class HomeDetailViewController: UIViewController {
         configureNavigationBar()
         configureTabBar()
         configureCollectionView()
-        bottomView.layer.addTopBorder()
+        bottomView.layer.addBorderTop()
     }
 }
 

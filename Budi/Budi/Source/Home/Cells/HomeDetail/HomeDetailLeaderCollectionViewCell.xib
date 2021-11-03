@@ -69,12 +69,15 @@
                 <constraint firstAttribute="bottom" secondItem="iEK-MQ-CoD" secondAttribute="bottom" id="y6L-s5-f9u"/>
             </constraints>
             <size key="customSize" width="351" height="113"/>
+            <connections>
+                <outlet property="collectionView" destination="hEY-3d-xOf" id="urW-GH-O9f"/>
+            </connections>
             <point key="canvasLocation" x="348.55072463768118" y="95.758928571428569"/>
         </collectionViewCell>
     </objects>
     <resources>
         <namedColor name="Black">
-            <color red="0.0" green="0.0" blue="0.0" alpha="0.87" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.0" blue="0.0" alpha="0.87000000476837158" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemGroupedBackgroundColor">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

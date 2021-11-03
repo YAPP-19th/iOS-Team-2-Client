@@ -25,17 +25,7 @@ final class HomeDetailViewController: UIViewController {
         configureNavigationBar()
         configureTabBar()
         configureCollectionView()
-
         bottomView.layer.addTopBorder()
-
-        collectionView.dataSource = self
-        collectionView.delegate = self
-        collectionView.register(.init(nibName: HomeDetailMainCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: HomeDetailMainCollectionViewCell.identifier)
-        collectionView.register(.init(nibName: HomeDetailStateCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: HomeDetailStateCollectionViewCell.identifier)
-        collectionView.register(.init(nibName: HomeDetailIntroCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: HomeDetailIntroCollectionViewCell.identifier)
-        collectionView.register(.init(nibName: HomeDetailLeaderCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: HomeDetailLeaderCollectionViewCell.identifier)
-        collectionView.register(.init(nibName: HomeDetailMemberCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: HomeDetailMemberCollectionViewCell.identifier)
-        collectionView.backgroundColor = .white
     }
 }
 
@@ -53,12 +43,12 @@ private extension HomeDetailViewController {
 }
 
 extension HomeDetailViewController: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        5
-    }
-
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         1
+    }
+
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        5
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -88,7 +78,7 @@ extension HomeDetailViewController: UICollectionViewDelegateFlowLayout {
         case 1: return CGSize(width: view.frame.width, height: 181)
         case 2: return CGSize(width: view.frame.width, height: 578)
         case 3: return CGSize(width: view.frame.width, height: 176)
-        case 4: return CGSize(width: view.frame.width, height: 374)
+        case 4: return CGSize(width: view.frame.width, height: 344)
         default: break
         }
 

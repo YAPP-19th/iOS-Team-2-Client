@@ -98,10 +98,10 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DRH-q1-Tqd">
-                                        <rect key="frame" x="137" y="93.5" width="51" height="21"/>
+                                        <rect key="frame" x="137" y="94" width="51" height="20"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="온라인" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="afJ-98-h9Q">
-                                                <rect key="frame" x="7" y="2" width="37" height="17"/>
+                                                <rect key="frame" x="7" y="1.5" width="37" height="17"/>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -114,14 +114,14 @@
                                         </subviews>
                                         <color key="backgroundColor" name="Green"/>
                                         <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="bju-bN-OVA"/>
                                             <constraint firstItem="afJ-98-h9Q" firstAttribute="leading" secondItem="DRH-q1-Tqd" secondAttribute="leading" constant="7" id="f8w-XC-tXx"/>
                                             <constraint firstItem="afJ-98-h9Q" firstAttribute="centerY" secondItem="DRH-q1-Tqd" secondAttribute="centerY" id="k3W-75-iTc"/>
-                                            <constraint firstItem="afJ-98-h9Q" firstAttribute="top" secondItem="DRH-q1-Tqd" secondAttribute="top" constant="2" id="mha-bS-vzg"/>
                                             <constraint firstItem="afJ-98-h9Q" firstAttribute="centerX" secondItem="DRH-q1-Tqd" secondAttribute="centerX" id="pOr-q4-Dt4"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                <real key="value" value="26"/>
+                                                <real key="value" value="10"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>

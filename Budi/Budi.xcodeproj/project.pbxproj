@@ -12,6 +12,10 @@
 		5E2554382732AD0800033723 /* UIView+IBInspectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2554372732AD0800033723 /* UIView+IBInspectable.swift */; };
 		5E2554612732DF8A00033723 /* GreetingAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E25545F2732DF8A00033723 /* GreetingAlertViewController.swift */; };
 		5E2554622732DF8A00033723 /* GreetingAlertViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E2554602732DF8A00033723 /* GreetingAlertViewController.xib */; };
+		5E45AD132732F47800F0A80C /* BottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E45AD112732F47800F0A80C /* BottomSheetViewController.swift */; };
+		5E45AD142732F47800F0A80C /* BottomSheetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E45AD122732F47800F0A80C /* BottomSheetViewController.xib */; };
+		5E45AD172732F78200F0A80C /* BottomSheetCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E45AD152732F78200F0A80C /* BottomSheetCollectionViewCell.swift */; };
+		5E45AD182732F78200F0A80C /* BottomSheetCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E45AD162732F78200F0A80C /* BottomSheetCollectionViewCell.xib */; };
 		5E7EFE272732E06F007817C3 /* AlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7EFE252732E06E007817C3 /* AlertViewController.swift */; };
 		5E7EFE282732E06F007817C3 /* AlertViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E7EFE262732E06F007817C3 /* AlertViewController.xib */; };
 		5EA453692731412A00943C94 /* HomeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA453672731412A00943C94 /* HomeCollectionViewCell.swift */; };
@@ -55,6 +59,10 @@
 		5E2554372732AD0800033723 /* UIView+IBInspectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+IBInspectable.swift"; sourceTree = "<group>"; };
 		5E25545F2732DF8A00033723 /* GreetingAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GreetingAlertViewController.swift; sourceTree = "<group>"; };
 		5E2554602732DF8A00033723 /* GreetingAlertViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GreetingAlertViewController.xib; sourceTree = "<group>"; };
+		5E45AD112732F47800F0A80C /* BottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetViewController.swift; sourceTree = "<group>"; };
+		5E45AD122732F47800F0A80C /* BottomSheetViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BottomSheetViewController.xib; sourceTree = "<group>"; };
+		5E45AD152732F78200F0A80C /* BottomSheetCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetCollectionViewCell.swift; sourceTree = "<group>"; };
+		5E45AD162732F78200F0A80C /* BottomSheetCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BottomSheetCollectionViewCell.xib; sourceTree = "<group>"; };
 		5E7EFE252732E06E007817C3 /* AlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewController.swift; sourceTree = "<group>"; };
 		5E7EFE262732E06F007817C3 /* AlertViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlertViewController.xib; sourceTree = "<group>"; };
 		5EA453672731412A00943C94 /* HomeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -127,6 +135,10 @@
 		5E7EFE292732E68D007817C3 /* BottomSheets */ = {
 			isa = PBXGroup;
 			children = (
+				5E45AD112732F47800F0A80C /* BottomSheetViewController.swift */,
+				5E45AD122732F47800F0A80C /* BottomSheetViewController.xib */,
+				5E45AD152732F78200F0A80C /* BottomSheetCollectionViewCell.swift */,
+				5E45AD162732F78200F0A80C /* BottomSheetCollectionViewCell.xib */,
 			);
 			path = BottomSheets;
 			sourceTree = "<group>";
@@ -356,6 +368,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				5E2554622732DF8A00033723 /* GreetingAlertViewController.xib in Resources */,
+				5E45AD142732F47800F0A80C /* BottomSheetViewController.xib in Resources */,
+				5E45AD182732F78200F0A80C /* BottomSheetCollectionViewCell.xib in Resources */,
 				CE79E3112717239400935133 /* .swiftlint.yml in Resources */,
 				5EA453A12731778000943C94 /* HomeDetailMainCollectionViewCell.xib in Resources */,
 				5EA4539D2731777500943C94 /* HomeDetailIntroCollectionViewCell.xib in Resources */,
@@ -443,7 +457,9 @@
 				B9D66EC42714703B00668490 /* TeamSearchCoordinator.swift in Sources */,
 				5EA453902731774100943C94 /* HomeDetailMemberCollectionViewCell.swift in Sources */,
 				5E7EFE272732E06F007817C3 /* AlertViewController.swift in Sources */,
+				5E45AD132732F47800F0A80C /* BottomSheetViewController.swift in Sources */,
 				5EA45370273144C200943C94 /* HomeDetailViewController.swift in Sources */,
+				5E45AD172732F78200F0A80C /* BottomSheetCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

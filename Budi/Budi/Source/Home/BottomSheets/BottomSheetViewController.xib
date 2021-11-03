@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BottomSheetViewController" customModule="Budi" customModuleProvider="target">
+            <connections>
+                <outlet property="collectionView" destination="fPm-5x-hnN" id="hYN-SH-9ss"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yUx-Ds-iS9">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="862"/>
+                    <color key="backgroundColor" name="DarkGray"/>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7XL-WD-jzw">
+                    <rect key="frame" x="0.0" y="440" width="414" height="456"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="직군 선택" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Zv-FC-xd9">
+                            <rect key="frame" x="16" y="24" width="74" height="24"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="close" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q3E-PJ-zoC">
+                            <rect key="frame" x="374" y="24" width="24" height="24"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="24" id="ivN-18-yHc"/>
+                                <constraint firstAttribute="height" constant="24" id="vIc-0B-JYv"/>
+                            </constraints>
+                            <color key="tintColor" name="LightGray"/>
+                            <buttonConfiguration key="configuration" style="plain"/>
+                            <connections>
+                                <action selector="cancelButtonTapped:" destination="-1" eventType="touchUpInside" id="ALY-SD-7jL"/>
+                            </connections>
+                        </button>
+                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="fPm-5x-hnN">
+                            <rect key="frame" x="16" y="68" width="382" height="248"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="248" id="cOB-tG-XmD"/>
+                            </constraints>
+                            <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="GZE-kT-gFa">
+                                <size key="itemSize" width="128" height="128"/>
+                                <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            </collectionViewFlowLayout>
+                        </collectionView>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstItem="fPm-5x-hnN" firstAttribute="top" secondItem="4Zv-FC-xd9" secondAttribute="bottom" constant="20" id="6YB-a3-nxC"/>
+                        <constraint firstItem="fPm-5x-hnN" firstAttribute="leading" secondItem="7XL-WD-jzw" secondAttribute="leading" constant="16" id="Ahu-3s-SJ0"/>
+                        <constraint firstItem="4Zv-FC-xd9" firstAttribute="leading" secondItem="7XL-WD-jzw" secondAttribute="leading" constant="16" id="K48-eL-s8e"/>
+                        <constraint firstAttribute="trailing" secondItem="fPm-5x-hnN" secondAttribute="trailing" constant="16" id="Tdv-hE-X4y"/>
+                        <constraint firstAttribute="trailing" secondItem="Q3E-PJ-zoC" secondAttribute="trailing" constant="16" id="f7R-yu-bEx"/>
+                        <constraint firstItem="4Zv-FC-xd9" firstAttribute="top" secondItem="7XL-WD-jzw" secondAttribute="top" constant="24" id="kUH-nH-v1a"/>
+                        <constraint firstItem="Q3E-PJ-zoC" firstAttribute="top" secondItem="7XL-WD-jzw" secondAttribute="top" constant="24" id="ph0-Gx-3im"/>
+                        <constraint firstAttribute="bottom" secondItem="fPm-5x-hnN" secondAttribute="bottom" constant="140" id="vSr-Az-hoN"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="16"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <constraints>
+                <constraint firstItem="yUx-Ds-iS9" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="TFN-yr-4YO"/>
+                <constraint firstItem="yUx-Ds-iS9" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="XeW-k3-Hgy"/>
+                <constraint firstItem="yUx-Ds-iS9" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="fvj-Go-Eeb"/>
+                <constraint firstItem="7XL-WD-jzw" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="mb0-Nw-P5f"/>
+                <constraint firstItem="7XL-WD-jzw" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="r7j-74-QXa"/>
+                <constraint firstAttribute="bottom" secondItem="7XL-WD-jzw" secondAttribute="bottom" id="tjS-Ot-lsP"/>
+                <constraint firstItem="yUx-Ds-iS9" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="ySK-Za-6ht"/>
+            </constraints>
+            <point key="canvasLocation" x="131.8840579710145" y="85.714285714285708"/>
+        </view>
+    </objects>
+    <resources>
+        <namedColor name="DarkGray">
+            <color red="0.0" green="0.0" blue="0.0" alpha="0.60000002384185791" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="LightGray">
+            <color red="0.0" green="0.0" blue="0.0" alpha="0.11999999731779099" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

@@ -1,18 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="s75-tg-skG">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="s75-tg-skG">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Team Recruitment View Controller-->
+        <!--Home View Controller-->
         <scene sceneID="6cj-1a-OT6">
             <objects>
-                <viewController storyboardIdentifier="TeamRecruitmentViewController" id="s75-tg-skG" customClass="TeamRecruitmentViewController" customModule="Budi" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HomeViewController" id="s75-tg-skG" customClass="HomeViewController" customModule="Budi" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ePK-Y5-MKH">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -28,12 +30,15 @@
                                 </collectionViewFlowLayout>
                                 <cells/>
                             </collectionView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gUU-CD-N18">
-                                <rect key="frame" x="331" y="744" width="33" height="36"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gUU-CD-N18">
+                                <rect key="frame" x="334" y="782" width="64" height="64"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="64" id="JXd-5j-16j"/>
+                                    <constraint firstAttribute="width" constant="64" id="hnU-Qb-AE9"/>
+                                </constraints>
+                                <color key="tintColor" name="Green"/>
                                 <state key="normal" image="plus.circle.fill" catalog="system">
-                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large" weight="black"/>
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="64" scale="large" weight="black"/>
                                 </state>
                                 <connections>
                                     <action selector="writeButtonDidTouchUpInside:" destination="s75-tg-skG" eventType="touchUpInside" id="Vqs-v7-Izi"/>
@@ -43,8 +48,10 @@
                         <viewLayoutGuide key="safeArea" id="zfP-PW-EY3"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="zfP-PW-EY3" firstAttribute="trailing" secondItem="gUU-CD-N18" secondAttribute="trailing" constant="16" id="8kD-MI-ImK"/>
                             <constraint firstItem="JFO-5E-eA9" firstAttribute="leading" secondItem="zfP-PW-EY3" secondAttribute="leading" id="Cij-7L-Ziz"/>
                             <constraint firstItem="zfP-PW-EY3" firstAttribute="bottom" secondItem="JFO-5E-eA9" secondAttribute="bottom" id="O4A-wk-YGX"/>
+                            <constraint firstItem="zfP-PW-EY3" firstAttribute="bottom" secondItem="gUU-CD-N18" secondAttribute="bottom" constant="16" id="XH8-Em-AcH"/>
                             <constraint firstItem="JFO-5E-eA9" firstAttribute="top" secondItem="zfP-PW-EY3" secondAttribute="top" id="ikT-zo-JgF"/>
                             <constraint firstItem="zfP-PW-EY3" firstAttribute="trailing" secondItem="JFO-5E-eA9" secondAttribute="trailing" id="kvP-sl-n4g"/>
                         </constraints>
@@ -55,12 +62,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9T1-oX-ePR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-546" y="1"/>
+            <point key="canvasLocation" x="-546.37681159420299" y="0.6696428571428571"/>
         </scene>
-        <!--Team Recruitment Writing View Controller-->
+        <!--Home Writing View Controller-->
         <scene sceneID="Pof-xI-vza">
             <objects>
-                <viewController storyboardIdentifier="TeamRecruitmentWritingViewController" id="lJ2-SF-D5K" customClass="TeamRecruitmentWritingViewController" customModule="Budi" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HomeWritingViewController" id="lJ2-SF-D5K" customClass="HomeWritingViewController" customModule="Budi" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="mxo-i1-Pze">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -92,11 +99,131 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zYe-BU-UZc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="487" y="9"/>
+            <point key="canvasLocation" x="1283" y="1"/>
+        </scene>
+        <!--Home Detail View Controller-->
+        <scene sceneID="6W9-r9-Dwr">
+            <objects>
+                <viewController storyboardIdentifier="HomeDetailViewController" id="Y5V-2l-l0f" customClass="HomeDetailViewController" customModule="Budi" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="lRJ-qa-rjH">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="GGU-K4-uik">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="5r4-LB-kbe">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="100"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jwd-We-9lw">
+                                <rect key="frame" x="0.0" y="801" width="414" height="95"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tjj-Dm-myE">
+                                        <rect key="frame" x="80" y="8" width="318" height="48"/>
+                                        <color key="backgroundColor" name="Green"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="48" id="kqH-DH-3u4"/>
+                                        </constraints>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="지원하기">
+                                            <fontDescription key="titleFontDescription" type="boldSystem" pointSize="20"/>
+                                        </buttonConfiguration>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="8"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="submitButtonTapped:" destination="Y5V-2l-l0f" eventType="touchUpInside" id="dpG-UP-zxr"/>
+                                        </connections>
+                                    </button>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zLo-n4-0uJ">
+                                        <rect key="frame" x="16" y="8" width="48" height="48"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="512" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AeF-ZZ-XYU">
+                                                <rect key="frame" x="14.5" y="34" width="19" height="14"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                <color key="textColor" name="Gray"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="31s-IQ-W8L">
+                                                <rect key="frame" x="8" y="2" width="32" height="32"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="32" id="Cpu-0p-iGd"/>
+                                                    <constraint firstAttribute="height" constant="32" id="QZf-WE-Zbe"/>
+                                                </constraints>
+                                                <color key="tintColor" name="Gray"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal">
+                                                    <imageReference key="image" image="heart" catalog="system" symbolScale="default"/>
+                                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="23" scale="default" weight="semibold"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="heartButtonTapped:" destination="Y5V-2l-l0f" eventType="touchUpInside" id="W16-KT-Ihk"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="AeF-ZZ-XYU" secondAttribute="bottom" id="5iK-L7-2li"/>
+                                            <constraint firstItem="AeF-ZZ-XYU" firstAttribute="centerX" secondItem="zLo-n4-0uJ" secondAttribute="centerX" id="B83-0d-OIm"/>
+                                            <constraint firstAttribute="height" constant="48" id="E8f-xw-xla"/>
+                                            <constraint firstAttribute="width" constant="48" id="FyP-0W-blG"/>
+                                            <constraint firstItem="AeF-ZZ-XYU" firstAttribute="top" secondItem="31s-IQ-W8L" secondAttribute="bottom" id="eQf-j2-43d"/>
+                                            <constraint firstItem="31s-IQ-W8L" firstAttribute="centerX" secondItem="zLo-n4-0uJ" secondAttribute="centerX" id="zJr-hN-d9p"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="95" id="9f7-qz-wNw"/>
+                                    <constraint firstItem="Tjj-Dm-myE" firstAttribute="leading" secondItem="zLo-n4-0uJ" secondAttribute="trailing" constant="16" id="ZNO-En-wF8"/>
+                                    <constraint firstItem="Tjj-Dm-myE" firstAttribute="top" secondItem="Jwd-We-9lw" secondAttribute="top" constant="8" id="iQA-NU-OIa"/>
+                                    <constraint firstItem="zLo-n4-0uJ" firstAttribute="leading" secondItem="Jwd-We-9lw" secondAttribute="leading" constant="16" id="nxZ-Gp-kzP"/>
+                                    <constraint firstAttribute="trailing" secondItem="Tjj-Dm-myE" secondAttribute="trailing" constant="16" id="yfi-EY-w1K"/>
+                                    <constraint firstItem="zLo-n4-0uJ" firstAttribute="top" secondItem="Jwd-We-9lw" secondAttribute="top" constant="8" id="zfY-nc-783"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="lwq-qj-cti"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="GGU-K4-uik" firstAttribute="leading" secondItem="lwq-qj-cti" secondAttribute="leading" id="1Ie-OW-tDR"/>
+                            <constraint firstItem="Jwd-We-9lw" firstAttribute="leading" secondItem="lwq-qj-cti" secondAttribute="leading" id="63y-HA-iwU"/>
+                            <constraint firstItem="GGU-K4-uik" firstAttribute="top" secondItem="lwq-qj-cti" secondAttribute="top" id="I2Q-Vf-krq"/>
+                            <constraint firstItem="GGU-K4-uik" firstAttribute="trailing" secondItem="lwq-qj-cti" secondAttribute="trailing" id="SiP-vU-2zA"/>
+                            <constraint firstItem="Jwd-We-9lw" firstAttribute="trailing" secondItem="lwq-qj-cti" secondAttribute="trailing" id="pLc-mY-09n"/>
+                            <constraint firstAttribute="bottom" secondItem="Jwd-We-9lw" secondAttribute="bottom" id="qCL-a2-tyg"/>
+                            <constraint firstItem="lwq-qj-cti" firstAttribute="bottom" secondItem="GGU-K4-uik" secondAttribute="bottom" id="rBA-ob-uEw"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="HeartCountLabel" destination="B83-0d-OIm" id="rSv-PZ-PIl"/>
+                        <outlet property="bottomView" destination="Jwd-We-9lw" id="1bN-jt-4g2"/>
+                        <outlet property="collectionView" destination="GGU-K4-uik" id="VTz-ZZ-DfL"/>
+                        <outlet property="heartCountLabel" destination="AeF-ZZ-XYU" id="pf9-96-3cv"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jiR-c0-Va7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="360.86956521739131" y="0.6696428571428571"/>
         </scene>
     </scenes>
     <resources>
+        <image name="heart" catalog="system" width="128" height="109"/>
         <image name="plus.circle.fill" catalog="system" width="128" height="121"/>
+        <namedColor name="Gray">
+            <color red="0.0" green="0.0" blue="0.0" alpha="0.37999999523162842" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Green">
+            <color red="0.32899999618530273" green="0.77999997138977051" blue="0.58799999952316284" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

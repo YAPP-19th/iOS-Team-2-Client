@@ -41,6 +41,10 @@ extension ChattingViewController: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ChattingCollectionViewCell.identifier, for: indexPath) as UICollectionViewCell
         return cell
     }
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        coordinator?.showDetail()
+    }
 }
 
 extension ChattingViewController: UICollectionViewDelegate {

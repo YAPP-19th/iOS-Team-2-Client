@@ -288,6 +288,21 @@
             </objects>
             <point key="canvasLocation" x="-546.37681159420299" y="1391.5178571428571"/>
         </scene>
+        <!--Chatting Detail View Controller-->
+        <scene sceneID="reI-fo-HyH">
+            <objects>
+                <viewController storyboardIdentifier="ChattingDetailViewController" id="9Vs-Js-pPs" customClass="ChattingDetailViewController" customModule="Budi" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ked-vF-Bpr">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="BTd-WE-tRh"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EQy-at-vuN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="136" y="1392"/>
+        </scene>
     </scenes>
     <resources>
         <image name="heart" catalog="system" width="128" height="109"/>

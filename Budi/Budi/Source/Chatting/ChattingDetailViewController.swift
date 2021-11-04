@@ -10,6 +10,16 @@ import UIKit
 class ChattingDetailViewController: UIViewController {
 
     @IBOutlet weak var collecitonView: UICollectionView!
+    @IBOutlet weak var bottomView: UIView!
+    @IBOutlet weak var textField: UITextField!
+
+    @IBAction func textFieldTapped(_ sender: Any) {
+    }
+    @IBAction func smileButtonTapped(_ sender: Any) {
+    }
+    @IBAction func sendButtonTapped(_ sender: Any) {
+    }
+
     weak var coordinator: ChattingCoordinator?
 
     override func viewDidLoad() {
@@ -30,6 +40,8 @@ private extension ChattingDetailViewController {
         collecitonView.delegate = self
         collecitonView.register(.init(nibName: MessageCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: MessageCollectionViewCell.identifier)
         collecitonView.register(.init(nibName: MyMessageCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: MyMessageCollectionViewCell.identifier)
+        collecitonView.register(.init(nibName: MessageTimeCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: MessageTimeCollectionViewCell.identifier)
+        collecitonView.alwaysBounceVertical = true
         collecitonView.backgroundColor = .systemGroupedBackground
     }
 }
@@ -40,11 +52,14 @@ extension ChattingDetailViewController: UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        4
+        5
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if indexPath.row % 2 == 1 {
+        if indexPath.row == 0 {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MessageTimeCollectionViewCell.identifier, for: indexPath) as UICollectionViewCell
+            return cell
+        } else if indexPath.row % 2 == 1 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MessageCollectionViewCell.identifier, for: indexPath) as UICollectionViewCell
             return cell
         }
@@ -59,15 +74,14 @@ extension ChattingDetailViewController: UICollectionViewDelegate {
 
 extension ChattingDetailViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        CGSize(width: collectionView.frame.width, height: 100)
+        if indexPath.row == 0 {
+            return CGSize(width: collectionView.frame.width, height: 40)
+        }
+        return CGSize(width: collectionView.frame.width, height: 100)
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         24
-    }
-
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        UIEdgeInsets(top: 40, left: 0, bottom: 0, right: 0)
     }
 }
 
@@ -79,7 +93,7 @@ private extension ChattingDetailViewController {
         navigationItem.rightBarButtonItem = ellipsisButton
         title = "킬러베어"
     }
-    
+
     func configureTabBar() {
         tabBarController?.tabBar.isHidden = true
     }

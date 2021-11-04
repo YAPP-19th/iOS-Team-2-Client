@@ -43,6 +43,8 @@
 		5EFB0A532734016600F39A4D /* MyMessageCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EFB0A512734016600F39A4D /* MyMessageCollectionViewCell.xib */; };
 		5EFB0A5627340BF100F39A4D /* MessageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EFB0A5427340BF100F39A4D /* MessageCollectionViewCell.swift */; };
 		5EFB0A5727340BF100F39A4D /* MessageCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EFB0A5527340BF100F39A4D /* MessageCollectionViewCell.xib */; };
+		5EFB0A5A27341C1100F39A4D /* MessageTimeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EFB0A5827341C1100F39A4D /* MessageTimeCollectionViewCell.swift */; };
+		5EFB0A5B27341C1100F39A4D /* MessageTimeCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EFB0A5927341C1100F39A4D /* MessageTimeCollectionViewCell.xib */; };
 		7C2060A1B418A53F47747CDA /* Pods_Budi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D20131AEAD19181CEF5CF7C /* Pods_Budi.framework */; };
 		B97DBB9527147D970018C1D2 /* UIViewController+identifer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B97DBB9427147D970018C1D2 /* UIViewController+identifer.swift */; };
 		B9BF787427004094000BE0EF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9BF787327004094000BE0EF /* AppDelegate.swift */; };
@@ -101,6 +103,8 @@
 		5EFB0A512734016600F39A4D /* MyMessageCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyMessageCollectionViewCell.xib; sourceTree = "<group>"; };
 		5EFB0A5427340BF100F39A4D /* MessageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCollectionViewCell.swift; sourceTree = "<group>"; };
 		5EFB0A5527340BF100F39A4D /* MessageCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageCollectionViewCell.xib; sourceTree = "<group>"; };
+		5EFB0A5827341C1100F39A4D /* MessageTimeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageTimeCollectionViewCell.swift; sourceTree = "<group>"; };
+		5EFB0A5927341C1100F39A4D /* MessageTimeCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageTimeCollectionViewCell.xib; sourceTree = "<group>"; };
 		84D727CBB17AD63DD79D7083 /* Pods-Budi.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Budi.release.xcconfig"; path = "Target Support Files/Pods-Budi/Pods-Budi.release.xcconfig"; sourceTree = "<group>"; };
 		B97DBB9427147D970018C1D2 /* UIViewController+identifer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+identifer.swift"; sourceTree = "<group>"; };
 		B9BF787027004094000BE0EF /* Budi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Budi.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -212,6 +216,8 @@
 				5EFB0A5527340BF100F39A4D /* MessageCollectionViewCell.xib */,
 				5EFB0A502734016600F39A4D /* MyMessageCollectionViewCell.swift */,
 				5EFB0A512734016600F39A4D /* MyMessageCollectionViewCell.xib */,
+				5EFB0A5827341C1100F39A4D /* MessageTimeCollectionViewCell.swift */,
+				5EFB0A5927341C1100F39A4D /* MessageTimeCollectionViewCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -419,6 +425,7 @@
 				5E2554622732DF8A00033723 /* GreetingAlertViewController.xib in Resources */,
 				5E45AD142732F47800F0A80C /* BottomSheetViewController.xib in Resources */,
 				5E45AD182732F78200F0A80C /* BottomSheetCollectionViewCell.xib in Resources */,
+				5EFB0A5B27341C1100F39A4D /* MessageTimeCollectionViewCell.xib in Resources */,
 				CE79E3112717239400935133 /* .swiftlint.yml in Resources */,
 				5EA453A12731778000943C94 /* HomeDetailMainCollectionViewCell.xib in Resources */,
 				5EA4539D2731777500943C94 /* HomeDetailIntroCollectionViewCell.xib in Resources */,
@@ -490,6 +497,7 @@
 				5EFB0A412733CD7700F39A4D /* TeamSearchViewController.swift in Sources */,
 				B9D66ECE27147AEA00668490 /* HomeWritingViewController.swift in Sources */,
 				5EA453A02731778000943C94 /* HomeDetailMainCollectionViewCell.swift in Sources */,
+				5EFB0A5A27341C1100F39A4D /* MessageTimeCollectionViewCell.swift in Sources */,
 				B9D66ECC2714716400668490 /* HomeViewController.swift in Sources */,
 				5EFB0A5627340BF100F39A4D /* MessageCollectionViewCell.swift in Sources */,
 				B9D66EBB27146E1F00668490 /* MainTabBarCoordinator.swift in Sources */,

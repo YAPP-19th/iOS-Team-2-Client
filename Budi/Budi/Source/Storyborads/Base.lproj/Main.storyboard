@@ -324,6 +324,9 @@
                                         <color key="tintColor" name="Gray"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" image="paperplane.fill" catalog="system"/>
+                                        <connections>
+                                            <action selector="sendButtonTapped:" destination="9Vs-Js-pPs" eventType="touchUpInside" id="auP-ht-2vl"/>
+                                        </connections>
                                     </button>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="메세지를 입력하세요" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5U3-hL-v5V">
                                         <rect key="frame" x="16" y="8" width="342" height="44"/>
@@ -332,6 +335,9 @@
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <action selector="textFieldTapped:" destination="9Vs-Js-pPs" eventType="editingDidEnd" id="9JQ-gz-bEs"/>
+                                        </connections>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Zd-jY-Msf">
                                         <rect key="frame" x="329" y="18" width="24" height="24"/>
@@ -342,6 +348,9 @@
                                         <color key="tintColor" name="Gray"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" image="face.smiling.fill" catalog="system"/>
+                                        <connections>
+                                            <action selector="smileButtonTapped:" destination="9Vs-Js-pPs" eventType="touchUpInside" id="9eW-SU-xIF"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -370,7 +379,9 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="bottomView" destination="uqe-md-eIF" id="3zv-h0-7RL"/>
                         <outlet property="collecitonView" destination="PzR-cU-qYT" id="kce-E3-JCr"/>
+                        <outlet property="textField" destination="5U3-hL-v5V" id="aUq-p6-hCz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EQy-at-vuN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

@@ -296,6 +296,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" id="1sP-Jg-tSz">
+                                <rect key="frame" x="0.0" y="22" width="414" height="852"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="PzR-cU-qYT">
                                 <rect key="frame" x="0.0" y="44" width="414" height="852"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -307,11 +312,58 @@
                                 </collectionViewFlowLayout>
                                 <cells/>
                             </collectionView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uqe-md-eIF">
+                                <rect key="frame" x="0.0" y="813" width="414" height="83"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uOX-Cu-dQR">
+                                        <rect key="frame" x="369" y="18" width="24" height="24"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="24" id="6mw-cj-RAy"/>
+                                            <constraint firstAttribute="height" constant="24" id="7t9-mi-p3C"/>
+                                        </constraints>
+                                        <color key="tintColor" name="Gray"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" image="paperplane.fill" catalog="system"/>
+                                    </button>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="메세지를 입력하세요" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5U3-hL-v5V">
+                                        <rect key="frame" x="16" y="8" width="342" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="1uB-EW-fW3"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Zd-jY-Msf">
+                                        <rect key="frame" x="329" y="18" width="24" height="24"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="24" id="h7w-nt-smc"/>
+                                            <constraint firstAttribute="height" constant="24" id="tJx-AK-9wh"/>
+                                        </constraints>
+                                        <color key="tintColor" name="Gray"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" image="face.smiling.fill" catalog="system"/>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="5U3-hL-v5V" secondAttribute="trailing" constant="56" id="5nj-PJ-yBb"/>
+                                    <constraint firstItem="1Zd-jY-Msf" firstAttribute="centerY" secondItem="5U3-hL-v5V" secondAttribute="centerY" id="7UQ-kM-TJf"/>
+                                    <constraint firstItem="uOX-Cu-dQR" firstAttribute="leading" secondItem="1Zd-jY-Msf" secondAttribute="trailing" constant="16" id="J1E-WW-xDg"/>
+                                    <constraint firstItem="uOX-Cu-dQR" firstAttribute="centerY" secondItem="5U3-hL-v5V" secondAttribute="centerY" id="KIJ-cF-mjU"/>
+                                    <constraint firstItem="5U3-hL-v5V" firstAttribute="top" secondItem="uqe-md-eIF" secondAttribute="top" constant="8" id="KvM-fY-LWn"/>
+                                    <constraint firstItem="5U3-hL-v5V" firstAttribute="leading" secondItem="uqe-md-eIF" secondAttribute="leading" constant="16" id="kFX-Cg-UNQ"/>
+                                    <constraint firstAttribute="height" constant="83" id="qcE-N1-bMG"/>
+                                    <constraint firstAttribute="trailing" secondItem="uOX-Cu-dQR" secondAttribute="trailing" constant="21" id="smv-G4-YFA"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="BTd-WE-tRh"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="PzR-cU-qYT" firstAttribute="top" secondItem="BTd-WE-tRh" secondAttribute="top" id="1BY-UL-Z7U"/>
+                            <constraint firstItem="uqe-md-eIF" firstAttribute="trailing" secondItem="BTd-WE-tRh" secondAttribute="trailing" id="SD7-jY-wqR"/>
+                            <constraint firstItem="uqe-md-eIF" firstAttribute="leading" secondItem="BTd-WE-tRh" secondAttribute="leading" id="WBA-01-knD"/>
+                            <constraint firstAttribute="bottom" secondItem="uqe-md-eIF" secondAttribute="bottom" id="epX-sH-jFp"/>
                             <constraint firstItem="PzR-cU-qYT" firstAttribute="trailing" secondItem="BTd-WE-tRh" secondAttribute="trailing" id="hlj-pc-Cjt"/>
                             <constraint firstItem="PzR-cU-qYT" firstAttribute="leading" secondItem="BTd-WE-tRh" secondAttribute="leading" id="keF-Ke-x0e"/>
                             <constraint firstAttribute="bottom" secondItem="PzR-cU-qYT" secondAttribute="bottom" id="nXX-Or-4XZ"/>
@@ -327,7 +379,9 @@
         </scene>
     </scenes>
     <resources>
+        <image name="face.smiling.fill" catalog="system" width="128" height="121"/>
         <image name="heart" catalog="system" width="128" height="109"/>
+        <image name="paperplane.fill" catalog="system" width="128" height="118"/>
         <image name="plus.circle.fill" catalog="system" width="128" height="121"/>
         <namedColor name="Gray">
             <color red="0.0" green="0.0" blue="0.0" alpha="0.37999999523162842" colorSpace="custom" customColorSpace="sRGB"/>

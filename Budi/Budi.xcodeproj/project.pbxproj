@@ -35,6 +35,9 @@
 		5EFB0A412733CD7700F39A4D /* TeamSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EFB0A402733CD7700F39A4D /* TeamSearchViewController.swift */; };
 		5EFB0A452733E36800F39A4D /* TeamSearchCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EFB0A432733E36800F39A4D /* TeamSearchCollectionViewCell.swift */; };
 		5EFB0A462733E36800F39A4D /* TeamSearchCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EFB0A442733E36800F39A4D /* TeamSearchCollectionViewCell.xib */; };
+		5EFB0A4A2733EAA300F39A4D /* ChattingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EFB0A482733EAA300F39A4D /* ChattingCollectionViewCell.swift */; };
+		5EFB0A4B2733EAA300F39A4D /* ChattingCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EFB0A492733EAA300F39A4D /* ChattingCollectionViewCell.xib */; };
+		5EFB0A4D2733EABF00F39A4D /* ChattingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EFB0A4C2733EABF00F39A4D /* ChattingViewController.swift */; };
 		7C2060A1B418A53F47747CDA /* Pods_Budi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D20131AEAD19181CEF5CF7C /* Pods_Budi.framework */; };
 		B97DBB9527147D970018C1D2 /* UIViewController+identifer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B97DBB9427147D970018C1D2 /* UIViewController+identifer.swift */; };
 		B9BF787427004094000BE0EF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9BF787327004094000BE0EF /* AppDelegate.swift */; };
@@ -85,6 +88,9 @@
 		5EFB0A402733CD7700F39A4D /* TeamSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamSearchViewController.swift; sourceTree = "<group>"; };
 		5EFB0A432733E36800F39A4D /* TeamSearchCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamSearchCollectionViewCell.swift; sourceTree = "<group>"; };
 		5EFB0A442733E36800F39A4D /* TeamSearchCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TeamSearchCollectionViewCell.xib; sourceTree = "<group>"; };
+		5EFB0A482733EAA300F39A4D /* ChattingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingCollectionViewCell.swift; sourceTree = "<group>"; };
+		5EFB0A492733EAA300F39A4D /* ChattingCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChattingCollectionViewCell.xib; sourceTree = "<group>"; };
+		5EFB0A4C2733EABF00F39A4D /* ChattingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingViewController.swift; sourceTree = "<group>"; };
 		84D727CBB17AD63DD79D7083 /* Pods-Budi.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Budi.release.xcconfig"; path = "Target Support Files/Pods-Budi/Pods-Budi.release.xcconfig"; sourceTree = "<group>"; };
 		B97DBB9427147D970018C1D2 /* UIViewController+identifer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+identifer.swift"; sourceTree = "<group>"; };
 		B9BF787027004094000BE0EF /* Budi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Budi.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -183,6 +189,15 @@
 			children = (
 				5EFB0A432733E36800F39A4D /* TeamSearchCollectionViewCell.swift */,
 				5EFB0A442733E36800F39A4D /* TeamSearchCollectionViewCell.xib */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		5EFB0A472733EA8D00F39A4D /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				5EFB0A482733EAA300F39A4D /* ChattingCollectionViewCell.swift */,
+				5EFB0A492733EAA300F39A4D /* ChattingCollectionViewCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -302,7 +317,9 @@
 		B9D66EC12714700900668490 /* Chatting */ = {
 			isa = PBXGroup;
 			children = (
+				5EFB0A472733EA8D00F39A4D /* Cells */,
 				B9D66EC52714706700668490 /* ChattingCoordinator.swift */,
+				5EFB0A4C2733EABF00F39A4D /* ChattingViewController.swift */,
 			);
 			path = Chatting;
 			sourceTree = "<group>";
@@ -396,6 +413,7 @@
 				5E2554362732770B00033723 /* HomeDetailPersonCollectionViewCell.xib in Resources */,
 				5EFB0A462733E36800F39A4D /* TeamSearchCollectionViewCell.xib in Resources */,
 				5EA453912731774100943C94 /* HomeDetailMemberCollectionViewCell.xib in Resources */,
+				5EFB0A4B2733EAA300F39A4D /* ChattingCollectionViewCell.xib in Resources */,
 				B9BF787B27004095000BE0EF /* Main.storyboard in Resources */,
 				5EA453952731775600943C94 /* HomeDetailLeaderCollectionViewCell.xib in Resources */,
 				5EA453992731776900943C94 /* HomeDetailStateCollectionViewCell.xib in Resources */,
@@ -458,6 +476,7 @@
 				B9D66ECC2714716400668490 /* HomeViewController.swift in Sources */,
 				B9D66EBB27146E1F00668490 /* MainTabBarCoordinator.swift in Sources */,
 				5EA453AC2731DDA700943C94 /* CALayer+addBorderTop.swift in Sources */,
+				5EFB0A4D2733EABF00F39A4D /* ChattingViewController.swift in Sources */,
 				5EA4539C2731777500943C94 /* HomeDetailIntroCollectionViewCell.swift in Sources */,
 				5E2554382732AD0800033723 /* UIView+IBInspectable.swift in Sources */,
 				5EA453982731776900943C94 /* HomeDetailStateCollectionViewCell.swift in Sources */,
@@ -471,6 +490,7 @@
 				5EA453692731412A00943C94 /* HomeCollectionViewCell.swift in Sources */,
 				5EFB0A452733E36800F39A4D /* TeamSearchCollectionViewCell.swift in Sources */,
 				B9D66EC82714707000668490 /* MyBudiCoordinator.swift in Sources */,
+				5EFB0A4A2733EAA300F39A4D /* ChattingCollectionViewCell.swift in Sources */,
 				5EA453942731775600943C94 /* HomeDetailLeaderCollectionViewCell.swift in Sources */,
 				B9D66EBD27146E4300668490 /* NavigationCoordinator.swift in Sources */,
 				B9BF787627004095000BE0EF /* SceneDelegate.swift in Sources */,

@@ -15,16 +15,21 @@ final class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureNavigationBar()
+        configureCollectionView()
+    }
 
+    @IBAction func writeButtonDidTouchUpInside(_ sender: UIButton) {
+        coordinator?.showWriting()
+    }
+}
+
+private extension HomeViewController {
+    func configureCollectionView() {
         collectionView.collectionViewLayout = createLayout()
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.register(.init(nibName: HomeCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: HomeCollectionViewCell.identifier)
         collectionView.backgroundColor = .white
-    }
-
-    @IBAction func writeButtonDidTouchUpInside(_ sender: UIButton) {
-        coordinator?.showWriting()
     }
 }
 

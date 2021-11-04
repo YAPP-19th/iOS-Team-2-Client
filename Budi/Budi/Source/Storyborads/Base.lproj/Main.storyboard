@@ -251,6 +251,43 @@
             </objects>
             <point key="canvasLocation" x="-546.37681159420299" y="693.75"/>
         </scene>
+        <!--Chatting View Controller-->
+        <scene sceneID="egp-Jx-0l0">
+            <objects>
+                <viewController storyboardIdentifier="ChattingViewController" id="fvB-cN-SOo" customClass="ChattingViewController" customModule="Budi" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="kbU-Ot-dPF">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Slt-k5-3PC">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ZMn-Cn-poX">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Pd5-zp-L6O"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Slt-k5-3PC" firstAttribute="bottom" secondItem="Pd5-zp-L6O" secondAttribute="bottom" id="6vf-1q-GoN"/>
+                            <constraint firstItem="Slt-k5-3PC" firstAttribute="top" secondItem="Pd5-zp-L6O" secondAttribute="top" id="R5a-Yg-EQI"/>
+                            <constraint firstItem="Slt-k5-3PC" firstAttribute="leading" secondItem="Pd5-zp-L6O" secondAttribute="leading" id="as3-9Y-MoR"/>
+                            <constraint firstItem="Slt-k5-3PC" firstAttribute="trailing" secondItem="Pd5-zp-L6O" secondAttribute="trailing" id="zur-WL-Rzr"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="collecitonView" destination="Slt-k5-3PC" id="7jD-ac-WSE"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MMr-xa-3c8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-546.37681159420299" y="1391.5178571428571"/>
+        </scene>
     </scenes>
     <resources>
         <image name="heart" catalog="system" width="128" height="109"/>

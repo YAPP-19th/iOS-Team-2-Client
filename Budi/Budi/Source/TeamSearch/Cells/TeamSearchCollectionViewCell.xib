@@ -19,7 +19,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="375" height="350"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xbf-pw-CRT">
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xbf-pw-CRT">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="350"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yit-qb-TaU">
@@ -50,18 +50,20 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="mw3-cN-wxd" firstAttribute="centerY" secondItem="yit-qb-TaU" secondAttribute="centerY" id="NuP-J1-YTa"/>
-                            <constraint firstItem="mw3-cN-wxd" firstAttribute="leading" secondItem="yit-qb-TaU" secondAttribute="trailing" constant="6" id="TI0-fw-Gb0"/>
-                            <constraint firstItem="yit-qb-TaU" firstAttribute="leading" secondItem="xbf-pw-CRT" secondAttribute="leading" constant="16" id="XVo-5Q-rG8"/>
-                            <constraint firstItem="yit-qb-TaU" firstAttribute="top" secondItem="xbf-pw-CRT" secondAttribute="top" constant="24" id="evh-pT-dHv"/>
+                            <constraint firstItem="yit-qb-TaU" firstAttribute="leading" secondItem="xbf-pw-CRT" secondAttribute="leading" constant="16" id="Gc3-e2-T1h"/>
+                            <constraint firstItem="yit-qb-TaU" firstAttribute="top" secondItem="xbf-pw-CRT" secondAttribute="top" constant="24" id="YnS-yP-8Eb"/>
+                            <constraint firstItem="mw3-cN-wxd" firstAttribute="centerY" secondItem="yit-qb-TaU" secondAttribute="centerY" id="Zp3-NI-3W7"/>
+                            <constraint firstItem="mw3-cN-wxd" firstAttribute="leading" secondItem="yit-qb-TaU" secondAttribute="trailing" constant="6" id="zEa-qY-4AD"/>
                         </constraints>
                     </view>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <constraints>
-                <constraint firstItem="xbf-pw-CRT" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="24" id="VI5-xm-NOZ"/>
-                <constraint firstItem="xbf-pw-CRT" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="16" id="cIx-Gh-HfB"/>
+                <constraint firstItem="xbf-pw-CRT" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="9Gc-uf-0Im"/>
+                <constraint firstAttribute="trailing" secondItem="xbf-pw-CRT" secondAttribute="trailing" id="G9k-mo-DA7"/>
+                <constraint firstItem="xbf-pw-CRT" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="SIV-cm-WsB"/>
+                <constraint firstAttribute="bottom" secondItem="xbf-pw-CRT" secondAttribute="bottom" id="qQL-cR-IXj"/>
             </constraints>
             <size key="customSize" width="375" height="350"/>
             <point key="canvasLocation" x="367.39130434782612" y="199.55357142857142"/>

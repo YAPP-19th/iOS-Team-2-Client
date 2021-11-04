@@ -34,7 +34,7 @@ private extension BottomSheetCollectionViewCell {
 
         let green = UIColor(named: "Green") ?? .systemGreen
         let lightGreen = UIColor(named: "LightGreen") ?? .systemGreen
-        let lightGray = UIColor(named: "LightGray") ?? .systemGreen
+        let lightGray = UIColor(named: "LightGray") ?? .systemGray
         checkButton.tintColor = isChecked ? green : .white
         checkButtonCircle.borderColor = isChecked ? lightGreen : lightGray
     }

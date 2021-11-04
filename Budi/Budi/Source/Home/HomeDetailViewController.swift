@@ -31,6 +31,10 @@ final class HomeDetailViewController: UIViewController {
         configureCollectionView()
         bottomView.layer.addBorderTop()
     }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        tabBarController?.tabBar.isHidden = false
+    }
 }
 
 private extension HomeDetailViewController {

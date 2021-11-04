@@ -109,12 +109,13 @@ private extension HomeDetailViewController {
 
     func submitButtonTapped() {
         let bottomSheet = BottomSheetViewController()
-        bottomSheet.modalPresentationStyle = .overFullScreen
-        present(bottomSheet, animated: true, completion: nil)
+        addChild(bottomSheet)
+        view.addSubview(bottomSheet.view)
+        didMove(toParent: self)
 
-        let alert = GreetingAlertViewController()
-        alert.modalPresentationStyle = .overCurrentContext
-        alert.modalTransitionStyle = .crossDissolve
-        present(alert, animated: true, completion: nil)
+//        let alert = GreetingAlertViewController()
+//        alert.modalPresentationStyle = .overCurrentContext
+//        alert.modalTransitionStyle = .crossDissolve
+//        present(alert, animated: true, completion: nil)
     }
 }

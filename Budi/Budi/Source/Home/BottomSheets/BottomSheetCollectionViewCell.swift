@@ -17,6 +17,11 @@ class BottomSheetCollectionViewCell: UICollectionViewCell {
     }
 
     private var isChecked: Bool = false
+    var jobGroup: String? {
+        didSet {
+            textLabel.text = jobGroup
+        }
+    }
 
     override func awakeFromNib() {
         super.awakeFromNib()

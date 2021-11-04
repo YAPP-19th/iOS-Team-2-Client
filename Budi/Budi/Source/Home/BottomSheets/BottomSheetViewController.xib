@@ -13,6 +13,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BottomSheetViewController" customModule="Budi" customModuleProvider="target">
             <connections>
                 <outlet property="collectionView" destination="fPm-5x-hnN" id="hYN-SH-9ss"/>
+                <outlet property="containerView" destination="7XL-WD-jzw" id="1bC-xY-qmO"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -22,11 +23,11 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yUx-Ds-iS9">
-                    <rect key="frame" x="0.0" y="0.0" width="414" height="862"/>
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="750"/>
                     <color key="backgroundColor" name="DarkGray"/>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7XL-WD-jzw">
-                    <rect key="frame" x="0.0" y="440" width="414" height="456"/>
+                    <rect key="frame" x="0.0" y="402" width="414" height="348"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="직군 선택" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Zv-FC-xd9">
                             <rect key="frame" x="16" y="24" width="74" height="24"/>
@@ -40,7 +41,7 @@
                                 <constraint firstAttribute="width" constant="24" id="ivN-18-yHc"/>
                                 <constraint firstAttribute="height" constant="24" id="vIc-0B-JYv"/>
                             </constraints>
-                            <color key="tintColor" name="LightGray"/>
+                            <color key="tintColor" name="Black"/>
                             <buttonConfiguration key="configuration" style="plain"/>
                             <connections>
                                 <action selector="cancelButtonTapped:" destination="-1" eventType="touchUpInside" id="ALY-SD-7jL"/>
@@ -59,17 +60,27 @@
                                 <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                             </collectionViewFlowLayout>
                         </collectionView>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X74-VE-Nal">
+                            <rect key="frame" x="0.0" y="316" width="414" height="32"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="32" id="ZQE-Af-1FA"/>
+                            </constraints>
+                        </view>
                     </subviews>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
+                        <constraint firstItem="X74-VE-Nal" firstAttribute="leading" secondItem="7XL-WD-jzw" secondAttribute="leading" id="45x-1a-JjH"/>
                         <constraint firstItem="fPm-5x-hnN" firstAttribute="top" secondItem="4Zv-FC-xd9" secondAttribute="bottom" constant="20" id="6YB-a3-nxC"/>
                         <constraint firstItem="fPm-5x-hnN" firstAttribute="leading" secondItem="7XL-WD-jzw" secondAttribute="leading" constant="16" id="Ahu-3s-SJ0"/>
                         <constraint firstItem="4Zv-FC-xd9" firstAttribute="leading" secondItem="7XL-WD-jzw" secondAttribute="leading" constant="16" id="K48-eL-s8e"/>
                         <constraint firstAttribute="trailing" secondItem="fPm-5x-hnN" secondAttribute="trailing" constant="16" id="Tdv-hE-X4y"/>
+                        <constraint firstAttribute="bottom" secondItem="X74-VE-Nal" secondAttribute="bottom" id="Vzq-zg-KwD"/>
                         <constraint firstAttribute="trailing" secondItem="Q3E-PJ-zoC" secondAttribute="trailing" constant="16" id="f7R-yu-bEx"/>
                         <constraint firstItem="4Zv-FC-xd9" firstAttribute="top" secondItem="7XL-WD-jzw" secondAttribute="top" constant="24" id="kUH-nH-v1a"/>
                         <constraint firstItem="Q3E-PJ-zoC" firstAttribute="top" secondItem="7XL-WD-jzw" secondAttribute="top" constant="24" id="ph0-Gx-3im"/>
-                        <constraint firstAttribute="bottom" secondItem="fPm-5x-hnN" secondAttribute="bottom" constant="140" id="vSr-Az-hoN"/>
+                        <constraint firstAttribute="trailing" secondItem="X74-VE-Nal" secondAttribute="trailing" id="tQk-vH-qzx"/>
+                        <constraint firstAttribute="bottom" secondItem="fPm-5x-hnN" secondAttribute="bottom" constant="32" id="vSr-Az-hoN"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -80,23 +91,23 @@
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <constraints>
-                <constraint firstItem="yUx-Ds-iS9" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="TFN-yr-4YO"/>
-                <constraint firstItem="yUx-Ds-iS9" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="XeW-k3-Hgy"/>
-                <constraint firstItem="yUx-Ds-iS9" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="fvj-Go-Eeb"/>
-                <constraint firstItem="7XL-WD-jzw" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="mb0-Nw-P5f"/>
-                <constraint firstItem="7XL-WD-jzw" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="r7j-74-QXa"/>
-                <constraint firstAttribute="bottom" secondItem="7XL-WD-jzw" secondAttribute="bottom" id="tjS-Ot-lsP"/>
-                <constraint firstItem="yUx-Ds-iS9" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="ySK-Za-6ht"/>
+                <constraint firstItem="yUx-Ds-iS9" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="4vY-98-5Mm"/>
+                <constraint firstItem="7XL-WD-jzw" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="6w4-OU-H1Q"/>
+                <constraint firstItem="yUx-Ds-iS9" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="71V-KZ-jbL"/>
+                <constraint firstItem="yUx-Ds-iS9" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="KxQ-sC-7Qb"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="7XL-WD-jzw" secondAttribute="bottom" constant="112" id="YuW-GO-of0"/>
+                <constraint firstItem="7XL-WD-jzw" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="i7l-u5-oae"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="yUx-Ds-iS9" secondAttribute="bottom" constant="112" id="zeB-Yu-FAY"/>
             </constraints>
             <point key="canvasLocation" x="131.8840579710145" y="85.714285714285708"/>
         </view>
     </objects>
     <resources>
+        <namedColor name="Black">
+            <color red="0.0" green="0.0" blue="0.0" alpha="0.87000000476837158" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="DarkGray">
             <color red="0.0" green="0.0" blue="0.0" alpha="0.60000002384185791" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="LightGray">
-            <color red="0.0" green="0.0" blue="0.0" alpha="0.11999999731779099" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

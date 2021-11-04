@@ -9,18 +9,29 @@ import UIKit
 
 class BottomSheetViewController: UIViewController {
 
+    @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBAction func cancelButtonTapped(_ sender: Any) {
         cancelButtonTapped()
     }
+    
+    private let jobGroups = ["iOS 개발자", "서버 개발자", "디자이너", "기획자"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureContainerView()
         configureCollectionView()
     }
 }
 
 private extension BottomSheetViewController {
+    func configureContainerView() {
+        UIView.animate(withDuration: 2, delay: 0, options: .curveEaseInOut) { [weak self] in
+            self?.containerView.center.y -= self?.containerView.bounds.height ?? 0
+        } completion: { _ in
+        }
+    }
+
     func configureCollectionView() {
         collectionView.dataSource = self
         collectionView.delegate = self
@@ -38,7 +49,8 @@ extension BottomSheetViewController: UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BottomSheetCollectionViewCell.identifier, for: indexPath) as UICollectionViewCell
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BottomSheetCollectionViewCell.identifier, for: indexPath) as? BottomSheetCollectionViewCell else { return UICollectionViewCell() }
+        cell.jobGroup = jobGroups[indexPath.row]
         return cell
     }
 }
@@ -59,6 +71,8 @@ extension BottomSheetViewController: UICollectionViewDelegateFlowLayout {
 
 private extension BottomSheetViewController {
     func cancelButtonTapped() {
-        dismiss(animated: true, completion: nil)
+        willMove(toParent: nil)
+        view.removeFromSuperview()
+        removeFromParent()
     }
 }

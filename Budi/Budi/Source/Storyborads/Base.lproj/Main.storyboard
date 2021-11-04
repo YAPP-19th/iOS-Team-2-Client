@@ -295,13 +295,35 @@
                     <view key="view" contentMode="scaleToFill" id="Ked-vF-Bpr">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="PzR-cU-qYT">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="T1r-UQ-u1J">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="BTd-WE-tRh"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="PzR-cU-qYT" firstAttribute="top" secondItem="BTd-WE-tRh" secondAttribute="top" id="1BY-UL-Z7U"/>
+                            <constraint firstItem="PzR-cU-qYT" firstAttribute="bottom" secondItem="BTd-WE-tRh" secondAttribute="bottom" id="JgJ-Ii-0UY"/>
+                            <constraint firstItem="PzR-cU-qYT" firstAttribute="trailing" secondItem="BTd-WE-tRh" secondAttribute="trailing" id="hlj-pc-Cjt"/>
+                            <constraint firstItem="PzR-cU-qYT" firstAttribute="leading" secondItem="BTd-WE-tRh" secondAttribute="leading" id="keF-Ke-x0e"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="collecitonView" destination="PzR-cU-qYT" id="kce-E3-JCr"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EQy-at-vuN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="136" y="1392"/>
+            <point key="canvasLocation" x="134.78260869565219" y="1391.5178571428571"/>
         </scene>
     </scenes>
     <resources>

@@ -32,6 +32,7 @@
 		5EA453A02731778000943C94 /* HomeDetailMainCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA4539E2731778000943C94 /* HomeDetailMainCollectionViewCell.swift */; };
 		5EA453A12731778000943C94 /* HomeDetailMainCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EA4539F2731778000943C94 /* HomeDetailMainCollectionViewCell.xib */; };
 		5EA453AC2731DDA700943C94 /* CALayer+addBorderTop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA453AB2731DDA700943C94 /* CALayer+addBorderTop.swift */; };
+		5EFB0A412733CD7700F39A4D /* TeamSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EFB0A402733CD7700F39A4D /* TeamSearchViewController.swift */; };
 		7C2060A1B418A53F47747CDA /* Pods_Budi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D20131AEAD19181CEF5CF7C /* Pods_Budi.framework */; };
 		B97DBB9527147D970018C1D2 /* UIViewController+identifer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B97DBB9427147D970018C1D2 /* UIViewController+identifer.swift */; };
 		B9BF787427004094000BE0EF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9BF787327004094000BE0EF /* AppDelegate.swift */; };
@@ -79,6 +80,7 @@
 		5EA4539E2731778000943C94 /* HomeDetailMainCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailMainCollectionViewCell.swift; sourceTree = "<group>"; };
 		5EA4539F2731778000943C94 /* HomeDetailMainCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeDetailMainCollectionViewCell.xib; sourceTree = "<group>"; };
 		5EA453AB2731DDA700943C94 /* CALayer+addBorderTop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+addBorderTop.swift"; sourceTree = "<group>"; };
+		5EFB0A402733CD7700F39A4D /* TeamSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamSearchViewController.swift; sourceTree = "<group>"; };
 		84D727CBB17AD63DD79D7083 /* Pods-Budi.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Budi.release.xcconfig"; path = "Target Support Files/Pods-Budi/Pods-Budi.release.xcconfig"; sourceTree = "<group>"; };
 		B97DBB9427147D970018C1D2 /* UIViewController+identifer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+identifer.swift"; sourceTree = "<group>"; };
 		B9BF787027004094000BE0EF /* Budi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Budi.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -278,6 +280,7 @@
 			isa = PBXGroup;
 			children = (
 				B9D66EC32714703B00668490 /* TeamSearchCoordinator.swift */,
+				5EFB0A402733CD7700F39A4D /* TeamSearchViewController.swift */,
 			);
 			path = TeamSearch;
 			sourceTree = "<group>";
@@ -434,6 +437,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5EFB0A412733CD7700F39A4D /* TeamSearchViewController.swift in Sources */,
 				B9D66ECE27147AEA00668490 /* HomeWritingViewController.swift in Sources */,
 				5EA453A02731778000943C94 /* HomeDetailMainCollectionViewCell.swift in Sources */,
 				B9D66ECC2714716400668490 /* HomeViewController.swift in Sources */,

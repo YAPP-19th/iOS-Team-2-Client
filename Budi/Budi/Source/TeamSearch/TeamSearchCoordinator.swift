@@ -19,7 +19,10 @@ final class TeamSearchCoordinator: NavigationCoordinator {
     }
 
     func start() {
-        navigationController?.pushViewController(UIViewController(), animated: true)
+        let viewController: TeamSearchViewController = storyboard.instantiateViewController(
+            identifier: TeamSearchViewController.identifier)
+        viewController.coordinator = self
+        navigationController?.pushViewController(viewController, animated: true)
     }
 }
 

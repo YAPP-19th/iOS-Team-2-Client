@@ -16,6 +16,11 @@ class ChattingDetailViewController: UIViewController {
         super.viewDidLoad()
         configureNavigationBar()
         configureCollectionView()
+        configureTabBar()
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        tabBarController?.tabBar.isHidden = false
     }
 }
 
@@ -23,7 +28,8 @@ private extension ChattingDetailViewController {
     func configureCollectionView() {
         collecitonView.dataSource = self
         collecitonView.delegate = self
-        collecitonView.register(.init(nibName: ChattingDetailCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: ChattingDetailCollectionViewCell.identifier)
+        collecitonView.register(.init(nibName: MessageCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: MessageCollectionViewCell.identifier)
+        collecitonView.register(.init(nibName: MyMessageCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: MyMessageCollectionViewCell.identifier)
         collecitonView.backgroundColor = .systemGroupedBackground
     }
 }
@@ -38,7 +44,11 @@ extension ChattingDetailViewController: UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ChattingDetailCollectionViewCell.identifier, for: indexPath) as UICollectionViewCell
+        if indexPath.row % 2 == 1 {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MessageCollectionViewCell.identifier, for: indexPath) as UICollectionViewCell
+            return cell
+        }
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MyMessageCollectionViewCell.identifier, for: indexPath) as UICollectionViewCell
         return cell
     }
 }
@@ -53,7 +63,7 @@ extension ChattingDetailViewController: UICollectionViewDelegateFlowLayout {
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        8
+        24
     }
 }
 
@@ -64,5 +74,9 @@ private extension ChattingDetailViewController {
 
         navigationItem.rightBarButtonItem = ellipsisButton
         title = "킬러베어"
+    }
+    
+    func configureTabBar() {
+        tabBarController?.tabBar.isHidden = true
     }
 }

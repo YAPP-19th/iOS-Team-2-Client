@@ -33,6 +33,8 @@
 		5EA453A12731778000943C94 /* HomeDetailMainCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EA4539F2731778000943C94 /* HomeDetailMainCollectionViewCell.xib */; };
 		5EA453AC2731DDA700943C94 /* CALayer+addBorderTop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA453AB2731DDA700943C94 /* CALayer+addBorderTop.swift */; };
 		5EFB0A412733CD7700F39A4D /* TeamSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EFB0A402733CD7700F39A4D /* TeamSearchViewController.swift */; };
+		5EFB0A452733E36800F39A4D /* TeamSearchCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EFB0A432733E36800F39A4D /* TeamSearchCollectionViewCell.swift */; };
+		5EFB0A462733E36800F39A4D /* TeamSearchCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EFB0A442733E36800F39A4D /* TeamSearchCollectionViewCell.xib */; };
 		7C2060A1B418A53F47747CDA /* Pods_Budi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D20131AEAD19181CEF5CF7C /* Pods_Budi.framework */; };
 		B97DBB9527147D970018C1D2 /* UIViewController+identifer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B97DBB9427147D970018C1D2 /* UIViewController+identifer.swift */; };
 		B9BF787427004094000BE0EF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9BF787327004094000BE0EF /* AppDelegate.swift */; };
@@ -81,6 +83,8 @@
 		5EA4539F2731778000943C94 /* HomeDetailMainCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeDetailMainCollectionViewCell.xib; sourceTree = "<group>"; };
 		5EA453AB2731DDA700943C94 /* CALayer+addBorderTop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+addBorderTop.swift"; sourceTree = "<group>"; };
 		5EFB0A402733CD7700F39A4D /* TeamSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamSearchViewController.swift; sourceTree = "<group>"; };
+		5EFB0A432733E36800F39A4D /* TeamSearchCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamSearchCollectionViewCell.swift; sourceTree = "<group>"; };
+		5EFB0A442733E36800F39A4D /* TeamSearchCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TeamSearchCollectionViewCell.xib; sourceTree = "<group>"; };
 		84D727CBB17AD63DD79D7083 /* Pods-Budi.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Budi.release.xcconfig"; path = "Target Support Files/Pods-Budi/Pods-Budi.release.xcconfig"; sourceTree = "<group>"; };
 		B97DBB9427147D970018C1D2 /* UIViewController+identifer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+identifer.swift"; sourceTree = "<group>"; };
 		B9BF787027004094000BE0EF /* Budi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Budi.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -172,6 +176,15 @@
 				5E2554342732770B00033723 /* HomeDetailPersonCollectionViewCell.xib */,
 			);
 			path = HomeDetail;
+			sourceTree = "<group>";
+		};
+		5EFB0A422733E34D00F39A4D /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				5EFB0A432733E36800F39A4D /* TeamSearchCollectionViewCell.swift */,
+				5EFB0A442733E36800F39A4D /* TeamSearchCollectionViewCell.xib */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		6D6A3400F6B2EDCC4DA1B232 /* Frameworks */ = {
@@ -279,6 +292,7 @@
 		B9D66EC027146FFC00668490 /* TeamSearch */ = {
 			isa = PBXGroup;
 			children = (
+				5EFB0A422733E34D00F39A4D /* Cells */,
 				B9D66EC32714703B00668490 /* TeamSearchCoordinator.swift */,
 				5EFB0A402733CD7700F39A4D /* TeamSearchViewController.swift */,
 			);
@@ -380,6 +394,7 @@
 				5EA4536A2731412A00943C94 /* HomeCollectionViewCell.xib in Resources */,
 				B9BF787D27004096000BE0EF /* Assets.xcassets in Resources */,
 				5E2554362732770B00033723 /* HomeDetailPersonCollectionViewCell.xib in Resources */,
+				5EFB0A462733E36800F39A4D /* TeamSearchCollectionViewCell.xib in Resources */,
 				5EA453912731774100943C94 /* HomeDetailMemberCollectionViewCell.xib in Resources */,
 				B9BF787B27004095000BE0EF /* Main.storyboard in Resources */,
 				5EA453952731775600943C94 /* HomeDetailLeaderCollectionViewCell.xib in Resources */,
@@ -454,6 +469,7 @@
 				B9D66EB927146DF900668490 /* TabBarCoordinator.swift in Sources */,
 				B9D66EBF27146F2F00668490 /* HomeCoordinator.swift in Sources */,
 				5EA453692731412A00943C94 /* HomeCollectionViewCell.swift in Sources */,
+				5EFB0A452733E36800F39A4D /* TeamSearchCollectionViewCell.swift in Sources */,
 				B9D66EC82714707000668490 /* MyBudiCoordinator.swift in Sources */,
 				5EA453942731775600943C94 /* HomeDetailLeaderCollectionViewCell.swift in Sources */,
 				B9D66EBD27146E4300668490 /* NavigationCoordinator.swift in Sources */,

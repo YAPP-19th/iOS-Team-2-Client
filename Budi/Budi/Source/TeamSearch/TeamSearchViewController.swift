@@ -9,11 +9,46 @@ import UIKit
 
 class TeamSearchViewController: UIViewController {
 
+    @IBOutlet weak var collecitonView: UICollectionView!
     weak var coordinator: TeamSearchCoordinator?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         configureNavigationBar()
+        configureCollectionView()
+    }
+}
+
+private extension TeamSearchViewController {
+    func configureCollectionView() {
+        collecitonView.dataSource = self
+        collecitonView.delegate = self
+        collecitonView.register(.init(nibName: TeamSearchCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: TeamSearchCollectionViewCell.identifier)
+    }
+}
+
+extension TeamSearchViewController: UICollectionViewDataSource {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        1
+    }
+
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        3
+    }
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TeamSearchCollectionViewCell.identifier, for: indexPath) as UICollectionViewCell
+        return cell
+    }
+}
+
+extension TeamSearchViewController: UICollectionViewDelegate {
+
+}
+
+extension TeamSearchViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        CGSize(width: view.frame.width, height: 350)
     }
 }
 

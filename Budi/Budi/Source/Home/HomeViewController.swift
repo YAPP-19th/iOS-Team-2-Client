@@ -20,7 +20,7 @@ final class HomeViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.register(.init(nibName: HomeCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: HomeCollectionViewCell.identifier)
-        collectionView.backgroundColor = .white
+        view.backgroundColor = .white
     }
 
     @IBAction func writeButtonDidTouchUpInside(_ sender: UIButton) {
@@ -40,6 +40,9 @@ extension HomeViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeCollectionViewCell.identifier, for: indexPath) as UICollectionViewCell
         cell.backgroundColor = .systemGroupedBackground
+        cell.layer.cornerRadius = 12
+        cell.borderColor = .systemGray4
+        cell.borderWidth = 1
         return cell
     }
 
@@ -55,13 +58,13 @@ extension HomeViewController: UICollectionViewDelegate {
 private extension HomeViewController {
     func createLayout() -> UICollectionViewCompositionalLayout {
         return UICollectionViewCompositionalLayout { _, _ in
-            let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .fractionalWidth(0.5)))
+            let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .fractionalWidth(263 / 343)))
             item.contentInsets = .init(top: 0, leading: 0, bottom: 16, trailing: 0)
 
             let group = NSCollectionLayoutGroup.vertical(layoutSize: .init(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(100)), subitems: [item])
 
             let section = NSCollectionLayoutSection(group: group)
-            section.contentInsets = .init(top: 0, leading: 16, bottom: 0, trailing: 16)
+            section.contentInsets = .init(top: 27, leading: 16, bottom: 0, trailing: 16)
             return section
         }
     }
@@ -82,6 +85,7 @@ private extension HomeViewController {
         stackview.alignment = .center
         stackview.spacing = 8
 
+        navigationController?.navigationBar.backgroundColor = .white
         navigationItem.rightBarButtonItem =  UIBarButtonItem(customView: stackview)
         title = "버디 모집"
     }

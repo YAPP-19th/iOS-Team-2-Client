@@ -27,6 +27,16 @@ final class HomeDetailViewController: UIViewController {
         configureCollectionView()
         bottomView.layer.addBorderTop()
     }
+
+    override func viewWillAppear(_ animated: Bool) {
+         super.viewWillAppear(animated)
+        navigationController?.setTranslucent()
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.removeTranslucent()
+    }
 }
 
 private extension HomeDetailViewController {
@@ -95,6 +105,8 @@ private extension HomeDetailViewController {
         let actionButton = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(actionButtonTapped))
         navigationItem.rightBarButtonItem = actionButton
         navigationController?.navigationBar.tintColor = .systemGray
+
+
     }
 
     func configureTabBar() {

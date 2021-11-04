@@ -108,6 +108,10 @@ private extension HomeDetailViewController {
 
 private extension HomeDetailViewController {
     @objc func actionButtonTapped() {
+        let alert = GreetingAlertViewController()
+        alert.modalPresentationStyle = .overCurrentContext
+        alert.modalTransitionStyle = .crossDissolve
+        present(alert, animated: true, completion: nil)
     }
 
     func heartButtonTapped() {
@@ -125,10 +129,5 @@ private extension HomeDetailViewController {
         addChild(bottomSheet)
         view.addSubview(bottomSheet.view)
         didMove(toParent: self)
-
-//        let alert = GreetingAlertViewController()
-//        alert.modalPresentationStyle = .overCurrentContext
-//        alert.modalTransitionStyle = .crossDissolve
-//        present(alert, animated: true, completion: nil)
     }
 }

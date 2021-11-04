@@ -206,6 +206,7 @@
                         <outlet property="HeartCountLabel" destination="B83-0d-OIm" id="rSv-PZ-PIl"/>
                         <outlet property="bottomView" destination="Jwd-We-9lw" id="1bN-jt-4g2"/>
                         <outlet property="collectionView" destination="GGU-K4-uik" id="VTz-ZZ-DfL"/>
+                        <outlet property="heartButton" destination="31s-IQ-W8L" id="jZY-gc-jbD"/>
                         <outlet property="heartCountLabel" destination="AeF-ZZ-XYU" id="pf9-96-3cv"/>
                     </connections>
                 </viewController>

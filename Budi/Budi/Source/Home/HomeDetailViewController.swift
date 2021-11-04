@@ -11,15 +11,18 @@ final class HomeDetailViewController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var bottomView: UIView!
+    @IBOutlet weak var heartButton: UIButton!
     @IBOutlet weak var heartCountLabel: UILabel!
 
     @IBAction func heartButtonTapped(_ sender: Any) {
+        heartButtonTapped()
     }
     @IBAction func submitButtonTapped(_ sender: Any) {
         submitButtonTapped()
     }
 
     weak var coordinator: HomeCoordinator?
+    private var isHeartButtonChecked: Bool = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -105,6 +108,16 @@ private extension HomeDetailViewController {
 
 private extension HomeDetailViewController {
     @objc func actionButtonTapped() {
+    }
+
+    func heartButtonTapped() {
+        isHeartButtonChecked.toggle()
+
+        let green = UIColor(named: "Green") ?? .systemGreen
+        let gray = UIColor(named: "Gray") ?? .systemGreen
+
+        heartButton.setImage(UIImage(systemName: isHeartButtonChecked ? "heart.fill" : "heart"), for: .normal)
+        heartButton.tintColor = isHeartButtonChecked ? green : gray
     }
 
     func submitButtonTapped() {

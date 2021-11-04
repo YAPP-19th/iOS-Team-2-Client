@@ -14,7 +14,7 @@ class BottomSheetViewController: UIViewController {
     @IBAction func cancelButtonTapped(_ sender: Any) {
         cancelButtonTapped()
     }
-    
+
     private let jobGroups = ["iOS 개발자", "서버 개발자", "디자이너", "기획자"]
 
     override func viewDidLoad() {

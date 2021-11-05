@@ -37,8 +37,6 @@ final class HomeDetailViewController: UIViewController {
         configureTabBar()
         configureCollectionView()
         bottomView.layer.addBorderTop()
-
-        bottomSheetCollectionView.backgroundColor = .systemGroupedBackground
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -56,6 +54,8 @@ private extension HomeDetailViewController {
         mainCollectionView.register(.init(nibName: HomeDetailLeaderCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: HomeDetailLeaderCollectionViewCell.identifier)
         mainCollectionView.register(.init(nibName: HomeDetailMemberCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: HomeDetailMemberCollectionViewCell.identifier)
 
+        bottomSheetCollectionView.dataSource = self
+        bottomSheetCollectionView.delegate = self
         bottomSheetCollectionView.register(.init(nibName: BottomSheetCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: BottomSheetCollectionViewCell.identifier)
     }
 }
@@ -89,7 +89,6 @@ extension HomeDetailViewController: UICollectionViewDataSource {
 
         if collectionView == bottomSheetCollectionView {
             cell = collectionView.dequeueReusableCell(withReuseIdentifier: BottomSheetCollectionViewCell.identifier, for: indexPath) as UICollectionViewCell
-            cell.backgroundColor = .systemGreen
         }
 
         return cell
@@ -102,7 +101,7 @@ extension HomeDetailViewController: UICollectionViewDelegate {
 
 extension HomeDetailViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        var size = CGSize(width: view.frame.width, height: 0)
+        var size = CGSize(width: collectionView.frame.width, height: 0)
 
         if collectionView == mainCollectionView {
             switch indexPath.row {

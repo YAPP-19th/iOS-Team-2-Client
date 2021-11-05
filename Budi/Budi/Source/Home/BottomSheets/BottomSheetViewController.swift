@@ -71,8 +71,5 @@ extension BottomSheetViewController: UICollectionViewDelegateFlowLayout {
 
 private extension BottomSheetViewController {
     func cancelButtonTapped() {
-        willMove(toParent: nil)
-        view.removeFromSuperview()
-        removeFromParent()
     }
 }

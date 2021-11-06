@@ -16,9 +16,9 @@ class SignupNormalViewController: UIViewController {
         progress.changeColor(index: 1)
         return progress
     }()
-    
+
     private let nickNameView = NickNameView()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         configureLayout()
@@ -47,5 +47,6 @@ class SignupNormalViewController: UIViewController {
         nick.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
         nick.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
         nick.heightAnchor.constraint(equalToConstant: 92).isActive = true
+        nick.configureUnderline(width: view.bounds.width * 0.9)
     }
 }

@@ -22,7 +22,7 @@ class LoginSelectViewController: UIViewController {
     }()
 
     private let naverLoginButton: UIButton = {
-        let button = UIButton()
+        let button = UIButton(type: .custom)
         button.setImage(UIImage(named: "naverImage"), for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 16)
         button.setTitle("네이버 계정으로 계속하기", for: .normal)
@@ -33,8 +33,15 @@ class LoginSelectViewController: UIViewController {
         button.contentEdgeInsets = UIEdgeInsets(top: 10, left: -30, bottom: 10, right: 0)
         button.backgroundColor = UIColor(red: 0.11, green: 0.78, blue: 0.00, alpha: 1.00)
         button.layer.cornerRadius = 6
+        button.layer.masksToBounds = true
+        button.addTarget(self, action: #selector(moveSignupAction), for: .touchUpInside)
         return button
     }()
+
+    @objc
+    func moveSignupAction() {
+        coordinator?.showLoginWithNaver()
+    }
 
     private let privacyButton: UIButton = {
         let button = UIButton()

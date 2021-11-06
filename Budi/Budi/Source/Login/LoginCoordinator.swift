@@ -26,6 +26,7 @@ final class LoginCoordinator: NavigationCoordinator {
 
 extension LoginCoordinator {
     func showLoginWithNaver() {
-        print("Hello")
+        let viewController: SignupNormalViewController = storyboard.instantiateViewController(identifier: SignupNormalViewController.identifier)
+        navigationController?.pushViewController(viewController, animated: true)
     }
 }

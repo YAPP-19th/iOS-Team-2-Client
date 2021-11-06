@@ -12,7 +12,7 @@ class NickNameView: UIView {
     private let nickNameLabel: UILabel = {
         let label = UILabel()
         label.text = "닉네임"
-        label.font = UIFont.systemFont(ofSize: 14)
+        label.font = UIFont.boldSystemFont(ofSize: 14)
 
         return label
     }()
@@ -67,7 +67,7 @@ class NickNameView: UIView {
         let label = UILabel()
         label.text = ""
         label.font = UIFont.boldSystemFont(ofSize: 13.5)
-        
+
         return label
     }()
 

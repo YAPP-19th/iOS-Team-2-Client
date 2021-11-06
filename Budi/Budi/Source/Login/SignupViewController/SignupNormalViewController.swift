@@ -16,9 +16,7 @@ class SignupNormalViewController: UIViewController {
         progress.changeColor(index: 1)
         return progress
     }()
-
     private let nickNameView = NickNameView()
-
     override func viewDidLoad() {
         super.viewDidLoad()
         configureLayout()
@@ -48,5 +46,14 @@ class SignupNormalViewController: UIViewController {
         nick.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
         nick.heightAnchor.constraint(equalToConstant: 92).isActive = true
         nick.configureUnderline(width: view.bounds.width * 0.9)
+
+        let location = LocationSelectView()
+        view.addSubview(location)
+        location.translatesAutoresizingMaskIntoConstraints = false
+        location.topAnchor.constraint(equalTo: nick.bottomAnchor, constant: 7).isActive = true
+        location.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
+        location.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
+        location.heightAnchor.constraint(equalToConstant: 117).isActive = true
+        location.configureUnderline(width: view.bounds.width * 0.9)
     }
 }

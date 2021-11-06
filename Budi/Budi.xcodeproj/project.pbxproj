@@ -16,6 +16,7 @@
 		A8CD9339273673C100299AB4 /* SpacingDarkLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CD9338273673C100299AB4 /* SpacingDarkLineView.swift */; };
 		A8CD933C273676F800299AB4 /* NickNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CD933B273676F800299AB4 /* NickNameView.swift */; };
 		A8CD933E2736A93500299AB4 /* SystemColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CD933D2736A93500299AB4 /* SystemColor.swift */; };
+		A8CD93402736ABD300299AB4 /* LocationSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CD933F2736ABD300299AB4 /* LocationSelectView.swift */; };
 		B97DBB9527147D970018C1D2 /* UIViewController+identifer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B97DBB9427147D970018C1D2 /* UIViewController+identifer.swift */; };
 		B9BF787427004094000BE0EF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9BF787327004094000BE0EF /* AppDelegate.swift */; };
 		B9BF787627004095000BE0EF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9BF787527004095000BE0EF /* SceneDelegate.swift */; };
@@ -46,6 +47,7 @@
 		A8CD9338273673C100299AB4 /* SpacingDarkLineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpacingDarkLineView.swift; sourceTree = "<group>"; };
 		A8CD933B273676F800299AB4 /* NickNameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NickNameView.swift; sourceTree = "<group>"; };
 		A8CD933D2736A93500299AB4 /* SystemColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemColor.swift; sourceTree = "<group>"; };
+		A8CD933F2736ABD300299AB4 /* LocationSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSelectView.swift; sourceTree = "<group>"; };
 		B97DBB9427147D970018C1D2 /* UIViewController+identifer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+identifer.swift"; sourceTree = "<group>"; };
 		B9BF787027004094000BE0EF /* Budi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Budi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9BF787327004094000BE0EF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -122,6 +124,7 @@
 				A8CD93332736566100299AB4 /* ProgressView.swift */,
 				A8CD933B273676F800299AB4 /* NickNameView.swift */,
 				A8CD93312736470100299AB4 /* SignupNormalViewController.swift */,
+				A8CD933F2736ABD300299AB4 /* LocationSelectView.swift */,
 			);
 			path = SignupViewController;
 			sourceTree = "<group>";
@@ -365,6 +368,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A8CD933E2736A93500299AB4 /* SystemColor.swift in Sources */,
+				A8CD93402736ABD300299AB4 /* LocationSelectView.swift in Sources */,
 				B9D66ECE27147AEA00668490 /* TeamRecruitmentWritingViewController.swift in Sources */,
 				A82E49DD273111C50068218A /* LoginSelectViewController.swift in Sources */,
 				A82E49DF273111E50068218A /* LoginCoordinator.swift in Sources */,

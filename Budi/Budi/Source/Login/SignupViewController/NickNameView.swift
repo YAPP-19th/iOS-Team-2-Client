@@ -18,7 +18,7 @@ class NickNameView: UIView {
     }()
 
     private let nickNameTextField: UITextField = {
-        let textField = UITextField()
+        let textField = UITextField(frame: CGRect(x: 0, y: 0, width: 100, height: 40))
         textField.placeholder = "닉네임을 입력하세요"
         textField.font = UIFont.systemFont(ofSize: 14)
         textField.clearButtonMode = UITextField.ViewMode.whileEditing
@@ -39,7 +39,7 @@ class NickNameView: UIView {
     }
 
     private let overlapCheckButton: UIButton = {
-        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 100, height: 48))
+        let button = UIButton()
         button.backgroundColor = UIColor.init(white: 0, alpha: 0.12)
         button.setTitle("중복확인", for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 13)
@@ -70,7 +70,7 @@ class NickNameView: UIView {
 
         return label
     }()
-
+    private let bottomLine = CALayer()
     override init(frame: CGRect) {
         super.init(frame: frame)
         nickNameTextField.delegate = self
@@ -82,11 +82,11 @@ class NickNameView: UIView {
     }
 
     func configureUnderline(width: CGFloat) {
-        let bottomLine = CALayer()
-        bottomLine.frame = CGRect(x: 0, y: 40, width: width, height: 1.0)
+        bottomLine.frame = CGRect(x: 0, y: 40, width: width - 32, height: 1.0)
         bottomLine.backgroundColor = UIColor.init(white: 0, alpha: 0.12).cgColor
         nickNameTextField.borderStyle = UITextField.BorderStyle.none
         nickNameTextField.layer.addSublayer(bottomLine)
+        overlapCheckButton.widthAnchor.constraint(equalToConstant: (width-33) * 0.20).isActive = true
     }
 
     private func configureLayout() {
@@ -103,9 +103,9 @@ class NickNameView: UIView {
         nickNameTextField.heightAnchor.constraint(equalToConstant: 40).isActive = true
         addSubview(overlapCheckButton)
         overlapCheckButton.translatesAutoresizingMaskIntoConstraints = false
-        overlapCheckButton.leadingAnchor.constraint(equalTo: nickNameTextField.trailingAnchor).isActive = true
+        overlapCheckButton.leadingAnchor.constraint(equalTo: nickNameTextField.trailingAnchor, constant: 5).isActive = true
         overlapCheckButton.centerYAnchor.constraint(equalTo: nickNameTextField.centerYAnchor).isActive = true
-        overlapCheckButton.widthAnchor.constraint(equalToConstant: 72).isActive = true
+
         addSubview(checkTextLabel)
         checkTextLabel.translatesAutoresizingMaskIntoConstraints = false
         checkTextLabel.topAnchor.constraint(equalTo: nickNameTextField.bottomAnchor, constant: 8).isActive = true

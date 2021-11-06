@@ -32,16 +32,11 @@ class LocationSelectView: UIView {
         button.backgroundColor = UIColor(red: 0.95, green: 0.95, blue: 0.95, alpha: 1.00)
         button.layer.cornerRadius = 8
         button.layer.masksToBounds = true
-        button.addTarget(self, action: #selector(searchAction), for: .touchUpInside)
+        button.addTarget(self, action: #selector(SignupNormalViewController.searchAction), for: .touchUpInside)
         return button
     }()
 
     private let bottomLine = CALayer()
-    
-    @objc
-    func searchAction() {
-        locationSelected(text: "서울시 강남구")
-    }
 
     override init(frame: CGRect) {
         super.init(frame: frame)

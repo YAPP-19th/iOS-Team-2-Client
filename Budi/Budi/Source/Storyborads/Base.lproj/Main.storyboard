@@ -153,15 +153,9 @@
                                             <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="truncatingTail" baseWritingDirection="natural" lineSpacing="7" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
                                     </fragment>
-                                    <fragment content=" ">
+                                    <fragment content=" ☺️">
                                         <attributes>
                                             <font key="NSFont" metaFont="system" size="17"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="truncatingTail" baseWritingDirection="natural" lineSpacing="7" tighteningFactorForTruncation="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                    <fragment content="☺️">
-                                        <attributes>
-                                            <font key="NSFont" size="17" name=".AppleColorEmojiUI"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="truncatingTail" baseWritingDirection="natural" lineSpacing="7" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
                                     </fragment>
@@ -179,6 +173,87 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="X37-Od-Yfo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1560.8695652173915" y="0.6696428571428571"/>
+        </scene>
+        <!--Position View Controller-->
+        <scene sceneID="mcu-48-Epc">
+            <objects>
+                <viewController storyboardIdentifier="PositionViewController" id="RLi-Sg-IXW" customClass="PositionViewController" customModule="Budi" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Nxk-3u-nch">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fqw-GI-ACY">
+                                <rect key="frame" x="0.0" y="44" width="414" height="735"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="yQE-no-R22">
+                                        <rect key="frame" x="16" y="31" width="261" height="65"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="261" id="Vna-DJ-fml"/>
+                                        </constraints>
+                                        <attributedString key="attributedText">
+                                            <fragment content="프로젝트에 ">
+                                                <attributes>
+                                                    <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <font key="NSFont" size="24" name="AppleSDGothicNeo-Regular"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="truncatingTail" baseWritingDirection="natural" lineSpacing="7" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                            <fragment content="참여하고자하는 직무를 ">
+                                                <attributes>
+                                                    <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <font key="NSFont" size="24" name="AppleSDGothicNeo-Bold"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="truncatingTail" baseWritingDirection="natural" lineSpacing="7" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                            <fragment content="선택해보세요!">
+                                                <attributes>
+                                                    <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <font key="NSFont" size="24" name="AppleSDGothicNeo-Regular"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="truncatingTail" baseWritingDirection="natural" lineSpacing="7" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                            <fragment content=" ">
+                                                <attributes>
+                                                    <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <font key="NSFont" metaFont="system" size="17"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="truncatingTail" baseWritingDirection="natural" lineSpacing="7" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                            <fragment content="☺️">
+                                                <attributes>
+                                                    <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <font key="NSFont" size="17" name=".AppleColorEmojiUI"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="truncatingTail" baseWritingDirection="natural" lineSpacing="7" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                        </attributedString>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="yQE-no-R22" secondAttribute="bottom" constant="602" id="17r-zc-pJJ"/>
+                                    <constraint firstItem="yQE-no-R22" firstAttribute="leading" secondItem="Fqw-GI-ACY" secondAttribute="leading" constant="16" id="Jwq-bO-iZM"/>
+                                    <constraint firstAttribute="trailing" secondItem="yQE-no-R22" secondAttribute="trailing" constant="137" id="QMo-KZ-m6N"/>
+                                    <constraint firstItem="yQE-no-R22" firstAttribute="top" secondItem="Fqw-GI-ACY" secondAttribute="top" constant="31" id="a3i-nl-Bgy"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="I5E-dH-aQT"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="I5E-dH-aQT" firstAttribute="bottom" secondItem="Fqw-GI-ACY" secondAttribute="bottom" constant="83" id="6Io-Jr-3hg"/>
+                            <constraint firstItem="Fqw-GI-ACY" firstAttribute="top" secondItem="I5E-dH-aQT" secondAttribute="top" id="u5o-6e-59p"/>
+                            <constraint firstItem="Fqw-GI-ACY" firstAttribute="leading" secondItem="I5E-dH-aQT" secondAttribute="leading" id="vKm-6k-3nd"/>
+                            <constraint firstItem="Fqw-GI-ACY" firstAttribute="trailing" secondItem="I5E-dH-aQT" secondAttribute="trailing" id="y0Y-j7-Fsp"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="positionInfoLabel" destination="yQE-no-R22" id="ITX-Fr-8vh"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MGK-SF-MTo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2257.971014492754" y="0.6696428571428571"/>
         </scene>
     </scenes>
     <resources>

@@ -18,6 +18,7 @@
 		A8CD933E2736A93500299AB4 /* SystemColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CD933D2736A93500299AB4 /* SystemColor.swift */; };
 		A8CD93402736ABD300299AB4 /* LocationSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CD933F2736ABD300299AB4 /* LocationSelectView.swift */; };
 		A8CD93422736B58E00299AB4 /* IntroduceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CD93412736B58E00299AB4 /* IntroduceView.swift */; };
+		A8CD93442736E82300299AB4 /* PositionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CD93432736E82300299AB4 /* PositionViewController.swift */; };
 		B97DBB9527147D970018C1D2 /* UIViewController+identifer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B97DBB9427147D970018C1D2 /* UIViewController+identifer.swift */; };
 		B9BF787427004094000BE0EF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9BF787327004094000BE0EF /* AppDelegate.swift */; };
 		B9BF787627004095000BE0EF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9BF787527004095000BE0EF /* SceneDelegate.swift */; };
@@ -50,6 +51,7 @@
 		A8CD933D2736A93500299AB4 /* SystemColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemColor.swift; sourceTree = "<group>"; };
 		A8CD933F2736ABD300299AB4 /* LocationSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSelectView.swift; sourceTree = "<group>"; };
 		A8CD93412736B58E00299AB4 /* IntroduceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroduceView.swift; sourceTree = "<group>"; };
+		A8CD93432736E82300299AB4 /* PositionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositionViewController.swift; sourceTree = "<group>"; };
 		B97DBB9427147D970018C1D2 /* UIViewController+identifer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+identifer.swift"; sourceTree = "<group>"; };
 		B9BF787027004094000BE0EF /* Budi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Budi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9BF787327004094000BE0EF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -128,6 +130,7 @@
 				A8CD933F2736ABD300299AB4 /* LocationSelectView.swift */,
 				A8CD93412736B58E00299AB4 /* IntroduceView.swift */,
 				A8CD93312736470100299AB4 /* SignupNormalViewController.swift */,
+				A8CD93432736E82300299AB4 /* PositionViewController.swift */,
 			);
 			path = SignupViewController;
 			sourceTree = "<group>";
@@ -381,6 +384,7 @@
 				A8CD93422736B58E00299AB4 /* IntroduceView.swift in Sources */,
 				A8CD93322736470100299AB4 /* SignupNormalViewController.swift in Sources */,
 				B9D66EC62714706700668490 /* ChattingCoordinator.swift in Sources */,
+				A8CD93442736E82300299AB4 /* PositionViewController.swift in Sources */,
 				B9BF787427004094000BE0EF /* AppDelegate.swift in Sources */,
 				B97DBB9527147D970018C1D2 /* UIViewController+identifer.swift in Sources */,
 				B9D66EB927146DF900668490 /* TabBarCoordinator.swift in Sources */,

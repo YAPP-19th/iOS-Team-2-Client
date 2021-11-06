@@ -9,6 +9,8 @@ import UIKit
 
 class SignupNormalViewController: UIViewController {
 
+    weak var coordinator: LoginCoordinator?
+
     override func viewDidLayoutSubviews() {
         scrollView.updateContentView()
     }
@@ -35,7 +37,7 @@ class SignupNormalViewController: UIViewController {
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
         button.backgroundColor = UIColor.init(white: 0, alpha: 0.38)
         button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 25, right: 0)
-        button.isEnabled = false
+        button.addTarget(self, action: #selector(nextAction), for: .touchUpInside)
         return button
     }()
 
@@ -65,9 +67,18 @@ class SignupNormalViewController: UIViewController {
         nextButton.backgroundColor = UIColor.budiGreen
     }
 
+    @objc
+    func nextAction() {
+        print("dddd")
+        let position = PositionViewController()
+        position.navigationItem.title = "회원가입"
+        navigationController?.pushViewController(position, animated: true)
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(activationNextButton), name: NSNotification.Name("ActivationNext"), object: nil)
+        nextButton.isEnabled = false
         configureLayout()
     }
 

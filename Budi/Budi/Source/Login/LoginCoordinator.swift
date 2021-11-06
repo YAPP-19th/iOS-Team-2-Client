@@ -11,6 +11,7 @@ final class LoginCoordinator: NavigationCoordinator {
 
     weak var navigationController: UINavigationController?
     private let storyboard = UIStoryboard(name: "Main", bundle: nil)
+    private var childCoordinators = [NavigationCoordinator]()
 
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
@@ -29,5 +30,10 @@ extension LoginCoordinator {
         let viewController: SignupNormalViewController = storyboard.instantiateViewController(identifier: SignupNormalViewController.identifier)
         viewController.navigationItem.title = "회원가입"
         navigationController?.pushViewController(viewController, animated: true)
+    }
+
+    func showConfigurePosition() {
+        let configure = PositionViewController()
+        navigationController?.pushViewController(configure, animated: true)
     }
 }

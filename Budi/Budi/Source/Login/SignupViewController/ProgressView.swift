@@ -211,7 +211,7 @@ class ProgressView: UIView {
         threeView.layer.borderColor = UIColor(red: 0.41, green: 0.86, blue: 0.67, alpha: 1.00).cgColor
         stepThreeLabel.alpha = 1
     }
-    
+
     private func removeOne() {
         oneView.subviews.forEach { $0.removeFromSuperview() }
         let success = SuccessCircleView()
@@ -228,7 +228,7 @@ class ProgressView: UIView {
         oneView.layer.borderWidth = 0
         oneView.alpha = 1
     }
-    
+
     private func removeTwo() {
         removeOne()
         twoView.subviews.forEach { $0.removeFromSuperview() }

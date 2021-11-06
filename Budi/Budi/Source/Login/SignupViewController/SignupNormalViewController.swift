@@ -16,6 +16,9 @@ class SignupNormalViewController: UIViewController {
         progress.changeColor(index: 1)
         return progress
     }()
+    
+    private let nickNameView = NickNameView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureLayout()
@@ -36,5 +39,13 @@ class SignupNormalViewController: UIViewController {
         spacing.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
         spacing.topAnchor.constraint(equalTo: progressView.bottomAnchor, constant: 20).isActive = true
         spacing.heightAnchor.constraint(equalToConstant: 8).isActive = true
+        let nick = NickNameView()
+        view.addSubview(nick)
+        nick.translatesAutoresizingMaskIntoConstraints = false
+
+        nick.topAnchor.constraint(equalTo: spacing.bottomAnchor).isActive = true
+        nick.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
+        nick.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
+        nick.heightAnchor.constraint(equalToConstant: 92).isActive = true
     }
 }

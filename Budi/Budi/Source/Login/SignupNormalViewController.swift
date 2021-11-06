@@ -23,10 +23,18 @@ class SignupNormalViewController: UIViewController {
 
     private func configureLayout() {
         view.addSubview(progressView)
-        progressView.topAnchor.constraint(equalTo: signupInfoLabel.bottomAnchor, constant: 42).isActive = true
+        progressView.topAnchor.constraint(equalTo: signupInfoLabel.bottomAnchor, constant: 21).isActive = true
         progressView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor).isActive = true
         progressView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
         progressView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
         progressView.heightAnchor.constraint(equalToConstant: 77).isActive = true
+        let spacing = SpacingDarkLineView()
+        view.addSubview(spacing)
+        spacing.translatesAutoresizingMaskIntoConstraints = false
+        spacing.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        spacing.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
+        spacing.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
+        spacing.topAnchor.constraint(equalTo: progressView.bottomAnchor, constant: 20).isActive = true
+        spacing.heightAnchor.constraint(equalToConstant: 8).isActive = true
     }
 }

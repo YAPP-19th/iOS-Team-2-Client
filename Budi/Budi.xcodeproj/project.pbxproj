@@ -23,6 +23,9 @@
 		A8CD934F2737BD4400299AB4 /* NormalPositionSelect.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CD934E2737BD4400299AB4 /* NormalPositionSelect.swift */; };
 		A8CD93532737F2BF00299AB4 /* PositionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CD93522737F2BF00299AB4 /* PositionData.swift */; };
 		A8CD935627380DAE00299AB4 /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CD935527380DAE00299AB4 /* AlertView.swift */; };
+		A8CD935C27383CB300299AB4 /* LocationSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CD935B27383CB300299AB4 /* LocationSearchViewController.swift */; };
+		A8CD935E273849F800299AB4 /* LocationDummyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CD935D273849F800299AB4 /* LocationDummyData.swift */; };
+		A8CD936127384C4900299AB4 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CD936027384C4900299AB4 /* SearchTableViewCell.swift */; };
 		B97DBB9527147D970018C1D2 /* UIViewController+identifer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B97DBB9427147D970018C1D2 /* UIViewController+identifer.swift */; };
 		B9BF787427004094000BE0EF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9BF787327004094000BE0EF /* AppDelegate.swift */; };
 		B9BF787627004095000BE0EF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9BF787527004095000BE0EF /* SceneDelegate.swift */; };
@@ -60,6 +63,9 @@
 		A8CD934E2737BD4400299AB4 /* NormalPositionSelect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NormalPositionSelect.swift; sourceTree = "<group>"; };
 		A8CD93522737F2BF00299AB4 /* PositionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositionData.swift; sourceTree = "<group>"; };
 		A8CD935527380DAE00299AB4 /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
+		A8CD935B27383CB300299AB4 /* LocationSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchViewController.swift; sourceTree = "<group>"; };
+		A8CD935D273849F800299AB4 /* LocationDummyData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDummyData.swift; sourceTree = "<group>"; };
+		A8CD936027384C4900299AB4 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
 		B97DBB9427147D970018C1D2 /* UIViewController+identifer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+identifer.swift"; sourceTree = "<group>"; };
 		B9BF787027004094000BE0EF /* Budi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Budi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9BF787327004094000BE0EF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -124,6 +130,8 @@
 		A8CD93352736701500299AB4 /* ReuseViews */ = {
 			isa = PBXGroup;
 			children = (
+				A8CD93332736566100299AB4 /* ProgressView.swift */,
+				A8CD935527380DAE00299AB4 /* AlertView.swift */,
 				A8CD93362736702500299AB4 /* SuccessCircleView.swift */,
 				A8CD9338273673C100299AB4 /* SpacingDarkLineView.swift */,
 			);
@@ -133,11 +141,12 @@
 		A8CD933A273676BC00299AB4 /* SignupViewController */ = {
 			isa = PBXGroup;
 			children = (
+				A8CD935F27384C3400299AB4 /* Cell */,
 				A8CD93542738037C00299AB4 /* Data */,
 				A8CD93452737B92A00299AB4 /* View */,
 				A8CD93312736470100299AB4 /* SignupNormalViewController.swift */,
+				A8CD935B27383CB300299AB4 /* LocationSearchViewController.swift */,
 				A8CD93432736E82300299AB4 /* PositionViewController.swift */,
-				A8CD935527380DAE00299AB4 /* AlertView.swift */,
 			);
 			path = SignupViewController;
 			sourceTree = "<group>";
@@ -145,7 +154,6 @@
 		A8CD93452737B92A00299AB4 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				A8CD93332736566100299AB4 /* ProgressView.swift */,
 				A8CD933B273676F800299AB4 /* NickNameView.swift */,
 				A8CD933F2736ABD300299AB4 /* LocationSelectView.swift */,
 				A8CD93412736B58E00299AB4 /* IntroduceView.swift */,
@@ -159,8 +167,17 @@
 			isa = PBXGroup;
 			children = (
 				A8CD93522737F2BF00299AB4 /* PositionData.swift */,
+				A8CD935D273849F800299AB4 /* LocationDummyData.swift */,
 			);
 			path = Data;
+			sourceTree = "<group>";
+		};
+		A8CD935F27384C3400299AB4 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				A8CD936027384C4900299AB4 /* SearchTableViewCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		B9BF786727004094000BE0EF = {
@@ -410,9 +427,11 @@
 				A82E49DF273111E50068218A /* LoginCoordinator.swift in Sources */,
 				B9D66ECC2714716400668490 /* TeamRecruitmentViewController.swift in Sources */,
 				A8CD9339273673C100299AB4 /* SpacingDarkLineView.swift in Sources */,
+				A8CD936127384C4900299AB4 /* SearchTableViewCell.swift in Sources */,
 				B9D66EBB27146E1F00668490 /* MainTabBarCoordinator.swift in Sources */,
 				A8CD93422736B58E00299AB4 /* IntroduceView.swift in Sources */,
 				A8CD935627380DAE00299AB4 /* AlertView.swift in Sources */,
+				A8CD935E273849F800299AB4 /* LocationDummyData.swift in Sources */,
 				A8CD93322736470100299AB4 /* SignupNormalViewController.swift in Sources */,
 				B9D66EC62714706700668490 /* ChattingCoordinator.swift in Sources */,
 				A8CD93442736E82300299AB4 /* PositionViewController.swift in Sources */,
@@ -424,6 +443,7 @@
 				B9D66EBD27146E4300668490 /* NavigationCoordinator.swift in Sources */,
 				A8CD93342736566100299AB4 /* ProgressView.swift in Sources */,
 				B9BF787627004095000BE0EF /* SceneDelegate.swift in Sources */,
+				A8CD935C27383CB300299AB4 /* LocationSearchViewController.swift in Sources */,
 				B9D66EC42714703B00668490 /* TeamSearchCoordinator.swift in Sources */,
 				A8CD933C273676F800299AB4 /* NickNameView.swift in Sources */,
 				A8CD93532737F2BF00299AB4 /* PositionData.swift in Sources */,

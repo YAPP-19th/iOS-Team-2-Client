@@ -161,7 +161,7 @@
                                     </fragment>
                                     <fragment content="☺️">
                                         <attributes>
-                                            <font key="NSFont" size="17" name=".AppleColorEmojiUI"/>
+                                            <font key="NSFont" metaFont="system" size="17"/>
                                             <font key="NSOriginalFont" metaFont="system" size="17"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="truncatingTail" baseWritingDirection="natural" lineSpacing="7" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
@@ -195,6 +195,21 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MGK-SF-MTo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2257.971014492754" y="0.6696428571428571"/>
+        </scene>
+        <!--Location Search View Controller-->
+        <scene sceneID="FP8-b8-hwf">
+            <objects>
+                <viewController storyboardIdentifier="LocationSearchViewController" id="oys-V5-nBV" customClass="LocationSearchViewController" customModule="Budi" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="88r-G5-dIS">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="pIK-QN-spt"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="frL-Hl-UkH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2938" y="1"/>
         </scene>
     </scenes>
     <resources>

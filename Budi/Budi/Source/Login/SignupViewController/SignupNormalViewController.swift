@@ -54,6 +54,9 @@ class SignupNormalViewController: UIViewController {
 
     @objc
     func searchAction() {
+        let locationSearch = LocationSearchViewController()
+        locationSearch.navigationItem.title = "지역 선택"
+        navigationController?.pushViewController(locationSearch, animated: true)
         location.locationSelected(text: "서울시 강남구")
         NSLayoutConstraint.deactivate(defaultArray)
         NSLayoutConstraint.activate(newArray)

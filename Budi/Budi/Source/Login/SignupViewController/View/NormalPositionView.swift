@@ -21,7 +21,7 @@ class NormalPositionView: UIView {
     private func configureLayout() {
 
         let productManager = NormalPositionSelect()
-        productManager.setPosition(image: "person.3.fill", name: "기획자", index: 1)
+        productManager.setPosition(image: "person.3.fill", name: "기획자", index: 2)
 
         addSubview(productManager)
         productManager.translatesAutoresizingMaskIntoConstraints = false
@@ -33,7 +33,7 @@ class NormalPositionView: UIView {
         ])
 
         let frontEnd = NormalPositionSelect()
-        frontEnd.setPosition(image: "laptopcomputer", name: "프론트앤드", index: 2)
+        frontEnd.setPosition(image: "laptopcomputer", name: "프론트앤드", index: 1)
 
         addSubview(frontEnd)
         frontEnd.translatesAutoresizingMaskIntoConstraints = false

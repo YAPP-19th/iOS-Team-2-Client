@@ -149,8 +149,8 @@
 				A8CD933B273676F800299AB4 /* NickNameView.swift */,
 				A8CD933F2736ABD300299AB4 /* LocationSelectView.swift */,
 				A8CD93412736B58E00299AB4 /* IntroduceView.swift */,
-				A8CD934E2737BD4400299AB4 /* NormalPositionSelect.swift */,
 				A8CD93462737B9AA00299AB4 /* NormalPositionView.swift */,
+				A8CD934E2737BD4400299AB4 /* NormalPositionSelect.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";

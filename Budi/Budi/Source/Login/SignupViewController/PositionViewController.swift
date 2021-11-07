@@ -118,12 +118,18 @@ class PositionViewController: UIViewController {
         print("직군")
         if !sender.isSelected {
             sender.isSelected = true
-            sender.setTitleColor(UIColor.white, for: .normal)
-            sender.backgroundColor = UIColor.budiGreen
+            sender.setTitleColor(UIColor.budiGreen, for: .normal)
+            sender.layer.borderColor = UIColor.budiGreen.cgColor
+            UIView.animate(withDuration: 0.2, animations: {
+                sender.layer.borderWidth = 2
+            })
         } else {
             sender.isSelected = false
             sender.setTitleColor(UIColor.init(white: 0, alpha: 0.6), for: .normal)
-            sender.backgroundColor = .white
+            UIView.animate(withDuration: 0.2, animations: {
+                sender.layer.borderWidth = 0.3
+                sender.layer.borderColor = UIColor.init(white: 0, alpha: 0.6).cgColor
+            })
         }
     }
 
@@ -133,13 +139,31 @@ class PositionViewController: UIViewController {
         print(sender.tag)
         if !sender.isSelected {
             sender.isSelected = true
-            sender.setTitleColor(UIColor.white, for: .normal)
-            sender.backgroundColor = UIColor.budiGreen
-            NotificationCenter.default.post(name: NSNotification.Name("NextButtonActivation"), object: nil)
+            sender.setTitleColor(UIColor.budiGreen, for: .normal)
+            sender.layer.borderColor = UIColor.budiGreen.cgColor
+            UIView.animate(withDuration: 0.2, animations: {
+                sender.layer.borderWidth = 2
+            })
         } else {
             sender.isSelected = false
             sender.setTitleColor(UIColor.init(white: 0, alpha: 0.6), for: .normal)
-            sender.backgroundColor = .white
+            UIView.animate(withDuration: 0.2, animations: {
+                sender.layer.borderWidth = 0.3
+                sender.layer.borderColor = UIColor.init(white: 0, alpha: 0.6).cgColor
+            })
+        }
+        NotificationCenter.default.post(name: NSNotification.Name("NextButtonActivation"), object: nil)
+    }
+
+    @objc
+    func normalPositionButtonAction(sender: UIButton) {
+        print(sender.tag)
+        if !sender.isSelected {
+            sender.isSelected = true
+            sender.setTitleColor(UIColor.budiGreen, for: .normal)
+        } else {
+            sender.isSelected = false
+            sender.setTitleColor(UIColor.lightGray, for: .normal)
         }
     }
 

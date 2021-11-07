@@ -20,15 +20,9 @@ class NormalPositionSelect: UIView {
         button.titleLabel?.minimumScaleFactor = 0.5
         button.titleEdgeInsets = UIEdgeInsets(top: 0, left: -(56/2), bottom: -20, right: 0)
         button.imageEdgeInsets = UIEdgeInsets(top: 0, left: 56/4, bottom: 20, right: 0)
-        button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
+        button.addTarget(self, action: #selector(PositionViewController.normalPositionButtonAction), for: .touchUpInside)
         return button
     }()
-
-    @objc
-    func buttonAction() {
-        guard let text = selectButton.titleLabel?.text else { return }
-        print(text)
-    }
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -42,7 +36,7 @@ class NormalPositionSelect: UIView {
     func setPosition(image: String, name: String, index: Int) {
         selectButton.setImage(UIImage(systemName: image), for: .normal)
         selectButton.setTitle(name, for: .normal)
-        selectIndex = index
+        selectButton.tag = index
     }
 
     private func configureLayout() {

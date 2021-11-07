@@ -22,6 +22,7 @@
 		A8CD93472737B9AB00299AB4 /* NormalPositionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CD93462737B9AA00299AB4 /* NormalPositionView.swift */; };
 		A8CD934F2737BD4400299AB4 /* NormalPositionSelect.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CD934E2737BD4400299AB4 /* NormalPositionSelect.swift */; };
 		A8CD93532737F2BF00299AB4 /* PositionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CD93522737F2BF00299AB4 /* PositionData.swift */; };
+		A8CD935627380DAE00299AB4 /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CD935527380DAE00299AB4 /* AlertView.swift */; };
 		B97DBB9527147D970018C1D2 /* UIViewController+identifer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B97DBB9427147D970018C1D2 /* UIViewController+identifer.swift */; };
 		B9BF787427004094000BE0EF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9BF787327004094000BE0EF /* AppDelegate.swift */; };
 		B9BF787627004095000BE0EF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9BF787527004095000BE0EF /* SceneDelegate.swift */; };
@@ -58,6 +59,7 @@
 		A8CD93462737B9AA00299AB4 /* NormalPositionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NormalPositionView.swift; sourceTree = "<group>"; };
 		A8CD934E2737BD4400299AB4 /* NormalPositionSelect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NormalPositionSelect.swift; sourceTree = "<group>"; };
 		A8CD93522737F2BF00299AB4 /* PositionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositionData.swift; sourceTree = "<group>"; };
+		A8CD935527380DAE00299AB4 /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
 		B97DBB9427147D970018C1D2 /* UIViewController+identifer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+identifer.swift"; sourceTree = "<group>"; };
 		B9BF787027004094000BE0EF /* Budi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Budi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9BF787327004094000BE0EF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 				A8CD93452737B92A00299AB4 /* View */,
 				A8CD93312736470100299AB4 /* SignupNormalViewController.swift */,
 				A8CD93432736E82300299AB4 /* PositionViewController.swift */,
+				A8CD935527380DAE00299AB4 /* AlertView.swift */,
 			);
 			path = SignupViewController;
 			sourceTree = "<group>";
@@ -409,6 +412,7 @@
 				A8CD9339273673C100299AB4 /* SpacingDarkLineView.swift in Sources */,
 				B9D66EBB27146E1F00668490 /* MainTabBarCoordinator.swift in Sources */,
 				A8CD93422736B58E00299AB4 /* IntroduceView.swift in Sources */,
+				A8CD935627380DAE00299AB4 /* AlertView.swift in Sources */,
 				A8CD93322736470100299AB4 /* SignupNormalViewController.swift in Sources */,
 				B9D66EC62714706700668490 /* ChattingCoordinator.swift in Sources */,
 				A8CD93442736E82300299AB4 /* PositionViewController.swift in Sources */,

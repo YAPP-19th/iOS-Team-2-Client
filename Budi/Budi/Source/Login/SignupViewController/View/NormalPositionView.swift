@@ -29,8 +29,7 @@ class NormalPositionView: UIView {
         NSLayoutConstraint.activate([
             productManager.topAnchor.constraint(equalTo: self.topAnchor, constant: 16),
             productManager.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            productManager.widthAnchor.constraint(equalToConstant: 56),
-            productManager.heightAnchor.constraint(equalToConstant: 60)
+            productManager.widthAnchor.constraint(equalToConstant: 56)
         ])
 
         let frontEnd = NormalPositionSelect()
@@ -38,7 +37,6 @@ class NormalPositionView: UIView {
 
         addSubview(frontEnd)
         frontEnd.translatesAutoresizingMaskIntoConstraints = false
-        
         NSLayoutConstraint.activate([
             frontEnd.topAnchor.constraint(equalTo: self.topAnchor, constant: 16),
             frontEnd.centerYAnchor.constraint(equalTo: self.centerYAnchor),

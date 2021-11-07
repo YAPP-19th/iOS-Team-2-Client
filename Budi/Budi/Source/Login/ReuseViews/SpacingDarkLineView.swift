@@ -17,7 +17,6 @@ class SpacingDarkLineView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
-
     private func configureLayout() {
         backgroundColor = .black
         alpha = 0.04

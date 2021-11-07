@@ -203,7 +203,6 @@ class ProgressView: UIView {
         twoView.layer.borderColor = UIColor(red: 0.41, green: 0.86, blue: 0.67, alpha: 1.00).cgColor
         stepTwoLabel.alpha = 1
     }
-    
     private func numberThreeColorSet() {
         removeTwo()
         numberThree.textColor = UIColor(red: 0.41, green: 0.86, blue: 0.67, alpha: 1.00)

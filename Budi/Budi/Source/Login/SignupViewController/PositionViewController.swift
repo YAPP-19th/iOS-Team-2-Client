@@ -10,6 +10,9 @@ import UIKit
 class PositionViewController: UIViewController {
     var coordinator: LoginCoordinator?
 
+    let alert = AlertView()
+    let viewB = UIView()
+
     override func viewDidLayoutSubviews() {
         scrollView.updateContentView()
     }
@@ -35,7 +38,8 @@ class PositionViewController: UIViewController {
 
     @objc
     func nextAction() {
-        print("hello")
+        configureAlert()
+
     }
 
     private let positionLabel: UILabel = {
@@ -61,7 +65,6 @@ class PositionViewController: UIViewController {
 
     private let normalPositionView = NormalPositionView()
     private let spacingDarkView = SpacingDarkLineView()
-
 
     private let normalPositionLabel: UILabel = {
         let label = UILabel()
@@ -138,6 +141,58 @@ class PositionViewController: UIViewController {
             sender.setTitleColor(UIColor.init(white: 0, alpha: 0.6), for: .normal)
             sender.backgroundColor = .white
         }
+    }
+
+    @objc
+    func dismissAlert() {
+        UIView.animate(withDuration: 0.2, animations: {
+            self.viewB.alpha = 0.0
+            self.alert.alpha = 0.0
+        }, completion: { _ in
+            self.viewB.removeFromSuperview()
+            self.alert.removeFromSuperview()
+        })
+
+    }
+
+    @objc
+    func projectWriteAtcion() {
+        // 일단 아무것도 하지 않으니 (뷰가 안만들어진듯) dismiss
+        UIView.animate(withDuration: 0.2, animations: {
+            self.viewB.alpha = 0.0
+            self.alert.alpha = 0.0
+        }, completion: { _ in
+            self.viewB.removeFromSuperview()
+            self.alert.removeFromSuperview()
+        })
+    }
+
+    private func configureAlert() {
+
+        viewB.backgroundColor = .black
+        viewB.alpha = 0.0
+        alert.alpha = 0.0
+        view.addSubview(viewB)
+        viewB.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(alert)
+        alert.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            viewB.topAnchor.constraint(equalTo: view.topAnchor),
+            viewB.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            viewB.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            viewB.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+        NSLayoutConstraint.activate([
+            alert.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            alert.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            alert.widthAnchor.constraint(equalToConstant: 343),
+            alert.heightAnchor.constraint(equalToConstant: 208)
+        ])
+
+        UIView.animate(withDuration: 0.2, animations: {
+            self.viewB.alpha = 0.5
+            self.alert.alpha = 1.0
+        })
     }
 
     private func configureLayout() {

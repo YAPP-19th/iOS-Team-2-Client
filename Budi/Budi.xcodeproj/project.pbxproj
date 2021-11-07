@@ -19,6 +19,9 @@
 		A8CD93402736ABD300299AB4 /* LocationSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CD933F2736ABD300299AB4 /* LocationSelectView.swift */; };
 		A8CD93422736B58E00299AB4 /* IntroduceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CD93412736B58E00299AB4 /* IntroduceView.swift */; };
 		A8CD93442736E82300299AB4 /* PositionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CD93432736E82300299AB4 /* PositionViewController.swift */; };
+		A8CD93472737B9AB00299AB4 /* NormalPositionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CD93462737B9AA00299AB4 /* NormalPositionView.swift */; };
+		A8CD934F2737BD4400299AB4 /* NormalPositionSelect.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CD934E2737BD4400299AB4 /* NormalPositionSelect.swift */; };
+		A8CD93532737F2BF00299AB4 /* PositionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CD93522737F2BF00299AB4 /* PositionData.swift */; };
 		B97DBB9527147D970018C1D2 /* UIViewController+identifer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B97DBB9427147D970018C1D2 /* UIViewController+identifer.swift */; };
 		B9BF787427004094000BE0EF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9BF787327004094000BE0EF /* AppDelegate.swift */; };
 		B9BF787627004095000BE0EF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9BF787527004095000BE0EF /* SceneDelegate.swift */; };
@@ -52,6 +55,9 @@
 		A8CD933F2736ABD300299AB4 /* LocationSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSelectView.swift; sourceTree = "<group>"; };
 		A8CD93412736B58E00299AB4 /* IntroduceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroduceView.swift; sourceTree = "<group>"; };
 		A8CD93432736E82300299AB4 /* PositionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositionViewController.swift; sourceTree = "<group>"; };
+		A8CD93462737B9AA00299AB4 /* NormalPositionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NormalPositionView.swift; sourceTree = "<group>"; };
+		A8CD934E2737BD4400299AB4 /* NormalPositionSelect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NormalPositionSelect.swift; sourceTree = "<group>"; };
+		A8CD93522737F2BF00299AB4 /* PositionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositionData.swift; sourceTree = "<group>"; };
 		B97DBB9427147D970018C1D2 /* UIViewController+identifer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+identifer.swift"; sourceTree = "<group>"; };
 		B9BF787027004094000BE0EF /* Budi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Budi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9BF787327004094000BE0EF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -125,14 +131,33 @@
 		A8CD933A273676BC00299AB4 /* SignupViewController */ = {
 			isa = PBXGroup;
 			children = (
-				A8CD93332736566100299AB4 /* ProgressView.swift */,
-				A8CD933B273676F800299AB4 /* NickNameView.swift */,
-				A8CD933F2736ABD300299AB4 /* LocationSelectView.swift */,
-				A8CD93412736B58E00299AB4 /* IntroduceView.swift */,
+				A8CD93542738037C00299AB4 /* Data */,
+				A8CD93452737B92A00299AB4 /* View */,
 				A8CD93312736470100299AB4 /* SignupNormalViewController.swift */,
 				A8CD93432736E82300299AB4 /* PositionViewController.swift */,
 			);
 			path = SignupViewController;
+			sourceTree = "<group>";
+		};
+		A8CD93452737B92A00299AB4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A8CD93332736566100299AB4 /* ProgressView.swift */,
+				A8CD933B273676F800299AB4 /* NickNameView.swift */,
+				A8CD933F2736ABD300299AB4 /* LocationSelectView.swift */,
+				A8CD93412736B58E00299AB4 /* IntroduceView.swift */,
+				A8CD934E2737BD4400299AB4 /* NormalPositionSelect.swift */,
+				A8CD93462737B9AA00299AB4 /* NormalPositionView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		A8CD93542738037C00299AB4 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				A8CD93522737F2BF00299AB4 /* PositionData.swift */,
+			);
+			path = Data;
 			sourceTree = "<group>";
 		};
 		B9BF786727004094000BE0EF = {
@@ -373,10 +398,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A8CD934F2737BD4400299AB4 /* NormalPositionSelect.swift in Sources */,
 				A8CD933E2736A93500299AB4 /* SystemColor.swift in Sources */,
 				A8CD93402736ABD300299AB4 /* LocationSelectView.swift in Sources */,
 				B9D66ECE27147AEA00668490 /* TeamRecruitmentWritingViewController.swift in Sources */,
 				A82E49DD273111C50068218A /* LoginSelectViewController.swift in Sources */,
+				A8CD93472737B9AB00299AB4 /* NormalPositionView.swift in Sources */,
 				A82E49DF273111E50068218A /* LoginCoordinator.swift in Sources */,
 				B9D66ECC2714716400668490 /* TeamRecruitmentViewController.swift in Sources */,
 				A8CD9339273673C100299AB4 /* SpacingDarkLineView.swift in Sources */,
@@ -395,6 +422,7 @@
 				B9BF787627004095000BE0EF /* SceneDelegate.swift in Sources */,
 				B9D66EC42714703B00668490 /* TeamSearchCoordinator.swift in Sources */,
 				A8CD933C273676F800299AB4 /* NickNameView.swift in Sources */,
+				A8CD93532737F2BF00299AB4 /* PositionData.swift in Sources */,
 				A8CD93372736702500299AB4 /* SuccessCircleView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -23,7 +23,7 @@ private extension TeamSearchViewController {
     func configureCollectionView() {
         collecitonView.dataSource = self
         collecitonView.delegate = self
-        collecitonView.register(.init(nibName: TeamSearchCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: TeamSearchCollectionViewCell.identifier)
+        collecitonView.register(.init(nibName: TeamSearchCell.identifier, bundle: nil), forCellWithReuseIdentifier: TeamSearchCell.identifier)
     }
 }
 
@@ -37,7 +37,7 @@ extension TeamSearchViewController: UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TeamSearchCollectionViewCell.identifier, for: indexPath) as UICollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TeamSearchCell.identifier, for: indexPath) as UICollectionViewCell
         return cell
     }
 }

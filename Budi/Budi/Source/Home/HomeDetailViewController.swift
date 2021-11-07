@@ -48,15 +48,15 @@ private extension HomeDetailViewController {
     func configureCollectionView() {
         mainCollectionView.dataSource = self
         mainCollectionView.delegate = self
-        mainCollectionView.register(.init(nibName: HomeDetailMainCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: HomeDetailMainCollectionViewCell.identifier)
-        mainCollectionView.register(.init(nibName: HomeDetailStateCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: HomeDetailStateCollectionViewCell.identifier)
-        mainCollectionView.register(.init(nibName: HomeDetailIntroCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: HomeDetailIntroCollectionViewCell.identifier)
-        mainCollectionView.register(.init(nibName: HomeDetailLeaderCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: HomeDetailLeaderCollectionViewCell.identifier)
-        mainCollectionView.register(.init(nibName: HomeDetailMemberCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: HomeDetailMemberCollectionViewCell.identifier)
+        mainCollectionView.register(.init(nibName: HomeDetailMainCell.identifier, bundle: nil), forCellWithReuseIdentifier: HomeDetailMainCell.identifier)
+        mainCollectionView.register(.init(nibName: HomeDetailStateCell.identifier, bundle: nil), forCellWithReuseIdentifier: HomeDetailStateCell.identifier)
+        mainCollectionView.register(.init(nibName: HomeDetailIntroCell.identifier, bundle: nil), forCellWithReuseIdentifier: HomeDetailIntroCell.identifier)
+        mainCollectionView.register(.init(nibName: HomeDetailLeaderCell.identifier, bundle: nil), forCellWithReuseIdentifier: HomeDetailLeaderCell.identifier)
+        mainCollectionView.register(.init(nibName: HomeDetailMemberCell.identifier, bundle: nil), forCellWithReuseIdentifier: HomeDetailMemberCell.identifier)
 
         bottomSheetCollectionView.dataSource = self
         bottomSheetCollectionView.delegate = self
-        bottomSheetCollectionView.register(.init(nibName: BottomSheetCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: BottomSheetCollectionViewCell.identifier)
+        bottomSheetCollectionView.register(.init(nibName: BottomSheetCell.identifier, bundle: nil), forCellWithReuseIdentifier: BottomSheetCell.identifier)
     }
 }
 
@@ -78,17 +78,17 @@ extension HomeDetailViewController: UICollectionViewDataSource {
 
         if collectionView == mainCollectionView {
             switch indexPath.row {
-            case 0: cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeDetailMainCollectionViewCell.identifier, for: indexPath) as UICollectionViewCell
-            case 1: cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeDetailStateCollectionViewCell.identifier, for: indexPath) as UICollectionViewCell
-            case 2: cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeDetailIntroCollectionViewCell.identifier, for: indexPath) as UICollectionViewCell
-            case 3: cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeDetailLeaderCollectionViewCell.identifier, for: indexPath) as UICollectionViewCell
-            case 4: cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeDetailMemberCollectionViewCell.identifier, for: indexPath) as UICollectionViewCell
+            case 0: cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeDetailMainCell.identifier, for: indexPath) as UICollectionViewCell
+            case 1: cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeDetailStateCell.identifier, for: indexPath) as UICollectionViewCell
+            case 2: cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeDetailIntroCell.identifier, for: indexPath) as UICollectionViewCell
+            case 3: cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeDetailLeaderCell.identifier, for: indexPath) as UICollectionViewCell
+            case 4: cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeDetailMemberCell.identifier, for: indexPath) as UICollectionViewCell
             default: break
             }
         }
 
         if collectionView == bottomSheetCollectionView {
-            cell = collectionView.dequeueReusableCell(withReuseIdentifier: BottomSheetCollectionViewCell.identifier, for: indexPath) as UICollectionViewCell
+            cell = collectionView.dequeueReusableCell(withReuseIdentifier: BottomSheetCell.identifier, for: indexPath) as UICollectionViewCell
         }
 
         return cell

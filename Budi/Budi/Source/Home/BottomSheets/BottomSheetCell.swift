@@ -1,5 +1,5 @@
 //
-//  BottomSheetCollectionViewCell.swift
+//  BottomSheetCell.swift
 //  Budi
 //
 //  Created by leeesangheee on 2021/11/04.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class BottomSheetCollectionViewCell: UICollectionViewCell {
+class BottomSheetCell: UICollectionViewCell {
 
     @IBOutlet weak var textLabel: UILabel!
     @IBOutlet weak var checkButton: UIButton!
@@ -28,7 +28,7 @@ class BottomSheetCollectionViewCell: UICollectionViewCell {
     }
 }
 
-private extension BottomSheetCollectionViewCell {
+private extension BottomSheetCell {
     func checkButtonTapped() {
         isChecked.toggle()
 

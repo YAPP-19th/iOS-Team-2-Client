@@ -1,5 +1,5 @@
 //
-//  HomeDetailIntroCollectionViewCell.swift
+//  HomeDetailIntroCell.swift
 //  Budi
 //
 //  Created by leeesangheee on 2021/11/02.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HomeDetailIntroCollectionViewCell: UICollectionViewCell {
+class HomeDetailIntroCell: UICollectionViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()

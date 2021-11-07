@@ -1,5 +1,5 @@
 //
-//  HomeDetailLeaderCollectionViewCell.swift
+//  HomeDetailMemberCell.swift
 //  Budi
 //
 //  Created by leeesangheee on 2021/11/02.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HomeDetailLeaderCollectionViewCell: UICollectionViewCell {
+class HomeDetailMemberCell: UICollectionViewCell {
 
     @IBOutlet weak var collectionView: UICollectionView!
 
@@ -17,35 +17,39 @@ class HomeDetailLeaderCollectionViewCell: UICollectionViewCell {
     }
 }
 
-private extension HomeDetailLeaderCollectionViewCell {
+private extension HomeDetailMemberCell {
     func configureCollectionView() {
         collectionView.dataSource = self
         collectionView.delegate = self
-        collectionView.register(.init(nibName: HomeDetailPersonCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: HomeDetailPersonCollectionViewCell.identifier)
+        collectionView.register(.init(nibName: HomeDetailPersonCell.identifier, bundle: nil), forCellWithReuseIdentifier: HomeDetailPersonCell.identifier)
     }
 }
 
-extension HomeDetailLeaderCollectionViewCell: UICollectionViewDataSource {
+extension HomeDetailMemberCell: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         1
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        1
+        3
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeDetailPersonCollectionViewCell.identifier, for: indexPath) as UICollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeDetailPersonCell.identifier, for: indexPath) as UICollectionViewCell
         return cell
     }
 }
 
-extension HomeDetailLeaderCollectionViewCell: UICollectionViewDelegate {
+extension HomeDetailMemberCell: UICollectionViewDelegate {
 
 }
 
-extension HomeDetailLeaderCollectionViewCell: UICollectionViewDelegateFlowLayout {
+extension HomeDetailMemberCell: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         CGSize(width: collectionView.frame.width, height: 80)
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        8
     }
 }

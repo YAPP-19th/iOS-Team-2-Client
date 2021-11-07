@@ -38,9 +38,9 @@ private extension ChattingDetailViewController {
     func configureCollectionView() {
         collecitonView.dataSource = self
         collecitonView.delegate = self
-        collecitonView.register(.init(nibName: MessageCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: MessageCollectionViewCell.identifier)
-        collecitonView.register(.init(nibName: MyMessageCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: MyMessageCollectionViewCell.identifier)
-        collecitonView.register(.init(nibName: MessageTimeCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: MessageTimeCollectionViewCell.identifier)
+        collecitonView.register(.init(nibName: ChattingMessageCell.identifier, bundle: nil), forCellWithReuseIdentifier: ChattingMessageCell.identifier)
+        collecitonView.register(.init(nibName: MyChattingMessageCell.identifier, bundle: nil), forCellWithReuseIdentifier: MyChattingMessageCell.identifier)
+        collecitonView.register(.init(nibName: ChattingTimeCell.identifier, bundle: nil), forCellWithReuseIdentifier: ChattingTimeCell.identifier)
         collecitonView.alwaysBounceVertical = true
         collecitonView.backgroundColor = .systemGroupedBackground
     }
@@ -57,13 +57,13 @@ extension ChattingDetailViewController: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if indexPath.row == 0 {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MessageTimeCollectionViewCell.identifier, for: indexPath) as UICollectionViewCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ChattingTimeCell.identifier, for: indexPath) as UICollectionViewCell
             return cell
         } else if indexPath.row % 2 == 1 {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MessageCollectionViewCell.identifier, for: indexPath) as UICollectionViewCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ChattingMessageCell.identifier, for: indexPath) as UICollectionViewCell
             return cell
         }
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MyMessageCollectionViewCell.identifier, for: indexPath) as UICollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MyChattingMessageCell.identifier, for: indexPath) as UICollectionViewCell
         return cell
     }
 }

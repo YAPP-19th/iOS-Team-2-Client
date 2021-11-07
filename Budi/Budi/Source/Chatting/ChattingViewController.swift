@@ -23,7 +23,7 @@ private extension ChattingViewController {
     func configureCollectionView() {
         collecitonView.dataSource = self
         collecitonView.delegate = self
-        collecitonView.register(.init(nibName: ChattingCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: ChattingCollectionViewCell.identifier)
+        collecitonView.register(.init(nibName: ChattingCell.identifier, bundle: nil), forCellWithReuseIdentifier: ChattingCell.identifier)
         collecitonView.backgroundColor = .systemGroupedBackground
     }
 }
@@ -38,7 +38,7 @@ extension ChattingViewController: UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ChattingCollectionViewCell.identifier, for: indexPath) as UICollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ChattingCell.identifier, for: indexPath) as UICollectionViewCell
         return cell
     }
 

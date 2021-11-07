@@ -99,19 +99,45 @@ class PositionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
+        NotificationCenter.default.addObserver(self, selector: #selector(nextButtonActivation), name: NSNotification.Name("NextButtonActivation"), object: nil)
+        nextButton.isEnabled = false
         configureLayout()
+    }
+
+    @objc
+    func nextButtonActivation() {
+        nextButton.isEnabled = true
+        nextButton.backgroundColor = UIColor.budiGreen
     }
 
     @objc
     func positionButtionAction(sender: UIButton) {
         print("직군")
-        print(sender.tag)
+        if !sender.isSelected {
+            sender.isSelected = true
+            sender.setTitleColor(UIColor.white, for: .normal)
+            sender.backgroundColor = UIColor.budiGreen
+        } else {
+            sender.isSelected = false
+            sender.setTitleColor(UIColor.init(white: 0, alpha: 0.6), for: .normal)
+            sender.backgroundColor = .white
+        }
     }
 
     @objc
     func languageButtonAction(sender: UIButton) {
         print("언어")
         print(sender.tag)
+        if !sender.isSelected {
+            sender.isSelected = true
+            sender.setTitleColor(UIColor.white, for: .normal)
+            sender.backgroundColor = UIColor.budiGreen
+            NotificationCenter.default.post(name: NSNotification.Name("NextButtonActivation"), object: nil)
+        } else {
+            sender.isSelected = false
+            sender.setTitleColor(UIColor.init(white: 0, alpha: 0.6), for: .normal)
+            sender.backgroundColor = .white
+        }
     }
 
     private func configureLayout() {

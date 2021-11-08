@@ -39,8 +39,14 @@ final class HomeDetailViewController: UIViewController {
         bottomView.layer.addBorderTop()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+         super.viewWillAppear(animated)
+        navigationController?.setTranslucent()
+    }
+
     override func viewWillDisappear(_ animated: Bool) {
-        tabBarController?.tabBar.isHidden = false
+        super.viewWillDisappear(animated)
+        navigationController?.removeTranslucent()
     }
 }
 
@@ -57,6 +63,7 @@ private extension HomeDetailViewController {
         bottomSheetCollectionView.dataSource = self
         bottomSheetCollectionView.delegate = self
         bottomSheetCollectionView.register(.init(nibName: BottomSheetCell.identifier, bundle: nil), forCellWithReuseIdentifier: BottomSheetCell.identifier)
+
     }
 }
 
@@ -101,6 +108,7 @@ extension HomeDetailViewController: UICollectionViewDelegate {
 
 extension HomeDetailViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+
         var size = CGSize(width: collectionView.frame.width, height: 0)
 
         if collectionView == mainCollectionView {
@@ -127,6 +135,7 @@ extension HomeDetailViewController: UICollectionViewDelegateFlowLayout {
         case bottomSheetCollectionView: return 8
         default: return 0
         }
+
     }
 }
 

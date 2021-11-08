@@ -47,6 +47,7 @@
 		5EFB0A5B27341C1100F39A4D /* ChattingTimeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EFB0A5927341C1100F39A4D /* ChattingTimeCell.xib */; };
 		7C2060A1B418A53F47747CDA /* Pods_Budi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D20131AEAD19181CEF5CF7C /* Pods_Budi.framework */; };
 		B97DBB9527147D970018C1D2 /* UIViewController+identifer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B97DBB9427147D970018C1D2 /* UIViewController+identifer.swift */; };
+		B98E530A27396B3F00C73374 /* UINavigationController+translucent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98E530927396B3F00C73374 /* UINavigationController+translucent.swift */; };
 		B9BF787427004094000BE0EF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9BF787327004094000BE0EF /* AppDelegate.swift */; };
 		B9BF787627004095000BE0EF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9BF787527004095000BE0EF /* SceneDelegate.swift */; };
 		B9BF787B27004095000BE0EF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B9BF787927004095000BE0EF /* Main.storyboard */; };
@@ -107,6 +108,7 @@
 		5EFB0A5927341C1100F39A4D /* ChattingTimeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChattingTimeCell.xib; sourceTree = "<group>"; };
 		84D727CBB17AD63DD79D7083 /* Pods-Budi.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Budi.release.xcconfig"; path = "Target Support Files/Pods-Budi/Pods-Budi.release.xcconfig"; sourceTree = "<group>"; };
 		B97DBB9427147D970018C1D2 /* UIViewController+identifer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+identifer.swift"; sourceTree = "<group>"; };
+		B98E530927396B3F00C73374 /* UINavigationController+translucent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationController+translucent.swift"; sourceTree = "<group>"; };
 		B9BF787027004094000BE0EF /* Budi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Budi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9BF787327004094000BE0EF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B9BF787527004095000BE0EF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -357,6 +359,7 @@
 			isa = PBXGroup;
 			children = (
 				B97DBB9427147D970018C1D2 /* UIViewController+identifer.swift */,
+				B98E530927396B3F00C73374 /* UINavigationController+translucent.swift */,
 				5EA453AB2731DDA700943C94 /* CALayer+addBorderTop.swift */,
 				5E2554372732AD0800033723 /* UIView+IBInspectable.swift */,
 			);
@@ -495,6 +498,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5EFB0A412733CD7700F39A4D /* TeamSearchViewController.swift in Sources */,
+				B98E530A27396B3F00C73374 /* UINavigationController+translucent.swift in Sources */,
 				B9D66ECE27147AEA00668490 /* HomeWritingViewController.swift in Sources */,
 				5EA453A02731778000943C94 /* HomeDetailMainCell.swift in Sources */,
 				5EFB0A5A27341C1100F39A4D /* ChattingTimeCell.swift in Sources */,

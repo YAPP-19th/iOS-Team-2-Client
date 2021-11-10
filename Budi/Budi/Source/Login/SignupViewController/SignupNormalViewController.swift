@@ -80,6 +80,7 @@ class SignupNormalViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         nextButton.isEnabled = false
+        self.addBackButton()
         configureAddOserver()
         configureLayout()
     }

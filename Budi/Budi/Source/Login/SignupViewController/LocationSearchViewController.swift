@@ -100,6 +100,7 @@ class LocationSearchViewController: UIViewController {
         searchBar.delegate = self
         view.backgroundColor = .white
         nextButton.isEnabled = false
+        self.addBackButton()
         configureLayout()
         configureTableView()
         configureAlert()

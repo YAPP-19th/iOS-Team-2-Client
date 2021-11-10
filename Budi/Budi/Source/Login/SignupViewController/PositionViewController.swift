@@ -104,6 +104,7 @@ class PositionViewController: UIViewController {
         view.backgroundColor = .white
         NotificationCenter.default.addObserver(self, selector: #selector(nextButtonActivation), name: NSNotification.Name("NextButtonActivation"), object: nil)
         nextButton.isEnabled = false
+        self.addBackButton()
         configureLayout()
     }
 

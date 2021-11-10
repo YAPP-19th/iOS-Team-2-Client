@@ -10,6 +10,7 @@
 		7C2060A1B418A53F47747CDA /* Pods_Budi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D20131AEAD19181CEF5CF7C /* Pods_Budi.framework */; };
 		A82E49DD273111C50068218A /* LoginSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82E49DC273111C50068218A /* LoginSelectViewController.swift */; };
 		A82E49DF273111E50068218A /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82E49DE273111E50068218A /* LoginCoordinator.swift */; };
+		A8A6D9EF273BCBA300C84C52 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A6D9EE273BCBA300C84C52 /* Extensions.swift */; };
 		A8CD93322736470100299AB4 /* SignupNormalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CD93312736470100299AB4 /* SignupNormalViewController.swift */; };
 		A8CD93342736566100299AB4 /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CD93332736566100299AB4 /* ProgressView.swift */; };
 		A8CD93372736702500299AB4 /* SuccessCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CD93362736702500299AB4 /* SuccessCircleView.swift */; };
@@ -50,6 +51,7 @@
 		84D727CBB17AD63DD79D7083 /* Pods-Budi.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Budi.release.xcconfig"; path = "Target Support Files/Pods-Budi/Pods-Budi.release.xcconfig"; sourceTree = "<group>"; };
 		A82E49DC273111C50068218A /* LoginSelectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSelectViewController.swift; sourceTree = "<group>"; };
 		A82E49DE273111E50068218A /* LoginCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
+		A8A6D9EE273BCBA300C84C52 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		A8CD93312736470100299AB4 /* SignupNormalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupNormalViewController.swift; sourceTree = "<group>"; };
 		A8CD93332736566100299AB4 /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
 		A8CD93362736702500299AB4 /* SuccessCircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessCircleView.swift; sourceTree = "<group>"; };
@@ -122,7 +124,6 @@
 				A8CD93352736701500299AB4 /* ReuseViews */,
 				A82E49DE273111E50068218A /* LoginCoordinator.swift */,
 				A82E49DC273111C50068218A /* LoginSelectViewController.swift */,
-				A8CD933D2736A93500299AB4 /* SystemColor.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -147,6 +148,7 @@
 				A8CD93312736470100299AB4 /* SignupNormalViewController.swift */,
 				A8CD93432736E82300299AB4 /* PositionViewController.swift */,
 				A8CD935B27383CB300299AB4 /* LocationSearchViewController.swift */,
+				A8A6D9EE273BCBA300C84C52 /* Extensions.swift */,
 			);
 			path = SignupViewController;
 			sourceTree = "<group>";
@@ -298,6 +300,7 @@
 		B9D66ECF27147B0E00668490 /* extension */ = {
 			isa = PBXGroup;
 			children = (
+				A8CD933D2736A93500299AB4 /* SystemColor.swift */,
 				B97DBB9427147D970018C1D2 /* UIViewController+identifer.swift */,
 			);
 			path = extension;
@@ -437,6 +440,7 @@
 				A8CD93442736E82300299AB4 /* PositionViewController.swift in Sources */,
 				B9BF787427004094000BE0EF /* AppDelegate.swift in Sources */,
 				B97DBB9527147D970018C1D2 /* UIViewController+identifer.swift in Sources */,
+				A8A6D9EF273BCBA300C84C52 /* Extensions.swift in Sources */,
 				B9D66EB927146DF900668490 /* TabBarCoordinator.swift in Sources */,
 				B9D66EBF27146F2F00668490 /* TeamRecruitmentCoordinator.swift in Sources */,
 				B9D66EC82714707000668490 /* MyBudiCoordinator.swift in Sources */,

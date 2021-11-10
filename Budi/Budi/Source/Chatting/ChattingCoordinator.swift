@@ -19,10 +19,17 @@ final class ChattingCoordinator: NavigationCoordinator {
     }
 
     func start() {
-        navigationController?.pushViewController(UIViewController(), animated: true)
+        let viewController: ChattingViewController = storyboard.instantiateViewController(
+            identifier: ChattingViewController.identifier)
+        viewController.coordinator = self
+        navigationController?.pushViewController(viewController, animated: true)
     }
 }
 
 extension ChattingCoordinator {
-
+    func showDetail() {
+        let viewController: ChattingDetailViewController = storyboard.instantiateViewController(
+            identifier: ChattingDetailViewController.identifier)
+        navigationController?.pushViewController(viewController, animated: true)
+    }
 }

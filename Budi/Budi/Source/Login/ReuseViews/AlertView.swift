@@ -28,6 +28,7 @@ class AlertView: UIView {
         button.layer.cornerRadius = 8
         button.layer.masksToBounds = true
         button.addTarget(self, action: #selector(PositionViewController.dismissAlert), for: .touchUpInside)
+        button.addTarget(self, action: #selector(LocationSearchViewController.dismissAlert), for: .touchUpInside)
         return button
     }()
 
@@ -40,6 +41,7 @@ class AlertView: UIView {
         button.layer.cornerRadius = 8
         button.layer.masksToBounds = true
         button.addTarget(self, action: #selector(PositionViewController.projectWriteAtcion), for: .touchUpInside)
+        button.addTarget(self, action: #selector(LocationSearchViewController.projectWriteAtcion), for: .touchUpInside)
         return button
     }()
 
@@ -49,6 +51,7 @@ class AlertView: UIView {
         button.imageView?.tintColor = .black
         button.imageView?.contentMode = .scaleAspectFit
         button.addTarget(self, action: #selector(PositionViewController.dismissAlert), for: .touchUpInside)
+        button.addTarget(self, action: #selector(LocationSearchViewController.dismissAlert), for: .touchUpInside)
         return button
     }()
 
@@ -77,8 +80,8 @@ class AlertView: UIView {
 
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 41),
-            titleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 72),
-            titleLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -73)
+            titleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 60),
+            titleLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -60)
         ])
 
         addSubview(cancelButton)

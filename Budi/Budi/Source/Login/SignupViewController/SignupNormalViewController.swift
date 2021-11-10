@@ -57,7 +57,6 @@ class SignupNormalViewController: UIViewController {
         let locationSearch = LocationSearchViewController()
         locationSearch.navigationItem.title = "지역 선택"
         navigationController?.pushViewController(locationSearch, animated: true)
-        location.locationSelected(text: "서울시 강남구")
         NSLayoutConstraint.deactivate(defaultArray)
         NSLayoutConstraint.activate(newArray)
         NotificationCenter.default.post(name: NSNotification.Name("ActivationNext"), object: nil, userInfo: nil)
@@ -80,9 +79,21 @@ class SignupNormalViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        NotificationCenter.default.addObserver(self, selector: #selector(activationNextButton), name: NSNotification.Name("ActivationNext"), object: nil)
         nextButton.isEnabled = false
+        configureAddOserver()
         configureLayout()
+    }
+
+    private func configureAddOserver() {
+        NotificationCenter.default.addObserver(self, selector: #selector(activationNextButton), name: NSNotification.Name("ActivationNext"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(loadLocation), name: NSNotification.Name("LocationNextActivation"), object: nil)
+    }
+
+    @objc
+    func loadLocation(_ notification: NSNotification) {
+        let select = notification.object as? String ?? ""
+        location.locationSelected(text: select)
+
     }
 
     private func configureLayout() {

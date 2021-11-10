@@ -145,8 +145,8 @@
 				A8CD93542738037C00299AB4 /* Data */,
 				A8CD93452737B92A00299AB4 /* View */,
 				A8CD93312736470100299AB4 /* SignupNormalViewController.swift */,
-				A8CD935B27383CB300299AB4 /* LocationSearchViewController.swift */,
 				A8CD93432736E82300299AB4 /* PositionViewController.swift */,
+				A8CD935B27383CB300299AB4 /* LocationSearchViewController.swift */,
 			);
 			path = SignupViewController;
 			sourceTree = "<group>";

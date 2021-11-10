@@ -279,7 +279,7 @@ class PositionViewController: UIViewController {
             normalPositionView.topAnchor.constraint(equalTo: normalPositionLabel.bottomAnchor),
             normalPositionView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
             normalPositionView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
-            normalPositionView.heightAnchor.constraint(equalToConstant: 120)
+            normalPositionView.heightAnchor.constraint(equalToConstant: 150)
         ])
 
         scrollView.addSubview(detailPositionLabel)

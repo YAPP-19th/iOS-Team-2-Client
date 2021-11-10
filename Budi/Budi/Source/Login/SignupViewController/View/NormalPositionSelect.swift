@@ -18,8 +18,8 @@ class NormalPositionSelect: UIView {
         button.imageView?.contentMode = .scaleAspectFill
         button.titleLabel?.adjustsFontSizeToFitWidth = true
         button.titleLabel?.minimumScaleFactor = 0.5
-        button.titleEdgeInsets = UIEdgeInsets(top: 0, left: -(56/2), bottom: -20, right: 0)
-        button.imageEdgeInsets = UIEdgeInsets(top: 0, left: 56/4, bottom: 20, right: 0)
+        button.titleEdgeInsets = UIEdgeInsets(top: 0, left: -(56/2), bottom: -40, right: 0)
+        button.imageEdgeInsets = UIEdgeInsets(top: 0, left: 56/1.5, bottom: 20, right: 0)
         button.addTarget(self, action: #selector(PositionViewController.normalPositionButtonAction), for: .touchUpInside)
         return button
     }()

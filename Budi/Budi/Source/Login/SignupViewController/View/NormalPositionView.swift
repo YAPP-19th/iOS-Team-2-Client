@@ -29,7 +29,7 @@ class NormalPositionView: UIView {
         NSLayoutConstraint.activate([
             productManager.topAnchor.constraint(equalTo: self.topAnchor, constant: 16),
             productManager.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            productManager.widthAnchor.constraint(equalToConstant: 56)
+            productManager.widthAnchor.constraint(equalToConstant: 100)
         ])
 
         let frontEnd = NormalPositionSelect()
@@ -40,8 +40,8 @@ class NormalPositionView: UIView {
         NSLayoutConstraint.activate([
             frontEnd.topAnchor.constraint(equalTo: self.topAnchor, constant: 16),
             frontEnd.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            frontEnd.trailingAnchor.constraint(equalTo: productManager.leadingAnchor, constant: -60),
-            frontEnd.widthAnchor.constraint(equalToConstant: 56),
+            frontEnd.trailingAnchor.constraint(equalTo: productManager.leadingAnchor, constant: -16),
+            frontEnd.widthAnchor.constraint(equalToConstant: 100),
             frontEnd.heightAnchor.constraint(equalTo: productManager.heightAnchor)
         ])
 
@@ -54,8 +54,8 @@ class NormalPositionView: UIView {
         NSLayoutConstraint.activate([
             backEnd.topAnchor.constraint(equalTo: self.topAnchor, constant: 16),
             backEnd.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            backEnd.leadingAnchor.constraint(equalTo: productManager.trailingAnchor, constant: 60),
-            backEnd.widthAnchor.constraint(equalToConstant: 56),
+            backEnd.leadingAnchor.constraint(equalTo: productManager.trailingAnchor, constant: 16),
+            backEnd.widthAnchor.constraint(equalToConstant: 100),
             backEnd.heightAnchor.constraint(equalTo: productManager.heightAnchor)
         ])
     }

@@ -46,6 +46,26 @@
 		5EFB0A5A27341C1100F39A4D /* ChattingTimeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EFB0A5827341C1100F39A4D /* ChattingTimeCell.swift */; };
 		5EFB0A5B27341C1100F39A4D /* ChattingTimeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EFB0A5927341C1100F39A4D /* ChattingTimeCell.xib */; };
 		7C2060A1B418A53F47747CDA /* Pods_Budi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D20131AEAD19181CEF5CF7C /* Pods_Budi.framework */; };
+		A82E49DD273111C50068218A /* LoginSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82E49DC273111C50068218A /* LoginSelectViewController.swift */; };
+		A82E49DF273111E50068218A /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82E49DE273111E50068218A /* LoginCoordinator.swift */; };
+		A8A6D9F1273CCB5500C84C52 /* BackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A6D9F0273CCB5500C84C52 /* BackgroundView.swift */; };
+		A8A6D9F9273D2D1800C84C52 /* BackButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A6D9F8273D2D1800C84C52 /* BackButtonExtension.swift */; };
+		A8CD93322736470100299AB4 /* SignupNormalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CD93312736470100299AB4 /* SignupNormalViewController.swift */; };
+		A8CD93342736566100299AB4 /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CD93332736566100299AB4 /* ProgressView.swift */; };
+		A8CD93372736702500299AB4 /* SuccessCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CD93362736702500299AB4 /* SuccessCircleView.swift */; };
+		A8CD9339273673C100299AB4 /* SpacingDarkLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CD9338273673C100299AB4 /* SpacingDarkLineView.swift */; };
+		A8CD933C273676F800299AB4 /* NickNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CD933B273676F800299AB4 /* NickNameView.swift */; };
+		A8CD933E2736A93500299AB4 /* SystemColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CD933D2736A93500299AB4 /* SystemColor.swift */; };
+		A8CD93402736ABD300299AB4 /* LocationSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CD933F2736ABD300299AB4 /* LocationSelectView.swift */; };
+		A8CD93422736B58E00299AB4 /* IntroduceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CD93412736B58E00299AB4 /* IntroduceView.swift */; };
+		A8CD93442736E82300299AB4 /* PositionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CD93432736E82300299AB4 /* PositionViewController.swift */; };
+		A8CD93472737B9AB00299AB4 /* NormalPositionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CD93462737B9AA00299AB4 /* NormalPositionView.swift */; };
+		A8CD934F2737BD4400299AB4 /* NormalPositionSelect.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CD934E2737BD4400299AB4 /* NormalPositionSelect.swift */; };
+		A8CD93532737F2BF00299AB4 /* PositionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CD93522737F2BF00299AB4 /* PositionData.swift */; };
+		A8CD935627380DAE00299AB4 /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CD935527380DAE00299AB4 /* AlertView.swift */; };
+		A8CD935C27383CB300299AB4 /* LocationSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CD935B27383CB300299AB4 /* LocationSearchViewController.swift */; };
+		A8CD935E273849F800299AB4 /* LocationDummyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CD935D273849F800299AB4 /* LocationDummyData.swift */; };
+		A8CD936127384C4900299AB4 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CD936027384C4900299AB4 /* SearchTableViewCell.swift */; };
 		B97DBB9527147D970018C1D2 /* UIViewController+identifer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B97DBB9427147D970018C1D2 /* UIViewController+identifer.swift */; };
 		B98E530A27396B3F00C73374 /* UINavigationController+translucent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98E530927396B3F00C73374 /* UINavigationController+translucent.swift */; };
 		B9BF787427004094000BE0EF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9BF787327004094000BE0EF /* AppDelegate.swift */; };
@@ -107,6 +127,26 @@
 		5EFB0A5827341C1100F39A4D /* ChattingTimeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingTimeCell.swift; sourceTree = "<group>"; };
 		5EFB0A5927341C1100F39A4D /* ChattingTimeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChattingTimeCell.xib; sourceTree = "<group>"; };
 		84D727CBB17AD63DD79D7083 /* Pods-Budi.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Budi.release.xcconfig"; path = "Target Support Files/Pods-Budi/Pods-Budi.release.xcconfig"; sourceTree = "<group>"; };
+		A82E49DC273111C50068218A /* LoginSelectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSelectViewController.swift; sourceTree = "<group>"; };
+		A82E49DE273111E50068218A /* LoginCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
+		A8A6D9F0273CCB5500C84C52 /* BackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundView.swift; sourceTree = "<group>"; };
+		A8A6D9F8273D2D1800C84C52 /* BackButtonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButtonExtension.swift; sourceTree = "<group>"; };
+		A8CD93312736470100299AB4 /* SignupNormalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupNormalViewController.swift; sourceTree = "<group>"; };
+		A8CD93332736566100299AB4 /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
+		A8CD93362736702500299AB4 /* SuccessCircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessCircleView.swift; sourceTree = "<group>"; };
+		A8CD9338273673C100299AB4 /* SpacingDarkLineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpacingDarkLineView.swift; sourceTree = "<group>"; };
+		A8CD933B273676F800299AB4 /* NickNameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NickNameView.swift; sourceTree = "<group>"; };
+		A8CD933D2736A93500299AB4 /* SystemColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemColor.swift; sourceTree = "<group>"; };
+		A8CD933F2736ABD300299AB4 /* LocationSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSelectView.swift; sourceTree = "<group>"; };
+		A8CD93412736B58E00299AB4 /* IntroduceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroduceView.swift; sourceTree = "<group>"; };
+		A8CD93432736E82300299AB4 /* PositionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositionViewController.swift; sourceTree = "<group>"; };
+		A8CD93462737B9AA00299AB4 /* NormalPositionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NormalPositionView.swift; sourceTree = "<group>"; };
+		A8CD934E2737BD4400299AB4 /* NormalPositionSelect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NormalPositionSelect.swift; sourceTree = "<group>"; };
+		A8CD93522737F2BF00299AB4 /* PositionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositionData.swift; sourceTree = "<group>"; };
+		A8CD935527380DAE00299AB4 /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
+		A8CD935B27383CB300299AB4 /* LocationSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchViewController.swift; sourceTree = "<group>"; };
+		A8CD935D273849F800299AB4 /* LocationDummyData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDummyData.swift; sourceTree = "<group>"; };
+		A8CD936027384C4900299AB4 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
 		B97DBB9427147D970018C1D2 /* UIViewController+identifer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+identifer.swift"; sourceTree = "<group>"; };
 		B98E530927396B3F00C73374 /* UINavigationController+translucent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationController+translucent.swift"; sourceTree = "<group>"; };
 		B9BF787027004094000BE0EF /* Budi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Budi.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -232,6 +272,71 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		A82E49DB273111050068218A /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				A8CD933A273676BC00299AB4 /* SignupViewController */,
+				A8CD93352736701500299AB4 /* ReuseViews */,
+				A82E49DE273111E50068218A /* LoginCoordinator.swift */,
+				A82E49DC273111C50068218A /* LoginSelectViewController.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		A8CD93352736701500299AB4 /* ReuseViews */ = {
+			isa = PBXGroup;
+			children = (
+				A8CD93332736566100299AB4 /* ProgressView.swift */,
+				A8CD935527380DAE00299AB4 /* AlertView.swift */,
+				A8CD93362736702500299AB4 /* SuccessCircleView.swift */,
+				A8CD9338273673C100299AB4 /* SpacingDarkLineView.swift */,
+				A8A6D9F0273CCB5500C84C52 /* BackgroundView.swift */,
+			);
+			path = ReuseViews;
+			sourceTree = "<group>";
+		};
+		A8CD933A273676BC00299AB4 /* SignupViewController */ = {
+			isa = PBXGroup;
+			children = (
+				A8CD935F27384C3400299AB4 /* Cell */,
+				A8CD93542738037C00299AB4 /* Data */,
+				A8CD93452737B92A00299AB4 /* View */,
+				A8CD93312736470100299AB4 /* SignupNormalViewController.swift */,
+				A8CD93432736E82300299AB4 /* PositionViewController.swift */,
+				A8CD935B27383CB300299AB4 /* LocationSearchViewController.swift */,
+			);
+			path = SignupViewController;
+			sourceTree = "<group>";
+		};
+		A8CD93452737B92A00299AB4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A8CD933B273676F800299AB4 /* NickNameView.swift */,
+				A8CD933F2736ABD300299AB4 /* LocationSelectView.swift */,
+				A8CD93412736B58E00299AB4 /* IntroduceView.swift */,
+				A8CD93462737B9AA00299AB4 /* NormalPositionView.swift */,
+				A8CD934E2737BD4400299AB4 /* NormalPositionSelect.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		A8CD93542738037C00299AB4 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				A8CD93522737F2BF00299AB4 /* PositionData.swift */,
+				A8CD935D273849F800299AB4 /* LocationDummyData.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		A8CD935F27384C3400299AB4 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				A8CD936027384C4900299AB4 /* SearchTableViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		B9BF786727004094000BE0EF = {
 			isa = PBXGroup;
 			children = (
@@ -263,6 +368,7 @@
 		B9D66EB12714693700668490 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				A82E49DB273111050068218A /* Login */,
 				B9D66ECF27147B0E00668490 /* Extensions */,
 				B9D66EB627146B5000668490 /* Storyborads */,
 				B9D66EB727146DB600668490 /* Coordinators */,
@@ -358,10 +464,12 @@
 		B9D66ECF27147B0E00668490 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				A8CD933D2736A93500299AB4 /* SystemColor.swift */,
 				B97DBB9427147D970018C1D2 /* UIViewController+identifer.swift */,
 				B98E530927396B3F00C73374 /* UINavigationController+translucent.swift */,
 				5EA453AB2731DDA700943C94 /* CALayer+addBorderTop.swift */,
 				5E2554372732AD0800033723 /* UIView+IBInspectable.swift */,
+				A8A6D9F8273D2D1800C84C52 /* BackButtonExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -497,6 +605,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A8CD934F2737BD4400299AB4 /* NormalPositionSelect.swift in Sources */,
+				A8CD933E2736A93500299AB4 /* SystemColor.swift in Sources */,
+				A8CD93402736ABD300299AB4 /* LocationSelectView.swift in Sources */,
+				B9D66ECE27147AEA00668490 /* HomeWritingViewController.swift in Sources */,
+				A82E49DD273111C50068218A /* LoginSelectViewController.swift in Sources */,
+				A8CD93472737B9AB00299AB4 /* NormalPositionView.swift in Sources */,
+				A82E49DF273111E50068218A /* LoginCoordinator.swift in Sources */,
+				B9D66ECC2714716400668490 /* HomeViewController.swift in Sources */,
+				A8CD9339273673C100299AB4 /* SpacingDarkLineView.swift in Sources */,
+				A8CD936127384C4900299AB4 /* SearchTableViewCell.swift in Sources */,
+				A8A6D9F1273CCB5500C84C52 /* BackgroundView.swift in Sources */,
+				B9D66EBB27146E1F00668490 /* MainTabBarCoordinator.swift in Sources */,
+				A8CD93422736B58E00299AB4 /* IntroduceView.swift in Sources */,
+				A8CD935627380DAE00299AB4 /* AlertView.swift in Sources */,
+				A8CD935E273849F800299AB4 /* LocationDummyData.swift in Sources */,
+				A8CD93322736470100299AB4 /* SignupNormalViewController.swift in Sources */,
 				5EFB0A412733CD7700F39A4D /* TeamSearchViewController.swift in Sources */,
 				B98E530A27396B3F00C73374 /* UINavigationController+translucent.swift in Sources */,
 				B9D66ECE27147AEA00668490 /* HomeWritingViewController.swift in Sources */,
@@ -512,6 +636,7 @@
 				5EA453982731776900943C94 /* HomeDetailStateCell.swift in Sources */,
 				5E2554352732770B00033723 /* HomeDetailPersonCell.swift in Sources */,
 				B9D66EC62714706700668490 /* ChattingCoordinator.swift in Sources */,
+				A8CD93442736E82300299AB4 /* PositionViewController.swift in Sources */,
 				B9BF787427004094000BE0EF /* AppDelegate.swift in Sources */,
 				5EFB0A522734016600F39A4D /* MyChattingMessageCell.swift in Sources */,
 				B97DBB9527147D970018C1D2 /* UIViewController+identifer.swift in Sources */,
@@ -525,8 +650,14 @@
 				5EFB0A4A2733EAA300F39A4D /* ChattingCell.swift in Sources */,
 				5EA453942731775600943C94 /* HomeDetailLeaderCell.swift in Sources */,
 				B9D66EBD27146E4300668490 /* NavigationCoordinator.swift in Sources */,
+				A8CD93342736566100299AB4 /* ProgressView.swift in Sources */,
 				B9BF787627004095000BE0EF /* SceneDelegate.swift in Sources */,
+				A8A6D9F9273D2D1800C84C52 /* BackButtonExtension.swift in Sources */,
+				A8CD935C27383CB300299AB4 /* LocationSearchViewController.swift in Sources */,
 				B9D66EC42714703B00668490 /* TeamSearchCoordinator.swift in Sources */,
+				A8CD933C273676F800299AB4 /* NickNameView.swift in Sources */,
+				A8CD93532737F2BF00299AB4 /* PositionData.swift in Sources */,
+				A8CD93372736702500299AB4 /* SuccessCircleView.swift in Sources */,
 				5EA453902731774100943C94 /* HomeDetailMemberCell.swift in Sources */,
 				5E7EFE272732E06F007817C3 /* AlertViewController.swift in Sources */,
 				5E45AD132732F47800F0A80C /* BottomSheetViewController.swift in Sources */,

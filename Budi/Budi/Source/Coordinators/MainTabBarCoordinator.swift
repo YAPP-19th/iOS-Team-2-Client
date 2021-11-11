@@ -22,7 +22,7 @@ final class MainTabBarCoordinator: TabBarCoordinator {
         let chattingNavigationController = UINavigationController()
         let myBudiNavigationController = UINavigationController()
 
-        let recruitmentCoordinator = TeamRecruitmentCoordinator(navigationController: recruitmentNavigationController)
+        let recruitmentCoordinator = HomeCoordinator(navigationController: recruitmentNavigationController)
         let searchCoordinator = TeamSearchCoordinator(navigationController: searchNavigationController)
         let chattingCoordinator = ChattingCoordinator(navigationController: chattingNavigationController)
         let myBudiCoordinator = MyBudiCoordinator(navigationController: myBudiNavigationController)

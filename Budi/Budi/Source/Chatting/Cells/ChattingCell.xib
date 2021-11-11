@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="ChattingCell" customModule="Budi" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="97"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="97"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yjh-1Y-Hed">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="97"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="ZwD-pl-0DH">
+                                <rect key="frame" x="20" y="16.5" width="52" height="51"/>
+                                <color key="tintColor" name="LightGray"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="52" id="usH-O6-Fu0"/>
+                                    <constraint firstAttribute="height" constant="52" id="v1z-E9-Irg"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="킬러베어" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MFs-u1-WlD">
+                                <rect key="frame" x="84" y="16" width="56" height="19"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="오후 04:23" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yvp-Jr-aE3">
+                                <rect key="frame" x="301" y="18" width="58" height="15"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" name="Gray"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="킬러베어님이 ‘비건 전용 딜리버리 서비스' 프로젝트에 ‘기획자’로 참여 요청을 보냈습니다." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pgz-eg-1HH">
+                                <rect key="frame" x="84" y="47" width="275" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="34" id="dBl-fx-rwA"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" name="DarkGray"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="기획자" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wMa-C8-iSx">
+                                <rect key="frame" x="144" y="17" width="37" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" name="Gray"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="wMa-C8-iSx" firstAttribute="leading" secondItem="MFs-u1-WlD" secondAttribute="trailing" constant="4" id="27d-2j-8Xl"/>
+                            <constraint firstAttribute="trailing" secondItem="Pgz-eg-1HH" secondAttribute="trailing" constant="16" id="7to-Lo-hPf"/>
+                            <constraint firstItem="ZwD-pl-0DH" firstAttribute="top" secondItem="Yjh-1Y-Hed" secondAttribute="top" constant="16" id="8IG-ZH-ETy"/>
+                            <constraint firstItem="ZwD-pl-0DH" firstAttribute="leading" secondItem="Yjh-1Y-Hed" secondAttribute="leading" constant="20" id="Acy-8z-azO"/>
+                            <constraint firstItem="MFs-u1-WlD" firstAttribute="top" secondItem="ZwD-pl-0DH" secondAttribute="top" id="LyO-WF-c2b"/>
+                            <constraint firstAttribute="trailing" secondItem="yvp-Jr-aE3" secondAttribute="trailing" constant="16" id="Qop-VS-Kz9"/>
+                            <constraint firstItem="Pgz-eg-1HH" firstAttribute="leading" secondItem="ZwD-pl-0DH" secondAttribute="trailing" constant="12" id="RSR-cW-6Wm"/>
+                            <constraint firstItem="yvp-Jr-aE3" firstAttribute="top" secondItem="Yjh-1Y-Hed" secondAttribute="top" constant="18" id="c9o-fa-muk"/>
+                            <constraint firstAttribute="bottom" secondItem="Pgz-eg-1HH" secondAttribute="bottom" constant="16" id="fSS-Xn-cF2"/>
+                            <constraint firstItem="wMa-C8-iSx" firstAttribute="centerY" secondItem="MFs-u1-WlD" secondAttribute="centerY" id="mLN-uF-DSx"/>
+                            <constraint firstItem="MFs-u1-WlD" firstAttribute="leading" secondItem="ZwD-pl-0DH" secondAttribute="trailing" constant="12" id="miT-nk-8ZT"/>
+                            <constraint firstItem="Pgz-eg-1HH" firstAttribute="top" secondItem="MFs-u1-WlD" secondAttribute="bottom" constant="12" id="wqb-2h-JMO"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstItem="Yjh-1Y-Hed" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="0gq-gD-9aV"/>
+                <constraint firstItem="Yjh-1Y-Hed" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="4Dh-xs-PpQ"/>
+                <constraint firstAttribute="bottom" secondItem="Yjh-1Y-Hed" secondAttribute="bottom" id="Njj-Vf-BTC"/>
+                <constraint firstAttribute="trailing" secondItem="Yjh-1Y-Hed" secondAttribute="trailing" id="qLz-Vp-ODw"/>
+            </constraints>
+            <size key="customSize" width="375" height="97"/>
+            <point key="canvasLocation" x="370.28985507246381" y="128.90625"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="person.circle.fill" catalog="system" width="128" height="121"/>
+        <namedColor name="DarkGray">
+            <color red="0.0" green="0.0" blue="0.0" alpha="0.60000002384185791" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Gray">
+            <color red="0.0" green="0.0" blue="0.0" alpha="0.37999999523162842" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="LightGray">
+            <color red="0.0" green="0.0" blue="0.0" alpha="0.11999999731779099" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

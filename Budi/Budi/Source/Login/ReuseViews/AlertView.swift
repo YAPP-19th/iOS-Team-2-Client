@@ -15,7 +15,7 @@ class AlertView: UIView {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 18)
         label.numberOfLines = 0
-        label.text = "프로젝트 이력을 입력하고 더 높은 레벨을 받아보세요!"
+        label.textAlignment = .center
         return label
     }()
 
@@ -67,6 +67,7 @@ class AlertView: UIView {
     }
 
     private func configureLayout() {
+
         addSubview(xmarkButton)
         xmarkButton.translatesAutoresizingMaskIntoConstraints = false
 
@@ -80,8 +81,8 @@ class AlertView: UIView {
 
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 41),
-            titleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 60),
-            titleLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -60)
+            titleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 55),
+            titleLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -55)
         ])
 
         addSubview(cancelButton)

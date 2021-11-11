@@ -29,13 +29,8 @@ class NickNameView: UIView {
     @objc
     func writeAction(textField: UITextField) {
         guard let empty = nickNameTextField.text?.isEmpty else { return }
-        if !empty {
-            overlapCheckButton.backgroundColor = UIColor.budiGreen
-            overlapCheckButton.isEnabled = true
-        } else {
-            overlapCheckButton.backgroundColor = UIColor.init(white: 0, alpha: 0.12)
-            overlapCheckButton.isEnabled = false
-        }
+        overlapCheckButton.backgroundColor = !empty ? UIColor.budiGreen : UIColor.init(white: 0, alpha: 0.12)
+        overlapCheckButton.isEnabled = !empty ? true : false
     }
 
     private let overlapCheckButton: UIButton = {

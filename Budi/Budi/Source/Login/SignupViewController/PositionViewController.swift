@@ -10,9 +10,6 @@ import UIKit
 class PositionViewController: UIViewController {
     var coordinator: LoginCoordinator?
 
-    let alert = AlertView()
-    let viewB = UIView()
-
     override func viewDidLayoutSubviews() {
         scrollView.updateContentView()
     }
@@ -116,7 +113,6 @@ class PositionViewController: UIViewController {
 
     @objc
     func positionButtionAction(sender: UIButton) {
-        print("직군")
         if !sender.isSelected {
             sender.isSelected = true
             sender.setTitleColor(UIColor.budiGreen, for: .normal)
@@ -136,8 +132,6 @@ class PositionViewController: UIViewController {
 
     @objc
     func languageButtonAction(sender: UIButton) {
-        print("언어")
-        print(sender.tag)
         if !sender.isSelected {
             sender.isSelected = true
             sender.setTitleColor(UIColor.budiGreen, for: .normal)
@@ -158,7 +152,6 @@ class PositionViewController: UIViewController {
 
     @objc
     func normalPositionButtonAction(sender: UIButton) {
-        print(sender.tag)
         if !sender.isSelected {
             sender.isSelected = true
             sender.setTitleColor(UIColor.budiGreen, for: .normal)
@@ -171,12 +164,9 @@ class PositionViewController: UIViewController {
     @objc
     func dismissAlert() {
         UIView.animate(withDuration: 0.2, animations: {
-            self.viewB.alpha = 0.0
-            self.alert.alpha = 0.0
-        }, completion: { _ in
-            self.viewB.removeFromSuperview()
-            self.alert.removeFromSuperview()
-        })
+            BackgroundView.instanceBackground.alpha = 0.0
+            AlertView.instanceAlert.alpha = 0.0
+        }, completion: nil)
 
     }
 
@@ -184,39 +174,35 @@ class PositionViewController: UIViewController {
     func projectWriteAtcion() {
         // 일단 아무것도 하지 않으니 (뷰가 안만들어진듯) dismiss
         UIView.animate(withDuration: 0.2, animations: {
-            self.viewB.alpha = 0.0
-            self.alert.alpha = 0.0
-        }, completion: { _ in
-            self.viewB.removeFromSuperview()
-            self.alert.removeFromSuperview()
-        })
+            BackgroundView.instanceBackground.alpha = 0.0
+            AlertView.instanceAlert.alpha = 0.0
+        }, completion: nil)
     }
 
     private func configureAlert() {
-
-        viewB.backgroundColor = .black
-        viewB.alpha = 0.0
-        alert.alpha = 0.0
-        view.addSubview(viewB)
-        viewB.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(alert)
-        alert.translatesAutoresizingMaskIntoConstraints = false
+        BackgroundView.instanceBackground.alpha = 0.0
+        AlertView.instanceAlert.alpha = 0.0
+        AlertView.instanceAlert.showAlert(title: "프로젝트 이력을 입력하고\n 더 높은 레벨을 받아보세요!", cancelTitle: "나중에 입력하기", doneTitle: "지금 입력하기")
+        view.addSubview(BackgroundView.instanceBackground)
+        BackgroundView.instanceBackground.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(AlertView.instanceAlert)
+        AlertView.instanceAlert.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            viewB.topAnchor.constraint(equalTo: view.topAnchor),
-            viewB.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            viewB.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            viewB.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            BackgroundView.instanceBackground.topAnchor.constraint(equalTo: view.topAnchor),
+            BackgroundView.instanceBackground.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            BackgroundView.instanceBackground.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            BackgroundView.instanceBackground.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
         NSLayoutConstraint.activate([
-            alert.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            alert.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            alert.widthAnchor.constraint(equalToConstant: 343),
-            alert.heightAnchor.constraint(equalToConstant: 208)
+            AlertView.instanceAlert.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            AlertView.instanceAlert.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            AlertView.instanceAlert.widthAnchor.constraint(equalToConstant: 343),
+            AlertView.instanceAlert.heightAnchor.constraint(equalToConstant: 208)
         ])
 
         UIView.animate(withDuration: 0.2, animations: {
-            self.viewB.alpha = 0.5
-            self.alert.alpha = 1.0
+            BackgroundView.instanceBackground.alpha = 0.5
+            AlertView.instanceAlert.alpha = 1.0
         })
     }
 
@@ -344,7 +330,6 @@ class PositionViewController: UIViewController {
                 button.widthAnchor.constraint(equalToConstant: button.intrinsicContentSize.width + 25).isActive = true
                 button.heightAnchor.constraint(equalToConstant: 33).isActive = true
                 startX += button.intrinsicContentSize.width + 33
-                print(startX)
             } else {
                 scrollView.addSubview(button)
 

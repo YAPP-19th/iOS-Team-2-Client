@@ -64,14 +64,12 @@ class SignupNormalViewController: UIViewController {
 
     @objc
     func activationNextButton() {
-        print("Heelo")
         nextButton.isEnabled = true
         nextButton.backgroundColor = UIColor.budiGreen
     }
 
     @objc
     func nextAction() {
-        print("dddd")
         let position = PositionViewController()
         position.navigationItem.title = "회원가입"
         navigationController?.pushViewController(position, animated: true)

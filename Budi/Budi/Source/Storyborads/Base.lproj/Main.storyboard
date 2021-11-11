@@ -4,7 +4,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -273,7 +272,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="frL-Hl-UkH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2938" y="1"/>
-            <point key="canvasLocation" x="1283" y="1"/>
         </scene>
         <!--Home Detail View Controller-->
         <scene sceneID="6W9-r9-Dwr">
@@ -460,7 +458,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jiR-c0-Va7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="360.86956521739131" y="0.6696428571428571"/>
+            <point key="canvasLocation" x="170" y="694"/>
         </scene>
         <!--Team Search View Controller-->
         <scene sceneID="wh0-4Z-uRc">

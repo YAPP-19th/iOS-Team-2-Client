@@ -78,14 +78,12 @@ class SignupNormalViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         nextButton.isEnabled = false
+        scrollView.delegate = self
         self.addBackButton()
         configureAddOserver()
         configureLayout()
-    }
-
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        super.touchesBegan(touches, with: event)
-        self.view.endEditing(true)
+        keyBoardNotification()
+        keyBoardDismiss()
     }
 
     private func configureAddOserver() {
@@ -173,10 +171,61 @@ class SignupNormalViewController: UIViewController {
         ]
         NSLayoutConstraint.activate(defaultArray)
     }
+
+    private func keyBoardNotification() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyBoardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyBoardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+
+    private func keyBoardDismiss() {
+        let singleTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapAction))
+        singleTapGestureRecognizer.numberOfTapsRequired = 1
+        singleTapGestureRecognizer.isEnabled = true
+        singleTapGestureRecognizer.cancelsTouchesInView = false
+        scrollView.addGestureRecognizer(singleTapGestureRecognizer)
+    }
+
+    @objc
+    func tapAction(sender: UITapGestureRecognizer) {
+        self.view.endEditing(true)
+    }
+
+    @objc
+    func keyBoardWillShow(notification: Notification) {
+        guard let userInfo = notification.userInfo,
+              let keyboardFrame = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect else { return }
+
+        let contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardFrame.size.height, right: 0)
+
+        scrollView.contentInset = contentInset
+        scrollView.scrollIndicatorInsets = contentInset
+
+        let firstResponder = UIResponder.currentFirstResponder
+
+        if let textView = firstResponder as? UITextView {
+            print(textView.frame.height)
+            print(scrollView.contentSize)
+            scrollView.scrollRectToVisible(textView.frame, animated: true)
+        }
+    }
+
+    @objc
+    func keyBoardWillHide(notification: Notification) {
+        let contentInset = UIEdgeInsets.zero
+        scrollView.contentInset = contentInset
+        scrollView.scrollIndicatorInsets = contentInset
+    }
+
 }
 
 extension UIScrollView {
     func updateContentView() {
         contentSize.height = subviews.sorted(by: { $0.frame.maxY < $1.frame.maxY }).last?.frame.maxY ?? contentSize.height
+    }
+}
+
+extension SignupNormalViewController: UIScrollViewDelegate {
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        self.view.endEditing(true)
     }
 }

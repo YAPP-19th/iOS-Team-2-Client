@@ -12,6 +12,6 @@ extension UIColor {
         return UIColor(red: 0.41, green: 0.86, blue: 0.67, alpha: 1.00)
     }
     class var warningRed: UIColor {
-        return UIColor(red: 1.00, green: 0.39, blue: 0.30, alpha: 1.00)
+        return UIColor(red: 0.85, green: 0.12, blue: 0.16, alpha: 1.00)
     }
 }

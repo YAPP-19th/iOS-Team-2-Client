@@ -99,14 +99,9 @@ extension NickNameView: UITextFieldDelegate {
     func textFieldDidChangeSelection(_ textField: UITextField) {
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+1) {
             guard let text = textField.text else { return }
-
-            if text == "Asd" {
-                self.checkTextLabel.text = "이미 존재하는 닉네임이에요! 다른 이름을 정해주세요!"
-                self.checkTextLabel.textColor = UIColor.warningRed
-            } else {
-                self.checkTextLabel.text = "멋진 닉네임이네요! 사용해도 괜찮아요!"
-                self.checkTextLabel.textColor = UIColor.budiGreen
-            }
+            // 입력 다 지웠을 때 처리 추후 구현
+            self.checkTextLabel.text = text == "Asd" ? "이미 존재하는 닉네임이에요! 다른 이름을 정해주세요!" : "멋진 닉네임이네요! 사용해도 괜찮아요!"
+            self.checkTextLabel.textColor = text == "Asd" ? UIColor.warningRed : UIColor.budiGreen
         }
     }
 }

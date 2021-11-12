@@ -151,7 +151,7 @@ class SignupNormalViewController: UIViewController {
         location.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor).isActive = true
         location.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor).isActive = true
         location.heightAnchor.constraint(equalToConstant: 117).isActive = true
-        location.configureUnderline(width: view.bounds.width * 0.9)
+        location.configureUnderline(width: view.bounds.width)
 
         scrollView.addSubview(introduce)
         introduce.translatesAutoresizingMaskIntoConstraints = false

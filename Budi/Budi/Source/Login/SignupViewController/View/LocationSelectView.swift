@@ -51,8 +51,11 @@ class LocationSelectView: UIView {
     }
 
     func configureUnderline(width: CGFloat) {
-        bottomLine.frame = CGRect(x: 0, y: 35, width: width, height: 1.0)
-        bottomLine.backgroundColor = UIColor.init(white: 0, alpha: 0.12).cgColor
+        bottomLine.frame = CGRect(x: -10, y: -5, width: width-32, height: 48)
+        bottomLine.backgroundColor = .none
+        bottomLine.cornerRadius = 8
+        bottomLine.borderWidth = 0.5
+        bottomLine.borderColor = UIColor.init(white: 0.8, alpha: 1).cgColor
     }
 
     func locationSelected(text: String) {
@@ -73,8 +76,8 @@ class LocationSelectView: UIView {
         activityLoactionLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16).isActive = true
         addSubview(locationLabel)
         locationLabel.translatesAutoresizingMaskIntoConstraints = false
-        locationLabel.topAnchor.constraint(equalTo: activityLoactionLabel.bottomAnchor, constant: 7).isActive = true
-        locationLabel.leadingAnchor.constraint(equalTo: activityLoactionLabel.leadingAnchor).isActive = true
+        locationLabel.topAnchor.constraint(equalTo: activityLoactionLabel.bottomAnchor, constant: 16).isActive = true
+        locationLabel.leadingAnchor.constraint(equalTo: activityLoactionLabel.leadingAnchor, constant: 10).isActive = true
         addSubview(locationSelectButton)
         locationSelectButton.translatesAutoresizingMaskIntoConstraints = false
         locationSelectButton.topAnchor.constraint(equalTo: locationLabel.bottomAnchor, constant: 10).isActive = true

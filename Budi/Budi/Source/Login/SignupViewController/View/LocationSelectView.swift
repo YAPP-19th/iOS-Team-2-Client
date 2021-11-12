@@ -27,9 +27,12 @@ class LocationSelectView: UIView {
     private let locationSelectButton: UIButton = {
         let button = UIButton()
         button.setTitle("지역 선택하기", for: .normal)
+        button.setImage(UIImage(named: "locationAddButton"), for: .normal)
+        button.imageView?.contentMode = .scaleAspectFit
+        button.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 10)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 17)
-        button.setTitleColor(UIColor.init(white: 0, alpha: 0.6), for: .normal)
-        button.backgroundColor = UIColor(red: 0.95, green: 0.95, blue: 0.95, alpha: 1.00)
+        button.setTitleColor(UIColor.init(white: 0.3, alpha: 1), for: .normal)
+        button.backgroundColor = UIColor.budiGreen.withAlphaComponent(0.2)
         button.layer.cornerRadius = 8
         button.layer.masksToBounds = true
         button.addTarget(self, action: #selector(SignupNormalViewController.searchAction), for: .touchUpInside)
@@ -56,8 +59,10 @@ class LocationSelectView: UIView {
         locationLabel.text = text
         locationLabel.layer.addSublayer(bottomLine)
         locationLabel.heightAnchor.constraint(equalToConstant: 40).isActive = true
-        locationSelectButton.backgroundColor = UIColor.budiGreen
-        locationSelectButton.setTitleColor(UIColor.init(white: 1, alpha: 1), for: .normal)
+        locationSelectButton.backgroundColor = UIColor(red: 0.95, green: 0.95, blue: 0.95, alpha: 1.00)
+        locationSelectButton.setImage(UIImage(), for: .normal)
+        locationSelectButton.setTitle("다시 선택", for: .normal)
+        locationSelectButton.setTitleColor(UIColor.init(white: 0, alpha: 0.6), for: .normal)
     }
 
     private func configreLayout() {

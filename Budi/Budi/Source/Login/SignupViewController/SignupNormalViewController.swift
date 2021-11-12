@@ -83,6 +83,11 @@ class SignupNormalViewController: UIViewController {
         configureLayout()
     }
 
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        self.view.endEditing(true)
+    }
+
     private func configureAddOserver() {
         NotificationCenter.default.addObserver(self, selector: #selector(activationNextButton), name: NSNotification.Name("ActivationNext"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(loadLocation), name: NSNotification.Name("LocationNextActivation"), object: nil)
@@ -139,11 +144,10 @@ class SignupNormalViewController: UIViewController {
         nick.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor).isActive = true
         nick.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor).isActive = true
         nick.heightAnchor.constraint(equalToConstant: 92).isActive = true
-        nick.configureUnderline(width: view.bounds.width)
 
         scrollView.addSubview(location)
         location.translatesAutoresizingMaskIntoConstraints = false
-        location.topAnchor.constraint(equalTo: nick.bottomAnchor).isActive = true
+        location.topAnchor.constraint(equalTo: nick.bottomAnchor, constant: 30).isActive = true
         location.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor).isActive = true
         location.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor).isActive = true
         location.heightAnchor.constraint(equalToConstant: 117).isActive = true

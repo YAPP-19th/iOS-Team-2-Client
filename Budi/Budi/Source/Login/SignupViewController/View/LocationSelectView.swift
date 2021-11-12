@@ -12,7 +12,7 @@ class LocationSelectView: UIView {
         let label = UILabel()
         label.text = "활동지역"
         label.font = UIFont.boldSystemFont(ofSize: 14)
-
+        label.textColor = UIColor.init(white: 0, alpha: 0.7)
         return label
     }()
 

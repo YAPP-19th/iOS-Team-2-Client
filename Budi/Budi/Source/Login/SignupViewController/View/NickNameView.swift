@@ -68,10 +68,37 @@ class NickNameView: UIView {
         super.init(frame: frame)
         nickNameTextField.delegate = self
         configureLayout()
+        configureObserver()
     }
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+
+    private func configureObserver() {
+        NotificationCenter.default.addObserver(self, selector: #selector(textDidChange(_:)), name: UITextField.textDidChangeNotification, object: nickNameTextField)
+    }
+
+    @objc
+    func textDidChange(_ notification: Notification) {
+        if let textField = notification.object as? UITextField {
+            if let text = textField.text {
+
+                if text.count > 30 {
+                    textField.resignFirstResponder()
+                }
+
+                if text.count >= 30 {
+                    let index = text.index(text.startIndex, offsetBy: 30)
+
+                    let newString = text[text.startIndex..<index]
+                    textField.text = String(newString)
+                } else if text.count < 3 {
+                    checkTextLabel.text = "3글자 이상으로 닉네임을 지어주세요!"
+                    checkTextLabel.textColor = UIColor.warningRed
+                }
+            }
+        }
     }
 
     private func configureLayout() {
@@ -100,8 +127,20 @@ extension NickNameView: UITextFieldDelegate {
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+1) {
             guard let text = textField.text else { return }
             // 입력 다 지웠을 때 처리 추후 구현
-            self.checkTextLabel.text = text == "Asd" ? "이미 존재하는 닉네임이에요! 다른 이름을 정해주세요!" : "멋진 닉네임이네요! 사용해도 괜찮아요!"
-            self.checkTextLabel.textColor = text == "Asd" ? UIColor.warningRed : UIColor.budiGreen
+            if text.count >= 3 {
+                self.checkTextLabel.text = text == "Asd" ? "이미 존재하는 닉네임이에요! 다른 이름을 정해주세요!" : "멋진 닉네임이네요! 사용해도 괜찮아요!"
+                self.checkTextLabel.textColor = text == "Asd" ? UIColor.warningRed : UIColor.budiGreen
+            }
+
         }
+    }
+
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        guard let text = textField.text else { return false }
+
+        if text.count >= 30 && range.length == 0 && range.location > 30 {
+            return false
+        }
+        return true
     }
 }

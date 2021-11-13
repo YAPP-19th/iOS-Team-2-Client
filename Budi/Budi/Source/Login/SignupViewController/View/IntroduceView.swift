@@ -11,9 +11,9 @@ class IntroduceView: UIView {
 
     private let introduceLabel: UILabel = {
         let label = UILabel()
-        label.text = "한줄 소개"
+        label.text = "설명"
         label.font = UIFont.boldSystemFont(ofSize: 14)
-
+        label.textColor = UIColor.init(white: 0, alpha: 0.7)
         return label
     }()
 

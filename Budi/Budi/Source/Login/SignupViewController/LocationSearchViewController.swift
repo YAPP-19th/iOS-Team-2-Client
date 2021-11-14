@@ -95,6 +95,11 @@ class LocationSearchViewController: UIViewController {
         configureLayout()
         configureTableView()
         configureAlert()
+        configureKeyBoard()
+    }
+
+    private func configureKeyBoard() {
+        //NotificationCenter.default.addObserver(self, selector: #selector(keyBoardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
 
     private func configureAlert() {
@@ -217,6 +222,12 @@ extension LocationSearchViewController: UITableViewDelegate, UITableViewDataSour
         let data = correct[indexPath.row]
         nextButton.backgroundColor = UIColor.budiGreen
         nextButton.isEnabled = true
+        self.view.endEditing(true)
         NotificationCenter.default.post(name: NSNotification.Name("LocationNextActivation"), object: data)
     }
+
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        self.view.endEditing(true)
+    }
+
 }

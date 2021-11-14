@@ -9,7 +9,11 @@ import UIKit
 
 class AlertViewController: UIViewController {
 
-    @IBOutlet weak var textLabel: UILabel!
+    private var titleText: String = ""
+    private var okButtonText: String = ""
+    private var noButtonText: String = ""
+
+    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var okButton: UIButton!
     @IBOutlet weak var noButton: UIButton!
 
@@ -18,6 +22,7 @@ class AlertViewController: UIViewController {
     }
 
     @IBAction func okButtonTapped(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
     }
 
     @IBAction func noButtonTapped(_ sender: Any) {
@@ -26,14 +31,18 @@ class AlertViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        titleLabel.text = titleText
+        okButton.setTitle(okButtonText, for: .normal)
+        noButton.setTitle(noButtonText, for: .normal)
     }
 
-    init(_ label: String, _ okButtonLabel: String, _ noButtonLabel: String) {
+    init(_ titleText: String, _ okButtonText: String, _ noButtonText: String) {
         super.init(nibName: nil, bundle: nil)
 
-        textLabel?.text = label
-        okButton?.setTitle(okButtonLabel, for: .normal)
-        noButton?.setTitle(noButtonLabel, for: .normal)
+        self.titleText = titleText
+        self.okButtonText = okButtonText
+        self.noButtonText = noButtonText
     }
 
     required init?(coder: NSCoder) {

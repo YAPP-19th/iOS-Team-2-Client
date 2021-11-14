@@ -45,23 +45,6 @@ class LocationSearchViewController: UIViewController {
         print("준비중")
     }
 
-    @objc
-    func dismissAlert() {
-        UIView.animate(withDuration: 0.3, animations: {
-            BackgroundView.instanceBackground.alpha = 0.0
-            AlertView.instanceAlert.alpha = 0.0
-        }, completion: nil)
-    }
-
-    @objc
-    func projectWriteAction() {
-        // 일단 아무것도 하지 않으니 (뷰가 안만들어진듯) dismiss
-        UIView.animate(withDuration: 0.3, animations: {
-            BackgroundView.instanceBackground.alpha = 0.0
-            AlertView.instanceAlert.alpha = 0.0
-        }, completion: nil)
-    }
-
     private let searchTableView: UITableView = {
         let tableView = UITableView()
         tableView.separatorColor = .white
@@ -103,10 +86,10 @@ class LocationSearchViewController: UIViewController {
     }
 
     private func configureAlert() {
-        let alertView = AlertViewController("버디 위치기반서비스 이용약관에 동의하시겠습니까?", "동의", "취소")
-        alertView.modalPresentationStyle = .overCurrentContext
-        alertView.modalTransitionStyle = .crossDissolve
-        present(alertView, animated: true, completion: nil)
+        let alertViewController = AlertViewController("버디 위치기반서비스 이용약관에 동의하시겠습니까?", "동의", "취소")
+        alertViewController.modalPresentationStyle = .overCurrentContext
+        alertViewController.modalTransitionStyle = .crossDissolve
+        present(alertViewController, animated: true, completion: nil)
     }
 
     private func configureTableView() {

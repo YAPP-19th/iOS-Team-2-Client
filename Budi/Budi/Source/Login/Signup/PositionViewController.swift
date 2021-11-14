@@ -161,49 +161,11 @@ class PositionViewController: UIViewController {
         }
     }
 
-    @objc
-    func dismissAlert() {
-        UIView.animate(withDuration: 0.2, animations: {
-            BackgroundView.instanceBackground.alpha = 0.0
-            AlertView.instanceAlert.alpha = 0.0
-        }, completion: nil)
-
-    }
-
-    @objc
-    func projectWriteAtcion() {
-        // 일단 아무것도 하지 않으니 (뷰가 안만들어진듯) dismiss
-        UIView.animate(withDuration: 0.2, animations: {
-            BackgroundView.instanceBackground.alpha = 0.0
-            AlertView.instanceAlert.alpha = 0.0
-        }, completion: nil)
-    }
-
     private func configureAlert() {
-        BackgroundView.instanceBackground.alpha = 0.0
-        AlertView.instanceAlert.alpha = 0.0
-        AlertView.instanceAlert.showAlert(title: "프로젝트 이력을 입력하고\n 더 높은 레벨을 받아보세요!", cancelTitle: "나중에 입력하기", doneTitle: "지금 입력하기")
-        view.addSubview(BackgroundView.instanceBackground)
-        BackgroundView.instanceBackground.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(AlertView.instanceAlert)
-        AlertView.instanceAlert.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            BackgroundView.instanceBackground.topAnchor.constraint(equalTo: view.topAnchor),
-            BackgroundView.instanceBackground.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            BackgroundView.instanceBackground.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            BackgroundView.instanceBackground.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        ])
-        NSLayoutConstraint.activate([
-            AlertView.instanceAlert.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            AlertView.instanceAlert.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            AlertView.instanceAlert.widthAnchor.constraint(equalToConstant: 343),
-            AlertView.instanceAlert.heightAnchor.constraint(equalToConstant: 208)
-        ])
-
-        UIView.animate(withDuration: 0.2, animations: {
-            BackgroundView.instanceBackground.alpha = 0.5
-            AlertView.instanceAlert.alpha = 1.0
-        })
+        let alertViewController = AlertViewController("프로젝트 이력을 입력하시고 더 높은 레벨을 받아보세요!", "지금 입력", "나중에")
+        alertViewController.modalPresentationStyle = .overCurrentContext
+        alertViewController.modalTransitionStyle = .crossDissolve
+        present(alertViewController, animated: true, completion: nil)
     }
 
     private func configureLayout() {

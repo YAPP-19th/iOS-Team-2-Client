@@ -98,6 +98,10 @@ class SignupNormalViewController: UIViewController {
 
     }
 
+    func scroll() {
+        self.scrollView.setContentOffset(CGPoint.zero, animated: true)
+    }
+
     private func configureLayout() {
         view.addSubview(nextButton)
         nextButton.translatesAutoresizingMaskIntoConstraints = false
@@ -194,19 +198,11 @@ class SignupNormalViewController: UIViewController {
     func keyBoardWillShow(notification: Notification) {
         guard let userInfo = notification.userInfo,
               let keyboardFrame = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect else { return }
-
         let contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardFrame.size.height, right: 0)
-
         scrollView.contentInset = contentInset
         scrollView.scrollIndicatorInsets = contentInset
-
-        let firstResponder = UIResponder.currentFirstResponder
-
-        if let textView = firstResponder as? UITextView {
-            print(textView.frame.height)
-            print(scrollView.contentSize)
-            scrollView.scrollRectToVisible(textView.frame, animated: true)
-        }
+        let point = CGPoint(x: 0, y: keyboardFrame.size.height+30)
+        scrollView.setContentOffset(point, animated: true)
     }
 
     @objc

@@ -76,4 +76,5 @@ extension IntroduceView: UITextViewDelegate {
             textView.textColor = UIColor.lightGray
         }
     }
+
 }

@@ -54,7 +54,7 @@ class LocationSearchViewController: UIViewController {
     }
 
     @objc
-    func projectWriteAtcion() {
+    func projectWriteAction() {
         // 일단 아무것도 하지 않으니 (뷰가 안만들어진듯) dismiss
         UIView.animate(withDuration: 0.3, animations: {
             BackgroundView.instanceBackground.alpha = 0.0
@@ -103,30 +103,10 @@ class LocationSearchViewController: UIViewController {
     }
 
     private func configureAlert() {
-        AlertView.instanceAlert.showAlert(title: "버디 위치기반 서비스 이용약관에 동의하시겠습니까?", cancelTitle: "취소", doneTitle: "동의")
-        BackgroundView.instanceBackground.alpha = 0.0
-        AlertView.instanceAlert.alpha = 0.0
-        view.addSubview(BackgroundView.instanceBackground)
-        BackgroundView.instanceBackground.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(AlertView.instanceAlert)
-        AlertView.instanceAlert.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            BackgroundView.instanceBackground.topAnchor.constraint(equalTo: view.topAnchor),
-            BackgroundView.instanceBackground.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            BackgroundView.instanceBackground.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            BackgroundView.instanceBackground.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        ])
-        NSLayoutConstraint.activate([
-            AlertView.instanceAlert.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            AlertView.instanceAlert.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            AlertView.instanceAlert.widthAnchor.constraint(equalToConstant: 343),
-            AlertView.instanceAlert.heightAnchor.constraint(equalToConstant: 208)
-        ])
-
-        UIView.animate(withDuration: 0.2, animations: {
-            BackgroundView.instanceBackground.alpha = 0.5
-            AlertView.instanceAlert.alpha = 1.0
-        })
+        let alertView = AlertViewController("버디 위치기반서비스 이용약관에 동의하시겠습니까?", "동의", "취소")
+        alertView.modalPresentationStyle = .overCurrentContext
+        alertView.modalTransitionStyle = .crossDissolve
+        present(alertView, animated: true, completion: nil)
     }
 
     private func configureTableView() {
@@ -136,7 +116,6 @@ class LocationSearchViewController: UIViewController {
     }
 
     private func configureLayout() {
-
         let bottomLine = CALayer()
         bottomLine.frame = CGRect(x: 0, y: 40, width: view.bounds.width - 16, height: 1.0)
         bottomLine.backgroundColor = UIColor.init(white: 0, alpha: 0.12).cgColor
@@ -181,19 +160,17 @@ class LocationSearchViewController: UIViewController {
             searchTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             searchTableView.bottomAnchor.constraint(equalTo: nextButton.topAnchor)
         ])
-
     }
-
 }
 
 extension LocationSearchViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        let location = Location().location
+        let locations = Location().location
         if !searchText.isEmpty {
-            for idx in location {
-                if idx.contains(searchText) {
-                    if !correct.contains(idx) {
-                        correct.append(idx)
+            for location in locations {
+                if location.contains(searchText) {
+                    if !correct.contains(location) {
+                        correct.append(location)
                     }
                 }
             }

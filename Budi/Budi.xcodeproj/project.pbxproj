@@ -277,8 +277,7 @@
 		A82E49DB273111050068218A /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				A8CD933A273676BC00299AB4 /* SignupViewController */,
-				A8CD93352736701500299AB4 /* ReuseViews */,
+				A8CD933A273676BC00299AB4 /* Signup */,
 				A82E49DE273111E50068218A /* LoginCoordinator.swift */,
 				A82E49DC273111C50068218A /* LoginSelectViewController.swift */,
 			);
@@ -288,6 +287,8 @@
 		A8CD93352736701500299AB4 /* ReuseViews */ = {
 			isa = PBXGroup;
 			children = (
+				5E2554462732D6F800033723 /* Alerts */,
+				5E7EFE292732E68D007817C3 /* BottomSheets */,
 				A8CD93332736566100299AB4 /* ProgressView.swift */,
 				A8CD935527380DAE00299AB4 /* AlertView.swift */,
 				A8CD93362736702500299AB4 /* SuccessCircleView.swift */,
@@ -297,7 +298,7 @@
 			path = ReuseViews;
 			sourceTree = "<group>";
 		};
-		A8CD933A273676BC00299AB4 /* SignupViewController */ = {
+		A8CD933A273676BC00299AB4 /* Signup */ = {
 			isa = PBXGroup;
 			children = (
 				A8CD935F27384C3400299AB4 /* Cell */,
@@ -307,7 +308,7 @@
 				A8CD93432736E82300299AB4 /* PositionViewController.swift */,
 				A8CD935B27383CB300299AB4 /* LocationSearchViewController.swift */,
 			);
-			path = SignupViewController;
+			path = Signup;
 			sourceTree = "<group>";
 		};
 		A8CD93452737B92A00299AB4 /* View */ = {
@@ -370,6 +371,7 @@
 		B9D66EB12714693700668490 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				A8CD93352736701500299AB4 /* ReuseViews */,
 				A82E49DB273111050068218A /* Login */,
 				B9D66ECF27147B0E00668490 /* Extensions */,
 				B9D66EB627146B5000668490 /* Storyborads */,
@@ -404,8 +406,6 @@
 		B9D66EB4271469DE00668490 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				5E7EFE292732E68D007817C3 /* BottomSheets */,
-				5E2554462732D6F800033723 /* Alerts */,
 				5EA4536B2731413000943C94 /* Cells */,
 				B9D66EBE27146F2F00668490 /* HomeCoordinator.swift */,
 				B9D66ECB2714716400668490 /* HomeViewController.swift */,

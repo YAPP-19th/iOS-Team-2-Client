@@ -41,7 +41,7 @@ class AlertView: UIView {
         button.layer.cornerRadius = 8
         button.layer.masksToBounds = true
         button.addTarget(self, action: #selector(PositionViewController.projectWriteAtcion), for: .touchUpInside)
-        button.addTarget(self, action: #selector(LocationSearchViewController.projectWriteAtcion), for: .touchUpInside)
+        button.addTarget(self, action: #selector(LocationSearchViewController.projectWriteAction), for: .touchUpInside)
         return button
     }()
 

@@ -11,6 +11,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AlertViewController" customModule="Budi" customModuleProvider="target">
             <connections>
+                <outlet property="noButton" destination="c4V-0I-L3a" id="unu-vP-xzF"/>
+                <outlet property="okButton" destination="c4V-0I-L3a" id="IVG-yd-Cwr"/>
+                <outlet property="textLabel" destination="iv8-hW-kYn" id="MCI-Fd-Ceb"/>
                 <outlet property="view" destination="fOD-bM-Gsb" id="34m-Fk-uwl"/>
             </connections>
         </placeholder>
@@ -31,7 +34,7 @@
                             <color key="tintColor" name="Black"/>
                             <buttonConfiguration key="configuration" style="plain"/>
                             <connections>
-                                <action selector="cancelButtonTapped:" destination="-1" eventType="touchUpInside" id="HI8-EL-0tx"/>
+                                <action selector="closeButtonTapped:" destination="-1" eventType="touchUpInside" id="pNj-6n-U2X"/>
                             </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iv8-hW-kYn">
@@ -57,6 +60,9 @@
                                     <real key="value" value="8"/>
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="noButtonTapped:" destination="-1" eventType="touchUpInside" id="GiE-7z-3q5"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c4V-0I-L3a">
                             <rect key="frame" x="195" y="123" width="171" height="48"/>
@@ -73,6 +79,9 @@
                                     <real key="value" value="8"/>
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="okButtonTapped:" destination="-1" eventType="touchUpInside" id="AdT-eB-Gq5"/>
+                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -119,7 +128,7 @@
             <color red="0.0" green="0.0" blue="0.0" alpha="0.37999999523162842" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Green">
-            <color red="0.32899999618530273" green="0.77999997138977051" blue="0.58799999952316284" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.40799999237060547" green="0.86299997568130493" blue="0.67100000381469727" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="LightGray">
             <color red="0.0" green="0.0" blue="0.0" alpha="0.11999999731779099" colorSpace="custom" customColorSpace="sRGB"/>

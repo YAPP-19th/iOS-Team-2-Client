@@ -15,9 +15,9 @@ class SignupNormalViewController: UIViewController {
         scrollView.updateContentView()
     }
 
-    let introduce = IntroduceView()
-    let location = LocationSelectView()
-    let nick = NickNameView()
+    let introduceView = IntroduceView()
+    let locationView = LocationSelectView()
+    let nickNameView = NickNameView()
     let spacing = SpacingDarkLineView()
     var defaultArray: [NSLayoutConstraint] = []
     var newArray: [NSLayoutConstraint] = []
@@ -94,7 +94,7 @@ class SignupNormalViewController: UIViewController {
     @objc
     func loadLocation(_ notification: NSNotification) {
         let select = notification.object as? String ?? ""
-        location.locationSelected(text: select)
+        locationView.locationSelected(text: select)
 
     }
 
@@ -139,39 +139,39 @@ class SignupNormalViewController: UIViewController {
         spacing.topAnchor.constraint(equalTo: progressView.bottomAnchor, constant: 20).isActive = true
         spacing.heightAnchor.constraint(equalToConstant: 8).isActive = true
 
-        scrollView.addSubview(nick)
-        nick.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.addSubview(nickNameView)
+        nickNameView.translatesAutoresizingMaskIntoConstraints = false
 
-        nick.topAnchor.constraint(equalTo: spacing.bottomAnchor).isActive = true
-        nick.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor).isActive = true
-        nick.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor).isActive = true
-        nick.heightAnchor.constraint(equalToConstant: 92).isActive = true
+        nickNameView.topAnchor.constraint(equalTo: spacing.bottomAnchor).isActive = true
+        nickNameView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor).isActive = true
+        nickNameView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor).isActive = true
+        nickNameView.heightAnchor.constraint(equalToConstant: 92).isActive = true
 
-        scrollView.addSubview(location)
-        location.translatesAutoresizingMaskIntoConstraints = false
-        location.topAnchor.constraint(equalTo: nick.bottomAnchor, constant: 30).isActive = true
-        location.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor).isActive = true
-        location.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor).isActive = true
-        location.heightAnchor.constraint(equalToConstant: 117).isActive = true
-        location.configureUnderline(width: view.bounds.width)
+        scrollView.addSubview(locationView)
+        locationView.translatesAutoresizingMaskIntoConstraints = false
+        locationView.topAnchor.constraint(equalTo: nickNameView.bottomAnchor, constant: 30).isActive = true
+        locationView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor).isActive = true
+        locationView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor).isActive = true
+        locationView.heightAnchor.constraint(equalToConstant: 117).isActive = true
+        locationView.configureUnderline(width: view.bounds.width)
 
-        scrollView.addSubview(introduce)
-        introduce.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.addSubview(introduceView)
+        introduceView.translatesAutoresizingMaskIntoConstraints = false
         defaultArray = [
-            introduce.topAnchor.constraint(equalTo: location.bottomAnchor),
-            introduce.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
-            introduce.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
-            introduce.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
-            introduce.heightAnchor.constraint(equalToConstant: 179),
-            introduce.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -20)
+            introduceView.topAnchor.constraint(equalTo: locationView.bottomAnchor),
+            introduceView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            introduceView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            introduceView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            introduceView.heightAnchor.constraint(equalToConstant: 179),
+            introduceView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -20)
         ]
         newArray = [
-            introduce.topAnchor.constraint(equalTo: location.bottomAnchor, constant: 40),
-            introduce.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
-            introduce.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
-            introduce.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
-            introduce.heightAnchor.constraint(equalToConstant: 179),
-            introduce.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -20)
+            introduceView.topAnchor.constraint(equalTo: locationView.bottomAnchor, constant: 40),
+            introduceView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            introduceView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            introduceView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            introduceView.heightAnchor.constraint(equalToConstant: 179),
+            introduceView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -20)
         ]
         NSLayoutConstraint.activate(defaultArray)
     }

@@ -13,7 +13,7 @@ class NickNameView: UIView {
         let label = UILabel()
         label.text = "닉네임"
         label.font = UIFont.boldSystemFont(ofSize: 14)
-
+        label.textColor = UIColor.init(white: 0, alpha: 0.7)
         return label
     }()
 
@@ -22,6 +22,10 @@ class NickNameView: UIView {
         textField.placeholder = "닉네임을 입력하세요"
         textField.font = UIFont.systemFont(ofSize: 14)
         textField.clearButtonMode = UITextField.ViewMode.whileEditing
+        textField.borderStyle = UITextField.BorderStyle.roundedRect
+        textField.borderWidth = 0.5
+        textField.cornerRadius = 8
+        textField.borderColor = UIColor.init(white: 0, alpha: 0.12)
         textField.addTarget(self, action: #selector(writeAction(textField:)), for: .editingChanged)
         return textField
     }()
@@ -49,13 +53,7 @@ class NickNameView: UIView {
 
     @objc
     func checkAction() {
-        if nickNameTextField.text == "Asd" {
-            checkTextLabel.text = "이미 존재하는 닉네임이에요! 다른 이름을 정해주세요!"
-            checkTextLabel.textColor = UIColor.warningRed
-        } else {
-            checkTextLabel.text = "멋진 닉네임이네요! 사용해도 괜찮아요!"
-            checkTextLabel.textColor = UIColor.budiGreen
-        }
+
     }
 
     private var checkTextLabel: UILabel = {
@@ -65,23 +63,42 @@ class NickNameView: UIView {
 
         return label
     }()
-    private let bottomLine = CALayer()
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         nickNameTextField.delegate = self
         configureLayout()
+        configureObserver()
     }
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func configureUnderline(width: CGFloat) {
-        bottomLine.frame = CGRect(x: 0, y: 40, width: width - 32, height: 1.0)
-        bottomLine.backgroundColor = UIColor.init(white: 0, alpha: 0.12).cgColor
-        nickNameTextField.borderStyle = UITextField.BorderStyle.none
-        nickNameTextField.layer.addSublayer(bottomLine)
-        overlapCheckButton.widthAnchor.constraint(equalToConstant: (width-33) * 0.20).isActive = true
+    private func configureObserver() {
+        NotificationCenter.default.addObserver(self, selector: #selector(textDidChange(_:)), name: UITextField.textDidChangeNotification, object: nickNameTextField)
+    }
+
+    @objc
+    func textDidChange(_ notification: Notification) {
+        if let textField = notification.object as? UITextField {
+            if let text = textField.text {
+
+                if text.count > 30 {
+                    textField.resignFirstResponder()
+                }
+
+                if text.count >= 30 {
+                    let index = text.index(text.startIndex, offsetBy: 30)
+
+                    let newString = text[text.startIndex..<index]
+                    textField.text = String(newString)
+                } else if text.count < 3 {
+                    checkTextLabel.text = "3글자 이상으로 닉네임을 지어주세요!"
+                    checkTextLabel.textColor = UIColor.warningRed
+                }
+            }
+        }
     }
 
     private func configureLayout() {
@@ -92,14 +109,10 @@ class NickNameView: UIView {
 
         addSubview(nickNameTextField)
         nickNameTextField.translatesAutoresizingMaskIntoConstraints = false
-        nickNameTextField.topAnchor.constraint(equalTo: nickNameLabel.bottomAnchor, constant: 5).isActive = true
+        nickNameTextField.topAnchor.constraint(equalTo: nickNameLabel.bottomAnchor, constant: 16).isActive = true
         nickNameTextField.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16).isActive = true
-        nickNameTextField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -96).isActive = true
-        nickNameTextField.heightAnchor.constraint(equalToConstant: 40).isActive = true
-        addSubview(overlapCheckButton)
-        overlapCheckButton.translatesAutoresizingMaskIntoConstraints = false
-        overlapCheckButton.leadingAnchor.constraint(equalTo: nickNameTextField.trailingAnchor, constant: 5).isActive = true
-        overlapCheckButton.centerYAnchor.constraint(equalTo: nickNameTextField.centerYAnchor).isActive = true
+        nickNameTextField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16).isActive = true
+        nickNameTextField.heightAnchor.constraint(equalToConstant: 48).isActive = true
 
         addSubview(checkTextLabel)
         checkTextLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -109,4 +122,25 @@ class NickNameView: UIView {
 }
 
 extension NickNameView: UITextFieldDelegate {
+
+    func textFieldDidChangeSelection(_ textField: UITextField) {
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+1) {
+            guard let text = textField.text else { return }
+            // 입력 다 지웠을 때 처리 추후 구현
+            if text.count >= 3 {
+                self.checkTextLabel.text = text == "Asd" ? "이미 존재하는 닉네임이에요! 다른 이름을 정해주세요!" : "멋진 닉네임이네요! 사용해도 괜찮아요!"
+                self.checkTextLabel.textColor = text == "Asd" ? UIColor.warningRed : UIColor.budiGreen
+            }
+
+        }
+    }
+
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        guard let text = textField.text else { return false }
+
+        if text.count >= 30 && range.length == 0 && range.location > 30 {
+            return false
+        }
+        return true
+    }
 }

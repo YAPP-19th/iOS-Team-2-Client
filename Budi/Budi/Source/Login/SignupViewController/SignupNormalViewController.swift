@@ -78,9 +78,12 @@ class SignupNormalViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         nextButton.isEnabled = false
+        scrollView.delegate = self
         self.addBackButton()
         configureAddOserver()
         configureLayout()
+        keyBoardNotification()
+        keyBoardDismiss()
     }
 
     private func configureAddOserver() {
@@ -93,6 +96,10 @@ class SignupNormalViewController: UIViewController {
         let select = notification.object as? String ?? ""
         location.locationSelected(text: select)
 
+    }
+
+    func scroll() {
+        self.scrollView.setContentOffset(CGPoint.zero, animated: true)
     }
 
     private func configureLayout() {
@@ -139,15 +146,14 @@ class SignupNormalViewController: UIViewController {
         nick.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor).isActive = true
         nick.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor).isActive = true
         nick.heightAnchor.constraint(equalToConstant: 92).isActive = true
-        nick.configureUnderline(width: view.bounds.width)
 
         scrollView.addSubview(location)
         location.translatesAutoresizingMaskIntoConstraints = false
-        location.topAnchor.constraint(equalTo: nick.bottomAnchor).isActive = true
+        location.topAnchor.constraint(equalTo: nick.bottomAnchor, constant: 30).isActive = true
         location.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor).isActive = true
         location.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor).isActive = true
         location.heightAnchor.constraint(equalToConstant: 117).isActive = true
-        location.configureUnderline(width: view.bounds.width * 0.9)
+        location.configureUnderline(width: view.bounds.width)
 
         scrollView.addSubview(introduce)
         introduce.translatesAutoresizingMaskIntoConstraints = false
@@ -169,10 +175,53 @@ class SignupNormalViewController: UIViewController {
         ]
         NSLayoutConstraint.activate(defaultArray)
     }
+
+    private func keyBoardNotification() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyBoardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyBoardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+
+    private func keyBoardDismiss() {
+        let singleTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapAction))
+        singleTapGestureRecognizer.numberOfTapsRequired = 1
+        singleTapGestureRecognizer.isEnabled = true
+        singleTapGestureRecognizer.cancelsTouchesInView = false
+        scrollView.addGestureRecognizer(singleTapGestureRecognizer)
+    }
+
+    @objc
+    func tapAction(sender: UITapGestureRecognizer) {
+        self.view.endEditing(true)
+    }
+
+    @objc
+    func keyBoardWillShow(notification: Notification) {
+        guard let userInfo = notification.userInfo,
+              let keyboardFrame = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect else { return }
+        let contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardFrame.size.height, right: 0)
+        scrollView.contentInset = contentInset
+        scrollView.scrollIndicatorInsets = contentInset
+        let point = CGPoint(x: 0, y: keyboardFrame.size.height+30)
+        scrollView.setContentOffset(point, animated: true)
+    }
+
+    @objc
+    func keyBoardWillHide(notification: Notification) {
+        let contentInset = UIEdgeInsets.zero
+        scrollView.contentInset = contentInset
+        scrollView.scrollIndicatorInsets = contentInset
+    }
+
 }
 
 extension UIScrollView {
     func updateContentView() {
         contentSize.height = subviews.sorted(by: { $0.frame.maxY < $1.frame.maxY }).last?.frame.maxY ?? contentSize.height
+    }
+}
+
+extension SignupNormalViewController: UIScrollViewDelegate {
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        self.view.endEditing(true)
     }
 }

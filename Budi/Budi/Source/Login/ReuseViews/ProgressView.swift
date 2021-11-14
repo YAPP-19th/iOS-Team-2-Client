@@ -35,7 +35,7 @@ class ProgressView: UIView {
 
     private let stepOneLabel: UILabel = {
         let label = UILabel()
-        label.text = "기본정보 입력"
+        label.text = "기본정보"
         label.font = UIFont.systemFont(ofSize: 13)
         label.textColor = .black
         label.alpha = 0.38
@@ -45,7 +45,7 @@ class ProgressView: UIView {
 
     private let stepTwoLabel: UILabel = {
         let label = UILabel()
-        label.text = "상세직무 선택"
+        label.text = "상세직무"
         label.font = UIFont.systemFont(ofSize: 13)
         label.textColor = .black
         label.alpha = 0.38
@@ -55,7 +55,7 @@ class ProgressView: UIView {
 
     private let stepThreeLabel: UILabel = {
         let label = UILabel()
-        label.text = "프로젝트 이력관리"
+        label.text = "이력관리"
         label.font = UIFont.systemFont(ofSize: 13)
         label.textColor = .black
         label.alpha = 0.38

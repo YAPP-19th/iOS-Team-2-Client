@@ -50,6 +50,7 @@
 		A82E49DF273111E50068218A /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82E49DE273111E50068218A /* LoginCoordinator.swift */; };
 		A8A6D9F1273CCB5500C84C52 /* BackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A6D9F0273CCB5500C84C52 /* BackgroundView.swift */; };
 		A8A6D9F9273D2D1800C84C52 /* BackButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A6D9F8273D2D1800C84C52 /* BackButtonExtension.swift */; };
+		A8CA17EB273EC267002CA2B9 /* UIResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CA17EA273EC267002CA2B9 /* UIResponder.swift */; };
 		A8CD93322736470100299AB4 /* SignupNormalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CD93312736470100299AB4 /* SignupNormalViewController.swift */; };
 		A8CD93342736566100299AB4 /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CD93332736566100299AB4 /* ProgressView.swift */; };
 		A8CD93372736702500299AB4 /* SuccessCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CD93362736702500299AB4 /* SuccessCircleView.swift */; };
@@ -131,6 +132,7 @@
 		A82E49DE273111E50068218A /* LoginCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
 		A8A6D9F0273CCB5500C84C52 /* BackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundView.swift; sourceTree = "<group>"; };
 		A8A6D9F8273D2D1800C84C52 /* BackButtonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButtonExtension.swift; sourceTree = "<group>"; };
+		A8CA17EA273EC267002CA2B9 /* UIResponder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIResponder.swift; sourceTree = "<group>"; };
 		A8CD93312736470100299AB4 /* SignupNormalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupNormalViewController.swift; sourceTree = "<group>"; };
 		A8CD93332736566100299AB4 /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
 		A8CD93362736702500299AB4 /* SuccessCircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessCircleView.swift; sourceTree = "<group>"; };
@@ -470,6 +472,7 @@
 				5EA453AB2731DDA700943C94 /* CALayer+addBorderTop.swift */,
 				5E2554372732AD0800033723 /* UIView+IBInspectable.swift */,
 				A8A6D9F8273D2D1800C84C52 /* BackButtonExtension.swift */,
+				A8CA17EA273EC267002CA2B9 /* UIResponder.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -614,6 +617,7 @@
 				A82E49DF273111E50068218A /* LoginCoordinator.swift in Sources */,
 				B9D66ECC2714716400668490 /* HomeViewController.swift in Sources */,
 				A8CD9339273673C100299AB4 /* SpacingDarkLineView.swift in Sources */,
+				A8CA17EB273EC267002CA2B9 /* UIResponder.swift in Sources */,
 				A8CD936127384C4900299AB4 /* SearchTableViewCell.swift in Sources */,
 				A8A6D9F1273CCB5500C84C52 /* BackgroundView.swift in Sources */,
 				B9D66EBB27146E1F00668490 /* MainTabBarCoordinator.swift in Sources */,

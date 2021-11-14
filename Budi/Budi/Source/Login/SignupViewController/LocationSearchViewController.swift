@@ -13,7 +13,7 @@ class LocationSearchViewController: UIViewController {
 
     private let searchBar: UISearchBar = {
         let search = UISearchBar()
-        search.placeholder = "시, 구로 검색"
+        search.placeholder = "도로명으로 검색"
         search.setImage(UIImage(systemName: "magnifyingglass"), for: UISearchBar.Icon.search, state: .normal)
         search.setImage(UIImage(systemName: "xmark.circle.fill"), for: .clear, state: .normal)
         search.tintColor = UIColor.init(white: 0, alpha: 0.12)
@@ -26,12 +26,12 @@ class LocationSearchViewController: UIViewController {
 
     private let nowLocationButton: UIButton = {
         let button = UIButton()
-        button.setTitle("현위치", for: .normal)
-        button.setImage(UIImage(systemName: "location.fill"), for: .normal)
+        button.setTitle("현위치로 설정", for: .normal)
+        button.setImage(UIImage(named: "GPS"), for: .normal)
         button.imageEdgeInsets = UIEdgeInsets(top: 0, left: -2, bottom: 0, right: 0)
-        button.setTitleColor(UIColor.white, for: .normal)
+        button.setTitleColor(UIColor.init(white: 0.62, alpha: 1), for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
-        button.backgroundColor = UIColor.budiGreen
+        button.backgroundColor = UIColor(red: 0.95, green: 0.95, blue: 0.95, alpha: 1.00)
         button.layer.cornerRadius = 8
         button.layer.masksToBounds = true
         button.tintColor = .white
@@ -95,6 +95,11 @@ class LocationSearchViewController: UIViewController {
         configureLayout()
         configureTableView()
         configureAlert()
+        configureKeyBoard()
+    }
+
+    private func configureKeyBoard() {
+        //NotificationCenter.default.addObserver(self, selector: #selector(keyBoardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
 
     private func configureAlert() {
@@ -217,6 +222,12 @@ extension LocationSearchViewController: UITableViewDelegate, UITableViewDataSour
         let data = correct[indexPath.row]
         nextButton.backgroundColor = UIColor.budiGreen
         nextButton.isEnabled = true
+        self.view.endEditing(true)
         NotificationCenter.default.post(name: NSNotification.Name("LocationNextActivation"), object: data)
     }
+
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        self.view.endEditing(true)
+    }
+
 }

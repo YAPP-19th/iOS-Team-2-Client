@@ -42,8 +42,7 @@ class LocationSearchViewController: UIViewController {
 
     @objc
     func locationButtonAction() {
-        let manager = LocationManager.shared
-        manager.getAdministrativeArea { result in
+        LocationManager.shared.getAdministrativeArea { result in
             switch result {
             case .success(let location):
                 print(location)
@@ -96,10 +95,11 @@ class LocationSearchViewController: UIViewController {
     }
 
     private func configureAlert() {
-        let alertViewController = AlertViewController("버디 위치기반서비스 이용약관에 동의하시겠습니까?", "동의", "취소")
-        alertViewController.modalPresentationStyle = .overCurrentContext
-        alertViewController.modalTransitionStyle = .crossDissolve
-        present(alertViewController, animated: true, completion: nil)
+        LocationManager.shared.requestWhenInUseAuthorization()
+//        let alertViewController = AlertViewController("버디 위치기반서비스 이용약관에 동의하시겠습니까?", "동의", "취소")
+//        alertViewController.modalPresentationStyle = .overCurrentContext
+//        alertViewController.modalTransitionStyle = .crossDissolve
+//        present(alertViewController, animated: true, completion: nil)
     }
 
     private func configureTableView() {

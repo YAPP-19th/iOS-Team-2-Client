@@ -36,7 +36,6 @@ class PositionViewController: UIViewController {
     @objc
     func nextAction() {
         configureAlert()
-
     }
 
     private let positionLabel: UILabel = {
@@ -44,7 +43,7 @@ class PositionViewController: UIViewController {
         let bold = [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 24)]
         let normal = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 24)]
         let oneString = NSMutableAttributedString(string: "프로젝트에 ", attributes: normal)
-        let twoString = NSMutableAttributedString(string: " 참여하고자하는 직무", attributes: bold)
+        let twoString = NSMutableAttributedString(string: " 참여하고자 하는 직무", attributes: bold)
         let threeString = NSMutableAttributedString(string: "를 선택해주세요 ☺️", attributes: normal)
         oneString.append(twoString)
         oneString.append(threeString)

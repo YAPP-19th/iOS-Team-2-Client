@@ -6,10 +6,10 @@
 //
 
 import UIKit
+import CoreLocation
 
 class LocationSearchViewController: UIViewController {
-    private let allLocation = Location().location
-    private var correct: [String] = []
+    private var locationResults: [String] = []
 
     private let searchBar: UISearchBar = {
         let search = UISearchBar()
@@ -42,14 +42,24 @@ class LocationSearchViewController: UIViewController {
 
     @objc
     func locationButtonAction() {
-        print("준비중")
+        let manager = LocationManager.shared
+        manager.getAdministrativeArea { result in
+            switch result {
+            case .success(let location):
+                print(location)
+                self.searchBar.text = location
+                self.nextButton.isEnabled = true
+                self.view.endEditing(true)
+                NotificationCenter.default.post(name: NSNotification.Name("LocationNextActivation"), object: location)
+            case .failure(let error): print(error)
+            }
+        }
     }
 
     private let searchTableView: UITableView = {
         let tableView = UITableView()
         tableView.separatorColor = .white
         tableView.separatorInset.left = 0
-
         return tableView
     }()
 
@@ -148,46 +158,32 @@ class LocationSearchViewController: UIViewController {
 
 extension LocationSearchViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        let locations = Location().location
-        if !searchText.isEmpty {
-            for location in locations {
-                if location.contains(searchText) {
-                    if !correct.contains(location) {
-                        correct.append(location)
-                    }
-                }
-            }
-            searchTableView.reloadData()
-        } else {
-            correct = []
-            searchTableView.reloadData()
-        }
+        let allLocations = Location().location
+        locationResults = allLocations.filter { $0.contains(searchText) }
+        searchTableView.reloadData()
     }
 }
 
 extension LocationSearchViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        correct.count
+        locationResults.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: SearchTableViewCell.cellId, for: indexPath) as? SearchTableViewCell else { return UITableViewCell() }
-        if correct.count > 0 {
-            cell.configureCellLabel(text: correct[indexPath.row])
-        }
+        cell.configureCellLabel(text: locationResults[indexPath.row])
         return cell
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let data = correct[indexPath.row]
+        let location = locationResults[indexPath.row]
         nextButton.backgroundColor = UIColor.budiGreen
         nextButton.isEnabled = true
         self.view.endEditing(true)
-        NotificationCenter.default.post(name: NSNotification.Name("LocationNextActivation"), object: data)
+        NotificationCenter.default.post(name: NSNotification.Name("LocationNextActivation"), object: location)
     }
 
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         self.view.endEditing(true)
     }
-
 }

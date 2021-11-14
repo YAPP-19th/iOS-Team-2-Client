@@ -20,7 +20,6 @@ class LocationSelectView: UIView {
         let label = UILabel()
         label.text = ""
         label.font = UIFont.systemFont(ofSize: 14)
-
         return label
     }()
 

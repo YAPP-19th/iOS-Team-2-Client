@@ -32,6 +32,7 @@
 		5EA453A02731778000943C94 /* HomeDetailMainCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA4539E2731778000943C94 /* HomeDetailMainCell.swift */; };
 		5EA453A12731778000943C94 /* HomeDetailMainCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EA4539F2731778000943C94 /* HomeDetailMainCell.xib */; };
 		5EA453AC2731DDA700943C94 /* CALayer+addBorderTop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA453AB2731DDA700943C94 /* CALayer+addBorderTop.swift */; };
+		5EF5F3292741590300A5F6E2 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF5F3282741590300A5F6E2 /* LocationManager.swift */; };
 		5EFB0A412733CD7700F39A4D /* TeamSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EFB0A402733CD7700F39A4D /* TeamSearchViewController.swift */; };
 		5EFB0A452733E36800F39A4D /* TeamSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EFB0A432733E36800F39A4D /* TeamSearchCell.swift */; };
 		5EFB0A462733E36800F39A4D /* TeamSearchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EFB0A442733E36800F39A4D /* TeamSearchCell.xib */; };
@@ -113,6 +114,7 @@
 		5EA4539E2731778000943C94 /* HomeDetailMainCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailMainCell.swift; sourceTree = "<group>"; };
 		5EA4539F2731778000943C94 /* HomeDetailMainCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeDetailMainCell.xib; sourceTree = "<group>"; };
 		5EA453AB2731DDA700943C94 /* CALayer+addBorderTop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+addBorderTop.swift"; sourceTree = "<group>"; };
+		5EF5F3282741590300A5F6E2 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		5EFB0A402733CD7700F39A4D /* TeamSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamSearchViewController.swift; sourceTree = "<group>"; };
 		5EFB0A432733E36800F39A4D /* TeamSearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamSearchCell.swift; sourceTree = "<group>"; };
 		5EFB0A442733E36800F39A4D /* TeamSearchCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TeamSearchCell.xib; sourceTree = "<group>"; };
@@ -238,6 +240,14 @@
 				5E2554342732770B00033723 /* HomeDetailPersonCell.xib */,
 			);
 			path = HomeDetail;
+			sourceTree = "<group>";
+		};
+		5EF5F327274158E600A5F6E2 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				5EF5F3282741590300A5F6E2 /* LocationManager.swift */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 		5EFB0A422733E34D00F39A4D /* Cells */ = {
@@ -368,6 +378,7 @@
 		B9D66EB12714693700668490 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				5EF5F327274158E600A5F6E2 /* Utilities */,
 				A8CD93352736701500299AB4 /* ReuseViews */,
 				A82E49DB273111050068218A /* Login */,
 				B9D66ECF27147B0E00668490 /* Extensions */,
@@ -659,6 +670,7 @@
 				A8CD93532737F2BF00299AB4 /* PositionData.swift in Sources */,
 				A8CD93372736702500299AB4 /* SuccessCircleView.swift in Sources */,
 				5EA453902731774100943C94 /* HomeDetailMemberCell.swift in Sources */,
+				5EF5F3292741590300A5F6E2 /* LocationManager.swift in Sources */,
 				5E7EFE272732E06F007817C3 /* AlertViewController.swift in Sources */,
 				5E45AD132732F47800F0A80C /* BottomSheetViewController.swift in Sources */,
 				5EA45370273144C200943C94 /* HomeDetailViewController.swift in Sources */,

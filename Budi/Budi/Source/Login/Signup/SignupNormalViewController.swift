@@ -95,7 +95,6 @@ class SignupNormalViewController: UIViewController {
     func loadLocation(_ notification: NSNotification) {
         let select = notification.object as? String ?? ""
         locationView.locationSelected(text: select)
-
     }
 
     func scroll() {

@@ -40,21 +40,6 @@ class LocationSearchViewController: UIViewController {
         return button
     }()
 
-    @objc
-    func locationButtonAction() {
-        LocationManager.shared.getAdministrativeArea { result in
-            switch result {
-            case .success(let location):
-                print(location)
-                self.searchBar.text = location
-                self.nextButton.isEnabled = true
-                self.view.endEditing(true)
-                NotificationCenter.default.post(name: NSNotification.Name("LocationNextActivation"), object: location)
-            case .failure(let error): print(error)
-            }
-        }
-    }
-
     private let searchTableView: UITableView = {
         let tableView = UITableView()
         tableView.separatorColor = .white
@@ -73,15 +58,10 @@ class LocationSearchViewController: UIViewController {
         return button
     }()
 
-    @objc
-    func nextAction() {
-        self.navigationController?.popViewController(animated: true)
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
-        searchBar.delegate = self
         view.backgroundColor = .white
+        searchBar.delegate = self
         nextButton.isEnabled = false
         self.addBackButton()
         configureLayout()
@@ -89,32 +69,59 @@ class LocationSearchViewController: UIViewController {
         configureAlert()
         configureKeyBoard()
     }
+}
 
-    private func configureKeyBoard() {
+private extension LocationSearchViewController {
+    @objc
+    func locationButtonAction() {
+        LocationManager.shared.getAdministrativeArea { result in
+            switch result {
+            case .success(let location):
+                self.searchBar.text = location
+                self.nextButton.backgroundColor = UIColor.budiGreen
+                self.nextButton.isEnabled = true
+                self.view.endEditing(true)
+                NotificationCenter.default.post(name: NSNotification.Name("LocationNextActivation"), object: location)
+            case .failure(let error): print(error)
+            }
+        }
+    }
+
+    @objc
+    func nextAction() {
+        self.navigationController?.popViewController(animated: true)
+    }
+
+    func configureKeyBoard() {
         //NotificationCenter.default.addObserver(self, selector: #selector(keyBoardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
 
-    private func configureAlert() {
+    func configureAlert() {
         LocationManager.shared.requestWhenInUseAuthorization()
-//        let alertViewController = AlertViewController("버디 위치기반서비스 이용약관에 동의하시겠습니까?", "동의", "취소")
-//        alertViewController.modalPresentationStyle = .overCurrentContext
-//        alertViewController.modalTransitionStyle = .crossDissolve
-//        present(alertViewController, animated: true, completion: nil)
     }
 
-    private func configureTableView() {
+    func configureTableView() {
         searchTableView.register(SearchTableViewCell.self, forCellReuseIdentifier: SearchTableViewCell.cellId)
         searchTableView.delegate = self
         searchTableView.dataSource = self
     }
 
-    private func configureLayout() {
+    func configureLayout() {
         let bottomLine = CALayer()
         bottomLine.frame = CGRect(x: 0, y: 40, width: view.bounds.width - 16, height: 1.0)
         bottomLine.backgroundColor = UIColor.init(white: 0, alpha: 0.12).cgColor
+
         searchBar.layer.addSublayer(bottomLine)
+
         view.addSubview(searchBar)
+        view.addSubview(nowLocationButton)
+        view.addSubview(nextButton)
+        view.addSubview(searchTableView)
+
         searchBar.translatesAutoresizingMaskIntoConstraints = false
+        nowLocationButton.translatesAutoresizingMaskIntoConstraints = false
+        nextButton.translatesAutoresizingMaskIntoConstraints = false
+        searchTableView.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
             searchBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
@@ -122,9 +129,6 @@ class LocationSearchViewController: UIViewController {
             searchBar.widthAnchor.constraint(equalToConstant: view.bounds.width - 16),
             searchBar.heightAnchor.constraint(equalToConstant: 40)
         ])
-
-        view.addSubview(nowLocationButton)
-        nowLocationButton.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
             nowLocationButton.topAnchor.constraint(equalTo: searchBar.bottomAnchor, constant: 16),
@@ -134,18 +138,12 @@ class LocationSearchViewController: UIViewController {
             nowLocationButton.heightAnchor.constraint(equalToConstant: 40)
         ])
 
-        view.addSubview(nextButton)
-        nextButton.translatesAutoresizingMaskIntoConstraints = false
-
         NSLayoutConstraint.activate([
             nextButton.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             nextButton.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             nextButton.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             nextButton.heightAnchor.constraint(equalToConstant: 83)
         ])
-
-        view.addSubview(searchTableView)
-        searchTableView.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
             searchTableView.topAnchor.constraint(equalTo: nowLocationButton.bottomAnchor, constant: 18),

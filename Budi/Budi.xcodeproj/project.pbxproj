@@ -57,7 +57,7 @@
 		A8CD93372736702500299AB4 /* SuccessCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CD93362736702500299AB4 /* SuccessCircleView.swift */; };
 		A8CD9339273673C100299AB4 /* SpacingDarkLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CD9338273673C100299AB4 /* SpacingDarkLineView.swift */; };
 		A8CD933C273676F800299AB4 /* NickNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CD933B273676F800299AB4 /* NickNameView.swift */; };
-		A8CD933E2736A93500299AB4 /* SystemColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CD933D2736A93500299AB4 /* SystemColor.swift */; };
+		A8CD933E2736A93500299AB4 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CD933D2736A93500299AB4 /* UIColor.swift */; };
 		A8CD93402736ABD300299AB4 /* LocationSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CD933F2736ABD300299AB4 /* LocationSelectView.swift */; };
 		A8CD93422736B58E00299AB4 /* IntroduceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CD93412736B58E00299AB4 /* IntroduceView.swift */; };
 		A8CD93442736E82300299AB4 /* PositionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CD93432736E82300299AB4 /* PositionViewController.swift */; };
@@ -139,7 +139,7 @@
 		A8CD93362736702500299AB4 /* SuccessCircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessCircleView.swift; sourceTree = "<group>"; };
 		A8CD9338273673C100299AB4 /* SpacingDarkLineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpacingDarkLineView.swift; sourceTree = "<group>"; };
 		A8CD933B273676F800299AB4 /* NickNameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NickNameView.swift; sourceTree = "<group>"; };
-		A8CD933D2736A93500299AB4 /* SystemColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemColor.swift; sourceTree = "<group>"; };
+		A8CD933D2736A93500299AB4 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		A8CD933F2736ABD300299AB4 /* LocationSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSelectView.swift; sourceTree = "<group>"; };
 		A8CD93412736B58E00299AB4 /* IntroduceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroduceView.swift; sourceTree = "<group>"; };
 		A8CD93432736E82300299AB4 /* PositionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositionViewController.swift; sourceTree = "<group>"; };
@@ -378,16 +378,16 @@
 		B9D66EB12714693700668490 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				5EF5F327274158E600A5F6E2 /* Utilities */,
-				A8CD93352736701500299AB4 /* ReuseViews */,
-				A82E49DB273111050068218A /* Login */,
-				B9D66ECF27147B0E00668490 /* Extensions */,
 				B9D66EB627146B5000668490 /* Storyborads */,
 				B9D66EB727146DB600668490 /* Coordinators */,
+				A82E49DB273111050068218A /* Login */,
 				B9D66EB4271469DE00668490 /* Home */,
 				B9D66EC027146FFC00668490 /* TeamSearch */,
 				B9D66EC12714700900668490 /* Chatting */,
 				B9D66EC22714701000668490 /* MyBudi */,
+				A8CD93352736701500299AB4 /* ReuseViews */,
+				5EF5F327274158E600A5F6E2 /* Utilities */,
+				B9D66ECF27147B0E00668490 /* Extensions */,
 				B9D66EB3271469C700668490 /* System */,
 			);
 			path = Source;
@@ -474,7 +474,7 @@
 		B9D66ECF27147B0E00668490 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				A8CD933D2736A93500299AB4 /* SystemColor.swift */,
+				A8CD933D2736A93500299AB4 /* UIColor.swift */,
 				B97DBB9427147D970018C1D2 /* UIViewController+identifer.swift */,
 				B98E530927396B3F00C73374 /* UINavigationController+translucent.swift */,
 				5EA453AB2731DDA700943C94 /* CALayer+addBorderTop.swift */,
@@ -617,7 +617,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A8CD934F2737BD4400299AB4 /* NormalPositionSelect.swift in Sources */,
-				A8CD933E2736A93500299AB4 /* SystemColor.swift in Sources */,
+				A8CD933E2736A93500299AB4 /* UIColor.swift in Sources */,
 				A8CD93402736ABD300299AB4 /* LocationSelectView.swift in Sources */,
 				B9D66ECE27147AEA00668490 /* HomeWritingViewController.swift in Sources */,
 				A82E49DD273111C50068218A /* LoginSelectViewController.swift in Sources */,

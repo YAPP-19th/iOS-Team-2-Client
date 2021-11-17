@@ -30,13 +30,14 @@ class LocationSearchViewController: UIViewController {
         button.setImage(UIImage(named: "GPS"), for: .normal)
         button.imageEdgeInsets = UIEdgeInsets(top: 0, left: -2, bottom: 0, right: 0)
         button.setTitleColor(UIColor.init(white: 0.62, alpha: 1), for: .normal)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
         button.backgroundColor = UIColor(red: 0.95, green: 0.95, blue: 0.95, alpha: 1.00)
         button.layer.cornerRadius = 8
         button.layer.masksToBounds = true
         button.tintColor = .white
 
         button.addTarget(self, action: #selector(locationButtonAction), for: .touchUpInside)
+        button.isEnabled = false
         return button
     }()
 
@@ -66,7 +67,7 @@ class LocationSearchViewController: UIViewController {
         self.addBackButton()
         configureLayout()
         configureTableView()
-        configureAlert()
+        configureLocationAuthorization()
         configureKeyBoard()
     }
 }
@@ -96,8 +97,17 @@ private extension LocationSearchViewController {
         //NotificationCenter.default.addObserver(self, selector: #selector(keyBoardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
 
-    func configureAlert() {
+    func configureLocationAuthorization() {
         LocationManager.shared.requestWhenInUseAuthorization()
+        NotificationCenter.default.addObserver(self, selector: #selector(locationAuthorizationSuccess), name: Notification.Name("locationAuthorizationSuccess"), object: nil)
+    }
+ 
+    @objc
+    func locationAuthorizationSuccess() {
+        print("locationAuthorizationSuccess")
+        nowLocationButton.isEnabled = true
+        nowLocationButton.setTitleColor(UIColor.budiDarkGray, for: .normal)
+        nowLocationButton.backgroundColor = UIColor.budiLightGreen
     }
 
     func configureTableView() {

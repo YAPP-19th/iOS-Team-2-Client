@@ -136,7 +136,6 @@ extension HomeDetailViewController: UICollectionViewDelegateFlowLayout {
         case bottomSheetCollectionView: return 8
         default: return 0
         }
-
     }
 }
 
@@ -149,7 +148,8 @@ private extension HomeDetailViewController {
 }
 
 private extension HomeDetailViewController {
-    @objc func actionButtonTapped() {
+    @objc
+    func actionButtonTapped() {
         let alert = GreetingAlertViewController()
         alert.modalPresentationStyle = .overCurrentContext
         alert.modalTransitionStyle = .crossDissolve
@@ -157,12 +157,9 @@ private extension HomeDetailViewController {
     }
 
     func heartButtonTapped() {
-        let green = UIColor(named: "Green") ?? .systemGreen
-        let gray = UIColor(named: "Gray") ?? .systemGreen
-
         isHeartButtonChecked.toggle()
         heartButton.setImage(UIImage(systemName: isHeartButtonChecked ? "heart.fill" : "heart"), for: .normal)
-        heartButton.tintColor = isHeartButtonChecked ? green : gray
+        heartButton.tintColor = isHeartButtonChecked ? UIColor.budiGreen : UIColor.budiGray
     }
 
     func submitButtonTapped() {

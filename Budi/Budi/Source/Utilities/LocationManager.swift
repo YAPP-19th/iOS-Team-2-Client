@@ -41,6 +41,16 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
         }
     }
 
+    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+        switch manager.authorizationStatus {
+        case .authorizedAlways: NotificationCenter.default.post(name: NSNotification.Name(rawValue: "locationAuthorizationSuccess"), object: nil)
+        case .authorizedWhenInUse: NotificationCenter.default.post(name: NSNotification.Name(rawValue: "locationAuthorizationSuccess"), object: nil)
+        case .notDetermined: break
+        case .restricted, .denied: break
+        default: break
+        }
+    }
+
     func requestWhenInUseAuthorization() {
         switch manager.authorizationStatus {
         case .authorizedAlways: break

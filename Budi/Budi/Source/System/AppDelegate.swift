@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import NaverThirdPartyLogin
 // swiftlint:disable all
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {

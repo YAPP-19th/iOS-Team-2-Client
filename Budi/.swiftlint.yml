@@ -4,6 +4,7 @@ disabled_rules:
 
 included:
 excluded:
+    - Pods/
 
 function_body_length:
 warning: 300

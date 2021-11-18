@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import NaverThirdPartyLogin
 // swiftlint:disable all
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -36,6 +36,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
         
+    }
+
+    func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
+        NaverThirdPartyLoginConnection
+            .getSharedInstance()?
+            .receiveAccessToken(URLContexts.first?.url)
     }
 
 }

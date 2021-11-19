@@ -6,11 +6,11 @@
 //
 
 import UIKit
-
+import NaverThirdPartyLogin
 class LoginSelectViewController: UIViewController {
 
     weak var coordinator: LoginCoordinator?
-
+    let loginInstance = NaverThirdPartyLoginConnection.getSharedInstance()
     private let helloLabel: UILabel = {
         let label = UILabel()
 
@@ -40,7 +40,7 @@ class LoginSelectViewController: UIViewController {
 
     @objc
     func moveSignupAction() {
-        coordinator?.showLoginWithNaver()
+        loginInstance?.requestThirdPartyLogin()
     }
 
     private let privacyButton: UIButton = {
@@ -55,6 +55,8 @@ class LoginSelectViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        loginInstance?.delegate = self
+        loginInstance?.requestDeleteToken()
         configureLayout()
     }
 
@@ -82,4 +84,24 @@ class LoginSelectViewController: UIViewController {
         naverLoginButton.heightAnchor.constraint(equalToConstant: 48).isActive = true
 
     }
+}
+
+extension LoginSelectViewController: NaverThirdPartyLoginConnectionDelegate {
+    func oauth20ConnectionDidFinishRequestACTokenWithAuthCode() {
+        coordinator?.showLoginWithNaver()
+        //loginInstance?.requestDeleteToken()
+    }
+
+    func oauth20ConnectionDidFinishRequestACTokenWithRefreshToken() {
+
+    }
+
+    func oauth20ConnectionDidFinishDeleteToken() {
+        loginInstance?.requestDeleteToken()
+    }
+
+    func oauth20Connection(_ oauthConnection: NaverThirdPartyLoginConnection!, didFailWithError error: Error!) {
+        print("error: \(error.localizedDescription)")
+    }
+
 }

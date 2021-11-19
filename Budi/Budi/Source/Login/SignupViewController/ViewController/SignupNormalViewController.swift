@@ -6,11 +6,12 @@
 //
 
 import UIKit
-
+import Combine
 class SignupNormalViewController: UIViewController {
 
     weak var coordinator: LoginCoordinator?
-
+    private var viewModel = SignupNormalViewModel()
+    var cancellables = Set<AnyCancellable>()
     override func viewDidLayoutSubviews() {
         scrollView.updateContentView()
     }
@@ -84,6 +85,23 @@ class SignupNormalViewController: UIViewController {
         configureLayout()
         keyBoardNotification()
         keyBoardDismiss()
+        fetchNaverInfo()
+    }
+
+    private func fetchNaverInfo() {
+        self.viewModel.$naverName
+            .receive(on: DispatchQueue.main)
+            .sink(receiveValue: { [weak self] name in
+                self?.nick.loadNameText(name)
+            })
+            .store(in: &self.cancellables)
+
+        self.viewModel.$naverEmail
+            .receive(on: DispatchQueue.main)
+            .sink(receiveValue: { [weak self] email in
+                self?.introduce.loadTextView(email)
+            })
+            .store(in: &self.cancellables)
     }
 
     private func configureAddOserver() {

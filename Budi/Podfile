@@ -7,7 +7,6 @@ target 'Budi' do
 
   # Pods for Budi
 pod 'SwiftLint'
-pod 'Alamofire', '~> 5.4'
 pod 'naveridlogin-sdk-ios'
 
 end

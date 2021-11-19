@@ -1,24 +1,20 @@
 PODS:
-  - Alamofire (5.4.4)
   - naveridlogin-sdk-ios (4.1.3)
   - SwiftLint (0.43.1)
 
 DEPENDENCIES:
-  - Alamofire (~> 5.4)
   - naveridlogin-sdk-ios
   - SwiftLint
 
 SPEC REPOS:
   trunk:
-    - Alamofire
     - naveridlogin-sdk-ios
     - SwiftLint
 
 SPEC CHECKSUMS:
-  Alamofire: f3b09a368f1582ab751b3fff5460276e0d2cf5c9
   naveridlogin-sdk-ios: b9d7c20677981177ed994ecb1c8c2b49f223277d
   SwiftLint: 99f82d07b837b942dd563c668de129a03fc3fb52
 
-PODFILE CHECKSUM: 6ad22f023055be23a7e128670eecc9bf4953dce6
+PODFILE CHECKSUM: ecee706fc4bf1905e1cf6bd1ecf003832cfc390f
 
 COCOAPODS: 1.11.2

@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -45,7 +45,13 @@
 		5EFB0A5727340BF100F39A4D /* ChattingMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EFB0A5527340BF100F39A4D /* ChattingMessageCell.xib */; };
 		5EFB0A5A27341C1100F39A4D /* ChattingTimeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EFB0A5827341C1100F39A4D /* ChattingTimeCell.swift */; };
 		5EFB0A5B27341C1100F39A4D /* ChattingTimeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EFB0A5927341C1100F39A4D /* ChattingTimeCell.xib */; };
-		7C2060A1B418A53F47747CDA /* Pods_Budi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D20131AEAD19181CEF5CF7C /* Pods_Budi.framework */; };
+		A58C8BC816061885FDC90AFA /* Pods_Budi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7012A0925A93DB5B565E17E /* Pods_Budi.framework */; };
+		B91423B6274BD97000F2B9A1 /* String+baseURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91423B5274BD97000F2B9A1 /* String+baseURL.swift */; };
+		B91423B9274BDA7100F2B9A1 /* PostTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91423B8274BDA7100F2B9A1 /* PostTarget.swift */; };
+		B92506CC273ACFE200F06D15 /* String+date.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92506CB273ACFE200F06D15 /* String+date.swift */; };
+		B92506CF273AD13B00F06D15 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92506CE273AD13B00F06D15 /* Post.swift */; };
+		B92506D7273AD7BD00F06D15 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = B92506D6273AD7BD00F06D15 /* .swiftlint.yml */; };
+		B9798F16274A3CDC00159F66 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9798F15274A3CDC00159F66 /* HomeViewModel.swift */; };
 		B97DBB9527147D970018C1D2 /* UIViewController+identifer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B97DBB9427147D970018C1D2 /* UIViewController+identifer.swift */; };
 		B98E530A27396B3F00C73374 /* UINavigationController+translucent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98E530927396B3F00C73374 /* UINavigationController+translucent.swift */; };
 		B9BF787427004094000BE0EF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9BF787327004094000BE0EF /* AppDelegate.swift */; };
@@ -62,12 +68,10 @@
 		B9D66EC82714707000668490 /* MyBudiCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9D66EC72714707000668490 /* MyBudiCoordinator.swift */; };
 		B9D66ECC2714716400668490 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9D66ECB2714716400668490 /* HomeViewController.swift */; };
 		B9D66ECE27147AEA00668490 /* HomeWritingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9D66ECD27147AEA00668490 /* HomeWritingViewController.swift */; };
-		CE79E3112717239400935133 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = CE79E3102717239400935133 /* .swiftlint.yml */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		3D20131AEAD19181CEF5CF7C /* Pods_Budi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Budi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		4AEC87C415DF15561273F3FF /* Pods-Budi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Budi.debug.xcconfig"; path = "Target Support Files/Pods-Budi/Pods-Budi.debug.xcconfig"; sourceTree = "<group>"; };
+		3EFC6DD3B082BF0F0C13FE5E /* Pods-Budi.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Budi.release.xcconfig"; path = "Target Support Files/Pods-Budi/Pods-Budi.release.xcconfig"; sourceTree = "<group>"; };
 		5E2554332732770B00033723 /* HomeDetailPersonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailPersonCell.swift; sourceTree = "<group>"; };
 		5E2554342732770B00033723 /* HomeDetailPersonCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeDetailPersonCell.xib; sourceTree = "<group>"; };
 		5E2554372732AD0800033723 /* UIView+IBInspectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+IBInspectable.swift"; sourceTree = "<group>"; };
@@ -106,7 +110,12 @@
 		5EFB0A5527340BF100F39A4D /* ChattingMessageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChattingMessageCell.xib; sourceTree = "<group>"; };
 		5EFB0A5827341C1100F39A4D /* ChattingTimeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingTimeCell.swift; sourceTree = "<group>"; };
 		5EFB0A5927341C1100F39A4D /* ChattingTimeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChattingTimeCell.xib; sourceTree = "<group>"; };
-		84D727CBB17AD63DD79D7083 /* Pods-Budi.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Budi.release.xcconfig"; path = "Target Support Files/Pods-Budi/Pods-Budi.release.xcconfig"; sourceTree = "<group>"; };
+		B91423B5274BD97000F2B9A1 /* String+baseURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+baseURL.swift"; sourceTree = "<group>"; };
+		B91423B8274BDA7100F2B9A1 /* PostTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTarget.swift; sourceTree = "<group>"; };
+		B92506CB273ACFE200F06D15 /* String+date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+date.swift"; sourceTree = "<group>"; };
+		B92506CE273AD13B00F06D15 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		B92506D6273AD7BD00F06D15 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
+		B9798F15274A3CDC00159F66 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		B97DBB9427147D970018C1D2 /* UIViewController+identifer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+identifer.swift"; sourceTree = "<group>"; };
 		B98E530927396B3F00C73374 /* UINavigationController+translucent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationController+translucent.swift"; sourceTree = "<group>"; };
 		B9BF787027004094000BE0EF /* Budi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Budi.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -125,7 +134,9 @@
 		B9D66EC72714707000668490 /* MyBudiCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyBudiCoordinator.swift; sourceTree = "<group>"; };
 		B9D66ECB2714716400668490 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		B9D66ECD27147AEA00668490 /* HomeWritingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWritingViewController.swift; sourceTree = "<group>"; };
-		CE79E3102717239400935133 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
+		CE79E3102717239400935133 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; name = .swiftlint.yml; path = ../.swiftlint.yml; sourceTree = "<group>"; };
+		E11AF7412462905EC19BCE3A /* Pods-Budi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Budi.debug.xcconfig"; path = "Target Support Files/Pods-Budi/Pods-Budi.debug.xcconfig"; sourceTree = "<group>"; };
+		E7012A0925A93DB5B565E17E /* Pods_Budi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Budi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,7 +144,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7C2060A1B418A53F47747CDA /* Pods_Budi.framework in Frameworks */,
+				A58C8BC816061885FDC90AFA /* Pods_Budi.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -143,8 +154,8 @@
 		4ACE130FE2C1A6782D4E0BF9 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				4AEC87C415DF15561273F3FF /* Pods-Budi.debug.xcconfig */,
-				84D727CBB17AD63DD79D7083 /* Pods-Budi.release.xcconfig */,
+				E11AF7412462905EC19BCE3A /* Pods-Budi.debug.xcconfig */,
+				3EFC6DD3B082BF0F0C13FE5E /* Pods-Budi.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -224,21 +235,38 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
-		6D6A3400F6B2EDCC4DA1B232 /* Frameworks */ = {
+		8F36C0F1B059B04C8ED1401D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				3D20131AEAD19181CEF5CF7C /* Pods_Budi.framework */,
+				E7012A0925A93DB5B565E17E /* Pods_Budi.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B91423B7274BD9AB00F2B9A1 /* APITarget */ = {
+			isa = PBXGroup;
+			children = (
+				B91423B8274BDA7100F2B9A1 /* PostTarget.swift */,
+			);
+			path = APITarget;
+			sourceTree = "<group>";
+		};
+		B92506CD273AD12600F06D15 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B92506CE273AD13B00F06D15 /* Post.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		B9BF786727004094000BE0EF = {
 			isa = PBXGroup;
 			children = (
+				B92506D6273AD7BD00F06D15 /* .swiftlint.yml */,
 				B9BF787227004094000BE0EF /* Budi */,
 				B9BF787127004094000BE0EF /* Products */,
 				4ACE130FE2C1A6782D4E0BF9 /* Pods */,
-				6D6A3400F6B2EDCC4DA1B232 /* Frameworks */,
+				8F36C0F1B059B04C8ED1401D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -263,6 +291,8 @@
 		B9D66EB12714693700668490 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				B91423B7274BD9AB00F2B9A1 /* APITarget */,
+				B92506CD273AD12600F06D15 /* Models */,
 				B9D66ECF27147B0E00668490 /* Extensions */,
 				B9D66EB627146B5000668490 /* Storyborads */,
 				B9D66EB727146DB600668490 /* Coordinators */,
@@ -300,9 +330,10 @@
 				5E2554462732D6F800033723 /* Alerts */,
 				5EA4536B2731413000943C94 /* Cells */,
 				B9D66EBE27146F2F00668490 /* HomeCoordinator.swift */,
-				B9D66ECB2714716400668490 /* HomeViewController.swift */,
 				5EA4536F273144C200943C94 /* HomeDetailViewController.swift */,
 				B9D66ECD27147AEA00668490 /* HomeWritingViewController.swift */,
+				B9D66ECB2714716400668490 /* HomeViewController.swift */,
+				B9798F15274A3CDC00159F66 /* HomeViewModel.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -362,6 +393,8 @@
 				B98E530927396B3F00C73374 /* UINavigationController+translucent.swift */,
 				5EA453AB2731DDA700943C94 /* CALayer+addBorderTop.swift */,
 				5E2554372732AD0800033723 /* UIView+IBInspectable.swift */,
+				B92506CB273ACFE200F06D15 /* String+date.swift */,
+				B91423B5274BD97000F2B9A1 /* String+baseURL.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -373,11 +406,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B9BF788427004096000BE0EF /* Build configuration list for PBXNativeTarget "Budi" */;
 			buildPhases = (
-				62F2D9D4CDF3A5B6CD27530D /* [CP] Check Pods Manifest.lock */,
+				4EFD8C99259647FC3761E505 /* [CP] Check Pods Manifest.lock */,
 				B9BF786C27004094000BE0EF /* Sources */,
 				B9BF786D27004094000BE0EF /* Frameworks */,
 				B9BF786E27004094000BE0EF /* Resources */,
 				B9BF788727004426000BE0EF /* ShellScript */,
+				6C27EB5274F67E555BA02310 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -429,11 +463,11 @@
 				5E45AD142732F47800F0A80C /* BottomSheetViewController.xib in Resources */,
 				5E45AD182732F78200F0A80C /* BottomSheetCell.xib in Resources */,
 				5EFB0A5B27341C1100F39A4D /* ChattingTimeCell.xib in Resources */,
-				CE79E3112717239400935133 /* .swiftlint.yml in Resources */,
 				5EA453A12731778000943C94 /* HomeDetailMainCell.xib in Resources */,
 				5EA4539D2731777500943C94 /* HomeDetailIntroCell.xib in Resources */,
 				B9BF788027004096000BE0EF /* LaunchScreen.storyboard in Resources */,
 				5EA4536A2731412A00943C94 /* HomeCell.xib in Resources */,
+				B92506D7273AD7BD00F06D15 /* .swiftlint.yml in Resources */,
 				B9BF787D27004096000BE0EF /* Assets.xcassets in Resources */,
 				5EFB0A532734016600F39A4D /* MyChattingMessageCell.xib in Resources */,
 				5EFB0A5727340BF100F39A4D /* ChattingMessageCell.xib in Resources */,
@@ -451,7 +485,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		62F2D9D4CDF3A5B6CD27530D /* [CP] Check Pods Manifest.lock */ = {
+		4EFD8C99259647FC3761E505 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -471,6 +505,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6C27EB5274F67E555BA02310 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Budi/Pods-Budi-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Budi/Pods-Budi-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Budi/Pods-Budi-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		B9BF788727004426000BE0EF /* ShellScript */ = {
@@ -505,19 +556,23 @@
 				B9D66ECC2714716400668490 /* HomeViewController.swift in Sources */,
 				5EFB0A5627340BF100F39A4D /* ChattingMessageCell.swift in Sources */,
 				B9D66EBB27146E1F00668490 /* MainTabBarCoordinator.swift in Sources */,
+				B91423B9274BDA7100F2B9A1 /* PostTarget.swift in Sources */,
 				5EA453AC2731DDA700943C94 /* CALayer+addBorderTop.swift in Sources */,
 				5EFB0A4D2733EABF00F39A4D /* ChattingViewController.swift in Sources */,
 				5EA4539C2731777500943C94 /* HomeDetailIntroCell.swift in Sources */,
 				5E2554382732AD0800033723 /* UIView+IBInspectable.swift in Sources */,
 				5EA453982731776900943C94 /* HomeDetailStateCell.swift in Sources */,
+				B92506CF273AD13B00F06D15 /* Post.swift in Sources */,
 				5E2554352732770B00033723 /* HomeDetailPersonCell.swift in Sources */,
 				B9D66EC62714706700668490 /* ChattingCoordinator.swift in Sources */,
 				B9BF787427004094000BE0EF /* AppDelegate.swift in Sources */,
 				5EFB0A522734016600F39A4D /* MyChattingMessageCell.swift in Sources */,
 				B97DBB9527147D970018C1D2 /* UIViewController+identifer.swift in Sources */,
+				B9798F16274A3CDC00159F66 /* HomeViewModel.swift in Sources */,
 				5E2554612732DF8A00033723 /* GreetingAlertViewController.swift in Sources */,
 				B9D66EB927146DF900668490 /* TabBarCoordinator.swift in Sources */,
 				B9D66EBF27146F2F00668490 /* HomeCoordinator.swift in Sources */,
+				B91423B6274BD97000F2B9A1 /* String+baseURL.swift in Sources */,
 				5EFB0A4F2733FDD100F39A4D /* ChattingDetailViewController.swift in Sources */,
 				5EA453692731412A00943C94 /* HomeCell.swift in Sources */,
 				5EFB0A452733E36800F39A4D /* TeamSearchCell.swift in Sources */,
@@ -525,6 +580,7 @@
 				5EFB0A4A2733EAA300F39A4D /* ChattingCell.swift in Sources */,
 				5EA453942731775600943C94 /* HomeDetailLeaderCell.swift in Sources */,
 				B9D66EBD27146E4300668490 /* NavigationCoordinator.swift in Sources */,
+				B92506CC273ACFE200F06D15 /* String+date.swift in Sources */,
 				B9BF787627004095000BE0EF /* SceneDelegate.swift in Sources */,
 				B9D66EC42714703B00668490 /* TeamSearchCoordinator.swift in Sources */,
 				5EA453902731774100943C94 /* HomeDetailMemberCell.swift in Sources */,
@@ -675,7 +731,7 @@
 		};
 		B9BF788527004096000BE0EF /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4AEC87C415DF15561273F3FF /* Pods-Budi.debug.xcconfig */;
+			baseConfigurationReference = E11AF7412462905EC19BCE3A /* Pods-Budi.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -695,7 +751,7 @@
 		};
 		B9BF788627004096000BE0EF /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 84D727CBB17AD63DD79D7083 /* Pods-Budi.release.xcconfig */;
+			baseConfigurationReference = 3EFC6DD3B082BF0F0C13FE5E /* Pods-Budi.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

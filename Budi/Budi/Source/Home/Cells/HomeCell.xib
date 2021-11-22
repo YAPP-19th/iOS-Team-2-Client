@@ -113,6 +113,14 @@
                 <constraint firstItem="JVC-jL-g5q" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="yc7-Nr-3LX"/>
             </constraints>
             <size key="customSize" width="493" height="312"/>
+            <connections>
+                <outlet property="descriptionLabel" destination="fEi-o1-Ob6" id="Nbx-Yi-HLJ"/>
+                <outlet property="imageView" destination="JVC-jL-g5q" id="HR9-CR-7YP"/>
+                <outlet property="positionLabel" destination="ByQ-5k-ZCc" id="5yH-YQ-RLh"/>
+                <outlet property="timeLabel" destination="Mxi-yD-YoK" id="cUk-9e-uHM"/>
+                <outlet property="titleLabel" destination="SAN-Fg-lRG" id="5e8-Wx-Xus"/>
+                <outlet property="toolStackLabel" destination="uJ3-IY-Sy9" id="beN-Vo-4wj"/>
+            </connections>
             <point key="canvasLocation" x="223.91304347826087" y="94.084821428571431"/>
         </collectionViewCell>
     </objects>

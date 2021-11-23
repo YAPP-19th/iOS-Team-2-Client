@@ -165,8 +165,9 @@ private extension LocationSearchViewController {
 
 extension LocationSearchViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        let allLocations = Location().location
-        locationResults = allLocations.filter { $0.contains(searchText) }
+        LocationManager.shared.searchAddress(searchText) { results in
+            self.locationResults = results
+        }
         searchTableView.reloadData()
     }
 }

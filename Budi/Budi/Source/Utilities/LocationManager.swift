@@ -21,6 +21,11 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
         print(error.localizedDescription)
     }
 
+    func searchAddress(_ searchText: String, _ completion: @escaping ([String]) -> Void) {
+        let result = Location().location.filter { $0.contains(searchText) }
+        completion(result)
+    }
+
     func getAddress(_ completion: @escaping (Result<String, Error>) -> Void) {
         if CLLocationManager.locationServicesEnabled() {
             manager.startUpdatingLocation()

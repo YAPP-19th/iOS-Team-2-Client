@@ -41,7 +41,7 @@ final class HomeViewModel: ViewModel {
                     // 추후 목록에 페이징이 적용되면 이부분이 조금 바뀔듯
                 self.provider
                     .requestPublisher(.posts)
-                    .map(PostResponse.self)
+                    .map(APIResponse<PostContainer>.self)
                     .map(\.data.content)
                     .sink(receiveCompletion: { [weak self] completion in
                         // 에러 핸들링

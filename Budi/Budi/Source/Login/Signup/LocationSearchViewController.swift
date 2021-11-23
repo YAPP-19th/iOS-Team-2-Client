@@ -13,7 +13,7 @@ class LocationSearchViewController: UIViewController {
 
     private let searchBar: UISearchBar = {
         let search = UISearchBar()
-        search.placeholder = "도로명으로 검색"
+        search.placeholder = "지명으로 검색"
         search.setImage(UIImage(systemName: "magnifyingglass"), for: UISearchBar.Icon.search, state: .normal)
         search.setImage(UIImage(systemName: "xmark.circle.fill"), for: .clear, state: .normal)
         search.tintColor = UIColor.init(white: 0, alpha: 0.12)

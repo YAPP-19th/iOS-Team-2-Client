@@ -22,7 +22,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
     }
 
     func searchAddress(_ searchText: String, _ completion: @escaping ([String]) -> Void) {
-        let result = Location().location.filter { $0.contains(searchText) }
+        let result = Location().locations.filter { $0.contains(searchText) }
         completion(result)
     }
 
@@ -34,19 +34,8 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
                 let locale = Locale(identifier: "Ko-kr")
                 CLGeocoder().reverseGeocodeLocation(location, preferredLocale: locale) { placemarks, error in
                     guard let placemark = placemarks?.first, let administrativeArea = placemark.administrativeArea, let locality = placemark.locality else { return }
-                    var subLocality = ""
 
-                    if locality.last == "시" {
-                        let descriptions = placemark.description.components(separatedBy: ", ")
-                        if descriptions.count > 2 {
-                            let details = descriptions[1].components(separatedBy: " ")
-                            if details.count > 3 {
-                                subLocality = details[2]
-                            }
-                        }
-                    }
-
-                    let address = "\(administrativeArea) \(locality)\(subLocality.isEmpty ? "" : " \(subLocality)")"
+                    let address = "\(administrativeArea) \(locality == "세종특별자치시" ? "" : locality)"
                     completion(.success(address))
 
                     if let error = error {

@@ -188,6 +188,7 @@ extension LocationSearchViewController: UITableViewDelegate, UITableViewDataSour
         nextButton.backgroundColor = UIColor.budiGreen
         nextButton.isEnabled = true
         self.view.endEditing(true)
+        searchBar.text = location
         NotificationCenter.default.post(name: NSNotification.Name("LocationNextActivation"), object: location)
     }
 

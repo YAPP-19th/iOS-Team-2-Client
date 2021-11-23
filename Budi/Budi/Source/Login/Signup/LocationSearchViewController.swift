@@ -75,7 +75,7 @@ class LocationSearchViewController: UIViewController {
 private extension LocationSearchViewController {
     @objc
     func locationButtonAction() {
-        LocationManager.shared.getAdministrativeArea { result in
+        LocationManager.shared.getAddress { result in
             switch result {
             case .success(let location):
                 self.searchBar.text = location
@@ -101,10 +101,9 @@ private extension LocationSearchViewController {
         LocationManager.shared.requestWhenInUseAuthorization()
         NotificationCenter.default.addObserver(self, selector: #selector(locationAuthorizationSuccess), name: Notification.Name("locationAuthorizationSuccess"), object: nil)
     }
- 
+
     @objc
     func locationAuthorizationSuccess() {
-        print("locationAuthorizationSuccess")
         nowLocationButton.isEnabled = true
         nowLocationButton.setTitleColor(UIColor.budiDarkGray, for: .normal)
         nowLocationButton.backgroundColor = UIColor.budiLightGreen

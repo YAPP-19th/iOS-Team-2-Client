@@ -62,7 +62,7 @@
 		A8CD93422736B58E00299AB4 /* IntroduceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CD93412736B58E00299AB4 /* IntroduceView.swift */; };
 		A8CD93442736E82300299AB4 /* PositionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CD93432736E82300299AB4 /* PositionViewController.swift */; };
 		A8CD93472737B9AB00299AB4 /* NormalPositionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CD93462737B9AA00299AB4 /* NormalPositionView.swift */; };
-		A8CD934F2737BD4400299AB4 /* NormalPositionSelect.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CD934E2737BD4400299AB4 /* NormalPositionSelect.swift */; };
+		A8CD934F2737BD4400299AB4 /* NormalPositionSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CD934E2737BD4400299AB4 /* NormalPositionSelectView.swift */; };
 		A8CD93532737F2BF00299AB4 /* PositionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CD93522737F2BF00299AB4 /* PositionData.swift */; };
 		A8CD935C27383CB300299AB4 /* LocationSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CD935B27383CB300299AB4 /* LocationSearchViewController.swift */; };
 		A8CD935E273849F800299AB4 /* LocationDummyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CD935D273849F800299AB4 /* LocationDummyData.swift */; };
@@ -144,7 +144,7 @@
 		A8CD93412736B58E00299AB4 /* IntroduceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroduceView.swift; sourceTree = "<group>"; };
 		A8CD93432736E82300299AB4 /* PositionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositionViewController.swift; sourceTree = "<group>"; };
 		A8CD93462737B9AA00299AB4 /* NormalPositionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NormalPositionView.swift; sourceTree = "<group>"; };
-		A8CD934E2737BD4400299AB4 /* NormalPositionSelect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NormalPositionSelect.swift; sourceTree = "<group>"; };
+		A8CD934E2737BD4400299AB4 /* NormalPositionSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NormalPositionSelectView.swift; sourceTree = "<group>"; };
 		A8CD93522737F2BF00299AB4 /* PositionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositionData.swift; sourceTree = "<group>"; };
 		A8CD935B27383CB300299AB4 /* LocationSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchViewController.swift; sourceTree = "<group>"; };
 		A8CD935D273849F800299AB4 /* LocationDummyData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDummyData.swift; sourceTree = "<group>"; };
@@ -325,7 +325,7 @@
 				A8CD933F2736ABD300299AB4 /* LocationSelectView.swift */,
 				A8CD93412736B58E00299AB4 /* IntroduceView.swift */,
 				A8CD93462737B9AA00299AB4 /* NormalPositionView.swift */,
-				A8CD934E2737BD4400299AB4 /* NormalPositionSelect.swift */,
+				A8CD934E2737BD4400299AB4 /* NormalPositionSelectView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -616,7 +616,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A8CD934F2737BD4400299AB4 /* NormalPositionSelect.swift in Sources */,
+				A8CD934F2737BD4400299AB4 /* NormalPositionSelectView.swift in Sources */,
 				A8CD933E2736A93500299AB4 /* UIColor.swift in Sources */,
 				A8CD93402736ABD300299AB4 /* LocationSelectView.swift in Sources */,
 				B9D66ECE27147AEA00668490 /* HomeWritingViewController.swift in Sources */,

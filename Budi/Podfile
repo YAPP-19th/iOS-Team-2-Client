@@ -8,5 +8,5 @@ target 'Budi' do
   # Pods for Budi
 pod 'SwiftLint'
 pod 'naveridlogin-sdk-ios'
-
+pod 'CombineCocoa'
 end

@@ -7,21 +7,23 @@
 
 import UIKit
 import Combine
+
 class SignupNormalViewController: UIViewController {
 
     weak var coordinator: LoginCoordinator?
     private var viewModel = SignupNormalViewModel()
-    var cancellables = Set<AnyCancellable>()
+    private var cancellables = Set<AnyCancellable>()
+
     override func viewDidLayoutSubviews() {
         scrollView.updateContentView()
     }
 
-    let introduce = IntroduceView()
-    let location = LocationSelectView()
-    let nick = NickNameView()
-    let spacing = SpacingDarkLineView()
-    var defaultArray: [NSLayoutConstraint] = []
-    var newArray: [NSLayoutConstraint] = []
+    private let introduceView = IntroduceView()
+    private let locationSelectView = LocationSelectView()
+    private let nickNameView = NickNameView()
+    private let darkSpacingLineView = SpacingDarkLineView()
+    private var defaultConstraint: [NSLayoutConstraint] = []
+    private var newConstraint: [NSLayoutConstraint] = []
 
     @IBOutlet weak var signupInfoLabel: UILabel!
     private let progressView: ProgressView = {
@@ -42,6 +44,14 @@ class SignupNormalViewController: UIViewController {
         return button
     }()
 
+    @objc
+    func nextAction() {
+        viewModel.pushServer()
+        let position = PositionViewController()
+        position.navigationItem.title = "회원가입"
+        navigationController?.pushViewController(position, animated: true)
+    }
+
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -58,8 +68,8 @@ class SignupNormalViewController: UIViewController {
         let locationSearch = LocationSearchViewController()
         locationSearch.navigationItem.title = "지역 선택"
         navigationController?.pushViewController(locationSearch, animated: true)
-        NSLayoutConstraint.deactivate(defaultArray)
-        NSLayoutConstraint.activate(newArray)
+        NSLayoutConstraint.deactivate(defaultConstraint)
+        NSLayoutConstraint.activate(newConstraint)
         NotificationCenter.default.post(name: NSNotification.Name("ActivationNext"), object: nil, userInfo: nil)
     }
 
@@ -67,13 +77,6 @@ class SignupNormalViewController: UIViewController {
     func activationNextButton() {
         nextButton.isEnabled = true
         nextButton.backgroundColor = UIColor.budiGreen
-    }
-
-    @objc
-    func nextAction() {
-        let position = PositionViewController()
-        position.navigationItem.title = "회원가입"
-        navigationController?.pushViewController(position, animated: true)
     }
 
     override func viewDidLoad() {
@@ -85,23 +88,17 @@ class SignupNormalViewController: UIViewController {
         configureLayout()
         keyBoardNotification()
         keyBoardDismiss()
-        fetchNaverInfo()
+        bindViewModel()
     }
 
-    private func fetchNaverInfo() {
-        self.viewModel.$naverName
+    private func bindViewModel() {
+        viewModel.state.naverData
             .receive(on: DispatchQueue.main)
-            .sink(receiveValue: { [weak self] name in
-                self?.nick.loadNameText(name)
+            .sink(receiveValue: { [weak self] data in
+                self?.nickNameView.loadNameText(data?.name ?? "")
+                self?.introduceView.loadTextView(data?.email ?? "")
             })
-            .store(in: &self.cancellables)
-
-        self.viewModel.$naverEmail
-            .receive(on: DispatchQueue.main)
-            .sink(receiveValue: { [weak self] email in
-                self?.introduce.loadTextView(email)
-            })
-            .store(in: &self.cancellables)
+            .store(in: &cancellables)
     }
 
     private func configureAddOserver() {
@@ -112,7 +109,7 @@ class SignupNormalViewController: UIViewController {
     @objc
     func loadLocation(_ notification: NSNotification) {
         let select = notification.object as? String ?? ""
-        location.locationSelected(text: select)
+        locationSelectView.locationSelected(text: select)
 
     }
 
@@ -149,49 +146,49 @@ class SignupNormalViewController: UIViewController {
         progressView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor).isActive = true
         progressView.heightAnchor.constraint(equalToConstant: 77).isActive = true
 
-        scrollView.addSubview(spacing)
-        spacing.translatesAutoresizingMaskIntoConstraints = false
-        spacing.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor).isActive = true
-        spacing.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor).isActive = true
-        spacing.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor).isActive = true
-        spacing.topAnchor.constraint(equalTo: progressView.bottomAnchor, constant: 20).isActive = true
-        spacing.heightAnchor.constraint(equalToConstant: 8).isActive = true
+        scrollView.addSubview(darkSpacingLineView)
+        darkSpacingLineView.translatesAutoresizingMaskIntoConstraints = false
+        darkSpacingLineView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor).isActive = true
+        darkSpacingLineView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor).isActive = true
+        darkSpacingLineView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor).isActive = true
+        darkSpacingLineView.topAnchor.constraint(equalTo: progressView.bottomAnchor, constant: 20).isActive = true
+        darkSpacingLineView.heightAnchor.constraint(equalToConstant: 8).isActive = true
 
-        scrollView.addSubview(nick)
-        nick.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.addSubview(nickNameView)
+        nickNameView.translatesAutoresizingMaskIntoConstraints = false
 
-        nick.topAnchor.constraint(equalTo: spacing.bottomAnchor).isActive = true
-        nick.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor).isActive = true
-        nick.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor).isActive = true
-        nick.heightAnchor.constraint(equalToConstant: 92).isActive = true
+        nickNameView.topAnchor.constraint(equalTo: darkSpacingLineView.bottomAnchor).isActive = true
+        nickNameView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor).isActive = true
+        nickNameView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor).isActive = true
+        nickNameView.heightAnchor.constraint(equalToConstant: 92).isActive = true
 
-        scrollView.addSubview(location)
-        location.translatesAutoresizingMaskIntoConstraints = false
-        location.topAnchor.constraint(equalTo: nick.bottomAnchor, constant: 30).isActive = true
-        location.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor).isActive = true
-        location.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor).isActive = true
-        location.heightAnchor.constraint(equalToConstant: 117).isActive = true
-        location.configureUnderline(width: view.bounds.width)
+        scrollView.addSubview(locationSelectView)
+        locationSelectView.translatesAutoresizingMaskIntoConstraints = false
+        locationSelectView.topAnchor.constraint(equalTo: nickNameView.bottomAnchor, constant: 30).isActive = true
+        locationSelectView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor).isActive = true
+        locationSelectView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor).isActive = true
+        locationSelectView.heightAnchor.constraint(equalToConstant: 117).isActive = true
+        locationSelectView.configureUnderline(width: view.bounds.width)
 
-        scrollView.addSubview(introduce)
-        introduce.translatesAutoresizingMaskIntoConstraints = false
-        defaultArray = [
-            introduce.topAnchor.constraint(equalTo: location.bottomAnchor),
-            introduce.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
-            introduce.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
-            introduce.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
-            introduce.heightAnchor.constraint(equalToConstant: 179),
-            introduce.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -20)
+        scrollView.addSubview(introduceView)
+        introduceView.translatesAutoresizingMaskIntoConstraints = false
+        defaultConstraint = [
+            introduceView.topAnchor.constraint(equalTo: locationSelectView.bottomAnchor),
+            introduceView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            introduceView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            introduceView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            introduceView.heightAnchor.constraint(equalToConstant: 179),
+            introduceView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -20)
         ]
-        newArray = [
-            introduce.topAnchor.constraint(equalTo: location.bottomAnchor, constant: 40),
-            introduce.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
-            introduce.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
-            introduce.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
-            introduce.heightAnchor.constraint(equalToConstant: 179),
-            introduce.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -20)
+        newConstraint = [
+            introduceView.topAnchor.constraint(equalTo: locationSelectView.bottomAnchor, constant: 40),
+            introduceView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            introduceView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            introduceView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            introduceView.heightAnchor.constraint(equalToConstant: 179),
+            introduceView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -20)
         ]
-        NSLayoutConstraint.activate(defaultArray)
+        NSLayoutConstraint.activate(defaultConstraint)
     }
 
     private func keyBoardNotification() {

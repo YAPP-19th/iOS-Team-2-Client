@@ -7,12 +7,13 @@
 
 import Foundation
 
-struct NaverData: Decodable {
-    let response: Response
+struct Response: Decodable {
+    let response: NaverData
 }
 
-struct Response: Decodable {
-    let nickname: String
-    let email: String
-    let name: String
+struct NaverData: Decodable {
+    let nickname: String?
+    let email: String?
+    let name: String?
+    let id: String
 }

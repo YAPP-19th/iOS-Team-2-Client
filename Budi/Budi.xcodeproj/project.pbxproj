@@ -32,6 +32,11 @@
 		5EA453A02731778000943C94 /* HomeDetailMainCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA4539E2731778000943C94 /* HomeDetailMainCell.swift */; };
 		5EA453A12731778000943C94 /* HomeDetailMainCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EA4539F2731778000943C94 /* HomeDetailMainCell.xib */; };
 		5EA453AC2731DDA700943C94 /* CALayer+addBorderTop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA453AB2731DDA700943C94 /* CALayer+addBorderTop.swift */; };
+		5EA575F9274E9B1E00DF6974 /* HomeDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA575F8274E9B1E00DF6974 /* HomeDetailViewModel.swift */; };
+		5EA575FC274E9BFC00DF6974 /* PostTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA575FB274E9BFC00DF6974 /* PostTarget.swift */; };
+		5EA575FE274E9C4800DF6974 /* String+baseURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA575FD274E9C4800DF6974 /* String+baseURL.swift */; };
+		5EA57601274E9C7900DF6974 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA57600274E9C7900DF6974 /* Post.swift */; };
+		5EA57603274E9CE900DF6974 /* String+date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA57602274E9CE900DF6974 /* String+date.swift */; };
 		5EF5F3292741590300A5F6E2 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF5F3282741590300A5F6E2 /* LocationManager.swift */; };
 		5EFB0A412733CD7700F39A4D /* TeamSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EFB0A402733CD7700F39A4D /* TeamSearchViewController.swift */; };
 		5EFB0A452733E36800F39A4D /* TeamSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EFB0A432733E36800F39A4D /* TeamSearchCell.swift */; };
@@ -114,6 +119,11 @@
 		5EA4539E2731778000943C94 /* HomeDetailMainCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailMainCell.swift; sourceTree = "<group>"; };
 		5EA4539F2731778000943C94 /* HomeDetailMainCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeDetailMainCell.xib; sourceTree = "<group>"; };
 		5EA453AB2731DDA700943C94 /* CALayer+addBorderTop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+addBorderTop.swift"; sourceTree = "<group>"; };
+		5EA575F8274E9B1E00DF6974 /* HomeDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailViewModel.swift; sourceTree = "<group>"; };
+		5EA575FB274E9BFC00DF6974 /* PostTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTarget.swift; sourceTree = "<group>"; };
+		5EA575FD274E9C4800DF6974 /* String+baseURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+baseURL.swift"; sourceTree = "<group>"; };
+		5EA57600274E9C7900DF6974 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		5EA57602274E9CE900DF6974 /* String+date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+date.swift"; sourceTree = "<group>"; };
 		5EF5F3282741590300A5F6E2 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		5EFB0A402733CD7700F39A4D /* TeamSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamSearchViewController.swift; sourceTree = "<group>"; };
 		5EFB0A432733E36800F39A4D /* TeamSearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamSearchCell.swift; sourceTree = "<group>"; };
@@ -240,6 +250,22 @@
 				5E2554342732770B00033723 /* HomeDetailPersonCell.xib */,
 			);
 			path = HomeDetail;
+			sourceTree = "<group>";
+		};
+		5EA575FA274E9BE800DF6974 /* APITarget */ = {
+			isa = PBXGroup;
+			children = (
+				5EA575FB274E9BFC00DF6974 /* PostTarget.swift */,
+			);
+			path = APITarget;
+			sourceTree = "<group>";
+		};
+		5EA575FF274E9C6800DF6974 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				5EA57600274E9C7900DF6974 /* Post.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		5EF5F327274158E600A5F6E2 /* Utilities */ = {
@@ -378,6 +404,8 @@
 		B9D66EB12714693700668490 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				5EA575FF274E9C6800DF6974 /* Models */,
+				5EA575FA274E9BE800DF6974 /* APITarget */,
 				B9D66EB627146B5000668490 /* Storyborads */,
 				B9D66EB727146DB600668490 /* Coordinators */,
 				A82E49DB273111050068218A /* Login */,
@@ -417,6 +445,7 @@
 				5EA4536B2731413000943C94 /* Cells */,
 				B9D66EBE27146F2F00668490 /* HomeCoordinator.swift */,
 				B9D66ECB2714716400668490 /* HomeViewController.swift */,
+				5EA575F8274E9B1E00DF6974 /* HomeDetailViewModel.swift */,
 				5EA4536F273144C200943C94 /* HomeDetailViewController.swift */,
 				B9D66ECD27147AEA00668490 /* HomeWritingViewController.swift */,
 			);
@@ -481,6 +510,8 @@
 				5E2554372732AD0800033723 /* UIView+IBInspectable.swift */,
 				A8A6D9F8273D2D1800C84C52 /* BackButtonExtension.swift */,
 				A8CA17EA273EC267002CA2B9 /* UIResponder.swift */,
+				5EA575FD274E9C4800DF6974 /* String+baseURL.swift */,
+				5EA57602274E9CE900DF6974 /* String+date.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -642,6 +673,7 @@
 				A8CD93472737B9AB00299AB4 /* NormalPositionView.swift in Sources */,
 				A82E49DF273111E50068218A /* LoginCoordinator.swift in Sources */,
 				B9D66ECC2714716400668490 /* HomeViewController.swift in Sources */,
+				5EA575F9274E9B1E00DF6974 /* HomeDetailViewModel.swift in Sources */,
 				A8CD9339273673C100299AB4 /* SpacingDarkLineView.swift in Sources */,
 				A8CA17EB273EC267002CA2B9 /* UIResponder.swift in Sources */,
 				A8CD936127384C4900299AB4 /* SearchTableViewCell.swift in Sources */,
@@ -658,6 +690,7 @@
 				B9D66ECC2714716400668490 /* HomeViewController.swift in Sources */,
 				5EFB0A5627340BF100F39A4D /* ChattingMessageCell.swift in Sources */,
 				B9D66EBB27146E1F00668490 /* MainTabBarCoordinator.swift in Sources */,
+				5EA575FC274E9BFC00DF6974 /* PostTarget.swift in Sources */,
 				5EA453AC2731DDA700943C94 /* CALayer+addBorderTop.swift in Sources */,
 				5EFB0A4D2733EABF00F39A4D /* ChattingViewController.swift in Sources */,
 				5EA4539C2731777500943C94 /* HomeDetailIntroCell.swift in Sources */,
@@ -665,6 +698,7 @@
 				5EA453982731776900943C94 /* HomeDetailStateCell.swift in Sources */,
 				5E2554352732770B00033723 /* HomeDetailPersonCell.swift in Sources */,
 				B9D66EC62714706700668490 /* ChattingCoordinator.swift in Sources */,
+				5EA57601274E9C7900DF6974 /* Post.swift in Sources */,
 				A8CD93442736E82300299AB4 /* PositionViewController.swift in Sources */,
 				B9BF787427004094000BE0EF /* AppDelegate.swift in Sources */,
 				5EFB0A522734016600F39A4D /* MyChattingMessageCell.swift in Sources */,
@@ -675,8 +709,10 @@
 				5EFB0A4F2733FDD100F39A4D /* ChattingDetailViewController.swift in Sources */,
 				5EA453692731412A00943C94 /* HomeCell.swift in Sources */,
 				5EFB0A452733E36800F39A4D /* TeamSearchCell.swift in Sources */,
+				5EA57603274E9CE900DF6974 /* String+date.swift in Sources */,
 				B9D66EC82714707000668490 /* MyBudiCoordinator.swift in Sources */,
 				5EFB0A4A2733EAA300F39A4D /* ChattingCell.swift in Sources */,
+				5EA575FE274E9C4800DF6974 /* String+baseURL.swift in Sources */,
 				5EA453942731775600943C94 /* HomeDetailLeaderCell.swift in Sources */,
 				B9D66EBD27146E4300668490 /* NavigationCoordinator.swift in Sources */,
 				A8CD93342736566100299AB4 /* ProgressView.swift in Sources */,

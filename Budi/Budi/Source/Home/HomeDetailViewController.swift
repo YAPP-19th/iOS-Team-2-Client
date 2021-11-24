@@ -6,36 +6,46 @@
 //
 
 import UIKit
+import Moya
+import Combine
+import CombineCocoa
 
 final class HomeDetailViewController: UIViewController {
 
     @IBOutlet weak var mainCollectionView: UICollectionView!
     @IBOutlet weak var bottomView: UIView!
     @IBOutlet weak var backgroundView: UIView!
+
     @IBOutlet weak var bottomSheetView: UIView!
     @IBOutlet weak var bottomSheetCollectionView: UICollectionView!
 
     @IBOutlet weak var heartButton: UIButton!
     @IBOutlet weak var heartCountLabel: UILabel!
+    @IBOutlet weak var submitButton: UIButton!
+    @IBOutlet weak var bottomSheetCloseButton: UIButton!
 
-    @IBAction func heartButtonTapped(_ sender: Any) {
-        heartButtonTapped()
-    }
-    @IBAction func submitButtonTapped(_ sender: Any) {
-        submitButtonTapped()
-    }
-    @IBAction func bottomSheetCloseButtonTapped(_ sender: Any) {
-        bottomSheetCloseButtonTapped()
-    }
+    private var isHeartButtonChecked: Bool = false
 
     weak var coordinator: HomeCoordinator?
-    private var isHeartButtonChecked: Bool = false
+    private let viewModel: HomeDetailViewModel
+    private var cancellables = Set<AnyCancellable>()
+
+    init?(coder: NSCoder, viewModel: HomeDetailViewModel) {
+        self.viewModel = viewModel
+        super.init(coder: coder)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("This viewController must be init with viewModel")
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         configureNavigationBar()
         configureCollectionView()
         bottomView.layer.addBorderTop()
+        bindViewModel()
+        setPublisher()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -52,6 +62,41 @@ final class HomeDetailViewController: UIViewController {
 }
 
 private extension HomeDetailViewController {
+    func setPublisher() {
+        heartButton.tapPublisher
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in
+                guard let self = self else { return }
+                self.isHeartButtonChecked.toggle()
+                self.heartButton.setImage(UIImage(systemName: self.isHeartButtonChecked ? "heart.fill" : "heart"), for: .normal)
+                self.heartButton.tintColor = self.isHeartButtonChecked ? UIColor.budiGreen : UIColor.budiGray
+            }.store(in: &cancellables)
+
+        submitButton.tapPublisher
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in
+                guard let self = self else { return }
+                self.backgroundView.isHidden = false
+                UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseIn, animations: { [weak self] in
+                    self?.bottomSheetView.center.y -= self?.bottomSheetView.bounds.height ?? 0
+                }, completion: nil)
+            }.store(in: &cancellables)
+
+        bottomSheetCloseButton.tapPublisher
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in
+                guard let self = self else { return }
+                UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseIn, animations: { [weak self] in
+                    self?.bottomSheetView.center.y += self?.bottomSheetView.bounds.height ?? 0
+                }) { [weak self] _ in
+                    self?.backgroundView.isHidden = true
+                }
+            }.store(in: &cancellables)
+    }
+
+    func bindViewModel() {
+    }
+
     func configureCollectionView() {
         mainCollectionView.dataSource = self
         mainCollectionView.delegate = self
@@ -64,11 +109,10 @@ private extension HomeDetailViewController {
         bottomSheetCollectionView.dataSource = self
         bottomSheetCollectionView.delegate = self
         bottomSheetCollectionView.register(.init(nibName: BottomSheetCell.identifier, bundle: nil), forCellWithReuseIdentifier: BottomSheetCell.identifier)
-
     }
 }
 
-extension HomeDetailViewController: UICollectionViewDataSource {
+extension HomeDetailViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         1
     }
@@ -103,13 +147,8 @@ extension HomeDetailViewController: UICollectionViewDataSource {
     }
 }
 
-extension HomeDetailViewController: UICollectionViewDelegate {
-
-}
-
 extension HomeDetailViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-
         var size = CGSize(width: collectionView.frame.width, height: 0)
 
         if collectionView == mainCollectionView {
@@ -145,36 +184,12 @@ private extension HomeDetailViewController {
         navigationItem.rightBarButtonItem = actionButton
         navigationController?.navigationBar.tintColor = .systemGray
     }
-}
 
-private extension HomeDetailViewController {
     @objc
     func actionButtonTapped() {
         let alert = GreetingAlertViewController()
         alert.modalPresentationStyle = .overCurrentContext
         alert.modalTransitionStyle = .crossDissolve
         present(alert, animated: true, completion: nil)
-    }
-
-    func heartButtonTapped() {
-        isHeartButtonChecked.toggle()
-        heartButton.setImage(UIImage(systemName: isHeartButtonChecked ? "heart.fill" : "heart"), for: .normal)
-        heartButton.tintColor = isHeartButtonChecked ? UIColor.budiGreen : UIColor.budiGray
-    }
-
-    func submitButtonTapped() {
-        backgroundView.isHidden = false
-
-        UIView.animate(withDuration: 0.6, delay: 0, options: .curveEaseIn, animations: { [weak self] in
-            self?.bottomSheetView.center.y -= self?.bottomSheetView.bounds.height ?? 0
-        }, completion: nil)
-    }
-
-    func bottomSheetCloseButtonTapped() {
-        backgroundView.isHidden = true
-
-        UIView.animate(withDuration: 0.6, delay: 0, options: .curveEaseIn, animations: { [weak self] in
-            self?.bottomSheetView.center.y += self?.bottomSheetView.bounds.height ?? 0
-        }, completion: nil)
     }
 }

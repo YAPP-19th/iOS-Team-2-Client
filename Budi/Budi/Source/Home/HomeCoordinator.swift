@@ -34,8 +34,11 @@ extension HomeCoordinator {
 
     func showDetail() {
         let viewController: HomeDetailViewController = storyboard.instantiateViewController(
-            identifier: HomeDetailViewController.identifier)
-
+            identifier: HomeDetailViewController.identifier) { coder -> HomeDetailViewController? in
+                let viewModel = HomeDetailViewModel()
+                return HomeDetailViewController(coder: coder, viewModel: viewModel)
+            }
+        viewController.coordinator = self
         navigationController?.pushViewController(viewController, animated: true)
     }
 }

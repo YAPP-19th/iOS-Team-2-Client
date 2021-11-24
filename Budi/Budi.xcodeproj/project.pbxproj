@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -350,6 +350,7 @@
 		B9BF786727004094000BE0EF = {
 			isa = PBXGroup;
 			children = (
+				CE79E3102717239400935133 /* .swiftlint.yml */,
 				B9BF787227004094000BE0EF /* Budi */,
 				B9BF787127004094000BE0EF /* Products */,
 				4ACE130FE2C1A6782D4E0BF9 /* Pods */,
@@ -370,7 +371,6 @@
 			children = (
 				B9D66EB2271469AB00668490 /* Resource */,
 				B9D66EB12714693700668490 /* Source */,
-				CE79E3102717239400935133 /* .swiftlint.yml */,
 			);
 			path = Budi;
 			sourceTree = "<group>";
@@ -497,6 +497,7 @@
 				B9BF786D27004094000BE0EF /* Frameworks */,
 				B9BF786E27004094000BE0EF /* Resources */,
 				B9BF788727004426000BE0EF /* ShellScript */,
+				BF8E74264E2489E83DCC792D /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -608,6 +609,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\n${PODS_ROOT}/SwiftLint/swiftlint\n";
+		};
+		BF8E74264E2489E83DCC792D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Budi/Pods-Budi-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Budi/Pods-Budi-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Budi/Pods-Budi-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 

@@ -9,6 +9,7 @@ import UIKit
 
 class BottomSheetCell: UICollectionViewCell {
 
+    @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var textLabel: UILabel!
     @IBOutlet weak var checkButton: UIButton!
     @IBOutlet weak var checkButtonCircle: UIView!
@@ -23,7 +24,6 @@ class BottomSheetCell: UICollectionViewCell {
     }
 
     func updateUI(status: RecruitingStatusResponse) {
-        print(status.positionName)
         textLabel.text = status.positionName
     }
 }
@@ -32,10 +32,8 @@ private extension BottomSheetCell {
     func checkButtonTapped() {
         isChecked.toggle()
 
-        let green = UIColor(named: "Green") ?? .systemGreen
-        let lightGreen = UIColor(named: "LightGreen") ?? .systemGreen
-        let lightGray = UIColor(named: "LightGray") ?? .systemGray
-        checkButton.tintColor = isChecked ? green : .white
-        checkButtonCircle.borderColor = isChecked ? lightGreen : lightGray
+        checkButton.tintColor = isChecked ? UIColor.budiGreen : .white
+        checkButtonCircle.borderColor = isChecked ? UIColor.budiLightGreen : UIColor.budiLightGray
+        containerView.borderColor = isChecked ? UIColor.budiGreen : UIColor.budiLightGray
     }
 }

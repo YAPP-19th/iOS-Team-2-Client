@@ -8,7 +8,7 @@
 import Moya
 
 enum PostTarget {
-
+    case post(id: Int)
     case posts
 }
 
@@ -18,7 +18,10 @@ extension PostTarget: TargetType {
     }
 
     var path: String {
-        return "/posts"
+        switch self {
+        case .post(let id): return "/posts/\(id)"
+        case .posts: return "/posts"
+        }
     }
 
     var method: Moya.Method {

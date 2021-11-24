@@ -26,7 +26,7 @@ final class HomeDetailViewModel: ViewModel {
     }
 
     struct State {
-        let posts = CurrentValueSubject<[Post], Never>([])
+        let post = CurrentValueSubject<Post?, Never>(nil)
     }
 
     let action = Action()
@@ -35,5 +35,29 @@ final class HomeDetailViewModel: ViewModel {
     private let provider = MoyaProvider<PostTarget>()
 
     init() {
+        action.fetch
+            .sink(receiveValue: { [weak self] _ in
+                guard let self = self else { return }
+
+                self.provider
+                    .requestPublisher(.post(id: 11))
+                    .map(APIResponse<Post>.self)
+                    .map(\.data)
+                    .sink(receiveCompletion: { [weak self] completion in
+                        guard case let .failure(error) = completion else { return }
+                        self?.state.post.send(nil)
+                        print(error.localizedDescription)
+                    }, receiveValue: { [weak self] post in
+                        self?.state.post.send(post)
+                    })
+                    .store(in: &self.cancellables)
+            }).store(in: &cancellables)
+
+        action.refresh
+            .sink { [weak self] _ in
+                self?.action.fetch.send(())
+            }.store(in: &cancellables)
+
+        action.fetch.send(())
     }
 }

@@ -95,6 +95,15 @@ private extension HomeDetailViewController {
     }
 
     func bindViewModel() {
+        viewModel.state.post
+            .receive(on: DispatchQueue.main)
+            .sink(receiveCompletion: { [weak self] _ in
+                self?.mainCollectionView.reloadData()
+            }, receiveValue: { post in
+                if let post = post {
+                    print(post)
+                }
+            }).store(in: &cancellables)
     }
 
     func configureCollectionView() {

@@ -106,9 +106,11 @@ struct Post: Decodable {
 
 // MARK: - RecruitingStatusResponse
 struct RecruitingStatusResponse: Codable {
+    let recruitingPositionId: Int
     let positionName, skillName: String
     let status: String
 }
+
 // MARK: - Pageable
 struct PostPageable: Codable {
     let offset, pageNumber, pageSize: Int

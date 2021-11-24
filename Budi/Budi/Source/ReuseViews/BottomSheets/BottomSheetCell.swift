@@ -17,14 +17,14 @@ class BottomSheetCell: UICollectionViewCell {
     }
 
     private var isChecked: Bool = false
-    var jobGroup: String? {
-        didSet {
-            textLabel.text = jobGroup
-        }
-    }
 
     override func awakeFromNib() {
         super.awakeFromNib()
+    }
+
+    func updateUI(status: RecruitingStatusResponse) {
+        print(status.positionName)
+        textLabel.text = status.positionName
     }
 }
 

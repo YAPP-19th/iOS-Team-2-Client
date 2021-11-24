@@ -100,9 +100,9 @@ private extension HomeDetailViewController {
             .sink(receiveCompletion: { [weak self] _ in
                 self?.mainCollectionView.reloadData()
             }, receiveValue: { post in
-                if let post = post {
-                    print(post)
-                }
+                if let post = post { print(post) }
+                self.mainCollectionView.reloadData()
+                self.bottomSheetCollectionView.reloadData()
             }).store(in: &cancellables)
     }
 
@@ -129,7 +129,7 @@ extension HomeDetailViewController: UICollectionViewDataSource, UICollectionView
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch collectionView {
         case mainCollectionView: return 5
-        case bottomSheetCollectionView: return 4
+        case bottomSheetCollectionView: return viewModel.state.post.value?.recruitingStatusResponses.count ?? 0
         default: return 0
         }
     }
@@ -149,7 +149,11 @@ extension HomeDetailViewController: UICollectionViewDataSource, UICollectionView
         }
 
         if collectionView == bottomSheetCollectionView {
-            cell = collectionView.dequeueReusableCell(withReuseIdentifier: BottomSheetCell.identifier, for: indexPath) as UICollectionViewCell
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BottomSheetCell.identifier, for: indexPath) as? BottomSheetCell else { return cell }
+            if let recruitingStatusResponses = viewModel.state.post.value?.recruitingStatusResponses[indexPath.row] {
+                cell.updateUI(status: recruitingStatusResponses)
+            }
+            return cell
         }
 
         return cell

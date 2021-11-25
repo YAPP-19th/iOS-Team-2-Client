@@ -24,6 +24,7 @@ final class HomeDetailViewController: UIViewController {
     @IBOutlet weak var heartCountLabel: UILabel!
     @IBOutlet weak var submitButton: UIButton!
 
+    private var isBottomViewShown: Bool = false
     private var isHeartButtonChecked: Bool = false
 
     weak var coordinator: HomeCoordinator?
@@ -75,8 +76,10 @@ private extension HomeDetailViewController {
         submitButton.tapPublisher
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
-                guard let self = self else { return }
+                guard let self = self, !self.isBottomViewShown else { return }
                 self.backgroundView.isHidden = false
+                self.isBottomViewShown = true
+                
                 UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseIn, animations: { [weak self] in
                     self?.bottomSheetContainerView.center.y -= self?.bottomSheetContainerView.bounds.height ?? 0
                 }, completion: nil)
@@ -86,11 +89,13 @@ private extension HomeDetailViewController {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
                 guard let self = self else { return }
+                self.isBottomViewShown = false
+                
                 UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseIn, animations: { [weak self] in
                     self?.bottomSheetContainerView.center.y += self?.bottomSheetContainerView.bounds.height ?? 0
-                }) { [weak self] _ in
+                }, completion: { [weak self] _ in
                     self?.backgroundView.isHidden = true
-                }
+                })
             }.store(in: &cancellables)
     }
 

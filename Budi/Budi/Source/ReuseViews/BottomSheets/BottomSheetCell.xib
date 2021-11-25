@@ -22,11 +22,6 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mEg-oI-WJI">
                         <rect key="frame" x="0.0" y="0.0" width="343" height="56"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FDI-mg-MJb">
-                                <rect key="frame" x="0.0" y="0.0" width="343" height="56"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title=""/>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="iOS 개발자" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rWD-bZ-NZD">
                                 <rect key="frame" x="16" y="18.5" width="71.5" height="19.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -71,14 +66,10 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="FDI-mg-MJb" firstAttribute="top" secondItem="mEg-oI-WJI" secondAttribute="top" id="4pW-rl-Zdx"/>
                             <constraint firstItem="rWD-bZ-NZD" firstAttribute="centerY" secondItem="mEg-oI-WJI" secondAttribute="centerY" id="AR3-CT-e6q"/>
                             <constraint firstItem="3hj-Nf-LEF" firstAttribute="centerY" secondItem="mEg-oI-WJI" secondAttribute="centerY" id="Dha-ch-CSg"/>
-                            <constraint firstAttribute="bottom" secondItem="FDI-mg-MJb" secondAttribute="bottom" id="GWp-l4-cJn"/>
                             <constraint firstAttribute="trailing" secondItem="3hj-Nf-LEF" secondAttribute="trailing" constant="18" id="N9t-ht-vPd"/>
-                            <constraint firstItem="FDI-mg-MJb" firstAttribute="leading" secondItem="mEg-oI-WJI" secondAttribute="leading" id="buO-go-JCU"/>
                             <constraint firstItem="rWD-bZ-NZD" firstAttribute="leading" secondItem="mEg-oI-WJI" secondAttribute="leading" constant="16" id="gwJ-hX-XSz"/>
-                            <constraint firstAttribute="trailing" secondItem="FDI-mg-MJb" secondAttribute="trailing" id="yuc-iz-89N"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
@@ -92,14 +83,23 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </view>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FDI-mg-MJb">
+                        <rect key="frame" x="0.0" y="0.0" width="343" height="56"/>
+                        <state key="normal" title="Button"/>
+                        <buttonConfiguration key="configuration" style="plain" title=""/>
+                    </button>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <constraints>
                 <constraint firstItem="mEg-oI-WJI" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="1Kk-Lq-6E8"/>
+                <constraint firstAttribute="bottom" secondItem="FDI-mg-MJb" secondAttribute="bottom" id="5aH-9Q-bOU"/>
+                <constraint firstAttribute="trailing" secondItem="FDI-mg-MJb" secondAttribute="trailing" id="DSM-U8-MQr"/>
                 <constraint firstAttribute="bottom" secondItem="mEg-oI-WJI" secondAttribute="bottom" id="Gm1-R8-Sse"/>
+                <constraint firstItem="FDI-mg-MJb" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="L9C-IE-MMC"/>
                 <constraint firstAttribute="trailing" secondItem="mEg-oI-WJI" secondAttribute="trailing" id="SYc-2I-uUa"/>
                 <constraint firstItem="mEg-oI-WJI" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="Z65-Wf-PlT"/>
+                <constraint firstItem="FDI-mg-MJb" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="zJA-A5-pYc"/>
             </constraints>
             <size key="customSize" width="343" height="56"/>
             <connections>

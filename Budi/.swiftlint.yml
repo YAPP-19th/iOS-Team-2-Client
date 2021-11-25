@@ -1,17 +1,15 @@
 disabled_rules:
     - identifier_name
-    - multiple_closures_with_trailing_closure
     - trailing_whitespace
-    - shorthand_operator
-    - force_try
-    - trailing_comma
-    - type_name
     - cyclomatic_complexity
-    - large_tuple
-    - force_cast
+    - multiple_closures_with_trailing_closure
 
 excluded:
   - Pods
+  
+type_body_length:
+  warning: 300
+  error: 500
 
 function_body_length:
   warning: 100

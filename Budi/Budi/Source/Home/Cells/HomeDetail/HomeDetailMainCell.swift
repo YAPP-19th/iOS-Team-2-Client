@@ -23,10 +23,21 @@ class HomeDetailMainCell: UICollectionViewCell {
     func updateUI(_ post: Post) {
         categoryLabel.text = post.category
         titleLabel.text = post.title
-        dateLabel.text = post.startDate.convertTimePassedString()
+        dateLabel.text = getDatePeriod(post.startDate, post.endDate)
         regionLabel.text = post.region
         if let url = URL(string: post.imageUrls.first ?? "") {
             imageView.kf.setImage(with: url, placeholder: UIImage(named: "defaultBackground"))
         }
+    }
+
+    func getDatePeriod(_ startDate: Date, _ endDate: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yy.MM.dd"
+
+        let startDateString = formatter.string(from: startDate)
+        let endDateString = formatter.string(from: startDate)
+        let intervalMonth = Int(endDate.timeIntervalSince(startDate)) / 30 / 86400
+
+        return "\(startDateString) - \(endDateString) \(intervalMonth > 0 ? "(\(intervalMonth)개월)" : "")"
     }
 }

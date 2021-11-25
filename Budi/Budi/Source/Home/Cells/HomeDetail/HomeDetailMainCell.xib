@@ -91,15 +91,25 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J9W-Wj-BMg">
+                                <rect key="frame" x="0.0" y="428" width="375" height="8"/>
+                                <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="8" id="aB6-eQ-bru"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstAttribute="bottom" secondItem="J9W-Wj-BMg" secondAttribute="bottom" id="CMU-35-7YO"/>
                             <constraint firstItem="9ey-eB-KcI" firstAttribute="height" secondItem="fQu-ie-gdD" secondAttribute="height" multiplier="0.642202" id="CdU-3L-olL"/>
                             <constraint firstItem="9ey-eB-KcI" firstAttribute="leading" secondItem="fQu-ie-gdD" secondAttribute="leading" id="Ctl-ea-VBx"/>
                             <constraint firstItem="vvn-pp-e7i" firstAttribute="leading" secondItem="fQu-ie-gdD" secondAttribute="leading" constant="16" id="Gjh-Fr-aKq"/>
                             <constraint firstItem="9ey-eB-KcI" firstAttribute="top" secondItem="fQu-ie-gdD" secondAttribute="top" id="NRY-Ej-Gcb"/>
                             <constraint firstAttribute="trailing" secondItem="9ey-eB-KcI" secondAttribute="trailing" id="XZL-Wo-nFh"/>
                             <constraint firstItem="BUo-5R-OVM" firstAttribute="top" secondItem="9ey-eB-KcI" secondAttribute="bottom" constant="16" id="Yrz-UQ-o0L"/>
+                            <constraint firstAttribute="trailing" secondItem="J9W-Wj-BMg" secondAttribute="trailing" id="dSe-lH-v8k"/>
+                            <constraint firstItem="J9W-Wj-BMg" firstAttribute="leading" secondItem="fQu-ie-gdD" secondAttribute="leading" id="g7O-VY-1BZ"/>
                             <constraint firstAttribute="bottom" secondItem="vvn-pp-e7i" secondAttribute="bottom" constant="27" id="oYs-i3-YLQ"/>
                             <constraint firstAttribute="trailing" secondItem="vvn-pp-e7i" secondAttribute="trailing" constant="16" id="v3B-kT-DcW"/>
                             <constraint firstItem="BUo-5R-OVM" firstAttribute="leading" secondItem="fQu-ie-gdD" secondAttribute="leading" constant="16" id="wNw-cy-rRD"/>
@@ -122,7 +132,7 @@
                 <outlet property="regionLabel" destination="OV5-de-N7v" id="aqJ-6A-287"/>
                 <outlet property="titleLabel" destination="09E-N0-an2" id="yFh-L5-isw"/>
             </connections>
-            <point key="canvasLocation" x="214.49275362318843" y="259.82142857142856"/>
+            <point key="canvasLocation" x="213.768115942029" y="259.82142857142856"/>
         </collectionViewCell>
     </objects>
     <resources>

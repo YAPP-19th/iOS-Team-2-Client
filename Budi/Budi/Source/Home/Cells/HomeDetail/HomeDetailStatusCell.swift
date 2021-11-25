@@ -15,7 +15,7 @@ class HomeDetailStatusCell: UICollectionViewCell {
     @IBOutlet weak var secondStateLabel: UILabel!
     @IBOutlet weak var thirdJobGroupLabel: UILabel!
     @IBOutlet weak var thirdStateLabel: UILabel!
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
     }

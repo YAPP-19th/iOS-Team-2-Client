@@ -22,8 +22,8 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fQu-ie-gdD">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="436"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="camera" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="9ey-eB-KcI">
-                                <rect key="frame" x="0.0" y="0.5" width="375" height="278"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultBackground" translatesAutoresizingMaskIntoConstraints="NO" id="9ey-eB-KcI">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="280"/>
                                 <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </imageView>
@@ -115,11 +115,18 @@
                 <constraint firstAttribute="trailing" secondItem="fQu-ie-gdD" secondAttribute="trailing" id="wUQ-rI-hJK"/>
             </constraints>
             <size key="customSize" width="404" height="710"/>
+            <connections>
+                <outlet property="categoryLabel" destination="Ljm-2f-zbd" id="tY3-M3-TEY"/>
+                <outlet property="dateLabel" destination="bXQ-xp-xdt" id="eT2-rL-ymD"/>
+                <outlet property="imageView" destination="9ey-eB-KcI" id="bVR-JN-ZGz"/>
+                <outlet property="regionLabel" destination="OV5-de-N7v" id="aqJ-6A-287"/>
+                <outlet property="titleLabel" destination="09E-N0-an2" id="yFh-L5-isw"/>
+            </connections>
             <point key="canvasLocation" x="214.49275362318843" y="259.82142857142856"/>
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="camera" catalog="system" width="128" height="94"/>
+        <image name="defaultBackground" width="343" height="140"/>
         <image name="person.circle.fill" catalog="system" width="128" height="121"/>
         <namedColor name="Black">
             <color red="0.0" green="0.0" blue="0.0" alpha="0.87000000476837158" colorSpace="custom" customColorSpace="sRGB"/>

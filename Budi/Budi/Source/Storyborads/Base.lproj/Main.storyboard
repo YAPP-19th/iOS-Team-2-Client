@@ -441,7 +441,7 @@
                         <outlet property="backgroundView" destination="nFA-qJ-vem" id="JYp-TL-ES1"/>
                         <outlet property="bottomSheetCloseButton" destination="jkx-iG-aEJ" id="NXt-uE-bRQ"/>
                         <outlet property="bottomSheetCollectionView" destination="h2Y-Xk-mvp" id="IgG-4a-ewP"/>
-                        <outlet property="bottomSheetView" destination="utH-ze-QDU" id="4h0-gO-zIS"/>
+                        <outlet property="bottomSheetContainerView" destination="utH-ze-QDU" id="thh-2o-3Jh"/>
                         <outlet property="bottomView" destination="Jwd-We-9lw" id="1bN-jt-4g2"/>
                         <outlet property="heartButton" destination="31s-IQ-W8L" id="jZY-gc-jbD"/>
                         <outlet property="heartCountLabel" destination="AeF-ZZ-XYU" id="pf9-96-3cv"/>

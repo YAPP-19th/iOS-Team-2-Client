@@ -13,16 +13,16 @@ import CombineCocoa
 final class HomeDetailViewController: UIViewController {
 
     @IBOutlet weak var mainCollectionView: UICollectionView!
-    @IBOutlet weak var bottomView: UIView!
     @IBOutlet weak var backgroundView: UIView!
 
-    @IBOutlet weak var bottomSheetView: UIView!
+    @IBOutlet weak var bottomSheetContainerView: UIView!
     @IBOutlet weak var bottomSheetCollectionView: UICollectionView!
+    @IBOutlet weak var bottomSheetCloseButton: UIButton!
 
+    @IBOutlet weak var bottomView: UIView!
     @IBOutlet weak var heartButton: UIButton!
     @IBOutlet weak var heartCountLabel: UILabel!
     @IBOutlet weak var submitButton: UIButton!
-    @IBOutlet weak var bottomSheetCloseButton: UIButton!
 
     private var isHeartButtonChecked: Bool = false
 
@@ -78,7 +78,7 @@ private extension HomeDetailViewController {
                 guard let self = self else { return }
                 self.backgroundView.isHidden = false
                 UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseIn, animations: { [weak self] in
-                    self?.bottomSheetView.center.y -= self?.bottomSheetView.bounds.height ?? 0
+                    self?.bottomSheetContainerView.center.y -= self?.bottomSheetContainerView.bounds.height ?? 0
                 }, completion: nil)
             }.store(in: &cancellables)
 
@@ -87,7 +87,7 @@ private extension HomeDetailViewController {
             .sink { [weak self] _ in
                 guard let self = self else { return }
                 UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseIn, animations: { [weak self] in
-                    self?.bottomSheetView.center.y += self?.bottomSheetView.bounds.height ?? 0
+                    self?.bottomSheetContainerView.center.y += self?.bottomSheetContainerView.bounds.height ?? 0
                 }) { [weak self] _ in
                     self?.backgroundView.isHidden = true
                 }
@@ -139,7 +139,12 @@ extension HomeDetailViewController: UICollectionViewDataSource, UICollectionView
 
         if collectionView == mainCollectionView {
             switch indexPath.row {
-            case 0: cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeDetailMainCell.identifier, for: indexPath) as UICollectionViewCell
+            case 0:
+                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeDetailMainCell.identifier, for: indexPath) as? HomeDetailMainCell else { return cell }
+                if let post = viewModel.state.post.value {
+                    cell.updateUI(post)
+                }
+                return cell
             case 1: cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeDetailStateCell.identifier, for: indexPath) as UICollectionViewCell
             case 2: cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeDetailIntroCell.identifier, for: indexPath) as UICollectionViewCell
             case 3: cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeDetailLeaderCell.identifier, for: indexPath) as UICollectionViewCell

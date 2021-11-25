@@ -94,7 +94,6 @@ private extension LocationSearchViewController {
     }
 
     func configureKeyBoard() {
-        //NotificationCenter.default.addObserver(self, selector: #selector(keyBoardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
 
     func configureLocationAuthorization() {

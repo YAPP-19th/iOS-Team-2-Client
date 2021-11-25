@@ -1,5 +1,5 @@
 //
-//  HomeDetailStateCell.swift
+//  HomeDetailStatusCell.swift
 //  Budi
 //
 //  Created by leeesangheee on 2021/11/02.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HomeDetailStateCell: UICollectionViewCell {
+class HomeDetailStatusCell: UICollectionViewCell {
 
     @IBOutlet weak var firstJobGroupLabel: UILabel!
     @IBOutlet weak var firstStateLabel: UILabel!

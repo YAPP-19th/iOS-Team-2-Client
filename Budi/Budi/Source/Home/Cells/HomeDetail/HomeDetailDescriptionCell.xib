@@ -12,7 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="HomeDetailIntroCell" customModule="Budi" customModuleProvider="target">
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="HomeDetailDescriptionCell" customModule="Budi" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="375" height="578"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -31,36 +31,6 @@
                                 <color key="textColor" name="Black"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="30" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZZa-fX-SSR">
-                                <rect key="frame" x="20" y="68" width="339" height="478"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="478" id="fYh-4n-MPD"/>
-                                </constraints>
-                                <string key="text">안녕하세요. 기부 플랫폼 캔디 프로젝트에서 사이드 프로젝트로 참여할 프론트엔드 팀원을 찾습니다 :-)
-지우너자 팀원께서는 캔티 n년차 이상의 프론트엔드 개발자분과 함께 개발을 진행할 예정입니다.
-
-[주요 업무]
-• React native를 이용한 서비스 개발/운영
-• 서비스 내용은 상단 노션 페이지를 참고해주세요
-• 패스트캠퍼스 리액트 네이티브 강의를 제공해드립니다 :-)
-
-[기술 스택]
-• CSS, JavaScript
-• React-native
-
-[자격 요건]
-• React native를 이용한 서비스 개발 경험이 있는 분 또는 서비스 개발을 학습하고 경험해보고 싶은 분
-• JacaScript의 이해도가 높은 분
-
-[우대 사항]
-• 사회적 가치에 관심이 많은 분
-• 기부를 하고 계시거나 기부에 관심이 많은 분
-• 개발 포트폴리오를 작성하고 계신 분
-• Fin-tech 개발 경험이 있는 분</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <color key="textColor" name="Black"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vAY-nB-7Kr">
                                 <rect key="frame" x="0.0" y="570" width="375" height="8"/>
                                 <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
@@ -68,18 +38,23 @@
                                     <constraint firstAttribute="height" constant="8" id="G0v-tb-BxM"/>
                                 </constraints>
                             </view>
+                            <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="top" placeholder="프로젝트 소개글입니다." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UKb-oh-7Zd">
+                                <rect key="frame" x="20" y="68" width="335" height="478"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="8YT-5F-IAh" firstAttribute="top" secondItem="jlO-Ns-Gl1" secondAttribute="top" constant="20" id="1ud-GA-fsk"/>
-                            <constraint firstItem="ZZa-fX-SSR" firstAttribute="leading" secondItem="jlO-Ns-Gl1" secondAttribute="leading" constant="20" id="33u-0g-cp5"/>
+                            <constraint firstAttribute="trailing" secondItem="UKb-oh-7Zd" secondAttribute="trailing" constant="20" id="2L0-Nf-7Bd"/>
+                            <constraint firstItem="vAY-nB-7Kr" firstAttribute="top" secondItem="UKb-oh-7Zd" secondAttribute="bottom" constant="24" id="7E5-Fn-kxL"/>
                             <constraint firstItem="vAY-nB-7Kr" firstAttribute="leading" secondItem="jlO-Ns-Gl1" secondAttribute="leading" id="BhP-H3-ace"/>
                             <constraint firstItem="8YT-5F-IAh" firstAttribute="leading" secondItem="jlO-Ns-Gl1" secondAttribute="leading" constant="16" id="KAT-XK-cz3"/>
                             <constraint firstAttribute="trailing" secondItem="vAY-nB-7Kr" secondAttribute="trailing" id="MdY-zh-Vi8"/>
-                            <constraint firstItem="ZZa-fX-SSR" firstAttribute="top" secondItem="8YT-5F-IAh" secondAttribute="bottom" constant="24" id="ci8-ZI-CQB"/>
-                            <constraint firstAttribute="trailing" secondItem="ZZa-fX-SSR" secondAttribute="trailing" constant="16" id="p3D-Pl-G7W"/>
+                            <constraint firstItem="UKb-oh-7Zd" firstAttribute="top" secondItem="8YT-5F-IAh" secondAttribute="bottom" constant="24" id="SbL-1c-64R"/>
+                            <constraint firstItem="UKb-oh-7Zd" firstAttribute="leading" secondItem="jlO-Ns-Gl1" secondAttribute="leading" constant="20" id="VLi-hw-RH2"/>
                             <constraint firstAttribute="bottom" secondItem="vAY-nB-7Kr" secondAttribute="bottom" id="sLQ-HK-MRh"/>
-                            <constraint firstItem="vAY-nB-7Kr" firstAttribute="top" secondItem="ZZa-fX-SSR" secondAttribute="bottom" constant="24" id="whM-q2-7wv"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -92,6 +67,9 @@
                 <constraint firstItem="jlO-Ns-Gl1" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="pqo-C6-aQN"/>
             </constraints>
             <size key="customSize" width="389" height="499"/>
+            <connections>
+                <outlet property="descriptionTextField" destination="UKb-oh-7Zd" id="J1B-0T-4yk"/>
+            </connections>
             <point key="canvasLocation" x="377.536231884058" y="240.73660714285714"/>
         </collectionViewCell>
     </objects>

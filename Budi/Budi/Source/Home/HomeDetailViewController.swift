@@ -110,8 +110,8 @@ private extension HomeDetailViewController {
         mainCollectionView.dataSource = self
         mainCollectionView.delegate = self
         mainCollectionView.register(.init(nibName: HomeDetailMainCell.identifier, bundle: nil), forCellWithReuseIdentifier: HomeDetailMainCell.identifier)
-        mainCollectionView.register(.init(nibName: HomeDetailStateCell.identifier, bundle: nil), forCellWithReuseIdentifier: HomeDetailStateCell.identifier)
-        mainCollectionView.register(.init(nibName: HomeDetailIntroCell.identifier, bundle: nil), forCellWithReuseIdentifier: HomeDetailIntroCell.identifier)
+        mainCollectionView.register(.init(nibName: HomeDetailStatusCell.identifier, bundle: nil), forCellWithReuseIdentifier: HomeDetailStatusCell.identifier)
+        mainCollectionView.register(.init(nibName: HomeDetailDescriptionCell.identifier, bundle: nil), forCellWithReuseIdentifier: HomeDetailDescriptionCell.identifier)
         mainCollectionView.register(.init(nibName: HomeDetailLeaderCell.identifier, bundle: nil), forCellWithReuseIdentifier: HomeDetailLeaderCell.identifier)
         mainCollectionView.register(.init(nibName: HomeDetailMemberCell.identifier, bundle: nil), forCellWithReuseIdentifier: HomeDetailMemberCell.identifier)
 
@@ -146,13 +146,16 @@ extension HomeDetailViewController: UICollectionViewDataSource, UICollectionView
                 }
                 return cell
             case 1:
-                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeDetailStateCell.identifier, for: indexPath) as? HomeDetailStateCell else { return cell }
+                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeDetailStatusCell.identifier, for: indexPath) as? HomeDetailStatusCell else { return cell }
                 if let post = viewModel.state.post.value {
                     cell.updateUI(post.recruitingStatusResponses)
                 }
                 return cell
             case 2:
-                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeDetailIntroCell.identifier, for: indexPath) as? HomeDetailIntroCell else { return cell }
+                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeDetailDescriptionCell.identifier, for: indexPath) as? HomeDetailDescriptionCell else { return cell }
+                if let post = viewModel.state.post.value {
+                    cell.updateUI(post.description)
+                }
                 return cell
             case 3:
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeDetailLeaderCell.identifier, for: indexPath) as? HomeDetailLeaderCell else { return cell }

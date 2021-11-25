@@ -169,6 +169,14 @@
                 <constraint firstAttribute="trailing" secondItem="TcX-df-qDm" secondAttribute="trailing" id="gx3-8s-3IJ"/>
             </constraints>
             <size key="customSize" width="370" height="132"/>
+            <connections>
+                <outlet property="firstJobGroupLabel" destination="vzw-G2-e7C" id="3kj-56-bYB"/>
+                <outlet property="firstStateLabel" destination="hpZ-PL-qwt" id="USc-Ib-qcJ"/>
+                <outlet property="secondJobGroupLabel" destination="gnW-Vx-IzW" id="eAy-I4-6cl"/>
+                <outlet property="secondStateLabel" destination="PKF-IL-qbR" id="ECw-YS-Lbq"/>
+                <outlet property="thirdJobGroupLabel" destination="0ac-en-huV" id="nhI-Vu-Gej"/>
+                <outlet property="thirdStateLabel" destination="hMW-33-KRc" id="8HK-Zk-bC0"/>
+            </connections>
             <point key="canvasLocation" x="306.52173913043481" y="67.299107142857139"/>
         </collectionViewCell>
     </objects>

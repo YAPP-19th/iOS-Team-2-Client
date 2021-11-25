@@ -6,21 +6,24 @@
 //
 
 import UIKit
+import Combine
+import CombineCocoa
 
 class BottomSheetCell: UICollectionViewCell {
 
     @IBOutlet weak var containerView: UIView!
+    @IBOutlet weak var containerButton: UIButton!
     @IBOutlet weak var textLabel: UILabel!
-    @IBOutlet weak var checkButton: UIButton!
-    @IBOutlet weak var checkButtonCircle: UIView!
-    @IBAction func checkButtonTapped(_ sender: Any) {
-        checkButtonTapped()
-    }
+    @IBOutlet weak var circleContainerView: UIView!
+    @IBOutlet weak var circleView: UIView!
 
     private var isChecked: Bool = false
 
+    private var cancellables = Set<AnyCancellable>()
+
     override func awakeFromNib() {
         super.awakeFromNib()
+        setPublisher()
     }
 
     func updateUI(status: RecruitingStatusResponse) {
@@ -29,11 +32,15 @@ class BottomSheetCell: UICollectionViewCell {
 }
 
 private extension BottomSheetCell {
-    func checkButtonTapped() {
-        isChecked.toggle()
-
-        checkButton.tintColor = isChecked ? UIColor.budiGreen : .white
-        checkButtonCircle.borderColor = isChecked ? UIColor.budiLightGreen : UIColor.budiLightGray
-        containerView.borderColor = isChecked ? UIColor.budiGreen : UIColor.budiLightGray
+    func setPublisher() {
+        containerButton.tapPublisher
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in
+                guard let self = self else { return }
+                self.isChecked.toggle()
+                self.containerView.borderColor = self.isChecked ? UIColor.budiGreen : UIColor.budiLightGray
+                self.circleContainerView.borderColor = self.isChecked ? UIColor.budiLightGreen : UIColor.budiLightGray
+                self.circleView.backgroundColor = self.isChecked ? UIColor.budiGreen : .white
+            }.store(in: &cancellables)
     }
 }

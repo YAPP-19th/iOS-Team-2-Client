@@ -9,15 +9,6 @@ import Combine
 import Foundation
 import Moya
 
-protocol ViewModel {
-
-    associatedtype Action
-    associatedtype State
-
-    var action: Action { get }
-    var state: State { get }
-}
-
 final class HomeDetailViewModel: ViewModel {
 
     struct Action {

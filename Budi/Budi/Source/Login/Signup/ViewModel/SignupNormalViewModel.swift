@@ -119,7 +119,4 @@ final class SignupNormalViewModel: ViewModel {
 
         action.fetch.send(())
     }
-
-
 }
-

@@ -8,7 +8,7 @@
 import UIKit
 
 class LocationSearchViewController: UIViewController {
-    private let allLocation = Location().location
+    private let allLocation = Location().locations
     private var correct: [String] = []
 
     private let searchBar: UISearchBar = {
@@ -183,7 +183,7 @@ class LocationSearchViewController: UIViewController {
 
 extension LocationSearchViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        let location = Location().location
+        let location = Location().locations
         if !searchText.isEmpty {
             for idx in location {
                 if idx.contains(searchText) {

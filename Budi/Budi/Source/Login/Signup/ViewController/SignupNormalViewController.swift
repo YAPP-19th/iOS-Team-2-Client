@@ -109,7 +109,7 @@ class SignupNormalViewController: UIViewController {
     @objc
     func loadLocation(_ notification: NSNotification) {
         let select = notification.object as? String ?? ""
-        locationSelectView.locationSelected(text: select)
+        locationSelectView.locationSelected(select)
 
     }
 

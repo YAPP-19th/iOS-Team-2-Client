@@ -1,7 +1,6 @@
 //
 //  String+baseURL.swift
 //  Budi
-//
 //  Created by 최동규 on 2021/11/22.
 //
 

@@ -75,6 +75,10 @@ class NickNameView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
+    func loadNameText(_ text: String) {
+        nickNameTextField.text = text
+    }
+
     private func configureObserver() {
         NotificationCenter.default.addObserver(self, selector: #selector(textDidChange(_:)), name: UITextField.textDidChangeNotification, object: nickNameTextField)
     }

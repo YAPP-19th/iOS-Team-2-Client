@@ -95,11 +95,6 @@ class LocationSearchViewController: UIViewController {
         configureLayout()
         configureTableView()
         configureAlert()
-        configureKeyBoard()
-    }
-
-    private func configureKeyBoard() {
-        //NotificationCenter.default.addObserver(self, selector: #selector(keyBoardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
 
     private func configureAlert() {

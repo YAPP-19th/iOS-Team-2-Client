@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -47,8 +47,12 @@
 		5EFB0A5B27341C1100F39A4D /* ChattingTimeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EFB0A5927341C1100F39A4D /* ChattingTimeCell.xib */; };
 		A82E49DD273111C50068218A /* LoginSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82E49DC273111C50068218A /* LoginSelectViewController.swift */; };
 		A82E49DF273111E50068218A /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82E49DE273111E50068218A /* LoginCoordinator.swift */; };
+		A85325B52746C4580073FAFB /* NaverData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85325B42746C4580073FAFB /* NaverData.swift */; };
+		A85325BB274773F90073FAFB /* SignupNormalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85325BA274773F90073FAFB /* SignupNormalViewModel.swift */; };
 		A8A6D9F1273CCB5500C84C52 /* BackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A6D9F0273CCB5500C84C52 /* BackgroundView.swift */; };
 		A8A6D9F9273D2D1800C84C52 /* BackButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A6D9F8273D2D1800C84C52 /* BackButtonExtension.swift */; };
+		A8C7AB86274E0E2A00B6E0E7 /* String+baseURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C7AB85274E0E2A00B6E0E7 /* String+baseURL.swift */; };
+		A8C7AB89274E0E6C00B6E0E7 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C7AB88274E0E6C00B6E0E7 /* Login.swift */; };
 		A8CA17EB273EC267002CA2B9 /* UIResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CA17EA273EC267002CA2B9 /* UIResponder.swift */; };
 		A8CD93322736470100299AB4 /* SignupNormalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CD93312736470100299AB4 /* SignupNormalViewController.swift */; };
 		A8CD93342736566100299AB4 /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CD93332736566100299AB4 /* ProgressView.swift */; };
@@ -134,8 +138,12 @@
 		7427EC0B8031E547E99A7648 /* Pods-Budi.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Budi.release.xcconfig"; path = "Target Support Files/Pods-Budi/Pods-Budi.release.xcconfig"; sourceTree = "<group>"; };
 		A82E49DC273111C50068218A /* LoginSelectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSelectViewController.swift; sourceTree = "<group>"; };
 		A82E49DE273111E50068218A /* LoginCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
+		A85325B42746C4580073FAFB /* NaverData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaverData.swift; sourceTree = "<group>"; };
+		A85325BA274773F90073FAFB /* SignupNormalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupNormalViewModel.swift; sourceTree = "<group>"; };
 		A8A6D9F0273CCB5500C84C52 /* BackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundView.swift; sourceTree = "<group>"; };
 		A8A6D9F8273D2D1800C84C52 /* BackButtonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButtonExtension.swift; sourceTree = "<group>"; };
+		A8C7AB85274E0E2A00B6E0E7 /* String+baseURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+baseURL.swift"; sourceTree = "<group>"; };
+		A8C7AB88274E0E6C00B6E0E7 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
 		A8CA17EA273EC267002CA2B9 /* UIResponder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIResponder.swift; sourceTree = "<group>"; };
 		A8CD93312736470100299AB4 /* SignupNormalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupNormalViewController.swift; sourceTree = "<group>"; };
 		A8CD93332736566100299AB4 /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
@@ -295,6 +303,32 @@
 			path = Login;
 			sourceTree = "<group>";
 		};
+		A85325B82747738E0073FAFB /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				A8CD93312736470100299AB4 /* SignupNormalViewController.swift */,
+				A8CD93432736E82300299AB4 /* PositionViewController.swift */,
+				A8CD935B27383CB300299AB4 /* LocationSearchViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		A85325B92747739A0073FAFB /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				A85325BA274773F90073FAFB /* SignupNormalViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		A8C7AB87274E0E5C00B6E0E7 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A8C7AB88274E0E6C00B6E0E7 /* Login.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		A8CD93352736701500299AB4 /* ReuseViews */ = {
 			isa = PBXGroup;
 			children = (
@@ -310,12 +344,11 @@
 		A8CD933A273676BC00299AB4 /* SignupViewController */ = {
 			isa = PBXGroup;
 			children = (
+				A85325B92747739A0073FAFB /* ViewModel */,
+				A85325B82747738E0073FAFB /* ViewController */,
 				A8CD935F27384C3400299AB4 /* Cell */,
 				A8CD93542738037C00299AB4 /* Data */,
 				A8CD93452737B92A00299AB4 /* View */,
-				A8CD93312736470100299AB4 /* SignupNormalViewController.swift */,
-				A8CD93432736E82300299AB4 /* PositionViewController.swift */,
-				A8CD935B27383CB300299AB4 /* LocationSearchViewController.swift */,
 			);
 			path = SignupViewController;
 			sourceTree = "<group>";
@@ -337,6 +370,7 @@
 			children = (
 				A8CD93522737F2BF00299AB4 /* PositionData.swift */,
 				A8CD935D273849F800299AB4 /* LocationDummyData.swift */,
+				A85325B42746C4580073FAFB /* NaverData.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -504,6 +538,7 @@
 				5E2554372732AD0800033723 /* UIView+IBInspectable.swift */,
 				A8A6D9F8273D2D1800C84C52 /* BackButtonExtension.swift */,
 				A8CA17EA273EC267002CA2B9 /* UIResponder.swift */,
+				A8C7AB85274E0E2A00B6E0E7 /* String+baseURL.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -521,6 +556,7 @@
 				B9BF786E27004094000BE0EF /* Resources */,
 				B9BF788727004426000BE0EF /* ShellScript */,
 				8CA84974E4F22E429F7992B2 /* [CP] Embed Pods Frameworks */,
+
 			);
 			buildRules = (
 			);
@@ -629,6 +665,7 @@
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\n${PODS_ROOT}/SwiftLint/swiftlint\n";
 		};
 		F23EF52C8F543477B9CBCC69 /* [CP] Check Pods Manifest.lock */ = {
+
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -690,6 +727,7 @@
 				5EA453982731776900943C94 /* HomeDetailStateCell.swift in Sources */,
 				5E2554352732770B00033723 /* HomeDetailPersonCell.swift in Sources */,
 				B9D66EC62714706700668490 /* ChattingCoordinator.swift in Sources */,
+				A85325B52746C4580073FAFB /* NaverData.swift in Sources */,
 				A8CD93442736E82300299AB4 /* PositionViewController.swift in Sources */,
 				B9BF787427004094000BE0EF /* AppDelegate.swift in Sources */,
 				5EFB0A522734016600F39A4D /* MyChattingMessageCell.swift in Sources */,
@@ -700,10 +738,12 @@
 				B9D66EBF27146F2F00668490 /* HomeCoordinator.swift in Sources */,
 				5EFB0A4F2733FDD100F39A4D /* ChattingDetailViewController.swift in Sources */,
 				5EA453692731412A00943C94 /* HomeCell.swift in Sources */,
+				A8C7AB89274E0E6C00B6E0E7 /* Login.swift in Sources */,
 				5EFB0A452733E36800F39A4D /* TeamSearchCell.swift in Sources */,
 				B92D54FF274C037E00D0E851 /* String+baseURL.swift in Sources */,
 				B9D66EC82714707000668490 /* MyBudiCoordinator.swift in Sources */,
 				5EFB0A4A2733EAA300F39A4D /* ChattingCell.swift in Sources */,
+				A8C7AB86274E0E2A00B6E0E7 /* String+baseURL.swift in Sources */,
 				5EA453942731775600943C94 /* HomeDetailLeaderCell.swift in Sources */,
 				B9D66EBD27146E4300668490 /* NavigationCoordinator.swift in Sources */,
 				A8CD93342736566100299AB4 /* ProgressView.swift in Sources */,
@@ -712,6 +752,7 @@
 				A8A6D9F9273D2D1800C84C52 /* BackButtonExtension.swift in Sources */,
 				A8CD935C27383CB300299AB4 /* LocationSearchViewController.swift in Sources */,
 				B9D66EC42714703B00668490 /* TeamSearchCoordinator.swift in Sources */,
+				A85325BB274773F90073FAFB /* SignupNormalViewModel.swift in Sources */,
 				A8CD933C273676F800299AB4 /* NickNameView.swift in Sources */,
 				A8CD93532737F2BF00299AB4 /* PositionData.swift in Sources */,
 				A8CD93372736702500299AB4 /* SuccessCircleView.swift in Sources */,

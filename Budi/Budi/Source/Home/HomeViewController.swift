@@ -6,25 +6,65 @@
 //
 
 import UIKit
+import Moya
+import Combine
+import CombineCocoa
 
 final class HomeViewController: UIViewController {
 
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet private weak var collectionView: UICollectionView!
+    @IBOutlet private weak var teamAddButton: UIButton!
+
     weak var coordinator: HomeCoordinator?
+
+    private let viewModel: HomeViewModel
+    private var cancellables = Set<AnyCancellable>()
+    init?(coder: NSCoder, viewModel: HomeViewModel) {
+        self.viewModel = viewModel
+        super.init(coder: coder)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("This viewController must be init with viewModel")
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         configureNavigationBar()
         configureCollectionView()
-    }
-
-    @IBAction func writeButtonDidTouchUpInside(_ sender: UIButton) {
-        coordinator?.showWriting()
+        bindViewModel()
+        setPublisher()
     }
 }
 
 private extension HomeViewController {
+
+    func setPublisher() {
+        teamAddButton.tapPublisher
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] in
+                self?.coordinator?.showWriting()
+            }.store(in: &cancellables)
+
+        collectionView.refreshControl?.isRefreshingPublisher
+            .sink(receiveValue: { [weak self] isRefreshing in
+                guard isRefreshing else { return }
+                self?.viewModel.action.refresh.send(())
+            })
+            .store(in: &cancellables)
+    }
+
+    func bindViewModel() {
+        viewModel.state.posts
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in
+                self?.collectionView.refreshControl?.endRefreshing()
+                self?.collectionView.reloadData()
+            }.store(in: &cancellables)
+    }
+
     func configureCollectionView() {
+        collectionView.refreshControl = UIRefreshControl()
         collectionView.collectionViewLayout = createLayout()
         collectionView.dataSource = self
         collectionView.delegate = self
@@ -34,7 +74,7 @@ private extension HomeViewController {
 }
 extension HomeViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        3
+        return viewModel.state.posts.value.count
     }
 
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -42,11 +82,10 @@ extension HomeViewController: UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeCell.identifier, for: indexPath) as UICollectionViewCell
-        cell.backgroundColor = .systemGroupedBackground
-        cell.layer.cornerRadius = 12
-        cell.borderColor = .systemGray4
-        cell.borderWidth = 1
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeCell.identifier, for: indexPath) as? HomeCell else { return UICollectionViewCell() }
+        let post = viewModel.state.posts.value[indexPath.item]
+        cell.updateUI(post)
+
         return cell
     }
 

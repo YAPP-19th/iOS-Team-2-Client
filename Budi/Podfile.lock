@@ -1,24 +1,38 @@
 PODS:
+  - Alamofire (5.4.4)
   - CombineCocoa (0.4.0)
+  - Kingfisher (7.1.1)
+  - Moya/Combine (15.0.0):
+    - Moya/Core
+  - Moya/Core (15.0.0):
+    - Alamofire (~> 5.0)
   - naveridlogin-sdk-ios (4.1.3)
   - SwiftLint (0.43.1)
 
 DEPENDENCIES:
   - CombineCocoa
+  - Kingfisher (~> 7.0)
+  - Moya/Combine (~> 15.0)
   - naveridlogin-sdk-ios
   - SwiftLint
 
 SPEC REPOS:
   trunk:
+    - Alamofire
     - CombineCocoa
+    - Kingfisher
+    - Moya
     - naveridlogin-sdk-ios
     - SwiftLint
 
 SPEC CHECKSUMS:
+  Alamofire: f3b09a368f1582ab751b3fff5460276e0d2cf5c9
   CombineCocoa: 68a050228ce7c53c1c5ac2c57cccf92a7f5c5085
+  Kingfisher: f738f9c4a3415823b8e2985d10aa2d6a9f37bc4d
+  Moya: 138f0573e53411fb3dc17016add0b748dfbd78ee
   naveridlogin-sdk-ios: b9d7c20677981177ed994ecb1c8c2b49f223277d
   SwiftLint: 99f82d07b837b942dd563c668de129a03fc3fb52
 
-PODFILE CHECKSUM: 3fa3341dd4256985dd853e000c3e9b1d567977ac
+PODFILE CHECKSUM: d0f5a6ad2c7153183f8ec9bb4ed585de0c2e5005
 
 COCOAPODS: 1.11.2

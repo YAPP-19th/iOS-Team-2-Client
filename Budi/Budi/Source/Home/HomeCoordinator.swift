@@ -19,7 +19,10 @@ final class HomeCoordinator: NavigationCoordinator {
 
     func start() {
         let viewController: HomeViewController = storyboard.instantiateViewController(
-            identifier: HomeViewController.identifier)
+            identifier: HomeViewController.identifier) { coder -> HomeViewController? in
+                let viewModel = HomeViewModel()
+                return HomeViewController(coder: coder, viewModel: viewModel)
+            }
         viewController.coordinator = self
         navigationController?.pushViewController(viewController, animated: true)
     }

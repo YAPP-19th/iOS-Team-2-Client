@@ -1,8 +1,7 @@
 //
 //  String+baseURL.swift
 //  Budi
-//
-//  Created by 인병윤 on 2021/11/24.
+//  Created by 최동규 on 2021/11/22.
 //
 
 import Foundation

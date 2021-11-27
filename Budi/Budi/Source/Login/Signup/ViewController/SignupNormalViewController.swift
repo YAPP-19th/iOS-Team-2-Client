@@ -110,6 +110,7 @@ class SignupNormalViewController: UIViewController {
     func loadLocation(_ notification: NSNotification) {
         let select = notification.object as? String ?? ""
         locationSelectView.locationSelected(text: select)
+
     }
 
     func scroll() {
@@ -173,17 +174,14 @@ class SignupNormalViewController: UIViewController {
         introduceView.translatesAutoresizingMaskIntoConstraints = false
         defaultConstraint = [
             introduceView.topAnchor.constraint(equalTo: locationSelectView.bottomAnchor),
-
             introduceView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
             introduceView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
             introduceView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
             introduceView.heightAnchor.constraint(equalToConstant: 179),
             introduceView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -20)
         ]
-
         newConstraint = [
             introduceView.topAnchor.constraint(equalTo: locationSelectView.bottomAnchor, constant: 40),
-
             introduceView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
             introduceView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
             introduceView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),

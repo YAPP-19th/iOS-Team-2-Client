@@ -41,6 +41,10 @@ class IntroduceView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
+    func loadTextView(_ text: String) {
+        introTextView.text = text
+    }
+
     private func configureTextView() {
         introTextView.delegate = self
         introTextView.text = "핵심 목표와 성과, 문제를 해결한 방법이나 기술 등을 요약해주세요. 글자 제한은 최대 200자 입니다."

@@ -6,14 +6,14 @@
 //
 
 import UIKit
+import CoreLocation
 
 class LocationSearchViewController: UIViewController {
-    private let allLocation = Location().location
-    private var correct: [String] = []
+    private var locationResults: [String] = []
 
     private let searchBar: UISearchBar = {
         let search = UISearchBar()
-        search.placeholder = "도로명으로 검색"
+        search.placeholder = "지명으로 검색"
         search.setImage(UIImage(systemName: "magnifyingglass"), for: UISearchBar.Icon.search, state: .normal)
         search.setImage(UIImage(systemName: "xmark.circle.fill"), for: .clear, state: .normal)
         search.tintColor = UIColor.init(white: 0, alpha: 0.12)
@@ -30,43 +30,21 @@ class LocationSearchViewController: UIViewController {
         button.setImage(UIImage(named: "GPS"), for: .normal)
         button.imageEdgeInsets = UIEdgeInsets(top: 0, left: -2, bottom: 0, right: 0)
         button.setTitleColor(UIColor.init(white: 0.62, alpha: 1), for: .normal)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
         button.backgroundColor = UIColor(red: 0.95, green: 0.95, blue: 0.95, alpha: 1.00)
         button.layer.cornerRadius = 8
         button.layer.masksToBounds = true
         button.tintColor = .white
 
         button.addTarget(self, action: #selector(locationButtonAction), for: .touchUpInside)
+        button.isEnabled = false
         return button
     }()
-
-    @objc
-    func locationButtonAction() {
-        print("준비중")
-    }
-
-    @objc
-    func dismissAlert() {
-        UIView.animate(withDuration: 0.3, animations: {
-            BackgroundView.instanceBackground.alpha = 0.0
-            AlertView.instanceAlert.alpha = 0.0
-        }, completion: nil)
-    }
-
-    @objc
-    func projectWriteAtcion() {
-        // 일단 아무것도 하지 않으니 (뷰가 안만들어진듯) dismiss
-        UIView.animate(withDuration: 0.3, animations: {
-            BackgroundView.instanceBackground.alpha = 0.0
-            AlertView.instanceAlert.alpha = 0.0
-        }, completion: nil)
-    }
 
     private let searchTableView: UITableView = {
         let tableView = UITableView()
         tableView.separatorColor = .white
         tableView.separatorInset.left = 0
-
         return tableView
     }()
 
@@ -81,63 +59,77 @@ class LocationSearchViewController: UIViewController {
         return button
     }()
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = .white
+        searchBar.delegate = self
+        nextButton.isEnabled = false
+        self.addBackButton()
+        configureLayout()
+        configureTableView()
+        configureLocationAuthorization()
+        configureKeyBoard()
+    }
+}
+
+private extension LocationSearchViewController {
+    @objc
+    func locationButtonAction() {
+        LocationManager.shared.getAddress { result in
+            switch result {
+            case .success(let location):
+                self.searchBar.text = location
+                self.nextButton.backgroundColor = UIColor.budiGreen
+                self.nextButton.isEnabled = true
+                self.view.endEditing(true)
+                NotificationCenter.default.post(name: NSNotification.Name("LocationNextActivation"), object: location)
+            case .failure(let error): print(error)
+            }
+        }
+    }
+
     @objc
     func nextAction() {
         self.navigationController?.popViewController(animated: true)
     }
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        searchBar.delegate = self
-        view.backgroundColor = .white
-        nextButton.isEnabled = false
-        self.addBackButton()
-        configureLayout()
-        configureTableView()
-        configureAlert()
+    func configureKeyBoard() {
     }
 
-    private func configureAlert() {
-        AlertView.instanceAlert.showAlert(title: "버디 위치기반 서비스 이용약관에 동의하시겠습니까?", cancelTitle: "취소", doneTitle: "동의")
-        BackgroundView.instanceBackground.alpha = 0.0
-        AlertView.instanceAlert.alpha = 0.0
-        view.addSubview(BackgroundView.instanceBackground)
-        BackgroundView.instanceBackground.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(AlertView.instanceAlert)
-        AlertView.instanceAlert.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            BackgroundView.instanceBackground.topAnchor.constraint(equalTo: view.topAnchor),
-            BackgroundView.instanceBackground.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            BackgroundView.instanceBackground.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            BackgroundView.instanceBackground.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        ])
-        NSLayoutConstraint.activate([
-            AlertView.instanceAlert.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            AlertView.instanceAlert.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            AlertView.instanceAlert.widthAnchor.constraint(equalToConstant: 343),
-            AlertView.instanceAlert.heightAnchor.constraint(equalToConstant: 208)
-        ])
-
-        UIView.animate(withDuration: 0.2, animations: {
-            BackgroundView.instanceBackground.alpha = 0.5
-            AlertView.instanceAlert.alpha = 1.0
-        })
+    func configureLocationAuthorization() {
+        LocationManager.shared.requestWhenInUseAuthorization()
+        NotificationCenter.default.addObserver(self, selector: #selector(locationAuthorizationSuccess), name: Notification.Name("locationAuthorizationSuccess"), object: nil)
     }
 
-    private func configureTableView() {
+    @objc
+    func locationAuthorizationSuccess() {
+        nowLocationButton.isEnabled = true
+        nowLocationButton.setTitleColor(UIColor.budiDarkGray, for: .normal)
+        nowLocationButton.backgroundColor = UIColor.budiLightGreen
+    }
+
+    func configureTableView() {
         searchTableView.register(SearchTableViewCell.self, forCellReuseIdentifier: SearchTableViewCell.cellId)
         searchTableView.delegate = self
         searchTableView.dataSource = self
     }
 
-    private func configureLayout() {
-
+    func configureLayout() {
         let bottomLine = CALayer()
         bottomLine.frame = CGRect(x: 0, y: 40, width: view.bounds.width - 16, height: 1.0)
         bottomLine.backgroundColor = UIColor.init(white: 0, alpha: 0.12).cgColor
+
         searchBar.layer.addSublayer(bottomLine)
+
         view.addSubview(searchBar)
+        view.addSubview(nowLocationButton)
+        view.addSubview(nextButton)
+        view.addSubview(searchTableView)
+
         searchBar.translatesAutoresizingMaskIntoConstraints = false
+        nowLocationButton.translatesAutoresizingMaskIntoConstraints = false
+        nextButton.translatesAutoresizingMaskIntoConstraints = false
+        searchTableView.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
             searchBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
@@ -145,9 +137,6 @@ class LocationSearchViewController: UIViewController {
             searchBar.widthAnchor.constraint(equalToConstant: view.bounds.width - 16),
             searchBar.heightAnchor.constraint(equalToConstant: 40)
         ])
-
-        view.addSubview(nowLocationButton)
-        nowLocationButton.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
             nowLocationButton.topAnchor.constraint(equalTo: searchBar.bottomAnchor, constant: 16),
@@ -157,9 +146,6 @@ class LocationSearchViewController: UIViewController {
             nowLocationButton.heightAnchor.constraint(equalToConstant: 40)
         ])
 
-        view.addSubview(nextButton)
-        nextButton.translatesAutoresizingMaskIntoConstraints = false
-
         NSLayoutConstraint.activate([
             nextButton.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             nextButton.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -167,62 +153,45 @@ class LocationSearchViewController: UIViewController {
             nextButton.heightAnchor.constraint(equalToConstant: 83)
         ])
 
-        view.addSubview(searchTableView)
-        searchTableView.translatesAutoresizingMaskIntoConstraints = false
-
         NSLayoutConstraint.activate([
             searchTableView.topAnchor.constraint(equalTo: nowLocationButton.bottomAnchor, constant: 18),
             searchTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             searchTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             searchTableView.bottomAnchor.constraint(equalTo: nextButton.topAnchor)
         ])
-
     }
-
 }
 
 extension LocationSearchViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        let location = Location().location
-        if !searchText.isEmpty {
-            for idx in location {
-                if idx.contains(searchText) {
-                    if !correct.contains(idx) {
-                        correct.append(idx)
-                    }
-                }
-            }
-            searchTableView.reloadData()
-        } else {
-            correct = []
-            searchTableView.reloadData()
+        LocationManager.shared.searchAddress(searchText) { results in
+            self.locationResults = results
         }
+        searchTableView.reloadData()
     }
 }
 
 extension LocationSearchViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        correct.count
+        locationResults.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: SearchTableViewCell.cellId, for: indexPath) as? SearchTableViewCell else { return UITableViewCell() }
-        if correct.count > 0 {
-            cell.configureCellLabel(text: correct[indexPath.row])
-        }
+        cell.configureCellLabel(text: locationResults[indexPath.row])
         return cell
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let data = correct[indexPath.row]
+        let location = locationResults[indexPath.row]
         nextButton.backgroundColor = UIColor.budiGreen
         nextButton.isEnabled = true
         self.view.endEditing(true)
-        NotificationCenter.default.post(name: NSNotification.Name("LocationNextActivation"), object: data)
+        searchBar.text = location
+        NotificationCenter.default.post(name: NSNotification.Name("LocationNextActivation"), object: location)
     }
 
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         self.view.endEditing(true)
     }
-
 }

@@ -99,7 +99,7 @@ class NickNameView: UIView {
                     textField.text = String(newString)
                 } else if text.count < 3 {
                     checkTextLabel.text = "3글자 이상으로 닉네임을 지어주세요!"
-                    checkTextLabel.textColor = UIColor.warningRed
+                    checkTextLabel.textColor = UIColor.budiRed
                 }
             }
         }
@@ -133,7 +133,7 @@ extension NickNameView: UITextFieldDelegate {
             // 입력 다 지웠을 때 처리 추후 구현
             if text.count >= 3 {
                 self.checkTextLabel.text = text == "Asd" ? "이미 존재하는 닉네임이에요! 다른 이름을 정해주세요!" : "멋진 닉네임이네요! 사용해도 괜찮아요!"
-                self.checkTextLabel.textColor = text == "Asd" ? UIColor.warningRed : UIColor.budiGreen
+                self.checkTextLabel.textColor = text == "Asd" ? UIColor.budiRed : UIColor.budiGreen
             }
 
         }

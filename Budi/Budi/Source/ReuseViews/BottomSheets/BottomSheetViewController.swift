@@ -50,7 +50,7 @@ extension BottomSheetViewController: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BottomSheetCell.identifier, for: indexPath) as? BottomSheetCell else { return UICollectionViewCell() }
-        cell.jobGroup = jobGroups[indexPath.row]
+//        cell.jobGroup = jobGroups[indexPath.row]
         return cell
     }
 }

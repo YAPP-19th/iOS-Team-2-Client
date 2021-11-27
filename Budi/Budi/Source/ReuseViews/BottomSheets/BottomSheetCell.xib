@@ -4,7 +4,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
-        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -32,25 +31,24 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3hj-Nf-LEF">
                                 <rect key="frame" x="305" y="18" width="20" height="20"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bt7-vL-cBV">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eUf-Nd-Z3y">
                                         <rect key="frame" x="4" y="4" width="12" height="12"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="12" id="DWE-Cw-BXh"/>
-                                            <constraint firstAttribute="width" constant="12" id="ZWS-Kk-YTu"/>
+                                            <constraint firstAttribute="height" constant="12" id="DEJ-RC-Scg"/>
+                                            <constraint firstAttribute="width" constant="12" id="R2A-QW-mZt"/>
                                         </constraints>
-                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <buttonConfiguration key="configuration" style="plain">
-                                            <imageReference key="image" image="circle.fill" catalog="system" symbolScale="small"/>
-                                        </buttonConfiguration>
-                                        <connections>
-                                            <action selector="checkButtonTapped:" destination="gTV-IL-0wX" eventType="touchUpInside" id="y5p-Jz-Zvp"/>
-                                        </connections>
-                                    </button>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="6"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="bt7-vL-cBV" firstAttribute="centerX" secondItem="3hj-Nf-LEF" secondAttribute="centerX" id="2Vb-xK-d8p"/>
-                                    <constraint firstItem="bt7-vL-cBV" firstAttribute="centerY" secondItem="3hj-Nf-LEF" secondAttribute="centerY" id="EC9-vk-qOr"/>
                                     <constraint firstAttribute="width" constant="20" id="FyG-7y-CzV"/>
+                                    <constraint firstItem="eUf-Nd-Z3y" firstAttribute="centerX" secondItem="3hj-Nf-LEF" secondAttribute="centerX" id="JS5-sJ-3CY"/>
+                                    <constraint firstItem="eUf-Nd-Z3y" firstAttribute="centerY" secondItem="3hj-Nf-LEF" secondAttribute="centerY" id="PSS-Xm-MBz"/>
                                     <constraint firstAttribute="height" constant="20" id="XKo-mJ-9SZ"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
@@ -61,7 +59,7 @@
                                         <real key="value" value="10"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                        <real key="value" value="1"/>
+                                        <real key="value" value="2"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
@@ -85,31 +83,41 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </view>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FDI-mg-MJb">
+                        <rect key="frame" x="0.0" y="0.0" width="343" height="56"/>
+                        <state key="normal" title="Button"/>
+                        <buttonConfiguration key="configuration" style="plain" title=""/>
+                    </button>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <constraints>
                 <constraint firstItem="mEg-oI-WJI" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="1Kk-Lq-6E8"/>
+                <constraint firstAttribute="bottom" secondItem="FDI-mg-MJb" secondAttribute="bottom" id="5aH-9Q-bOU"/>
+                <constraint firstAttribute="trailing" secondItem="FDI-mg-MJb" secondAttribute="trailing" id="DSM-U8-MQr"/>
                 <constraint firstAttribute="bottom" secondItem="mEg-oI-WJI" secondAttribute="bottom" id="Gm1-R8-Sse"/>
+                <constraint firstItem="FDI-mg-MJb" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="L9C-IE-MMC"/>
                 <constraint firstAttribute="trailing" secondItem="mEg-oI-WJI" secondAttribute="trailing" id="SYc-2I-uUa"/>
                 <constraint firstItem="mEg-oI-WJI" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="Z65-Wf-PlT"/>
+                <constraint firstItem="FDI-mg-MJb" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="zJA-A5-pYc"/>
             </constraints>
             <size key="customSize" width="343" height="56"/>
             <connections>
-                <outlet property="checkButton" destination="bt7-vL-cBV" id="bgq-dZ-vjk"/>
-                <outlet property="checkButtonCircle" destination="3hj-Nf-LEF" id="FSw-ad-2sF"/>
+                <outlet property="circleContainerView" destination="3hj-Nf-LEF" id="OFf-5O-7hY"/>
+                <outlet property="circleView" destination="eUf-Nd-Z3y" id="qTF-41-x3O"/>
+                <outlet property="containerButton" destination="FDI-mg-MJb" id="yl2-IG-zbl"/>
+                <outlet property="containerView" destination="mEg-oI-WJI" id="mC4-eI-Y9N"/>
                 <outlet property="textLabel" destination="rWD-bZ-NZD" id="K2p-W2-O83"/>
             </connections>
             <point key="canvasLocation" x="344.20289855072468" y="78.348214285714278"/>
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="circle.fill" catalog="system" width="128" height="121"/>
         <namedColor name="Black">
             <color red="0.0" green="0.0" blue="0.0" alpha="0.87000000476837158" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="LightGray">
-            <color red="0.0" green="0.0" blue="0.0" alpha="0.11999999731779099" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.0" blue="0.0" alpha="0.079999998211860657" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

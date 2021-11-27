@@ -20,7 +20,7 @@ class NormalPositionView: UIView {
 
     private func configureLayout() {
 
-        let productManager = NormalPositionSelect()
+        let productManager = NormalPositionSelectView()
         productManager.setPosition(image: "person.3.fill", name: "기획자", index: 2)
 
         addSubview(productManager)
@@ -32,7 +32,7 @@ class NormalPositionView: UIView {
             productManager.widthAnchor.constraint(equalToConstant: 100)
         ])
 
-        let frontEnd = NormalPositionSelect()
+        let frontEnd = NormalPositionSelectView()
         frontEnd.setPosition(image: "laptopcomputer", name: "프론트앤드", index: 1)
 
         addSubview(frontEnd)
@@ -45,7 +45,7 @@ class NormalPositionView: UIView {
             frontEnd.heightAnchor.constraint(equalTo: productManager.heightAnchor)
         ])
 
-        let backEnd = NormalPositionSelect()
+        let backEnd = NormalPositionSelectView()
         backEnd.setPosition(image: "server.rack", name: "백앤드", index: 3)
 
         addSubview(backEnd)

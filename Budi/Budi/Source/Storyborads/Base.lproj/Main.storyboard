@@ -307,9 +307,6 @@
                                         <color key="tintColor" name="Black"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" image="xmark" catalog="system"/>
-                                        <connections>
-                                            <action selector="bottomSheetCloseButtonTapped:" destination="Y5V-2l-l0f" eventType="touchUpInside" id="4AJ-Du-3PR"/>
-                                        </connections>
                                     </button>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="h2Y-Xk-mvp">
                                         <rect key="frame" x="16" y="68" width="382" height="248"/>
@@ -376,9 +373,6 @@
                                                 <real key="value" value="8"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <action selector="submitButtonTapped:" destination="Y5V-2l-l0f" eventType="touchUpInside" id="dpG-UP-zxr"/>
-                                        </connections>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zLo-n4-0uJ">
                                         <rect key="frame" x="16" y="8" width="48" height="48"/>
@@ -401,9 +395,6 @@
                                                     <imageReference key="image" image="heart" catalog="system" symbolScale="default"/>
                                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="23" scale="default" weight="semibold"/>
                                                 </state>
-                                                <connections>
-                                                    <action selector="heartButtonTapped:" destination="Y5V-2l-l0f" eventType="touchUpInside" id="W16-KT-Ihk"/>
-                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -446,12 +437,14 @@
                     <connections>
                         <outlet property="HeartCountLabel" destination="B83-0d-OIm" id="rSv-PZ-PIl"/>
                         <outlet property="backgroundView" destination="nFA-qJ-vem" id="JYp-TL-ES1"/>
+                        <outlet property="bottomSheetCloseButton" destination="jkx-iG-aEJ" id="NXt-uE-bRQ"/>
                         <outlet property="bottomSheetCollectionView" destination="h2Y-Xk-mvp" id="IgG-4a-ewP"/>
-                        <outlet property="bottomSheetView" destination="utH-ze-QDU" id="4h0-gO-zIS"/>
+                        <outlet property="bottomSheetContainerView" destination="utH-ze-QDU" id="thh-2o-3Jh"/>
                         <outlet property="bottomView" destination="Jwd-We-9lw" id="1bN-jt-4g2"/>
                         <outlet property="heartButton" destination="31s-IQ-W8L" id="jZY-gc-jbD"/>
                         <outlet property="heartCountLabel" destination="AeF-ZZ-XYU" id="pf9-96-3cv"/>
                         <outlet property="mainCollectionView" destination="GGU-K4-uik" id="7IZ-Dj-UjL"/>
+                        <outlet property="submitButton" destination="Tjj-Dm-myE" id="jas-Lq-Kfc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jiR-c0-Va7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

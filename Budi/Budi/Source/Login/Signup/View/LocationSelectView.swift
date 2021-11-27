@@ -20,7 +20,6 @@ class LocationSelectView: UIView {
         let label = UILabel()
         label.text = ""
         label.font = UIFont.systemFont(ofSize: 14)
-
         return label
     }()
 
@@ -30,7 +29,7 @@ class LocationSelectView: UIView {
         button.setImage(UIImage(named: "locationAddButton"), for: .normal)
         button.imageView?.contentMode = .scaleAspectFit
         button.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 10)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 17)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 16)
         button.setTitleColor(UIColor.init(white: 0.3, alpha: 1), for: .normal)
         button.backgroundColor = UIColor.budiGreen.withAlphaComponent(0.2)
         button.layer.cornerRadius = 8
@@ -58,14 +57,14 @@ class LocationSelectView: UIView {
         bottomLine.borderColor = UIColor.init(white: 0.8, alpha: 1).cgColor
     }
 
-    func locationSelected(text: String) {
-        locationLabel.text = text
+    func locationSelected(_ location: String) {
+        locationLabel.text = location
         locationLabel.layer.addSublayer(bottomLine)
         locationLabel.heightAnchor.constraint(equalToConstant: 40).isActive = true
-        locationSelectButton.backgroundColor = UIColor(red: 0.95, green: 0.95, blue: 0.95, alpha: 1.00)
+        locationSelectButton.backgroundColor = UIColor.budiLightGray
         locationSelectButton.setImage(UIImage(), for: .normal)
         locationSelectButton.setTitle("다시 선택", for: .normal)
-        locationSelectButton.setTitleColor(UIColor.init(white: 0, alpha: 0.6), for: .normal)
+        locationSelectButton.setTitleColor(UIColor.budiDarkGray, for: .normal)
     }
 
     private func configreLayout() {

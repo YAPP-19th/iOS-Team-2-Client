@@ -1,5 +1,5 @@
 //
-//  NormalPositionSelect.swift
+//  NormalPositionSelectView.swift
 //  Budi
 //
 //  Created by 인병윤 on 2021/11/07.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class NormalPositionSelect: UIView {
+class NormalPositionSelectView: UIView {
     private var selectIndex: Int = 0
     private let selectButton: UIButton = {
         let button = UIButton()

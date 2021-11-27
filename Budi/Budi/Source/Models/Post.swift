@@ -7,13 +7,6 @@
 
 import Foundation
 import Moya
-
-struct APIResponse<T: Decodable>: Decodable {
-    let statusCode: Int
-    let message: String
-    let data: T
-}
-
 // MARK: - DataClass
 struct PostContainer: Decodable {
     let content: [Post]

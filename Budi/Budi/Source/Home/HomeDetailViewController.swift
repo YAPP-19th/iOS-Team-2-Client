@@ -187,14 +187,16 @@ extension HomeDetailViewController: UICollectionViewDataSource, UICollectionView
 extension HomeDetailViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         var size = CGSize(width: collectionView.frame.width, height: 0)
+        
+        guard let post = viewModel.state.post.value else { return size }
 
         if collectionView == mainCollectionView {
             switch indexPath.row {
-            case 0: size.height = 436
-            case 1: size.height = 181
-            case 2: size.height = 578
-            case 3: size.height = 176
-            case 4: size.height = 344
+            case 0: size.height = 280 + 156 + 8
+            case 1: size.height = 172 + 8
+            case 2: size.height = 600 + 8
+            case 3: size.height = 183 + 8
+            case 4: size.height = 64 + (99 + 8) * 2 + 64
             default: break
             }
         }

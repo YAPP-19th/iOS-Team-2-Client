@@ -6,7 +6,6 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -22,9 +21,9 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kmd-td-P4v">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="99"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8pu-zm-swg">
-                                <rect key="frame" x="16" y="21" width="52" height="52"/>
-                                <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="8pu-zm-swg">
+                                <rect key="frame" x="16" y="20" width="52" height="51"/>
+                                <color key="tintColor" name="LightGray"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="52" id="dcV-3A-XJe"/>
                                     <constraint firstAttribute="height" constant="52" id="tKk-m6-Bk9"/>
@@ -41,8 +40,8 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </imageView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="949-d4-7ID">
-                                <rect key="frame" x="82" y="17" width="136.5" height="65"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="949-d4-7ID">
+                                <rect key="frame" x="82" y="21" width="137" height="57.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="도잇" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="exv-vC-l1I">
                                         <rect key="frame" x="0.0" y="0.0" width="28" height="19.5"/>
@@ -50,16 +49,27 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="개발자 · 서울시 동대문구" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qMP-dg-W3m">
-                                        <rect key="frame" x="0.0" y="23.5" width="136.5" height="17"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <color key="textColor" name="DarkGray"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ui3-7G-SRt">
+                                        <rect key="frame" x="0.0" y="21.5" width="137" height="17"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="개발자" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Txh-Uf-rvT">
+                                                <rect key="frame" x="0.0" y="0.0" width="36.5" height="17"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <color key="textColor" name="DarkGray"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" · 서울시 동대문구" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qMP-dg-W3m">
+                                                <rect key="frame" x="36.5" y="0.0" width="100.5" height="17"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <color key="textColor" name="DarkGray"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#Kotlin #Java" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y6T-e6-DTy">
-                                        <rect key="frame" x="0.0" y="44.5" width="102.5" height="20.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
+                                        <rect key="frame" x="0.0" y="40.5" width="87" height="17"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" name="Gray"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
@@ -68,10 +78,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="949-d4-7ID" firstAttribute="leading" secondItem="8pu-zm-swg" secondAttribute="trailing" constant="14" id="Exa-pX-eUx"/>
+                            <constraint firstItem="8pu-zm-swg" firstAttribute="centerY" secondItem="Kmd-td-P4v" secondAttribute="centerY" constant="-4" id="LKA-zC-LWO"/>
                             <constraint firstItem="8pu-zm-swg" firstAttribute="leading" secondItem="Kmd-td-P4v" secondAttribute="leading" constant="16" id="MQ4-b4-O3x"/>
-                            <constraint firstItem="8pu-zm-swg" firstAttribute="top" secondItem="Kmd-td-P4v" secondAttribute="top" constant="21" id="Qer-pR-1Dg"/>
                             <constraint firstItem="949-d4-7ID" firstAttribute="centerY" secondItem="Kmd-td-P4v" secondAttribute="centerY" id="pY6-gh-4xV"/>
-                            <constraint firstAttribute="bottom" secondItem="8pu-zm-swg" secondAttribute="bottom" constant="26" id="x6r-fQ-ixA"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
@@ -95,18 +104,26 @@
                 <constraint firstAttribute="trailing" secondItem="Kmd-td-P4v" secondAttribute="trailing" id="uzS-Zf-H4Q"/>
             </constraints>
             <size key="customSize" width="375" height="99"/>
+            <connections>
+                <outlet property="addressLabel" destination="qMP-dg-W3m" id="sD8-1a-644"/>
+                <outlet property="jobLabel" destination="Txh-Uf-rvT" id="8ri-U9-tfi"/>
+                <outlet property="nameLabel" destination="exv-vC-l1I" id="Via-S2-HAc"/>
+                <outlet property="profileImageView" destination="8pu-zm-swg" id="RCI-FF-WXs"/>
+                <outlet property="skillsLabel" destination="y6T-e6-DTy" id="BDR-Gn-DNO"/>
+            </connections>
             <point key="canvasLocation" x="367.39130434782612" y="98.772321428571431"/>
         </collectionViewCell>
     </objects>
     <resources>
+        <image name="person.circle.fill" catalog="system" width="128" height="121"/>
         <namedColor name="DarkGray">
             <color red="0.0" green="0.0" blue="0.0" alpha="0.60000002384185791" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Gray">
+            <color red="0.0" green="0.0" blue="0.0" alpha="0.37999999523162842" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="LightGray">
             <color red="0.0" green="0.0" blue="0.0" alpha="0.079999998211860657" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <systemColor name="systemGroupedBackgroundColor">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
     </resources>
 </document>

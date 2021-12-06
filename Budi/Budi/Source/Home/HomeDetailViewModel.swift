@@ -34,11 +34,9 @@ final class HomeDetailViewModel: ViewModel {
                     .requestPublisher(.post(id: 11))
                     .map(APIResponse<Post>.self)
                     .map(\.data)
-                    .sink(receiveCompletion: { [weak self] completion in
-                        guard case let .failure(error) = completion else { return }
-                        self?.state.post.send(nil)
-                        print(error.localizedDescription)
+                    .sink(receiveCompletion: { _ in
                     }, receiveValue: { [weak self] post in
+                        print("post == \(post)")
                         self?.state.post.send(post)
                     })
                     .store(in: &self.cancellables)

@@ -7,9 +7,14 @@
 
 import UIKit
 
-class HomeDetailLeaderCell: UICollectionViewCell {
+final class HomeDetailLeaderCell: UICollectionViewCell {
 
     @IBOutlet weak var collectionView: UICollectionView!
+    var leader: Leader = Leader(leaderId: 0, nickName: "", profileImageUrl: "", address: "") {
+        didSet {
+            collectionView.reloadData()
+        }
+    }
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -26,16 +31,13 @@ private extension HomeDetailLeaderCell {
 }
 
 extension HomeDetailLeaderCell: UICollectionViewDataSource {
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        1
-    }
-
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         1
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeDetailPersonCell.identifier, for: indexPath) as UICollectionViewCell
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeDetailPersonCell.identifier, for: indexPath) as? HomeDetailPersonCell else { return UICollectionViewCell() }
+        cell.updateUI(leader.nickName, imageUrl: leader.profileImageUrl, leader.address)
         return cell
     }
 }

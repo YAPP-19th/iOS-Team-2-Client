@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HomeWritingNameCell: UICollectionViewCell {
+final class HomeWritingNameCell: UICollectionViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()

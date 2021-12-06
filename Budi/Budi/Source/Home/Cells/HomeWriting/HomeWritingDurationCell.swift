@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HomeWritingDurationCell: UICollectionViewCell {
+final class HomeWritingDurationCell: UICollectionViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()

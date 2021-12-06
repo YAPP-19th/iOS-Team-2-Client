@@ -57,6 +57,8 @@
 		5EB4303E2758956E00283239 /* HomeWritingAreaCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EB4303C2758956E00283239 /* HomeWritingAreaCell.xib */; };
 		5EB430452758959600283239 /* HomeWritingDescriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EB430432758959600283239 /* HomeWritingDescriptionCell.swift */; };
 		5EB430462758959600283239 /* HomeWritingDescriptionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EB430442758959600283239 /* HomeWritingDescriptionCell.xib */; };
+		5EC2FEF9275E191F00FF5BB0 /* HomeDetailStatusUnitCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC2FEF7275E191E00FF5BB0 /* HomeDetailStatusUnitCell.swift */; };
+		5EC2FEFA275E191F00FF5BB0 /* HomeDetailStatusUnitCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EC2FEF8275E191E00FF5BB0 /* HomeDetailStatusUnitCell.xib */; };
 		5EF5F3292741590300A5F6E2 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF5F3282741590300A5F6E2 /* LocationManager.swift */; };
 		5EFB0A412733CD7700F39A4D /* TeamSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EFB0A402733CD7700F39A4D /* TeamSearchViewController.swift */; };
 		5EFB0A452733E36800F39A4D /* TeamSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EFB0A432733E36800F39A4D /* TeamSearchCell.swift */; };
@@ -164,6 +166,8 @@
 		5EB4303C2758956E00283239 /* HomeWritingAreaCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeWritingAreaCell.xib; sourceTree = "<group>"; };
 		5EB430432758959600283239 /* HomeWritingDescriptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWritingDescriptionCell.swift; sourceTree = "<group>"; };
 		5EB430442758959600283239 /* HomeWritingDescriptionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeWritingDescriptionCell.xib; sourceTree = "<group>"; };
+		5EC2FEF7275E191E00FF5BB0 /* HomeDetailStatusUnitCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailStatusUnitCell.swift; sourceTree = "<group>"; };
+		5EC2FEF8275E191E00FF5BB0 /* HomeDetailStatusUnitCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeDetailStatusUnitCell.xib; sourceTree = "<group>"; };
 		5EF5F3282741590300A5F6E2 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		5EFB0A402733CD7700F39A4D /* TeamSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamSearchViewController.swift; sourceTree = "<group>"; };
 		5EFB0A432733E36800F39A4D /* TeamSearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamSearchCell.swift; sourceTree = "<group>"; };
@@ -290,6 +294,8 @@
 				5EA4539F2731778000943C94 /* HomeDetailMainCell.xib */,
 				5EA453962731776900943C94 /* HomeDetailStatusCell.swift */,
 				5EA453972731776900943C94 /* HomeDetailStatusCell.xib */,
+				5EC2FEF7275E191E00FF5BB0 /* HomeDetailStatusUnitCell.swift */,
+				5EC2FEF8275E191E00FF5BB0 /* HomeDetailStatusUnitCell.xib */,
 				5EA4539A2731777500943C94 /* HomeDetailDescriptionCell.swift */,
 				5EA4539B2731777500943C94 /* HomeDetailDescriptionCell.xib */,
 				5EA453922731775600943C94 /* HomeDetailLeaderCell.swift */,
@@ -550,8 +556,8 @@
 				5EA4536B2731413000943C94 /* Cells */,
 				B9D66EBE27146F2F00668490 /* HomeCoordinator.swift */,
 				B9D66ECB2714716400668490 /* HomeViewController.swift */,
-				5EA575F8274E9B1E00DF6974 /* HomeDetailViewModel.swift */,
 				B92D5501274C039C00D0E851 /* HomeViewModel.swift */,
+				5EA575F8274E9B1E00DF6974 /* HomeDetailViewModel.swift */,
 				5EA4536F273144C200943C94 /* HomeDetailViewController.swift */,
 				B9D66ECD27147AEA00668490 /* HomeWritingViewController.swift */,
 			);
@@ -703,6 +709,7 @@
 				5EB430262758909800283239 /* HomeWritingImageCell.xib in Resources */,
 				5E2554362732770B00033723 /* HomeDetailPersonCell.xib in Resources */,
 				5EFB0A462733E36800F39A4D /* TeamSearchCell.xib in Resources */,
+				5EC2FEFA275E191F00FF5BB0 /* HomeDetailStatusUnitCell.xib in Resources */,
 				5EA453912731774100943C94 /* HomeDetailMemberCell.xib in Resources */,
 				5EFB0A4B2733EAA300F39A4D /* ChattingCell.xib in Resources */,
 				B9BF787B27004095000BE0EF /* Main.storyboard in Resources */,
@@ -844,6 +851,7 @@
 				A8CD933C273676F800299AB4 /* NickNameView.swift in Sources */,
 				A8CD93532737F2BF00299AB4 /* PositionData.swift in Sources */,
 				5E24071D275225A600954BE7 /* PostTarget.swift in Sources */,
+				5EC2FEF9275E191F00FF5BB0 /* HomeDetailStatusUnitCell.swift in Sources */,
 				A8CD93372736702500299AB4 /* SuccessCircleView.swift in Sources */,
 				5EB430352758953000283239 /* HomeWritingOnlineCell.swift in Sources */,
 				5EA453902731774100943C94 /* HomeDetailMemberCell.swift in Sources */,

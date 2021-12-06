@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HomeDetailDescriptionCell: UICollectionViewCell {
+final class HomeDetailDescriptionCell: UICollectionViewCell {
 
     @IBOutlet weak var descriptionTextField: UITextField!
 

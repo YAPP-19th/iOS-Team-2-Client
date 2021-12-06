@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HomeDetailMemberCell: UICollectionViewCell {
+final class HomeDetailMemberCell: UICollectionViewCell {
 
     @IBOutlet weak var collectionView: UICollectionView!
 
@@ -38,10 +38,6 @@ extension HomeDetailMemberCell: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeDetailPersonCell.identifier, for: indexPath) as UICollectionViewCell
         return cell
     }
-}
-
-extension HomeDetailMemberCell: UICollectionViewDelegate {
-
 }
 
 extension HomeDetailMemberCell: UICollectionViewDelegateFlowLayout {

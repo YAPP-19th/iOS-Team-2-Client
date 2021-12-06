@@ -29,7 +29,7 @@ final class HomeCell: UICollectionViewCell {
         toolStackLabel.text = post.recruitingStatusResponses
             .map { "#\($0.skillName)" }
             .joined(separator: " ")
-        if let url = URL(string: post.imageUrls.first ?? "") {
+        if let url = URL(string: post.imageUrl) {
             imageView.kf.setImage(with: url, placeholder: UIImage(named: "defaultBackground"))
         }
     }

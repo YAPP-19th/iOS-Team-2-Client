@@ -8,7 +8,7 @@
 import UIKit
 import Kingfisher
 
-class HomeDetailMainCell: UICollectionViewCell {
+final class HomeDetailMainCell: UICollectionViewCell {
 
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var categoryLabel: UILabel!
@@ -25,7 +25,7 @@ class HomeDetailMainCell: UICollectionViewCell {
         titleLabel.text = post.title
         dateLabel.text = getDatePeriod(post.startDate, post.endDate)
         regionLabel.text = post.region
-        if let url = URL(string: post.imageUrls.first ?? "") {
+        if let url = URL(string: post.imageUrl) {
             imageView.kf.setImage(with: url, placeholder: UIImage(named: "defaultBackground"))
         }
     }

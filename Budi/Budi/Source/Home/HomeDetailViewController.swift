@@ -105,7 +105,6 @@ private extension HomeDetailViewController {
             .sink(receiveCompletion: { [weak self] _ in
                 self?.mainCollectionView.reloadData()
             }, receiveValue: { post in
-                if let post = post { print(post) }
                 self.mainCollectionView.reloadData()
                 self.bottomSheetCollectionView.reloadData()
             }).store(in: &cancellables)
@@ -153,7 +152,7 @@ extension HomeDetailViewController: UICollectionViewDataSource, UICollectionView
             case 1:
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeDetailStatusCell.identifier, for: indexPath) as? HomeDetailStatusCell else { return cell }
                 if let post = viewModel.state.post.value {
-                    cell.updateUI(post.recruitingStatusResponses)
+                    cell.recruitingStatusResponses = post.recruitingStatusResponses
                 }
                 return cell
             case 2:
@@ -164,6 +163,9 @@ extension HomeDetailViewController: UICollectionViewDataSource, UICollectionView
                 return cell
             case 3:
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeDetailLeaderCell.identifier, for: indexPath) as? HomeDetailLeaderCell else { return cell }
+                if let leader = viewModel.state.post.value?.leader {
+                    cell.leader = leader
+                }
                 return cell
             case 4:
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeDetailMemberCell.identifier, for: indexPath) as? HomeDetailMemberCell else { return cell }
@@ -194,9 +196,9 @@ extension HomeDetailViewController: UICollectionViewDelegateFlowLayout {
             switch indexPath.row {
             case 0: size.height = 280 + 156 + 8
             case 1: size.height = 172 + 8
-            case 2: size.height = 600 + 8
-            case 3: size.height = 183 + 8
-            case 4: size.height = 64 + (99 + 8) * 2 + 64
+            case 2: size.height = 200 + 8
+            case 3: size.height = (80 + 99) + 8
+            case 4: size.height = 64 + (99 + 8) * 2 + 64 // 2에 post의 멤버 수
             default: break
             }
         }

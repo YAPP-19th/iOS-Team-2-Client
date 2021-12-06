@@ -18,6 +18,7 @@ final class HomeDetailViewModel: ViewModel {
 
     struct State {
         let post = CurrentValueSubject<Post?, Never>(nil)
+        let teamMembers = CurrentValueSubject<[TeamMember], Never>([])
         let recruitingStatuses = CurrentValueSubject<[RecruitingStatus], Never>([])
     }
 
@@ -37,8 +38,17 @@ final class HomeDetailViewModel: ViewModel {
                     .map(\.data)
                     .sink(receiveCompletion: { _ in
                     }, receiveValue: { [weak self] post in
-                        print("post == \(post)")
                         self?.state.post.send(post)
+                    })
+                    .store(in: &self.cancellables)
+                
+                self.provider
+                    .requestPublisher(.teamMembers(id: 11))
+                    .map(APIResponse<TeamMemberContainer>.self)
+                    .map(\.data)
+                    .sink(receiveCompletion: { _ in
+                    }, receiveValue: { [weak self] container in
+                        self?.state.teamMembers.send(container.teamMembers)
                     })
                     .store(in: &self.cancellables)
                 
@@ -48,8 +58,6 @@ final class HomeDetailViewModel: ViewModel {
                     .map(\.data)
                     .sink(receiveCompletion: { _ in
                     }, receiveValue: { [weak self] container in
-                        print("container == \(container)")
-                        print("recruitingStatuses == \(container.recruitingStatuses)")
                         self?.state.recruitingStatuses.send(container.recruitingStatuses)
                     })
                     .store(in: &self.cancellables)

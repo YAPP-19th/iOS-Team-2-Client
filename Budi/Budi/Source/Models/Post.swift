@@ -119,6 +119,21 @@ struct Leader: Codable {
     let address: String
 }
 
+// MARK: - Pageable
+struct PostPageable: Codable {
+    let offset, pageNumber, pageSize: Int
+    let paged, unpaged: Bool
+}
+
+// MARK: - Members
+struct TeamMemberContainer: Codable {
+    let teamMembers: [TeamMember]
+}
+
+struct TeamMember: Codable {
+    let id: Int
+}
+
 // MARK: - RecruitingStatus
 struct RecruitingStatusContainer: Codable {
     let recruitingStatuses: [RecruitingStatus]
@@ -131,13 +146,8 @@ struct RecruitingStatus: Codable {
     let status: String
 }
 
-// MARK: - RecruitingStatusResponse
+// MARK: - RecruitingStatusResponse: RecruitingStatus로 변경되어 사용하지 않음
 struct RecruitingStatusResponse: Codable {
     let positionName, skillName: String
     let status: String
-}
-// MARK: - Pageable
-struct PostPageable: Codable {
-    let offset, pageNumber, pageSize: Int
-    let paged, unpaged: Bool
 }

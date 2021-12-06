@@ -10,6 +10,7 @@ import Moya
 enum PostTarget {
     case post(id: Int)
     case posts
+    case teamMembers(id: Int)
     case recruitingStatuses(id: Int)
 }
 
@@ -22,6 +23,7 @@ extension PostTarget: TargetType {
         switch self {
         case .post(let id): return "/posts/\(id)"
         case .posts: return "/posts"
+        case .teamMembers(let id): return "/posts/\(id)/members"
         case .recruitingStatuses(let id): return "/posts/\(id)/recruitingStatus"
         }
     }

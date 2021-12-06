@@ -187,8 +187,6 @@ extension HomeDetailViewController: UICollectionViewDataSource, UICollectionView
 extension HomeDetailViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         var size = CGSize(width: collectionView.frame.width, height: 0)
-        
-        guard let post = viewModel.state.post.value else { return size }
 
         if collectionView == mainCollectionView {
             switch indexPath.row {
@@ -196,7 +194,7 @@ extension HomeDetailViewController: UICollectionViewDelegateFlowLayout {
             case 1: size.height = 172 + 8
             case 2: size.height = 200 + 8
             case 3: size.height = (80 + 99) + 8
-            case 4: size.height = 64 + (99 + 8) * 2 + 64 // 2에 post의 멤버 수
+            case 4: size.height = 64 + (99 + 8) * CGFloat(viewModel.state.teamMembers.value.count) + 64
             default: break
             }
         }

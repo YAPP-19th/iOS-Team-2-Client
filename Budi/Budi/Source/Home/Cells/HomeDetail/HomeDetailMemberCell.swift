@@ -11,7 +11,7 @@ final class HomeDetailMemberCell: UICollectionViewCell {
 
     @IBOutlet weak var collectionView: UICollectionView!
     
-    var members: [RecruitingStatus] = [] {
+    var teamMembers: [TeamMember] = [] {
         didSet {
             collectionView.reloadData()
         }
@@ -33,7 +33,7 @@ private extension HomeDetailMemberCell {
 
 extension HomeDetailMemberCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        2
+        teamMembers.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

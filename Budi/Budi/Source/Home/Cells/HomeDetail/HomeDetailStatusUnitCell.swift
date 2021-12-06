@@ -16,8 +16,8 @@ final class HomeDetailStatusUnitCell: UICollectionViewCell {
         super.awakeFromNib()
     }
     
-    func updateUI(_ recruitingStatusResponse: RecruitingStatusResponse) {
-        positionNameLabel.text = recruitingStatusResponse.positionName
-        countLabel.text = recruitingStatusResponse.status
+    func updateUI(_ recruitingStatus: RecruitingStatus) {
+        positionNameLabel.text = recruitingStatus.positionName
+        countLabel.text = "\(recruitingStatus.status)/\(recruitingStatus.status)"
     }
 }

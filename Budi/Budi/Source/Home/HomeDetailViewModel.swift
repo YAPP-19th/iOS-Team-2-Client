@@ -18,6 +18,7 @@ final class HomeDetailViewModel: ViewModel {
 
     struct State {
         let post = CurrentValueSubject<Post?, Never>(nil)
+        let recruitingStatuses = CurrentValueSubject<[RecruitingStatus], Never>([])
     }
 
     let action = Action()
@@ -38,6 +39,18 @@ final class HomeDetailViewModel: ViewModel {
                     }, receiveValue: { [weak self] post in
                         print("post == \(post)")
                         self?.state.post.send(post)
+                    })
+                    .store(in: &self.cancellables)
+                
+                self.provider
+                    .requestPublisher(.recruitingStatuses(id: 11))
+                    .map(APIResponse<RecruitingStatusContainer>.self)
+                    .map(\.data)
+                    .sink(receiveCompletion: { _ in
+                    }, receiveValue: { [weak self] container in
+                        print("container == \(container)")
+                        print("recruitingStatuses == \(container.recruitingStatuses)")
+                        self?.state.recruitingStatuses.send(container.recruitingStatuses)
                     })
                     .store(in: &self.cancellables)
             }).store(in: &cancellables)

@@ -11,7 +11,7 @@ final class HomeDetailStatusCell: UICollectionViewCell {
 
     @IBOutlet weak var collectionView: UICollectionView!
     
-    var recruitingStatusResponses: [RecruitingStatusResponse] = [] {
+    var recruitingStatuses: [RecruitingStatus] = [] {
         didSet {
             collectionView.reloadData()
         }
@@ -33,19 +33,19 @@ private extension HomeDetailStatusCell {
 
 extension HomeDetailStatusCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        recruitingStatusResponses.count
+        recruitingStatuses.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeDetailStatusUnitCell.identifier, for: indexPath) as? HomeDetailStatusUnitCell else { return UICollectionViewCell() }
-        cell.updateUI(recruitingStatusResponses[indexPath.row])
+        cell.updateUI(recruitingStatuses[indexPath.row])
         return cell
     }
 }
 
 extension HomeDetailStatusCell: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        CGSize(width: collectionView.bounds.width / CGFloat(recruitingStatusResponses.count), height: 76)
+        CGSize(width: collectionView.bounds.width / CGFloat(recruitingStatuses.count), height: 76)
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {

@@ -27,7 +27,7 @@ final class HomeCell: UICollectionViewCell {
         positionLabel.text = post.recruitingStatusResponses.first?.positionName
         timeLabel.text = post.createdDate.convertTimePassedString()
         toolStackLabel.text = post.recruitingStatusResponses
-            .map { "#\($0.skillName)" }
+            .map { "#\($0.positionName)" }
             .joined(separator: " ")
         if let url = URL(string: post.imageUrl) {
             imageView.kf.setImage(with: url, placeholder: UIImage(named: "defaultBackground"))

@@ -7,6 +7,7 @@
 
 import Foundation
 import Moya
+
 // MARK: - DataClass
 struct PostContainer: Decodable {
     let content: [Post]
@@ -116,6 +117,18 @@ struct Leader: Codable {
     let nickName: String
     let profileImageUrl: String
     let address: String
+}
+
+// MARK: - RecruitingStatus
+struct RecruitingStatusContainer: Codable {
+    let recruitingStatuses: [RecruitingStatus]
+}
+
+struct RecruitingStatus: Codable {
+    let recruitingPositionId: Int
+    let positionName: String
+    let positionCode: Int
+    let status: String
 }
 
 // MARK: - RecruitingStatusResponse

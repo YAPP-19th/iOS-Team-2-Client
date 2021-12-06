@@ -10,6 +10,12 @@ import UIKit
 final class HomeDetailMemberCell: UICollectionViewCell {
 
     @IBOutlet weak var collectionView: UICollectionView!
+    
+    var members: [RecruitingStatus] = [] {
+        didSet {
+            collectionView.reloadData()
+        }
+    }
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -26,10 +32,6 @@ private extension HomeDetailMemberCell {
 }
 
 extension HomeDetailMemberCell: UICollectionViewDataSource {
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        1
-    }
-
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         2
     }

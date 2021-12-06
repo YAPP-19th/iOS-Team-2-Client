@@ -104,7 +104,7 @@ private extension HomeDetailViewController {
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { [weak self] _ in
                 self?.mainCollectionView.reloadData()
-            }, receiveValue: { post in
+            }, receiveValue: { _ in
                 self.mainCollectionView.reloadData()
                 self.bottomSheetCollectionView.reloadData()
             }).store(in: &cancellables)
@@ -151,9 +151,7 @@ extension HomeDetailViewController: UICollectionViewDataSource, UICollectionView
                 return cell
             case 1:
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeDetailStatusCell.identifier, for: indexPath) as? HomeDetailStatusCell else { return cell }
-                if let post = viewModel.state.post.value {
-                    cell.recruitingStatusResponses = post.recruitingStatusResponses
-                }
+                cell.recruitingStatuses = viewModel.state.recruitingStatuses.value
                 return cell
             case 2:
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeDetailDescriptionCell.identifier, for: indexPath) as? HomeDetailDescriptionCell else { return cell }

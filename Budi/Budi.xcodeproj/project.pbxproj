@@ -59,6 +59,7 @@
 		5EB430462758959600283239 /* HomeWritingDescriptionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EB430442758959600283239 /* HomeWritingDescriptionCell.xib */; };
 		5EC2FEF9275E191F00FF5BB0 /* HomeDetailStatusUnitCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC2FEF7275E191E00FF5BB0 /* HomeDetailStatusUnitCell.swift */; };
 		5EC2FEFA275E191F00FF5BB0 /* HomeDetailStatusUnitCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EC2FEF8275E191E00FF5BB0 /* HomeDetailStatusUnitCell.xib */; };
+		5EC2FF00275E504800FF5BB0 /* HomeDetailCellType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC2FEFF275E504800FF5BB0 /* HomeDetailCellType.swift */; };
 		5EF5F3292741590300A5F6E2 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF5F3282741590300A5F6E2 /* LocationManager.swift */; };
 		5EFB0A412733CD7700F39A4D /* TeamSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EFB0A402733CD7700F39A4D /* TeamSearchViewController.swift */; };
 		5EFB0A452733E36800F39A4D /* TeamSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EFB0A432733E36800F39A4D /* TeamSearchCell.swift */; };
@@ -168,6 +169,7 @@
 		5EB430442758959600283239 /* HomeWritingDescriptionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeWritingDescriptionCell.xib; sourceTree = "<group>"; };
 		5EC2FEF7275E191E00FF5BB0 /* HomeDetailStatusUnitCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailStatusUnitCell.swift; sourceTree = "<group>"; };
 		5EC2FEF8275E191E00FF5BB0 /* HomeDetailStatusUnitCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeDetailStatusUnitCell.xib; sourceTree = "<group>"; };
+		5EC2FEFF275E504800FF5BB0 /* HomeDetailCellType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailCellType.swift; sourceTree = "<group>"; };
 		5EF5F3282741590300A5F6E2 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		5EFB0A402733CD7700F39A4D /* TeamSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamSearchViewController.swift; sourceTree = "<group>"; };
 		5EFB0A432733E36800F39A4D /* TeamSearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamSearchCell.swift; sourceTree = "<group>"; };
@@ -560,6 +562,7 @@
 				5EA575F8274E9B1E00DF6974 /* HomeDetailViewModel.swift */,
 				5EA4536F273144C200943C94 /* HomeDetailViewController.swift */,
 				B9D66ECD27147AEA00668490 /* HomeWritingViewController.swift */,
+				5EC2FEFF275E504800FF5BB0 /* HomeDetailCellType.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -839,6 +842,7 @@
 				5EA453942731775600943C94 /* HomeDetailLeaderCell.swift in Sources */,
 				5EB430292758950400283239 /* HomeWritingNameCell.swift in Sources */,
 				B9D66EBD27146E4300668490 /* NavigationCoordinator.swift in Sources */,
+				5EC2FF00275E504800FF5BB0 /* HomeDetailCellType.swift in Sources */,
 				A8CD93342736566100299AB4 /* ProgressView.swift in Sources */,
 				B94DCA8327521648006A9E0D /* APIResponse.swift in Sources */,
 				B9BF787627004095000BE0EF /* SceneDelegate.swift in Sources */,

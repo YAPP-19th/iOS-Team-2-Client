@@ -113,11 +113,10 @@ private extension HomeDetailViewController {
     func configureCollectionView() {
         mainCollectionView.dataSource = self
         mainCollectionView.delegate = self
-        mainCollectionView.register(.init(nibName: HomeDetailMainCell.identifier, bundle: nil), forCellWithReuseIdentifier: HomeDetailMainCell.identifier)
-        mainCollectionView.register(.init(nibName: HomeDetailStatusCell.identifier, bundle: nil), forCellWithReuseIdentifier: HomeDetailStatusCell.identifier)
-        mainCollectionView.register(.init(nibName: HomeDetailDescriptionCell.identifier, bundle: nil), forCellWithReuseIdentifier: HomeDetailDescriptionCell.identifier)
-        mainCollectionView.register(.init(nibName: HomeDetailLeaderCell.identifier, bundle: nil), forCellWithReuseIdentifier: HomeDetailLeaderCell.identifier)
-        mainCollectionView.register(.init(nibName: HomeDetailMemberCell.identifier, bundle: nil), forCellWithReuseIdentifier: HomeDetailMemberCell.identifier)
+        
+        for cell in HomeDetailCellType.allCases {
+            mainCollectionView.register(.init(nibName: cell.type.identifier, bundle: nil), forCellWithReuseIdentifier: cell.type.identifier)
+        }
 
         bottomSheetCollectionView.dataSource = self
         bottomSheetCollectionView.delegate = self
@@ -132,7 +131,7 @@ extension HomeDetailViewController: UICollectionViewDataSource, UICollectionView
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch collectionView {
-        case mainCollectionView: return 5
+        case mainCollectionView: return HomeDetailCellType.allCases.count
         case bottomSheetCollectionView: return viewModel.state.post.value?.recruitingStatusResponses.count ?? 0
         default: return 0
         }
@@ -189,13 +188,11 @@ extension HomeDetailViewController: UICollectionViewDelegateFlowLayout {
         var size = CGSize(width: collectionView.frame.width, height: 0)
 
         if collectionView == mainCollectionView {
-            switch indexPath.row {
-            case 0: size.height = 280 + 156 + 8
-            case 1: size.height = 172 + 8
-            case 2: size.height = 200 + 8
-            case 3: size.height = (80 + 99) + 8
-            case 4: size.height = 64 + (99 + 8) * CGFloat(viewModel.state.teamMembers.value.count) + 64
-            default: break
+            let cellType = HomeDetailCellType(rawValue: indexPath.row)
+            size.height = cellType?.height ?? 0
+
+            if indexPath.row == 4 {
+                size.height = 64 + (99 + 8) * CGFloat(viewModel.state.teamMembers.value.count) + 64
             }
         }
 

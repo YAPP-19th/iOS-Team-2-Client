@@ -60,6 +60,7 @@
 		5EC2FEF9275E191F00FF5BB0 /* HomeDetailStatusUnitCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC2FEF7275E191E00FF5BB0 /* HomeDetailStatusUnitCell.swift */; };
 		5EC2FEFA275E191F00FF5BB0 /* HomeDetailStatusUnitCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EC2FEF8275E191E00FF5BB0 /* HomeDetailStatusUnitCell.xib */; };
 		5EC2FF00275E504800FF5BB0 /* HomeDetailCellType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC2FEFF275E504800FF5BB0 /* HomeDetailCellType.swift */; };
+		5EC2FF04275E5D8300FF5BB0 /* HomeWritingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC2FF03275E5D8300FF5BB0 /* HomeWritingViewModel.swift */; };
 		5EF5F3292741590300A5F6E2 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF5F3282741590300A5F6E2 /* LocationManager.swift */; };
 		5EFB0A412733CD7700F39A4D /* TeamSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EFB0A402733CD7700F39A4D /* TeamSearchViewController.swift */; };
 		5EFB0A452733E36800F39A4D /* TeamSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EFB0A432733E36800F39A4D /* TeamSearchCell.swift */; };
@@ -170,6 +171,7 @@
 		5EC2FEF7275E191E00FF5BB0 /* HomeDetailStatusUnitCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailStatusUnitCell.swift; sourceTree = "<group>"; };
 		5EC2FEF8275E191E00FF5BB0 /* HomeDetailStatusUnitCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeDetailStatusUnitCell.xib; sourceTree = "<group>"; };
 		5EC2FEFF275E504800FF5BB0 /* HomeDetailCellType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailCellType.swift; sourceTree = "<group>"; };
+		5EC2FF03275E5D8300FF5BB0 /* HomeWritingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWritingViewModel.swift; sourceTree = "<group>"; };
 		5EF5F3282741590300A5F6E2 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		5EFB0A402733CD7700F39A4D /* TeamSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamSearchViewController.swift; sourceTree = "<group>"; };
 		5EFB0A432733E36800F39A4D /* TeamSearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamSearchCell.swift; sourceTree = "<group>"; };
@@ -283,13 +285,11 @@
 			children = (
 				5EA453672731412A00943C94 /* HomeCell.swift */,
 				5EA453682731412A00943C94 /* HomeCell.xib */,
-				5EA4537727316C8800943C94 /* HomeDetail */,
-				5EB4302227588FD300283239 /* HomeWriting */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
 		};
-		5EA4537727316C8800943C94 /* HomeDetail */ = {
+		5EA4537727316C8800943C94 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
 				5EA4539E2731778000943C94 /* HomeDetailMainCell.swift */,
@@ -307,10 +307,10 @@
 				5E2554332732770B00033723 /* HomeDetailPersonCell.swift */,
 				5E2554342732770B00033723 /* HomeDetailPersonCell.xib */,
 			);
-			path = HomeDetail;
+			path = Cells;
 			sourceTree = "<group>";
 		};
-		5EB4302227588FD300283239 /* HomeWriting */ = {
+		5EB4302227588FD300283239 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
 				5EB430232758909800283239 /* HomeWritingImageCell.swift */,
@@ -329,6 +329,37 @@
 				5EB430382758954A00283239 /* HomeWritingMembersCell.xib */,
 				5EB430432758959600283239 /* HomeWritingDescriptionCell.swift */,
 				5EB430442758959600283239 /* HomeWritingDescriptionCell.xib */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		5EC2FF05275E5D9200FF5BB0 /* HomeDetail */ = {
+			isa = PBXGroup;
+			children = (
+				5EA4537727316C8800943C94 /* Cells */,
+				5EC2FEFF275E504800FF5BB0 /* HomeDetailCellType.swift */,
+				5EA575F8274E9B1E00DF6974 /* HomeDetailViewModel.swift */,
+				5EA4536F273144C200943C94 /* HomeDetailViewController.swift */,
+			);
+			path = HomeDetail;
+			sourceTree = "<group>";
+		};
+		5EC2FF06275E5DB600FF5BB0 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				5EA4536B2731413000943C94 /* Cells */,
+				B92D5501274C039C00D0E851 /* HomeViewModel.swift */,
+				B9D66ECB2714716400668490 /* HomeViewController.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		5EC2FF07275E5DCA00FF5BB0 /* HomeWriting */ = {
+			isa = PBXGroup;
+			children = (
+				5EB4302227588FD300283239 /* Cells */,
+				5EC2FF03275E5D8300FF5BB0 /* HomeWritingViewModel.swift */,
+				B9D66ECD27147AEA00668490 /* HomeWritingViewController.swift */,
 			);
 			path = HomeWriting;
 			sourceTree = "<group>";
@@ -555,14 +586,10 @@
 		B9D66EB4271469DE00668490 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				5EA4536B2731413000943C94 /* Cells */,
+				5EC2FF06275E5DB600FF5BB0 /* Home */,
+				5EC2FF07275E5DCA00FF5BB0 /* HomeWriting */,
+				5EC2FF05275E5D9200FF5BB0 /* HomeDetail */,
 				B9D66EBE27146F2F00668490 /* HomeCoordinator.swift */,
-				B9D66ECB2714716400668490 /* HomeViewController.swift */,
-				B92D5501274C039C00D0E851 /* HomeViewModel.swift */,
-				5EA575F8274E9B1E00DF6974 /* HomeDetailViewModel.swift */,
-				5EA4536F273144C200943C94 /* HomeDetailViewController.swift */,
-				B9D66ECD27147AEA00668490 /* HomeWritingViewController.swift */,
-				5EC2FEFF275E504800FF5BB0 /* HomeDetailCellType.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -831,6 +858,7 @@
 				B97DBB9527147D970018C1D2 /* UIViewController+identifer.swift in Sources */,
 				5E2554612732DF8A00033723 /* GreetingAlertViewController.swift in Sources */,
 				B92D5502274C039C00D0E851 /* HomeViewModel.swift in Sources */,
+				5EC2FF04275E5D8300FF5BB0 /* HomeWritingViewModel.swift in Sources */,
 				B9D66EB927146DF900668490 /* TabBarCoordinator.swift in Sources */,
 				B9D66EBF27146F2F00668490 /* HomeCoordinator.swift in Sources */,
 				5EFB0A4F2733FDD100F39A4D /* ChattingDetailViewController.swift in Sources */,

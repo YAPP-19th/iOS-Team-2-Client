@@ -15,16 +15,11 @@ final class HomeDetailViewController: UIViewController {
     @IBOutlet weak var mainCollectionView: UICollectionView!
     @IBOutlet weak var backgroundView: UIView!
 
-    @IBOutlet weak var bottomSheetContainerView: UIView!
-    @IBOutlet weak var bottomSheetCollectionView: UICollectionView!
-    @IBOutlet weak var bottomSheetCloseButton: UIButton!
-
     @IBOutlet weak var bottomView: UIView!
     @IBOutlet weak var heartButton: UIButton!
     @IBOutlet weak var heartCountLabel: UILabel!
     @IBOutlet weak var submitButton: UIButton!
 
-    private var isBottomViewShown: Bool = false
     private var isHeartButtonChecked: Bool = false
 
     weak var coordinator: HomeCoordinator?
@@ -76,26 +71,8 @@ private extension HomeDetailViewController {
         submitButton.tapPublisher
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
-                guard let self = self, !self.isBottomViewShown else { return }
-                self.backgroundView.isHidden = false
-                self.isBottomViewShown = true
-                
-                UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseIn, animations: { [weak self] in
-                    self?.bottomSheetContainerView.center.y -= self?.bottomSheetContainerView.bounds.height ?? 0
-                }, completion: nil)
-            }.store(in: &cancellables)
-
-        bottomSheetCloseButton.tapPublisher
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] _ in
                 guard let self = self else { return }
-                self.isBottomViewShown = false
-                
-                UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseIn, animations: { [weak self] in
-                    self?.bottomSheetContainerView.center.y += self?.bottomSheetContainerView.bounds.height ?? 0
-                }, completion: { [weak self] _ in
-                    self?.backgroundView.isHidden = true
-                })
+                self.coordinator?.showBottomSheet(self, self.viewModel)
             }.store(in: &cancellables)
     }
 
@@ -106,7 +83,6 @@ private extension HomeDetailViewController {
                 self?.mainCollectionView.reloadData()
             }, receiveValue: { _ in
                 self.mainCollectionView.reloadData()
-                self.bottomSheetCollectionView.reloadData()
             }).store(in: &cancellables)
     }
 
@@ -117,10 +93,6 @@ private extension HomeDetailViewController {
         for cell in HomeDetailCellType.allCases {
             mainCollectionView.register(.init(nibName: cell.type.identifier, bundle: nil), forCellWithReuseIdentifier: cell.type.identifier)
         }
-
-        bottomSheetCollectionView.dataSource = self
-        bottomSheetCollectionView.delegate = self
-        bottomSheetCollectionView.register(.init(nibName: BottomSheetCell.identifier, bundle: nil), forCellWithReuseIdentifier: BottomSheetCell.identifier)
     }
 }
 
@@ -130,53 +102,39 @@ extension HomeDetailViewController: UICollectionViewDataSource, UICollectionView
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        switch collectionView {
-        case mainCollectionView: return HomeDetailCellType.allCases.count
-        case bottomSheetCollectionView: return viewModel.state.post.value?.recruitingStatusResponses.count ?? 0
-        default: return 0
-        }
+        HomeDetailCellType.allCases.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = UICollectionViewCell()
 
-        if collectionView == mainCollectionView {
-            switch indexPath.row {
-            case 0:
-                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeDetailMainCell.identifier, for: indexPath) as? HomeDetailMainCell else { return cell }
-                if let post = viewModel.state.post.value {
-                    cell.updateUI(post)
-                }
-                return cell
-            case 1:
-                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeDetailStatusCell.identifier, for: indexPath) as? HomeDetailStatusCell else { return cell }
-                cell.recruitingStatuses = viewModel.state.recruitingStatuses.value
-                return cell
-            case 2:
-                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeDetailDescriptionCell.identifier, for: indexPath) as? HomeDetailDescriptionCell else { return cell }
-                if let post = viewModel.state.post.value {
-                    cell.updateUI(post.description)
-                }
-                return cell
-            case 3:
-                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeDetailLeaderCell.identifier, for: indexPath) as? HomeDetailLeaderCell else { return cell }
-                if let leader = viewModel.state.post.value?.leader {
-                    cell.leader = leader
-                }
-                return cell
-            case 4:
-                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeDetailMemberCell.identifier, for: indexPath) as? HomeDetailMemberCell else { return cell }
-                return cell
-            default: break
-            }
-        }
-
-        if collectionView == bottomSheetCollectionView {
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BottomSheetCell.identifier, for: indexPath) as? BottomSheetCell else { return cell }
-            if let recruitingStatusResponses = viewModel.state.post.value?.recruitingStatusResponses[indexPath.row] {
-                cell.updateUI(status: recruitingStatusResponses)
+        switch indexPath.row {
+        case 0:
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeDetailMainCell.identifier, for: indexPath) as? HomeDetailMainCell else { return cell }
+            if let post = viewModel.state.post.value {
+                cell.updateUI(post)
             }
             return cell
+        case 1:
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeDetailStatusCell.identifier, for: indexPath) as? HomeDetailStatusCell else { return cell }
+            cell.recruitingStatuses = viewModel.state.recruitingStatuses.value
+            return cell
+        case 2:
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeDetailDescriptionCell.identifier, for: indexPath) as? HomeDetailDescriptionCell else { return cell }
+            if let post = viewModel.state.post.value {
+                cell.updateUI(post.description)
+            }
+            return cell
+        case 3:
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeDetailLeaderCell.identifier, for: indexPath) as? HomeDetailLeaderCell else { return cell }
+            if let leader = viewModel.state.post.value?.leader {
+                cell.leader = leader
+            }
+            return cell
+        case 4:
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeDetailMemberCell.identifier, for: indexPath) as? HomeDetailMemberCell else { return cell }
+            return cell
+        default: break
         }
 
         return cell
@@ -187,28 +145,18 @@ extension HomeDetailViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         var size = CGSize(width: collectionView.frame.width, height: 0)
 
-        if collectionView == mainCollectionView {
-            let cellType = HomeDetailCellType(rawValue: indexPath.row)
-            size.height = cellType?.height ?? 0
+        let cellType = HomeDetailCellType(rawValue: indexPath.row)
+        size.height = cellType?.height ?? 0
 
-            if indexPath.row == 4 {
-                size.height = 64 + (99 + 8) * CGFloat(viewModel.state.teamMembers.value.count) + 64
-            }
-        }
-
-        if collectionView == bottomSheetCollectionView {
-            size.height = 56
+        if indexPath.row == 4 {
+            size.height = 64 + (99 + 8) * CGFloat(viewModel.state.teamMembers.value.count) + 64
         }
 
         return size
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        switch collectionView {
-        case mainCollectionView: return 0
-        case bottomSheetCollectionView: return 8
-        default: return 0
-        }
+        0
     }
 }
 

@@ -13,8 +13,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BottomSheetViewController" customModule="Budi" customModuleProvider="target">
             <connections>
+                <outlet property="bottomSheetView" destination="7XL-WD-jzw" id="p43-EP-2ux"/>
+                <outlet property="closeButton" destination="Q3E-PJ-zoC" id="rnb-vJ-l22"/>
                 <outlet property="collectionView" destination="fPm-5x-hnN" id="hYN-SH-9ss"/>
-                <outlet property="containerView" destination="7XL-WD-jzw" id="1bC-xY-qmO"/>
+                <outlet property="heartButton" destination="vqy-OV-iC3" id="Kom-fD-7qc"/>
+                <outlet property="submitButton" destination="trt-dp-HDq" id="pFy-6l-Je6"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -36,17 +39,15 @@
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="close" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q3E-PJ-zoC">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q3E-PJ-zoC">
                             <rect key="frame" x="374" y="24" width="24" height="24"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="24" id="ivN-18-yHc"/>
                                 <constraint firstAttribute="height" constant="24" id="vIc-0B-JYv"/>
                             </constraints>
                             <color key="tintColor" name="Black"/>
-                            <buttonConfiguration key="configuration" style="plain"/>
-                            <connections>
-                                <action selector="cancelButtonTapped:" destination="-1" eventType="touchUpInside" id="ALY-SD-7jL"/>
-                            </connections>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                            <state key="normal" image="xmark" catalog="system"/>
                         </button>
                         <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="fPm-5x-hnN">
                             <rect key="frame" x="16" y="68" width="382" height="248"/>
@@ -172,6 +173,7 @@
     </objects>
     <resources>
         <image name="heart" catalog="system" width="128" height="109"/>
+        <image name="xmark" catalog="system" width="128" height="113"/>
         <namedColor name="Black">
             <color red="0.0" green="0.0" blue="0.0" alpha="0.87000000476837158" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

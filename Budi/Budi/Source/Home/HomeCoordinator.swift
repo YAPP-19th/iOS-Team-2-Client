@@ -44,4 +44,10 @@ extension HomeCoordinator {
         viewController.coordinator = self
         navigationController?.pushViewController(viewController, animated: true)
     }
+    
+    func showBottomSheet(_ vc: UIViewController, _ viewModel: HomeDetailViewModel) {
+        let viewController: BottomSheetViewController = BottomSheetViewController(nibName: BottomSheetViewController.identifier, bundle: nil, viewModel: viewModel)
+        viewController.coordinator = self
+        vc.present(viewController, animated: true, completion: nil)
+    }
 }

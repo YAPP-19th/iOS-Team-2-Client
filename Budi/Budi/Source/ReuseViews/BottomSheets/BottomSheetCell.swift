@@ -9,6 +9,10 @@ import UIKit
 import Combine
 import CombineCocoa
 
+protocol BottomSheetCellDelegate: AnyObject {
+    func selectBottomSheetCell(_ recruitingStatus: RecruitingStatus)
+}
+
 class BottomSheetCell: UICollectionViewCell {
 
     @IBOutlet weak var containerView: UIView!
@@ -17,17 +21,20 @@ class BottomSheetCell: UICollectionViewCell {
     @IBOutlet weak var circleContainerView: UIView!
     @IBOutlet weak var circleView: UIView!
 
-    private var isChecked: Bool = false
+    var isChecked: Bool = false
+    var recruitingStatus: RecruitingStatus? {
+        didSet {
+            textLabel.text = recruitingStatus?.positionName
+        }
+    }
+    
+    weak var delegate: BottomSheetCellDelegate?
 
     private var cancellables = Set<AnyCancellable>()
 
     override func awakeFromNib() {
         super.awakeFromNib()
         setPublisher()
-    }
-
-    func updateUI(status: RecruitingStatusResponse) {
-        textLabel.text = status.positionName
     }
 }
 
@@ -37,10 +44,17 @@ private extension BottomSheetCell {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
                 guard let self = self else { return }
-                self.isChecked.toggle()
-                self.containerView.borderColor = self.isChecked ? UIColor.budiGreen : UIColor.budiLightGray
-                self.circleContainerView.borderColor = self.isChecked ? UIColor.budiLightGreen : UIColor.budiLightGray
-                self.circleView.backgroundColor = self.isChecked ? UIColor.budiGreen : .white
+                if let recruitingStatus = self.recruitingStatus {
+                    self.isChecked.toggle()
+                    self.configureUI()
+                    self.delegate?.selectBottomSheetCell(recruitingStatus)
+                }
             }.store(in: &cancellables)
+    }
+    
+    func configureUI() {
+        containerView.borderColor = isChecked ? .budiGreen : .budiLightGray
+        circleContainerView.borderColor = isChecked ? .budiLightGreen : .budiLightGray
+        circleView.backgroundColor = isChecked ? .budiGreen : .white
     }
 }

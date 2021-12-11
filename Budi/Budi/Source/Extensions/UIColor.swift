@@ -21,18 +21,18 @@ extension UIColor {
     }
 
     static var budiBlack: UIColor {
-        UIColor.black.withAlphaComponent(0.87)
+        UIColor(red: 0.117, green: 0.117, blue: 0.117, alpha: 1.000)
     }
 
     static var budiDarkGray: UIColor {
-        UIColor.black.withAlphaComponent(0.60)
+        UIColor(red: 0.360, green: 0.360, blue: 0.360, alpha: 1.000)
     }
 
     static var budiGray: UIColor {
-        UIColor.black.withAlphaComponent(0.38)
+        UIColor(red: 0.556, green: 0.556, blue: 0.556, alpha: 1.000)
     }
 
     static var budiLightGray: UIColor {
-        UIColor.black.withAlphaComponent(0.08)
+        UIColor(red: 0.866, green: 0.866, blue: 0.866, alpha: 1.000)
     }
 }

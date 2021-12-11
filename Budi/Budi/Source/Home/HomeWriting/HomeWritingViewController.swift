@@ -17,6 +17,11 @@ final class HomeWritingViewController: UIViewController {
         super.viewDidLoad()
         configureNavigationBar()
         configureCollectionView()
+        
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        tabBarController?.tabBar.isHidden = true
     }
 }
 
@@ -93,5 +98,6 @@ extension HomeWritingViewController: UICollectionViewDelegateFlowLayout {
 private extension HomeWritingViewController {
     func configureNavigationBar() {
         title = "팀원 모집"
+        tabBarController?.tabBar.isHidden = true
     }
 }

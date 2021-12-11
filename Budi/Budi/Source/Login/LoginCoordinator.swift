@@ -8,17 +8,17 @@
 import UIKit
 
 final class LoginCoordinator: NavigationCoordinator {
-
+    private let historyViewModel = HistoryManagementViewModel()
     weak var navigationController: UINavigationController?
     private let storyboard = UIStoryboard(name: "Main", bundle: nil)
-    private var childCoordinators = [NavigationCoordinator]()
 
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
     }
 
     func start() {
-        let viewController: LoginSelectViewController = storyboard.instantiateViewController(identifier: LoginSelectViewController.identifier)
+        let viewController: LoginSelectViewController = storyboard.instantiateViewController(
+            identifier: LoginSelectViewController.identifier)
         viewController.coordinator = self
         navigationController?.pushViewController(viewController, animated: true)
     }
@@ -26,14 +26,50 @@ final class LoginCoordinator: NavigationCoordinator {
 }
 
 extension LoginCoordinator {
-    func showLoginWithNaver() {
+    func showSignupNormalViewController() {
         let viewController: SignupNormalViewController = storyboard.instantiateViewController(identifier: SignupNormalViewController.identifier)
         viewController.navigationItem.title = "회원가입"
+        viewController.coordinator = self
         navigationController?.pushViewController(viewController, animated: true)
     }
 
-    func showConfigurePosition() {
-        let configure = PositionViewController()
-        navigationController?.pushViewController(configure, animated: true)
+    func showHistoryManagementViewController() {
+        print("ㅇㅅㅇ")
+        let viewController: HistoryManagementViewController = storyboard.instantiateViewController(identifier: HistoryManagementViewController.identifier) { coder -> HistoryManagementViewController? in
+            return HistoryManagementViewController(coder: coder, viewModel: self.historyViewModel)
+        }
+        viewController.navigationItem.title = "회원가입"
+        viewController.coordinator = self
+        navigationController?.pushViewController(viewController, animated: true)
+    }
+
+    func showLocationSearchViewController() {
+        let viewController: LocationSearchViewController = storyboard.instantiateViewController(identifier: LocationSearchViewController.identifier)
+        viewController.navigationItem.title = "위치선택"
+        viewController.coordinator = self
+        navigationController?.pushViewController(viewController, animated: true)
+    }
+
+    func showPositionViewController() {
+        let viewController: PositionViewController = storyboard.instantiateViewController(identifier: PositionViewController.identifier)
+        viewController.navigationItem.title = "회원가입"
+        viewController.coordinator = self
+        navigationController?.pushViewController(viewController, animated: true)
+    }
+
+    func showHistoryWriteViewController(_ number: Int) {
+        let viewController: HistoryWriteViewController = storyboard.instantiateViewController(identifier: HistoryWriteViewController.identifier) { coder -> HistoryWriteViewController? in
+            return HistoryWriteViewController(coder: coder, viewModel: self.historyViewModel)
+        }
+        if number == 1 {
+            viewController.navigationItem.title = "경력 작성"
+            viewController.viewModel.action.tag.send(1)
+        } else if number == 2 {
+            viewController.navigationItem.title = "프로젝트 이력 작성"
+            viewController.viewModel.action.tag.send(2)
+        }
+        viewController.coordinator = self
+        navigationController?.pushViewController(viewController, animated: true)
+
     }
 }

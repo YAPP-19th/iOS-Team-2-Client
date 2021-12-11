@@ -6,11 +6,15 @@
 //
 
 import UIKit
+import Combine
+import CombineCocoa
 
 class PositionViewController: UIViewController {
-    var coordinator: LoginCoordinator?
-
+    weak var coordinator: LoginCoordinator?
+    private let alertView = AlertView()
+    private var cancellables = Set<AnyCancellable>()
     override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
         scrollView.updateContentView()
     }
 
@@ -103,6 +107,19 @@ class PositionViewController: UIViewController {
         nextButton.isEnabled = false
         self.addBackButton()
         configureLayout()
+        bindButton()
+    }
+
+
+
+    private func bindButton() {
+        alertView.doneButton.tapPublisher
+            .receive(on: DispatchQueue.main)
+            .sink { _ in
+
+                self.coordinator?.showHistoryManagementViewController()
+            }
+            .store(in: &cancellables)
     }
 
     @objc
@@ -113,25 +130,6 @@ class PositionViewController: UIViewController {
 
     @objc
     func positionButtionAction(sender: UIButton) {
-        if !sender.isSelected {
-            sender.isSelected = true
-            sender.setTitleColor(UIColor.budiGreen, for: .normal)
-            sender.layer.borderColor = UIColor.budiGreen.cgColor
-            UIView.animate(withDuration: 0.2, animations: {
-                sender.layer.borderWidth = 2
-            })
-        } else {
-            sender.isSelected = false
-            sender.setTitleColor(UIColor.init(white: 0, alpha: 0.6), for: .normal)
-            UIView.animate(withDuration: 0.2, animations: {
-                sender.layer.borderWidth = 0.3
-                sender.layer.borderColor = UIColor.init(white: 0, alpha: 0.6).cgColor
-            })
-        }
-    }
-
-    @objc
-    func languageButtonAction(sender: UIButton) {
         if !sender.isSelected {
             sender.isSelected = true
             sender.setTitleColor(UIColor.budiGreen, for: .normal)
@@ -165,28 +163,19 @@ class PositionViewController: UIViewController {
     func dismissAlert() {
         UIView.animate(withDuration: 0.2, animations: {
             BackgroundView.instanceBackground.alpha = 0.0
-            AlertView.instanceAlert.alpha = 0.0
+            self.alertView.alpha = 0.0
         }, completion: nil)
 
-    }
-
-    @objc
-    func projectWriteAtcion() {
-        // 일단 아무것도 하지 않으니 (뷰가 안만들어진듯) dismiss
-        UIView.animate(withDuration: 0.2, animations: {
-            BackgroundView.instanceBackground.alpha = 0.0
-            AlertView.instanceAlert.alpha = 0.0
-        }, completion: nil)
     }
 
     private func configureAlert() {
         BackgroundView.instanceBackground.alpha = 0.0
-        AlertView.instanceAlert.alpha = 0.0
-        AlertView.instanceAlert.showAlert(title: "프로젝트 이력을 입력하고\n 더 높은 레벨을 받아보세요!", cancelTitle: "나중에 입력하기", doneTitle: "지금 입력하기")
+        alertView.alpha = 0.0
+        alertView.showAlert(title: "프로젝트 이력을 입력하고\n 더 높은 레벨을 받아보세요!", cancelTitle: "나중에 입력하기", doneTitle: "지금 입력하기")
         view.addSubview(BackgroundView.instanceBackground)
         BackgroundView.instanceBackground.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(AlertView.instanceAlert)
-        AlertView.instanceAlert.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(alertView)
+        alertView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             BackgroundView.instanceBackground.topAnchor.constraint(equalTo: view.topAnchor),
             BackgroundView.instanceBackground.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -194,15 +183,15 @@ class PositionViewController: UIViewController {
             BackgroundView.instanceBackground.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
         NSLayoutConstraint.activate([
-            AlertView.instanceAlert.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            AlertView.instanceAlert.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            AlertView.instanceAlert.widthAnchor.constraint(equalToConstant: 343),
-            AlertView.instanceAlert.heightAnchor.constraint(equalToConstant: 208)
+            alertView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            alertView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            alertView.widthAnchor.constraint(equalToConstant: 343),
+            alertView.heightAnchor.constraint(equalToConstant: 208)
         ])
 
         UIView.animate(withDuration: 0.2, animations: {
             BackgroundView.instanceBackground.alpha = 0.5
-            AlertView.instanceAlert.alpha = 1.0
+            self.alertView.alpha = 1.0
         })
     }
 
@@ -279,22 +268,11 @@ class PositionViewController: UIViewController {
         let detailPosition = PositionData().position
         configureDetailPosition(array: detailPosition, bottomAnchor: detailPositionLabel.bottomAnchor, index: 1)
 
-        scrollView.addSubview(programmingLanguageLabel)
-        programmingLanguageLabel.translatesAutoresizingMaskIntoConstraints = false
-
-        NSLayoutConstraint.activate([
-            programmingLanguageLabel.topAnchor.constraint(equalTo: detailPositionLabel.bottomAnchor, constant: 116),
-            programmingLanguageLabel.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 16)
-        ])
-
-        let programmingLang = PositionData().language
-        configureDetailPosition(array: programmingLang, bottomAnchor: programmingLanguageLabel.bottomAnchor, index: 2)
-
         scrollView.addSubview(spacer)
         spacer.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
-            spacer.topAnchor.constraint(equalTo: programmingLanguageLabel.bottomAnchor, constant: 116),
+            spacer.topAnchor.constraint(equalTo: detailPositionLabel.bottomAnchor, constant: 116),
             spacer.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
             spacer.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
             spacer.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -20)
@@ -316,8 +294,6 @@ class PositionViewController: UIViewController {
             button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 13)
             if index == 1 {
                 button.addTarget(self, action: #selector(positionButtionAction), for: .touchUpInside)
-            } else {
-                button.addTarget(self, action: #selector(languageButtonAction), for: .touchUpInside)
             }
             button.tag = num
 

@@ -47,9 +47,7 @@ class SignupNormalViewController: UIViewController {
     @objc
     func nextAction() {
         viewModel.pushServer()
-        let position = PositionViewController()
-        position.navigationItem.title = "회원가입"
-        navigationController?.pushViewController(position, animated: true)
+        coordinator?.showPositionViewController()
     }
 
     private let scrollView: UIScrollView = {

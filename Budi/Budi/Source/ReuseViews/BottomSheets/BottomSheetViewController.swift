@@ -17,6 +17,7 @@ class BottomSheetViewController: UIViewController {
     @IBOutlet weak var heartButton: UIButton!
     @IBOutlet weak var closeButton: UIButton!
     
+    @IBOutlet private weak var bottomSheetViewTopConstraint: NSLayoutConstraint!
     private var isBottonSheetShown: Bool = false
     private var isHeartButtonChecked: Bool = false
     private var selectedRecruitingStatus: RecruitingStatus?
@@ -40,6 +41,10 @@ class BottomSheetViewController: UIViewController {
         setPublisher()
         bindViewModel()
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        showBottomSheetView()
+    }
 }
 
 private extension BottomSheetViewController {
@@ -48,11 +53,7 @@ private extension BottomSheetViewController {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
                 guard let self = self else { return }
-                
-                UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: { [weak self] in
-                    guard let self = self else { return }
-                    self.showBottomSheetView()
-                }, completion: nil)
+                self.isBottonSheetShown ? self.hideBottomSheetView() : self.showBottomSheetView()
             }.store(in: &cancellables)
 
         heartButton.tapPublisher
@@ -62,6 +63,7 @@ private extension BottomSheetViewController {
                 self.isHeartButtonChecked.toggle()
                 self.heartButton.setImage(UIImage(systemName: self.isHeartButtonChecked ? "heart.fill" : "heart"), for: .normal)
                 self.heartButton.tintColor = self.isHeartButtonChecked ? UIColor.budiGreen : UIColor.budiGray
+                self.view.layoutIfNeeded()
             }.store(in: &cancellables)
         
         closeButton.tapPublisher
@@ -69,12 +71,15 @@ private extension BottomSheetViewController {
             .sink { [weak self] _ in
                 guard let self = self else { return }
                 
-                UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: { [weak self] in
+                let animator = UIViewPropertyAnimator(duration: 0.25, curve: .linear) { [weak self] in
                     guard let self = self else { return }
-                    self.showBottomSheetView()
-                }, completion: { _ in
-                    self.dismiss(animated: true, completion: nil)
-                })
+                    self.view.alpha = 0
+                    self.isBottonSheetShown ? self.hideBottomSheetView() : self.showBottomSheetView()
+                }
+                animator.addCompletion { [weak self] _ in
+                    self?.dismiss(animated: true)
+                }
+                animator.startAnimation()
             }.store(in: &cancellables)
     }
     
@@ -82,13 +87,34 @@ private extension BottomSheetViewController {
         let cellHeight: CGFloat = 64
         let cellCount: Int = self.viewModel.state.recruitingStatuses.value.count
         
-        if isBottonSheetShown {
-            bottomSheetView.center.y += (bottomSheetView.bounds.height - cellHeight * CGFloat((4 - cellCount)))
-            isBottonSheetShown = false
-        } else {
-            bottomSheetView.center.y -= (bottomSheetView.bounds.height - cellHeight * CGFloat((4 - cellCount)))
-            isBottonSheetShown = true
+        let animator = UIViewPropertyAnimator(duration: 0.25, curve: .linear) { [weak self] in
+            guard let self = self else { return }
+            self.view.alpha = 1
+            self.bottomSheetViewTopConstraint.constant -= (self.bottomSheetView.bounds.height - cellHeight * CGFloat((4 - cellCount)))
+            self.view.layoutIfNeeded()
         }
+        animator.addCompletion { [weak self] _ in
+            self?.isBottonSheetShown = true
+        }
+        animator.startAnimation()
+    }
+    
+    func hideBottomSheetView() {
+        let cellHeight: CGFloat = 64
+        let cellCount: Int = self.viewModel.state.recruitingStatuses.value.count
+        
+        let animator = UIViewPropertyAnimator(duration: 0.25, curve: .linear) { [weak self] in
+            guard let self = self else { return }
+            self.view.alpha = 0
+            self.bottomSheetViewTopConstraint.constant += (self.bottomSheetView.bounds.height - cellHeight * CGFloat((4 - cellCount)))
+            self.view.layoutIfNeeded()
+        }
+        animator.addCompletion { [weak self] _ in
+            self?.dismiss(animated: true)
+            self?.isBottonSheetShown = false
+            
+        }
+        animator.startAnimation()
     }
     
     func bindViewModel() {

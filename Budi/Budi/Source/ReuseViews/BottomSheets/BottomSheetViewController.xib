@@ -14,6 +14,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BottomSheetViewController" customModule="Budi" customModuleProvider="target">
             <connections>
                 <outlet property="bottomSheetView" destination="7XL-WD-jzw" id="p43-EP-2ux"/>
+                <outlet property="bottomSheetViewTopConstraint" destination="UnZ-NM-jwy" id="aDk-1p-gU7"/>
                 <outlet property="closeButton" destination="Q3E-PJ-zoC" id="rnb-vJ-l22"/>
                 <outlet property="collectionView" destination="fPm-5x-hnN" id="hYN-SH-9ss"/>
                 <outlet property="heartButton" destination="vqy-OV-iC3" id="Kom-fD-7qc"/>
@@ -91,7 +92,7 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R6q-jd-m7o">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R6q-jd-m7o" userLabel="Apply View">
                     <rect key="frame" x="0.0" y="801" width="414" height="95"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="trt-dp-HDq">
@@ -162,9 +163,9 @@
                 <constraint firstItem="7XL-WD-jzw" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="6w4-OU-H1Q"/>
                 <constraint firstItem="yUx-Ds-iS9" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="71V-KZ-jbL"/>
                 <constraint firstItem="yUx-Ds-iS9" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="KxQ-sC-7Qb"/>
+                <constraint firstItem="7XL-WD-jzw" firstAttribute="top" secondItem="R6q-jd-m7o" secondAttribute="top" id="UnZ-NM-jwy"/>
                 <constraint firstAttribute="bottom" secondItem="R6q-jd-m7o" secondAttribute="bottom" id="ep9-ZQ-HJC"/>
                 <constraint firstItem="7XL-WD-jzw" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="i7l-u5-oae"/>
-                <constraint firstItem="7XL-WD-jzw" firstAttribute="top" secondItem="R6q-jd-m7o" secondAttribute="top" id="iyq-2Y-kWg"/>
                 <constraint firstItem="R6q-jd-m7o" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="jbg-OR-gAW"/>
                 <constraint firstAttribute="bottom" secondItem="yUx-Ds-iS9" secondAttribute="bottom" id="l5g-0Z-6hR"/>
             </constraints>

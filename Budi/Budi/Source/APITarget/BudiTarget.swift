@@ -7,12 +7,12 @@
 
 import Moya
 
-enum PostTarget {
+enum BudiTarget {
     case post(id: Int)
     case posts
 }
 
-extension PostTarget: TargetType {
+extension BudiTarget: TargetType {
     var baseURL: URL {
         return URL(string: .baseURLString)!
     }

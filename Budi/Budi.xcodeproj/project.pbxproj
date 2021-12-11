@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5E24071D275225A600954BE7 /* PostTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E24071C275225A600954BE7 /* PostTarget.swift */; };
+		5E24071D275225A600954BE7 /* BudiTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E24071C275225A600954BE7 /* BudiTarget.swift */; };
 		5E24071F275225B800954BE7 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E24071E275225B800954BE7 /* Login.swift */; };
 		5E240721275225CD00954BE7 /* String+date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E240720275225CD00954BE7 /* String+date.swift */; };
 		5E24072327522BCE00954BE7 /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E24072227522BCE00954BE7 /* AlertView.swift */; };
@@ -100,7 +100,7 @@
 /* Begin PBXFileReference section */
 		431890E70909CACD17283C45 /* Pods-Budi.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Budi.release.xcconfig"; path = "Target Support Files/Pods-Budi/Pods-Budi.release.xcconfig"; sourceTree = "<group>"; };
 		5BB91E1E1D24F6BCA931C5F6 /* Pods_Budi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Budi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		5E24071C275225A600954BE7 /* PostTarget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostTarget.swift; sourceTree = "<group>"; };
+		5E24071C275225A600954BE7 /* BudiTarget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BudiTarget.swift; sourceTree = "<group>"; };
 		5E24071E275225B800954BE7 /* Login.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
 		5E240720275225CD00954BE7 /* String+date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+date.swift"; sourceTree = "<group>"; };
 		5E24072227522BCE00954BE7 /* AlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
@@ -396,7 +396,7 @@
 		B92D54FA274C034C00D0E851 /* APITarget */ = {
 			isa = PBXGroup;
 			children = (
-				5E24071C275225A600954BE7 /* PostTarget.swift */,
+				5E24071C275225A600954BE7 /* BudiTarget.swift */,
 			);
 			path = APITarget;
 			sourceTree = "<group>";
@@ -773,7 +773,7 @@
 				A85325BB274773F90073FAFB /* SignupNormalViewModel.swift in Sources */,
 				A8CD933C273676F800299AB4 /* NickNameView.swift in Sources */,
 				A8CD93532737F2BF00299AB4 /* PositionData.swift in Sources */,
-				5E24071D275225A600954BE7 /* PostTarget.swift in Sources */,
+				5E24071D275225A600954BE7 /* BudiTarget.swift in Sources */,
 				A8CD93372736702500299AB4 /* SuccessCircleView.swift in Sources */,
 				5EA453902731774100943C94 /* HomeDetailMemberCell.swift in Sources */,
 				5EF5F3292741590300A5F6E2 /* LocationManager.swift in Sources */,

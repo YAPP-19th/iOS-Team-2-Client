@@ -32,7 +32,7 @@ final class HomeViewModel: ViewModel {
     let action = Action()
     let state = State()
     private var cancellables = Set<AnyCancellable>()
-    private let provider = MoyaProvider<PostTarget>()
+    private let provider = MoyaProvider<BudiTarget>()
 
     init() {
         action.fetch

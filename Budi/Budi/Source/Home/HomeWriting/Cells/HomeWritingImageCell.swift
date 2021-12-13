@@ -6,11 +6,32 @@
 //
 
 import UIKit
+import Combine
+import CombineCocoa
 
 final class HomeWritingImageCell: UICollectionViewCell {
 
+    @IBOutlet weak var imageChangeButton: UIButton!
+    
+    private var cancellables = Set<AnyCancellable>()
+    
     override func awakeFromNib() {
         super.awakeFromNib()
+        bindViewModel()
+        setPublisher()
     }
+}
 
+private extension HomeWritingImageCell {
+    func bindViewModel() {
+    }
+    
+    func setPublisher() {
+        imageChangeButton.tapPublisher
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in
+                guard let self = self else { return }
+                
+            }.store(in: &cancellables)
+    }
 }

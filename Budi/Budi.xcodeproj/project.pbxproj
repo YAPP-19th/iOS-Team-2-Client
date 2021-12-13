@@ -26,8 +26,12 @@
 		5E7EFE272732E06F007817C3 /* AlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7EFE252732E06E007817C3 /* AlertViewController.swift */; };
 		5E7EFE282732E06F007817C3 /* AlertViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E7EFE262732E06F007817C3 /* AlertViewController.xib */; };
 		5E88636E2767450A0022397A /* HomeWritingCellType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E88636D2767450A0022397A /* HomeWritingCellType.swift */; };
-		5E88637227674F5C0022397A /* HomeWritingImageBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E88637027674F5C0022397A /* HomeWritingImageBottomSheetViewController.swift */; };
-		5E88637327674F5C0022397A /* HomeWritingImageBottomSheetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E88637127674F5C0022397A /* HomeWritingImageBottomSheetViewController.xib */; };
+		5E886376276771E00022397A /* HomeWritingImageBottomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E886374276771E00022397A /* HomeWritingImageBottomViewController.swift */; };
+		5E886377276771E00022397A /* HomeWritingImageBottomViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E886375276771E00022397A /* HomeWritingImageBottomViewController.xib */; };
+		5E88637A276771EE0022397A /* HomeWritingPartBottomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E886378276771EE0022397A /* HomeWritingPartBottomViewController.swift */; };
+		5E88637B276771EE0022397A /* HomeWritingPartBottomViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E886379276771EE0022397A /* HomeWritingPartBottomViewController.xib */; };
+		5E88637E276771FB0022397A /* HomeWritingMembersBottomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E88637C276771FB0022397A /* HomeWritingMembersBottomViewController.swift */; };
+		5E88637F276771FB0022397A /* HomeWritingMembersBottomViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E88637D276771FB0022397A /* HomeWritingMembersBottomViewController.xib */; };
 		5EA453692731412A00943C94 /* HomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA453672731412A00943C94 /* HomeCell.swift */; };
 		5EA4536A2731412A00943C94 /* HomeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EA453682731412A00943C94 /* HomeCell.xib */; };
 		5EA45370273144C200943C94 /* HomeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA4536F273144C200943C94 /* HomeDetailViewController.swift */; };
@@ -139,8 +143,12 @@
 		5E7EFE252732E06E007817C3 /* AlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewController.swift; sourceTree = "<group>"; };
 		5E7EFE262732E06F007817C3 /* AlertViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlertViewController.xib; sourceTree = "<group>"; };
 		5E88636D2767450A0022397A /* HomeWritingCellType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWritingCellType.swift; sourceTree = "<group>"; };
-		5E88637027674F5C0022397A /* HomeWritingImageBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWritingImageBottomSheetViewController.swift; sourceTree = "<group>"; };
-		5E88637127674F5C0022397A /* HomeWritingImageBottomSheetViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeWritingImageBottomSheetViewController.xib; sourceTree = "<group>"; };
+		5E886374276771E00022397A /* HomeWritingImageBottomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWritingImageBottomViewController.swift; sourceTree = "<group>"; };
+		5E886375276771E00022397A /* HomeWritingImageBottomViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeWritingImageBottomViewController.xib; sourceTree = "<group>"; };
+		5E886378276771EE0022397A /* HomeWritingPartBottomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWritingPartBottomViewController.swift; sourceTree = "<group>"; };
+		5E886379276771EE0022397A /* HomeWritingPartBottomViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeWritingPartBottomViewController.xib; sourceTree = "<group>"; };
+		5E88637C276771FB0022397A /* HomeWritingMembersBottomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWritingMembersBottomViewController.swift; sourceTree = "<group>"; };
+		5E88637D276771FB0022397A /* HomeWritingMembersBottomViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeWritingMembersBottomViewController.xib; sourceTree = "<group>"; };
 		5EA453672731412A00943C94 /* HomeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCell.swift; sourceTree = "<group>"; };
 		5EA453682731412A00943C94 /* HomeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeCell.xib; sourceTree = "<group>"; };
 		5EA4536F273144C200943C94 /* HomeDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailViewController.swift; sourceTree = "<group>"; };
@@ -289,8 +297,12 @@
 		5E88636F27674E3F0022397A /* BottomSheets */ = {
 			isa = PBXGroup;
 			children = (
-				5E88637027674F5C0022397A /* HomeWritingImageBottomSheetViewController.swift */,
-				5E88637127674F5C0022397A /* HomeWritingImageBottomSheetViewController.xib */,
+				5E886374276771E00022397A /* HomeWritingImageBottomViewController.swift */,
+				5E886375276771E00022397A /* HomeWritingImageBottomViewController.xib */,
+				5E886378276771EE0022397A /* HomeWritingPartBottomViewController.swift */,
+				5E886379276771EE0022397A /* HomeWritingPartBottomViewController.xib */,
+				5E88637C276771FB0022397A /* HomeWritingMembersBottomViewController.swift */,
+				5E88637D276771FB0022397A /* HomeWritingMembersBottomViewController.xib */,
 			);
 			path = BottomSheets;
 			sourceTree = "<group>";
@@ -603,10 +615,10 @@
 		B9D66EB4271469DE00668490 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				B9D66EBE27146F2F00668490 /* HomeCoordinator.swift */,
 				5EC2FF06275E5DB600FF5BB0 /* Home */,
 				5EC2FF07275E5DCA00FF5BB0 /* HomeWriting */,
 				5EC2FF05275E5D9200FF5BB0 /* HomeDetail */,
-				B9D66EBE27146F2F00668490 /* HomeCoordinator.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -742,10 +754,13 @@
 				5EB430362758953000283239 /* HomeWritingOnlineCell.xib in Resources */,
 				5EB4302A2758950400283239 /* HomeWritingNameCell.xib in Resources */,
 				5EFB0A5B27341C1100F39A4D /* ChattingTimeCell.xib in Resources */,
+				5E88637F276771FB0022397A /* HomeWritingMembersBottomViewController.xib in Resources */,
 				5EA453A12731778000943C94 /* HomeDetailMainCell.xib in Resources */,
 				5EB430322758952500283239 /* HomeWritingDurationCell.xib in Resources */,
+				5E886377276771E00022397A /* HomeWritingImageBottomViewController.xib in Resources */,
 				5EA4539D2731777500943C94 /* HomeDetailDescriptionCell.xib in Resources */,
 				5EB430462758959600283239 /* HomeWritingDescriptionCell.xib in Resources */,
+				5E88637B276771EE0022397A /* HomeWritingPartBottomViewController.xib in Resources */,
 				B9BF788027004096000BE0EF /* LaunchScreen.storyboard in Resources */,
 				5EB4303A2758954A00283239 /* HomeWritingMembersCell.xib in Resources */,
 				5EA4536A2731412A00943C94 /* HomeCell.xib in Resources */,
@@ -758,7 +773,6 @@
 				5EFB0A462733E36800F39A4D /* TeamSearchCell.xib in Resources */,
 				5EC2FEFA275E191F00FF5BB0 /* HomeDetailStatusUnitCell.xib in Resources */,
 				5EA453912731774100943C94 /* HomeDetailMemberCell.xib in Resources */,
-				5E88637327674F5C0022397A /* HomeWritingImageBottomSheetViewController.xib in Resources */,
 				5EFB0A4B2733EAA300F39A4D /* ChattingCell.xib in Resources */,
 				B9BF787B27004095000BE0EF /* Main.storyboard in Resources */,
 				5EB4303E2758956E00283239 /* HomeWritingAreaCell.xib in Resources */,
@@ -859,7 +873,9 @@
 				A8CD93322736470100299AB4 /* SignupNormalViewController.swift in Sources */,
 				5EFB0A412733CD7700F39A4D /* TeamSearchViewController.swift in Sources */,
 				B98E530A27396B3F00C73374 /* UINavigationController+translucent.swift in Sources */,
+				5E886376276771E00022397A /* HomeWritingImageBottomViewController.swift in Sources */,
 				5EA453A02731778000943C94 /* HomeDetailMainCell.swift in Sources */,
+				5E88637E276771FB0022397A /* HomeWritingMembersBottomViewController.swift in Sources */,
 				5EFB0A5A27341C1100F39A4D /* ChattingTimeCell.swift in Sources */,
 				5EFB0A5627340BF100F39A4D /* ChattingMessageCell.swift in Sources */,
 				5EA453AC2731DDA700943C94 /* CALayer+addBorderTop.swift in Sources */,
@@ -873,7 +889,6 @@
 				A85325B52746C4580073FAFB /* NaverData.swift in Sources */,
 				A8CD93442736E82300299AB4 /* PositionViewController.swift in Sources */,
 				B9BF787427004094000BE0EF /* AppDelegate.swift in Sources */,
-				5E88637227674F5C0022397A /* HomeWritingImageBottomSheetViewController.swift in Sources */,
 				5EFB0A522734016600F39A4D /* MyChattingMessageCell.swift in Sources */,
 				B97DBB9527147D970018C1D2 /* UIViewController+identifer.swift in Sources */,
 				5E2554612732DF8A00033723 /* GreetingAlertViewController.swift in Sources */,
@@ -884,6 +899,7 @@
 				5EFB0A4F2733FDD100F39A4D /* ChattingDetailViewController.swift in Sources */,
 				5EA453692731412A00943C94 /* HomeCell.swift in Sources */,
 				5EFB0A452733E36800F39A4D /* TeamSearchCell.swift in Sources */,
+				5E88637A276771EE0022397A /* HomeWritingPartBottomViewController.swift in Sources */,
 				B9D66EC82714707000668490 /* MyBudiCoordinator.swift in Sources */,
 				5EFB0A4A2733EAA300F39A4D /* ChattingCell.swift in Sources */,
 				5EA575FE274E9C4800DF6974 /* String+baseURL.swift in Sources */,

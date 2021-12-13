@@ -31,10 +31,23 @@ final class HomeCoordinator: NavigationCoordinator {
 extension HomeCoordinator {
     func showWriting() {
         let viewController: HomeWritingViewController = storyboard.instantiateViewController(
-            identifier: HomeWritingViewController.identifier)
+            identifier: HomeWritingViewController.identifier) { coder -> HomeWritingViewController? in
+                let viewModel = HomeWritingViewModel()
+                return HomeWritingViewController(coder: coder, viewModel: viewModel)
+            }
+        viewController.coordinator = self
         navigationController?.pushViewController(viewController, animated: true)
     }
+    
+    func showWritingImageBottomView(_ vc: UIViewController, _ viewModel: HomeWritingViewModel) {
+        let viewController: HomeWritingImageBottomViewController = HomeWritingImageBottomViewController(nibName: HomeWritingImageBottomViewController.identifier, bundle: nil, viewModel: viewModel)
+        viewController.modalPresentationStyle = .overCurrentContext
+        viewController.coordinator = self
+        vc.present(viewController, animated: false, completion: nil)
+    }
+}
 
+extension HomeCoordinator {
     func showDetail() {
         let viewController: HomeDetailViewController = storyboard.instantiateViewController(
             identifier: HomeDetailViewController.identifier) { coder -> HomeDetailViewController? in
@@ -45,7 +58,7 @@ extension HomeCoordinator {
         navigationController?.pushViewController(viewController, animated: true)
     }
     
-    func showBottomSheet(_ vc: UIViewController, _ viewModel: HomeDetailViewModel) {
+    func showDetailBottomView(_ vc: UIViewController, _ viewModel: HomeDetailViewModel) {
         let viewController: HomeDetailBottomViewController = HomeDetailBottomViewController(nibName: HomeDetailBottomViewController.identifier, bundle: nil, viewModel: viewModel)
         viewController.modalPresentationStyle = .overCurrentContext
         viewController.coordinator = self

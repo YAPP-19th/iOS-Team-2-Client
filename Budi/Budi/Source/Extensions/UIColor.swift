@@ -40,7 +40,15 @@ extension UIColor {
         UIColor(red: 0.866, green: 0.866, blue: 0.866, alpha: 1)
     }
     
-    static var budiTransparentGray: UIColor {
+    static var budiWhite: UIColor {
+        UIColor(red: 1, green: 1, blue: 1, alpha: 1)
+    }
+    
+    static var budiTransparentDarkGray: UIColor {
         UIColor(red: 1, green: 1, blue: 1, alpha: 0.6)
+    }
+    
+    static var budiTransparentGray: UIColor {
+        UIColor(red: 1, green: 1, blue: 1, alpha: 0.4)
     }
 }

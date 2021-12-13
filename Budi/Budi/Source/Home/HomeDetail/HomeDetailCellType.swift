@@ -33,4 +33,39 @@ enum HomeDetailCellType: Int, CaseIterable {
         case .member: return HomeDetailMemberCell.self
         }
     }
+    
+    static func getCell(_ collectionView: UICollectionView, _ indexPath: IndexPath, _ viewModel: HomeDetailViewModel) -> UICollectionViewCell {
+        let cell = UICollectionViewCell()
+
+        switch indexPath.row {
+        case 0:
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeDetailMainCell.identifier, for: indexPath) as? HomeDetailMainCell else { return cell }
+            if let post = viewModel.state.post.value {
+                cell.updateUI(post)
+            }
+            return cell
+        case 1:
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeDetailStatusCell.identifier, for: indexPath) as? HomeDetailStatusCell else { return cell }
+            cell.recruitingStatuses = viewModel.state.recruitingStatuses.value
+            return cell
+        case 2:
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeDetailDescriptionCell.identifier, for: indexPath) as? HomeDetailDescriptionCell else { return cell }
+            if let post = viewModel.state.post.value {
+                cell.updateUI(post.description)
+            }
+            return cell
+        case 3:
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeDetailLeaderCell.identifier, for: indexPath) as? HomeDetailLeaderCell else { return cell }
+            if let leader = viewModel.state.post.value?.leader {
+                cell.leader = leader
+            }
+            return cell
+        case 4:
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeDetailMemberCell.identifier, for: indexPath) as? HomeDetailMemberCell else { return cell }
+            return cell
+        default: break
+        }
+
+        return cell
+    }
 }

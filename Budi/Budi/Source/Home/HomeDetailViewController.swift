@@ -153,7 +153,7 @@ extension HomeDetailViewController: UICollectionViewDataSource, UICollectionView
             case 1:
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeDetailStatusCell.identifier, for: indexPath) as? HomeDetailStatusCell else { return cell }
                 if let post = viewModel.state.post.value {
-                    cell.updateUI(post.recruitingStatusResponses)
+//                    cell.updateUI(post.recruitingStatusResponses)
                 }
                 return cell
             case 2:

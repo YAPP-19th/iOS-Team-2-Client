@@ -1,25 +1,35 @@
 //
-//  HomeViewController.swift
+//  HomeContentViewController.swift
 //  Budi
 //
-//  Created by 최동규 on 2021/10/11.
+//  Created by 최동규 on 2021/12/14.
 //
 
 import UIKit
-import Moya
-import Combine
 import CombineCocoa
+import Combine
 
-final class HomeViewController: UIViewController {
+final class HomeContentViewController: UIViewController {
 
-    @IBOutlet private weak var collectionView: UICollectionView!
-    @IBOutlet private weak var teamAddButton: UIButton!
-
+    let viewModel: HomeContentViewModel
+    private let collectionView: UICollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+    private var cancellables = Set<AnyCancellable>()
     weak var coordinator: HomeCoordinator?
 
-    private let viewModel: HomeViewModel
-    private var cancellables = Set<AnyCancellable>()
-    init?(coder: NSCoder, viewModel: HomeViewModel) {
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = .clear
+        configureCollectionView()
+        setPublisher()
+        bindViewModel()
+    }
+
+    init(viewModel: HomeContentViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    init?(coder: NSCoder, viewModel: HomeContentViewModel) {
         self.viewModel = viewModel
         super.init(coder: coder)
     }
@@ -27,25 +37,11 @@ final class HomeViewController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("This viewController must be init with viewModel")
     }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        configureNavigationBar()
-        configureCollectionView()
-        bindViewModel()
-        setPublisher()
-    }
 }
 
-private extension HomeViewController {
+private extension HomeContentViewController {
 
     func setPublisher() {
-        teamAddButton.tapPublisher
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] in
-                self?.coordinator?.showWriting()
-            }.store(in: &cancellables)
-
         collectionView.refreshControl?.isRefreshingPublisher
             .sink(receiveValue: { [weak self] isRefreshing in
                 guard isRefreshing else { return }
@@ -64,15 +60,24 @@ private extension HomeViewController {
     }
 
     func configureCollectionView() {
+        view.addSubview(collectionView)
+        collectionView.backgroundColor = .clear
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            collectionView.topAnchor.constraint(equalTo: view.topAnchor),
+            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
         collectionView.refreshControl = UIRefreshControl()
         collectionView.collectionViewLayout = createLayout()
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.register(.init(nibName: HomeCell.identifier, bundle: nil), forCellWithReuseIdentifier: HomeCell.identifier)
-        collectionView.backgroundColor = .white
     }
 }
-extension HomeViewController: UICollectionViewDataSource {
+
+extension HomeContentViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return viewModel.state.posts.value.count
     }
@@ -94,11 +99,11 @@ extension HomeViewController: UICollectionViewDataSource {
     }
 }
 
-extension HomeViewController: UICollectionViewDelegate {
+extension HomeContentViewController: UICollectionViewDelegate {
 
 }
 
-private extension HomeViewController {
+private extension HomeContentViewController {
     func createLayout() -> UICollectionViewCompositionalLayout {
         return UICollectionViewCompositionalLayout { _, _ in
 
@@ -113,25 +118,5 @@ private extension HomeViewController {
 
             return section
         }
-    }
-
-    func configureNavigationBar() {
-        let editButton = UIButton()
-        editButton.setImage(.init(systemName: "line.3.horizontal"), for: .normal)
-
-        let searchButton = UIButton()
-        searchButton.setImage(.init(systemName: "magnifyingglass"), for: .normal)
-
-        let notifyButton = UIButton()
-        notifyButton.setImage(.init(systemName: "bell"), for: .normal)
-
-        let stackview = UIStackView(arrangedSubviews: [editButton, searchButton, notifyButton])
-        stackview.distribution = .equalSpacing
-        stackview.axis = .horizontal
-        stackview.alignment = .center
-        stackview.spacing = 8
-
-        navigationItem.rightBarButtonItem =  UIBarButtonItem(customView: stackview)
-        title = "버디 모집"
     }
 }

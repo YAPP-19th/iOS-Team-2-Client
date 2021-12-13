@@ -17,6 +17,27 @@ enum HomeWritingCellType: Int, CaseIterable {
     case members
     case description
     
+    var type: UICollectionViewCell.Type {
+        switch self {
+        case .image: return HomeWritingImageCell.self
+        case .name: return HomeWritingNameCell.self
+        case .part: return HomeWritingPartCell.self
+        case .duration: return HomeWritingDurationCell.self
+        case .online: return HomeWritingOnlineCell.self
+        case .area: return HomeWritingAreaCell.self
+        case .members: return HomeWritingMembersCell.self
+        case .description: return HomeWritingDescriptionCell.self
+        }
+    }
+    
+    static var minimumLineSpacingForSection: CGFloat {
+        4
+    }
+    
+    static var numberOfItemsInSection: Int {
+        self.allCases.count
+    }
+    
     var height: CGFloat {
         switch self {
         case .image: return 280
@@ -30,24 +51,28 @@ enum HomeWritingCellType: Int, CaseIterable {
         }
     }
     
-    var type: UICollectionViewCell.Type {
-        switch self {
-        case .image: return HomeWritingImageCell.self
-        case .name: return HomeWritingNameCell.self
-        case .part: return HomeWritingPartCell.self
-        case .duration: return HomeWritingDurationCell.self
-        case .online: return HomeWritingOnlineCell.self
-        case .area: return HomeWritingAreaCell.self
-        case .members: return HomeWritingMembersCell.self
-        case .description: return HomeWritingDescriptionCell.self
+    static func configureCollectionView(_ viewController: UIViewController, _ collectionView: UICollectionView) {
+        collectionView.delegate = viewController as? UICollectionViewDelegate
+        collectionView.dataSource = viewController as? UICollectionViewDataSource
+        
+        self.allCases.forEach {
+            collectionView.register(.init(nibName: $0.type.identifier, bundle: nil), forCellWithReuseIdentifier: $0.type.identifier)
         }
     }
+    
+    static func configureCellSize(_ collectionView: UICollectionView, _ indexPath: IndexPath) -> CGSize {
+        let cellType = HomeWritingCellType(rawValue: indexPath.row)
+        let size = CGSize(width: collectionView.frame.width, height: cellType?.height ?? 0)
+        
+        return size
+    }
 
-    static func getCell(_ collectionView: UICollectionView, _ indexPath: IndexPath) -> UICollectionViewCell {
+    static func configureCell(_ viewController: UIViewController, _ collectionView: UICollectionView, _ indexPath: IndexPath) -> UICollectionViewCell {
         let cell = UICollectionViewCell()
 
         switch indexPath.row {
         case 0: guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeWritingImageCell.identifier, for: indexPath) as? HomeWritingImageCell else { return cell }
+            cell.delegate = viewController as? HomeWritingImageCellDelegate
             return cell
         case 1: guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeWritingNameCell.identifier, for: indexPath) as? HomeWritingNameCell else { return cell }
             return cell

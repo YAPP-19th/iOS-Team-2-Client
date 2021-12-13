@@ -9,11 +9,17 @@ import UIKit
 import Combine
 import CombineCocoa
 
+protocol HomeWritingImageCellDelegate: AnyObject {
+    func changeCoverImage()
+}
+
 final class HomeWritingImageCell: UICollectionViewCell {
 
     @IBOutlet weak var imageChangeButton: UIButton!
     
     private var cancellables = Set<AnyCancellable>()
+    
+    weak var delegate: HomeWritingImageCellDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -31,7 +37,7 @@ private extension HomeWritingImageCell {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
                 guard let self = self else { return }
-                
+                self.delegate?.changeCoverImage()
             }.store(in: &cancellables)
     }
 }

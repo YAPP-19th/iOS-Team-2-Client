@@ -27,8 +27,7 @@ final class HomeWritingViewModel: ViewModel {
     
     init() {
         action.fetch
-            .sink(receiveValue: { [weak self] _ in
-                guard let self = self else { return }
+            .sink(receiveValue: { _ in
             }).store(in: &cancellables)
 
         action.refresh

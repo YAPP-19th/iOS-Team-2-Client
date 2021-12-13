@@ -28,6 +28,7 @@ final class HomeCoordinator: NavigationCoordinator {
     }
 }
 
+// MARK: - HomeWritingViewController
 extension HomeCoordinator {
     func showWriting() {
         let viewController: HomeWritingViewController = storyboard.instantiateViewController(
@@ -47,6 +48,7 @@ extension HomeCoordinator {
     }
 }
 
+// MARK: - HomeDetailViewController
 extension HomeCoordinator {
     func showDetail() {
         let viewController: HomeDetailViewController = storyboard.instantiateViewController(

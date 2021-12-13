@@ -14,16 +14,6 @@ enum HomeDetailCellType: Int, CaseIterable {
     case leader
     case member
     
-    var height: CGFloat {
-        switch self {
-        case .main: return 280 + 156 + 8
-        case .status: return 172 + 8
-        case .description: return 200 + 8
-        case .leader: return (80 + 99) + 8
-        case .member: return 64 + (99 + 8) * 0 + 64
-        }
-    }
-    
     var type: UICollectionViewCell.Type {
         switch self {
         case .main: return HomeDetailMainCell.self
@@ -34,34 +24,67 @@ enum HomeDetailCellType: Int, CaseIterable {
         }
     }
     
-    static func getCell(_ collectionView: UICollectionView, _ indexPath: IndexPath, _ viewModel: HomeDetailViewModel) -> UICollectionViewCell {
+    static var minimumLineSpacingForSection: CGFloat {
+        0
+    }
+    
+    static var numberOfItemsInSection: Int {
+        self.allCases.count
+    }
+    
+    var height: CGFloat {
+        switch self {
+        case .main: return 280 + 156 + 8
+        case .status: return 172 + 8
+        case .description: return 200 + 8
+        case .leader: return (80 + 99) + 8
+        case .member: return 64 + (99 + 8) * 0 + 64
+        }
+    }
+    
+    static func configureCollectionView(_ viewController: UIViewController, _ collectionView: UICollectionView) {
+        collectionView.delegate = viewController as? UICollectionViewDelegate
+        collectionView.dataSource = viewController as? UICollectionViewDataSource
+        
+        self.allCases.forEach {
+            collectionView.register(.init(nibName: $0.type.identifier, bundle: nil), forCellWithReuseIdentifier: $0.type.identifier)
+        }
+    }
+
+    static func configureCellSize(_ collectionView: UICollectionView, _ indexPath: IndexPath, _ viewModel: HomeDetailViewModel) -> CGSize {
+        let cellType = HomeDetailCellType(rawValue: indexPath.row)
+        var size = CGSize(width: collectionView.frame.width, height: cellType?.height ?? 0)
+        
+        if cellType == .member {
+            size.height = 64 + (99 + 8) * CGFloat(viewModel.state.teamMembers.value.count) + 64
+        }
+        
+        return size
+    }
+    
+    static func configureCell(_ collectionView: UICollectionView, _ indexPath: IndexPath, _ viewModel: HomeDetailViewModel) -> UICollectionViewCell {
         let cell = UICollectionViewCell()
 
         switch indexPath.row {
-        case 0:
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeDetailMainCell.identifier, for: indexPath) as? HomeDetailMainCell else { return cell }
+        case 0: guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeDetailMainCell.identifier, for: indexPath) as? HomeDetailMainCell else { return cell }
             if let post = viewModel.state.post.value {
                 cell.updateUI(post)
             }
             return cell
-        case 1:
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeDetailStatusCell.identifier, for: indexPath) as? HomeDetailStatusCell else { return cell }
+        case 1: guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeDetailStatusCell.identifier, for: indexPath) as? HomeDetailStatusCell else { return cell }
             cell.recruitingStatuses = viewModel.state.recruitingStatuses.value
             return cell
-        case 2:
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeDetailDescriptionCell.identifier, for: indexPath) as? HomeDetailDescriptionCell else { return cell }
+        case 2: guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeDetailDescriptionCell.identifier, for: indexPath) as? HomeDetailDescriptionCell else { return cell }
             if let post = viewModel.state.post.value {
                 cell.updateUI(post.description)
             }
             return cell
-        case 3:
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeDetailLeaderCell.identifier, for: indexPath) as? HomeDetailLeaderCell else { return cell }
+        case 3: guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeDetailLeaderCell.identifier, for: indexPath) as? HomeDetailLeaderCell else { return cell }
             if let leader = viewModel.state.post.value?.leader {
                 cell.leader = leader
             }
             return cell
-        case 4:
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeDetailMemberCell.identifier, for: indexPath) as? HomeDetailMemberCell else { return cell }
+        case 4: guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeDetailMemberCell.identifier, for: indexPath) as? HomeDetailMemberCell else { return cell }
             return cell
         default: break
         }

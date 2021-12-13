@@ -38,41 +38,38 @@ final class HomeWritingViewController: UIViewController {
 }
 
 private extension HomeWritingViewController {
-    func configureCollectionView() {
-        collectionView.dataSource = self
-        collectionView.delegate = self
-        
-        HomeWritingCellType.allCases.forEach {
-            collectionView.register(.init(nibName: $0.type.identifier, bundle: nil), forCellWithReuseIdentifier: $0.type.identifier)
-        }
-    }
-}
-
-extension HomeWritingViewController: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        8
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        HomeWritingCellType.getCell(collectionView, indexPath)
-    }
-}
-extension HomeWritingViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let cellType = HomeWritingCellType(rawValue: indexPath.row)
-        let size = CGSize(width: collectionView.frame.width, height: cellType?.height ?? 0)
-        
-        return size
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        4
-    }
-}
-
-private extension HomeWritingViewController {
     func configureNavigationBar() {
         title = "팀원 모집"
         tabBarController?.tabBar.isHidden = true
+    }
+}
+
+// MARK: - Delegate
+extension HomeWritingViewController: HomeWritingImageCellDelegate {
+    func changeCoverImage() {
+        coordinator?.showWritingImageBottomView(self, viewModel)
+    }
+}
+
+// MARK: - CollectionView
+extension HomeWritingViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    func configureCollectionView() {
+        HomeWritingCellType.configureCollectionView(self, collectionView)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        HomeWritingCellType.numberOfItemsInSection
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        HomeWritingCellType.configureCell(self, collectionView, indexPath)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        HomeWritingCellType.configureCellSize(collectionView, indexPath)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        HomeWritingCellType.minimumLineSpacingForSection
     }
 }

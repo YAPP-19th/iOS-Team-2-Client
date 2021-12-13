@@ -45,7 +45,7 @@ final class HomeDetailViewController: UIViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
-         super.viewWillAppear(animated)
+        super.viewWillAppear(animated)
         tabBarController?.tabBar.isHidden = true
         navigationController?.setTranslucent()
     }
@@ -85,48 +85,6 @@ private extension HomeDetailViewController {
                 self.mainCollectionView.reloadData()
             }).store(in: &cancellables)
     }
-
-    func configureCollectionView() {
-        mainCollectionView.dataSource = self
-        mainCollectionView.delegate = self
-        
-        HomeDetailCellType.allCases.forEach {
-            mainCollectionView.register(.init(nibName: $0.type.identifier, bundle: nil), forCellWithReuseIdentifier: $0.type.identifier)
-        }
-    }
-}
-
-extension HomeDetailViewController: UICollectionViewDataSource, UICollectionViewDelegate {
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        1
-    }
-
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        HomeDetailCellType.allCases.count
-    }
-
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        HomeDetailCellType.getCell(collectionView, indexPath, viewModel)
-    }
-}
-
-extension HomeDetailViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        var size = CGSize(width: collectionView.frame.width, height: 0)
-
-        let cellType = HomeDetailCellType(rawValue: indexPath.row)
-        size.height = cellType?.height ?? 0
-
-        if indexPath.row == 4 {
-            size.height = 64 + (99 + 8) * CGFloat(viewModel.state.teamMembers.value.count) + 64
-        }
-
-        return size
-    }
-
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        0
-    }
 }
 
 private extension HomeDetailViewController {
@@ -142,5 +100,28 @@ private extension HomeDetailViewController {
         alert.modalPresentationStyle = .overCurrentContext
         alert.modalTransitionStyle = .crossDissolve
         present(alert, animated: true, completion: nil)
+    }
+}
+
+// MARK: - CollectionView
+extension HomeDetailViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+    func configureCollectionView() {
+        HomeDetailCellType.configureCollectionView(self, mainCollectionView)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        HomeDetailCellType.numberOfItemsInSection
+    }
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        HomeDetailCellType.configureCell(collectionView, indexPath, viewModel)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        HomeDetailCellType.configureCellSize(collectionView, indexPath, viewModel)
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        HomeDetailCellType.minimumLineSpacingForSection
     }
 }

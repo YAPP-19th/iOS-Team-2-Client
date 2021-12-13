@@ -112,6 +112,8 @@ private extension HomeContainerViewController {
                 }.store(in: &cancellables)
             titleButtonStackView.addArrangedSubview(button)
             NSLayoutConstraint.activate([vc.view.widthAnchor.constraint(equalTo: titleButtonStackView.widthAnchor)])
+
+            vc.coordinator = coordinator
             addChild(vc)
 
         }

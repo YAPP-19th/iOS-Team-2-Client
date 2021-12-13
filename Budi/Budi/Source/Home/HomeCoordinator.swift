@@ -46,7 +46,7 @@ extension HomeCoordinator {
     }
     
     func showBottomSheet(_ vc: UIViewController, _ viewModel: HomeDetailViewModel) {
-        let viewController: BottomSheetViewController = BottomSheetViewController(nibName: BottomSheetViewController.identifier, bundle: nil, viewModel: viewModel)
+        let viewController: HomeDetailBottomViewController = HomeDetailBottomViewController(nibName: HomeDetailBottomViewController.identifier, bundle: nil, viewModel: viewModel)
         viewController.modalPresentationStyle = .overCurrentContext
         viewController.coordinator = self
         vc.present(viewController, animated: false, completion: nil)

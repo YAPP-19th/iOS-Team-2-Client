@@ -17,7 +17,6 @@ enum HomeWritingCellType: Int, CaseIterable {
     case members
     case description
     
-    
     var height: CGFloat {
         switch self {
         case .image: return 280

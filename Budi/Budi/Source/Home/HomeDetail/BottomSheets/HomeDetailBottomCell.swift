@@ -1,5 +1,5 @@
 //
-//  BottomSheetCell.swift
+//  HomeDetailBottomSheetCell.swift
 //  Budi
 //
 //  Created by leeesangheee on 2021/11/04.
@@ -9,11 +9,11 @@ import UIKit
 import Combine
 import CombineCocoa
 
-protocol BottomSheetCellDelegate: AnyObject {
+protocol HomeDetailBottomCellDelegate: AnyObject {
     func selectBottomSheetCell(_ recruitingStatus: RecruitingStatus)
 }
 
-class BottomSheetCell: UICollectionViewCell {
+class HomeDetailBottomCell: UICollectionViewCell {
 
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var containerButton: UIButton!
@@ -28,7 +28,7 @@ class BottomSheetCell: UICollectionViewCell {
         }
     }
     
-    weak var delegate: BottomSheetCellDelegate?
+    weak var delegate: HomeDetailBottomCellDelegate?
 
     private var cancellables = Set<AnyCancellable>()
 
@@ -38,7 +38,7 @@ class BottomSheetCell: UICollectionViewCell {
     }
 }
 
-private extension BottomSheetCell {
+private extension HomeDetailBottomCell {
     func setPublisher() {
         containerButton.tapPublisher
             .receive(on: DispatchQueue.main)

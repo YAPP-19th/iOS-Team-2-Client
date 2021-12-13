@@ -1,5 +1,5 @@
 //
-//  BottomSheetViewController.swift
+//  HomeDetailBottomViewController.swift
 //  Budi
 //
 //  Created by leeesangheee on 2021/11/04.
@@ -9,7 +9,7 @@ import UIKit
 import Combine
 import CombineCocoa
 
-class BottomSheetViewController: UIViewController {
+class HomeDetailBottomViewController: UIViewController {
 
     @IBOutlet weak var bottomSheetView: UIView!
     @IBOutlet weak var collectionView: UICollectionView!
@@ -18,7 +18,7 @@ class BottomSheetViewController: UIViewController {
     @IBOutlet weak var closeButton: UIButton!
     
     @IBOutlet private weak var bottomSheetViewTopConstraint: NSLayoutConstraint!
-    private var isBottonSheetShown: Bool = false
+    private var isBottomViewShown: Bool = false
     private var isHeartButtonChecked: Bool = false
     private var selectedRecruitingStatus: RecruitingStatus?
     
@@ -47,13 +47,13 @@ class BottomSheetViewController: UIViewController {
     }
 }
 
-private extension BottomSheetViewController {
+private extension HomeDetailBottomViewController {
     func setPublisher() {
         submitButton.tapPublisher
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
                 guard let self = self else { return }
-                self.isBottonSheetShown ? self.hideBottomSheetView() : self.showBottomSheetView()
+                self.isBottomViewShown ? self.hideBottomSheetView() : self.showBottomSheetView()
             }.store(in: &cancellables)
 
         heartButton.tapPublisher
@@ -74,7 +74,7 @@ private extension BottomSheetViewController {
                 let animator = UIViewPropertyAnimator(duration: 0.25, curve: .linear) { [weak self] in
                     guard let self = self else { return }
                     self.view.alpha = 0
-                    self.isBottonSheetShown ? self.hideBottomSheetView() : self.showBottomSheetView()
+                    self.isBottomViewShown ? self.hideBottomSheetView() : self.showBottomSheetView()
                 }
                 animator.addCompletion { [weak self] _ in
                     self?.dismiss(animated: true)
@@ -94,7 +94,7 @@ private extension BottomSheetViewController {
             self.view.layoutIfNeeded()
         }
         animator.addCompletion { [weak self] _ in
-            self?.isBottonSheetShown = true
+            self?.isBottomViewShown = true
         }
         animator.startAnimation()
     }
@@ -111,7 +111,7 @@ private extension BottomSheetViewController {
         }
         animator.addCompletion { [weak self] _ in
             self?.dismiss(animated: true)
-            self?.isBottonSheetShown = false
+            self?.isBottomViewShown = false
             
         }
         animator.startAnimation()
@@ -123,31 +123,31 @@ private extension BottomSheetViewController {
     func configureCollectionView() {
         collectionView.dataSource = self
         collectionView.delegate = self
-        collectionView.register(.init(nibName: BottomSheetCell.identifier, bundle: nil), forCellWithReuseIdentifier: BottomSheetCell.identifier)
+        collectionView.register(.init(nibName: HomeDetailBottomCell.identifier, bundle: nil), forCellWithReuseIdentifier: HomeDetailBottomCell.identifier)
     }
 }
 
-extension BottomSheetViewController: BottomSheetCellDelegate {
+extension HomeDetailBottomViewController: HomeDetailBottomCellDelegate {
     func selectBottomSheetCell(_ recruitingStatus: RecruitingStatus) {
         print(recruitingStatus.positionName)
         selectedRecruitingStatus = recruitingStatus
     }
 }
 
-extension BottomSheetViewController: UICollectionViewDataSource {
+extension HomeDetailBottomViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         viewModel.state.recruitingStatuses.value.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BottomSheetCell.identifier, for: indexPath) as? BottomSheetCell else { return UICollectionViewCell() }
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeDetailBottomCell.identifier, for: indexPath) as? HomeDetailBottomCell else { return UICollectionViewCell() }
         cell.delegate = self
         cell.recruitingStatus = viewModel.state.recruitingStatuses.value[indexPath.row]
         return cell
     }
 }
 
-extension BottomSheetViewController: UICollectionViewDelegateFlowLayout {
+extension HomeDetailBottomViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         CGSize(width: collectionView.frame.width, height: 56)
     }

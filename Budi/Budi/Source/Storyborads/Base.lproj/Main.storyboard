@@ -136,38 +136,28 @@
                                 </collectionViewFlowLayout>
                                 <cells/>
                             </collectionView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g8O-TG-7Gg">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PBj-gK-O7k">
                                 <rect key="frame" x="0.0" y="813" width="414" height="83"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="완료" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NWg-tL-MlI">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="56" id="0lP-GW-O0e"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
                                 <color key="backgroundColor" name="Gray"/>
                                 <constraints>
-                                    <constraint firstItem="NWg-tL-MlI" firstAttribute="leading" secondItem="g8O-TG-7Gg" secondAttribute="leading" id="Bc0-7V-da0"/>
-                                    <constraint firstItem="NWg-tL-MlI" firstAttribute="top" secondItem="g8O-TG-7Gg" secondAttribute="top" id="UAe-cp-9En"/>
-                                    <constraint firstAttribute="trailing" secondItem="NWg-tL-MlI" secondAttribute="trailing" id="iSP-Th-daE"/>
-                                    <constraint firstAttribute="height" constant="83" id="yuy-RG-GRr"/>
+                                    <constraint firstAttribute="height" constant="83" id="kya-yZ-iaO"/>
                                 </constraints>
-                            </view>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="완료"/>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="MjB-Oi-Ktk"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="MjB-Oi-Ktk" firstAttribute="trailing" secondItem="nHR-Eo-SLI" secondAttribute="trailing" id="2Sl-Ea-F17"/>
                             <constraint firstItem="nHR-Eo-SLI" firstAttribute="leading" secondItem="MjB-Oi-Ktk" secondAttribute="leading" id="B03-kw-bYO"/>
-                            <constraint firstItem="g8O-TG-7Gg" firstAttribute="leading" secondItem="MjB-Oi-Ktk" secondAttribute="leading" id="F7R-y1-bJr"/>
-                            <constraint firstAttribute="bottom" secondItem="g8O-TG-7Gg" secondAttribute="bottom" id="OLS-PT-nZz"/>
-                            <constraint firstItem="g8O-TG-7Gg" firstAttribute="trailing" secondItem="MjB-Oi-Ktk" secondAttribute="trailing" id="Q6C-Zq-wz9"/>
+                            <constraint firstItem="PBj-gK-O7k" firstAttribute="trailing" secondItem="MjB-Oi-Ktk" secondAttribute="trailing" id="OVt-1m-zlV"/>
                             <constraint firstItem="nHR-Eo-SLI" firstAttribute="top" secondItem="MjB-Oi-Ktk" secondAttribute="top" id="aUf-ku-nxC"/>
                             <constraint firstItem="MjB-Oi-Ktk" firstAttribute="bottom" secondItem="nHR-Eo-SLI" secondAttribute="bottom" id="qp7-ki-sj4"/>
+                            <constraint firstItem="PBj-gK-O7k" firstAttribute="leading" secondItem="MjB-Oi-Ktk" secondAttribute="leading" id="sMc-F3-cVa"/>
+                            <constraint firstAttribute="bottom" secondItem="PBj-gK-O7k" secondAttribute="bottom" id="ysZ-Zd-oAP"/>
                         </constraints>
                     </view>
                     <connections>
@@ -590,10 +580,10 @@
         <image name="paperplane.fill" catalog="system" width="128" height="118"/>
         <image name="plus.circle.fill" catalog="system" width="128" height="121"/>
         <namedColor name="DarkGray">
-            <color red="0.0" green="0.0" blue="0.0" alpha="0.60000002384185791" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.36000001430511475" green="0.36000001430511475" blue="0.36000001430511475" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Gray">
-            <color red="0.0" green="0.0" blue="0.0" alpha="0.37999999523162842" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.5559999942779541" green="0.5559999942779541" blue="0.5559999942779541" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Green">
             <color red="0.40799999237060547" green="0.86299997568130493" blue="0.67100000381469727" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

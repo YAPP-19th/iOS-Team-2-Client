@@ -2,7 +2,7 @@
 //  HomeWritingViewController.swift
 //  Budi
 //
-//  Created by 최동규 on 2021/10/11.
+//  Created by 이상희 on 2021/10/11.
 //
 
 import UIKit
@@ -29,14 +29,10 @@ private extension HomeWritingViewController {
     func configureCollectionView() {
         collectionView.dataSource = self
         collectionView.delegate = self
-        collectionView.register(.init(nibName: HomeWritingImageCell.identifier, bundle: nil), forCellWithReuseIdentifier: HomeWritingImageCell.identifier)
-        collectionView.register(.init(nibName: HomeWritingNameCell.identifier, bundle: nil), forCellWithReuseIdentifier: HomeWritingNameCell.identifier)
-        collectionView.register(.init(nibName: HomeWritingPartCell.identifier, bundle: nil), forCellWithReuseIdentifier: HomeWritingPartCell.identifier)
-        collectionView.register(.init(nibName: HomeWritingDurationCell.identifier, bundle: nil), forCellWithReuseIdentifier: HomeWritingDurationCell.identifier)
-        collectionView.register(.init(nibName: HomeWritingOnlineCell.identifier, bundle: nil), forCellWithReuseIdentifier: HomeWritingOnlineCell.identifier)
-        collectionView.register(.init(nibName: HomeWritingAreaCell.identifier, bundle: nil), forCellWithReuseIdentifier: HomeWritingAreaCell.identifier)
-        collectionView.register(.init(nibName: HomeWritingMembersCell.identifier, bundle: nil), forCellWithReuseIdentifier: HomeWritingMembersCell.identifier)
-        collectionView.register(.init(nibName: HomeWritingDescriptionCell.identifier, bundle: nil), forCellWithReuseIdentifier: HomeWritingDescriptionCell.identifier)
+        
+        for cell in HomeWritingCellType.allCases {
+            collectionView.register(.init(nibName: cell.type.identifier, bundle: nil), forCellWithReuseIdentifier: cell.type.identifier)
+        }
     }
 }
 
@@ -73,19 +69,8 @@ extension HomeWritingViewController: UICollectionViewDataSource {
 }
 extension HomeWritingViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        var size = CGSize(width: collectionView.frame.width, height: 0)
-        
-        switch indexPath.row {
-        case 0: size.height = 280 // Image
-        case 1: size.height = 109 // Name
-        case 2: size.height = 117 // Part
-        case 3: size.height = 109 // Duration
-        case 4: size.height = 117 // Online
-        case 5: size.height = 117 // Area
-        case 6: size.height = 117 // Members
-        case 7: size.height = 387 + 64 // Description
-        default: break
-        }
+        let cellType = HomeWritingCellType(rawValue: indexPath.row)
+        let size = CGSize(width: collectionView.frame.width, height: cellType?.height ?? 0)
         
         return size
     }

@@ -10,11 +10,11 @@ import Kingfisher
 
 final class HomeDetailMainCell: UICollectionViewCell {
 
-    @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var categoryLabel: UILabel!
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var dateLabel: UILabel!
-    @IBOutlet weak var regionLabel: UILabel!
+    @IBOutlet private weak var imageView: UIImageView!
+    @IBOutlet private weak var categoryLabel: UILabel!
+    @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var dateLabel: UILabel!
+    @IBOutlet private weak var regionLabel: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -29,8 +29,8 @@ final class HomeDetailMainCell: UICollectionViewCell {
             imageView.kf.setImage(with: url, placeholder: UIImage(named: "defaultBackground"))
         }
     }
-
-    func getDatePeriod(_ startDate: Date, _ endDate: Date) -> String {
+    
+    private func getDatePeriod(_ startDate: Date, _ endDate: Date) -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = "yy.MM.dd"
 

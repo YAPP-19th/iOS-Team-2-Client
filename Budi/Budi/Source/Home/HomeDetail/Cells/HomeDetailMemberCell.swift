@@ -9,7 +9,7 @@ import UIKit
 
 final class HomeDetailMemberCell: UICollectionViewCell {
 
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet private weak var collectionView: UICollectionView!
     
     var teamMembers: [TeamMember] = [] {
         didSet {
@@ -24,14 +24,16 @@ final class HomeDetailMemberCell: UICollectionViewCell {
 }
 
 private extension HomeDetailMemberCell {
-    func configureCollectionView() {
+
+}
+
+extension HomeDetailMemberCell: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    private func configureCollectionView() {
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.register(.init(nibName: HomeDetailPersonCell.identifier, bundle: nil), forCellWithReuseIdentifier: HomeDetailPersonCell.identifier)
     }
-}
-
-extension HomeDetailMemberCell: UICollectionViewDataSource {
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         teamMembers.count
     }
@@ -40,9 +42,7 @@ extension HomeDetailMemberCell: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeDetailPersonCell.identifier, for: indexPath) as UICollectionViewCell
         return cell
     }
-}
-
-extension HomeDetailMemberCell: UICollectionViewDelegateFlowLayout {
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         CGSize(width: collectionView.frame.width, height: 99)
     }

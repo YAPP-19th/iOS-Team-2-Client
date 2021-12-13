@@ -9,11 +9,11 @@ import UIKit
 
 final class HomeDetailPersonCell: UICollectionViewCell {
     
-    @IBOutlet weak var profileImageView: UIImageView!
-    @IBOutlet weak var jobLabel: UILabel!
-    @IBOutlet weak var addressLabel: UILabel!
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var skillsLabel: UILabel!
+    @IBOutlet private weak var profileImageView: UIImageView!
+    @IBOutlet private weak var jobLabel: UILabel!
+    @IBOutlet private weak var addressLabel: UILabel!
+    @IBOutlet private weak var nameLabel: UILabel!
+    @IBOutlet private weak var skillsLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

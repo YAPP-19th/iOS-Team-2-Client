@@ -9,7 +9,7 @@ import UIKit
 
 final class HomeDetailDescriptionCell: UICollectionViewCell {
 
-    @IBOutlet weak var descriptionTextField: UITextField!
+    @IBOutlet private weak var descriptionTextField: UITextField!
 
     override func awakeFromNib() {
         super.awakeFromNib()

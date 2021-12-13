@@ -11,7 +11,7 @@ import CombineCocoa
 
 final class HomeWritingViewController: UIViewController {
 
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet private weak var collectionView: UICollectionView!
     
     weak var coordinator: HomeCoordinator?
     private let viewModel: HomeWritingViewModel
@@ -53,7 +53,7 @@ extension HomeWritingViewController: HomeWritingImageCellDelegate {
 
 // MARK: - CollectionView
 extension HomeWritingViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-    func configureCollectionView() {
+    private func configureCollectionView() {
         HomeWritingCellType.configureCollectionView(self, collectionView)
     }
     

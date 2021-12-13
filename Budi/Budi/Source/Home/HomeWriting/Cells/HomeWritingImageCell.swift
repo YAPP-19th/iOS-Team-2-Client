@@ -15,11 +15,10 @@ protocol HomeWritingImageCellDelegate: AnyObject {
 
 final class HomeWritingImageCell: UICollectionViewCell {
 
-    @IBOutlet weak var imageChangeButton: UIButton!
-    
-    private var cancellables = Set<AnyCancellable>()
+    @IBOutlet private weak var imageChangeButton: UIButton!
     
     weak var delegate: HomeWritingImageCellDelegate?
+    private var cancellables = Set<AnyCancellable>()
     
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -11,10 +11,10 @@ import CombineCocoa
 
 class HomeWritingImageBottomViewController: UIViewController {
     
-    @IBOutlet weak var completeButton: UIButton!
-    @IBOutlet weak var imageCollectionView: UICollectionView!
-    @IBOutlet weak var albumButton: UIButton!
-    @IBOutlet weak var bottomViewTopConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var completeButton: UIButton!
+    @IBOutlet private weak var imageCollectionView: UICollectionView!
+    @IBOutlet private weak var albumButton: UIButton!
+    @IBOutlet private weak var bottomViewTopConstraint: NSLayoutConstraint!
     
     weak var coordinator: HomeCoordinator?
     private let viewModel: HomeWritingViewModel

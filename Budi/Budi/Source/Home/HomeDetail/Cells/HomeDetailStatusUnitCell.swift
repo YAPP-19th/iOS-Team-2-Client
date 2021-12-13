@@ -9,8 +9,8 @@ import UIKit
 
 final class HomeDetailStatusUnitCell: UICollectionViewCell {
     
-    @IBOutlet weak var positionNameLabel: UILabel!
-    @IBOutlet weak var countLabel: UILabel!
+    @IBOutlet private weak var positionNameLabel: UILabel!
+    @IBOutlet private weak var countLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

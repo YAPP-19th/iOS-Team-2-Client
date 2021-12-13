@@ -11,13 +11,13 @@ import CombineCocoa
 
 class HomeDetailBottomViewController: UIViewController {
 
-    @IBOutlet weak var bottomSheetView: UIView!
-    @IBOutlet weak var collectionView: UICollectionView!
-    @IBOutlet weak var submitButton: UIButton!
-    @IBOutlet weak var heartButton: UIButton!
-    @IBOutlet weak var closeButton: UIButton!
+    @IBOutlet private weak var bottomView: UIView!
+    @IBOutlet private weak var collectionView: UICollectionView!
+    @IBOutlet private weak var submitButton: UIButton!
+    @IBOutlet private weak var heartButton: UIButton!
+    @IBOutlet private weak var closeButton: UIButton!
+    @IBOutlet private weak var bottomViewTopConstraint: NSLayoutConstraint!
     
-    @IBOutlet private weak var bottomSheetViewTopConstraint: NSLayoutConstraint!
     private var isBottomViewShown: Bool = false
     private var isHeartButtonChecked: Bool = false
     private var selectedRecruitingStatus: RecruitingStatus?
@@ -38,22 +38,25 @@ class HomeDetailBottomViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureCollectionView()
-        setPublisher()
         bindViewModel()
+        setPublisher()
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        showBottomSheetView()
+        showBottomView()
     }
 }
 
 private extension HomeDetailBottomViewController {
+    func bindViewModel() {
+    }
+    
     func setPublisher() {
         submitButton.tapPublisher
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
                 guard let self = self else { return }
-                self.isBottomViewShown ? self.hideBottomSheetView() : self.showBottomSheetView()
+                self.isBottomViewShown ? self.hideBottomView() : self.showBottomView()
             }.store(in: &cancellables)
 
         heartButton.tapPublisher
@@ -74,7 +77,7 @@ private extension HomeDetailBottomViewController {
                 let animator = UIViewPropertyAnimator(duration: 0.25, curve: .linear) { [weak self] in
                     guard let self = self else { return }
                     self.view.alpha = 0
-                    self.isBottomViewShown ? self.hideBottomSheetView() : self.showBottomSheetView()
+                    self.isBottomViewShown ? self.hideBottomView() : self.showBottomView()
                 }
                 animator.addCompletion { [weak self] _ in
                     self?.dismiss(animated: true)
@@ -83,14 +86,14 @@ private extension HomeDetailBottomViewController {
             }.store(in: &cancellables)
     }
     
-    func showBottomSheetView() {
+    func showBottomView() {
         let cellHeight: CGFloat = 64
         let cellCount: Int = self.viewModel.state.recruitingStatuses.value.count
         
         let animator = UIViewPropertyAnimator(duration: 0.25, curve: .linear) { [weak self] in
             guard let self = self else { return }
             self.view.alpha = 1
-            self.bottomSheetViewTopConstraint.constant -= (self.bottomSheetView.bounds.height - cellHeight * CGFloat((4 - cellCount)))
+            self.bottomViewTopConstraint.constant -= (self.bottomView.bounds.height - cellHeight * CGFloat((4 - cellCount)))
             self.view.layoutIfNeeded()
         }
         animator.addCompletion { [weak self] _ in
@@ -99,14 +102,14 @@ private extension HomeDetailBottomViewController {
         animator.startAnimation()
     }
     
-    func hideBottomSheetView() {
+    func hideBottomView() {
         let cellHeight: CGFloat = 64
         let cellCount: Int = self.viewModel.state.recruitingStatuses.value.count
         
         let animator = UIViewPropertyAnimator(duration: 0.25, curve: .linear) { [weak self] in
             guard let self = self else { return }
             self.view.alpha = 0
-            self.bottomSheetViewTopConstraint.constant += (self.bottomSheetView.bounds.height - cellHeight * CGFloat((4 - cellCount)))
+            self.bottomViewTopConstraint.constant += (self.bottomView.bounds.height - cellHeight * CGFloat((4 - cellCount)))
             self.view.layoutIfNeeded()
         }
         animator.addCompletion { [weak self] _ in
@@ -115,15 +118,6 @@ private extension HomeDetailBottomViewController {
             
         }
         animator.startAnimation()
-    }
-    
-    func bindViewModel() {
-    }
-    
-    func configureCollectionView() {
-        collectionView.dataSource = self
-        collectionView.delegate = self
-        collectionView.register(.init(nibName: HomeDetailBottomCell.identifier, bundle: nil), forCellWithReuseIdentifier: HomeDetailBottomCell.identifier)
     }
 }
 
@@ -134,7 +128,13 @@ extension HomeDetailBottomViewController: HomeDetailBottomCellDelegate {
     }
 }
 
-extension HomeDetailBottomViewController: UICollectionViewDataSource {
+extension HomeDetailBottomViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    private func configureCollectionView() {
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        collectionView.register(.init(nibName: HomeDetailBottomCell.identifier, bundle: nil), forCellWithReuseIdentifier: HomeDetailBottomCell.identifier)
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         viewModel.state.recruitingStatuses.value.count
     }
@@ -145,9 +145,7 @@ extension HomeDetailBottomViewController: UICollectionViewDataSource {
         cell.recruitingStatus = viewModel.state.recruitingStatuses.value[indexPath.row]
         return cell
     }
-}
-
-extension HomeDetailBottomViewController: UICollectionViewDelegateFlowLayout {
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         CGSize(width: collectionView.frame.width, height: 56)
     }

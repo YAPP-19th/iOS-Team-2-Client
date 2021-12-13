@@ -9,7 +9,7 @@ import UIKit
 
 final class HomeDetailStatusCell: UICollectionViewCell {
 
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet private weak var collectionView: UICollectionView!
     
     var recruitingStatuses: [RecruitingStatus] = [] {
         didSet {
@@ -23,15 +23,13 @@ final class HomeDetailStatusCell: UICollectionViewCell {
     }
 }
 
-private extension HomeDetailStatusCell {
-    func configureCollectionView() {
+extension HomeDetailStatusCell: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    private func configureCollectionView() {
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.register(.init(nibName: HomeDetailStatusUnitCell.identifier, bundle: nil), forCellWithReuseIdentifier: HomeDetailStatusUnitCell.identifier)
     }
-}
-
-extension HomeDetailStatusCell: UICollectionViewDataSource {
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         recruitingStatuses.count
     }
@@ -41,9 +39,7 @@ extension HomeDetailStatusCell: UICollectionViewDataSource {
         cell.updateUI(recruitingStatuses[indexPath.row])
         return cell
     }
-}
-
-extension HomeDetailStatusCell: UICollectionViewDelegateFlowLayout {
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         CGSize(width: collectionView.bounds.width / CGFloat(recruitingStatuses.count), height: 76)
     }

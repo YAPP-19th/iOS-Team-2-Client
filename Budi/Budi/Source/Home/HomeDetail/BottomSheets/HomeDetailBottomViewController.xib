@@ -13,8 +13,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeDetailBottomViewController" customModule="Budi" customModuleProvider="target">
             <connections>
-                <outlet property="bottomSheetView" destination="7XL-WD-jzw" id="p43-EP-2ux"/>
-                <outlet property="bottomSheetViewTopConstraint" destination="UnZ-NM-jwy" id="aDk-1p-gU7"/>
+                <outlet property="bottomView" destination="7XL-WD-jzw" id="ybl-hX-iq2"/>
+                <outlet property="bottomViewTopConstraint" destination="UnZ-NM-jwy" id="xfI-0x-o1n"/>
                 <outlet property="closeButton" destination="Q3E-PJ-zoC" id="rnb-vJ-l22"/>
                 <outlet property="collectionView" destination="fPm-5x-hnN" id="hYN-SH-9ss"/>
                 <outlet property="heartButton" destination="vqy-OV-iC3" id="Kom-fD-7qc"/>

@@ -9,7 +9,7 @@ import UIKit
 
 final class HomeDetailLeaderCell: UICollectionViewCell {
 
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet private weak var collectionView: UICollectionView!
     var leader: Leader = Leader(leaderId: 0, nickName: "", profileImageUrl: "", address: "") {
         didSet {
             collectionView.reloadData()
@@ -23,14 +23,15 @@ final class HomeDetailLeaderCell: UICollectionViewCell {
 }
 
 private extension HomeDetailLeaderCell {
-    func configureCollectionView() {
+}
+
+extension HomeDetailLeaderCell: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    private func configureCollectionView() {
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.register(.init(nibName: HomeDetailPersonCell.identifier, bundle: nil), forCellWithReuseIdentifier: HomeDetailPersonCell.identifier)
     }
-}
-
-extension HomeDetailLeaderCell: UICollectionViewDataSource {
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         1
     }
@@ -40,13 +41,7 @@ extension HomeDetailLeaderCell: UICollectionViewDataSource {
         cell.updateUI(leader.nickName, imageUrl: leader.profileImageUrl, leader.address)
         return cell
     }
-}
-
-extension HomeDetailLeaderCell: UICollectionViewDelegate {
-
-}
-
-extension HomeDetailLeaderCell: UICollectionViewDelegateFlowLayout {
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         CGSize(width: collectionView.frame.width, height: 80)
     }

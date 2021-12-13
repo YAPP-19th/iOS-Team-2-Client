@@ -15,13 +15,13 @@ protocol HomeDetailBottomCellDelegate: AnyObject {
 
 class HomeDetailBottomCell: UICollectionViewCell {
 
-    @IBOutlet weak var containerView: UIView!
-    @IBOutlet weak var containerButton: UIButton!
-    @IBOutlet weak var textLabel: UILabel!
-    @IBOutlet weak var circleContainerView: UIView!
-    @IBOutlet weak var circleView: UIView!
+    @IBOutlet private weak var containerView: UIView!
+    @IBOutlet private weak var containerButton: UIButton!
+    @IBOutlet private weak var textLabel: UILabel!
+    @IBOutlet private weak var circleContainerView: UIView!
+    @IBOutlet private weak var circleView: UIView!
 
-    var isChecked: Bool = false
+    private var isChecked: Bool = false
     var recruitingStatus: RecruitingStatus? {
         didSet {
             textLabel.text = recruitingStatus?.positionName
@@ -29,7 +29,6 @@ class HomeDetailBottomCell: UICollectionViewCell {
     }
     
     weak var delegate: HomeDetailBottomCellDelegate?
-
     private var cancellables = Set<AnyCancellable>()
 
     override func awakeFromNib() {

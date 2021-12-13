@@ -12,13 +12,13 @@ import CombineCocoa
 
 final class HomeDetailViewController: UIViewController {
 
-    @IBOutlet weak var mainCollectionView: UICollectionView!
-    @IBOutlet weak var backgroundView: UIView!
+    @IBOutlet private weak var mainCollectionView: UICollectionView!
+    @IBOutlet private weak var backgroundView: UIView!
 
-    @IBOutlet weak var bottomView: UIView!
-    @IBOutlet weak var heartButton: UIButton!
-    @IBOutlet weak var heartCountLabel: UILabel!
-    @IBOutlet weak var submitButton: UIButton!
+    @IBOutlet private weak var bottomView: UIView!
+    @IBOutlet private weak var heartButton: UIButton!
+    @IBOutlet private weak var heartCountLabel: UILabel!
+    @IBOutlet private weak var submitButton: UIButton!
 
     private var isHeartButtonChecked: Bool = false
 
@@ -104,8 +104,8 @@ private extension HomeDetailViewController {
 }
 
 // MARK: - CollectionView
-extension HomeDetailViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
-    func configureCollectionView() {
+extension HomeDetailViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    private func configureCollectionView() {
         HomeDetailCellType.configureCollectionView(self, mainCollectionView)
     }
     

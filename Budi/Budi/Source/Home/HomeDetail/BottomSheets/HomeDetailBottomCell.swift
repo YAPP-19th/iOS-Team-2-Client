@@ -13,7 +13,7 @@ protocol HomeDetailBottomCellDelegate: AnyObject {
     func selectBottomSheetCell(_ recruitingStatus: RecruitingStatus)
 }
 
-class HomeDetailBottomCell: UICollectionViewCell {
+final class HomeDetailBottomCell: UICollectionViewCell {
 
     @IBOutlet private weak var containerView: UIView!
     @IBOutlet private weak var containerButton: UIButton!

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class GreetingAlertViewController: UIViewController {
+final class GreetingAlertViewController: UIViewController {
 
     @IBOutlet weak var handEmojiLabel: UILabel!
     @IBAction func cancelButtonTapped(_ sender: Any) {

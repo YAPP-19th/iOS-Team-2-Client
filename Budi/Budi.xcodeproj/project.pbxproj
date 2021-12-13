@@ -32,6 +32,8 @@
 		5E88637B276771EE0022397A /* HomeWritingPartBottomViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E886379276771EE0022397A /* HomeWritingPartBottomViewController.xib */; };
 		5E88637E276771FB0022397A /* HomeWritingMembersBottomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E88637C276771FB0022397A /* HomeWritingMembersBottomViewController.swift */; };
 		5E88637F276771FB0022397A /* HomeWritingMembersBottomViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E88637D276771FB0022397A /* HomeWritingMembersBottomViewController.xib */; };
+		5E8863822767AE190022397A /* HomeWritingImageBottomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8863802767AE190022397A /* HomeWritingImageBottomCell.swift */; };
+		5E8863832767AE190022397A /* HomeWritingImageBottomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E8863812767AE190022397A /* HomeWritingImageBottomCell.xib */; };
 		5EA453692731412A00943C94 /* HomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA453672731412A00943C94 /* HomeCell.swift */; };
 		5EA4536A2731412A00943C94 /* HomeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EA453682731412A00943C94 /* HomeCell.xib */; };
 		5EA45370273144C200943C94 /* HomeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA4536F273144C200943C94 /* HomeDetailViewController.swift */; };
@@ -149,6 +151,8 @@
 		5E886379276771EE0022397A /* HomeWritingPartBottomViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeWritingPartBottomViewController.xib; sourceTree = "<group>"; };
 		5E88637C276771FB0022397A /* HomeWritingMembersBottomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWritingMembersBottomViewController.swift; sourceTree = "<group>"; };
 		5E88637D276771FB0022397A /* HomeWritingMembersBottomViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeWritingMembersBottomViewController.xib; sourceTree = "<group>"; };
+		5E8863802767AE190022397A /* HomeWritingImageBottomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWritingImageBottomCell.swift; sourceTree = "<group>"; };
+		5E8863812767AE190022397A /* HomeWritingImageBottomCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeWritingImageBottomCell.xib; sourceTree = "<group>"; };
 		5EA453672731412A00943C94 /* HomeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCell.swift; sourceTree = "<group>"; };
 		5EA453682731412A00943C94 /* HomeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeCell.xib; sourceTree = "<group>"; };
 		5EA4536F273144C200943C94 /* HomeDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailViewController.swift; sourceTree = "<group>"; };
@@ -299,6 +303,8 @@
 			children = (
 				5E886374276771E00022397A /* HomeWritingImageBottomViewController.swift */,
 				5E886375276771E00022397A /* HomeWritingImageBottomViewController.xib */,
+				5E8863802767AE190022397A /* HomeWritingImageBottomCell.swift */,
+				5E8863812767AE190022397A /* HomeWritingImageBottomCell.xib */,
 				5E886378276771EE0022397A /* HomeWritingPartBottomViewController.swift */,
 				5E886379276771EE0022397A /* HomeWritingPartBottomViewController.xib */,
 				5E88637C276771FB0022397A /* HomeWritingMembersBottomViewController.swift */,
@@ -316,7 +322,7 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
-		5EA4537727316C8800943C94 /* Cells */ = {
+		5EA4537727316C8800943C94 /* HomeDetailCells */ = {
 			isa = PBXGroup;
 			children = (
 				5EA4539E2731778000943C94 /* HomeDetailMainCell.swift */,
@@ -334,10 +340,10 @@
 				5E2554332732770B00033723 /* HomeDetailPersonCell.swift */,
 				5E2554342732770B00033723 /* HomeDetailPersonCell.xib */,
 			);
-			path = Cells;
+			path = HomeDetailCells;
 			sourceTree = "<group>";
 		};
-		5EB4302227588FD300283239 /* Cells */ = {
+		5EB4302227588FD300283239 /* HomeWritingCells */ = {
 			isa = PBXGroup;
 			children = (
 				5EB430232758909800283239 /* HomeWritingImageCell.swift */,
@@ -357,14 +363,14 @@
 				5EB430432758959600283239 /* HomeWritingDescriptionCell.swift */,
 				5EB430442758959600283239 /* HomeWritingDescriptionCell.xib */,
 			);
-			path = Cells;
+			path = HomeWritingCells;
 			sourceTree = "<group>";
 		};
 		5EC2FF05275E5D9200FF5BB0 /* HomeDetail */ = {
 			isa = PBXGroup;
 			children = (
 				5E7EFE292732E68D007817C3 /* BottomSheets */,
-				5EA4537727316C8800943C94 /* Cells */,
+				5EA4537727316C8800943C94 /* HomeDetailCells */,
 				5EC2FEFF275E504800FF5BB0 /* HomeDetailCellType.swift */,
 				5EA575F8274E9B1E00DF6974 /* HomeDetailViewModel.swift */,
 				5EA4536F273144C200943C94 /* HomeDetailViewController.swift */,
@@ -386,7 +392,7 @@
 			isa = PBXGroup;
 			children = (
 				5E88636F27674E3F0022397A /* BottomSheets */,
-				5EB4302227588FD300283239 /* Cells */,
+				5EB4302227588FD300283239 /* HomeWritingCells */,
 				5E88636D2767450A0022397A /* HomeWritingCellType.swift */,
 				5EC2FF03275E5D8300FF5BB0 /* HomeWritingViewModel.swift */,
 				B9D66ECD27147AEA00668490 /* HomeWritingViewController.swift */,
@@ -758,6 +764,7 @@
 				5EA453A12731778000943C94 /* HomeDetailMainCell.xib in Resources */,
 				5EB430322758952500283239 /* HomeWritingDurationCell.xib in Resources */,
 				5E886377276771E00022397A /* HomeWritingImageBottomViewController.xib in Resources */,
+				5E8863832767AE190022397A /* HomeWritingImageBottomCell.xib in Resources */,
 				5EA4539D2731777500943C94 /* HomeDetailDescriptionCell.xib in Resources */,
 				5EB430462758959600283239 /* HomeWritingDescriptionCell.xib in Resources */,
 				5E88637B276771EE0022397A /* HomeWritingPartBottomViewController.xib in Resources */,
@@ -853,6 +860,7 @@
 				5E24072527522CB500954BE7 /* HomeViewController.swift in Sources */,
 				5E24072427522CA800954BE7 /* MainTabBarCoordinator.swift in Sources */,
 				5E88636E2767450A0022397A /* HomeWritingCellType.swift in Sources */,
+				5E8863822767AE190022397A /* HomeWritingImageBottomCell.swift in Sources */,
 				A8CD934F2737BD4400299AB4 /* NormalPositionSelectView.swift in Sources */,
 				A8CD933E2736A93500299AB4 /* UIColor.swift in Sources */,
 				A8CD93402736ABD300299AB4 /* LocationSelectView.swift in Sources */,

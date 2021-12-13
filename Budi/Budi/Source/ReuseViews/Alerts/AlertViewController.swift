@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AlertViewController: UIViewController {
+final class AlertViewController: UIViewController {
 
     private var titleText: String = ""
     private var okButtonText: String = ""

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AlertView: UIView {
+final class AlertView: UIView {
 
     static let instanceAlert = AlertView()
 

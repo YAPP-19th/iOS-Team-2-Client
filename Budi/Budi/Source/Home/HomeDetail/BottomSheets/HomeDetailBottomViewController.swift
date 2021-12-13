@@ -9,7 +9,7 @@ import UIKit
 import Combine
 import CombineCocoa
 
-class HomeDetailBottomViewController: UIViewController {
+final class HomeDetailBottomViewController: UIViewController {
 
     @IBOutlet private weak var bottomView: UIView!
     @IBOutlet private weak var collectionView: UICollectionView!

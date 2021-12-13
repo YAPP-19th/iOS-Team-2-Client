@@ -58,6 +58,16 @@ final class HomeDetailViewController: UIViewController {
 }
 
 private extension HomeDetailViewController {
+    func bindViewModel() {
+        viewModel.state.post
+            .receive(on: DispatchQueue.main)
+            .sink(receiveCompletion: { [weak self] _ in
+                self?.mainCollectionView.reloadData()
+            }, receiveValue: { _ in
+                self.mainCollectionView.reloadData()
+            }).store(in: &cancellables)
+    }
+    
     func setPublisher() {
         heartButton.tapPublisher
             .receive(on: DispatchQueue.main)
@@ -74,16 +84,6 @@ private extension HomeDetailViewController {
                 guard let self = self else { return }
                 self.coordinator?.showDetailBottomView(self, self.viewModel)
             }.store(in: &cancellables)
-    }
-
-    func bindViewModel() {
-        viewModel.state.post
-            .receive(on: DispatchQueue.main)
-            .sink(receiveCompletion: { [weak self] _ in
-                self?.mainCollectionView.reloadData()
-            }, receiveValue: { _ in
-                self.mainCollectionView.reloadData()
-            }).store(in: &cancellables)
     }
 }
 

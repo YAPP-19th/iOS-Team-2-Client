@@ -13,6 +13,8 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeWritingMembersBottomViewController" customModule="Budi" customModuleProvider="target">
             <connections>
                 <outlet property="backgroundButton" destination="iKz-Lq-FgE" id="JKz-sS-UCZ"/>
+                <outlet property="bottomView" destination="a8I-Ky-Tbl" id="FUO-ml-yGG"/>
+                <outlet property="bottomViewTopConstraint" destination="gjI-Pr-0gV" id="4ui-yM-Wqb"/>
                 <outlet property="completeButton" destination="SD7-rM-Lx0" id="Ej2-Ms-EWW"/>
                 <outlet property="completeView" destination="bPX-eT-Giu" id="qWE-T1-b0m"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -29,7 +31,19 @@
                     <state key="normal" title="Button"/>
                     <buttonConfiguration key="configuration" style="plain" title=""/>
                 </button>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bPX-eT-Giu">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a8I-Ky-Tbl" userLabel="Bottom View">
+                    <rect key="frame" x="0.0" y="801" width="414" height="600"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="600" id="yY6-2c-HSB"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="20"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bPX-eT-Giu" userLabel="Complete View">
                     <rect key="frame" x="0.0" y="801" width="414" height="95"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SD7-rM-Lx0">
@@ -61,7 +75,10 @@
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" name="TransparentGray"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="bPX-eT-Giu" secondAttribute="bottom" id="Vp8-oo-ajo"/>
+                <constraint firstItem="a8I-Ky-Tbl" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="NLH-xo-yq5"/>
+                <constraint firstItem="a8I-Ky-Tbl" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="PBE-ab-Xos"/>
+                <constraint firstAttribute="bottom" secondItem="bPX-eT-Giu" secondAttribute="bottom" id="fc0-LK-1Xe"/>
+                <constraint firstItem="a8I-Ky-Tbl" firstAttribute="top" secondItem="bPX-eT-Giu" secondAttribute="top" id="gjI-Pr-0gV"/>
                 <constraint firstItem="bPX-eT-Giu" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="tDP-DM-FJY"/>
                 <constraint firstItem="bPX-eT-Giu" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="wHr-sF-tHg"/>
             </constraints>

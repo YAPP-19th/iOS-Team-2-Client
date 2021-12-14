@@ -15,7 +15,10 @@ final class HomeWritingMembersBottomViewController: UIViewController {
     
     @IBOutlet private weak var completeView: UIView!
     @IBOutlet private weak var completeButton: UIButton!
-
+    
+    @IBOutlet weak var bottomView: UIView!
+    @IBOutlet weak var bottomViewTopConstraint: NSLayoutConstraint!
+    
     private var isBottomViewShown: Bool = false
     
     weak var coordinator: HomeCoordinator?
@@ -58,8 +61,27 @@ private extension HomeWritingMembersBottomViewController {
 
 private extension HomeWritingMembersBottomViewController {
     func showBottomView() {
+        let animator = UIViewPropertyAnimator(duration: 0.25, curve: .linear) { [weak self] in
+            guard let self = self else { return }
+            self.bottomViewTopConstraint.constant -= self.bottomView.bounds.height - 95
+            self.view.layoutIfNeeded()
+        }
+        animator.addCompletion { [weak self] _ in
+            self?.isBottomViewShown = true
+        }
+        animator.startAnimation()
     }
     
     func hideBottomView() {
+        let animator = UIViewPropertyAnimator(duration: 0.25, curve: .linear) { [weak self] in
+            guard let self = self else { return }
+            self.bottomViewTopConstraint.constant += self.bottomView.bounds.height - 95
+            self.view.layoutIfNeeded()
+        }
+        animator.addCompletion { [weak self] _ in
+            self?.dismiss(animated: false, completion: nil)
+            self?.isBottomViewShown = false
+        }
+        animator.startAnimation()
     }
 }

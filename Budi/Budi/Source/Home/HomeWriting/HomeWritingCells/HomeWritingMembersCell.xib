@@ -64,6 +64,9 @@
                 <constraint firstAttribute="bottom" secondItem="L0v-9z-pBU" secondAttribute="bottom" id="qvK-ey-uce"/>
                 <constraint firstItem="L0v-9z-pBU" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="w8l-dE-98K"/>
             </constraints>
+            <connections>
+                <outlet property="addButton" destination="FHT-mL-MF3" id="a5O-vN-4j4"/>
+            </connections>
             <point key="canvasLocation" x="131.15942028985509" y="65.959821428571431"/>
         </collectionViewCell>
     </objects>

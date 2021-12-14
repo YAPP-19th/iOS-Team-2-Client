@@ -86,6 +86,9 @@ extension HomeWritingViewController: HomeWritingAreaCellDelegate {
 }
 
 extension HomeWritingViewController: HomeWritingMembersCellDelegate {
+    func showWritingMembersBottomView() {
+        coordinator?.showWritingMembersBottomView(self, viewModel)
+    }
 }
 
 extension HomeWritingViewController: HomeWritingDescriptionCellDelegate {

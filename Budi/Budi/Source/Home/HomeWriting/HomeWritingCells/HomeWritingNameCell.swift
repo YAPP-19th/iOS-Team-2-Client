@@ -21,6 +21,10 @@ final class HomeWritingNameCell: UICollectionViewCell {
         super.awakeFromNib()
         configureTextField()
     }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        textField.endEditing(true)
+    }
 }
 
 extension HomeWritingNameCell: UITextFieldDelegate {

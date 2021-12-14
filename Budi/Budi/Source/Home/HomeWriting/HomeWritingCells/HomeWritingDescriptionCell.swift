@@ -22,6 +22,10 @@ final class HomeWritingDescriptionCell: UICollectionViewCell {
         super.awakeFromNib()
         configureTextView()
     }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        textView.endEditing(true)
+    }
 }
 
 extension HomeWritingDescriptionCell: UITextViewDelegate {

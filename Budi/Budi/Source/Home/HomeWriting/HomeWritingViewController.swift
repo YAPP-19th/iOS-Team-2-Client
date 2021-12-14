@@ -17,6 +17,15 @@ final class HomeWritingViewController: UIViewController {
     private let viewModel: HomeWritingViewModel
     private var cancellables = Set<AnyCancellable>()
     
+    init?(coder: NSCoder, viewModel: HomeWritingViewModel) {
+        self.viewModel = viewModel
+        super.init(coder: coder)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("This viewController must be init with viewModel")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureNavigationBar()
@@ -25,15 +34,6 @@ final class HomeWritingViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         tabBarController?.tabBar.isHidden = false
-    }
-    
-    init?(coder: NSCoder, viewModel: HomeWritingViewModel) {
-        self.viewModel = viewModel
-        super.init(coder: coder)
-    }
-
-    required init?(coder: NSCoder) {
-        fatalError("This viewController must be init with viewModel")
     }
 }
 

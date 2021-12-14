@@ -14,14 +14,14 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="HomeWritingAreaCell" customModule="Budi" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="117"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="173"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="375" height="117"/>
+                <rect key="frame" x="0.0" y="0.0" width="375" height="173"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L0v-9z-pBU">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="117"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="173"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="활동지역" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NrX-BC-WRU">
                                 <rect key="frame" x="16" y="20" width="48.5" height="17"/>
@@ -30,8 +30,11 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FHT-mL-MF3">
-                                <rect key="frame" x="16" y="53" width="343" height="48"/>
+                                <rect key="frame" x="16" y="109" width="343" height="48"/>
                                 <color key="backgroundColor" name="BackgroundGreen"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="Dl9-mO-NUx"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="tintColor" name="Black"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
@@ -44,15 +47,26 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </button>
+                            <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="서울시 강남구" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rem-7j-fZj">
+                                <rect key="frame" x="16" y="53" width="343" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="Ri5-c9-zzy"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="FHT-mL-MF3" firstAttribute="top" secondItem="NrX-BC-WRU" secondAttribute="bottom" constant="16" id="FNY-Y2-mmd"/>
+                            <constraint firstItem="rem-7j-fZj" firstAttribute="leading" secondItem="L0v-9z-pBU" secondAttribute="leading" constant="16" id="97x-tc-hGG"/>
+                            <constraint firstItem="FHT-mL-MF3" firstAttribute="top" secondItem="rem-7j-fZj" secondAttribute="bottom" constant="8" id="LQv-5d-Lwy"/>
                             <constraint firstAttribute="bottom" secondItem="FHT-mL-MF3" secondAttribute="bottom" constant="16" id="MOa-Rp-f9c"/>
                             <constraint firstAttribute="trailing" secondItem="FHT-mL-MF3" secondAttribute="trailing" constant="16" id="RfP-nq-DiG"/>
                             <constraint firstItem="FHT-mL-MF3" firstAttribute="leading" secondItem="L0v-9z-pBU" secondAttribute="leading" constant="16" id="X5q-oe-20u"/>
                             <constraint firstItem="NrX-BC-WRU" firstAttribute="top" secondItem="L0v-9z-pBU" secondAttribute="top" constant="20" id="hez-ya-oF1"/>
                             <constraint firstItem="NrX-BC-WRU" firstAttribute="leading" secondItem="L0v-9z-pBU" secondAttribute="leading" constant="16" id="hp9-Fd-EM5"/>
+                            <constraint firstAttribute="trailing" secondItem="rem-7j-fZj" secondAttribute="trailing" constant="16" id="kF8-UP-YYO"/>
+                            <constraint firstItem="rem-7j-fZj" firstAttribute="top" secondItem="NrX-BC-WRU" secondAttribute="bottom" constant="16" id="ySe-ZA-5Ms"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -64,7 +78,12 @@
                 <constraint firstAttribute="bottom" secondItem="L0v-9z-pBU" secondAttribute="bottom" id="qvK-ey-uce"/>
                 <constraint firstItem="L0v-9z-pBU" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="w8l-dE-98K"/>
             </constraints>
-            <point key="canvasLocation" x="131.15942028985509" y="65.959821428571431"/>
+            <size key="customSize" width="375" height="173"/>
+            <connections>
+                <outlet property="areaTextField" destination="rem-7j-fZj" id="Unv-0z-Od5"/>
+                <outlet property="selectButton" destination="FHT-mL-MF3" id="R9G-vz-yTr"/>
+            </connections>
+            <point key="canvasLocation" x="131.15942028985509" y="84.709821428571431"/>
         </collectionViewCell>
     </objects>
     <resources>

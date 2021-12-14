@@ -74,6 +74,9 @@ extension HomeWritingViewController: HomeWritingOnlineCellDelegate {
 }
 
 extension HomeWritingViewController: HomeWritingAreaCellDelegate {
+    func showLocationSearchViewController() {
+        coordinator?.showLocationSearchViewController()
+    }
 }
 
 extension HomeWritingViewController: HomeWritingMembersCellDelegate {

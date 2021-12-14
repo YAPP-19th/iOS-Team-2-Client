@@ -54,6 +54,11 @@ extension HomeCoordinator {
         vc.present(viewController, animated: false, completion: nil)
     }
     
+    func showLocationSearchViewController() {
+        let viewController = LocationSearchViewController()
+        navigationController?.pushViewController(viewController, animated: true)
+    }
+    
     func showWritingMembersBottomView(_ vc: UIViewController, _ viewModel: HomeWritingViewModel) {
         let viewController: HomeWritingMembersBottomViewController = HomeWritingMembersBottomViewController(nibName: HomeWritingMembersBottomViewController.identifier, bundle: nil, viewModel: viewModel)
         viewController.modalPresentationStyle = .overCurrentContext

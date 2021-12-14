@@ -33,7 +33,7 @@
                     <buttonConfiguration key="configuration" style="plain" title=""/>
                 </button>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C9o-aL-jjS">
-                    <rect key="frame" x="0.0" y="801" width="414" height="700"/>
+                    <rect key="frame" x="0.0" y="801" width="414" height="600"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="7y6-fQ-1is">
                             <rect key="frame" x="0.0" y="0.0" width="414" height="927"/>
@@ -109,7 +109,7 @@
                     <color key="backgroundColor" name="White"/>
                     <constraints>
                         <constraint firstItem="7y6-fQ-1is" firstAttribute="leading" secondItem="C9o-aL-jjS" secondAttribute="leading" id="4Il-pa-hMe"/>
-                        <constraint firstAttribute="height" constant="700" id="Foi-Oa-kj8"/>
+                        <constraint firstAttribute="height" constant="600" id="Foi-Oa-kj8"/>
                         <constraint firstAttribute="bottom" secondItem="7y6-fQ-1is" secondAttribute="bottom" id="IXd-bo-ZRd"/>
                         <constraint firstItem="7y6-fQ-1is" firstAttribute="width" secondItem="en6-pY-IR2" secondAttribute="width" id="Nbj-7n-QFQ"/>
                         <constraint firstAttribute="trailing" secondItem="7y6-fQ-1is" secondAttribute="trailing" id="jND-X3-snT"/>

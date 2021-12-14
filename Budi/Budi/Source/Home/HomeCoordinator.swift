@@ -46,6 +46,20 @@ extension HomeCoordinator {
         viewController.coordinator = self
         vc.present(viewController, animated: false, completion: nil)
     }
+    
+    func showWritingPartBottomView(_ vc: UIViewController, _ viewModel: HomeWritingViewModel) {
+        let viewController: HomeWritingPartBottomViewController = HomeWritingPartBottomViewController(nibName: HomeWritingPartBottomViewController.identifier, bundle: nil, viewModel: viewModel)
+        viewController.modalPresentationStyle = .overCurrentContext
+        viewController.coordinator = self
+        vc.present(viewController, animated: false, completion: nil)
+    }
+    
+    func showWritingMembersBottomView(_ vc: UIViewController, _ viewModel: HomeWritingViewModel) {
+        let viewController: HomeWritingMembersBottomViewController = HomeWritingMembersBottomViewController(nibName: HomeWritingMembersBottomViewController.identifier, bundle: nil, viewModel: viewModel)
+        viewController.modalPresentationStyle = .overCurrentContext
+        viewController.coordinator = self
+        vc.present(viewController, animated: false, completion: nil)
+    }
 }
 
 // MARK: - HomeDetailViewController

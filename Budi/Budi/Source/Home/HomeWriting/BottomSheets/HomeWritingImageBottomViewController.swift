@@ -73,7 +73,7 @@ private extension HomeWritingImageBottomViewController {
     func showBottomView() {
         let animator = UIViewPropertyAnimator(duration: 0.25, curve: .linear) { [weak self] in
             guard let self = self else { return }
-            self.bottomViewTopConstraint.constant -= 600
+            self.bottomViewTopConstraint.constant -= self.bottomScrollView.bounds.height - 95
             self.view.layoutIfNeeded()
         }
         animator.addCompletion { [weak self] _ in
@@ -85,12 +85,12 @@ private extension HomeWritingImageBottomViewController {
     func hideBottomView() {
         let animator = UIViewPropertyAnimator(duration: 0.25, curve: .linear) { [weak self] in
             guard let self = self else { return }
-            self.bottomViewTopConstraint.constant += 600
+            self.bottomViewTopConstraint.constant += self.bottomScrollView.bounds.height - 95
             self.view.layoutIfNeeded()
         }
         animator.addCompletion { [weak self] _ in
             self?.dismiss(animated: false, completion: nil)
-            self?.isBottomViewShown = true
+            self?.isBottomViewShown = false
         }
         animator.startAnimation()
     }

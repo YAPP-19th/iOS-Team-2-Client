@@ -23,6 +23,10 @@
 		5E45AD142732F47800F0A80C /* HomeDetailBottomViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E45AD122732F47800F0A80C /* HomeDetailBottomViewController.xib */; };
 		5E45AD172732F78200F0A80C /* HomeDetailBottomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E45AD152732F78200F0A80C /* HomeDetailBottomCell.swift */; };
 		5E45AD182732F78200F0A80C /* HomeDetailBottomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E45AD162732F78200F0A80C /* HomeDetailBottomCell.xib */; };
+		5E5517A92768BCC300DC605E /* HomeWritingPartBottomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5517A72768BCC300DC605E /* HomeWritingPartBottomCell.swift */; };
+		5E5517AA2768BCC300DC605E /* HomeWritingPartBottomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E5517A82768BCC300DC605E /* HomeWritingPartBottomCell.xib */; };
+		5E5517AD2768BCD700DC605E /* HomeWritingMembersBottomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5517AB2768BCD700DC605E /* HomeWritingMembersBottomCell.swift */; };
+		5E5517AE2768BCD700DC605E /* HomeWritingMembersBottomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E5517AC2768BCD700DC605E /* HomeWritingMembersBottomCell.xib */; };
 		5E7EFE272732E06F007817C3 /* AlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7EFE252732E06E007817C3 /* AlertViewController.swift */; };
 		5E7EFE282732E06F007817C3 /* AlertViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E7EFE262732E06F007817C3 /* AlertViewController.xib */; };
 		5E88636E2767450A0022397A /* HomeWritingCellType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E88636D2767450A0022397A /* HomeWritingCellType.swift */; };
@@ -142,6 +146,10 @@
 		5E45AD122732F47800F0A80C /* HomeDetailBottomViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeDetailBottomViewController.xib; sourceTree = "<group>"; };
 		5E45AD152732F78200F0A80C /* HomeDetailBottomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailBottomCell.swift; sourceTree = "<group>"; };
 		5E45AD162732F78200F0A80C /* HomeDetailBottomCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeDetailBottomCell.xib; sourceTree = "<group>"; };
+		5E5517A72768BCC300DC605E /* HomeWritingPartBottomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWritingPartBottomCell.swift; sourceTree = "<group>"; };
+		5E5517A82768BCC300DC605E /* HomeWritingPartBottomCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeWritingPartBottomCell.xib; sourceTree = "<group>"; };
+		5E5517AB2768BCD700DC605E /* HomeWritingMembersBottomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWritingMembersBottomCell.swift; sourceTree = "<group>"; };
+		5E5517AC2768BCD700DC605E /* HomeWritingMembersBottomCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeWritingMembersBottomCell.xib; sourceTree = "<group>"; };
 		5E7EFE252732E06E007817C3 /* AlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewController.swift; sourceTree = "<group>"; };
 		5E7EFE262732E06F007817C3 /* AlertViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlertViewController.xib; sourceTree = "<group>"; };
 		5E88636D2767450A0022397A /* HomeWritingCellType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWritingCellType.swift; sourceTree = "<group>"; };
@@ -307,8 +315,12 @@
 				5E8863812767AE190022397A /* HomeWritingImageBottomCell.xib */,
 				5E886378276771EE0022397A /* HomeWritingPartBottomViewController.swift */,
 				5E886379276771EE0022397A /* HomeWritingPartBottomViewController.xib */,
+				5E5517A72768BCC300DC605E /* HomeWritingPartBottomCell.swift */,
+				5E5517A82768BCC300DC605E /* HomeWritingPartBottomCell.xib */,
 				5E88637C276771FB0022397A /* HomeWritingMembersBottomViewController.swift */,
 				5E88637D276771FB0022397A /* HomeWritingMembersBottomViewController.xib */,
+				5E5517AB2768BCD700DC605E /* HomeWritingMembersBottomCell.swift */,
+				5E5517AC2768BCD700DC605E /* HomeWritingMembersBottomCell.xib */,
 			);
 			path = BottomSheets;
 			sourceTree = "<group>";
@@ -753,6 +765,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5E5517AE2768BCD700DC605E /* HomeWritingMembersBottomCell.xib in Resources */,
 				B92D54F9274C02EB00D0E851 /* .swiftlint.yml in Resources */,
 				5E2554622732DF8A00033723 /* GreetingAlertViewController.xib in Resources */,
 				5E45AD142732F47800F0A80C /* HomeDetailBottomViewController.xib in Resources */,
@@ -786,6 +799,7 @@
 				5EA453952731775600943C94 /* HomeDetailLeaderCell.xib in Resources */,
 				5EA453992731776900943C94 /* HomeDetailStatusCell.xib in Resources */,
 				5E7EFE282732E06F007817C3 /* AlertViewController.xib in Resources */,
+				5E5517AA2768BCC300DC605E /* HomeWritingPartBottomCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -911,6 +925,7 @@
 				B9D66EC82714707000668490 /* MyBudiCoordinator.swift in Sources */,
 				5EFB0A4A2733EAA300F39A4D /* ChattingCell.swift in Sources */,
 				5EA575FE274E9C4800DF6974 /* String+baseURL.swift in Sources */,
+				5E5517AD2768BCD700DC605E /* HomeWritingMembersBottomCell.swift in Sources */,
 				5EA453942731775600943C94 /* HomeDetailLeaderCell.swift in Sources */,
 				5EB430292758950400283239 /* HomeWritingNameCell.swift in Sources */,
 				B9D66EBD27146E4300668490 /* NavigationCoordinator.swift in Sources */,
@@ -918,6 +933,7 @@
 				A8CD93342736566100299AB4 /* ProgressView.swift in Sources */,
 				B94DCA8327521648006A9E0D /* APIResponse.swift in Sources */,
 				B9BF787627004095000BE0EF /* SceneDelegate.swift in Sources */,
+				5E5517A92768BCC300DC605E /* HomeWritingPartBottomCell.swift in Sources */,
 				5EB430312758952500283239 /* HomeWritingDurationCell.swift in Sources */,
 				A8A6D9F9273D2D1800C84C52 /* BackButtonExtension.swift in Sources */,
 				5E240721275225CD00954BE7 /* String+date.swift in Sources */,

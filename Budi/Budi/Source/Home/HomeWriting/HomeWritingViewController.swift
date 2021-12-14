@@ -51,6 +51,12 @@ extension HomeWritingViewController: HomeWritingImageCellDelegate {
     }
 }
 
+extension HomeWritingViewController: HomeWritingPartCellDelegate {
+    func changePart() {
+        coordinator?.showWritingPartBottomView(self, viewModel)
+    }
+}
+
 // MARK: - CollectionView
 extension HomeWritingViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     private func configureCollectionView() {

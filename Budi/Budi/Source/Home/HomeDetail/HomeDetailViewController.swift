@@ -37,9 +37,9 @@ final class HomeDetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        bottomView.layer.addBorderTop()
         configureNavigationBar()
         configureCollectionView()
-        bottomView.layer.addBorderTop()
         bindViewModel()
         setPublisher()
     }

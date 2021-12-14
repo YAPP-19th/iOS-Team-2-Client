@@ -33,12 +33,12 @@ final class HomeWritingMembersBottomViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        completeView.layer.addBorderTop()
         bindViewModel()
         setPublisher()
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        completeView.layer.addBorderTop()
         showBottomView()
     }
 }

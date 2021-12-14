@@ -28,10 +28,10 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="center" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="aMG-Ev-qH7">
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="center" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="aMG-Ev-qH7" userLabel="TextField Stack View">
                                 <rect key="frame" x="16" y="53" width="343" height="40"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="2021.05.06" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NgO-Wb-LEy">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="2021.05.06" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NgO-Wb-LEy" userLabel="Start Time TextField">
                                         <rect key="frame" x="0.0" y="3" width="154" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -42,14 +42,14 @@
                                         <color key="textColor" name="Gray"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="2021.05.06" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IMl-oO-I1x">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="2021.05.06" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IMl-oO-I1x" userLabel="End Time TextField">
                                         <rect key="frame" x="182.5" y="3" width="160.5" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                 </subviews>
                             </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="Um7-od-bsz">
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="Um7-od-bsz" userLabel="Container Button Stack View">
                                 <rect key="frame" x="16" y="53" width="343" height="40"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lv0-pe-IRS" userLabel="Start Time Container Button">
@@ -62,15 +62,48 @@
                                     </button>
                                 </subviews>
                             </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="36" translatesAutoresizingMaskIntoConstraints="NO" id="enL-i6-0TG" userLabel="Date Picker Stack View">
+                                <rect key="frame" x="16" y="53" width="343" height="40"/>
+                                <subviews>
+                                    <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" style="compact" translatesAutoresizingMaskIntoConstraints="NO" id="CYz-lH-rDn" userLabel="Start Date Picker">
+                                        <rect key="frame" x="0.0" y="0.0" width="153.5" height="40"/>
+                                        <color key="tintColor" name="Green"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="oUZ-uW-b4M"/>
+                                        </constraints>
+                                        <locale key="locale" localeIdentifier="ko_KR"/>
+                                        <connections>
+                                            <action selector="startDatePickerTapped:" destination="gTV-IL-0wX" eventType="valueChanged" id="PPm-mW-Ucm"/>
+                                        </connections>
+                                    </datePicker>
+                                    <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" style="compact" translatesAutoresizingMaskIntoConstraints="NO" id="Vdw-mx-90o" userLabel="End Date Picker">
+                                        <rect key="frame" x="189.5" y="0.0" width="153.5" height="40"/>
+                                        <color key="tintColor" name="Green"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="LJz-2M-rK5"/>
+                                        </constraints>
+                                        <locale key="locale" localeIdentifier="ko_KR"/>
+                                        <connections>
+                                            <action selector="endDatePickerTapped:" destination="gTV-IL-0wX" eventType="valueChanged" id="FfT-9Q-UqN"/>
+                                        </connections>
+                                    </datePicker>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="N9D-yz-YM9"/>
+                                </constraints>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="aMG-Ev-qH7" firstAttribute="top" secondItem="KPd-9P-yIe" secondAttribute="bottom" constant="16" id="343-r9-DGp"/>
+                            <constraint firstItem="enL-i6-0TG" firstAttribute="leading" secondItem="Mys-jB-f8n" secondAttribute="leading" constant="16" id="7X6-Cx-Ext"/>
                             <constraint firstItem="KPd-9P-yIe" firstAttribute="top" secondItem="Mys-jB-f8n" secondAttribute="top" constant="20" id="7XU-IV-oxh"/>
                             <constraint firstItem="KPd-9P-yIe" firstAttribute="leading" secondItem="Mys-jB-f8n" secondAttribute="leading" constant="16" id="CMp-Oc-RXu"/>
+                            <constraint firstAttribute="bottom" secondItem="enL-i6-0TG" secondAttribute="bottom" constant="16" id="Gb4-8w-q7M"/>
                             <constraint firstItem="aMG-Ev-qH7" firstAttribute="leading" secondItem="Mys-jB-f8n" secondAttribute="leading" constant="16" id="OEI-VI-mTf"/>
                             <constraint firstAttribute="trailing" secondItem="aMG-Ev-qH7" secondAttribute="trailing" constant="16" id="PyJ-v5-Ff3"/>
                             <constraint firstItem="Um7-od-bsz" firstAttribute="leading" secondItem="Mys-jB-f8n" secondAttribute="leading" constant="16" id="kzd-mT-msr"/>
+                            <constraint firstAttribute="trailing" secondItem="enL-i6-0TG" secondAttribute="trailing" constant="16" id="ngd-dU-hDS"/>
                             <constraint firstAttribute="bottom" secondItem="aMG-Ev-qH7" secondAttribute="bottom" constant="16" id="p81-Ql-zZc"/>
                             <constraint firstAttribute="trailing" secondItem="Um7-od-bsz" secondAttribute="trailing" constant="16" id="pxM-sG-tBm"/>
                             <constraint firstItem="Um7-od-bsz" firstAttribute="top" secondItem="KPd-9P-yIe" secondAttribute="bottom" constant="16" id="ubo-TK-ryr"/>
@@ -88,8 +121,10 @@
             </constraints>
             <size key="customSize" width="47" height="49"/>
             <connections>
+                <outlet property="endDatePicker" destination="Vdw-mx-90o" id="jSK-Uj-gqL"/>
                 <outlet property="endTimeContainerButton" destination="7Fh-Zc-gHn" id="HmD-SM-AWV"/>
                 <outlet property="endTimeTextField" destination="IMl-oO-I1x" id="UsQ-kn-C2R"/>
+                <outlet property="startDatePicker" destination="CYz-lH-rDn" id="y4F-xO-Yp2"/>
                 <outlet property="startTimeContainerButton" destination="Lv0-pe-IRS" id="GCj-b8-nuy"/>
                 <outlet property="startTimeTextField" destination="NgO-Wb-LEy" id="oee-AM-wxA"/>
             </connections>
@@ -99,6 +134,9 @@
     <resources>
         <namedColor name="Gray">
             <color red="0.5559999942779541" green="0.5559999942779541" blue="0.5559999942779541" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Green">
+            <color red="0.40799999237060547" green="0.86299997568130493" blue="0.67100000381469727" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

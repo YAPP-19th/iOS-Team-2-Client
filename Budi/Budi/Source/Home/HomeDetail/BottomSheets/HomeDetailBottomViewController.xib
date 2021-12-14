@@ -19,6 +19,7 @@
                 <outlet property="collectionView" destination="fPm-5x-hnN" id="hYN-SH-9ss"/>
                 <outlet property="heartButton" destination="vqy-OV-iC3" id="Kom-fD-7qc"/>
                 <outlet property="submitButton" destination="trt-dp-HDq" id="pFy-6l-Je6"/>
+                <outlet property="submitView" destination="R6q-jd-m7o" id="2zO-QB-ULA"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -92,7 +93,7 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R6q-jd-m7o" userLabel="Apply View">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R6q-jd-m7o" userLabel="Submit View">
                     <rect key="frame" x="0.0" y="801" width="414" height="95"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="trt-dp-HDq">

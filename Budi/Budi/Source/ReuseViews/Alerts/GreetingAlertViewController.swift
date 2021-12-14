@@ -9,7 +9,7 @@ import UIKit
 
 final class GreetingAlertViewController: UIViewController {
 
-    @IBOutlet weak var handEmojiLabel: UILabel!
+    @IBOutlet private weak var handEmojiLabel: UILabel!
     @IBAction func cancelButtonTapped(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }

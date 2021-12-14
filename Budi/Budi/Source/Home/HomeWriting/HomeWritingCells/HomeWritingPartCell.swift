@@ -15,7 +15,7 @@ protocol HomeWritingPartCellDelegate: AnyObject {
 
 final class HomeWritingPartCell: UICollectionViewCell {
     
-    @IBOutlet weak var selectPartButton: UIButton!
+    @IBOutlet private weak var selectPartButton: UIButton!
     
     weak var delegate: HomeWritingPartCellDelegate?
     private var cancellables = Set<AnyCancellable>()

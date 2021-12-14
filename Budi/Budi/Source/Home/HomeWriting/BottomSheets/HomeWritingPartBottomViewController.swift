@@ -13,13 +13,13 @@ final class HomeWritingPartBottomViewController: UIViewController {
     
     @IBOutlet private weak var backgroundButton: UIButton!
     
-    @IBOutlet weak var bottomView: UIView!
+    @IBOutlet private weak var bottomView: UIView!
     
     @IBOutlet private weak var completeView: UIView!
     @IBOutlet private weak var completeButton: UIButton!
     
-    @IBOutlet weak var collectionView: UICollectionView!
-    @IBOutlet weak var bottomViewTopConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var collectionView: UICollectionView!
+    @IBOutlet private weak var bottomViewTopConstraint: NSLayoutConstraint!
     
     private var isBottomViewShown: Bool = false
     
@@ -38,13 +38,13 @@ final class HomeWritingPartBottomViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        completeView.layer.addBorderTop()
         configureCollectionView()
         bindViewModel()
         setPublisher()
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        completeView.layer.addBorderTop()
         showBottomView()
     }
 }

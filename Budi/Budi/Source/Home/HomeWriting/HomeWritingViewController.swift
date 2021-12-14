@@ -24,7 +24,7 @@ final class HomeWritingViewController: UIViewController {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        tabBarController?.tabBar.isHidden = true
+        tabBarController?.tabBar.isHidden = false
     }
     
     init?(coder: NSCoder, viewModel: HomeWritingViewModel) {
@@ -58,12 +58,12 @@ extension HomeWritingViewController: HomeWritingPartCellDelegate {
 }
 
 extension HomeWritingViewController: HomeWritingDurationCellDelegate {
-    func showWritingDurationStartDatePicker() {
-        print("Show Start DatePicker")
+    func changeStartDate(_ dateString: String) {
+        print(dateString)
     }
     
-    func showWritingDurationEndDatePicker() {
-        print("Show End DatePicker")
+    func changeEndDate(_ dateString: String) {
+        print(dateString)
     }
 }
 

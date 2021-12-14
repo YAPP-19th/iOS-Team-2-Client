@@ -16,7 +16,7 @@ final class HomeWritingImageBottomViewController: UIViewController {
     @IBOutlet private weak var completeView: UIView!
     @IBOutlet private weak var completeButton: UIButton!
     
-    @IBOutlet weak var bottomScrollView: UIScrollView!
+    @IBOutlet private weak var bottomScrollView: UIScrollView!
     
     @IBOutlet private weak var collectionView: UICollectionView!
     @IBOutlet private weak var myAlbumButton: UIButton!
@@ -39,8 +39,8 @@ final class HomeWritingImageBottomViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureCollectionView()
         completeView.layer.addBorderTop()
+        configureCollectionView()
         bindViewModel()
         setPublisher()
     }

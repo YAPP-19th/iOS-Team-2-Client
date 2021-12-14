@@ -13,10 +13,12 @@ final class HomeDetailBottomViewController: UIViewController {
 
     @IBOutlet private weak var bottomView: UIView!
     @IBOutlet private weak var collectionView: UICollectionView!
-    @IBOutlet private weak var submitButton: UIButton!
-    @IBOutlet private weak var heartButton: UIButton!
     @IBOutlet private weak var closeButton: UIButton!
     @IBOutlet private weak var bottomViewTopConstraint: NSLayoutConstraint!
+    
+    @IBOutlet private weak var submitView: UIView!
+    @IBOutlet private weak var submitButton: UIButton!
+    @IBOutlet private weak var heartButton: UIButton!
     
     private var isBottomViewShown: Bool = false
     private var isHeartButtonChecked: Bool = false
@@ -37,6 +39,7 @@ final class HomeDetailBottomViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        submitView.layer.addBorderTop()
         configureCollectionView()
         bindViewModel()
         setPublisher()

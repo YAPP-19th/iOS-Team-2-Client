@@ -51,6 +51,12 @@ extension HomeWritingViewController: HomeWritingImageCellDelegate {
     }
 }
 
+extension HomeWritingViewController: HomeWritingNameCellDelegate {
+    func changeName(_ name: String) {
+        print("name is \(name)")
+    }
+}
+
 extension HomeWritingViewController: HomeWritingPartCellDelegate {
     func showWritingPartBottomView() {
         coordinator?.showWritingPartBottomView(self, viewModel)
@@ -59,11 +65,11 @@ extension HomeWritingViewController: HomeWritingPartCellDelegate {
 
 extension HomeWritingViewController: HomeWritingDurationCellDelegate {
     func changeStartDate(_ dateString: String) {
-        print(dateString)
+        print("dateString is \(dateString)")
     }
     
     func changeEndDate(_ dateString: String) {
-        print(dateString)
+        print("dateString is \(dateString)")
     }
 }
 
@@ -83,6 +89,9 @@ extension HomeWritingViewController: HomeWritingMembersCellDelegate {
 }
 
 extension HomeWritingViewController: HomeWritingDescriptionCellDelegate {
+    func changeDescription(_ description: String) {
+        print("description is \(description)")
+    }
 }
 
 // MARK: - CollectionView

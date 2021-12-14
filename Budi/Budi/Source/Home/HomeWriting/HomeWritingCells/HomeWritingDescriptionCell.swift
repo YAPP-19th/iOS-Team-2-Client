@@ -8,14 +8,34 @@
 import UIKit
 
 protocol HomeWritingDescriptionCellDelegate: AnyObject {
+    func changeDescription(_ description: String)
 }
 
 final class HomeWritingDescriptionCell: UICollectionViewCell {
+    
+    @IBOutlet private weak var textView: UITextView!
+    @IBOutlet private weak var placeholderTextView: UITextView!
     
     weak var delegate: HomeWritingDescriptionCellDelegate?
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        configureTextView()
     }
+}
 
+extension HomeWritingDescriptionCell: UITextViewDelegate {
+    private func configureTextView() {
+        textView.delegate = self
+    }
+    
+    func textViewDidChange(_ textView: UITextView) {
+        guard let text = textView.text else { return }
+        if text.isEmpty {
+            placeholderTextView.alpha = 1
+        } else {
+            placeholderTextView.alpha = 0
+            delegate?.changeDescription(text)
+        }
+    }
 }

@@ -8,7 +8,7 @@
 import UIKit
 
 protocol HomeWritingNameCellDelegate: AnyObject {
-    func changeName(_ text: String)
+    func changeName(_ name: String)
 }
 
 final class HomeWritingNameCell: UICollectionViewCell {
@@ -32,7 +32,6 @@ extension HomeWritingNameCell: UITextFieldDelegate {
     
     @objc func textFieldDidChange(_ textField: UITextField) {
         if let text = textField.text {
-            print(text)
             delegate?.changeName(text)
         }
     }

@@ -28,7 +28,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="jbY-SJ-0fh">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jbY-SJ-0fh" userLabel="Placeholder Text View">
                                 <rect key="frame" x="16" y="49" width="343" height="322"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <string key="text" base64-UTF8="YES">
@@ -40,7 +40,7 @@ IOq4sOyIoCDsiqTtg50gXQrtlYTsmpTtlZwg7KeB6rWw67OEIOq4sOyIoCDsiqTtg53snYQg7KCB7Ja0
 7KO87IS47JqULgoKWyDsnpDqsqkg7JqU6rG0IF0K7J6Q6rKpIOyalOqxtOydhCDsoIHslrTso7zshLjs
 mpQuIA
 </string>
-                                <color key="textColor" systemColor="labelColor"/>
+                                <color key="textColor" name="Gray"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <userDefinedRuntimeAttributes>
@@ -55,11 +55,32 @@ mpQuIA
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </textView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="k4t-vW-Obi">
+                                <rect key="frame" x="16" y="49" width="343" height="322"/>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" name="LightGray"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="ntp-P4-GLC" firstAttribute="top" secondItem="k6J-n3-J3k" secondAttribute="top" constant="16" id="83s-9y-8fv"/>
+                            <constraint firstAttribute="bottom" secondItem="k4t-vW-Obi" secondAttribute="bottom" constant="16" id="A5i-y9-6DL"/>
                             <constraint firstItem="jbY-SJ-0fh" firstAttribute="leading" secondItem="k6J-n3-J3k" secondAttribute="leading" constant="16" id="Bho-Qe-IMF"/>
+                            <constraint firstAttribute="trailing" secondItem="k4t-vW-Obi" secondAttribute="trailing" constant="16" id="E7f-6o-uEZ"/>
+                            <constraint firstItem="k4t-vW-Obi" firstAttribute="top" secondItem="ntp-P4-GLC" secondAttribute="bottom" constant="16" id="Ee9-Tc-RCa"/>
+                            <constraint firstItem="k4t-vW-Obi" firstAttribute="leading" secondItem="k6J-n3-J3k" secondAttribute="leading" constant="16" id="JG6-7x-Mr8"/>
                             <constraint firstItem="jbY-SJ-0fh" firstAttribute="top" secondItem="ntp-P4-GLC" secondAttribute="bottom" constant="16" id="RrF-aX-6Le"/>
                             <constraint firstItem="ntp-P4-GLC" firstAttribute="leading" secondItem="k6J-n3-J3k" secondAttribute="leading" constant="20" id="STq-NO-3mf"/>
                             <constraint firstAttribute="trailing" secondItem="jbY-SJ-0fh" secondAttribute="trailing" constant="16" id="du7-MW-Z2A"/>
@@ -75,12 +96,19 @@ mpQuIA
                 <constraint firstAttribute="trailing" secondItem="k6J-n3-J3k" secondAttribute="trailing" id="tYF-LR-mlL"/>
                 <constraint firstItem="k6J-n3-J3k" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="ux8-Iv-2dv"/>
             </constraints>
+            <connections>
+                <outlet property="placeholderTextView" destination="jbY-SJ-0fh" id="azb-qh-Yca"/>
+                <outlet property="textView" destination="k4t-vW-Obi" id="vrt-pQ-15G"/>
+            </connections>
             <point key="canvasLocation" x="131.15942028985509" y="65.959821428571431"/>
         </collectionViewCell>
     </objects>
     <resources>
+        <namedColor name="Gray">
+            <color red="0.5559999942779541" green="0.5559999942779541" blue="0.5559999942779541" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="LightGray">
-            <color red="0.0" green="0.0" blue="0.0" alpha="0.079999998211860657" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.86599999666213989" green="0.86599999666213989" blue="0.86599999666213989" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

@@ -11,12 +11,13 @@ import CombineCocoa
 
 final class HomeWritingImageBottomViewController: UIViewController {
     
-    @IBOutlet private var backgroundView: UIView!
+    @IBOutlet private weak var backgroundButton: UIButton!
     
     @IBOutlet private weak var completeView: UIView!
     @IBOutlet private weak var completeButton: UIButton!
     
-    @IBOutlet private weak var bottomView: UIStackView!
+    @IBOutlet weak var bottomScrollView: UIScrollView!
+    
     @IBOutlet private weak var collectionView: UICollectionView!
     @IBOutlet private weak var myAlbumButton: UIButton!
     @IBOutlet private weak var bottomViewTopConstraint: NSLayoutConstraint!
@@ -45,7 +46,7 @@ final class HomeWritingImageBottomViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        animateBottomView()
+        showBottomView()
     }
 }
 
@@ -54,6 +55,12 @@ private extension HomeWritingImageBottomViewController {
     }
     
     func setPublisher() {
+        backgroundButton.tapPublisher
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in
+                self?.hideBottomView()
+            }.store(in: &cancellables)
+        
         myAlbumButton.tapPublisher
             .receive(on: DispatchQueue.main)
             .sink { _ in
@@ -63,14 +70,10 @@ private extension HomeWritingImageBottomViewController {
 }
 
 private extension HomeWritingImageBottomViewController {
-    func animateBottomView() {
-        isBottomViewShown ? hideBottomView() : showBottomView()
-    }
-    
     func showBottomView() {
         let animator = UIViewPropertyAnimator(duration: 0.25, curve: .linear) { [weak self] in
             guard let self = self else { return }
-            self.bottomViewTopConstraint.constant -= (self.bottomView.bounds.height - 24)
+            self.bottomViewTopConstraint.constant -= 600
             self.view.layoutIfNeeded()
         }
         animator.addCompletion { [weak self] _ in
@@ -82,10 +85,11 @@ private extension HomeWritingImageBottomViewController {
     func hideBottomView() {
         let animator = UIViewPropertyAnimator(duration: 0.25, curve: .linear) { [weak self] in
             guard let self = self else { return }
-            self.bottomViewTopConstraint.constant += (self.bottomView.bounds.height - 24)
+            self.bottomViewTopConstraint.constant += 600
             self.view.layoutIfNeeded()
         }
         animator.addCompletion { [weak self] _ in
+            self?.dismiss(animated: false, completion: nil)
             self?.isBottomViewShown = true
         }
         animator.startAnimation()
@@ -99,25 +103,25 @@ extension HomeWritingImageBottomViewController: UICollectionViewDataSource, UICo
         collectionView.delegate = self
         collectionView.register(.init(nibName: HomeWritingImageBottomCell.identifier, bundle: nil), forCellWithReuseIdentifier: HomeWritingImageBottomCell.identifier)
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         9
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeWritingImageBottomCell.identifier, for: indexPath) as? HomeWritingImageBottomCell else { return UICollectionViewCell() }
         return cell
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width: CGFloat = (collectionView.bounds.width - 4) / 3
         return CGSize(width: width, height: width)
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         2
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         2
     }

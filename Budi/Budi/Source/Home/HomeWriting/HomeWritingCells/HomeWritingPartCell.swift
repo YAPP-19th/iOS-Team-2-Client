@@ -22,15 +22,11 @@ final class HomeWritingPartCell: UICollectionViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        bindViewModel()
         setPublisher()
     }
 }
 
 private extension HomeWritingPartCell {
-    func bindViewModel() {
-    }
-    
     func setPublisher() {
         selectPartButton.tapPublisher
             .receive(on: DispatchQueue.main)

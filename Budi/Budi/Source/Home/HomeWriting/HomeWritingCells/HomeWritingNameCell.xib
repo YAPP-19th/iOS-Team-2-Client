@@ -53,6 +53,9 @@
                 <constraint firstItem="CGk-jj-Qbp" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="jBx-Gl-9Yg"/>
             </constraints>
             <size key="customSize" width="276" height="50"/>
+            <connections>
+                <outlet property="textField" destination="ktl-mn-tP2" id="5cy-3v-FBH"/>
+            </connections>
             <point key="canvasLocation" x="294.92753623188406" y="80.022321428571431"/>
         </collectionViewCell>
     </objects>

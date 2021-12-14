@@ -31,12 +31,12 @@
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FHT-mL-MF3">
                                 <rect key="frame" x="16" y="53" width="343" height="48"/>
-                                <color key="backgroundColor" name="LightGreen"/>
+                                <color key="backgroundColor" name="BackgroundGreen"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="tintColor" name="Black"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="  지역 선택하기">
-                                    <imageReference key="image" image="plus.circle.fill" catalog="system" renderingMode="original"/>
+                                    <imageReference key="image" image="plus.circle.fill" catalog="system" symbolScale="default"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -69,11 +69,11 @@
     </objects>
     <resources>
         <image name="plus.circle.fill" catalog="system" width="128" height="121"/>
-        <namedColor name="Black">
-            <color red="0.0" green="0.0" blue="0.0" alpha="0.87000000476837158" colorSpace="custom" customColorSpace="sRGB"/>
+        <namedColor name="BackgroundGreen">
+            <color red="0.94099998474121094" green="0.98400002717971802" blue="0.96799999475479126" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <namedColor name="LightGreen">
-            <color red="0.40799999237060547" green="0.86299997568130493" blue="0.67100000381469727" alpha="0.40000000596046448" colorSpace="custom" customColorSpace="sRGB"/>
+        <namedColor name="Black">
+            <color red="0.11699999868869781" green="0.11699999868869781" blue="0.11699999868869781" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

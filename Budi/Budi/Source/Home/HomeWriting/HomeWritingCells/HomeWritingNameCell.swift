@@ -12,5 +12,4 @@ final class HomeWritingNameCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
     }
-
 }

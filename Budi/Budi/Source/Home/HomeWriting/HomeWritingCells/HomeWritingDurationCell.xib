@@ -49,6 +49,19 @@
                                     </textField>
                                 </subviews>
                             </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="Um7-od-bsz">
+                                <rect key="frame" x="16" y="53" width="343" height="40"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lv0-pe-IRS" userLabel="Start Time Container Button">
+                                        <rect key="frame" x="0.0" y="5" width="159.5" height="30"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Fh-Zc-gHn" userLabel="End Time Container Button">
+                                        <rect key="frame" x="183.5" y="5" width="159.5" height="30"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
@@ -57,7 +70,11 @@
                             <constraint firstItem="KPd-9P-yIe" firstAttribute="leading" secondItem="Mys-jB-f8n" secondAttribute="leading" constant="16" id="CMp-Oc-RXu"/>
                             <constraint firstItem="aMG-Ev-qH7" firstAttribute="leading" secondItem="Mys-jB-f8n" secondAttribute="leading" constant="16" id="OEI-VI-mTf"/>
                             <constraint firstAttribute="trailing" secondItem="aMG-Ev-qH7" secondAttribute="trailing" constant="16" id="PyJ-v5-Ff3"/>
+                            <constraint firstItem="Um7-od-bsz" firstAttribute="leading" secondItem="Mys-jB-f8n" secondAttribute="leading" constant="16" id="kzd-mT-msr"/>
                             <constraint firstAttribute="bottom" secondItem="aMG-Ev-qH7" secondAttribute="bottom" constant="16" id="p81-Ql-zZc"/>
+                            <constraint firstAttribute="trailing" secondItem="Um7-od-bsz" secondAttribute="trailing" constant="16" id="pxM-sG-tBm"/>
+                            <constraint firstItem="Um7-od-bsz" firstAttribute="top" secondItem="KPd-9P-yIe" secondAttribute="bottom" constant="16" id="ubo-TK-ryr"/>
+                            <constraint firstAttribute="bottom" secondItem="Um7-od-bsz" secondAttribute="bottom" constant="16" id="z73-4Q-DD2"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -70,12 +87,18 @@
                 <constraint firstItem="Mys-jB-f8n" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="r2c-E2-z20"/>
             </constraints>
             <size key="customSize" width="47" height="49"/>
+            <connections>
+                <outlet property="endTimeContainerButton" destination="7Fh-Zc-gHn" id="HmD-SM-AWV"/>
+                <outlet property="endTimeTextField" destination="IMl-oO-I1x" id="UsQ-kn-C2R"/>
+                <outlet property="startTimeContainerButton" destination="Lv0-pe-IRS" id="GCj-b8-nuy"/>
+                <outlet property="startTimeTextField" destination="NgO-Wb-LEy" id="oee-AM-wxA"/>
+            </connections>
             <point key="canvasLocation" x="129.71014492753625" y="80.022321428571431"/>
         </collectionViewCell>
     </objects>
     <resources>
         <namedColor name="Gray">
-            <color red="0.0" green="0.0" blue="0.0" alpha="0.37999999523162842" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.5559999942779541" green="0.5559999942779541" blue="0.5559999942779541" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

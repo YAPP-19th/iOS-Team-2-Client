@@ -7,7 +7,12 @@
 
 import UIKit
 
+protocol HomeWritingMembersCellDelegate: AnyObject {
+}
+
 final class HomeWritingMembersCell: UICollectionViewCell {
+    
+    weak var delegate: HomeWritingMembersCellDelegate?
 
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -46,15 +46,40 @@ private extension HomeWritingViewController {
 
 // MARK: - Delegate
 extension HomeWritingViewController: HomeWritingImageCellDelegate {
-    func changeCoverImage() {
+    func showWritingImageBottomView() {
         coordinator?.showWritingImageBottomView(self, viewModel)
     }
 }
 
 extension HomeWritingViewController: HomeWritingPartCellDelegate {
-    func changePart() {
+    func showWritingPartBottomView() {
         coordinator?.showWritingPartBottomView(self, viewModel)
     }
+}
+
+extension HomeWritingViewController: HomeWritingDurationCellDelegate {
+    func showWritingDurationStartDatePicker() {
+        print("Show Start DatePicker")
+    }
+    
+    func showWritingDurationEndDatePicker() {
+        print("Show End DatePicker")
+    }
+}
+
+extension HomeWritingViewController: HomeWritingOnlineCellDelegate {
+    func changeOnline(_ isOnline: Bool) {
+        print("isOnline is \(isOnline)")
+    }
+}
+
+extension HomeWritingViewController: HomeWritingAreaCellDelegate {
+}
+
+extension HomeWritingViewController: HomeWritingMembersCellDelegate {
+}
+
+extension HomeWritingViewController: HomeWritingDescriptionCellDelegate {
 }
 
 // MARK: - CollectionView

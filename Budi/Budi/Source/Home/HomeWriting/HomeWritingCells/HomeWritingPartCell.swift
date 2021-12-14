@@ -10,7 +10,7 @@ import Combine
 import CombineCocoa
 
 protocol HomeWritingPartCellDelegate: AnyObject {
-    func changePart()
+    func showWritingPartBottomView()
 }
 
 final class HomeWritingPartCell: UICollectionViewCell {
@@ -32,7 +32,7 @@ private extension HomeWritingPartCell {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
                 guard let self = self else { return }
-                self.delegate?.changePart()
+                self.delegate?.showWritingPartBottomView()
             }.store(in: &cancellables)
     }
 }

@@ -10,7 +10,7 @@ import Combine
 import CombineCocoa
 
 protocol HomeWritingImageCellDelegate: AnyObject {
-    func changeCoverImage()
+    func showWritingImageBottomView()
 }
 
 final class HomeWritingImageCell: UICollectionViewCell {
@@ -22,21 +22,16 @@ final class HomeWritingImageCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        bindViewModel()
         setPublisher()
     }
 }
 
 private extension HomeWritingImageCell {
-    func bindViewModel() {
-    }
-    
     func setPublisher() {
         imageChangeButton.tapPublisher
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
-                guard let self = self else { return }
-                self.delegate?.changeCoverImage()
+                self?.delegate?.showWritingImageBottomView()
             }.store(in: &cancellables)
     }
 }

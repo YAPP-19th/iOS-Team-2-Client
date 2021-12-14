@@ -49,7 +49,7 @@ private extension HomeWritingOnlineCell {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
                 guard let self = self else { return }
-                self.delegate?.changeOnline(true)
+                self.delegate?.changeOnline(false)
                 self.isOnlineChecked = false
                 self.configureUI()
             }.store(in: &cancellables)

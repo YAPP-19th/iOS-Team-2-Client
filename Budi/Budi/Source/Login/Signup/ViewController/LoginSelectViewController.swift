@@ -88,7 +88,7 @@ class LoginSelectViewController: UIViewController {
 
 extension LoginSelectViewController: NaverThirdPartyLoginConnectionDelegate {
     func oauth20ConnectionDidFinishRequestACTokenWithAuthCode() {
-        coordinator?.showLoginWithNaver()
+        coordinator?.showSignupNormalViewController()
     }
 
     func oauth20ConnectionDidFinishRequestACTokenWithRefreshToken() {

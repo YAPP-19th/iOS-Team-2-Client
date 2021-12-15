@@ -11,7 +11,7 @@ import NaverThirdPartyLogin
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var coordinator: MainTabBarCoordinator?
-//    var coordinator: LoginCoordinator?
+    //var coordinator: LoginCoordinator?
     var window: UIWindow?
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {

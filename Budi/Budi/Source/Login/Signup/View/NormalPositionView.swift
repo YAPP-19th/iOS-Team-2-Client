@@ -9,6 +9,54 @@ import UIKit
 
 class NormalPositionView: UIView {
 
+    let developerButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(systemName: "laptopcomputer"), for: .normal)
+        button.setTitle("개발자", for: .normal)
+        button.setTitleColor(UIColor.lightGray, for: .normal)
+        button.imageView?.tintColor = UIColor.lightGray
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
+        button.titleLabel?.textAlignment = .center
+        button.imageView?.contentMode = .scaleAspectFill
+        button.titleLabel?.adjustsFontSizeToFitWidth = true
+        button.titleLabel?.minimumScaleFactor = 0.5
+        button.titleEdgeInsets = UIEdgeInsets(top: 0, left: -(56/2), bottom: -40, right: 0)
+        button.imageEdgeInsets = UIEdgeInsets(top: 0, left: 56/1.5, bottom: 20, right: 0)
+        return button
+    }()
+
+    let designerButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(systemName: "person.3.fill"), for: .normal)
+        button.setTitle("디자이너", for: .normal)
+        button.setTitleColor(UIColor.lightGray, for: .normal)
+        button.imageView?.tintColor = UIColor.lightGray
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
+        button.titleLabel?.textAlignment = .center
+        button.imageView?.contentMode = .scaleAspectFill
+        button.titleLabel?.adjustsFontSizeToFitWidth = true
+        button.titleLabel?.minimumScaleFactor = 0.5
+        button.titleEdgeInsets = UIEdgeInsets(top: 0, left: -(56/2), bottom: -40, right: 0)
+        button.imageEdgeInsets = UIEdgeInsets(top: 0, left: 56/1.5, bottom: 20, right: 0)
+        return button
+    }()
+
+    let productManagerButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(systemName: "server.rack"), for: .normal)
+        button.setTitle("기획자", for: .normal)
+        button.setTitleColor(UIColor.lightGray, for: .normal)
+        button.imageView?.tintColor = UIColor.lightGray
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
+        button.titleLabel?.textAlignment = .center
+        button.imageView?.contentMode = .scaleAspectFill
+        button.titleLabel?.adjustsFontSizeToFitWidth = true
+        button.titleLabel?.minimumScaleFactor = 0.5
+        button.titleEdgeInsets = UIEdgeInsets(top: 0, left: -(56/2), bottom: -40, right: 0)
+        button.imageEdgeInsets = UIEdgeInsets(top: 0, left: 56/1.5, bottom: 20, right: 0)
+        return button
+    }()
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureLayout()
@@ -19,44 +67,35 @@ class NormalPositionView: UIView {
     }
 
     private func configureLayout() {
+        addSubview(developerButton)
+        addSubview(designerButton)
+        addSubview(productManagerButton)
 
-        let productManager = NormalPositionSelectView()
-        productManager.setPosition(image: "person.3.fill", name: "기획자", index: 2)
-
-        addSubview(productManager)
-        productManager.translatesAutoresizingMaskIntoConstraints = false
-
+        developerButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            productManager.topAnchor.constraint(equalTo: self.topAnchor, constant: 16),
-            productManager.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            productManager.widthAnchor.constraint(equalToConstant: 100)
+            developerButton.topAnchor.constraint(equalTo: self.topAnchor, constant: 16),
+            developerButton.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+            developerButton.trailingAnchor.constraint(equalTo: designerButton.leadingAnchor, constant: -16),
+            developerButton.widthAnchor.constraint(equalToConstant: 100),
+            developerButton.heightAnchor.constraint(equalTo: designerButton.heightAnchor)
         ])
 
-        let frontEnd = NormalPositionSelectView()
-        frontEnd.setPosition(image: "laptopcomputer", name: "프론트앤드", index: 1)
+        designerButton.translatesAutoresizingMaskIntoConstraints = false
 
-        addSubview(frontEnd)
-        frontEnd.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            frontEnd.topAnchor.constraint(equalTo: self.topAnchor, constant: 16),
-            frontEnd.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            frontEnd.trailingAnchor.constraint(equalTo: productManager.leadingAnchor, constant: -16),
-            frontEnd.widthAnchor.constraint(equalToConstant: 100),
-            frontEnd.heightAnchor.constraint(equalTo: productManager.heightAnchor)
+            designerButton.topAnchor.constraint(equalTo: self.topAnchor, constant: 16),
+            designerButton.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            designerButton.widthAnchor.constraint(equalToConstant: 100)
         ])
 
-        let backEnd = NormalPositionSelectView()
-        backEnd.setPosition(image: "server.rack", name: "백앤드", index: 3)
-
-        addSubview(backEnd)
-        backEnd.translatesAutoresizingMaskIntoConstraints = false
+        productManagerButton.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
-            backEnd.topAnchor.constraint(equalTo: self.topAnchor, constant: 16),
-            backEnd.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            backEnd.leadingAnchor.constraint(equalTo: productManager.trailingAnchor, constant: 16),
-            backEnd.widthAnchor.constraint(equalToConstant: 100),
-            backEnd.heightAnchor.constraint(equalTo: productManager.heightAnchor)
+            productManagerButton.topAnchor.constraint(equalTo: self.topAnchor, constant: 16),
+            productManagerButton.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+            productManagerButton.leadingAnchor.constraint(equalTo: designerButton.trailingAnchor, constant: 16),
+            productManagerButton.widthAnchor.constraint(equalToConstant: 100),
+            productManagerButton.heightAnchor.constraint(equalTo: designerButton.heightAnchor)
         ])
     }
 }

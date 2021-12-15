@@ -10,6 +10,7 @@ import Moya
 enum BudiTarget {
     case post(id: Int)
     case posts
+    case detailPositions(postion: Position)
 }
 
 extension BudiTarget: TargetType {
@@ -21,6 +22,7 @@ extension BudiTarget: TargetType {
         switch self {
         case .post(let id): return "/posts/\(id)"
         case .posts: return "/posts"
+        case .detailPositions: return "/infos/positions"
         }
     }
 
@@ -29,7 +31,12 @@ extension BudiTarget: TargetType {
     }
 
     var task: Task {
-        .requestPlain
+        switch self {
+        case .detailPositions(let position):
+            return .requestParameters(parameters: ["position": position.stringValue], encoding: URLEncoding.default)
+
+        default: return .requestPlain
+        }
     }
 
     var headers: [String: String]? {
@@ -39,4 +46,5 @@ extension BudiTarget: TargetType {
     var validationType: ValidationType {
       return .successCodes
     }
+
 }

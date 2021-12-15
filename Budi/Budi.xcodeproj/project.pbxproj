@@ -62,7 +62,7 @@
 		5EA4539D2731777500943C94 /* HomeDetailDescriptionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EA4539B2731777500943C94 /* HomeDetailDescriptionCell.xib */; };
 		5EA453A02731778000943C94 /* HomeDetailMainCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA4539E2731778000943C94 /* HomeDetailMainCell.swift */; };
 		5EA453A12731778000943C94 /* HomeDetailMainCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EA4539F2731778000943C94 /* HomeDetailMainCell.xib */; };
-		5EA453AC2731DDA700943C94 /* CALayer+addBorderTop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA453AB2731DDA700943C94 /* CALayer+addBorderTop.swift */; };
+		5EA453AC2731DDA700943C94 /* CALayer+addBorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA453AB2731DDA700943C94 /* CALayer+addBorder.swift */; };
 		5EA575F9274E9B1E00DF6974 /* HomeDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA575F8274E9B1E00DF6974 /* HomeDetailViewModel.swift */; };
 		5EA575FE274E9C4800DF6974 /* String+baseURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA575FD274E9C4800DF6974 /* String+baseURL.swift */; };
 		5EB430252758909800283239 /* HomeWritingImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EB430232758909800283239 /* HomeWritingImageCell.swift */; };
@@ -196,7 +196,7 @@
 		5EA4539B2731777500943C94 /* HomeDetailDescriptionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeDetailDescriptionCell.xib; sourceTree = "<group>"; };
 		5EA4539E2731778000943C94 /* HomeDetailMainCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailMainCell.swift; sourceTree = "<group>"; };
 		5EA4539F2731778000943C94 /* HomeDetailMainCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeDetailMainCell.xib; sourceTree = "<group>"; };
-		5EA453AB2731DDA700943C94 /* CALayer+addBorderTop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+addBorderTop.swift"; sourceTree = "<group>"; };
+		5EA453AB2731DDA700943C94 /* CALayer+addBorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+addBorder.swift"; sourceTree = "<group>"; };
 		5EA575F8274E9B1E00DF6974 /* HomeDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailViewModel.swift; sourceTree = "<group>"; };
 		5EA575FB274E9BFC00DF6974 /* PostTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTarget.swift; sourceTree = "<group>"; };
 		5EA575FD274E9C4800DF6974 /* String+baseURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+baseURL.swift"; sourceTree = "<group>"; };
@@ -759,7 +759,7 @@
 				A8CD933D2736A93500299AB4 /* UIColor.swift */,
 				B97DBB9427147D970018C1D2 /* UIViewController+identifer.swift */,
 				B98E530927396B3F00C73374 /* UINavigationController+translucent.swift */,
-				5EA453AB2731DDA700943C94 /* CALayer+addBorderTop.swift */,
+				5EA453AB2731DDA700943C94 /* CALayer+addBorder.swift */,
 				5E2554372732AD0800033723 /* UIView+IBInspectable.swift */,
 				5E820B732769E41E004A03E9 /* UIButton+IBInspectable.swift */,
 				A8A6D9F8273D2D1800C84C52 /* BackButtonExtension.swift */,
@@ -973,7 +973,7 @@
 				5E88637E276771FB0022397A /* HomeWritingMembersBottomViewController.swift in Sources */,
 				5EFB0A5A27341C1100F39A4D /* ChattingTimeCell.swift in Sources */,
 				5EFB0A5627340BF100F39A4D /* ChattingMessageCell.swift in Sources */,
-				5EA453AC2731DDA700943C94 /* CALayer+addBorderTop.swift in Sources */,
+				5EA453AC2731DDA700943C94 /* CALayer+addBorder.swift in Sources */,
 				5EFB0A4D2733EABF00F39A4D /* ChattingViewController.swift in Sources */,
 				5EA4539C2731777500943C94 /* HomeDetailDescriptionCell.swift in Sources */,
 				5E2554382732AD0800033723 /* UIView+IBInspectable.swift in Sources */,

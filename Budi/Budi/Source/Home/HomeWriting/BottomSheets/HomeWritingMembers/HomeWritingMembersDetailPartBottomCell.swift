@@ -11,6 +11,8 @@ final class HomeWritingMembersDetailPartBottomCell: UICollectionViewCell {
     
     @IBOutlet private weak var collectionView: UICollectionView!
     
+    private var partStrings: [String] = ["iOS", "하이브리드", "AOS", "Web", "블록체인", "AI", "웹서버", "기타"]
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         configureCollectionView()
@@ -26,20 +28,22 @@ extension HomeWritingMembersDetailPartBottomCell: UICollectionViewDataSource, UI
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        8
+        partStrings.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeWritingMembersDetailPartBottomCollectionViewCell.identifier, for: indexPath) as? HomeWritingMembersDetailPartBottomCollectionViewCell else { return UICollectionViewCell() }
+        cell.configureUI(partStrings[indexPath.row])
         return cell
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        CGSize(width: 55, height: 32)
+        let partStringWidth: CGFloat = partStrings[indexPath.row].size(withAttributes: nil).width
+        return CGSize(width: partStringWidth + 40, height: 32)
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        0
+        8
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {

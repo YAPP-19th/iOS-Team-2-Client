@@ -47,7 +47,7 @@ enum HomeWritingCellType: Int, CaseIterable {
         case .online: return 117
         case .area: return 173 // 117 -> 173
         case .members: return 117
-        case .description: return 387 + 64
+        case .description: return 387
         }
     }
     
@@ -58,6 +58,7 @@ enum HomeWritingCellType: Int, CaseIterable {
         self.allCases.forEach {
             collectionView.register(.init(nibName: $0.type.identifier, bundle: nil), forCellWithReuseIdentifier: $0.type.identifier)
         }
+        collectionView.contentInset.bottom = 95
     }
     
     static func configureCellSize(_ collectionView: UICollectionView, _ indexPath: IndexPath) -> CGSize {

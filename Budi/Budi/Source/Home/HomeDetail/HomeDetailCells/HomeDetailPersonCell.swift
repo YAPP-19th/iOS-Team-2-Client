@@ -19,10 +19,14 @@ final class HomeDetailPersonCell: UICollectionViewCell {
         super.awakeFromNib()
     }
     
-    func updateUI(_ name: String, imageUrl: String, _ address: String) {
-        nameLabel.text = name
-        addressLabel.text = address.isEmpty ? "" : " · \(address)"
-        if let url = URL(string: imageUrl) {
+    func updateUI(_ name: String?, _ imageUrl: String?, _ address: String?) {
+        if let name = name {
+            nameLabel.text = name
+        }
+        if let address = address {
+            addressLabel.text = address.isEmpty ? "" : " · \(address)"
+        }
+        if let imageUrl = imageUrl, let url = URL(string: imageUrl) {
             profileImageView.kf.setImage(with: url, placeholder: UIImage(named: "person.circle.fill"))
         }
     }

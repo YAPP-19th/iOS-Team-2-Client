@@ -92,6 +92,7 @@ enum HomeDetailCellType: Int, CaseIterable {
             }
             return cell
         case 4: guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeDetailMemberCell.identifier, for: indexPath) as? HomeDetailMemberCell else { return cell }
+            cell.teamMembers = viewModel.state.teamMembers.value
             return cell
         default: break
         }

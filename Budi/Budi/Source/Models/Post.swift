@@ -125,29 +125,3 @@ struct PostPageable: Codable {
     let paged, unpaged: Bool
 }
 
-// MARK: - Members
-struct TeamMemberContainer: Codable {
-    let teamMembers: [TeamMember]
-}
-
-struct TeamMember: Codable {
-    let id: Int
-}
-
-// MARK: - RecruitingStatus
-struct RecruitingStatusContainer: Codable {
-    let recruitingStatuses: [RecruitingStatus]
-}
-
-struct RecruitingStatus: Codable {
-    let recruitingPositionId: Int
-    let positionName: String
-    let positionCode: Int
-    let status: String
-}
-
-// MARK: - RecruitingStatusResponse: RecruitingStatus로 변경되어 사용하지 않음
-struct RecruitingStatusResponse: Codable {
-    let positionName, skillName: String
-    let status: String
-}

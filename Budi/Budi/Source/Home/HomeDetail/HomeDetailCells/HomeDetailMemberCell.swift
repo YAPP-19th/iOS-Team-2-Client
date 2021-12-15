@@ -39,7 +39,9 @@ extension HomeDetailMemberCell: UICollectionViewDataSource, UICollectionViewDele
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeDetailPersonCell.identifier, for: indexPath) as UICollectionViewCell
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeDetailPersonCell.identifier, for: indexPath) as? HomeDetailPersonCell else { return UICollectionViewCell() }
+        let teamMember = teamMembers[indexPath.row]
+        cell.updateUI(teamMember.nickName, "\(String(describing: teamMember.profileImageUrl))", teamMember.address)
         return cell
     }
     

@@ -82,7 +82,7 @@ private extension HomeDetailViewController {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
                 guard let self = self else { return }
-                self.coordinator?.showDetailBottomView(self, self.viewModel)
+                self.coordinator?.showRecruitingStatusBottomViewController(self, self.viewModel)
             }.store(in: &cancellables)
     }
 }
@@ -100,6 +100,13 @@ private extension HomeDetailViewController {
         alert.modalPresentationStyle = .overCurrentContext
         alert.modalTransitionStyle = .crossDissolve
         present(alert, animated: true, completion: nil)
+    }
+}
+
+// MARK: - Delegate
+extension HomeDetailViewController: RecruitingStatusBottomViewControllerDelegate {
+    func getSelectedRecruitingStatuses(_ selectedRecruitingStatuses: [RecruitingStatus]) {
+        print("recruitingStatuses is \(selectedRecruitingStatuses)")
     }
 }
 

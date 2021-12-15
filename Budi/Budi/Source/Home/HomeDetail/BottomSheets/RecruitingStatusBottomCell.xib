@@ -10,16 +10,16 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeDetailBottomCell" customModule="Budi" customModuleProvider="target"/>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RecruitingStatusBottomCell" customModule="Budi" customModuleProvider="target"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="HomeDetailBottomCell" customModule="Budi" customModuleProvider="target">
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="RecruitingStatusBottomCell" customModule="Budi" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="343" height="56"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                 <rect key="frame" x="0.0" y="0.0" width="343" height="56"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mEg-oI-WJI">
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mEg-oI-WJI" userLabel="Container View">
                         <rect key="frame" x="0.0" y="0.0" width="343" height="56"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="iOS 개발자" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rWD-bZ-NZD">
@@ -28,10 +28,10 @@
                                 <color key="textColor" name="Black"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3hj-Nf-LEF">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3hj-Nf-LEF" userLabel="Circle Container View">
                                 <rect key="frame" x="305" y="18" width="20" height="20"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eUf-Nd-Z3y">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eUf-Nd-Z3y" userLabel="Circle View">
                                         <rect key="frame" x="4" y="4" width="12" height="12"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
@@ -83,7 +83,7 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </view>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FDI-mg-MJb">
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FDI-mg-MJb" userLabel="Container Button">
                         <rect key="frame" x="0.0" y="0.0" width="343" height="56"/>
                         <state key="normal" title="Button"/>
                         <buttonConfiguration key="configuration" style="plain" title=""/>
@@ -103,11 +103,11 @@
             </constraints>
             <size key="customSize" width="343" height="56"/>
             <connections>
-                <outlet property="circleContainerView" destination="3hj-Nf-LEF" id="OFf-5O-7hY"/>
-                <outlet property="circleView" destination="eUf-Nd-Z3y" id="qTF-41-x3O"/>
-                <outlet property="containerButton" destination="FDI-mg-MJb" id="yl2-IG-zbl"/>
-                <outlet property="containerView" destination="mEg-oI-WJI" id="mC4-eI-Y9N"/>
-                <outlet property="textLabel" destination="rWD-bZ-NZD" id="K2p-W2-O83"/>
+                <outlet property="circleContainerView" destination="3hj-Nf-LEF" id="HFe-MD-pGX"/>
+                <outlet property="circleView" destination="eUf-Nd-Z3y" id="tcL-eD-l35"/>
+                <outlet property="containerButton" destination="FDI-mg-MJb" id="2Ub-9q-ASp"/>
+                <outlet property="containerView" destination="mEg-oI-WJI" id="9eN-5v-wgy"/>
+                <outlet property="textLabel" destination="rWD-bZ-NZD" id="9ou-pg-FVg"/>
             </connections>
             <point key="canvasLocation" x="344.20289855072468" y="78.348214285714278"/>
         </collectionViewCell>

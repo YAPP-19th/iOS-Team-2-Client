@@ -40,14 +40,14 @@ extension HomeCoordinator {
         navigationController?.pushViewController(viewController, animated: true)
     }
     
-    func showWritingImageBottomView(_ vc: UIViewController, _ viewModel: HomeWritingViewModel) {
+    func showWritingImageBottomViewController(_ vc: UIViewController, _ viewModel: HomeWritingViewModel) {
         let viewController: HomeWritingImageBottomViewController = HomeWritingImageBottomViewController(nibName: HomeWritingImageBottomViewController.identifier, bundle: nil, viewModel: viewModel)
         viewController.modalPresentationStyle = .overCurrentContext
         viewController.coordinator = self
         vc.present(viewController, animated: false, completion: nil)
     }
     
-    func showWritingPartBottomView(_ vc: UIViewController, _ viewModel: HomeWritingViewModel) {
+    func showWritingPartBottomViewController(_ vc: UIViewController, _ viewModel: HomeWritingViewModel) {
         let viewController: HomeWritingPartBottomViewController = HomeWritingPartBottomViewController(nibName: HomeWritingPartBottomViewController.identifier, bundle: nil, viewModel: viewModel)
         viewController.modalPresentationStyle = .overCurrentContext
         viewController.coordinator = self
@@ -66,7 +66,7 @@ extension HomeCoordinator {
         navigationController?.pushViewController(viewController, animated: true)
     }
     
-    func showWritingMembersBottomView(_ vc: UIViewController, _ viewModel: HomeWritingViewModel) {
+    func showWritingMembersBottomViewController(_ vc: UIViewController, _ viewModel: HomeWritingViewModel) {
         let viewController: HomeWritingMembersBottomViewController = HomeWritingMembersBottomViewController(nibName: HomeWritingMembersBottomViewController.identifier, bundle: nil, viewModel: viewModel)
         viewController.modalPresentationStyle = .overCurrentContext
         viewController.coordinator = self
@@ -86,10 +86,11 @@ extension HomeCoordinator {
         navigationController?.pushViewController(viewController, animated: true)
     }
     
-    func showDetailBottomView(_ vc: UIViewController, _ viewModel: HomeDetailViewModel) {
-        let viewController: HomeDetailBottomViewController = HomeDetailBottomViewController(nibName: HomeDetailBottomViewController.identifier, bundle: nil, viewModel: viewModel)
+    func showRecruitingStatusBottomViewController(_ vc: UIViewController, _ viewModel: HomeDetailViewModel) {
+        let viewController: RecruitingStatusBottomViewController = RecruitingStatusBottomViewController(nibName: RecruitingStatusBottomViewController.identifier, bundle: nil, viewModel: viewModel)
         viewController.modalPresentationStyle = .overCurrentContext
         viewController.coordinator = self
+        viewController.delegate = vc as? RecruitingStatusBottomViewControllerDelegate
         vc.present(viewController, animated: false, completion: nil)
     }
 }

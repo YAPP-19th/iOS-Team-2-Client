@@ -9,11 +9,11 @@ import UIKit
 import Combine
 import CombineCocoa
 
-protocol HomeDetailBottomCellDelegate: AnyObject {
-    func selectBottomSheetCell(_ recruitingStatus: RecruitingStatus)
+protocol RecruitingStatusBottomCellDelegate: AnyObject {
+    func getRecruitingStatus(_ recruitingStatus: RecruitingStatus)
 }
 
-final class HomeDetailBottomCell: UICollectionViewCell {
+final class RecruitingStatusBottomCell: UICollectionViewCell {
 
     @IBOutlet private weak var containerView: UIView!
     @IBOutlet private weak var containerButton: UIButton!
@@ -28,7 +28,7 @@ final class HomeDetailBottomCell: UICollectionViewCell {
         }
     }
     
-    weak var delegate: HomeDetailBottomCellDelegate?
+    weak var delegate: RecruitingStatusBottomCellDelegate?
     private var cancellables = Set<AnyCancellable>()
 
     override func awakeFromNib() {
@@ -37,7 +37,7 @@ final class HomeDetailBottomCell: UICollectionViewCell {
     }
 }
 
-private extension HomeDetailBottomCell {
+private extension RecruitingStatusBottomCell {
     func setPublisher() {
         containerButton.tapPublisher
             .receive(on: DispatchQueue.main)
@@ -46,7 +46,7 @@ private extension HomeDetailBottomCell {
                 if let recruitingStatus = self.recruitingStatus {
                     self.isChecked.toggle()
                     self.configureUI()
-                    self.delegate?.selectBottomSheetCell(recruitingStatus)
+                    self.delegate?.getRecruitingStatus(recruitingStatus)
                 }
             }.store(in: &cancellables)
     }

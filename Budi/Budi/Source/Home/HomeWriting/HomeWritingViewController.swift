@@ -47,7 +47,7 @@ private extension HomeWritingViewController {
 // MARK: - Delegate
 extension HomeWritingViewController: HomeWritingImageCellDelegate {
     func showWritingImageBottomView() {
-        coordinator?.showWritingImageBottomView(self, viewModel)
+        coordinator?.showWritingImageBottomViewController(self, viewModel)
     }
 }
 
@@ -59,7 +59,7 @@ extension HomeWritingViewController: HomeWritingNameCellDelegate {
 
 extension HomeWritingViewController: HomeWritingPartCellDelegate {
     func showWritingPartBottomView() {
-        coordinator?.showWritingPartBottomView(self, viewModel)
+        coordinator?.showWritingPartBottomViewController(self, viewModel)
     }
 }
 
@@ -89,7 +89,7 @@ extension HomeWritingViewController: HomeWritingAreaCellDelegate {
 
 extension HomeWritingViewController: HomeWritingMembersCellDelegate {
     func showWritingMembersBottomView() {
-        coordinator?.showWritingMembersBottomView(self, viewModel)
+        coordinator?.showWritingMembersBottomViewController(self, viewModel)
     }
 }
 

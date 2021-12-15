@@ -11,7 +11,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeDetailBottomViewController" customModule="Budi" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RecruitingStatusBottomViewController" customModule="Budi" customModuleProvider="target">
             <connections>
                 <outlet property="bottomView" destination="7XL-WD-jzw" id="ybl-hX-iq2"/>
                 <outlet property="bottomViewTopConstraint" destination="UnZ-NM-jwy" id="xfI-0x-o1n"/>
@@ -28,10 +28,14 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yUx-Ds-iS9">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Afa-Va-9a4" userLabel="Background Button">
                     <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                     <color key="backgroundColor" name="TransparentDarkGray"/>
-                </view>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <connections>
+                        <action selector="backgroundButtonTapped:" destination="-1" eventType="touchUpInside" id="mEL-69-ivQ"/>
+                    </connections>
+                </button>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7XL-WD-jzw">
                     <rect key="frame" x="0.0" y="801" width="414" height="348"/>
                     <subviews>
@@ -98,7 +102,7 @@
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="trt-dp-HDq">
                             <rect key="frame" x="80" y="8" width="318" height="48"/>
-                            <color key="backgroundColor" name="Green"/>
+                            <color key="backgroundColor" name="Gray"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="48" id="0yZ-u0-d2i"/>
                             </constraints>
@@ -160,15 +164,15 @@
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <constraints>
                 <constraint firstItem="R6q-jd-m7o" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="2GZ-Xh-Wro"/>
-                <constraint firstItem="yUx-Ds-iS9" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="4vY-98-5Mm"/>
                 <constraint firstItem="7XL-WD-jzw" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="6w4-OU-H1Q"/>
-                <constraint firstItem="yUx-Ds-iS9" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="71V-KZ-jbL"/>
-                <constraint firstItem="yUx-Ds-iS9" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="KxQ-sC-7Qb"/>
+                <constraint firstItem="Afa-Va-9a4" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="NL9-e0-hP4"/>
                 <constraint firstItem="7XL-WD-jzw" firstAttribute="top" secondItem="R6q-jd-m7o" secondAttribute="top" id="UnZ-NM-jwy"/>
+                <constraint firstItem="Afa-Va-9a4" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="eLD-xC-tuD"/>
                 <constraint firstAttribute="bottom" secondItem="R6q-jd-m7o" secondAttribute="bottom" id="ep9-ZQ-HJC"/>
+                <constraint firstAttribute="bottom" secondItem="Afa-Va-9a4" secondAttribute="bottom" id="hWG-z0-dHJ"/>
                 <constraint firstItem="7XL-WD-jzw" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="i7l-u5-oae"/>
+                <constraint firstItem="Afa-Va-9a4" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="jaj-dH-ioJ"/>
                 <constraint firstItem="R6q-jd-m7o" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="jbg-OR-gAW"/>
-                <constraint firstAttribute="bottom" secondItem="yUx-Ds-iS9" secondAttribute="bottom" id="l5g-0Z-6hR"/>
             </constraints>
             <point key="canvasLocation" x="131.8840579710145" y="85.714285714285708"/>
         </view>
@@ -181,9 +185,6 @@
         </namedColor>
         <namedColor name="Gray">
             <color red="0.5559999942779541" green="0.5559999942779541" blue="0.5559999942779541" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="Green">
-            <color red="0.40799999237060547" green="0.86299997568130493" blue="0.67100000381469727" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="TransparentDarkGray">
             <color red="0.0" green="0.0" blue="0.0" alpha="0.60000002384185791" colorSpace="custom" customColorSpace="sRGB"/>

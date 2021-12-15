@@ -9,7 +9,11 @@ import UIKit
 import Combine
 import CombineCocoa
 
-final class HomeDetailBottomViewController: UIViewController {
+protocol RecruitingStatusBottomViewControllerDelegate: AnyObject {
+    func getSelectedRecruitingStatuses(_ selectedRecruitingStatuses: [RecruitingStatus])
+}
+
+final class RecruitingStatusBottomViewController: UIViewController {
 
     @IBOutlet private weak var bottomView: UIView!
     @IBOutlet private weak var collectionView: UICollectionView!
@@ -20,10 +24,20 @@ final class HomeDetailBottomViewController: UIViewController {
     @IBOutlet private weak var submitButton: UIButton!
     @IBOutlet private weak var heartButton: UIButton!
     
+    @IBAction private func backgroundButtonTapped(_ sender: Any) {
+        hideBottomView()
+    }
+    
     private var isBottomViewShown: Bool = false
     private var isHeartButtonChecked: Bool = false
-    private var selectedRecruitingStatus: RecruitingStatus?
+    private var selectedRecruitingStatuses: [RecruitingStatus] = [] {
+        didSet {
+            submitButton.isEnabled = !selectedRecruitingStatuses.isEmpty
+            submitButton.backgroundColor = !selectedRecruitingStatuses.isEmpty ? .budiGreen : .budiGray
+        }
+    }
     
+    weak var delegate: RecruitingStatusBottomViewControllerDelegate?
     weak var coordinator: HomeCoordinator?
     private let viewModel: HomeDetailViewModel
     private var cancellables = Set<AnyCancellable>()
@@ -50,7 +64,7 @@ final class HomeDetailBottomViewController: UIViewController {
     }
 }
 
-private extension HomeDetailBottomViewController {
+private extension RecruitingStatusBottomViewController {
     func bindViewModel() {
     }
     
@@ -58,8 +72,8 @@ private extension HomeDetailBottomViewController {
         submitButton.tapPublisher
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
-                guard let self = self else { return }
-                self.isBottomViewShown ? self.hideBottomView() : self.showBottomView()
+                guard let self = self, !self.selectedRecruitingStatuses.isEmpty else { return }
+                self.delegate?.getSelectedRecruitingStatuses(self.selectedRecruitingStatuses)
             }.store(in: &cancellables)
 
         heartButton.tapPublisher
@@ -124,18 +138,23 @@ private extension HomeDetailBottomViewController {
     }
 }
 
-extension HomeDetailBottomViewController: HomeDetailBottomCellDelegate {
-    func selectBottomSheetCell(_ recruitingStatus: RecruitingStatus) {
-        print(recruitingStatus.positionName)
-        selectedRecruitingStatus = recruitingStatus
+// MARK: - Delegate
+extension RecruitingStatusBottomViewController: RecruitingStatusBottomCellDelegate {
+    func getRecruitingStatus(_ recruitingStatus: RecruitingStatus) {
+        if selectedRecruitingStatuses.contains(recruitingStatus) {
+            selectedRecruitingStatuses = selectedRecruitingStatuses.filter { $0 != recruitingStatus }
+        } else {
+            selectedRecruitingStatuses.append(recruitingStatus)
+        }
     }
 }
 
-extension HomeDetailBottomViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+// MARK: - CollectionView
+extension RecruitingStatusBottomViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     private func configureCollectionView() {
         collectionView.dataSource = self
         collectionView.delegate = self
-        collectionView.register(.init(nibName: HomeDetailBottomCell.identifier, bundle: nil), forCellWithReuseIdentifier: HomeDetailBottomCell.identifier)
+        collectionView.register(.init(nibName: RecruitingStatusBottomCell.identifier, bundle: nil), forCellWithReuseIdentifier: RecruitingStatusBottomCell.identifier)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -143,7 +162,7 @@ extension HomeDetailBottomViewController: UICollectionViewDataSource, UICollecti
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeDetailBottomCell.identifier, for: indexPath) as? HomeDetailBottomCell else { return UICollectionViewCell() }
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RecruitingStatusBottomCell.identifier, for: indexPath) as? RecruitingStatusBottomCell else { return UICollectionViewCell() }
         cell.delegate = self
         cell.recruitingStatus = viewModel.state.recruitingStatuses.value[indexPath.row]
         return cell

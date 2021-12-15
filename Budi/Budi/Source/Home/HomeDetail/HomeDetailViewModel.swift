@@ -48,7 +48,6 @@ final class HomeDetailViewModel: ViewModel {
                     .map(\.data)
                     .sink(receiveCompletion: { _ in
                     }, receiveValue: { [weak self] container in
-                        print("container.teamMembers is \(container.teamMembers)")
                         self?.state.teamMembers.send(container.teamMembers)
                     })
                     .store(in: &self.cancellables)

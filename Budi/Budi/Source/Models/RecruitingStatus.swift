@@ -11,11 +11,15 @@ struct RecruitingStatusContainer: Codable {
     let recruitingStatuses: [RecruitingStatus]
 }
 
-struct RecruitingStatus: Codable {
+struct RecruitingStatus: Codable, Hashable {
     let recruitingPositionId: Int
     let positionName: String
     let positionCode: Int
     let status: String
+    
+    static func == (lhs: RecruitingStatus, rhs: RecruitingStatus) -> Bool {
+        lhs.recruitingPositionId == rhs.recruitingPositionId
+    }
 }
 
 // MARK: - RecruitingStatus로 변경됨

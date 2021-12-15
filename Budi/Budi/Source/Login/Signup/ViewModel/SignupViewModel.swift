@@ -28,8 +28,8 @@ final class SignupViewModel: ViewModel {
         let positionData = CurrentValueSubject<[String]?, Never>(nil)
         // 앱 내 포지션 선택 정보 저장
         let selectPositionData = CurrentValueSubject<[String]?, Never>(nil)
-        // 이력 관리 선택한 뷰 관리
-        let modalView = CurrentValueSubject<ModalControl?, Never>(nil)
+        // 이력 관리 선택한 뷰 관리 (경력, 프로젝트 이력 뷰)
+        let reUseModalView = CurrentValueSubject<ModalControl?, Never>(nil)
     }
 
     let action = Action()
@@ -49,7 +49,7 @@ final class SignupViewModel: ViewModel {
         action.switchView
             .receive(on: DispatchQueue.global())
             .sink {[weak self] data in
-                self?.state.modalView.send(data)
+                self?.state.reUseModalView.send(data)
             }
             .store(in: &cancellables)
     }

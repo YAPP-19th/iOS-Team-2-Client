@@ -95,4 +95,12 @@ extension LoginCoordinator {
         viewController.viewModel.action.switchView.send(ModalControl.project)
         navigationController?.present(viewController, animated: true, completion: nil)
     }
+
+    func showPortfolioController() {
+        let viewController: PortfolioViewController = storyboard.instantiateViewController(identifier: PortfolioViewController.identifier) { coder -> PortfolioViewController? in
+            return PortfolioViewController(coder: coder, viewModel: self.viewModel)
+        }
+        viewController.coordinator = self
+        navigationController?.present(viewController, animated: true, completion: nil)
+    }
 }

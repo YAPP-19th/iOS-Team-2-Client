@@ -104,11 +104,15 @@ extension HistoryManagementViewController: UITableViewDelegate, UITableViewDataS
             cell.addButton.tapPublisher
                 .sink { [weak self] _ in
                     self?.coordinator?.showProjectViewController()
-                    //self?.coordinator?.showHistoryWriteViewController(2)
                 }
                 .store(in: &cell.cancellables)
         } else if indexPath.section == 2 {
             cell.addButton.setTitle("포트폴리오를 추가해보세요.", for: .normal)
+            cell.addButton.tapPublisher
+                .sink { [weak self] _ in
+                    self?.coordinator?.showPortfolioController()
+                }
+                .store(in: &cancellables)
         }
 
         //cell.selectView.isHidden = indexPath.section != 0

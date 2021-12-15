@@ -14,6 +14,7 @@ class HistoryWriteViewController: UIViewController {
     private var cancellables = Set<AnyCancellable>()
     private var currentButtonTag: Int = 0
 
+    @IBOutlet weak var modalSize: NSLayoutConstraint!
     @IBOutlet weak var historyNoSwitchView: UIView!
     @IBOutlet weak var historySwitchView: UIView!
     @IBOutlet weak var modalView: UIView!
@@ -26,18 +27,16 @@ class HistoryWriteViewController: UIViewController {
     }()
 
     override func viewWillAppear(_ animated: Bool) {
-        viewModel.state.modalView
+        viewModel.state.reUseModalView
             .receive(on: DispatchQueue.main)
             .sink { data in
                 switch data {
                 case .company:
-                    self.modalView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: 500)
                     self.historyNoSwitchView.isHidden = true
                     self.historySwitchView.isHidden = false
                 case .project:
                     self.historyNoSwitchView.isHidden = false
                     self.historySwitchView.isHidden = true
-                    self.modalView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: 400)
                 case .none:
                     break
                 }

@@ -78,10 +78,10 @@
 		A82E49DF273111E50068218A /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82E49DE273111E50068218A /* LoginCoordinator.swift */; };
 		A85325B52746C4580073FAFB /* NaverData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85325B42746C4580073FAFB /* NaverData.swift */; };
 		A85325BB274773F90073FAFB /* SignupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85325BA274773F90073FAFB /* SignupViewModel.swift */; };
+		A85C920B276A35270097E444 /* PortfolioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85C920A276A35260097E444 /* PortfolioViewController.swift */; };
 		A8A6D9F1273CCB5500C84C52 /* BackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A6D9F0273CCB5500C84C52 /* BackgroundView.swift */; };
 		A8A6D9F9273D2D1800C84C52 /* BackButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A6D9F8273D2D1800C84C52 /* BackButtonExtension.swift */; };
 		A8AB51DE2769D3EC003D151C /* LeftAlignedCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8AB51DD2769D3EB003D151C /* LeftAlignedCollectionViewFlowLayout.swift */; };
-		A8AB51E12769FB1D003D151C /* CareerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8AB51DF2769FB1D003D151C /* CareerViewController.swift */; };
 		A8AB51E42769FEA5003D151C /* HistoryNoCheckDateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8AB51E32769FEA5003D151C /* HistoryNoCheckDateView.swift */; };
 		A8AB51E62769FEB2003D151C /* HistoryNoCheckDateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A8AB51E52769FEB2003D151C /* HistoryNoCheckDateView.xib */; };
 		A8AB51E8276A0416003D151C /* ModalControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8AB51E7276A0416003D151C /* ModalControl.swift */; };
@@ -192,10 +192,10 @@
 		A82E49DE273111E50068218A /* LoginCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
 		A85325B42746C4580073FAFB /* NaverData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaverData.swift; sourceTree = "<group>"; };
 		A85325BA274773F90073FAFB /* SignupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewModel.swift; sourceTree = "<group>"; };
+		A85C920A276A35260097E444 /* PortfolioViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioViewController.swift; sourceTree = "<group>"; };
 		A8A6D9F0273CCB5500C84C52 /* BackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundView.swift; sourceTree = "<group>"; };
 		A8A6D9F8273D2D1800C84C52 /* BackButtonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButtonExtension.swift; sourceTree = "<group>"; };
 		A8AB51DD2769D3EB003D151C /* LeftAlignedCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftAlignedCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
-		A8AB51DF2769FB1D003D151C /* CareerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CareerViewController.swift; sourceTree = "<group>"; };
 		A8AB51E32769FEA5003D151C /* HistoryNoCheckDateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryNoCheckDateView.swift; sourceTree = "<group>"; };
 		A8AB51E52769FEB2003D151C /* HistoryNoCheckDateView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HistoryNoCheckDateView.xib; sourceTree = "<group>"; };
 		A8AB51E7276A0416003D151C /* ModalControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalControl.swift; sourceTree = "<group>"; };
@@ -389,12 +389,12 @@
 			isa = PBXGroup;
 			children = (
 				A82E49DC273111C50068218A /* LoginSelectViewController.swift */,
-				A81D105E2764828A0022D610 /* HistoryWriteViewController.swift */,
-				A81D105C276482590022D610 /* HistoryManagementViewController.swift */,
 				A8CD93312736470100299AB4 /* SignupNormalViewController.swift */,
-				A8CD93432736E82300299AB4 /* PositionViewController.swift */,
 				A8CD935B27383CB300299AB4 /* LocationSearchViewController.swift */,
-				A8AB51DF2769FB1D003D151C /* CareerViewController.swift */,
+				A8CD93432736E82300299AB4 /* PositionViewController.swift */,
+				A81D105C276482590022D610 /* HistoryManagementViewController.swift */,
+				A81D105E2764828A0022D610 /* HistoryWriteViewController.swift */,
+				A85C920A276A35260097E444 /* PortfolioViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -814,6 +814,7 @@
 				A8CD9339273673C100299AB4 /* SpacingDarkLineView.swift in Sources */,
 				A8CA17EB273EC267002CA2B9 /* UIResponder.swift in Sources */,
 				A8CD936127384C4900299AB4 /* SearchTableViewCell.swift in Sources */,
+				A85C920B276A35270097E444 /* PortfolioViewController.swift in Sources */,
 				B92D5505274C03AB00D0E851 /* Post.swift in Sources */,
 				A81D108C2764950F0022D610 /* Positions.swift in Sources */,
 				A8A6D9F1273CCB5500C84C52 /* BackgroundView.swift in Sources */,
@@ -868,7 +869,6 @@
 				B9D66EC42714703B00668490 /* TeamSearchCoordinator.swift in Sources */,
 				A85325BB274773F90073FAFB /* SignupViewModel.swift in Sources */,
 				A8CD933C273676F800299AB4 /* NickNameView.swift in Sources */,
-				A8AB51E12769FB1D003D151C /* CareerViewController.swift in Sources */,
 				5E24071D275225A600954BE7 /* BudiTarget.swift in Sources */,
 				A8CD93372736702500299AB4 /* SuccessCircleView.swift in Sources */,
 				5EA453902731774100943C94 /* HomeDetailMemberCell.swift in Sources */,

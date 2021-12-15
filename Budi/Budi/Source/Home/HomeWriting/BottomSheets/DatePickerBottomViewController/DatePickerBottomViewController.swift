@@ -1,43 +1,41 @@
 //
-//  HomeWritingMembersBottomViewController.swift
+//  HomeWritingDurationBottomViewController.swift
 //  Budi
 //
-//  Created by leeesangheee on 2021/12/13.
+//  Created by leeesangheee on 2021/12/15.
 //
 
 import UIKit
 import Combine
 import CombineCocoa
 
-final class HomeWritingMembersBottomViewController: UIViewController {
+protocol DatePickerBottomViewControllerDelegate: AnyObject {
+    func getDateFromDatePicker(_ date: Date)
+}
+
+final class DatePickerBottomViewController: UIViewController {
+
+    @IBOutlet weak var backgroundButton: UIButton!
+    @IBAction func backgroundButtonTapped(_ sender: Any) {
+        hideBottomView()
+    }
     
-    @IBOutlet private weak var backgroundButton: UIButton!
-    
-    @IBOutlet private weak var completeView: UIView!
     @IBOutlet private weak var completeButton: UIButton!
+    @IBAction private func completeButtonTapped(_ sender: Any) {
+    }
+    
+    @IBOutlet weak var datePicker: UIDatePicker!
     
     @IBOutlet weak var bottomView: UIView!
-    @IBOutlet weak var bottomViewTopConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var bottomViewTopConstraint: NSLayoutConstraint!
     
     private var isBottomViewShown: Bool = false
     
-    weak var coordinator: HomeCoordinator?
-    private let viewModel: HomeWritingViewModel
+    weak var delegate: DatePickerBottomViewControllerDelegate?
     private var cancellables = Set<AnyCancellable>()
     
-    init(nibName: String?, bundle: Bundle?, viewModel: HomeWritingViewModel) {
-        self.viewModel = viewModel
-        super.init(nibName: nibName, bundle: bundle)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
-        completeView.layer.addBorderTop()
-        bindViewModel()
         setPublisher()
     }
     
@@ -46,20 +44,16 @@ final class HomeWritingMembersBottomViewController: UIViewController {
     }
 }
 
-private extension HomeWritingMembersBottomViewController {
-    func bindViewModel() {
-        backgroundButton.tapPublisher
+private extension DatePickerBottomViewController {
+    func setPublisher() {
+        datePicker.datePublisher
             .receive(on: DispatchQueue.main)
-            .sink { [weak self] _ in
-                self?.hideBottomView()
+            .sink { [weak self] date in
+                guard let self = self else { return }
+                self.delegate?.getDateFromDatePicker(date)
             }.store(in: &cancellables)
     }
     
-    func setPublisher() {
-    }
-}
-
-private extension HomeWritingMembersBottomViewController {
     func showBottomView() {
         let animator = UIViewPropertyAnimator(duration: 0.25, curve: .linear) { [weak self] in
             guard let self = self else { return }

@@ -54,6 +54,13 @@ extension HomeCoordinator {
         vc.present(viewController, animated: false, completion: nil)
     }
     
+    func showDatePickerViewController(_ vc: UIViewController) {
+        let viewController: DatePickerBottomViewController = DatePickerBottomViewController(nibName: DatePickerBottomViewController.identifier, bundle: nil)
+        viewController.delegate = vc as? DatePickerBottomViewControllerDelegate
+        viewController.modalPresentationStyle = .overCurrentContext
+        vc.present(viewController, animated: false, completion: nil)
+    }
+    
     func showLocationSearchViewController() {
         let viewController = LocationSearchViewController()
         navigationController?.pushViewController(viewController, animated: true)

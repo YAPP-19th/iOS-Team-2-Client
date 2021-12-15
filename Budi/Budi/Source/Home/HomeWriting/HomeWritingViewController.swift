@@ -64,12 +64,14 @@ extension HomeWritingViewController: HomeWritingPartCellDelegate {
 }
 
 extension HomeWritingViewController: HomeWritingDurationCellDelegate {
-    func changeStartDate(_ dateString: String) {
-        print("dateString is \(dateString)")
-    }
-    
-    func changeEndDate(_ dateString: String) {
-        print("dateString is \(dateString)")
+    func showDatePickerBottomView(_ isStartDate: Bool) {
+        print(isStartDate ? "isStartDate" : "isEndDate")
+        coordinator?.showDatePickerViewController(self)
+    }}
+
+extension HomeWritingViewController: DatePickerBottomViewControllerDelegate {
+    func getDateFromDatePicker(_ date: Date) {
+        print("date is \(date)")
     }
 }
 

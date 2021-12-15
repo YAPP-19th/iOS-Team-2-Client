@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DatePickerBottomViewController" customModule="Budi" customModuleProvider="target">
+            <connections>
+                <outlet property="backgroundButton" destination="FWb-eR-caq" id="zJQ-Be-CnY"/>
+                <outlet property="bottomView" destination="St3-4m-bK3" id="H0T-5w-1ho"/>
+                <outlet property="bottomViewTopConstraint" destination="OJu-no-qWw" id="3cB-xV-zES"/>
+                <outlet property="completeButton" destination="Whj-kF-ae2" id="ADl-LX-ogb"/>
+                <outlet property="datePicker" destination="HTu-BC-yAO" id="3wD-9E-X0S"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FWb-eR-caq" userLabel="Background Button">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                    <color key="backgroundColor" name="TransparentDarkGray"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <connections>
+                        <action selector="backgroundButtonTapped:" destination="-1" eventType="touchUpInside" id="KZO-ta-8e9"/>
+                    </connections>
+                </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="St3-4m-bK3" userLabel="BottomView">
+                    <rect key="frame" x="0.0" y="801" width="414" height="556"/>
+                    <subviews>
+                        <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" style="inline" translatesAutoresizingMaskIntoConstraints="NO" id="HTu-BC-yAO">
+                            <rect key="frame" x="0.0" y="32" width="414" height="364"/>
+                            <color key="tintColor" name="Green"/>
+                            <locale key="locale" localeIdentifier="ko_KR"/>
+                        </datePicker>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstItem="HTu-BC-yAO" firstAttribute="leading" secondItem="St3-4m-bK3" secondAttribute="leading" id="KjW-3g-7w7"/>
+                        <constraint firstItem="HTu-BC-yAO" firstAttribute="top" secondItem="St3-4m-bK3" secondAttribute="top" constant="32" id="OHN-ZW-fGD"/>
+                        <constraint firstAttribute="bottom" secondItem="HTu-BC-yAO" secondAttribute="bottom" constant="160" id="Wmq-go-9C3"/>
+                        <constraint firstAttribute="trailing" secondItem="HTu-BC-yAO" secondAttribute="trailing" id="sMc-cd-IZn"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="20"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bSK-DC-h7a" userLabel="Complete View">
+                    <rect key="frame" x="0.0" y="801" width="414" height="95"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Whj-kF-ae2">
+                            <rect key="frame" x="16" y="8" width="382" height="48"/>
+                            <color key="backgroundColor" name="Gray"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="48" id="2k7-8Z-txk"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                            <color key="tintColor" name="White"/>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                            <state key="normal" title="완료"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                    <real key="value" value="8"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="completeButtonTapped:" destination="-1" eventType="touchUpInside" id="7SU-zw-Jg8"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="Whj-kF-ae2" secondAttribute="trailing" constant="16" id="8dN-8g-Az7"/>
+                        <constraint firstItem="Whj-kF-ae2" firstAttribute="top" secondItem="bSK-DC-h7a" secondAttribute="top" constant="8" id="HF7-FU-rK6"/>
+                        <constraint firstItem="Whj-kF-ae2" firstAttribute="leading" secondItem="bSK-DC-h7a" secondAttribute="leading" constant="16" id="OBl-hK-3LU"/>
+                        <constraint firstAttribute="height" constant="95" id="Ofc-ZM-8Wg"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <constraints>
+                <constraint firstItem="St3-4m-bK3" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="3v3-Ai-zHV"/>
+                <constraint firstItem="bSK-DC-h7a" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="9GL-ER-r1e"/>
+                <constraint firstAttribute="bottom" secondItem="bSK-DC-h7a" secondAttribute="bottom" id="Bsj-Lf-kT3"/>
+                <constraint firstItem="St3-4m-bK3" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Hif-1f-r47"/>
+                <constraint firstItem="St3-4m-bK3" firstAttribute="top" secondItem="bSK-DC-h7a" secondAttribute="top" id="OJu-no-qWw"/>
+                <constraint firstAttribute="bottom" secondItem="FWb-eR-caq" secondAttribute="bottom" id="VCD-0u-Bu4"/>
+                <constraint firstAttribute="trailing" secondItem="bSK-DC-h7a" secondAttribute="trailing" id="dOF-KR-Gcz"/>
+                <constraint firstItem="FWb-eR-caq" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="k1P-aH-2oG"/>
+                <constraint firstItem="FWb-eR-caq" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="n4R-OV-lZg"/>
+                <constraint firstItem="FWb-eR-caq" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="nxj-gd-6d0"/>
+            </constraints>
+            <point key="canvasLocation" x="131.8840579710145" y="67.633928571428569"/>
+        </view>
+    </objects>
+    <resources>
+        <namedColor name="Gray">
+            <color red="0.5559999942779541" green="0.5559999942779541" blue="0.5559999942779541" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Green">
+            <color red="0.40799999237060547" green="0.86299997568130493" blue="0.67100000381469727" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="TransparentDarkGray">
+            <color red="0.0" green="0.0" blue="0.0" alpha="0.60000002384185791" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="White">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

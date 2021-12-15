@@ -15,6 +15,7 @@
                 <outlet property="backgroundButton" destination="iKz-Lq-FgE" id="JKz-sS-UCZ"/>
                 <outlet property="bottomView" destination="a8I-Ky-Tbl" id="FUO-ml-yGG"/>
                 <outlet property="bottomViewTopConstraint" destination="gjI-Pr-0gV" id="4ui-yM-Wqb"/>
+                <outlet property="collectionView" destination="9x0-iL-Ozh" id="1NO-by-6dG"/>
                 <outlet property="completeButton" destination="SD7-rM-Lx0" id="Ej2-Ms-EWW"/>
                 <outlet property="completeView" destination="bPX-eT-Giu" id="qWE-T1-b0m"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -32,10 +33,26 @@
                     <buttonConfiguration key="configuration" style="plain" title=""/>
                 </button>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a8I-Ky-Tbl" userLabel="Bottom View">
-                    <rect key="frame" x="0.0" y="801" width="414" height="600"/>
+                    <rect key="frame" x="0.0" y="801" width="414" height="800"/>
+                    <subviews>
+                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="9x0-iL-Ozh">
+                            <rect key="frame" x="16" y="32" width="382" height="608"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="DSg-8G-IYG">
+                                <size key="itemSize" width="128" height="128"/>
+                                <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            </collectionViewFlowLayout>
+                        </collectionView>
+                    </subviews>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="600" id="yY6-2c-HSB"/>
+                        <constraint firstItem="9x0-iL-Ozh" firstAttribute="leading" secondItem="a8I-Ky-Tbl" secondAttribute="leading" constant="16" id="XFt-ZY-9HO"/>
+                        <constraint firstAttribute="bottom" secondItem="9x0-iL-Ozh" secondAttribute="bottom" constant="160" id="cZ6-pJ-Z39"/>
+                        <constraint firstItem="9x0-iL-Ozh" firstAttribute="top" secondItem="a8I-Ky-Tbl" secondAttribute="top" constant="32" id="gLd-H9-H2j"/>
+                        <constraint firstAttribute="trailing" secondItem="9x0-iL-Ozh" secondAttribute="trailing" constant="16" id="ma8-3Q-BTV"/>
+                        <constraint firstAttribute="height" constant="800" id="yY6-2c-HSB"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">

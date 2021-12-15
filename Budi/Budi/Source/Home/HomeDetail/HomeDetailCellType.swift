@@ -36,7 +36,7 @@ enum HomeDetailCellType: Int, CaseIterable {
         switch self {
         case .main: return 280 + 156 + 8
         case .status: return 172 + 8
-        case .description: return 200 + 8
+        case .description: return 92 + 8
         case .leader: return (80 + 99) + 8
         case .member: return 64 + (99 + 8) * 0 + 64
         }
@@ -57,6 +57,13 @@ enum HomeDetailCellType: Int, CaseIterable {
         
         if cellType == .member {
             size.height = 64 + (99 + 8) * CGFloat(viewModel.state.teamMembers.value.count) + 64
+        }
+        
+        if cellType == .description {
+            if let description = viewModel.state.post.value?.description {
+                let descriptionHeight: CGFloat = description.size(withAttributes: nil).height
+                size.height = 92 + descriptionHeight + 8
+            }
         }
         
         return size

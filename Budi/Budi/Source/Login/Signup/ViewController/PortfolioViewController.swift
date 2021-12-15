@@ -27,7 +27,7 @@ class PortfolioViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+    
         configureLayout()
     }
 

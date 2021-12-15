@@ -379,7 +379,6 @@ extension PositionViewController: UICollectionViewDelegate, UICollectionViewDele
 
     }
 
-
     func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
         print(indexPath.row)
 

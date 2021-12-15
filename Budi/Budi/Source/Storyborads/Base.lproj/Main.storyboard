@@ -1085,9 +1085,15 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="firstTextField" destination="Q24-7s-UmT" id="3dS-Se-cLb"/>
                         <outlet property="historyNoSwitchView" destination="43J-8l-JRS" id="grn-Vl-gSy"/>
                         <outlet property="historySwitchView" destination="dgV-N3-Tp5" id="csl-2E-JZV"/>
+                        <outlet property="leftDatePick" destination="Ean-z4-xrM" id="9oB-jR-2qR"/>
                         <outlet property="modalView" destination="OpK-aY-umU" id="TrW-6z-DYt"/>
+                        <outlet property="rightDatePick" destination="gn5-JK-vnH" id="WYL-yj-zRd"/>
+                        <outlet property="saveButton" destination="R1X-TM-tD6" id="oAz-4J-ZM5"/>
+                        <outlet property="secondTextField" destination="zxw-YF-azu" id="7Kg-UR-8UW"/>
+                        <outlet property="workingSwitchButton" destination="XgK-to-Vch" id="icj-v5-8VG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FYd-yO-P8E" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

@@ -13,18 +13,18 @@ class HistoryWriteViewController: UIViewController {
     weak var coordinator: LoginCoordinator?
     private var cancellables = Set<AnyCancellable>()
     private var currentButtonTag: Int = 0
-
-    @IBOutlet weak var modalSize: NSLayoutConstraint!
     @IBOutlet weak var historyNoSwitchView: UIView!
     @IBOutlet weak var historySwitchView: UIView!
     @IBOutlet weak var modalView: UIView!
-    private let doneButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("저장", for: .normal)
-        button.setTitleColor(UIColor.black, for: .normal)
 
-        return button
-    }()
+    @IBOutlet weak var firstTextField: UITextField!
+
+    @IBOutlet weak var workingSwitchButton: UIButton!
+    @IBOutlet weak var leftDatePick: UITextField!
+    @IBOutlet weak var rightDatePick: UITextField!
+    @IBOutlet weak var secondTextField: UITextField!
+
+    @IBOutlet weak var saveButton: UIButton!
 
     override func viewWillAppear(_ animated: Bool) {
         viewModel.state.reUseModalView
@@ -62,12 +62,16 @@ class HistoryWriteViewController: UIViewController {
     }
 
     private func setButtonAction() {
-        doneButton.tapPublisher
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] _ in
-                print("Hello")
+
+        
+
+        saveButton.tapPublisher
+            .receive(on: RunLoop.main)
+            .sink {
+                print("할루~")
             }
             .store(in: &cancellables)
+
     }
 
     private func configureLayout() {

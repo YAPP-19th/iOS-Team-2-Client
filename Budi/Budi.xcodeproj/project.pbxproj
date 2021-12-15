@@ -79,6 +79,7 @@
 		A85325B52746C4580073FAFB /* NaverData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85325B42746C4580073FAFB /* NaverData.swift */; };
 		A85325BB274773F90073FAFB /* SignupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85325BA274773F90073FAFB /* SignupViewModel.swift */; };
 		A85C920B276A35270097E444 /* PortfolioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85C920A276A35260097E444 /* PortfolioViewController.swift */; };
+		A85C920D276A42210097E444 /* CreateInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85C920C276A42210097E444 /* CreateInfo.swift */; };
 		A8A6D9F1273CCB5500C84C52 /* BackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A6D9F0273CCB5500C84C52 /* BackgroundView.swift */; };
 		A8A6D9F9273D2D1800C84C52 /* BackButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A6D9F8273D2D1800C84C52 /* BackButtonExtension.swift */; };
 		A8AB51DE2769D3EC003D151C /* LeftAlignedCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8AB51DD2769D3EB003D151C /* LeftAlignedCollectionViewFlowLayout.swift */; };
@@ -193,6 +194,7 @@
 		A85325B42746C4580073FAFB /* NaverData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaverData.swift; sourceTree = "<group>"; };
 		A85325BA274773F90073FAFB /* SignupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewModel.swift; sourceTree = "<group>"; };
 		A85C920A276A35260097E444 /* PortfolioViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioViewController.swift; sourceTree = "<group>"; };
+		A85C920C276A42210097E444 /* CreateInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateInfo.swift; sourceTree = "<group>"; };
 		A8A6D9F0273CCB5500C84C52 /* BackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundView.swift; sourceTree = "<group>"; };
 		A8A6D9F8273D2D1800C84C52 /* BackButtonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButtonExtension.swift; sourceTree = "<group>"; };
 		A8AB51DD2769D3EB003D151C /* LeftAlignedCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftAlignedCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
@@ -477,12 +479,13 @@
 		B92D5503274C03AA00D0E851 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				A81D1085276485590022D610 /* ProjectHistory.swift */,
-				A81D1086276485590022D610 /* WorkHistory.swift */,
-				B92D5504274C03AA00D0E851 /* Post.swift */,
-				B94DCA7F27521626006A9E0D /* Login.swift */,
 				B94DCA8227521648006A9E0D /* APIResponse.swift */,
+				B94DCA7F27521626006A9E0D /* Login.swift */,
+				A81D1085276485590022D610 /* ProjectHistory.swift */,
 				A81D108B2764950F0022D610 /* Positions.swift */,
+				B92D5504274C03AA00D0E851 /* Post.swift */,
+				A81D1086276485590022D610 /* WorkHistory.swift */,
+				A85C920C276A42210097E444 /* CreateInfo.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -879,6 +882,7 @@
 				5E24072327522BCE00954BE7 /* alertView.swift in Sources */,
 				5EA45370273144C200943C94 /* HomeDetailViewController.swift in Sources */,
 				A81D1084276483060022D610 /* HistoryManagementViewModel.swift in Sources */,
+				A85C920D276A42210097E444 /* CreateInfo.swift in Sources */,
 				A81D105D276482590022D610 /* HistoryManagementViewController.swift in Sources */,
 				5E45AD172732F78200F0A80C /* BottomSheetCell.swift in Sources */,
 				A81D1061276482950022D610 /* DefaultTableViewCell.swift in Sources */,

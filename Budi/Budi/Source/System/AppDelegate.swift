@@ -7,7 +7,7 @@
 
 import UIKit
 import NaverThirdPartyLogin
-// swiftlint:disable all
+//swiftlint:disable forec_cast
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 

@@ -7,6 +7,7 @@
 
 import UIKit
 import Combine
+import CombineCocoa
 
 class PositionDetailCollectionViewCell: UICollectionViewCell {
     static let cellId = "positionDetailCell"
@@ -14,14 +15,18 @@ class PositionDetailCollectionViewCell: UICollectionViewCell {
 
     let positionDetailButton: UIButton = {
         let button = UIButton()
-        button.layer.borderWidth = 0.3
+        button.layer.borderWidth = 1.0
         button.layer.borderColor = UIColor.init(white: 0.2, alpha: 0.4).cgColor
         button.layer.cornerRadius = 5
-        button.backgroundColor = UIColor.budiGray
-        button.titleLabel?.textColor = UIColor.budiBlack
+        button.setTitleColor(UIColor.init(white: 0.4, alpha: 1.0), for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 13)
+        button.contentEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+        button.clipsToBounds = true
         return button
     }()
+
+    let leftEmptyView = UIView()
+    let rightEmptyView = UIView()
 
     override func prepareForReuse() {
         super.prepareForReuse()
@@ -31,11 +36,14 @@ class PositionDetailCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureLayout()
+        //buttonBind()
+
     }
 
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         configureLayout()
+        //buttonBind()
     }
 
     func configureButtonText(_ text: String) {

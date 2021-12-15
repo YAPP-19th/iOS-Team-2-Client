@@ -13,14 +13,23 @@ import Moya
 final class SignupViewModel: ViewModel {
     struct Action {
         let fetch = PassthroughSubject<Void, Never>()
-        let positionFetch = PassthroughSubject<Position, Never>()
         let refresh = PassthroughSubject<Void, Never>()
+        let positionFetch = PassthroughSubject<Position, Never>()
+        let selectPositionSave = PassthroughSubject<[String], Never>()
+        let switchView = PassthroughSubject<ModalControl, Never>()
     }
 
     struct State {
+        // 네이버 로그인 시 정보 저장
         let naverData = CurrentValueSubject<NaverData?, Never>(nil)
+        // Budi 서버 로그인 정보 저장
         let loginUserData = CurrentValueSubject<LoginResponse?, Never>(nil)
+        // Budi 서버 포지션 선택 대응 정보 저장
         let positionData = CurrentValueSubject<[String]?, Never>(nil)
+        // 앱 내 포지션 선택 정보 저장
+        let selectPositionData = CurrentValueSubject<[String]?, Never>(nil)
+        // 이력 관리 선택한 뷰 관리
+        let modalView = CurrentValueSubject<ModalControl?, Never>(nil)
     }
 
     let action = Action()
@@ -33,6 +42,16 @@ final class SignupViewModel: ViewModel {
     init() {
         getNaverInfo()
         getPositions()
+        switchView()
+    }
+
+    func switchView() {
+        action.switchView
+            .receive(on: DispatchQueue.global())
+            .sink {[weak self] data in
+                self?.state.modalView.send(data)
+            }
+            .store(in: &cancellables)
     }
 
     func getPositions() {

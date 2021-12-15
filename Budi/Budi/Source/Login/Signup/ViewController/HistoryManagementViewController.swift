@@ -96,23 +96,22 @@ extension HistoryManagementViewController: UITableViewDelegate, UITableViewDataS
             cell.addButton.setTitle("경력을 추가해보세요", for: .normal)
             cell.addButton.tapPublisher
                 .sink { [weak self] _ in
-                    self?.coordinator?.showHistoryWriteViewController(1)
+                    self?.coordinator?.showCareerViewController()
                 }
                 .store(in: &cell.cancellables)
         } else if indexPath.section == 1 {
             cell.addButton.setTitle("프로젝트 이력을 추가해보세요", for: .normal)
             cell.addButton.tapPublisher
                 .sink { [weak self] _ in
-                    self?.coordinator?.showHistoryWriteViewController(2)
+                    self?.coordinator?.showProjectViewController()
+                    //self?.coordinator?.showHistoryWriteViewController(2)
                 }
                 .store(in: &cell.cancellables)
         } else if indexPath.section == 2 {
             cell.addButton.setTitle("포트폴리오를 추가해보세요.", for: .normal)
         }
 
-        cell.selectView.isHidden = indexPath.section != 0
-
-        cell.addButton.addTarget(self, action: #selector(addButtonAction), for: .touchUpInside)
+        //cell.selectView.isHidden = indexPath.section != 0
         cell.addButton.tag = indexPath.section
 
         return cell

@@ -9,14 +9,14 @@ import UIKit
 import CombineCocoa
 import Combine
 class HistoryWriteViewController: UIViewController {
-    private(set) var viewModel: HistoryManagementViewModel
+    var viewModel: SignupViewModel
     weak var coordinator: LoginCoordinator?
     private var cancellables = Set<AnyCancellable>()
-    @IBOutlet weak var firstTypingView: HistorySingleWriteView!
-    @IBOutlet weak var datePickerView: HistoryDateWriteView!
-    @IBOutlet weak var secondTypingView: HistorySingleWriteView!
     private var currentButtonTag: Int = 0
 
+    @IBOutlet weak var historyNoSwitchView: UIView!
+    @IBOutlet weak var historySwitchView: UIView!
+    @IBOutlet weak var modalView: UIView!
     private let doneButton: UIButton = {
         let button = UIButton()
         button.setTitle("저장", for: .normal)
@@ -26,23 +26,26 @@ class HistoryWriteViewController: UIViewController {
     }()
 
     override func viewWillAppear(_ animated: Bool) {
-        viewModel.state.selectIndex
+        viewModel.state.modalView
             .receive(on: DispatchQueue.main)
-            .sink(receiveValue: { [weak self] tag in
-                self?.currentButtonTag = tag
-                if tag == 1 {
-                    self?.firstTypingView.configureText(title: "회사명", placeHolder: "회사명을 입력하세요")
-                    self?.secondTypingView.configureText(title: "부서명/직책", placeHolder: "부서명/직책을 입력하세요")
-                } else if tag == 2 {
-                    self?.firstTypingView.configureText(title: "프로젝트명", placeHolder: "프로젝트 이름을 입력하세요")
-                    self?.secondTypingView.configureText(title: "직무/역할", placeHolder: "참여한 역할을 입력하세요")
-                    self?.datePickerView.checkButtonRemove()
+            .sink { data in
+                switch data {
+                case .company:
+                    self.modalView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: 500)
+                    self.historyNoSwitchView.isHidden = true
+                    self.historySwitchView.isHidden = false
+                case .project:
+                    self.historyNoSwitchView.isHidden = false
+                    self.historySwitchView.isHidden = true
+                    self.modalView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: 400)
+                case .none:
+                    break
                 }
-            })
+            }
             .store(in: &cancellables)
     }
 
-    init?(coder: NSCoder, viewModel: HistoryManagementViewModel) {
+    init?(coder: NSCoder, viewModel: SignupViewModel) {
         self.viewModel = viewModel
         super.init(coder: coder)
     }
@@ -53,6 +56,7 @@ class HistoryWriteViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .clear
         self.addBackButton()
         configureLayout()
         setButtonAction()
@@ -62,22 +66,14 @@ class HistoryWriteViewController: UIViewController {
         doneButton.tapPublisher
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
-                if self?.currentButtonTag == 1 {
-                    self?.viewModel.addCompany(WorkHistory(id: 1, companyName: self?.firstTypingView.singleTextField.text, workTerm: [self?.datePickerView.leftTextField.text ?? "", self?.datePickerView.rightTextField.text ?? ""], department: self?.secondTypingView.singleTextField.text))
-                } else {
-                    self?.viewModel.addProject(ProjectHistory(projectName: self?.firstTypingView.singleTextField.text, projectTerm: [self?.datePickerView.leftTextField.text ?? "", self?.datePickerView.rightTextField.text ?? ""], projectDepartment: self?.secondTypingView.singleTextField.text))
-                }
-                self?.viewModel.action.title.send([self?.firstTypingView.singleTextField.text ?? "", self?.secondTypingView.singleTextField.text ?? ""])
-                //self.viewModel.mainText.append(self.firstTypingView.singleTextField.text ?? "")
-                print(self?.firstTypingView.singleTextField.text ?? "")
-                print(self?.secondTypingView.singleTextField.text ?? "")
-                self?.navigationController?.popViewController(animated: true)
+                print("Hello")
             }
             .store(in: &cancellables)
     }
 
     private func configureLayout() {
-        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: doneButton)
+        modalView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        modalView.layer.cornerRadius = 10
     }
 
 }

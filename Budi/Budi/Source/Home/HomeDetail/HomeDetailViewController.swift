@@ -106,22 +106,19 @@ private extension HomeDetailViewController {
 // MARK: - Delegate
 extension HomeDetailViewController: RecruitingStatusBottomViewControllerDelegate {
     func getSelectedRecruitingStatus(_ selectedRecruitingStatus: RecruitingStatus) {
-        let param = AppliesRequest(postId: 11, recruitingPositionId: selectedRecruitingStatus.recruitingPositionId)
-        
         let testAccessToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJFeHBpcmVkUGVyaW9kIjoiMzYwMCIsInVzZXJJZCI6ImFhZGEyIiwiaXNzdWVyIjoiU1lKX0lTU1VFIiwibWVtYmVySWQiOjEsImV4cCI6MTY3MDQyMTM3MH0.LkYIbZwO3zrtvDqgxNFe6IxtKovBGgu28t3g_8zS7DY"
         
-        viewModel.provider.request(.applies(accessToken: testAccessToken, param: param)) { response in
-            switch response {
-            case .success(let result):
-                print(result)
-                self.dismiss(animated: false, completion: {
+        let param = AppliesRequest(postId: 11, recruitingPositionId: selectedRecruitingStatus.recruitingPositionId)
+        
+        viewModel.requestApplies(testAccessToken, param) { result in
+            switch result {
+            case .success(let response):
+                print("response is \(response)")
+                self.dismiss(animated: false) {
                     self.coordinator?.showGreetingAlertViewController(self)
-                })
+                }
             case .failure(let error):
                 print(error.localizedDescription)
-                self.dismiss(animated: false, completion: {
-                    self.coordinator?.showGreetingAlertViewController(self)
-                })
             }
         }
     }

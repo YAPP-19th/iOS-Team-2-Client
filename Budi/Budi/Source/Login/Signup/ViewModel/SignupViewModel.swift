@@ -41,19 +41,16 @@ final class SignupViewModel: ViewModel {
         let selectPositionData = CurrentValueSubject<[String]?, Never>(nil)
         // 이력 관리 선택한 뷰 관리 (경력, 프로젝트 이력 뷰)
         let reUseModalView = CurrentValueSubject<ModalControl?, Never>(nil)
-
         let careerSaveData = CurrentValueSubject<[CareerList]?, Never>([])
-
         let projectSaveData = CurrentValueSubject<[ProjectList]?, Never>([])
-
         let portFolioSaveData = CurrentValueSubject<[String]?, Never>([])
-
         let firstString = CurrentValueSubject<String?, Never>(nil)
         let leftDateString = CurrentValueSubject<String?, Never>(nil)
         let rightDateString = CurrentValueSubject<String?, Never>(nil)
         let secondString = CurrentValueSubject<String?, Never>(nil)
-
         let portfolioString = CurrentValueSubject<String?, Never>(nil)
+
+        let tableView = CurrentValueSubject<[SectionModel], Never>([SectionModel.init(type: .company, items: []), SectionModel.init(type: .project, items: []), SectionModel.init(type: .portfolio, items: [])])
     }
 
     let action = Action()
@@ -63,12 +60,13 @@ final class SignupViewModel: ViewModel {
     private let provider = MoyaProvider<BudiTarget>()
     let loginInstance = NaverThirdPartyLoginConnection.getSharedInstance()
 
-    private(set) lazy var isInvalid = Publishers.CombineLatest4(action.firstReuseTextField, action.leftDatePicker, action.rightDatePicker, action.secondReuseTextField)
+    private(set) lazy var careerIsInvalid = Publishers.CombineLatest4(action.firstReuseTextField, action.leftDatePicker, action.rightDatePicker, action.secondReuseTextField)
         .map { $0.0.count >= 1 && $0.1.count >= 1 && $0.2.count >= 1 && $0.3.count >= 1 ? true : false}
         .eraseToAnyPublisher()
+
     private(set) lazy var portInvalid = action.porfolioTextField.map { $0.count >= 1 ? true : false }
         .eraseToAnyPublisher()
-    
+
     init() {
         getNaverInfo()
         getPositions()

@@ -132,7 +132,6 @@ class PositionViewController: UIViewController {
         alertView.doneButton.tapPublisher
             .receive(on: DispatchQueue.main)
             .sink { _ in
-
                 self.coordinator?.showHistoryManagementViewController()
             }
             .store(in: &cancellables)
@@ -150,6 +149,8 @@ class PositionViewController: UIViewController {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
                 print("\(Position.developer)")
+                self?.nextButton.isEnabled = true
+                self?.nextButton.backgroundColor = UIColor.budiGreen
                 self?.viewModel.action.positionFetch.send(Position.developer)
             }
             .store(in: &cancellables)

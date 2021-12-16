@@ -885,7 +885,6 @@
                                                 <rect key="frame" x="16" y="50" width="160" height="48"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="48" id="2MT-EV-RwN"/>
-                                                    <constraint firstAttribute="width" constant="160" id="o2N-jZ-EYb"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <textInputTraits key="textInputTraits"/>
@@ -894,6 +893,7 @@
                                                 <rect key="frame" x="238" y="50" width="160" height="48"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="48" id="8QN-Hj-aze"/>
+                                                    <constraint firstAttribute="width" constant="160" id="uAk-VZ-tV0"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <textInputTraits key="textInputTraits"/>
@@ -1013,6 +1013,7 @@
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="완료">
                                             <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="20"/>
+                                            <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </buttonConfiguration>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -1098,6 +1099,8 @@
                         <outlet property="mainNameMainLabel" destination="CAs-uS-iVe" id="TNh-R5-KJg"/>
                         <outlet property="mainNameTextField" destination="Q24-7s-UmT" id="3dS-Se-cLb"/>
                         <outlet property="modalView" destination="OpK-aY-umU" id="TrW-6z-DYt"/>
+                        <outlet property="noSwitchLeftDateTextField" destination="usp-Uf-GFW" id="7wv-kT-hqC"/>
+                        <outlet property="noSwitchRightDateTextField" destination="phE-FJ-elN" id="K7t-9B-oJI"/>
                         <outlet property="rightDateTextField" destination="gn5-JK-vnH" id="WYL-yj-zRd"/>
                         <outlet property="saveButton" destination="R1X-TM-tD6" id="oAz-4J-ZM5"/>
                         <outlet property="workingSwitchButton" destination="XgK-to-Vch" id="icj-v5-8VG"/>

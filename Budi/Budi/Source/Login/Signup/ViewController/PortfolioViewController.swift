@@ -66,6 +66,8 @@ class PortfolioViewController: UIViewController {
             .receive(on: RunLoop.main)
             .sink { [weak self] _ in
                 self?.viewModel.action.saveResume.send(())
+                NotificationCenter.default.post(name: Notification.Name("Dismiss"), object: self)
+                self?.dismiss(animated: true, completion: nil)
             }
             .store(in: &cancellables)
     }
@@ -80,7 +82,7 @@ class PortfolioViewController: UIViewController {
                     self?.saveButton.isEnabled = true
                 } else {
                     self?.saveButton.backgroundColor = UIColor.budiGray
-                    self?.saveButton.setTitleColor(UIColor.white, for: .normal)
+                    self?.saveButton.setTitleColor(UIColor.white, for: .disabled)
                     self?.saveButton.isEnabled = false
                 }
             }

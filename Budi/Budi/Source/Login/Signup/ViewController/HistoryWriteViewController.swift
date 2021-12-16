@@ -28,6 +28,9 @@ class HistoryWriteViewController: UIViewController {
     @IBOutlet weak var mainNameMainLabel: UILabel!
     @IBOutlet weak var descriptionMainLabel: UILabel!
 
+    @IBOutlet weak var noSwitchLeftDateTextField: UITextField!
+    @IBOutlet weak var noSwitchRightDateTextField: UITextField!
+
     private var leftDatePicker = UIDatePicker()
     private var rightDatePicker = UIDatePicker()
     
@@ -97,22 +100,6 @@ class HistoryWriteViewController: UIViewController {
             }
             .store(in: &cancellables)
 
-        leftDateTextField.textPublisher
-            .receive(on: DispatchQueue.global())
-            .sink { [weak self] text in
-                guard let text = text else { return }
-                self?.viewModel.action.leftDatePicker.send(text)
-            }
-            .store(in: &cancellables)
-
-        rightDateTextField.textPublisher
-            .receive(on: DispatchQueue.global())
-            .sink { [weak self] text in
-                guard let text = text else { return }
-                self?.viewModel.action.rightDatePicker.send(text)
-            }
-            .store(in: &cancellables)
-
         descriptionTextField.textPublisher
             .receive(on: DispatchQueue.global())
             .sink { [weak self] text in
@@ -125,10 +112,12 @@ class HistoryWriteViewController: UIViewController {
             .receive(on: RunLoop.main)
             .sink {
                 self.viewModel.action.saveResume.send(())
+                NotificationCenter.default.post(name: Notification.Name("Dismiss"), object: self)
+                self.dismiss(animated: true, completion: nil)
             }
             .store(in: &cancellables)
 
-        viewModel.isInvalid
+        viewModel.careerIsInvalid
             .receive(on: DispatchQueue.main)
             .sink { [weak self] enabled in
                 print(enabled)
@@ -139,7 +128,7 @@ class HistoryWriteViewController: UIViewController {
                 } else {
                     self?.saveButton.isEnabled = false
                     self?.saveButton.backgroundColor = UIColor.budiGray
-                    self?.saveButton.setTitleColor(UIColor.white, for: .normal)
+                    self?.saveButton.setTitleColor(UIColor.white, for: .disabled)
                 }
             }
             .store(in: &cancellables)
@@ -168,6 +157,8 @@ class HistoryWriteViewController: UIViewController {
             .sink { date in
                 let text = self.dateFormatter(date)
                 self.leftDateTextField?.text = text
+                self.noSwitchLeftDateTextField?.text = text
+                self.viewModel.action.leftDatePicker.send(text)
             }
             .store(in: &cancellables)
 
@@ -176,6 +167,8 @@ class HistoryWriteViewController: UIViewController {
             .sink { date in
                 let text = self.dateFormatter(date)
                 self.rightDateTextField?.text = text
+                self.noSwitchRightDateTextField?.text = text
+                self.viewModel.action.rightDatePicker.send(text)
             }
             .store(in: &cancellables)
 
@@ -189,23 +182,25 @@ class HistoryWriteViewController: UIViewController {
 
     private func configureLayout() {
         modalView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
-        modalView.layer.cornerRadius = 20
-        view.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
-        view.layer.cornerRadius = 20
-        leftDatePicker.preferredDatePickerStyle = .wheels
-        rightDatePicker.preferredDatePickerStyle = .wheels
+        modalView.layer.cornerRadius = 10
+        leftDatePicker.preferredDatePickerStyle = .inline
+        rightDatePicker.preferredDatePickerStyle = .inline
         leftDatePicker.datePickerMode = .date
         leftDatePicker.locale = Locale(identifier: "ko-KR")
         rightDatePicker.datePickerMode = .date
         rightDatePicker.locale = Locale(identifier: "ko-KR")
         leftDateTextField.inputView = leftDatePicker
         rightDateTextField.inputView = rightDatePicker
+        noSwitchLeftDateTextField.inputView = leftDatePicker
+        noSwitchRightDateTextField.inputView = rightDatePicker
 
         let toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 44))
         let cancel = UIBarButtonItem(title: "닫기", style: .plain, target: nil, action: #selector(tapCancel))
         toolBar.setItems([cancel], animated: true)
         leftDateTextField.inputAccessoryView = toolBar
-
+        rightDateTextField.inputAccessoryView = toolBar
+        noSwitchLeftDateTextField.inputAccessoryView = toolBar
+        noSwitchRightDateTextField.inputAccessoryView = toolBar
         leftDateTextField.text = ""
         rightDateTextField.text = ""
     }
@@ -222,7 +217,7 @@ class HistoryWriteViewController: UIViewController {
             self.descriptionMainLabel.text = "부서명/직책"
         case .project:
             self.mainNameMainLabel.text = "프로젝트명"
-            self.mainNameTextField.placeholder = "프로젝트명이름을 입력하세요"
+            self.mainNameTextField.placeholder = "프로젝트 이름을 입력하세요"
             self.descriptionMainLabel.text = "직무/역할"
             self.descriptionTextField.placeholder = "참여한 역할을 입력하세요"
         case .portfolio:

@@ -69,7 +69,7 @@ class HistoryManagementViewController: UIViewController {
 
     func viewAlphaOff() {
         UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseOut, animations: {
-            self.view.alpha = 0.2
+            self.view.alpha = 0.5
         })
     }
 
@@ -131,6 +131,7 @@ extension HistoryManagementViewController: UITableViewDelegate, UITableViewDataS
                 self?.viewAlphaOff()
             }
             .store(in: &cell.cancellables)
+
 
         //cell.selectView.isHidden = indexPath.section != 0
         cell.addButton.tag = indexPath.section

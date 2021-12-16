@@ -112,8 +112,16 @@ extension HomeDetailViewController: RecruitingStatusBottomViewControllerDelegate
         
         viewModel.provider.request(.applies(accessToken: testAccessToken, param: param)) { response in
             switch response {
-            case .success(let result): print(result)
-            case .failure(let error): print(error.localizedDescription)
+            case .success(let result):
+                print(result)
+                self.dismiss(animated: false, completion: {
+                    self.coordinator?.showGreetingAlertViewController(self)
+                })
+            case .failure(let error):
+                print(error.localizedDescription)
+                self.dismiss(animated: false, completion: {
+                    self.coordinator?.showGreetingAlertViewController(self)
+                })
             }
         }
     }

@@ -93,4 +93,10 @@ extension HomeCoordinator {
         viewController.delegate = vc as? RecruitingStatusBottomViewControllerDelegate
         vc.present(viewController, animated: false, completion: nil)
     }
+    
+    func showGreetingAlertViewController(_ vc: UIViewController) {
+        let viewController: GreetingAlertViewController = GreetingAlertViewController(nibName: GreetingAlertViewController.identifier, bundle: nil)
+        viewController.modalPresentationStyle = .overCurrentContext
+        vc.present(viewController, animated: false, completion: nil)
+    }
 }

@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -21,16 +22,17 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kmd-td-P4v">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="99"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="8pu-zm-swg">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8pu-zm-swg">
                                 <rect key="frame" x="16" y="20" width="52" height="51"/>
                                 <color key="tintColor" name="LightGray"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="52" id="dcV-3A-XJe"/>
                                     <constraint firstAttribute="height" constant="52" id="tKk-m6-Bk9"/>
                                 </constraints>
+                                <imageReference key="image" image="person.circle.fill" catalog="system" symbolScale="default"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                        <real key="value" value="0.5"/>
+                                        <real key="value" value="1"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                         <color key="value" name="LightGray"/>
@@ -41,7 +43,7 @@
                                 </userDefinedRuntimeAttributes>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="949-d4-7ID">
-                                <rect key="frame" x="82" y="21" width="137" height="57.5"/>
+                                <rect key="frame" x="82" y="21" width="97" height="57.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="도잇" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="exv-vC-l1I">
                                         <rect key="frame" x="0.0" y="0.0" width="28" height="19.5"/>
@@ -50,7 +52,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ui3-7G-SRt">
-                                        <rect key="frame" x="0.0" y="21.5" width="137" height="17"/>
+                                        <rect key="frame" x="0.0" y="21.5" width="97" height="17"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="개발자" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Txh-Uf-rvT">
                                                 <rect key="frame" x="0.0" y="0.0" width="36.5" height="17"/>
@@ -58,16 +60,16 @@
                                                 <color key="textColor" name="DarkGray"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" · 서울시 동대문구" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qMP-dg-W3m">
-                                                <rect key="frame" x="36.5" y="0.0" width="100.5" height="17"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" · 숲 2단계" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qMP-dg-W3m" userLabel="Level Label">
+                                                <rect key="frame" x="36.5" y="0.0" width="60.5" height="17"/>
+                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
                                                 <color key="textColor" name="DarkGray"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
                                     </stackView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#Kotlin #Java" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y6T-e6-DTy">
-                                        <rect key="frame" x="0.0" y="40.5" width="87" height="17"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="서울시 동대문구" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y6T-e6-DTy" userLabel="Address Label">
+                                        <rect key="frame" x="0.0" y="40.5" width="89" height="17"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <color key="textColor" name="Gray"/>
                                         <nil key="highlightedColor"/>
@@ -105,11 +107,11 @@
             </constraints>
             <size key="customSize" width="375" height="99"/>
             <connections>
-                <outlet property="addressLabel" destination="qMP-dg-W3m" id="sD8-1a-644"/>
+                <outlet property="addressLabel" destination="y6T-e6-DTy" id="LVJ-RG-qi1"/>
                 <outlet property="jobLabel" destination="Txh-Uf-rvT" id="8ri-U9-tfi"/>
+                <outlet property="levelLabel" destination="qMP-dg-W3m" id="F4x-Vv-Z16"/>
                 <outlet property="nameLabel" destination="exv-vC-l1I" id="Via-S2-HAc"/>
                 <outlet property="profileImageView" destination="8pu-zm-swg" id="RCI-FF-WXs"/>
-                <outlet property="skillsLabel" destination="y6T-e6-DTy" id="BDR-Gn-DNO"/>
             </connections>
             <point key="canvasLocation" x="367.39130434782612" y="98.772321428571431"/>
         </collectionViewCell>
@@ -117,13 +119,13 @@
     <resources>
         <image name="person.circle.fill" catalog="system" width="128" height="121"/>
         <namedColor name="DarkGray">
-            <color red="0.0" green="0.0" blue="0.0" alpha="0.60000002384185791" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.36000001430511475" green="0.36000001430511475" blue="0.36000001430511475" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Gray">
-            <color red="0.0" green="0.0" blue="0.0" alpha="0.37999999523162842" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.5559999942779541" green="0.5559999942779541" blue="0.5559999942779541" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="LightGray">
-            <color red="0.0" green="0.0" blue="0.0" alpha="0.079999998211860657" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.86599999666213989" green="0.86599999666213989" blue="0.86599999666213989" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

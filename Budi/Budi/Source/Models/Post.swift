@@ -73,7 +73,7 @@ struct Post: Decodable {
         ownerID = (try? container.decode(Int.self, forKey: .ownerID)) ?? -1
         positions = (try? container.decode([String].self, forKey: .positions)) ?? []
         
-        leader = (try? container.decode(Leader.self, forKey: .leader)) ?? Leader(leaderId: 0, nickName: "", profileImageUrl: "", address: "")
+        leader = (try? container.decode(Leader.self, forKey: .leader)) ?? Leader(leaderId: 0, nickName: "닉네임", profileImageUrl: "", address: "서울시 서초구")
         
         recruitingStatusResponses = (try? container.decode([RecruitingStatusResponse].self, forKey: .recruitingStatusResponses)) ?? []
         
@@ -115,8 +115,8 @@ struct Post: Decodable {
 struct Leader: Codable {
     let leaderId: Int
     let nickName: String
-    let profileImageUrl: String
-    let address: String
+    let profileImageUrl: String?
+    let address: String?
 }
 
 // MARK: - Pageable

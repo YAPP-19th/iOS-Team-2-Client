@@ -10,10 +10,10 @@ import UIKit
 final class HomeDetailPersonCell: UICollectionViewCell {
     
     @IBOutlet private weak var profileImageView: UIImageView!
-    @IBOutlet private weak var jobLabel: UILabel!
-    @IBOutlet private weak var addressLabel: UILabel!
     @IBOutlet private weak var nameLabel: UILabel!
-    @IBOutlet private weak var skillsLabel: UILabel!
+    @IBOutlet private weak var jobLabel: UILabel!
+    @IBOutlet private weak var levelLabel: UILabel!
+    @IBOutlet private weak var addressLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -24,7 +24,7 @@ final class HomeDetailPersonCell: UICollectionViewCell {
             nameLabel.text = name
         }
         if let address = address {
-            addressLabel.text = address.isEmpty ? "" : " · \(address)"
+            addressLabel.text = address
         }
         if let imageUrl = imageUrl, let url = URL(string: imageUrl) {
             profileImageView.kf.setImage(with: url, placeholder: UIImage(named: "person.circle.fill"))

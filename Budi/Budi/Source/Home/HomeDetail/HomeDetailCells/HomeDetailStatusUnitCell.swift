@@ -9,6 +9,7 @@ import UIKit
 
 final class HomeDetailStatusUnitCell: UICollectionViewCell {
     
+    @IBOutlet private weak var characterImageView: UIImageView!
     @IBOutlet private weak var positionNameLabel: UILabel!
     @IBOutlet private weak var countLabel: UILabel!
     
@@ -17,7 +18,16 @@ final class HomeDetailStatusUnitCell: UICollectionViewCell {
     }
     
     func updateUI(_ recruitingStatus: RecruitingStatus) {
-        positionNameLabel.text = recruitingStatus.positionName
+        let positionName = recruitingStatus.positionName
+        positionNameLabel.text = positionName
         countLabel.text = "\(recruitingStatus.status)/\(recruitingStatus.status)"
+        
+        if positionName.contains("개발") {
+            characterImageView.image = UIImage(named: "Developer")
+        } else if positionName.contains("디자인") {
+            characterImageView.image = UIImage(named: "Designer")
+        } else if positionName.contains("디자인") {
+            characterImageView.image = UIImage(named: "Planner")
+        }
     }
 }

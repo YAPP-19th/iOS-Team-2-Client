@@ -26,7 +26,7 @@ final class HomeDetailStatusUnitCell: UICollectionViewCell {
             characterImageView.image = UIImage(named: "Developer")
         } else if positionName.contains("디자인") {
             characterImageView.image = UIImage(named: "Designer")
-        } else if positionName.contains("디자인") {
+        } else if positionName.contains("기획") {
             characterImageView.image = UIImage(named: "Planner")
         }
     }

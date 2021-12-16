@@ -41,7 +41,7 @@ extension HomeDetailStatusCell: UICollectionViewDataSource, UICollectionViewDele
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        CGSize(width: collectionView.bounds.width / CGFloat(recruitingStatuses.count), height: 76)
+        CGSize(width: collectionView.bounds.width / 3, height: 76)
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {

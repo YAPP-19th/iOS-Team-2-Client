@@ -35,7 +35,7 @@ enum HomeDetailCellType: Int, CaseIterable {
     var height: CGFloat {
         switch self {
         case .main: return 280 + 156 + 8
-        case .status: return 172 + 8
+        case .status: return 66 + 78 * 1 + 29 + 8
         case .description: return 92 + 8
         case .leader: return (80 + 99) + 8
         case .member: return 64 + (99 + 8) * 0 + 64
@@ -55,8 +55,10 @@ enum HomeDetailCellType: Int, CaseIterable {
         let cellType = HomeDetailCellType(rawValue: indexPath.row)
         var size = CGSize(width: collectionView.frame.width, height: cellType?.height ?? 0)
         
-        if cellType == .member {
-            size.height = 64 + (99 + 8) * CGFloat(viewModel.state.teamMembers.value.count) + 64
+        if cellType == .status {
+            let count = viewModel.state.recruitingStatuses.value.count
+            let additionalRows = count / 3
+            size.height += CGFloat(78*additionalRows)
         }
         
         if cellType == .description {
@@ -64,6 +66,10 @@ enum HomeDetailCellType: Int, CaseIterable {
                 let descriptionHeight: CGFloat = description.size(withAttributes: nil).height
                 size.height = 92 + descriptionHeight + 8
             }
+        }
+        
+        if cellType == .member {
+            size.height = 64 + (99 + 8) * CGFloat(viewModel.state.teamMembers.value.count) + 64
         }
         
         return size

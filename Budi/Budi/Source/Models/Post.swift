@@ -124,4 +124,3 @@ struct PostPageable: Codable {
     let offset, pageNumber, pageSize: Int
     let paged, unpaged: Bool
 }
-

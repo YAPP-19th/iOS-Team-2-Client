@@ -89,17 +89,14 @@ private extension HomeDetailViewController {
 
 private extension HomeDetailViewController {
     func configureNavigationBar() {
-        let actionButton = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(actionButtonTapped))
-        navigationItem.rightBarButtonItem = actionButton
+        let shareButton = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareButtonTapped))
+        navigationItem.rightBarButtonItem = shareButton
         navigationController?.navigationBar.tintColor = .systemGray
     }
 
     @objc
-    func actionButtonTapped() {
-        let alert = GreetingAlertViewController()
-        alert.modalPresentationStyle = .overCurrentContext
-        alert.modalTransitionStyle = .crossDissolve
-        present(alert, animated: true, completion: nil)
+    func shareButtonTapped() {
+        print("버디 모집 공유")
     }
 }
 

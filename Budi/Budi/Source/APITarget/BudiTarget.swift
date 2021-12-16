@@ -8,8 +8,9 @@
 import Moya
 
 enum BudiTarget {
-    case post(id: Int)
     case posts
+    case createPost(accessToken: String, param: PostRequest)
+    case post(id: Int)
     case teamMembers(id: Int)
     case recruitingStatuses(id: Int)
     case applies(accessToken: String, param: AppliesRequest)
@@ -22,8 +23,8 @@ extension BudiTarget: TargetType {
 
     var path: String {
         switch self {
+        case .posts, .createPost: return "/posts"
         case .post(let id): return "/posts/\(id)"
-        case .posts: return "/posts"
         case .teamMembers(let id): return "/posts/\(id)/members"
         case .recruitingStatuses(let id): return "/posts/\(id)/recruitingStatus"
         case .applies: return "/applies"
@@ -32,23 +33,24 @@ extension BudiTarget: TargetType {
 
     var method: Moya.Method {
         switch self {
-        case .post, .posts, .teamMembers, .recruitingStatuses: return .get
-        case .applies: return .post
+        case .posts, .post, .teamMembers, .recruitingStatuses: return .get
+        case .createPost, .applies: return .post
         }
     }
 
     var task: Task {
         switch self {
         case .post, .posts, .teamMembers, .recruitingStatuses: return .requestPlain
+        case .createPost(_, let param): return .requestJSONEncodable(param)
         case .applies(_, let param): return .requestJSONEncodable(param)
         }
     }
 
     var headers: [String: String]? {
         switch self {
-        case .post, .posts, .teamMembers, .recruitingStatuses: return ["Content-Type": "application/json"]
-        case .applies(let accessToken, _): return ["Content-Type": "application/json",
-                                                "accessToken": "\(accessToken)"]
+        case .posts, .post, .teamMembers, .recruitingStatuses: return ["Content-Type": "application/json"]
+        case .createPost(let accessToken, _), .applies(let accessToken, _):
+            return ["Content-Type": "application/json", "accessToken": "\(accessToken)"]
         }
     }
 

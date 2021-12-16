@@ -17,6 +17,7 @@ final class HomeDetailViewModel: ViewModel {
     }
 
     struct State {
+        let postId = CurrentValueSubject<Int, Never>(0)
         let post = CurrentValueSubject<Post?, Never>(nil)
         let teamMembers = CurrentValueSubject<[TeamMember], Never>([])
         let recruitingStatuses = CurrentValueSubject<[RecruitingStatus], Never>([])
@@ -40,6 +41,8 @@ final class HomeDetailViewModel: ViewModel {
     }
 
     init(_ postId: Int) {
+        let postId = postId
+        
         action.fetch
             .sink(receiveValue: { [weak self] _ in
                 guard let self = self else { return }

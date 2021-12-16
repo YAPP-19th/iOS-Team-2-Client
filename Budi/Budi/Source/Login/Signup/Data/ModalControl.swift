@@ -10,4 +10,5 @@ import Foundation
 enum ModalControl {
     case company
     case project
+    case portfolio
 }

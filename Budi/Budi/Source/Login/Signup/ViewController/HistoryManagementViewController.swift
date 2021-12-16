@@ -19,7 +19,14 @@ class HistoryManagementViewController: UIViewController {
     @IBOutlet weak var progressView: ProgressView!
 
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         tableView.reloadData()
+        NotificationCenter.default.publisher(for: Notification.Name("Dismiss"))
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in
+                self?.viewAlphaOn()
+            }
+            .store(in: &cancellables)
     }
 
     init?(coder: NSCoder, viewModel: HistoryManagementViewModel) {
@@ -60,6 +67,18 @@ class HistoryManagementViewController: UIViewController {
     func addButtonAction(_ button: UIButton) {
     }
 
+    func viewAlphaOff() {
+        UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseOut, animations: {
+            self.view.alpha = 0.2
+        })
+    }
+
+    func viewAlphaOn() {
+        UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseOut, animations: {
+            self.view.alpha = 1.0
+        })
+    }
+
 }
 
 extension HistoryManagementViewController: UITableViewDelegate, UITableViewDataSource {
@@ -94,26 +113,24 @@ extension HistoryManagementViewController: UITableViewDelegate, UITableViewDataS
         guard let cell = tableView.dequeueReusableCell(withIdentifier: DefaultTableViewCell.cellId, for: indexPath) as? DefaultTableViewCell else { return UITableViewCell() }
         if indexPath.section == 0 {
             cell.addButton.setTitle("경력을 추가해보세요", for: .normal)
-            cell.addButton.tapPublisher
-                .sink { [weak self] _ in
-                    self?.coordinator?.showCareerViewController()
-                }
-                .store(in: &cell.cancellables)
         } else if indexPath.section == 1 {
             cell.addButton.setTitle("프로젝트 이력을 추가해보세요", for: .normal)
-            cell.addButton.tapPublisher
-                .sink { [weak self] _ in
-                    self?.coordinator?.showProjectViewController()
-                }
-                .store(in: &cell.cancellables)
         } else if indexPath.section == 2 {
             cell.addButton.setTitle("포트폴리오를 추가해보세요.", for: .normal)
-            cell.addButton.tapPublisher
-                .sink { [weak self] _ in
+        }
+
+        cell.addButton.tapPublisher
+            .sink { [weak self] _ in
+                if indexPath.section == 0 {
+                    self?.coordinator?.showCareerViewController()
+                } else if indexPath.section == 1 {
+                    self?.coordinator?.showProjectViewController()
+                } else if indexPath.section == 2 {
                     self?.coordinator?.showPortfolioController()
                 }
-                .store(in: &cancellables)
-        }
+                self?.viewAlphaOff()
+            }
+            .store(in: &cell.cancellables)
 
         //cell.selectView.isHidden = indexPath.section != 0
         cell.addButton.tag = indexPath.section

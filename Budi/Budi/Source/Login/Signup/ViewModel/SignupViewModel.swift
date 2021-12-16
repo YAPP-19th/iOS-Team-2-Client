@@ -9,6 +9,7 @@ import UIKit
 import Combine
 import NaverThirdPartyLogin
 import Moya
+import MapKit
 
 final class SignupViewModel: ViewModel {
     struct Action {
@@ -17,6 +18,7 @@ final class SignupViewModel: ViewModel {
         let positionFetch = PassthroughSubject<Position, Never>()
         let selectPositionSave = PassthroughSubject<[String], Never>()
         let switchView = PassthroughSubject<ModalControl, Never>()
+        let saveResume = PassthroughSubject<Void, Never>()
 
         // 경력, 프로젝트 이력 뷰에 사용하는 PassthroughSubject
         let firstReuseTextField = PassthroughSubject<String, Never>()
@@ -40,7 +42,18 @@ final class SignupViewModel: ViewModel {
         // 이력 관리 선택한 뷰 관리 (경력, 프로젝트 이력 뷰)
         let reUseModalView = CurrentValueSubject<ModalControl?, Never>(nil)
 
+        let careerSaveData = CurrentValueSubject<[CareerList]?, Never>([])
 
+        let projectSaveData = CurrentValueSubject<[ProjectList]?, Never>([])
+
+        let portFolioSaveData = CurrentValueSubject<[String]?, Never>([])
+
+        let firstString = CurrentValueSubject<String?, Never>(nil)
+        let leftDateString = CurrentValueSubject<String?, Never>(nil)
+        let rightDateString = CurrentValueSubject<String?, Never>(nil)
+        let secondString = CurrentValueSubject<String?, Never>(nil)
+
+        let portfolioString = CurrentValueSubject<String?, Never>(nil)
     }
 
     let action = Action()
@@ -51,21 +64,113 @@ final class SignupViewModel: ViewModel {
     let loginInstance = NaverThirdPartyLoginConnection.getSharedInstance()
 
     private(set) lazy var isInvalid = Publishers.CombineLatest4(action.firstReuseTextField, action.leftDatePicker, action.rightDatePicker, action.secondReuseTextField)
-        .map { $0.0.count >= 1 && $0.1.count >= 1 && $0.2.count >= 1 && $0.3.count >= 1 ? true: false}
+        .map { $0.0.count >= 1 && $0.1.count >= 1 && $0.2.count >= 1 && $0.3.count >= 1 ? true : false}
         .eraseToAnyPublisher()
-
+    private(set) lazy var portInvalid = action.porfolioTextField.map { $0.count >= 1 ? true : false }
+        .eraseToAnyPublisher()
+    
     init() {
         getNaverInfo()
         getPositions()
         switchView()
         loadTextFields()
+        save()
+    }
+
+    func save() {
+        action.saveResume
+            .receive(on: DispatchQueue.main)
+            .sink {
+                guard let modalView = self.state.reUseModalView.value else { return }
+                print(modalView)
+                switch modalView {
+                case .company:
+                    guard let count = self.state.careerSaveData.value?.count else { return }
+                    if count != 0 {
+                        guard var oldData = self.state.careerSaveData.value else { return }
+                        oldData.append(
+                            CareerList(description: self.state.secondString.value ?? "",
+                                       endDate: self.state.rightDateString.value ?? "",
+                                       name: self.state.firstString.value ?? "",
+                                       startDate: self.state.rightDateString.value ?? ""))
+
+                        self.state.careerSaveData.send(oldData)
+                    } else {
+                        self.state.careerSaveData.send([
+                            CareerList(description: self.state.secondString.value ?? "",
+                                       endDate: self.state.rightDateString.value ?? "",
+                                       name: self.state.firstString.value ?? "",
+                                       startDate: self.state.rightDateString.value ?? "")
+                        ])
+                    }
+                case .project:
+                    guard let count = self.state.projectSaveData.value?.count else { return }
+                    if count != 0 {
+                        guard var oldData = self.state.projectSaveData.value else { return }
+                        oldData.append(
+                            ProjectList(description: self.state.secondString.value ?? "",
+                                        endDate: self.state.rightDateString.value ?? "",
+                                        name: self.state.firstString.value ?? "",
+                                        startDate: self.state.rightDateString.value ?? ""))
+                        self.state.projectSaveData.send(oldData)
+                    } else {
+                        self.state.projectSaveData.send([
+                            ProjectList(description: self.state.secondString.value ?? "",
+                                        endDate: self.state.rightDateString.value ?? "",
+                                        name: self.state.firstString.value ?? "",
+                                        startDate: self.state.rightDateString.value ?? "")
+                        ])
+                    }
+                case .portfolio:
+                    guard let count = self.state.portFolioSaveData.value?.count else { return }
+                    if count != 0 {
+                        guard var oldData = self.state.portFolioSaveData.value else { return }
+                        oldData.append(self.state.portfolioString.value ?? "")
+                        self.state.portFolioSaveData.send(oldData)
+                    } else {
+                        self.state.portFolioSaveData.send([self.state.portfolioString.value ?? ""])
+                    }
+                }
+                print("커리어 데이터 ", self.state.careerSaveData.value?.count ?? 0)
+                print("프로젝트 데이터", self.state.projectSaveData.value?.count ?? 0)
+                print("포트폴리오 데이터", self.state.portFolioSaveData.value?.count ?? 0)
+            }
+            .store(in: &cancellables)
     }
 
     func loadTextFields() {
         action.firstReuseTextField
-            .receive(on: DispatchQueue.main)
+            .receive(on: DispatchQueue.global())
             .sink { text in
-                print(text)
+                self.state.firstString.send(text)
+            }
+            .store(in: &cancellables)
+
+        action.leftDatePicker
+            .receive(on: DispatchQueue.global())
+            .sink { text in
+                self.state.leftDateString.send(text)
+            }
+            .store(in: &cancellables)
+
+        action.rightDatePicker
+            .receive(on: DispatchQueue.global())
+            .sink { text in
+                self.state.rightDateString.send(text)
+            }
+            .store(in: &cancellables)
+
+        action.secondReuseTextField
+            .receive(on: DispatchQueue.global())
+            .sink { text in
+                self.state.secondString.send(text)
+            }
+            .store(in: &cancellables)
+
+        action.porfolioTextField
+            .receive(on: DispatchQueue.global())
+            .sink { text in
+                self.state.portfolioString.send(text)
             }
             .store(in: &cancellables)
     }

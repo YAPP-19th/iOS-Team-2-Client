@@ -81,7 +81,7 @@ extension LoginCoordinator {
         }
         viewController.coordinator = self
         viewController.viewModel.action.switchView.send(ModalControl.company)
-        viewController.modalPresentationStyle = .pageSheet
+        viewController.modalPresentationStyle = .overFullScreen
 
         //viewController.transitioningDelegate = self
         navigationController?.present(viewController, animated: true, completion: nil)
@@ -93,6 +93,7 @@ extension LoginCoordinator {
         }
         viewController.coordinator = self
         viewController.viewModel.action.switchView.send(ModalControl.project)
+        viewController.modalPresentationStyle = .overFullScreen
         navigationController?.present(viewController, animated: true, completion: nil)
     }
 
@@ -101,6 +102,8 @@ extension LoginCoordinator {
             return PortfolioViewController(coder: coder, viewModel: self.viewModel)
         }
         viewController.coordinator = self
+        viewController.modalPresentationStyle = .overFullScreen
+        viewController.viewModel.action.switchView.send(ModalControl.portfolio)
         navigationController?.present(viewController, animated: true, completion: nil)
     }
 }

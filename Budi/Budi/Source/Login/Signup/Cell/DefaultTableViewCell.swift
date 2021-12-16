@@ -35,5 +35,11 @@ final class DefaultTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+
+    func configureLabel(main: String, date: String, sub: String) {
+        selectMainTitle.text = main
+        selectDayLabel.text = date
+        selectTeamLabel.text = sub
+    }
     
 }

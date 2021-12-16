@@ -25,10 +25,10 @@ struct CareerList: Codable {
     let startDate: String
 }
 
-
 struct ProjectList: Codable {
     let description: String
     let endDate: String
     let name: String
     let startDate: String
 }
+

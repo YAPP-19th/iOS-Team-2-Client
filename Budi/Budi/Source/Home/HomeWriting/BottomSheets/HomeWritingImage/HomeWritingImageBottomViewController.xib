@@ -123,6 +123,25 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </scrollView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bOG-a0-7Tt">
+                    <rect key="frame" x="0.0" y="821" width="414" height="40"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="jNE-nh-LXd"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qfq-Ud-Rvx">
+                    <rect key="frame" x="0.0" y="801" width="414" height="60"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="60" id="tZo-Hc-bgh"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="20"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I6L-cL-esJ" userLabel="Complete View">
                     <rect key="frame" x="0.0" y="801" width="414" height="95"/>
                     <subviews>
@@ -155,16 +174,22 @@
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" name="TransparentGray"/>
             <constraints>
+                <constraint firstItem="qfq-Ud-Rvx" firstAttribute="top" secondItem="C9o-aL-jjS" secondAttribute="top" id="06V-jF-DUa"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="bOG-a0-7Tt" secondAttribute="trailing" id="1ut-mv-nTN"/>
                 <constraint firstItem="2Dm-rg-IbG" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="4LY-zG-shE"/>
+                <constraint firstItem="qfq-Ud-Rvx" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="5rX-Xj-4Cg"/>
                 <constraint firstItem="I6L-cL-esJ" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Cjo-Q9-Hdx"/>
                 <constraint firstAttribute="bottom" secondItem="2Dm-rg-IbG" secondAttribute="bottom" id="HcF-Q0-JVh"/>
                 <constraint firstAttribute="bottom" secondItem="I6L-cL-esJ" secondAttribute="bottom" id="HkJ-Gw-MuJ"/>
                 <constraint firstItem="I6L-cL-esJ" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="PrF-rO-AzS"/>
                 <constraint firstItem="C9o-aL-jjS" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Q5O-iG-FSV"/>
+                <constraint firstItem="bOG-a0-7Tt" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="XLE-mA-4Jg"/>
+                <constraint firstItem="bOG-a0-7Tt" firstAttribute="bottom" secondItem="qfq-Ud-Rvx" secondAttribute="bottom" id="ZLe-cf-jtB"/>
                 <constraint firstItem="C9o-aL-jjS" firstAttribute="top" secondItem="I6L-cL-esJ" secondAttribute="top" id="bDC-ZL-RWr"/>
                 <constraint firstItem="2Dm-rg-IbG" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="gGN-q7-eR7"/>
                 <constraint firstItem="C9o-aL-jjS" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="qS9-ai-U1T"/>
                 <constraint firstItem="2Dm-rg-IbG" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="t91-Yg-Ej4"/>
+                <constraint firstAttribute="trailing" secondItem="qfq-Ud-Rvx" secondAttribute="trailing" id="vaf-vb-Azh"/>
             </constraints>
             <point key="canvasLocation" x="124.6376811594203" y="56.919642857142854"/>
         </view>

@@ -11,4 +11,15 @@ enum ModalControl {
     case company
     case project
     case portfolio
+
+    var stringValue: String {
+        switch self {
+        case .company:
+            return "경력"
+        case .project:
+            return "프로젝트 이력"
+        case .portfolio:
+            return "포트폴리오"
+        }
+    }
 }

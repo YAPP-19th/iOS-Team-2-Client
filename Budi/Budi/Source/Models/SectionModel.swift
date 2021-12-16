@@ -9,12 +9,13 @@ import Foundation
 
 struct SectionModel {
     let type: ModalControl
-    let items: [Item]
+    var index: Int
+    var items: [Item]
 }
 
 struct Item {
-    let description: String
-    let endDate: String
-    let name: String
-    let startDate: String
+    var description: String
+    var endDate: String
+    var name: String
+    var startDate: String
 }

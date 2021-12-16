@@ -36,7 +36,7 @@ extension LoginCoordinator {
 
     func showHistoryManagementViewController() {
         let viewController: HistoryManagementViewController = storyboard.instantiateViewController(identifier: HistoryManagementViewController.identifier) { coder -> HistoryManagementViewController? in
-            return HistoryManagementViewController(coder: coder, viewModel: self.historyViewModel)
+            return HistoryManagementViewController(coder: coder, viewModel: self.viewModel)
         }
         viewController.navigationItem.title = "회원가입"
         viewController.coordinator = self

@@ -13,4 +13,14 @@ class DefaultHeaderView: UITableViewHeaderFooterView {
     static let cellId = "DefaultHeaderView"
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var addButton: UIButton!
+    var cancellables = Set<AnyCancellable>()
+
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        cancellables.removeAll()
+    }
+
+    override class func awakeFromNib() {
+        super.awakeFromNib()
+    }
 }

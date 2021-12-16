@@ -11,7 +11,7 @@ import Combine
 
 class HistoryManagementViewController: UIViewController {
     weak var coordinator: LoginCoordinator?
-    private let viewModel: HistoryManagementViewModel
+    private let viewModel: SignupViewModel
 
     private var cancellables = Set<AnyCancellable>()
 
@@ -29,7 +29,7 @@ class HistoryManagementViewController: UIViewController {
             .store(in: &cancellables)
     }
 
-    init?(coder: NSCoder, viewModel: HistoryManagementViewModel) {
+    init?(coder: NSCoder, viewModel: SignupViewModel) {
         self.viewModel = viewModel
         super.init(coder: coder)
     }
@@ -42,6 +42,16 @@ class HistoryManagementViewController: UIViewController {
         super.viewDidLoad()
         self.addBackButton()
         configureLayout()
+        bindViewModel()
+    }
+
+    private func bindViewModel() {
+        viewModel.state.tableView
+            .receive(on: DispatchQueue.main)
+            .sink { _ in
+                self.tableView.reloadData()
+            }
+            .store(in: &cancellables)
     }
 
     private func configureLayout() {
@@ -53,14 +63,6 @@ class HistoryManagementViewController: UIViewController {
         tableView.register(nib, forHeaderFooterViewReuseIdentifier: DefaultHeaderView.cellId)
         tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
 
-    }
-
-    @objc
-    func buttonAction(_ button: UIButton) {
-        print(button.tag)
-        let uuid = UUID()
-        viewModel.historyArray[button.tag].append(uuid)
-        tableView.reloadData()
     }
 
     @objc
@@ -84,11 +86,11 @@ class HistoryManagementViewController: UIViewController {
 extension HistoryManagementViewController: UITableViewDelegate, UITableViewDataSource {
 
     func numberOfSections(in tableView: UITableView) -> Int {
-        return viewModel.historyArray.count
+        return viewModel.state.tableView.value.count
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.historyArray[section].count
+        return viewModel.state.tableView.value[section].index
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -97,14 +99,24 @@ extension HistoryManagementViewController: UITableViewDelegate, UITableViewDataS
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard let header = self.tableView.dequeueReusableHeaderFooterView(withIdentifier: DefaultHeaderView.cellId) as? DefaultHeaderView else { return UIView() }
-        if section < 2 {
-            header.titleLabel.text = viewModel.getHeaderData()[section]
-        } else {
-            header.titleLabel.text = viewModel.getHeaderData()[section]
-        }
 
-        header.addButton.tag = section
-        header.addButton.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
+        switch viewModel.state.tableView.value[section].type {
+        case .company:
+            header.titleLabel.text = ModalControl.company.stringValue
+        case .project:
+            header.titleLabel.text = ModalControl.project.stringValue
+        case .portfolio:
+            header.titleLabel.text = ModalControl.portfolio.stringValue
+        }
+        
+        header.addButton.tapPublisher
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in
+                print(section)
+                self?.viewModel.action.updateTableViewCell.send(section)
+            }
+            .store(in: &cancellables)
+
         return header
     }
 
@@ -132,8 +144,6 @@ extension HistoryManagementViewController: UITableViewDelegate, UITableViewDataS
             }
             .store(in: &cell.cancellables)
 
-
-        //cell.selectView.isHidden = indexPath.section != 0
         cell.addButton.tag = indexPath.section
 
         return cell

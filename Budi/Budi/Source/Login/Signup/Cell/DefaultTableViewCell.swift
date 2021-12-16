@@ -41,5 +41,9 @@ final class DefaultTableViewCell: UITableViewCell {
         selectDayLabel.text = date
         selectTeamLabel.text = sub
     }
+
+    func configureButtonTitle(title: String) {
+        addButton.setTitle(title, for: .normal)
+    }
     
 }

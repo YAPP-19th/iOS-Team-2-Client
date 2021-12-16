@@ -20,13 +20,6 @@ class HistoryManagementViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        tableView.reloadData()
-        NotificationCenter.default.publisher(for: Notification.Name("Dismiss"))
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] _ in
-                self?.viewAlphaOn()
-            }
-            .store(in: &cancellables)
     }
 
     init?(coder: NSCoder, viewModel: SignupViewModel) {
@@ -46,10 +39,17 @@ class HistoryManagementViewController: UIViewController {
     }
 
     private func bindViewModel() {
-        viewModel.state.tableView
+        viewModel.state.sectionData
             .receive(on: DispatchQueue.main)
-            .sink { _ in
-                self.tableView.reloadData()
+            .sink { data in
+                self.tableView.reloadSections(IndexSet(0...2), with: .none)
+            }
+            .store(in: &cancellables)
+
+        NotificationCenter.default.publisher(for: Notification.Name("Dismiss"))
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in
+                self?.viewAlphaOn()
             }
             .store(in: &cancellables)
     }
@@ -86,11 +86,11 @@ class HistoryManagementViewController: UIViewController {
 extension HistoryManagementViewController: UITableViewDelegate, UITableViewDataSource {
 
     func numberOfSections(in tableView: UITableView) -> Int {
-        return viewModel.state.tableView.value.count
+        return viewModel.state.sectionData.value.count
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.state.tableView.value[section].index
+        return viewModel.state.sectionData.value[section].items.count
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -98,22 +98,12 @@ extension HistoryManagementViewController: UITableViewDelegate, UITableViewDataS
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        guard let header = self.tableView.dequeueReusableHeaderFooterView(withIdentifier: DefaultHeaderView.cellId) as? DefaultHeaderView else { return UIView() }
+        guard let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: DefaultHeaderView.cellId) as? DefaultHeaderView else { return UIView() }
 
-        switch viewModel.state.tableView.value[section].type {
-        case .company:
-            header.titleLabel.text = ModalControl.company.stringValue
-        case .project:
-            header.titleLabel.text = ModalControl.project.stringValue
-        case .portfolio:
-            header.titleLabel.text = ModalControl.portfolio.stringValue
-        }
-        
+        header.configureLabel(title: viewModel.state.sectionData.value[section].sectionTitle)
         header.addButton.tapPublisher
-            .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
-                print(section)
-                self?.viewModel.action.updateTableViewCell.send(section)
+                self?.viewModel.action.appendSectionData.send(self?.viewModel.state.sectionData.value[section].type ?? .portfolio)
             }
             .store(in: &cancellables)
 
@@ -123,13 +113,8 @@ extension HistoryManagementViewController: UITableViewDelegate, UITableViewDataS
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         guard let cell = tableView.dequeueReusableCell(withIdentifier: DefaultTableViewCell.cellId, for: indexPath) as? DefaultTableViewCell else { return UITableViewCell() }
-        if indexPath.section == 0 {
-            cell.addButton.setTitle("경력을 추가해보세요", for: .normal)
-        } else if indexPath.section == 1 {
-            cell.addButton.setTitle("프로젝트 이력을 추가해보세요", for: .normal)
-        } else if indexPath.section == 2 {
-            cell.addButton.setTitle("포트폴리오를 추가해보세요.", for: .normal)
-        }
+
+        cell.configureButtonTitle(title: viewModel.state.sectionData.value[indexPath.section].items[indexPath.row].itemInfo.buttonTitle)
 
         cell.addButton.tapPublisher
             .sink { [weak self] _ in
@@ -143,8 +128,6 @@ extension HistoryManagementViewController: UITableViewDelegate, UITableViewDataS
                 self?.viewAlphaOff()
             }
             .store(in: &cell.cancellables)
-
-        cell.addButton.tag = indexPath.section
 
         return cell
     }

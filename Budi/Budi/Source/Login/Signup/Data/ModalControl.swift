@@ -8,13 +8,13 @@
 import Foundation
 
 enum ModalControl {
-    case company
+    case career
     case project
     case portfolio
 
     var stringValue: String {
         switch self {
-        case .company:
+        case .career:
             return "경력"
         case .project:
             return "프로젝트 이력"

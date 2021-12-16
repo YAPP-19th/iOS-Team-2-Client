@@ -7,15 +7,21 @@
 
 import Foundation
 
-struct SectionModel {
+struct HistorySectionModel {
     let type: ModalControl
-    var index: Int
+    let sectionTitle: String
     var items: [Item]
 }
 
 struct Item {
+    var itemInfo: ItemInfo
     var description: String
     var endDate: String
     var name: String
     var startDate: String
+}
+
+struct ItemInfo {
+    var isInclude: Bool
+    let buttonTitle: String
 }

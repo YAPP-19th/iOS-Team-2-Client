@@ -18,8 +18,8 @@ final class SignupViewModel: ViewModel {
         let positionFetch = PassthroughSubject<Position, Never>()
         let selectPositionSave = PassthroughSubject<[String], Never>()
         let switchView = PassthroughSubject<ModalControl, Never>()
-        let saveResume = PassthroughSubject<Void, Never>()
-        let updateTableViewCell = PassthroughSubject<Int, Never>()
+        let fetchSectionData = PassthroughSubject<Void, Never>()
+        let appendSectionData = PassthroughSubject<ModalControl, Never>()
 
         // 경력, 프로젝트 이력 뷰에 사용하는 PassthroughSubject
         let firstReuseTextField = PassthroughSubject<String, Never>()
@@ -49,7 +49,30 @@ final class SignupViewModel: ViewModel {
         let secondString = CurrentValueSubject<String, Never>("")
         let portfolioString = CurrentValueSubject<String, Never>("")
 
-        let tableView = CurrentValueSubject<[SectionModel], Never>([SectionModel.init(type: .company, index: 1, items: []), SectionModel.init(type: .project, index: 1, items: []), SectionModel.init(type: .portfolio, index: 1, items: [])])
+        let sectionData = CurrentValueSubject<[HistorySectionModel], Never>(
+            [
+                HistorySectionModel.init(
+                    type: .career,
+                    sectionTitle: ModalControl.career.stringValue ,
+                    items: [
+                        Item(itemInfo: ItemInfo(isInclude: false, buttonTitle: "경력을 추가해보세요"),
+                             description: "", endDate: "", name: "", startDate: "")
+                    ]),
+
+                HistorySectionModel.init(
+                    type: .project,
+                    sectionTitle: ModalControl.project.stringValue ,
+                    items: [
+                        Item(itemInfo: ItemInfo(isInclude: false, buttonTitle: "프로젝트 이력을 추가해보세요"),
+                             description: "", endDate: "", name: "", startDate: "")]),
+
+                HistorySectionModel.init(
+                    type: .portfolio,
+                    sectionTitle: ModalControl.portfolio.stringValue ,
+                    items: [
+                        Item(itemInfo: ItemInfo(isInclude: false, buttonTitle: "포트폴리오를 추가해보세요"),
+                             description: "", endDate: "", name: "", startDate: "")])
+            ])
         
     }
 
@@ -72,108 +95,64 @@ final class SignupViewModel: ViewModel {
         getPositions()
         switchView()
         loadTextFields()
-        updateTableView()
-        save()
+        fetchSectionData()
+        appendSectionData()
     }
 
     // MARK: - 테이블 뷰 셀 업데이트 viewModel
-    func updateTableView() {
-        action.updateTableViewCell
+    func appendSectionData() {
+        action.appendSectionData
             .receive(on: DispatchQueue.main)
-            .sink { modal in
-                switch modal {
-                case 0:
-                    let index = self.state.tableView.value.firstIndex { $0.type == .company }
+            .sink { filter in
+                switch filter {
+                case .career:
+
+                    let index = self.state.sectionData.value.firstIndex { $0.type == .career }
                     guard let index = index else { return }
-                    var oldValue = self.state.tableView.value
-                    var changeValue = self.state.tableView.value[index].index
-                    changeValue += 1
-                    oldValue[index].index = changeValue
-                    self.state.tableView.send(oldValue)
-                    print(oldValue)
-                case 1:
-                    let index = self.state.tableView.value.firstIndex { $0.type == .project }
+                    var oldValue = self.state.sectionData.value
+                    var selectItems = self.state.sectionData.value[index].items
+
+                    let item = Item(itemInfo: ItemInfo(isInclude: false, buttonTitle: "경력을 추가해보세요"), description: "", endDate: "", name: "", startDate: "")
+
+                    selectItems.append(item)
+                    oldValue[index].items = selectItems
+                    self.state.sectionData.send(oldValue)
+                    print(self.state.sectionData.value)
+                case .project:
+
+                    let index = self.state.sectionData.value.firstIndex { $0.type == .project }
                     guard let index = index else { return }
-                    var oldValue = self.state.tableView.value
-                    var changeValue = self.state.tableView.value[index].index
-                    changeValue += 1
-                    oldValue[index].index = changeValue
-                    self.state.tableView.send(oldValue)
-                case 2:
-                    let index = self.state.tableView.value.firstIndex { $0.type == .portfolio }
+                    var oldValue = self.state.sectionData.value
+                    var selectItems = self.state.sectionData.value[index].items
+
+                    let item = Item(itemInfo: ItemInfo(isInclude: false, buttonTitle: "프로젝트 이력을 추가해보세요"), description: "", endDate: "", name: "", startDate: "")
+
+                    selectItems.append(item)
+                    oldValue[index].items = selectItems
+                    self.state.sectionData.send(oldValue)
+                case .portfolio:
+
+                    let index = self.state.sectionData.value.firstIndex { $0.type == .portfolio }
                     guard let index = index else { return }
-                    var oldValue = self.state.tableView.value
-                    var changeValue = self.state.tableView.value[index].index
-                    changeValue += 1
-                    oldValue[index].index = changeValue
-                    self.state.tableView.send(oldValue)
-                default:
-                    break
+                    var oldValue = self.state.sectionData.value
+                    var selectItems = self.state.sectionData.value[index].items
+
+                    let item = Item(itemInfo: ItemInfo(isInclude: false, buttonTitle: "포트폴리오를 추가해보세요"), description: "", endDate: "", name: "", startDate: "")
+
+                    selectItems.append(item)
+                    oldValue[index].items = selectItems
+                    self.state.sectionData.send(oldValue)
                 }
             }
             .store(in: &cancellables)
     }
 
     // MARK: - 이력관리 저장 viewModel
-    func save() {
-        action.saveResume
+    func fetchSectionData() {
+        action.fetchSectionData
             .receive(on: DispatchQueue.main)
             .sink {
-                guard let modalView = self.state.reUseModalView.value else { return }
-                print(modalView)
-                switch modalView {
-                case .company:
-                    let index = self.state.tableView.value.firstIndex { $0.type == .company }
-                    guard let index = index else { return }
-                    var oldValue = self.state.tableView.value
-                    var selectItems = self.state.tableView.value[index].items
-
-                    let item = Item(
-                        description: self.state.secondString.value,
-                        endDate: self.state.rightDateString.value,
-                        name: self.state.firstString.value,
-                        startDate: self.state.leftDateString.value
-                    )
-
-                    selectItems.append(item)
-                    oldValue[index].items = selectItems
-                    self.state.tableView.send(oldValue)
-                case .project:
-                    let index = self.state.tableView.value.firstIndex { $0.type == .project }
-                    guard let index = index else { return }
-                    var oldValue = self.state.tableView.value
-                    var selectItems = self.state.tableView.value[index].items
-
-                    let item = Item(
-                        description: self.state.secondString.value,
-                        endDate: self.state.rightDateString.value,
-                        name: self.state.firstString.value,
-                        startDate: self.state.leftDateString.value
-                    )
-
-                    selectItems.append(item)
-                    oldValue[index].items = selectItems
-                    self.state.tableView.send(oldValue)
-                case .portfolio:
-                    let index = self.state.tableView.value.firstIndex { $0.type == .portfolio }
-                    guard let index = index else { return }
-                    var oldValue = self.state.tableView.value
-                    var selectItems = self.state.tableView.value[index].items
-
-                    let item = Item(
-                        description: self.state.secondString.value,
-                        endDate: self.state.rightDateString.value,
-                        name: self.state.firstString.value,
-                        startDate: self.state.leftDateString.value
-                    )
-
-                    selectItems.append(item)
-                    oldValue[index].items = selectItems
-                    self.state.tableView.send(oldValue)
-                }
-                print("커리어 데이터 ", self.state.tableView.value[0].items.count)
-                print("프로젝트 데이터", self.state.tableView.value[1].items.count)
-                print("포트폴리오 데이터", self.state.tableView.value[2].items.count)
+                
             }
             .store(in: &cancellables)
     }

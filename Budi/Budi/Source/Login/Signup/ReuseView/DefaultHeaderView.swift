@@ -20,7 +20,8 @@ class DefaultHeaderView: UITableViewHeaderFooterView {
         cancellables.removeAll()
     }
 
-    override class func awakeFromNib() {
-        super.awakeFromNib()
+    func configureLabel(title: String) {
+        titleLabel.text = title
+        cancellables.removeAll()
     }
 }

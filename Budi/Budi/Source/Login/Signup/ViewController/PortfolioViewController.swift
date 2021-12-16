@@ -65,7 +65,7 @@ class PortfolioViewController: UIViewController {
         saveButton.tapPublisher
             .receive(on: RunLoop.main)
             .sink { [weak self] _ in
-                self?.viewModel.action.saveResume.send(())
+                self?.viewModel.action.fetchSectionData.send(())
                 NotificationCenter.default.post(name: Notification.Name("Dismiss"), object: self)
                 self?.dismiss(animated: true, completion: nil)
             }

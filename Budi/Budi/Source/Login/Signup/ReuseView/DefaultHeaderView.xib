@@ -5,7 +5,6 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -38,7 +37,7 @@
                             <buttonConfiguration key="configuration" style="plain" image="plus" catalog="system" title="" imagePadding="0.0"/>
                         </button>
                     </subviews>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="laY-uL-psF" firstAttribute="top" secondItem="oFF-UE-9Xb" secondAttribute="top" constant="20" id="ARY-CF-pbi"/>
                         <constraint firstItem="laY-uL-psF" firstAttribute="leading" secondItem="oFF-UE-9Xb" secondAttribute="leading" constant="16" id="E6h-Yl-ppK"/>
@@ -48,7 +47,6 @@
                 </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="oFF-UE-9Xb" secondAttribute="bottom" id="1Wq-dI-vCU"/>
                 <constraint firstItem="oFF-UE-9Xb" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="iJz-Rj-0oM"/>
@@ -65,8 +63,5 @@
     </objects>
     <resources>
         <image name="plus" catalog="system" width="128" height="113"/>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
     </resources>
 </document>

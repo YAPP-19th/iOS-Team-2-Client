@@ -50,10 +50,10 @@ class HistoryWriteViewController: UIViewController {
             .receive(on: DispatchQueue.main)
             .sink { data in
                 switch data {
-                case .company:
+                case .career:
                     self.historyNoSwitchView.isHidden = true
                     self.historySwitchView.isHidden = false
-                    self.changeTextFieldTexts(modal: .company)
+                    self.changeTextFieldTexts(modal: .career)
                 case .project:
                     self.historyNoSwitchView.isHidden = false
                     self.historySwitchView.isHidden = true
@@ -111,7 +111,7 @@ class HistoryWriteViewController: UIViewController {
         saveButton.tapPublisher
             .receive(on: RunLoop.main)
             .sink {
-                self.viewModel.action.saveResume.send(())
+                self.viewModel.action.fetchSectionData.send(())
                 NotificationCenter.default.post(name: Notification.Name("Dismiss"), object: self)
                 self.dismiss(animated: true, completion: nil)
             }
@@ -212,7 +212,7 @@ class HistoryWriteViewController: UIViewController {
 
     private func changeTextFieldTexts(modal: ModalControl) {
         switch modal {
-        case .company:
+        case .career:
             self.descriptionTextField.placeholder = "부서명/직책을 입력하세요"
             self.descriptionMainLabel.text = "부서명/직책"
         case .project:

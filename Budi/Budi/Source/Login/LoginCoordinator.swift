@@ -80,7 +80,7 @@ extension LoginCoordinator {
             return HistoryWriteViewController(coder: coder, viewModel: self.viewModel)
         }
         viewController.coordinator = self
-        viewController.viewModel.action.switchView.send(ModalControl.company)
+        viewController.viewModel.action.switchView.send(ModalControl.career)
         viewController.modalPresentationStyle = .overFullScreen
 
         //viewController.transitioningDelegate = self

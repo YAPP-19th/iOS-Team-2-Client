@@ -76,10 +76,10 @@ extension HomeCoordinator {
 
 // MARK: - HomeDetailViewController
 extension HomeCoordinator {
-    func showDetail() {
+    func showDetail(_ postId: Int) {
         let viewController: HomeDetailViewController = storyboard.instantiateViewController(
             identifier: HomeDetailViewController.identifier) { coder -> HomeDetailViewController? in
-                let viewModel = HomeDetailViewModel()
+                let viewModel = HomeDetailViewModel(postId)
                 return HomeDetailViewController(coder: coder, viewModel: viewModel)
             }
         viewController.coordinator = self

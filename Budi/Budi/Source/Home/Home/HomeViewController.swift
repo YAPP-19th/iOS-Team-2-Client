@@ -90,7 +90,8 @@ extension HomeViewController: UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        coordinator?.showDetail()
+        let post = viewModel.state.posts.value[indexPath.item]
+        coordinator?.showDetail(post.postID)
     }
 }
 

@@ -39,13 +39,13 @@ final class HomeDetailViewModel: ViewModel {
         }
     }
 
-    init() {
+    init(_ postId: Int) {
         action.fetch
             .sink(receiveValue: { [weak self] _ in
                 guard let self = self else { return }
 
                 self.provider
-                    .requestPublisher(.post(id: 11))
+                    .requestPublisher(.post(id: postId))
                     .map(APIResponse<Post>.self)
                     .map(\.data)
                     .sink(receiveCompletion: { _ in
@@ -55,7 +55,7 @@ final class HomeDetailViewModel: ViewModel {
                     .store(in: &self.cancellables)
                 
                 self.provider
-                    .requestPublisher(.teamMembers(id: 11))
+                    .requestPublisher(.teamMembers(id: postId))
                     .map(APIResponse<TeamMemberContainer>.self)
                     .map(\.data)
                     .sink(receiveCompletion: { _ in
@@ -65,7 +65,7 @@ final class HomeDetailViewModel: ViewModel {
                     .store(in: &self.cancellables)
                 
                 self.provider
-                    .requestPublisher(.recruitingStatuses(id: 11))
+                    .requestPublisher(.recruitingStatuses(id: postId))
                     .map(APIResponse<RecruitingStatusContainer>.self)
                     .map(\.data)
                     .sink(receiveCompletion: { _ in

@@ -25,7 +25,7 @@ final class HomeDetailViewModel: ViewModel {
     let action = Action()
     let state = State()
     private var cancellables = Set<AnyCancellable>()
-    private let provider = MoyaProvider<BudiTarget>()
+    let provider = MoyaProvider<BudiTarget>()
 
     init() {
         action.fetch
@@ -61,6 +61,7 @@ final class HomeDetailViewModel: ViewModel {
                         self?.state.recruitingStatuses.send(container.recruitingStatuses)
                     })
                     .store(in: &self.cancellables)
+                
             }).store(in: &cancellables)
 
         action.refresh

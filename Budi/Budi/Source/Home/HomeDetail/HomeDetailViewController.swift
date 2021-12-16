@@ -105,8 +105,17 @@ private extension HomeDetailViewController {
 
 // MARK: - Delegate
 extension HomeDetailViewController: RecruitingStatusBottomViewControllerDelegate {
-    func getSelectedRecruitingStatuses(_ selectedRecruitingStatuses: [RecruitingStatus]) {
-        print("recruitingStatuses is \(selectedRecruitingStatuses)")
+    func getSelectedRecruitingStatus(_ selectedRecruitingStatus: RecruitingStatus) {
+        let param = AppliesRequest(postId: 11, recruitingPositionId: selectedRecruitingStatus.recruitingPositionId)
+        
+        let testAccessToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJFeHBpcmVkUGVyaW9kIjoiMzYwMCIsInVzZXJJZCI6ImFhZGEyIiwiaXNzdWVyIjoiU1lKX0lTU1VFIiwibWVtYmVySWQiOjEsImV4cCI6MTY3MDQyMTM3MH0.LkYIbZwO3zrtvDqgxNFe6IxtKovBGgu28t3g_8zS7DY"
+        
+        viewModel.provider.request(.applies(accessToken: testAccessToken, param: param)) { response in
+            switch response {
+            case .success(let result): print(result)
+            case .failure(let error): print(error.localizedDescription)
+            }
+        }
     }
 }
 

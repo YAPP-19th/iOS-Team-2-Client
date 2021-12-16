@@ -10,7 +10,7 @@ import Combine
 import CombineCocoa
 
 protocol RecruitingStatusBottomViewControllerDelegate: AnyObject {
-    func getSelectedRecruitingStatuses(_ selectedRecruitingStatuses: [RecruitingStatus])
+    func getSelectedRecruitingStatus(_ selectedRecruitingStatus: RecruitingStatus)
 }
 
 final class RecruitingStatusBottomViewController: UIViewController {
@@ -30,10 +30,10 @@ final class RecruitingStatusBottomViewController: UIViewController {
     
     private var isBottomViewShown: Bool = false
     private var isHeartButtonChecked: Bool = false
-    private var selectedRecruitingStatuses: [RecruitingStatus] = [] {
+    private var selectedRecruitingStatus: RecruitingStatus? = nil {
         didSet {
-            submitButton.isEnabled = !selectedRecruitingStatuses.isEmpty
-            submitButton.backgroundColor = !selectedRecruitingStatuses.isEmpty ? .budiGreen : .budiGray
+            submitButton.isEnabled = (selectedRecruitingStatus != nil)
+            submitButton.backgroundColor = (selectedRecruitingStatus != nil) ? .budiGreen : .budiGray
         }
     }
     
@@ -72,8 +72,8 @@ private extension RecruitingStatusBottomViewController {
         submitButton.tapPublisher
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
-                guard let self = self, !self.selectedRecruitingStatuses.isEmpty else { return }
-                self.delegate?.getSelectedRecruitingStatuses(self.selectedRecruitingStatuses)
+                guard let self = self, let selectedRecruitingStatus = self.selectedRecruitingStatus else { return }
+                self.delegate?.getSelectedRecruitingStatus(selectedRecruitingStatus)
             }.store(in: &cancellables)
 
         heartButton.tapPublisher
@@ -138,17 +138,6 @@ private extension RecruitingStatusBottomViewController {
     }
 }
 
-// MARK: - Delegate
-extension RecruitingStatusBottomViewController: RecruitingStatusBottomCellDelegate {
-    func getRecruitingStatus(_ recruitingStatus: RecruitingStatus) {
-        if selectedRecruitingStatuses.contains(recruitingStatus) {
-            selectedRecruitingStatuses = selectedRecruitingStatuses.filter { $0 != recruitingStatus }
-        } else {
-            selectedRecruitingStatuses.append(recruitingStatus)
-        }
-    }
-}
-
 // MARK: - CollectionView
 extension RecruitingStatusBottomViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     private func configureCollectionView() {
@@ -163,7 +152,6 @@ extension RecruitingStatusBottomViewController: UICollectionViewDataSource, UICo
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RecruitingStatusBottomCell.identifier, for: indexPath) as? RecruitingStatusBottomCell else { return UICollectionViewCell() }
-        cell.delegate = self
         cell.recruitingStatus = viewModel.state.recruitingStatuses.value[indexPath.row]
         return cell
     }
@@ -174,5 +162,19 @@ extension RecruitingStatusBottomViewController: UICollectionViewDataSource, UICo
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         8
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let cell = collectionView.cellForItem(at: indexPath) as? RecruitingStatusBottomCell else { return }
+        let recruitingStatus = viewModel.state.recruitingStatuses.value[indexPath.row]
+
+        selectedRecruitingStatus = recruitingStatus
+        cell.isChecked = true
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        guard let cell = collectionView.cellForItem(at: indexPath) as? RecruitingStatusBottomCell else { return }
+        
+        cell.isChecked = false
     }
 }

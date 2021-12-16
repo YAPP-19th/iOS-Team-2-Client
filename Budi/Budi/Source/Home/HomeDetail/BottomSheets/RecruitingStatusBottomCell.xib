@@ -83,29 +83,19 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </view>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FDI-mg-MJb" userLabel="Container Button">
-                        <rect key="frame" x="0.0" y="0.0" width="343" height="56"/>
-                        <state key="normal" title="Button"/>
-                        <buttonConfiguration key="configuration" style="plain" title=""/>
-                    </button>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <constraints>
                 <constraint firstItem="mEg-oI-WJI" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="1Kk-Lq-6E8"/>
-                <constraint firstAttribute="bottom" secondItem="FDI-mg-MJb" secondAttribute="bottom" id="5aH-9Q-bOU"/>
-                <constraint firstAttribute="trailing" secondItem="FDI-mg-MJb" secondAttribute="trailing" id="DSM-U8-MQr"/>
                 <constraint firstAttribute="bottom" secondItem="mEg-oI-WJI" secondAttribute="bottom" id="Gm1-R8-Sse"/>
-                <constraint firstItem="FDI-mg-MJb" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="L9C-IE-MMC"/>
                 <constraint firstAttribute="trailing" secondItem="mEg-oI-WJI" secondAttribute="trailing" id="SYc-2I-uUa"/>
                 <constraint firstItem="mEg-oI-WJI" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="Z65-Wf-PlT"/>
-                <constraint firstItem="FDI-mg-MJb" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="zJA-A5-pYc"/>
             </constraints>
             <size key="customSize" width="343" height="56"/>
             <connections>
                 <outlet property="circleContainerView" destination="3hj-Nf-LEF" id="HFe-MD-pGX"/>
                 <outlet property="circleView" destination="eUf-Nd-Z3y" id="tcL-eD-l35"/>
-                <outlet property="containerButton" destination="FDI-mg-MJb" id="2Ub-9q-ASp"/>
                 <outlet property="containerView" destination="mEg-oI-WJI" id="9eN-5v-wgy"/>
                 <outlet property="textLabel" destination="rWD-bZ-NZD" id="9ou-pg-FVg"/>
             </connections>

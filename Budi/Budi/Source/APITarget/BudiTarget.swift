@@ -12,6 +12,7 @@ enum BudiTarget {
     case posts
     case teamMembers(id: Int)
     case recruitingStatuses(id: Int)
+    case applies(accessToken: String, param: AppliesRequest)
 }
 
 extension BudiTarget: TargetType {
@@ -25,19 +26,30 @@ extension BudiTarget: TargetType {
         case .posts: return "/posts"
         case .teamMembers(let id): return "/posts/\(id)/members"
         case .recruitingStatuses(let id): return "/posts/\(id)/recruitingStatus"
+        case .applies: return "/applies"
         }
     }
 
     var method: Moya.Method {
-        return .get
+        switch self {
+        case .post, .posts, .teamMembers, .recruitingStatuses: return .get
+        case .applies: return .post
+        }
     }
 
     var task: Task {
-        .requestPlain
+        switch self {
+        case .post, .posts, .teamMembers, .recruitingStatuses: return .requestPlain
+        case .applies(_, let param): return .requestJSONEncodable(param)
+        }
     }
 
     var headers: [String: String]? {
-        return ["Content-Type": "application/json"]
+        switch self {
+        case .post, .posts, .teamMembers, .recruitingStatuses: return ["Content-Type": "application/json"]
+        case .applies(let accessToken, _): return ["Content-Type": "application/json",
+                                                "accessToken": "\(accessToken)"]
+        }
     }
 
     var validationType: ValidationType {

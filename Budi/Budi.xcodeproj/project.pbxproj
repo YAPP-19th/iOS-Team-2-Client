@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5E24071D275225A600954BE7 /* BudiTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E24071C275225A600954BE7 /* BudiTarget.swift */; };
-		5E24071F275225B800954BE7 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E24071E275225B800954BE7 /* Login.swift */; };
+		5E24071F275225B800954BE7 /* BudiLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E24071E275225B800954BE7 /* BudiLogin.swift */; };
 		5E240721275225CD00954BE7 /* String+date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E240720275225CD00954BE7 /* String+date.swift */; };
 		5E24072327522BCE00954BE7 /* alertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E24072227522BCE00954BE7 /* alertView.swift */; };
 		5E24072427522CA800954BE7 /* MainTabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9D66EBA27146E1F00668490 /* MainTabBarCoordinator.swift */; };
@@ -126,7 +126,7 @@
 		431890E70909CACD17283C45 /* Pods-Budi.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Budi.release.xcconfig"; path = "Target Support Files/Pods-Budi/Pods-Budi.release.xcconfig"; sourceTree = "<group>"; };
 		5BB91E1E1D24F6BCA931C5F6 /* Pods_Budi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Budi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E24071C275225A600954BE7 /* BudiTarget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BudiTarget.swift; sourceTree = "<group>"; };
-		5E24071E275225B800954BE7 /* Login.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
+		5E24071E275225B800954BE7 /* BudiLogin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BudiLogin.swift; sourceTree = "<group>"; };
 		5E240720275225CD00954BE7 /* String+date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+date.swift"; sourceTree = "<group>"; };
 		5E24072227522BCE00954BE7 /* alertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = alertView.swift; sourceTree = "<group>"; };
 		5E2554332732770B00033723 /* HomeDetailPersonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailPersonCell.swift; sourceTree = "<group>"; };
@@ -222,7 +222,6 @@
 		B92D54FE274C037E00D0E851 /* String+date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+date.swift"; sourceTree = "<group>"; };
 		B92D5501274C039C00D0E851 /* HomeContentViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeContentViewModel.swift; sourceTree = "<group>"; };
 		B92D5504274C03AA00D0E851 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
-		B94DCA7F27521626006A9E0D /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Login.swift; path = ../Login/Login.swift; sourceTree = "<group>"; };
 		B94DCA8227521648006A9E0D /* APIResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIResponse.swift; sourceTree = "<group>"; };
 		B97DBB9427147D970018C1D2 /* UIViewController+identifer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+identifer.swift"; sourceTree = "<group>"; };
 		B98E530927396B3F00C73374 /* UINavigationController+translucent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationController+translucent.swift"; sourceTree = "<group>"; };
@@ -381,10 +380,13 @@
 		A82E49DB273111050068218A /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				A8CD933A273676BC00299AB4 /* Signup */,
+				A85325B82747738E0073FAFB /* ViewController */,
+				A85325B92747739A0073FAFB /* ViewModel */,
+				A81D1064276482E90022D610 /* ReuseView */,
+				A8CD935F27384C3400299AB4 /* Cell */,
+				A8CD93542738037C00299AB4 /* Data */,
+				A8CD93452737B92A00299AB4 /* View */,
 				A82E49DE273111E50068218A /* LoginCoordinator.swift */,
-				5E24071E275225B800954BE7 /* Login.swift */,
-				A8AB51DD2769D3EB003D151C /* LeftAlignedCollectionViewFlowLayout.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -425,22 +427,10 @@
 			path = ReuseViews;
 			sourceTree = "<group>";
 		};
-		A8CD933A273676BC00299AB4 /* Signup */ = {
-			isa = PBXGroup;
-			children = (
-				A81D1064276482E90022D610 /* ReuseView */,
-				A85325B92747739A0073FAFB /* ViewModel */,
-				A85325B82747738E0073FAFB /* ViewController */,
-				A8CD935F27384C3400299AB4 /* Cell */,
-				A8CD93542738037C00299AB4 /* Data */,
-				A8CD93452737B92A00299AB4 /* View */,
-			);
-			path = Signup;
-			sourceTree = "<group>";
-		};
 		A8CD93452737B92A00299AB4 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A8AB51DD2769D3EB003D151C /* LeftAlignedCollectionViewFlowLayout.swift */,
 				A8CD933B273676F800299AB4 /* NickNameView.swift */,
 				A8CD933F2736ABD300299AB4 /* LocationSelectView.swift */,
 				A8CD93412736B58E00299AB4 /* IntroduceView.swift */,
@@ -456,6 +446,7 @@
 				A8CD935D273849F800299AB4 /* LocationDummyData.swift */,
 				A85325B42746C4580073FAFB /* NaverData.swift */,
 				A8AB51E7276A0416003D151C /* ModalControl.swift */,
+				5E24071E275225B800954BE7 /* BudiLogin.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -482,7 +473,6 @@
 			isa = PBXGroup;
 			children = (
 				B94DCA8227521648006A9E0D /* APIResponse.swift */,
-				B94DCA7F27521626006A9E0D /* Login.swift */,
 				A81D1085276485590022D610 /* ProjectHistory.swift */,
 				A81D108B2764950F0022D610 /* Positions.swift */,
 				B92D5504274C03AA00D0E851 /* Post.swift */,
@@ -804,7 +794,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5E24071F275225B800954BE7 /* Login.swift in Sources */,
+				5E24071F275225B800954BE7 /* BudiLogin.swift in Sources */,
 				5E24072627522CB900954BE7 /* HomeWritingViewController.swift in Sources */,
 				A81D1087276485590022D610 /* ProjectHistory.swift in Sources */,
 				5E24072527522CB500954BE7 /* HomeContainerViewController.swift in Sources */,

@@ -777,13 +777,21 @@
                                                                     <color key="textColor" white="0.0" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OM3-Hh-N9e">
+                                                                    <rect key="frame" x="342" y="30" width="19" height="22"/>
+                                                                    <color key="tintColor" name="DarkGray"/>
+                                                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                                    <state key="normal" image="ellipsis" catalog="system"/>
+                                                                </button>
                                                             </subviews>
                                                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                             <constraints>
+                                                                <constraint firstItem="OM3-Hh-N9e" firstAttribute="top" secondItem="DeB-mp-Pix" secondAttribute="top" constant="30" id="BOw-QO-5XD"/>
                                                                 <constraint firstItem="LV2-wI-aGT" firstAttribute="top" secondItem="0Xo-LQ-xsP" secondAttribute="bottom" constant="4" id="DZ3-lg-vXj"/>
                                                                 <constraint firstItem="9uB-VM-WKX" firstAttribute="leading" secondItem="DeB-mp-Pix" secondAttribute="leading" constant="16" id="OHE-FX-ZK8"/>
                                                                 <constraint firstItem="0Xo-LQ-xsP" firstAttribute="top" secondItem="9uB-VM-WKX" secondAttribute="bottom" constant="4" id="QJe-oR-MYt"/>
                                                                 <constraint firstItem="LV2-wI-aGT" firstAttribute="leading" secondItem="DeB-mp-Pix" secondAttribute="leading" constant="16" id="dVR-Mg-EnJ"/>
+                                                                <constraint firstAttribute="trailing" secondItem="OM3-Hh-N9e" secondAttribute="trailing" constant="21" id="ff8-Q0-85B"/>
                                                                 <constraint firstItem="9uB-VM-WKX" firstAttribute="top" secondItem="DeB-mp-Pix" secondAttribute="top" constant="14" id="iaz-JE-8DK"/>
                                                                 <constraint firstItem="0Xo-LQ-xsP" firstAttribute="leading" secondItem="DeB-mp-Pix" secondAttribute="leading" constant="16" id="jNz-De-6sJ"/>
                                                             </constraints>
@@ -827,6 +835,7 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="addButton" destination="woU-CJ-wjN" id="qUk-Kd-gmh"/>
+                                            <outlet property="moreButton" destination="OM3-Hh-N9e" id="Tfn-BG-6gS"/>
                                             <outlet property="selectDayLabel" destination="0Xo-LQ-xsP" id="jeq-1s-3HQ"/>
                                             <outlet property="selectMainTitle" destination="9uB-VM-WKX" id="VTK-0B-C7w"/>
                                             <outlet property="selectTeamLabel" destination="LV2-wI-aGT" id="VOf-ra-KfA"/>
@@ -1196,6 +1205,7 @@
     <resources>
         <image name="checkmark.circle" catalog="system" width="128" height="121"/>
         <image name="checkmark.circle.fill" catalog="system" width="128" height="121"/>
+        <image name="ellipsis" catalog="system" width="128" height="37"/>
         <image name="face.smiling.fill" catalog="system" width="128" height="121"/>
         <image name="heart" catalog="system" width="128" height="109"/>
         <image name="locationAddButton" width="22.5" height="22.5"/>

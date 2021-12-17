@@ -20,7 +20,7 @@ final class SignupViewModel: ViewModel {
         let switchView = PassthroughSubject<ModalControl, Never>()
         let fetchSectionData = PassthroughSubject<Void, Never>()
         let appendSectionData = PassthroughSubject<ModalControl, Never>()
-
+        let postCreateInfo = PassthroughSubject<Void, Never>()
         // 경력, 프로젝트 이력 뷰에 사용하는 PassthroughSubject
         let firstReuseTextField = PassthroughSubject<String, Never>()
         let leftDatePicker = PassthroughSubject<String, Never>()
@@ -29,13 +29,15 @@ final class SignupViewModel: ViewModel {
 
         // 포트폴리오 뷰에 사용하는 PassthroughSubject
         let porfolioTextField = PassthroughSubject<String, Never>()
+
+        let cellSelectIndex = PassthroughSubject<[Int], Never>()
     }
 
     struct State {
         // 네이버 로그인 시 정보 저장
         let naverData = CurrentValueSubject<NaverData?, Never>(nil)
         // Budi 서버 로그인 정보 저장
-        let loginUserData = CurrentValueSubject<LoginResponse?, Never>(nil)
+        let budiLoginUserData = CurrentValueSubject<BudiLoginResponse?, Never>(nil)
         // Budi 서버 포지션 선택 대응 정보 저장
         let positionData = CurrentValueSubject<[String]?, Never>(nil)
         // 앱 내 포지션 선택 정보 저장
@@ -73,7 +75,8 @@ final class SignupViewModel: ViewModel {
                         Item(itemInfo: ItemInfo(isInclude: false, buttonTitle: "포트폴리오를 추가해보세요"),
                              description: "", endDate: "", name: "", startDate: "")])
             ])
-        
+
+        let selectIndex = CurrentValueSubject<[Int], Never>([])
     }
 
     let action = Action()
@@ -97,6 +100,17 @@ final class SignupViewModel: ViewModel {
         loadTextFields()
         fetchSectionData()
         appendSectionData()
+        selectCellIndex()
+    }
+
+    func selectCellIndex() {
+        action.cellSelectIndex
+            .receive(on: DispatchQueue.main)
+            .sink { data in
+                self.state.selectIndex.send(data)
+            }
+            .store(in: &cancellables)
+
     }
 
     // MARK: - 테이블 뷰 셀 업데이트 viewModel
@@ -113,11 +127,10 @@ final class SignupViewModel: ViewModel {
                     var selectItems = self.state.sectionData.value[index].items
 
                     let item = Item(itemInfo: ItemInfo(isInclude: false, buttonTitle: "경력을 추가해보세요"), description: "", endDate: "", name: "", startDate: "")
-
-                    selectItems.append(item)
+                    selectItems.insert(item, at: selectItems.count)
                     oldValue[index].items = selectItems
                     self.state.sectionData.send(oldValue)
-                    print(self.state.sectionData.value)
+                    print(self.state.sectionData.value[index].items.count)
                 case .project:
 
                     let index = self.state.sectionData.value.firstIndex { $0.type == .project }
@@ -127,9 +140,10 @@ final class SignupViewModel: ViewModel {
 
                     let item = Item(itemInfo: ItemInfo(isInclude: false, buttonTitle: "프로젝트 이력을 추가해보세요"), description: "", endDate: "", name: "", startDate: "")
 
-                    selectItems.append(item)
+                    selectItems.insert(item, at: selectItems.count)
                     oldValue[index].items = selectItems
                     self.state.sectionData.send(oldValue)
+                    print(self.state.sectionData.value[index].items.count)
                 case .portfolio:
 
                     let index = self.state.sectionData.value.firstIndex { $0.type == .portfolio }
@@ -139,9 +153,10 @@ final class SignupViewModel: ViewModel {
 
                     let item = Item(itemInfo: ItemInfo(isInclude: false, buttonTitle: "포트폴리오를 추가해보세요"), description: "", endDate: "", name: "", startDate: "")
 
-                    selectItems.append(item)
+                    selectItems.insert(item, at: selectItems.count)
                     oldValue[index].items = selectItems
                     self.state.sectionData.send(oldValue)
+                    print(self.state.sectionData.value[index].items.count)
                 }
             }
             .store(in: &cancellables)
@@ -152,7 +167,20 @@ final class SignupViewModel: ViewModel {
         action.fetchSectionData
             .receive(on: DispatchQueue.main)
             .sink {
-                
+                let section = self.state.selectIndex.value[0]
+                let index = self.state.selectIndex.value[1]
+
+                var oldData = self.state.sectionData.value
+                var changeData = self.state.sectionData.value[section].items[index]
+
+                changeData.itemInfo.isInclude = true
+                changeData.name = self.state.firstString.value
+                changeData.startDate = self.state.leftDateString.value
+                changeData.endDate = self.state.rightDateString.value
+                changeData.description = self.state.secondString.value
+                print(oldData)
+                oldData[section].items[index] = changeData
+                self.state.sectionData.send(oldData)
             }
             .store(in: &cancellables)
     }
@@ -226,6 +254,36 @@ final class SignupViewModel: ViewModel {
             }).store(in: &cancellables)
     }
 
+    func postCreateInfo() {
+        action.postCreateInfo
+            .sink(receiveValue: { [weak self] _ in
+                guard let self = self else { return }
+                let accsessToken = self.state.budiLoginUserData.value?.accessToken
+                let careerList = self.state.sectionData.value[0].items
+                let param = CreateInfo(
+                    basePosition: 0,
+                    careerList: [
+                        CareerList(companyName: careerList[0].name,
+                                   careerListDescription: "empty",
+                                   endDate: careerList[0].endDate,
+                                   memberID: 0,
+                                   nowWorks: false,
+                                   startDate: careerList[0].startDate,
+                                   teamName: careerList[0].description,
+                                   workRequestList: [TList(tListDescription: "", endDate: "", name: "", startDate: "")])
+                    ],
+                    createInfoDescription: "열심히 해봐요!",
+                    memberAddress: "서울시 강남구",
+                    nickName: "NickName",
+                    portfolioLink: ["string"],
+                    positionList: ["string"],
+                    projectList: [TList(tListDescription: "", endDate: "", name: "", startDate: "")]
+                )
+
+                //provider.request(.c, completion: <#T##Completion##Completion##(_ result: Result<Response, MoyaError>) -> Void#>)
+            })
+    }
+
     // MARK: - 네이버 로그인 viewModel
     func getNaverInfo() {
         guard let isValidAccessToken = loginInstance?.isValidAccessTokenExpireTimeNow() else { return }
@@ -280,7 +338,7 @@ final class SignupViewModel: ViewModel {
     // MARK: - Budi 서버에 POST 보내는 viewModel
     func pushServer() {
         guard let id = state.naverData.value?.id else { return }
-        let loginData = Login(loginId: id, name: state.naverData.value?.name, email: state.naverData.value?.email)
+        let loginData = BudiLogin(loginId: id, name: state.naverData.value?.name, email: state.naverData.value?.email)
         guard let uploadData = try? JSONEncoder().encode(loginData) else { return }
 
         guard let url = URL(string: .baseURLString+"/auth/login") else { return }
@@ -299,7 +357,8 @@ final class SignupViewModel: ViewModel {
                     guard let data = data else { return }
                     do {
                         // 서버에 로그인 시도 하고 받은 데이터
-                        let decodeData = try JSONDecoder().decode(APIResponse<LoginResponse>.self, from: data)
+                        let decodeData = try JSONDecoder().decode(APIResponse<BudiLoginResponse>.self, from: data)
+                        self.state.budiLoginUserData.send(decodeData.data)
                         print("로그인 유저 아이디 :", decodeData.data.userId)
                         print("로그인 고유 토큰 :", decodeData.data.accessToken)
                     } catch {

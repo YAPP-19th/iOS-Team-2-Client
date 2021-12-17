@@ -6,12 +6,15 @@
 //
 
 import UIKit
+import Combine
 
 class HistoryResultView: UIView {
 
     @IBOutlet weak var mainTitleLabel: UILabel!
     @IBOutlet weak var subDayTitleLabel: UILabel!
     @IBOutlet weak var teamTitleLabel: UILabel!
+
+    private var cancellables = Set<AnyCancellable>()
     override init(frame: CGRect) {
         super.init(frame: frame)
         initialize()

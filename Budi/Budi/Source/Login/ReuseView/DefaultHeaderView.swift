@@ -17,11 +17,12 @@ class DefaultHeaderView: UITableViewHeaderFooterView {
 
     override func prepareForReuse() {
         super.prepareForReuse()
+        titleLabel.text = ""
+        
         cancellables.removeAll()
     }
 
     func configureLabel(title: String) {
         titleLabel.text = title
-        cancellables.removeAll()
     }
 }

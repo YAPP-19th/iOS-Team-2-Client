@@ -4,31 +4,46 @@
 //
 //  Created by 인병윤 on 2021/12/16.
 //
-
 import Foundation
 
+// MARK: - CreateInfo
 struct CreateInfo: Codable {
-    let accessToken: String
     let basePosition: Int
     let careerList: [CareerList]
-    let description: String
-    let memberAddress: String
-    let nickName: String
-    let positionList: [String]
-    let projectList: [ProjectList]
+    let createInfoDescription, memberAddress, nickName: String
+    let portfolioLink, positionList: [String]
+    let projectList: [TList]
+
+    enum CodingKeys: String, CodingKey {
+        case basePosition, careerList
+        case createInfoDescription = "description"
+        case memberAddress, nickName, portfolioLink, positionList, projectList
+    }
 }
 
+// MARK: - CareerList
 struct CareerList: Codable {
-    let description: String
-    let endDate: String
-    let name: String
-    let startDate: String
+    let companyName, careerListDescription, endDate: String
+    let memberID: Int
+    let nowWorks: Bool
+    let startDate, teamName: String
+    let workRequestList: [TList]
+
+    enum CodingKeys: String, CodingKey {
+        case companyName
+        case careerListDescription = "description"
+        case endDate
+        case memberID = "memberId"
+        case nowWorks, startDate, teamName, workRequestList
+    }
 }
 
-struct ProjectList: Codable {
-    let description: String
-    let endDate: String
-    let name: String
-    let startDate: String
-}
+// MARK: - TList
+struct TList: Codable {
+    let tListDescription, endDate, name, startDate: String
 
+    enum CodingKeys: String, CodingKey {
+        case tListDescription = "description"
+        case endDate, name, startDate
+    }
+}

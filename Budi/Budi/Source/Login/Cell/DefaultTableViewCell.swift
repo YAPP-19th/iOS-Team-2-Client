@@ -18,9 +18,12 @@ final class DefaultTableViewCell: UITableViewCell {
     @IBOutlet weak var selectDayLabel: UILabel!
     @IBOutlet weak var selectTeamLabel: UILabel!
     @IBOutlet weak var addButton: UIButton!
-
+    @IBOutlet weak var moreButton: UIButton!
+    
     override func prepareForReuse() {
         super.prepareForReuse()
+        selectView.isHidden = true
+
         cancellables.removeAll()
     }
 
@@ -37,9 +40,11 @@ final class DefaultTableViewCell: UITableViewCell {
     }
 
     func configureLabel(main: String, date: String, sub: String) {
+        selectView.isHidden = false
         selectMainTitle.text = main
         selectDayLabel.text = date
         selectTeamLabel.text = sub
+        self.bringSubviewToFront(moreButton)
     }
 
     func configureButtonTitle(title: String) {

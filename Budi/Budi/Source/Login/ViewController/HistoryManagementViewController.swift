@@ -17,11 +17,8 @@ class HistoryManagementViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var progressView: ProgressView!
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-
+    private var section: Int = 0
+    private var callCount = 0
     init?(coder: NSCoder, viewModel: SignupViewModel) {
         self.viewModel = viewModel
         super.init(coder: coder)
@@ -41,15 +38,15 @@ class HistoryManagementViewController: UIViewController {
     private func bindViewModel() {
         viewModel.state.sectionData
             .receive(on: DispatchQueue.main)
-            .sink { data in
-                self.tableView.reloadSections(IndexSet(0...2), with: .none)
+            .sink { _ in
+                self.tableView.reloadSections(IndexSet(self.section...self.section), with: .none)
             }
             .store(in: &cancellables)
 
         NotificationCenter.default.publisher(for: Notification.Name("Dismiss"))
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
-                self?.viewAlphaOn()
+                self?.modalViewBackgoundOff()
             }
             .store(in: &cancellables)
     }
@@ -68,17 +65,42 @@ class HistoryManagementViewController: UIViewController {
     @objc
     func addButtonAction(_ button: UIButton) {
     }
-
-    func viewAlphaOff() {
+    func modalViewBackgoundOn() {
         UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseOut, animations: {
             self.view.alpha = 0.5
         })
     }
 
-    func viewAlphaOn() {
+    func modalViewBackgoundOff() {
         UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseOut, animations: {
             self.view.alpha = 1.0
         })
+    }
+
+    func reloadCells(section: Int) {
+        print(section)
+        tableView.reloadSections(IndexSet(section...section), with: .none)
+    }
+
+    private func showActionSheet(section: Int, index: Int) {
+        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+
+        let edit = UIAlertAction(title: "수정", style: .default, handler: { _ in
+            print(section, index)
+        })
+        let delete = UIAlertAction(title: "삭제", style: .destructive, handler: { _ in
+            print(section, index)
+        })
+
+        let cancel = UIAlertAction(title: "완료", style: .cancel, handler: { _ in
+            print(section, index)
+        })
+
+        actionSheet.addAction(edit)
+        actionSheet.addAction(delete)
+        actionSheet.addAction(cancel)
+
+        present(actionSheet, animated: true, completion: nil)
     }
 
 }
@@ -101,9 +123,13 @@ extension HistoryManagementViewController: UITableViewDelegate, UITableViewDataS
         guard let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: DefaultHeaderView.cellId) as? DefaultHeaderView else { return UIView() }
 
         header.configureLabel(title: viewModel.state.sectionData.value[section].sectionTitle)
+
         header.addButton.tapPublisher
             .sink { [weak self] _ in
-                self?.viewModel.action.appendSectionData.send(self?.viewModel.state.sectionData.value[section].type ?? .portfolio)
+                guard let select = self?.viewModel.state.sectionData.value[section].type else { return }
+                self?.viewModel.action.appendSectionData.send(select)
+                print(select)
+                self?.section = section
             }
             .store(in: &cancellables)
 
@@ -113,21 +139,48 @@ extension HistoryManagementViewController: UITableViewDelegate, UITableViewDataS
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         guard let cell = tableView.dequeueReusableCell(withIdentifier: DefaultTableViewCell.cellId, for: indexPath) as? DefaultTableViewCell else { return UITableViewCell() }
-
-        cell.configureButtonTitle(title: viewModel.state.sectionData.value[indexPath.section].items[indexPath.row].itemInfo.buttonTitle)
+        let data = viewModel.state.sectionData.value[indexPath.section].items[indexPath.row]
+        print(data)
+        if data.itemInfo.isInclude {
+            cell.configureLabel(main: data.name, date: data.startDate + " ~ " + data.endDate, sub: data.description)
+        } else {
+            cell.configureButtonTitle(title: data.itemInfo.buttonTitle)
+        }
 
         cell.addButton.tapPublisher
             .sink { [weak self] _ in
                 if indexPath.section == 0 {
                     self?.coordinator?.showCareerViewController()
+                    self?.section = indexPath.section
+                    self?.viewModel.action.cellSelectIndex.send([indexPath.section, indexPath.item])
                 } else if indexPath.section == 1 {
                     self?.coordinator?.showProjectViewController()
+                    self?.section = indexPath.section
+                    self?.viewModel.action.cellSelectIndex.send([indexPath.section, indexPath.item])
                 } else if indexPath.section == 2 {
                     self?.coordinator?.showPortfolioController()
+                    self?.section = indexPath.section
+                    self?.viewModel.action.cellSelectIndex.send([indexPath.section, indexPath.item])
                 }
-                self?.viewAlphaOff()
+                self?.modalViewBackgoundOn()
             }
             .store(in: &cell.cancellables)
+
+        cell.moreButton.tapPublisher
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in
+                if indexPath.section == 0 {
+                    print(indexPath.section, indexPath.row , indexPath.item)
+                    self?.showActionSheet(section: indexPath.section, index: indexPath.item)
+                } else if indexPath.section == 1 {
+                    print(indexPath.section, indexPath.row , indexPath.item)
+                    self?.showActionSheet(section: indexPath.section, index: indexPath.item)
+                } else if indexPath.section == 2 {
+                    print(indexPath.section, indexPath.row , indexPath.item)
+                    self?.showActionSheet(section: indexPath.section, index: indexPath.item)
+                }
+            }
+            .store(in: &cancellables)
 
         return cell
     }

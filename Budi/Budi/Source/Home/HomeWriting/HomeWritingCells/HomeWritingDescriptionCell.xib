@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="HomeWritingDescriptionCell" customModule="Budi" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="387"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="387"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k6J-n3-J3k">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="387"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="프로젝트 소개" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ntp-P4-GLC">
+                                <rect key="frame" x="20" y="16" width="76.5" height="17"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jbY-SJ-0fh" userLabel="Placeholder Text View">
+                                <rect key="frame" x="16" y="49" width="343" height="322"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <string key="text" base64-UTF8="YES">
+7ZSE66Gc7KCd7Yq4IOuqqOynkeq4gOydhCDsnpHshLHtlZjripQg6rOz7J6F64uI64ukLiDigKjslYTr
+npgg6rCA7J2065Oc66W8IOuUsOudvCDsnpHshLHtlbTrs7TshLjsmpQuCgpb7ZSE66Gc7KCd7Yq4IOyG
+jOqwnF0K6rCE65617ZWcIOyGjOqwnOq4gOydhCDsoIHslrTrs7TshLjsmpQuCwpbIOyjvOyalCDsl4Xr
+rLQgXQrsp4HqtbAg67OEIOyjvOyalCDsl4XrrLQg64K07Jqp7J2EIOyggeyWtOyjvOyEuOyalC4gCwpb
+IOq4sOyIoCDsiqTtg50gXQrtlYTsmpTtlZwg7KeB6rWw67OEIOq4sOyIoCDsiqTtg53snYQg7KCB7Ja0
+7KO87IS47JqULgoKWyDsnpDqsqkg7JqU6rG0IF0K7J6Q6rKpIOyalOqxtOydhCDsoIHslrTso7zshLjs
+mpQuIA
+</string>
+                                <color key="textColor" name="Gray"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" name="LightGray"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </textView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="k4t-vW-Obi">
+                                <rect key="frame" x="16" y="49" width="343" height="322"/>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" name="LightGray"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="ntp-P4-GLC" firstAttribute="top" secondItem="k6J-n3-J3k" secondAttribute="top" constant="16" id="83s-9y-8fv"/>
+                            <constraint firstAttribute="bottom" secondItem="k4t-vW-Obi" secondAttribute="bottom" constant="16" id="A5i-y9-6DL"/>
+                            <constraint firstItem="jbY-SJ-0fh" firstAttribute="leading" secondItem="k6J-n3-J3k" secondAttribute="leading" constant="16" id="Bho-Qe-IMF"/>
+                            <constraint firstAttribute="trailing" secondItem="k4t-vW-Obi" secondAttribute="trailing" constant="16" id="E7f-6o-uEZ"/>
+                            <constraint firstItem="k4t-vW-Obi" firstAttribute="top" secondItem="ntp-P4-GLC" secondAttribute="bottom" constant="16" id="Ee9-Tc-RCa"/>
+                            <constraint firstItem="k4t-vW-Obi" firstAttribute="leading" secondItem="k6J-n3-J3k" secondAttribute="leading" constant="16" id="JG6-7x-Mr8"/>
+                            <constraint firstItem="jbY-SJ-0fh" firstAttribute="top" secondItem="ntp-P4-GLC" secondAttribute="bottom" constant="16" id="RrF-aX-6Le"/>
+                            <constraint firstItem="ntp-P4-GLC" firstAttribute="leading" secondItem="k6J-n3-J3k" secondAttribute="leading" constant="20" id="STq-NO-3mf"/>
+                            <constraint firstAttribute="trailing" secondItem="jbY-SJ-0fh" secondAttribute="trailing" constant="16" id="du7-MW-Z2A"/>
+                            <constraint firstAttribute="bottom" secondItem="jbY-SJ-0fh" secondAttribute="bottom" constant="16" id="e6u-8I-zHX"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="k6J-n3-J3k" secondAttribute="bottom" id="HSG-XN-Pbl"/>
+                <constraint firstItem="k6J-n3-J3k" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="kdv-Hc-oNl"/>
+                <constraint firstAttribute="trailing" secondItem="k6J-n3-J3k" secondAttribute="trailing" id="tYF-LR-mlL"/>
+                <constraint firstItem="k6J-n3-J3k" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="ux8-Iv-2dv"/>
+            </constraints>
+            <connections>
+                <outlet property="placeholderTextView" destination="jbY-SJ-0fh" id="azb-qh-Yca"/>
+                <outlet property="textView" destination="k4t-vW-Obi" id="vrt-pQ-15G"/>
+            </connections>
+            <point key="canvasLocation" x="131.15942028985509" y="65.959821428571431"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <namedColor name="Gray">
+            <color red="0.5559999942779541" green="0.5559999942779541" blue="0.5559999942779541" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="LightGray">
+            <color red="0.86599999666213989" green="0.86599999666213989" blue="0.86599999666213989" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

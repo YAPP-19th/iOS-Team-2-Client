@@ -7,15 +7,15 @@
 
 import UIKit
 
-class AlertViewController: UIViewController {
+final class AlertViewController: UIViewController {
 
     private var titleText: String = ""
     private var okButtonText: String = ""
     private var noButtonText: String = ""
 
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var okButton: UIButton!
-    @IBOutlet weak var noButton: UIButton!
+    @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var okButton: UIButton!
+    @IBOutlet private weak var noButton: UIButton!
 
     @IBAction func closeButtonTapped(_ sender: Any) {
         dismiss(animated: true, completion: nil)

@@ -17,7 +17,7 @@ final class HomeWritingViewModel: ViewModel {
     }
 
     struct State {
-        let post = CurrentValueSubject<Post?, Never>(nil)
+        let defaultImageUrls = CurrentValueSubject<[String], Never>([])
     }
     
     let action = Action()
@@ -27,7 +27,19 @@ final class HomeWritingViewModel: ViewModel {
     
     init() {
         action.fetch
-            .sink(receiveValue: { _ in
+            .sink(receiveValue: { [weak self] _ in
+                guard let self = self else { return }
+                
+                self.provider
+                    .requestPublisher(.postDefaultImageUrls)
+                    .map(APIResponse<[String]>.self)
+                    .map(\.data)
+                    .sink(receiveCompletion: { _ in
+                    }, receiveValue: { [weak self] defaultImageUrls in
+                        self?.state.defaultImageUrls.send(defaultImageUrls)
+                    })
+                    .store(in: &self.cancellables)
+                
             }).store(in: &cancellables)
 
         action.refresh

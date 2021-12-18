@@ -17,21 +17,17 @@
                 <rect key="frame" x="0.0" y="0.0" width="124" height="124"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pE2-00-3Ty">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="defaultBackground" translatesAutoresizingMaskIntoConstraints="NO" id="1aG-W8-bVF">
                         <rect key="frame" x="0.0" y="0.0" width="124" height="124"/>
-                        <state key="normal" title="Button"/>
-                        <buttonConfiguration key="configuration" style="plain" image="defaultBackground"/>
-                    </button>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    </imageView>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
-            <constraints>
-                <constraint firstAttribute="bottom" secondItem="pE2-00-3Ty" secondAttribute="bottom" id="6Me-iW-QSq"/>
-                <constraint firstItem="pE2-00-3Ty" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="ezQ-xh-6Y9"/>
-                <constraint firstItem="pE2-00-3Ty" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="frE-Mt-7yi"/>
-                <constraint firstAttribute="trailing" secondItem="pE2-00-3Ty" secondAttribute="trailing" id="wpx-wL-icl"/>
-            </constraints>
             <size key="customSize" width="124" height="124"/>
+            <connections>
+                <outlet property="imageView" destination="1aG-W8-bVF" id="hCV-QJ-uby"/>
+            </connections>
             <point key="canvasLocation" x="185.50724637681162" y="97.767857142857139"/>
         </collectionViewCell>
     </objects>

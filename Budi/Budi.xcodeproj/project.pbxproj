@@ -42,7 +42,7 @@
 		5E820B8B2769F04A004A03E9 /* HomeWritingMembersDetailPartBottomCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E820B892769F04A004A03E9 /* HomeWritingMembersDetailPartBottomCollectionViewCell.xib */; };
 		5E820B8F2769F963004A03E9 /* DatePickerBottomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E820B8D2769F963004A03E9 /* DatePickerBottomViewController.swift */; };
 		5E820B902769F963004A03E9 /* DatePickerBottomViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E820B8E2769F963004A03E9 /* DatePickerBottomViewController.xib */; };
-		5E820B92276A3699004A03E9 /* Members.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E820B91276A3699004A03E9 /* Members.swift */; };
+		5E820B92276A3699004A03E9 /* TeamMember.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E820B91276A3699004A03E9 /* TeamMember.swift */; };
 		5E820B94276A36DA004A03E9 /* RecruitingStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E820B93276A36DA004A03E9 /* RecruitingStatus.swift */; };
 		5E88636E2767450A0022397A /* HomeWritingCellType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E88636D2767450A0022397A /* HomeWritingCellType.swift */; };
 		5E886376276771E00022397A /* HomeWritingImageBottomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E886374276771E00022397A /* HomeWritingImageBottomViewController.swift */; };
@@ -180,7 +180,7 @@
 		5E820B892769F04A004A03E9 /* HomeWritingMembersDetailPartBottomCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeWritingMembersDetailPartBottomCollectionViewCell.xib; sourceTree = "<group>"; };
 		5E820B8D2769F963004A03E9 /* DatePickerBottomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerBottomViewController.swift; sourceTree = "<group>"; };
 		5E820B8E2769F963004A03E9 /* DatePickerBottomViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DatePickerBottomViewController.xib; sourceTree = "<group>"; };
-		5E820B91276A3699004A03E9 /* Members.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Members.swift; sourceTree = "<group>"; };
+		5E820B91276A3699004A03E9 /* TeamMember.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamMember.swift; sourceTree = "<group>"; };
 		5E820B93276A36DA004A03E9 /* RecruitingStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecruitingStatus.swift; sourceTree = "<group>"; };
 		5E88636D2767450A0022397A /* HomeWritingCellType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWritingCellType.swift; sourceTree = "<group>"; };
 		5E886374276771E00022397A /* HomeWritingImageBottomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWritingImageBottomViewController.swift; sourceTree = "<group>"; };
@@ -620,7 +620,7 @@
 			children = (
 				B92D5504274C03AA00D0E851 /* Post.swift */,
 				B94DCA7F27521626006A9E0D /* Login.swift */,
-				5E820B91276A3699004A03E9 /* Members.swift */,
+				5E820B91276A3699004A03E9 /* TeamMember.swift */,
 				5E820B93276A36DA004A03E9 /* RecruitingStatus.swift */,
 				5E58E6B4276BA73500ABBF1C /* PostRequest.swift */,
 				5E58E6B0276B588C00ABBF1C /* AppliesRequest.swift */,
@@ -1010,7 +1010,7 @@
 				5E88637A276771EE0022397A /* HomeWritingPartBottomViewController.swift in Sources */,
 				B9D66EC82714707000668490 /* MyBudiCoordinator.swift in Sources */,
 				5E820B772769E9CA004A03E9 /* HomeWritingMembersPartBottomCell.swift in Sources */,
-				5E820B92276A3699004A03E9 /* Members.swift in Sources */,
+				5E820B92276A3699004A03E9 /* TeamMember.swift in Sources */,
 				5EFB0A4A2733EAA300F39A4D /* ChattingCell.swift in Sources */,
 				5EA575FE274E9C4800DF6974 /* String+baseURL.swift in Sources */,
 				5E58E6B5276BA73500ABBF1C /* PostRequest.swift in Sources */,

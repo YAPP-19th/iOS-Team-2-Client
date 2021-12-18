@@ -43,6 +43,8 @@ final class HomeWritingImageBottomViewController: UIViewController {
         configureCollectionView()
         bindViewModel()
         setPublisher()
+        
+        print("defaultImageUrls is \(viewModel.state.defaultImageUrls.value)")
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -110,6 +112,7 @@ extension HomeWritingImageBottomViewController: UICollectionViewDataSource, UICo
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeWritingImageBottomCell.identifier, for: indexPath) as? HomeWritingImageBottomCell else { return UICollectionViewCell() }
+        cell.configureUI(viewModel.state.defaultImageUrls.value[indexPath.row])
         return cell
     }
 

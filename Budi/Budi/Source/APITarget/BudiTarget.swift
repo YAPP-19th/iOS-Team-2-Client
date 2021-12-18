@@ -13,6 +13,7 @@ enum BudiTarget {
     case post(id: Int)
     case teamMembers(id: Int)
     case recruitingStatuses(id: Int)
+    case postDefaultImageUrls
     case applies(accessToken: String, param: AppliesRequest)
 }
 
@@ -27,20 +28,21 @@ extension BudiTarget: TargetType {
         case .post(let id): return "/posts/\(id)"
         case .teamMembers(let id): return "/posts/\(id)/members"
         case .recruitingStatuses(let id): return "/posts/\(id)/recruitingStatus"
+        case .postDefaultImageUrls: return "/infos/postDefaultImageUrls"
         case .applies: return "/applies"
         }
     }
 
     var method: Moya.Method {
         switch self {
-        case .posts, .post, .teamMembers, .recruitingStatuses: return .get
+        case .posts, .post, .teamMembers, .recruitingStatuses, .postDefaultImageUrls: return .get
         case .createPost, .applies: return .post
         }
     }
 
     var task: Task {
         switch self {
-        case .post, .posts, .teamMembers, .recruitingStatuses: return .requestPlain
+        case .post, .posts, .teamMembers, .recruitingStatuses, .postDefaultImageUrls: return .requestPlain
         case .createPost(_, let param): return .requestJSONEncodable(param)
         case .applies(_, let param): return .requestJSONEncodable(param)
         }
@@ -48,7 +50,7 @@ extension BudiTarget: TargetType {
 
     var headers: [String: String]? {
         switch self {
-        case .posts, .post, .teamMembers, .recruitingStatuses: return ["Content-Type": "application/json"]
+        case .posts, .post, .teamMembers, .recruitingStatuses, .postDefaultImageUrls: return ["Content-Type": "application/json"]
         case .createPost(let accessToken, _), .applies(let accessToken, _):
             return ["Content-Type": "application/json", "accessToken": "\(accessToken)"]
         }

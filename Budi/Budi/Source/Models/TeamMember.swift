@@ -1,5 +1,5 @@
 //
-//  Members.swift
+//  TeamMember.swift
 //  Budi
 //
 //  Created by leeesangheee on 2021/12/15.

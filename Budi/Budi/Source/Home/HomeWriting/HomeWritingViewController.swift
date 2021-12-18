@@ -11,6 +11,7 @@ import CombineCocoa
 final class HomeWritingViewController: UIViewController {
 
     @IBOutlet private weak var collectionView: UICollectionView!
+    @IBOutlet private weak var completeButton: UIButton!
     
     private var isStartDate: Bool = true
     

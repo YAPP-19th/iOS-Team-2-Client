@@ -8,7 +8,7 @@
 import Moya
 
 enum BudiTarget {
-    case posts
+    case posts(page: Int = 0, size: Int = 10)
     case createPost(accessToken: String, param: PostRequest)
     case post(id: Int)
     case teamMembers(id: Int)
@@ -48,6 +48,8 @@ extension BudiTarget: TargetType {
         switch self {
         case .createPost(_, let param): return .requestJSONEncodable(param)
         case .applies(_, let param): return .requestJSONEncodable(param)
+        case .posts(let page, let size):
+            return .requestParameters(parameters: ["page": page, "size": size], encoding: URLEncoding.default)
         case .detailPositions(let position):
             return .requestParameters(parameters: ["position": position.stringValue], encoding: URLEncoding.default)
         default: return .requestPlain

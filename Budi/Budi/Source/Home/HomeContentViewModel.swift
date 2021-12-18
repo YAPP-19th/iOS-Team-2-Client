@@ -27,18 +27,17 @@ class HomeContentViewModel: ViewModel {
 
     struct State {
         let posts = CurrentValueSubject<[Post], Never>([])
+        let pageData = CurrentValueSubject<PageData, Never>(PageData())
     }
 
     let action = Action()
     let state = State()
     var title: String { "" }
+    var nextPageisLoading = false
+
     private var cancellables = Set<AnyCancellable>()
 
     init() {
-        action.refresh
-            .sink { [weak self] _ in
-                self?.action.fetch.send(())
-            }.store(in: &cancellables)
     }
 }
 
@@ -54,21 +53,51 @@ final class HomeAllContentViewModel: HomeContentViewModel {
             .sink(receiveValue: { [weak self] _ in
                 guard let self = self else { return }
                     // 추후 페이징 적용
+                let nextPage = self.state.pageData.value.pageNumber + 1
+                if nextPage < self.state.pageData.value.pageSize || nextPage == 0 {
+                    self.provider
+                        .requestPublisher(.posts(page: nextPage))
+                        .map(APIResponse<PostContainer>.self)
+                        .map(\.data)
+                        .sink(receiveCompletion: { [weak self] completion in
+                            // 에러 핸들링
+                            guard case let .failure(error) = completion else { return }
+                            self?.state.posts.send([])
+                            print(error)
+                        }, receiveValue: { [weak self] postContainer in
+
+                                guard let self = self else { return }
+                            self.state.pageData.send(postContainer.pageable)
+                            var newData = self.state.posts.value
+                                newData.append(contentsOf: postContainer.content)
+                            self.state.posts.send(newData)
+                            self.nextPageisLoading = false
+                        }).store(in: &self.cancellables)
+                }
+
+            })
+            .store(in: &cancellables)
+        action.fetch.send(())
+
+        action.refresh
+            .sink(receiveValue: { [weak self] _ in
+                guard let self = self else { return }
+                    // 추후 페이징 적용
                 self.provider
-                    .requestPublisher(.posts)
+                    .requestPublisher(.posts())
                     .map(APIResponse<PostContainer>.self)
-                    .map(\.data.content)
+                    .map(\.data)
                     .sink(receiveCompletion: { [weak self] completion in
                         // 에러 핸들링
                         guard case let .failure(error) = completion else { return }
                         self?.state.posts.send([])
                         print(error)
-                    }, receiveValue: { [weak self] posts in
-                        self?.state.posts.send(posts)
+                    }, receiveValue: { [weak self] postContainer in
+                        self?.state.pageData.send(postContainer.pageable)
+                        self?.state.posts.send(postContainer.content)
                     }).store(in: &self.cancellables)
             })
             .store(in: &cancellables)
-        action.fetch.send(())
     }
 }
 
@@ -85,7 +114,7 @@ final class HomeDeveloperContentViewModel: HomeContentViewModel {
                 guard let self = self else { return }
                     // 추후 페이징 적용
                 self.provider
-                    .requestPublisher(.posts)
+                    .requestPublisher(.posts())
                     .map(APIResponse<PostContainer>.self)
                     .map(\.data.content)
                     .sink(receiveCompletion: { [weak self] completion in
@@ -98,6 +127,7 @@ final class HomeDeveloperContentViewModel: HomeContentViewModel {
                     }).store(in: &self.cancellables)
             })
             .store(in: &cancellables)
+
         action.fetch.send(())
     }
 }
@@ -115,7 +145,7 @@ final class HomeDesignerContentViewModel: HomeContentViewModel {
                 guard let self = self else { return }
                     // 추후 페이징 적용
                 self.provider
-                    .requestPublisher(.posts)
+                    .requestPublisher(.posts())
                     .map(APIResponse<PostContainer>.self)
                     .map(\.data.content)
                     .sink(receiveCompletion: { [weak self] completion in
@@ -145,7 +175,7 @@ final class HomeProductManagerContentViewModel: HomeContentViewModel {
                 guard let self = self else { return }
                     // 추후 페이징 적용
                 self.provider
-                    .requestPublisher(.posts)
+                    .requestPublisher(.posts())
                     .map(APIResponse<PostContainer>.self)
                     .map(\.data.content)
                     .sink(receiveCompletion: { [weak self] completion in

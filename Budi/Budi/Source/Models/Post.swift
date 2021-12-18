@@ -11,7 +11,7 @@ import Moya
 // MARK: - DataClass
 struct PostContainer: Decodable {
     let content: [Post]
-    let pageable: PostPageable
+    let pageable: PageData
     let totalPages, totalElements: Int
     let last: Bool
     let number: Int
@@ -120,7 +120,11 @@ struct Leader: Codable {
 }
 
 // MARK: - Pageable
-struct PostPageable: Codable {
-    let offset, pageNumber, pageSize: Int
-    let paged, unpaged: Bool
+struct PageData: Codable {
+    let pageNumber, pageSize: Int
+
+    init() {
+        pageNumber = -1
+        pageSize = 0
+    }
 }

@@ -89,6 +89,22 @@ class PortfolioViewController: UIViewController {
                 self.saveButton.setTitleColor(UIColor.white, for: .disabled)
             }
             .store(in: &cancellables)
+
+        viewModel.state.editData
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] editData in
+                guard let self = self else { return }
+                guard let editData = editData else { return }
+                self.portfolioTextField.text = editData.portfolioLink
+                guard var data = self.viewModel.state.writedInfoData.value else { return }
+                data.mainName = ""
+                data.startDate = ""
+                data.endDate = ""
+                data.description = ""
+                data.porflioLink = editData.portfolioLink
+                self.viewModel.state.writedInfoData.send(data)
+            }
+            .store(in: &cancellables)
     }
 
     private func keyboardAction() {

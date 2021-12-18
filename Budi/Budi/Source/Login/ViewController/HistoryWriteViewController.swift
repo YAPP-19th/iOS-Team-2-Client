@@ -46,8 +46,6 @@ class HistoryWriteViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         keyboardAction()
-
-        viewModel.action.setSignupInfoData.send(())
         viewModel.state.reUseModalView
             .receive(on: DispatchQueue.main)
             .sink { data in
@@ -71,8 +69,11 @@ class HistoryWriteViewController: UIViewController {
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-
         keyboardAction()
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
     }
 
     init?(coder: NSCoder, viewModel: SignupViewModel) {
@@ -99,10 +100,33 @@ class HistoryWriteViewController: UIViewController {
             .receive(on: DispatchQueue.main)
             .sink { data in
                 guard let data = data else { return }
+                print("이름", data.mainName)
+                print("일한 날짜", data.startDate, data.endDate)
+                print("직책", data.description)
                 self.saveButton.isEnabled = data.mainName.count >= 1 && data.description.count >= 1 && data.startDate.count >= 1 && data.endDate.count >= 1 ? true : false
                 self.saveButton.backgroundColor = data.mainName.count >= 1 && data.description.count >= 1 && data.startDate.count >= 1 && data.endDate.count >= 1 ? UIColor.budiGreen : UIColor.budiGray
                 self.saveButton.setTitleColor(UIColor.white, for: .normal)
                 self.saveButton.setTitleColor(UIColor.white, for: .disabled)
+            }
+            .store(in: &cancellables)
+
+        viewModel.state.editData
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] editData in
+                guard let self = self else { return }
+                guard let editData = editData else { return }
+                print("불러옴", editData)
+                self.mainNameTextField.text = editData.name
+                self.leftDateTextField.text = editData.startDate
+                self.rightDateTextField.text = editData.endDate
+                self.descriptionTextField.text = editData.description
+                guard var data = self.viewModel.state.writedInfoData.value else { return }
+                data.mainName = editData.name
+                data.startDate = editData.startDate
+                data.endDate = editData.endDate
+                data.description = editData.description
+                data.porflioLink = editData.portfolioLink
+                self.viewModel.state.writedInfoData.send(data)
             }
             .store(in: &cancellables)
     }
@@ -133,6 +157,7 @@ class HistoryWriteViewController: UIViewController {
             .receive(on: DispatchQueue.main)
             .sink {
                 self.viewModel.action.fetchSignupInfoData.send(())
+                self.viewModel.state.editData.send(nil)
                 NotificationCenter.default.post(name: Notification.Name("Dismiss"), object: self)
                 self.dismiss(animated: true, completion: nil)
             }

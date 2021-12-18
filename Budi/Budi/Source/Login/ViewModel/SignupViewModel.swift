@@ -22,11 +22,12 @@ final class SignupViewModel: ViewModel {
         let fetchSignupPortfolioData = PassthroughSubject<Void, Never>()
         let appendSectionData = PassthroughSubject<ModalControl, Never>()
         let postCreateInfo = PassthroughSubject<Void, Never>()
-
         let setSignupInfoData = PassthroughSubject<Void, Never>()
         let setSignupPortfolioData = PassthroughSubject<Void, Never>()
         // 포트폴리오 뷰에 사용하는 PassthroughSubject
         let cellSelectIndex = PassthroughSubject<[Int], Never>()
+
+        let loadEditData = PassthroughSubject<Void, Never>()
     }
 
     struct State {
@@ -74,6 +75,8 @@ final class SignupViewModel: ViewModel {
             ])
 
         let selectIndex = CurrentValueSubject<[Int], Never>([])
+
+        let editData = CurrentValueSubject<Item?, Never>(nil)
     }
 
     let action = Action()
@@ -92,6 +95,19 @@ final class SignupViewModel: ViewModel {
         selectCellIndex()
         postCreateInfo()
         setSignupModel()
+
+        action.loadEditData
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in
+                guard let self = self else { return }
+                let section = self.state.selectIndex.value[0]
+                let index = self.state.selectIndex.value[1]
+                print("인덱스", section, index)
+                let data = self.state.sectionData.value[section].items[index]
+                print(data)
+                self.state.editData.send(data)
+            }
+            .store(in: &cancellables)
 
     }
 

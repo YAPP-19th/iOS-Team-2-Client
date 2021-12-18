@@ -86,13 +86,17 @@ class HistoryManagementViewController: UIViewController {
     private func showActionSheet(section: Int, index: Int) {
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
 
-        let edit = UIAlertAction(title: "수정", style: .default, handler: { _ in
+        let edit = UIAlertAction(title: "수정", style: .default, handler: { [weak self] _ in
+            guard let self = self else { return }
+            self.viewModel.action.cellSelectIndex.send([section, index])
+            self.viewModel.action.loadEditData.send(())
+            self.modalViewBackgoundOn()
             if section == 0 {
-                coordinator?.showCareerViewController()
+                self.coordinator?.showCareerViewController()
             } else if section == 1 {
-                coordinator?.showProjectViewController()
+                self.coordinator?.showProjectViewController()
             } else {
-                coordinator?.showPortfolioController()
+                self.coordinator?.showPortfolioController()
             }
         })
         let delete = UIAlertAction(title: "삭제", style: .destructive, handler: { _ in
@@ -160,18 +164,18 @@ extension HistoryManagementViewController: UITableViewDelegate, UITableViewDataS
 
         cell.addButton.tapPublisher
             .sink { [weak self] _ in
+                self?.viewModel.action.cellSelectIndex.send([indexPath.section, indexPath.item])
+                self?.viewModel.action.setSignupInfoData.send(())
+                self?.viewModel.state.editData.send(nil)
                 if indexPath.section == 0 {
                     self?.coordinator?.showCareerViewController()
                     self?.section = indexPath.section
-                    self?.viewModel.action.cellSelectIndex.send([indexPath.section, indexPath.item])
                 } else if indexPath.section == 1 {
                     self?.coordinator?.showProjectViewController()
                     self?.section = indexPath.section
-                    self?.viewModel.action.cellSelectIndex.send([indexPath.section, indexPath.item])
                 } else if indexPath.section == 2 {
                     self?.coordinator?.showPortfolioController()
                     self?.section = indexPath.section
-                    self?.viewModel.action.cellSelectIndex.send([indexPath.section, indexPath.item])
                 }
                 self?.modalViewBackgoundOn()
             }
@@ -179,15 +183,19 @@ extension HistoryManagementViewController: UITableViewDelegate, UITableViewDataS
 
         cell.portfolioMoreButton.tapPublisher
             .receive(on: DispatchQueue.main)
-            .sink { [weak self] _ in
-                self?.showActionSheet(section: indexPath.section, index: indexPath.item)
+            .sink { _ in
+                self.viewModel.action.setSignupInfoData.send(())
+                print("선택 인덱스 ",indexPath.section, indexPath.item)
+                self.showActionSheet(section: indexPath.section, index: indexPath.item)
             }
             .store(in: &cell.cancellables)
 
         cell.moreButton.tapPublisher
             .receive(on: DispatchQueue.main)
-            .sink { [weak self] _ in
-                self?.showActionSheet(section: indexPath.section, index: indexPath.item)
+            .sink { _ in
+                self.viewModel.action.setSignupInfoData.send(())
+                print("선택 인덱스 ", indexPath.section, indexPath.item)
+                self.showActionSheet(section: indexPath.section, index: indexPath.item)
             }
             .store(in: &cell.cancellables)
 

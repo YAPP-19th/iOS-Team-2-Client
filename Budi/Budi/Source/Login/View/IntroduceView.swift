@@ -17,7 +17,7 @@ class IntroduceView: UIView {
         return label
     }()
 
-    private let introTextView: UITextView = {
+    let introTextView: UITextView = {
         let textView = UITextView()
         textView.font = UIFont.systemFont(ofSize: 14)
         textView.layer.borderWidth = 0.5

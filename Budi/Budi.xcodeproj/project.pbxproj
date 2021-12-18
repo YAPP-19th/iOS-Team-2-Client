@@ -76,8 +76,9 @@
 		A81D10CC2765174E0022D610 /* PositionDetailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81D10CB2765174E0022D610 /* PositionDetailCollectionViewCell.swift */; };
 		A82E49DD273111C50068218A /* LoginSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82E49DC273111C50068218A /* LoginSelectViewController.swift */; };
 		A82E49DF273111E50068218A /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82E49DE273111E50068218A /* LoginCoordinator.swift */; };
-		A84F266F276B7CD600C65DA1 /* HistorySectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84F266E276B7CD500C65DA1 /* HistorySectionModel.swift */; };
+		A84F266F276B7CD600C65DA1 /* SignupHistorySectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84F266E276B7CD500C65DA1 /* SignupHistorySectionModel.swift */; };
 		A84F2673276DA9FA00C65DA1 /* SignupInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84F2672276DA9FA00C65DA1 /* SignupInfoModel.swift */; };
+		A84F2675276DE9F200C65DA1 /* SignupPersonalInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84F2674276DE9F200C65DA1 /* SignupPersonalInfo.swift */; };
 		A85325B52746C4580073FAFB /* NaverData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85325B42746C4580073FAFB /* NaverData.swift */; };
 		A85325BB274773F90073FAFB /* SignupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85325BA274773F90073FAFB /* SignupViewModel.swift */; };
 		A85C920B276A35270097E444 /* PortfolioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85C920A276A35260097E444 /* PortfolioViewController.swift */; };
@@ -193,8 +194,9 @@
 		A81D10CB2765174E0022D610 /* PositionDetailCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositionDetailCollectionViewCell.swift; sourceTree = "<group>"; };
 		A82E49DC273111C50068218A /* LoginSelectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSelectViewController.swift; sourceTree = "<group>"; };
 		A82E49DE273111E50068218A /* LoginCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
-		A84F266E276B7CD500C65DA1 /* HistorySectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistorySectionModel.swift; sourceTree = "<group>"; };
+		A84F266E276B7CD500C65DA1 /* SignupHistorySectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupHistorySectionModel.swift; sourceTree = "<group>"; };
 		A84F2672276DA9FA00C65DA1 /* SignupInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupInfoModel.swift; sourceTree = "<group>"; };
+		A84F2674276DE9F200C65DA1 /* SignupPersonalInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupPersonalInfo.swift; sourceTree = "<group>"; };
 		A85325B42746C4580073FAFB /* NaverData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaverData.swift; sourceTree = "<group>"; };
 		A85325BA274773F90073FAFB /* SignupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewModel.swift; sourceTree = "<group>"; };
 		A85C920A276A35260097E444 /* PortfolioViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioViewController.swift; sourceTree = "<group>"; };
@@ -480,8 +482,9 @@
 				B92D5504274C03AA00D0E851 /* Post.swift */,
 				A81D1086276485590022D610 /* WorkHistory.swift */,
 				A85C920C276A42210097E444 /* CreateInfo.swift */,
-				A84F266E276B7CD500C65DA1 /* HistorySectionModel.swift */,
+				A84F266E276B7CD500C65DA1 /* SignupHistorySectionModel.swift */,
 				A84F2672276DA9FA00C65DA1 /* SignupInfoModel.swift */,
+				A84F2674276DE9F200C65DA1 /* SignupPersonalInfo.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -805,7 +808,7 @@
 				A8CD933E2736A93500299AB4 /* UIColor.swift in Sources */,
 				A81D107A276482F90022D610 /* HistoryResultView.swift in Sources */,
 				A8CD93402736ABD300299AB4 /* LocationSelectView.swift in Sources */,
-				A84F266F276B7CD600C65DA1 /* HistorySectionModel.swift in Sources */,
+				A84F266F276B7CD600C65DA1 /* SignupHistorySectionModel.swift in Sources */,
 				A82E49DD273111C50068218A /* LoginSelectViewController.swift in Sources */,
 				A8CD93472737B9AB00299AB4 /* NormalPositionView.swift in Sources */,
 				A82E49DF273111E50068218A /* LoginCoordinator.swift in Sources */,
@@ -878,6 +881,7 @@
 				5E7EFE272732E06F007817C3 /* AlertViewController.swift in Sources */,
 				5E45AD132732F47800F0A80C /* BottomSheetViewController.swift in Sources */,
 				5E24072327522BCE00954BE7 /* alertView.swift in Sources */,
+				A84F2675276DE9F200C65DA1 /* SignupPersonalInfo.swift in Sources */,
 				5EA45370273144C200943C94 /* HomeDetailViewController.swift in Sources */,
 				A81D1084276483060022D610 /* HistoryManagementViewModel.swift in Sources */,
 				A85C920D276A42210097E444 /* CreateInfo.swift in Sources */,

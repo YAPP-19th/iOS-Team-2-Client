@@ -17,7 +17,7 @@ class NickNameView: UIView {
         return label
     }()
 
-    private let nickNameTextField: UITextField = {
+    let nickNameTextField: UITextField = {
         let textField = UITextField(frame: CGRect(x: 0, y: 0, width: 100, height: 40))
         textField.placeholder = "닉네임을 입력하세요"
         textField.font = UIFont.systemFont(ofSize: 14)

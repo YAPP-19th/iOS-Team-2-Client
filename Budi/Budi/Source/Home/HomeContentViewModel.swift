@@ -52,7 +52,6 @@ final class HomeAllContentViewModel: HomeContentViewModel {
         action.fetch
             .sink(receiveValue: { [weak self] _ in
                 guard let self = self else { return }
-                    // 추후 페이징 적용
                 let nextPage = self.state.pageData.value.pageNumber + 1
                 if nextPage < self.state.pageData.value.pageSize || nextPage == 0 {
                     self.provider
@@ -60,7 +59,6 @@ final class HomeAllContentViewModel: HomeContentViewModel {
                         .map(APIResponse<PostContainer>.self)
                         .map(\.data)
                         .sink(receiveCompletion: { [weak self] completion in
-                            // 에러 핸들링
                             guard case let .failure(error) = completion else { return }
                             self?.state.posts.send([])
                             print(error)
@@ -82,19 +80,18 @@ final class HomeAllContentViewModel: HomeContentViewModel {
         action.refresh
             .sink(receiveValue: { [weak self] _ in
                 guard let self = self else { return }
-                    // 추후 페이징 적용
                 self.provider
                     .requestPublisher(.posts())
                     .map(APIResponse<PostContainer>.self)
                     .map(\.data)
                     .sink(receiveCompletion: { [weak self] completion in
-                        // 에러 핸들링
                         guard case let .failure(error) = completion else { return }
                         self?.state.posts.send([])
                         print(error)
                     }, receiveValue: { [weak self] postContainer in
                         self?.state.pageData.send(postContainer.pageable)
                         self?.state.posts.send(postContainer.content)
+                        self?.nextPageisLoading = false
                     }).store(in: &self.cancellables)
             })
             .store(in: &cancellables)
@@ -112,23 +109,49 @@ final class HomeDeveloperContentViewModel: HomeContentViewModel {
         action.fetch
             .sink(receiveValue: { [weak self] _ in
                 guard let self = self else { return }
-                    // 추후 페이징 적용
+                let nextPage = self.state.pageData.value.pageNumber + 1
+                if nextPage < self.state.pageData.value.pageSize || nextPage == 0 {
+                    self.provider
+                        .requestPublisher(.filteredPosts(type: .developer, page: nextPage))
+                        .map(APIResponse<PostContainer>.self)
+                        .map(\.data)
+                        .sink(receiveCompletion: { [weak self] completion in
+                            guard case let .failure(error) = completion else { return }
+                            self?.state.posts.send([])
+                            print(error)
+                        }, receiveValue: { [weak self] postContainer in
+
+                                guard let self = self else { return }
+                            self.state.pageData.send(postContainer.pageable)
+                            var newData = self.state.posts.value
+                                newData.append(contentsOf: postContainer.content)
+                            self.state.posts.send(newData)
+                            self.nextPageisLoading = false
+                        }).store(in: &self.cancellables)
+                }
+
+            })
+            .store(in: &cancellables)
+        action.fetch.send(())
+
+        action.refresh
+            .sink(receiveValue: { [weak self] _ in
+                guard let self = self else { return }
                 self.provider
-                    .requestPublisher(.posts())
+                    .requestPublisher(.filteredPosts(type: .developer))
                     .map(APIResponse<PostContainer>.self)
-                    .map(\.data.content)
+                    .map(\.data)
                     .sink(receiveCompletion: { [weak self] completion in
-                        // 에러 핸들링
                         guard case let .failure(error) = completion else { return }
                         self?.state.posts.send([])
                         print(error)
-                    }, receiveValue: { [weak self] posts in
-                        self?.state.posts.send(posts)
+                    }, receiveValue: { [weak self] postContainer in
+                        self?.state.pageData.send(postContainer.pageable)
+                        self?.state.posts.send(postContainer.content)
+                        self?.nextPageisLoading = false
                     }).store(in: &self.cancellables)
             })
             .store(in: &cancellables)
-
-        action.fetch.send(())
     }
 }
 
@@ -143,22 +166,49 @@ final class HomeDesignerContentViewModel: HomeContentViewModel {
         action.fetch
             .sink(receiveValue: { [weak self] _ in
                 guard let self = self else { return }
-                    // 추후 페이징 적용
-                self.provider
-                    .requestPublisher(.posts())
-                    .map(APIResponse<PostContainer>.self)
-                    .map(\.data.content)
-                    .sink(receiveCompletion: { [weak self] completion in
-                        // 에러 핸들링
-                        guard case let .failure(error) = completion else { return }
-                        self?.state.posts.send([])
-                        print(error)
-                    }, receiveValue: { [weak self] posts in
-                        self?.state.posts.send(posts)
-                    }).store(in: &self.cancellables)
+                let nextPage = self.state.pageData.value.pageNumber + 1
+                if nextPage < self.state.pageData.value.pageSize || nextPage == 0 {
+                    self.provider
+                        .requestPublisher(.filteredPosts(type: .designer, page: nextPage))
+                        .map(APIResponse<PostContainer>.self)
+                        .map(\.data)
+                        .sink(receiveCompletion: { [weak self] completion in
+                            guard case let .failure(error) = completion else { return }
+                            self?.state.posts.send([])
+                            print(error)
+                        }, receiveValue: { [weak self] postContainer in
+
+                                guard let self = self else { return }
+                            self.state.pageData.send(postContainer.pageable)
+                            var newData = self.state.posts.value
+                                newData.append(contentsOf: postContainer.content)
+                            self.state.posts.send(newData)
+                            self.nextPageisLoading = false
+                        }).store(in: &self.cancellables)
+                }
+
             })
             .store(in: &cancellables)
         action.fetch.send(())
+
+        action.refresh
+            .sink(receiveValue: { [weak self] _ in
+                guard let self = self else { return }
+                self.provider
+                    .requestPublisher(.filteredPosts(type: .designer))
+                    .map(APIResponse<PostContainer>.self)
+                    .map(\.data)
+                    .sink(receiveCompletion: { [weak self] completion in
+                        guard case let .failure(error) = completion else { return }
+                        self?.state.posts.send([])
+                        print(error)
+                    }, receiveValue: { [weak self] postContainer in
+                        self?.state.pageData.send(postContainer.pageable)
+                        self?.state.posts.send(postContainer.content)
+                        self?.nextPageisLoading = false
+                    }).store(in: &self.cancellables)
+            })
+            .store(in: &cancellables)
     }
 }
 
@@ -173,21 +223,48 @@ final class HomeProductManagerContentViewModel: HomeContentViewModel {
         action.fetch
             .sink(receiveValue: { [weak self] _ in
                 guard let self = self else { return }
-                    // 추후 페이징 적용
-                self.provider
-                    .requestPublisher(.posts())
-                    .map(APIResponse<PostContainer>.self)
-                    .map(\.data.content)
-                    .sink(receiveCompletion: { [weak self] completion in
-                        // 에러 핸들링
-                        guard case let .failure(error) = completion else { return }
-                        self?.state.posts.send([])
-                        print(error)
-                    }, receiveValue: { [weak self] posts in
-                        self?.state.posts.send(posts)
-                    }).store(in: &self.cancellables)
+                let nextPage = self.state.pageData.value.pageNumber + 1
+                if nextPage < self.state.pageData.value.pageSize || nextPage == 0 {
+                    self.provider
+                        .requestPublisher(.filteredPosts(type: .productManager, page: nextPage))
+                        .map(APIResponse<PostContainer>.self)
+                        .map(\.data)
+                        .sink(receiveCompletion: { [weak self] completion in
+                            guard case let .failure(error) = completion else { return }
+                            self?.state.posts.send([])
+                            print(error)
+                        }, receiveValue: { [weak self] postContainer in
+
+                                guard let self = self else { return }
+                            self.state.pageData.send(postContainer.pageable)
+                            var newData = self.state.posts.value
+                                newData.append(contentsOf: postContainer.content)
+                            self.state.posts.send(newData)
+                            self.nextPageisLoading = false
+                        }).store(in: &self.cancellables)
+                }
+
             })
             .store(in: &cancellables)
         action.fetch.send(())
+
+        action.refresh
+            .sink(receiveValue: { [weak self] _ in
+                guard let self = self else { return }
+                self.provider
+                    .requestPublisher(.filteredPosts(type:  .productManager))
+                    .map(APIResponse<PostContainer>.self)
+                    .map(\.data)
+                    .sink(receiveCompletion: { [weak self] completion in
+                        guard case let .failure(error) = completion else { return }
+                        self?.state.posts.send([])
+                        print(error)
+                    }, receiveValue: { [weak self] postContainer in
+                        self?.state.pageData.send(postContainer.pageable)
+                        self?.state.posts.send(postContainer.content)
+                        self?.nextPageisLoading = false
+                    }).store(in: &self.cancellables)
+            })
+            .store(in: &cancellables)
     }
 }

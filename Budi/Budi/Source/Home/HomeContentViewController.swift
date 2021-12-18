@@ -98,6 +98,7 @@ extension HomeContentViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeCell.identifier, for: indexPath) as? HomeCell else { return UICollectionViewCell() }
         let post = viewModel.state.posts.value[indexPath.item]
+        
         cell.updateUI(post)
 
         return cell

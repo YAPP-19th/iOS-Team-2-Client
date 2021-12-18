@@ -20,16 +20,19 @@ final class DefaultTableViewCell: UITableViewCell {
     @IBOutlet weak var addButton: UIButton!
     @IBOutlet weak var moreButton: UIButton!
     
+    @IBOutlet weak var portfolioLinkLabel: UILabel!
+    @IBOutlet weak var portfolioView: UIView!
     override func prepareForReuse() {
         super.prepareForReuse()
         selectView.isHidden = true
-
+        portfolioView.isHidden = true
         cancellables.removeAll()
     }
 
     override func awakeFromNib() {
 
         super.awakeFromNib()
+        portfolioView.isHidden = true
         selectView.isHidden = true
     }
 
@@ -45,6 +48,11 @@ final class DefaultTableViewCell: UITableViewCell {
         selectDayLabel.text = date
         selectTeamLabel.text = sub
         self.bringSubviewToFront(moreButton)
+    }
+
+    func configurePortfolioLabel(link: String) {
+        portfolioView.isHidden = false
+        portfolioLinkLabel.text = link
     }
 
     func configureButtonTitle(title: String) {

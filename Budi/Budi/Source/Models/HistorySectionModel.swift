@@ -19,6 +19,7 @@ struct Item {
     var endDate: String
     var name: String
     var startDate: String
+    var portfolioLink: String
 }
 
 struct ItemInfo {

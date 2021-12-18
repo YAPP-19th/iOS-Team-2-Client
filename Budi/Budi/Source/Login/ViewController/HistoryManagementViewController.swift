@@ -33,13 +33,14 @@ class HistoryManagementViewController: UIViewController {
         self.addBackButton()
         configureLayout()
         bindViewModel()
+        viewModel.action.postCreateInfo.send(())
     }
 
     private func bindViewModel() {
         viewModel.state.sectionData
             .receive(on: DispatchQueue.main)
             .sink { _ in
-                self.tableView.reloadSections(IndexSet(self.section...self.section), with: .none)
+                self.tableView.reloadData()
             }
             .store(in: &cancellables)
 
@@ -131,7 +132,7 @@ extension HistoryManagementViewController: UITableViewDelegate, UITableViewDataS
                 print(select)
                 self?.section = section
             }
-            .store(in: &cancellables)
+            .store(in: &header.cancellables)
 
         return header
     }
@@ -142,7 +143,11 @@ extension HistoryManagementViewController: UITableViewDelegate, UITableViewDataS
         let data = viewModel.state.sectionData.value[indexPath.section].items[indexPath.row]
         print(data)
         if data.itemInfo.isInclude {
-            cell.configureLabel(main: data.name, date: data.startDate + " ~ " + data.endDate, sub: data.description)
+            if data.portfolioLink.count >= 1 {
+                cell.configurePortfolioLabel(link: data.portfolioLink)
+            } else {
+                cell.configureLabel(main: data.name, date: data.startDate + " ~ " + data.endDate, sub: data.description)
+            }
         } else {
             cell.configureButtonTitle(title: data.itemInfo.buttonTitle)
         }
@@ -170,17 +175,17 @@ extension HistoryManagementViewController: UITableViewDelegate, UITableViewDataS
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
                 if indexPath.section == 0 {
-                    print(indexPath.section, indexPath.row , indexPath.item)
+                    print(indexPath.section, indexPath.row, indexPath.item)
                     self?.showActionSheet(section: indexPath.section, index: indexPath.item)
                 } else if indexPath.section == 1 {
-                    print(indexPath.section, indexPath.row , indexPath.item)
+                    print(indexPath.section, indexPath.row, indexPath.item)
                     self?.showActionSheet(section: indexPath.section, index: indexPath.item)
                 } else if indexPath.section == 2 {
-                    print(indexPath.section, indexPath.row , indexPath.item)
+                    print(indexPath.section, indexPath.row, indexPath.item)
                     self?.showActionSheet(section: indexPath.section, index: indexPath.item)
                 }
             }
-            .store(in: &cancellables)
+            .store(in: &cell.cancellables)
 
         return cell
     }

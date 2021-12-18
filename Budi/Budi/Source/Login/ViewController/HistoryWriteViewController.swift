@@ -46,6 +46,8 @@ class HistoryWriteViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         keyboardAction()
+
+        viewModel.action.setSignupInfoData.send(())
         viewModel.state.reUseModalView
             .receive(on: DispatchQueue.main)
             .sink { data in
@@ -69,6 +71,7 @@ class HistoryWriteViewController: UIViewController {
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+
         keyboardAction()
     }
 
@@ -85,51 +88,53 @@ class HistoryWriteViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .clear
         self.addBackButton()
+        bindViewModel()
         configureLayout()
         setButtonAction()
         dismissAction()
     }
 
+    private func bindViewModel() {
+        viewModel.state.writedInfoData
+            .receive(on: DispatchQueue.main)
+            .sink { data in
+                guard let data = data else { return }
+                self.saveButton.isEnabled = data.mainName.count >= 1 && data.description.count >= 1 && data.startDate.count >= 1 && data.endDate.count >= 1 ? true : false
+                self.saveButton.backgroundColor = data.mainName.count >= 1 && data.description.count >= 1 && data.startDate.count >= 1 && data.endDate.count >= 1 ? UIColor.budiGreen : UIColor.budiGray
+                self.saveButton.setTitleColor(UIColor.white, for: .normal)
+                self.saveButton.setTitleColor(UIColor.white, for: .disabled)
+            }
+            .store(in: &cancellables)
+    }
+
     private func setButtonAction() {
 
         mainNameTextField.textPublisher
-            .receive(on: DispatchQueue.global())
+            .receive(on: DispatchQueue.main)
             .sink { [weak self] text in
                 guard let text = text else { return }
-                self?.viewModel.action.firstReuseTextField.send(text)
+                guard var data = self?.viewModel.state.writedInfoData.value else { return }
+                data.mainName = text
+                self?.viewModel.state.writedInfoData.send(data)
             }
             .store(in: &cancellables)
 
         descriptionTextField.textPublisher
-            .receive(on: DispatchQueue.global())
+            .receive(on: DispatchQueue.main)
             .sink { [weak self] text in
                 guard let text = text else { return }
-                self?.viewModel.action.secondReuseTextField.send(text)
+                guard var data = self?.viewModel.state.writedInfoData.value else { return }
+                data.description = text
+                self?.viewModel.state.writedInfoData.send(data)
             }
             .store(in: &cancellables)
 
         saveButton.tapPublisher
-            .receive(on: RunLoop.main)
+            .receive(on: DispatchQueue.main)
             .sink {
-                self.viewModel.action.fetchSectionData.send(())
+                self.viewModel.action.fetchSignupInfoData.send(())
                 NotificationCenter.default.post(name: Notification.Name("Dismiss"), object: self)
                 self.dismiss(animated: true, completion: nil)
-            }
-            .store(in: &cancellables)
-
-        viewModel.careerIsInvalid
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] enabled in
-                print(enabled)
-                if enabled {
-                    self?.saveButton.isEnabled = true
-                    self?.saveButton.backgroundColor = UIColor.budiGreen
-                    self?.saveButton.setTitleColor(UIColor.white, for: .normal)
-                } else {
-                    self?.saveButton.isEnabled = false
-                    self?.saveButton.backgroundColor = UIColor.budiGray
-                    self?.saveButton.setTitleColor(UIColor.white, for: .disabled)
-                }
             }
             .store(in: &cancellables)
 
@@ -154,21 +159,25 @@ class HistoryWriteViewController: UIViewController {
 
         leftDatePicker.datePublisher
             .receive(on: DispatchQueue.main)
-            .sink { date in
-                let text = self.dateFormatter(date)
-                self.leftDateTextField?.text = text
-                self.noSwitchLeftDateTextField?.text = text
-                self.viewModel.action.leftDatePicker.send(text)
+            .sink { [weak self] date in
+                guard let text = self?.dateFormatter(date) else { return }
+                self?.leftDateTextField?.text = text
+                self?.noSwitchLeftDateTextField?.text = text
+                guard var data = self?.viewModel.state.writedInfoData.value else { return }
+                data.startDate = text
+                self?.viewModel.state.writedInfoData.send(data)
             }
             .store(in: &cancellables)
 
         rightDatePicker.datePublisher
             .receive(on: DispatchQueue.main)
-            .sink { date in
-                let text = self.dateFormatter(date)
-                self.rightDateTextField?.text = text
-                self.noSwitchRightDateTextField?.text = text
-                self.viewModel.action.rightDatePicker.send(text)
+            .sink { [weak self] date in
+                guard let text = self?.dateFormatter(date) else { return }
+                self?.rightDateTextField?.text = text
+                self?.noSwitchRightDateTextField?.text = text
+                guard var data = self?.viewModel.state.writedInfoData.value else { return }
+                data.endDate = text
+                self?.viewModel.state.writedInfoData.send(data)
             }
             .store(in: &cancellables)
 
@@ -193,7 +202,6 @@ class HistoryWriteViewController: UIViewController {
         rightDateTextField.inputView = rightDatePicker
         noSwitchLeftDateTextField.inputView = leftDatePicker
         noSwitchRightDateTextField.inputView = rightDatePicker
-
         let toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 44))
         let cancel = UIBarButtonItem(title: "닫기", style: .plain, target: nil, action: #selector(tapCancel))
         toolBar.setItems([cancel], animated: true)
@@ -201,8 +209,9 @@ class HistoryWriteViewController: UIViewController {
         rightDateTextField.inputAccessoryView = toolBar
         noSwitchLeftDateTextField.inputAccessoryView = toolBar
         noSwitchRightDateTextField.inputAccessoryView = toolBar
-        leftDateTextField.text = ""
-        rightDateTextField.text = ""
+
+        leftDateTextField.text = " "
+        rightDateTextField.text = " "
     }
 
     @objc

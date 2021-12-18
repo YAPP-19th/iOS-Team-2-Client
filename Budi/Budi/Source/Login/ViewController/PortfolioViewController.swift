@@ -37,6 +37,7 @@ class PortfolioViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        viewModel.action.setSignupInfoData.send(())
         keyboardAction()
     }
 
@@ -58,14 +59,18 @@ class PortfolioViewController: UIViewController {
             .receive(on: DispatchQueue.global())
             .sink { [weak self] text in
                 guard let text = text else { return }
-                self?.viewModel.action.porfolioTextField.send(text)
+                guard var data = self?.viewModel.state.writedInfoData.value else { return }
+                print(data.porflioLink)
+                print(data.mainName)
+                data.porflioLink = text
+                self?.viewModel.state.writedInfoData.send(data)
             }
             .store(in: &cancellables)
 
         saveButton.tapPublisher
             .receive(on: RunLoop.main)
             .sink { [weak self] _ in
-                self?.viewModel.action.fetchSectionData.send(())
+                self?.viewModel.action.fetchSignupInfoData.send(())
                 NotificationCenter.default.post(name: Notification.Name("Dismiss"), object: self)
                 self?.dismiss(animated: true, completion: nil)
             }
@@ -73,18 +78,15 @@ class PortfolioViewController: UIViewController {
     }
 
     private func bindViewModel() {
-        viewModel.portInvalid
+        viewModel.state.writedInfoData
             .receive(on: DispatchQueue.main)
-            .sink { [weak self] enabled in
-                if enabled {
-                    self?.saveButton.backgroundColor = UIColor.budiGreen
-                    self?.saveButton.setTitleColor(UIColor.white, for: .normal)
-                    self?.saveButton.isEnabled = true
-                } else {
-                    self?.saveButton.backgroundColor = UIColor.budiGray
-                    self?.saveButton.setTitleColor(UIColor.white, for: .disabled)
-                    self?.saveButton.isEnabled = false
-                }
+            .sink { [weak self] data in
+                guard let self = self else { return }
+                guard let data = data else { return }
+                self.saveButton.isEnabled = data.porflioLink.count >= 1 ? true : false
+                self.saveButton.backgroundColor = data.porflioLink.count >= 1 ? UIColor.budiGreen : UIColor.budiGray
+                self.saveButton.setTitleColor(UIColor.white, for: .normal)
+                self.saveButton.setTitleColor(UIColor.white, for: .disabled)
             }
             .store(in: &cancellables)
     }

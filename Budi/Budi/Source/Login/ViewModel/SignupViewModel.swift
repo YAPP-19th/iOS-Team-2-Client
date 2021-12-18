@@ -18,18 +18,14 @@ final class SignupViewModel: ViewModel {
         let positionFetch = PassthroughSubject<Position, Never>()
         let selectPositionSave = PassthroughSubject<[String], Never>()
         let switchView = PassthroughSubject<ModalControl, Never>()
-        let fetchSectionData = PassthroughSubject<Void, Never>()
+        let fetchSignupInfoData = PassthroughSubject<Void, Never>()
+        let fetchSignupPortfolioData = PassthroughSubject<Void, Never>()
         let appendSectionData = PassthroughSubject<ModalControl, Never>()
         let postCreateInfo = PassthroughSubject<Void, Never>()
-        // 경력, 프로젝트 이력 뷰에 사용하는 PassthroughSubject
-        let firstReuseTextField = PassthroughSubject<String, Never>()
-        let leftDatePicker = PassthroughSubject<String, Never>()
-        let rightDatePicker = PassthroughSubject<String, Never>()
-        let secondReuseTextField = PassthroughSubject<String, Never>()
-
+        let setSignupInfoData = PassthroughSubject<Void, Never>()
+        let setSignupPortfolioData = PassthroughSubject<Void, Never>()
         // 포트폴리오 뷰에 사용하는 PassthroughSubject
         let porfolioTextField = PassthroughSubject<String, Never>()
-
         let cellSelectIndex = PassthroughSubject<[Int], Never>()
     }
 
@@ -37,7 +33,7 @@ final class SignupViewModel: ViewModel {
         // 네이버 로그인 시 정보 저장
         let naverData = CurrentValueSubject<NaverData?, Never>(nil)
         // Budi 서버 로그인 정보 저장
-        let budiLoginUserData = CurrentValueSubject<BudiLoginResponse?, Never>(nil)
+        let budiLoginUserData = CurrentValueSubject<String?, Never>(nil)
         // Budi 서버 포지션 선택 대응 정보 저장
         let positionData = CurrentValueSubject<[String]?, Never>(nil)
         // 앱 내 포지션 선택 정보 저장
@@ -45,11 +41,12 @@ final class SignupViewModel: ViewModel {
         // 이력 관리 선택한 뷰 관리 (경력, 프로젝트 이력 뷰)
         let reUseModalView = CurrentValueSubject<ModalControl?, Never>(nil)
 
-        let firstString = CurrentValueSubject<String, Never>("")
-        let leftDateString = CurrentValueSubject<String, Never>("")
-        let rightDateString = CurrentValueSubject<String, Never>("")
-        let secondString = CurrentValueSubject<String, Never>("")
-        let portfolioString = CurrentValueSubject<String, Never>("")
+        let writedInfoData = CurrentValueSubject<SignupInfoModel?, Never>(
+            SignupInfoModel(mainName: "", startDate: "", endDate: "", description: "", porflioLink: "")
+        )
+        let writedPortfolioData = CurrentValueSubject<SignupInfoModel, Never>(
+            SignupInfoModel(mainName: "", startDate: "", endDate: "", description: "", porflioLink: "")
+        )
 
         let sectionData = CurrentValueSubject<[HistorySectionModel], Never>(
             [
@@ -58,7 +55,7 @@ final class SignupViewModel: ViewModel {
                     sectionTitle: ModalControl.career.stringValue ,
                     items: [
                         Item(itemInfo: ItemInfo(isInclude: false, buttonTitle: "경력을 추가해보세요"),
-                             description: "", endDate: "", name: "", startDate: "")
+                             description: "", endDate: "", name: "", startDate: "", portfolioLink: "")
                     ]),
 
                 HistorySectionModel.init(
@@ -66,14 +63,14 @@ final class SignupViewModel: ViewModel {
                     sectionTitle: ModalControl.project.stringValue ,
                     items: [
                         Item(itemInfo: ItemInfo(isInclude: false, buttonTitle: "프로젝트 이력을 추가해보세요"),
-                             description: "", endDate: "", name: "", startDate: "")]),
+                             description: "", endDate: "", name: "", startDate: "", portfolioLink: "")]),
 
                 HistorySectionModel.init(
                     type: .portfolio,
                     sectionTitle: ModalControl.portfolio.stringValue ,
                     items: [
                         Item(itemInfo: ItemInfo(isInclude: false, buttonTitle: "포트폴리오를 추가해보세요"),
-                             description: "", endDate: "", name: "", startDate: "")])
+                             description: "", endDate: "", name: "", startDate: "", portfolioLink: "")])
             ])
 
         let selectIndex = CurrentValueSubject<[Int], Never>([])
@@ -86,21 +83,26 @@ final class SignupViewModel: ViewModel {
     private let provider = MoyaProvider<BudiTarget>()
     let loginInstance = NaverThirdPartyLoginConnection.getSharedInstance()
 
-    private(set) lazy var careerIsInvalid = Publishers.CombineLatest4(action.firstReuseTextField, action.leftDatePicker, action.rightDatePicker, action.secondReuseTextField)
-        .map { $0.0.count >= 1 && $0.1.count >= 1 && $0.2.count >= 1 && $0.3.count >= 1 ? true : false}
-        .eraseToAnyPublisher()
-
-    private(set) lazy var portInvalid = action.porfolioTextField.map { $0.count >= 1 ? true : false }
-        .eraseToAnyPublisher()
-
     init() {
         getNaverInfo()
         getPositions()
         switchView()
-        loadTextFields()
         fetchSectionData()
         appendSectionData()
         selectCellIndex()
+        postCreateInfo()
+        setSignupModel()
+
+    }
+
+    func setSignupModel() {
+        action.setSignupInfoData
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in
+                guard let self = self else { return }
+                self.state.writedInfoData.send(SignupInfoModel(mainName: "", startDate: "", endDate: "", description: "", porflioLink: ""))
+            }
+            .store(in: &cancellables)
     }
 
     func selectCellIndex() {
@@ -126,7 +128,7 @@ final class SignupViewModel: ViewModel {
                     var oldValue = self.state.sectionData.value
                     var selectItems = self.state.sectionData.value[index].items
 
-                    let item = Item(itemInfo: ItemInfo(isInclude: false, buttonTitle: "경력을 추가해보세요"), description: "", endDate: "", name: "", startDate: "")
+                    let item = Item(itemInfo: ItemInfo(isInclude: false, buttonTitle: "경력을 추가해보세요"), description: "", endDate: "", name: "", startDate: "", portfolioLink: "")
                     selectItems.insert(item, at: selectItems.count)
                     oldValue[index].items = selectItems
                     self.state.sectionData.send(oldValue)
@@ -138,7 +140,7 @@ final class SignupViewModel: ViewModel {
                     var oldValue = self.state.sectionData.value
                     var selectItems = self.state.sectionData.value[index].items
 
-                    let item = Item(itemInfo: ItemInfo(isInclude: false, buttonTitle: "프로젝트 이력을 추가해보세요"), description: "", endDate: "", name: "", startDate: "")
+                    let item = Item(itemInfo: ItemInfo(isInclude: false, buttonTitle: "프로젝트 이력을 추가해보세요"), description: "", endDate: "", name: "", startDate: "", portfolioLink: "")
 
                     selectItems.insert(item, at: selectItems.count)
                     oldValue[index].items = selectItems
@@ -151,7 +153,7 @@ final class SignupViewModel: ViewModel {
                     var oldValue = self.state.sectionData.value
                     var selectItems = self.state.sectionData.value[index].items
 
-                    let item = Item(itemInfo: ItemInfo(isInclude: false, buttonTitle: "포트폴리오를 추가해보세요"), description: "", endDate: "", name: "", startDate: "")
+                    let item = Item(itemInfo: ItemInfo(isInclude: false, buttonTitle: "포트폴리오를 추가해보세요"), description: "", endDate: "", name: "", startDate: "", portfolioLink: "")
 
                     selectItems.insert(item, at: selectItems.count)
                     oldValue[index].items = selectItems
@@ -164,7 +166,7 @@ final class SignupViewModel: ViewModel {
 
     // MARK: - 이력관리 저장 viewModel
     func fetchSectionData() {
-        action.fetchSectionData
+        action.fetchSignupInfoData
             .receive(on: DispatchQueue.main)
             .sink {
                 let section = self.state.selectIndex.value[0]
@@ -172,53 +174,16 @@ final class SignupViewModel: ViewModel {
 
                 var oldData = self.state.sectionData.value
                 var changeData = self.state.sectionData.value[section].items[index]
-
+                guard let data = self.state.writedInfoData.value else { return }
                 changeData.itemInfo.isInclude = true
-                changeData.name = self.state.firstString.value
-                changeData.startDate = self.state.leftDateString.value
-                changeData.endDate = self.state.rightDateString.value
-                changeData.description = self.state.secondString.value
-                print(oldData)
+                changeData.name = data.mainName
+                changeData.startDate = data.startDate
+                changeData.endDate = data.endDate
+                changeData.description = data.description
+                changeData.portfolioLink = data.porflioLink
+                print("저장할 때", changeData.name, changeData.portfolioLink)
                 oldData[section].items[index] = changeData
                 self.state.sectionData.send(oldData)
-            }
-            .store(in: &cancellables)
-    }
-
-    // MARK: - TextField View Models
-    func loadTextFields() {
-        action.firstReuseTextField
-            .receive(on: DispatchQueue.global())
-            .sink { text in
-                self.state.firstString.send(text)
-            }
-            .store(in: &cancellables)
-
-        action.leftDatePicker
-            .receive(on: DispatchQueue.global())
-            .sink { text in
-                self.state.leftDateString.send(text)
-            }
-            .store(in: &cancellables)
-
-        action.rightDatePicker
-            .receive(on: DispatchQueue.global())
-            .sink { text in
-                self.state.rightDateString.send(text)
-            }
-            .store(in: &cancellables)
-
-        action.secondReuseTextField
-            .receive(on: DispatchQueue.global())
-            .sink { text in
-                self.state.secondString.send(text)
-            }
-            .store(in: &cancellables)
-
-        action.porfolioTextField
-            .receive(on: DispatchQueue.global())
-            .sink { text in
-                self.state.portfolioString.send(text)
             }
             .store(in: &cancellables)
     }
@@ -258,7 +223,8 @@ final class SignupViewModel: ViewModel {
         action.postCreateInfo
             .sink(receiveValue: { [weak self] _ in
                 guard let self = self else { return }
-                let accsessToken = self.state.budiLoginUserData.value?.accessToken
+                let accsessToken = self.state.budiLoginUserData.value
+                print("엑세스", accsessToken)
                 let careerList = self.state.sectionData.value[0].items
                 let param = CreateInfo(
                     basePosition: 0,
@@ -280,8 +246,17 @@ final class SignupViewModel: ViewModel {
                     projectList: [TList(tListDescription: "", endDate: "", name: "", startDate: "")]
                 )
 
-                //provider.request(.c, completion: <#T##Completion##Completion##(_ result: Result<Response, MoyaError>) -> Void#>)
+                self.provider.requestPublisher(.createInfo(acessToken: accsessToken ?? "nil", param: param), callbackQueue: .global())
+                    .sink(receiveCompletion: { [weak self] completion in
+                        guard case let .failure(error) = completion else { return }
+                        self?.state.positionData.send(nil)
+                        print("에러", error.localizedDescription)
+                    }, receiveValue: {  post in
+                        print("dsfds", post)
+                    })
+                    .store(in: &self.cancellables)
             })
+            .store(in: &cancellables)
     }
 
     // MARK: - 네이버 로그인 viewModel
@@ -358,7 +333,8 @@ final class SignupViewModel: ViewModel {
                     do {
                         // 서버에 로그인 시도 하고 받은 데이터
                         let decodeData = try JSONDecoder().decode(APIResponse<BudiLoginResponse>.self, from: data)
-                        self.state.budiLoginUserData.send(decodeData.data)
+                        self.state.budiLoginUserData.send(decodeData.data.userId)
+                        print("로그인 데이터 :", self.state.budiLoginUserData.value)
                         print("로그인 유저 아이디 :", decodeData.data.userId)
                         print("로그인 고유 토큰 :", decodeData.data.accessToken)
                     } catch {

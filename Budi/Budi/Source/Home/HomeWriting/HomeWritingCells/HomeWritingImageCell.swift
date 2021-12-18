@@ -6,32 +6,18 @@
 //
 
 import UIKit
-import Combine
-import CombineCocoa
-
-protocol HomeWritingImageCellDelegate: AnyObject {
-    func showWritingImageBottomView()
-}
 
 final class HomeWritingImageCell: UICollectionViewCell {
 
-    @IBOutlet private weak var imageChangeButton: UIButton!
-    
-    weak var delegate: HomeWritingImageCellDelegate?
-    private var cancellables = Set<AnyCancellable>()
-    
+    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var imageChangeButton: UIButton!
+        
     override func awakeFromNib() {
         super.awakeFromNib()
-        setPublisher()
     }
-}
-
-private extension HomeWritingImageCell {
-    func setPublisher() {
-        imageChangeButton.tapPublisher
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] _ in
-                self?.delegate?.showWritingImageBottomView()
-            }.store(in: &cancellables)
+    
+    func configureUI(_ urlString: String) {
+        guard let url = URL(string: urlString), let data = try? Data(contentsOf: url) else { return }
+        imageView.image = UIImage(data: data)
     }
 }

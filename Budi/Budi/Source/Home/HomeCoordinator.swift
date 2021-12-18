@@ -48,6 +48,7 @@ extension HomeCoordinator {
         let viewController: HomeWritingImageBottomViewController = HomeWritingImageBottomViewController(nibName: HomeWritingImageBottomViewController.identifier, bundle: nil, viewModel: viewModel)
         viewController.modalPresentationStyle = .overCurrentContext
         viewController.coordinator = self
+        viewController.delegate = vc as? HomeWritingImageBottomViewControllerDelegate
         vc.present(viewController, animated: false, completion: nil)
     }
     

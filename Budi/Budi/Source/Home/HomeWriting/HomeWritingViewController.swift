@@ -44,9 +44,11 @@ private extension HomeWritingViewController {
 }
 
 // MARK: - Delegate
-extension HomeWritingViewController: HomeWritingImageCellDelegate {
-    func showWritingImageBottomView() {
-        coordinator?.showWritingImageBottomViewController(self, viewModel)
+extension HomeWritingViewController: HomeWritingImageBottomViewControllerDelegate {
+    func getImageUrlString(_ urlString: String) {
+        print("urlString is \(urlString)")
+        viewModel.state.selectedImageUrl.value = urlString
+        collectionView.reloadData()
     }
 }
 
@@ -108,15 +110,53 @@ extension HomeWritingViewController: UICollectionViewDataSource, UICollectionVie
         HomeWritingCellType.numberOfItemsInSection
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        HomeWritingCellType.configureCell(self, collectionView, indexPath)
-    }
-    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         HomeWritingCellType.configureCellSize(collectionView, indexPath)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         HomeWritingCellType.minimumLineSpacingForSection
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = UICollectionViewCell()
+
+        switch indexPath.row {
+        case 0: guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeWritingImageCell.identifier, for: indexPath) as? HomeWritingImageCell else { return cell }
+            if let url = viewModel.state.selectedImageUrl.value {
+                cell.configureUI(url)
+            }
+            cell.imageChangeButton.tapPublisher
+                .receive(on: DispatchQueue.main)
+                .sink { [weak self] _ in
+                    guard let self = self else { return }
+                    self.coordinator?.showWritingImageBottomViewController(self, self.viewModel)
+                }.store(in: &cancellables)
+            return cell
+        case 1: guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeWritingNameCell.identifier, for: indexPath) as? HomeWritingNameCell else { return cell }
+            cell.delegate = self
+            return cell
+        case 2: guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeWritingPartCell.identifier, for: indexPath) as? HomeWritingPartCell else { return cell }
+            cell.delegate = self
+            return cell
+        case 3: guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeWritingDurationCell.identifier, for: indexPath) as? HomeWritingDurationCell else { return cell }
+            cell.delegate = self
+            return cell
+        case 4: guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeWritingOnlineCell.identifier, for: indexPath) as? HomeWritingOnlineCell else { return cell }
+            cell.delegate = self
+            return cell
+        case 5: guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeWritingAreaCell.identifier, for: indexPath) as? HomeWritingAreaCell else { return cell }
+            cell.delegate = self
+            return cell
+        case 6: guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeWritingMembersCell.identifier, for: indexPath) as? HomeWritingMembersCell else { return cell }
+            cell.delegate = self
+            return cell
+        case 7: guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeWritingDescriptionCell.identifier, for: indexPath) as? HomeWritingDescriptionCell else { return cell }
+            cell.delegate = self
+            return cell
+        default: break
+        }
+        
+        return cell
     }
 }

@@ -19,4 +19,13 @@ class HomeWritingImageBottomCell: UICollectionViewCell {
         guard let url = URL(string: urlString), let data = try? Data(contentsOf: url) else { return }
         imageView.image = UIImage(data: data)
     }
+    
+    func addBorder() {
+        imageView.borderWidth = 2
+        imageView.borderColor = .primary
+    }
+    
+    func removeBorder() {
+        imageView.borderWidth = 0
+    }
 }

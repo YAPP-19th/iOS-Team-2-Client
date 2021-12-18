@@ -18,6 +18,7 @@ final class HomeWritingViewModel: ViewModel {
 
     struct State {
         let defaultImageUrls = CurrentValueSubject<[String], Never>([])
+        let selectedImageUrl = CurrentValueSubject<String?, Never>(nil)
     }
     
     let action = Action()

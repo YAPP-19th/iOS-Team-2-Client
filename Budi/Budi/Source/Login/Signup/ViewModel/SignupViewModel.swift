@@ -8,26 +8,51 @@
 import UIKit
 import Combine
 import NaverThirdPartyLogin
+import Moya
 
-final class SignupNormalViewModel: ViewModel {
+final class SignupViewModel: ViewModel {
     struct Action {
         let fetch = PassthroughSubject<Void, Never>()
+        let positionFetch = PassthroughSubject<Position, Never>()
         let refresh = PassthroughSubject<Void, Never>()
     }
 
     struct State {
         let naverData = CurrentValueSubject<NaverData?, Never>(nil)
         let loginUserData = CurrentValueSubject<LoginResponse?, Never>(nil)
+        let positionData = CurrentValueSubject<[String]?, Never>(nil)
     }
 
     let action = Action()
     let state = State()
 
-    var cancellables = Set<AnyCancellable>()
+    private var cancellables = Set<AnyCancellable>()
+    private let provider = MoyaProvider<BudiTarget>()
     let loginInstance = NaverThirdPartyLoginConnection.getSharedInstance()
 
     init() {
         getNaverInfo()
+        getPositions()
+    }
+
+    func getPositions() {
+        action.positionFetch
+            .sink(receiveValue: { [weak self] selectedPosition in
+                guard let self = self else { return }
+                self.provider
+                    .requestPublisher(.detailPositions(postion: selectedPosition))
+                    .map(APIResponse<[String]>.self)
+                    .map(\.data)
+                    .sink(receiveCompletion: { [weak self] completion in
+                        guard case let .failure(error) = completion else { return }
+                        print(completion)
+                        self?.state.positionData.send(nil)
+                        print(error.localizedDescription)
+                    }, receiveValue: { post in
+                        self.state.positionData.send(post)
+                    })
+                    .store(in: &self.cancellables)
+            }).store(in: &cancellables)
     }
 
     func getNaverInfo() {

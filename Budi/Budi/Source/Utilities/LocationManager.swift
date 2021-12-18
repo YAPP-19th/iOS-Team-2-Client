@@ -22,7 +22,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
     }
 
     func searchAddress(_ searchText: String, _ completion: @escaping ([String]) -> Void) {
-        let result = Location().locations.filter { $0.contains(searchText) }
+        let result = Location().location.filter { $0.contains(searchText) }
         completion(result)
     }
 

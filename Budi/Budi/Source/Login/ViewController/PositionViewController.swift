@@ -149,8 +149,6 @@ class PositionViewController: UIViewController {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
                 print("\(Position.developer)")
-                self?.nextButton.isEnabled = true
-                self?.nextButton.backgroundColor = UIColor.budiGreen
                 self?.viewModel.action.positionFetch.send(Position.developer)
             }
             .store(in: &cancellables)
@@ -171,8 +169,14 @@ class PositionViewController: UIViewController {
             .receive(on: DispatchQueue.main)
             .sink { positionData in
                 guard let data = positionData else { return }
-                print(self.viewModel.state.positionData.value?.count)
                 self.positionDetailCollectionView.reloadData()
+            }
+            .store(in: &cancellables)
+
+        viewModel.state.positionSelectData
+            .receive(on: DispatchQueue.main)
+            .sink { data in
+                print(data)
             }
             .store(in: &cancellables)
     }
@@ -369,12 +373,21 @@ extension PositionViewController: UICollectionViewDelegate, UICollectionViewDele
         cell.configureButtonText(text)
 
         cell.positionDetailButton.tapPublisher
-            .receive(on: RunLoop.main)
+            .receive(on: DispatchQueue.main)
             .sink {
+                cell.positionDetailButton.isSelected = !cell.positionDetailButton.isSelected
+                print(indexPath.row)
+                if cell.positionDetailButton.isSelected {
+                    self.viewModel.action.positionSelect.send(text)
+                } else {
+                    self.viewModel.action.positionDeSelect.send(text)
+                }
+
+                cell.positionDetailButton.layer.borderColor = cell.positionDetailButton.isSelected ? UIColor.budiGreen.cgColor : UIColor.budiGray.cgColor
                 self.nextButton.isEnabled = true
                 self.nextButton.backgroundColor = UIColor.budiGreen
             }
-            .store(in: &cancellables)
+            .store(in: &cell.cancellables)
 
         return cell
 

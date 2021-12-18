@@ -9,15 +9,17 @@ import UIKit
 import Combine
 import NaverThirdPartyLogin
 import Moya
-import MapKit
 
 final class SignupViewModel: ViewModel {
     struct Action {
         let fetch = PassthroughSubject<Void, Never>()
         let refresh = PassthroughSubject<Void, Never>()
         let positionFetch = PassthroughSubject<Position, Never>()
-        let selectPositionSave = PassthroughSubject<[String], Never>()
         let switchView = PassthroughSubject<ModalControl, Never>()
+
+        let positionSelect = PassthroughSubject<String, Never>()
+        let positionDeSelect = PassthroughSubject<String, Never>()
+
         let fetchSignupInfoData = PassthroughSubject<Void, Never>()
         let fetchSignupPortfolioData = PassthroughSubject<Void, Never>()
         let appendSectionData = PassthroughSubject<ModalControl, Never>()
@@ -28,6 +30,7 @@ final class SignupViewModel: ViewModel {
         let cellSelectIndex = PassthroughSubject<[Int], Never>()
         let loadEditData = PassthroughSubject<Void, Never>()
         let deleteSignupInfoData = PassthroughSubject<Void, Never>()
+
     }
 
     struct State {
@@ -37,6 +40,8 @@ final class SignupViewModel: ViewModel {
         let budiLoginUserData = CurrentValueSubject<String?, Never>(nil)
         // Budi 서버 포지션 선택 대응 정보 저장
         let positionData = CurrentValueSubject<[String]?, Never>(nil)
+
+        let positionSelectData = CurrentValueSubject<[String], Never>([])
         // 앱 내 포지션 선택 정보 저장
         let selectPositionData = CurrentValueSubject<[String]?, Never>(nil)
         // 이력 관리 선택한 뷰 관리 (경력, 프로젝트 이력 뷰)
@@ -95,7 +100,35 @@ final class SignupViewModel: ViewModel {
         selectCellIndex()
         postCreateInfo()
         setSignupModel()
+        signUpcellCRUD()
+        postitionFunction()
+    }
 
+    func postitionFunction() {
+        action.positionSelect
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] position in
+                guard let self = self else { return }
+                var oldPostitionList = self.state.positionSelectData.value
+                oldPostitionList.insert(position, at: oldPostitionList.count)
+                self.state.positionSelectData.send(oldPostitionList)
+            }
+            .store(in: &cancellables)
+
+        action.positionDeSelect
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] position in
+                guard let self = self else { return }
+                var oldPositionList = self.state.positionSelectData.value
+                guard let index = oldPositionList.firstIndex(of: position) else { return }
+                print(index)
+                oldPositionList.remove(at: index)
+                self.state.positionSelectData.send(oldPositionList)
+            }
+            .store(in: &cancellables)
+    }
+
+    func signUpcellCRUD() {
         action.loadEditData
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in

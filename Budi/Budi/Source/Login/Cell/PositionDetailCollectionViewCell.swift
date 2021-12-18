@@ -11,7 +11,7 @@ import CombineCocoa
 
 class PositionDetailCollectionViewCell: UICollectionViewCell {
     static let cellId = "positionDetailCell"
-    private var cancellables = Set<AnyCancellable>()
+    var cancellables = Set<AnyCancellable>()
 
     let positionDetailButton: UIButton = {
         let button = UIButton()

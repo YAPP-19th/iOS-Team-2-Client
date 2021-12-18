@@ -26,8 +26,8 @@ final class SignupViewModel: ViewModel {
         let setSignupPortfolioData = PassthroughSubject<Void, Never>()
         // 포트폴리오 뷰에 사용하는 PassthroughSubject
         let cellSelectIndex = PassthroughSubject<[Int], Never>()
-
         let loadEditData = PassthroughSubject<Void, Never>()
+        let deleteSignupInfoData = PassthroughSubject<Void, Never>()
     }
 
     struct State {
@@ -109,6 +109,23 @@ final class SignupViewModel: ViewModel {
             }
             .store(in: &cancellables)
 
+        action.deleteSignupInfoData
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in
+                guard let self = self else { return }
+                let section = self.state.selectIndex.value[0]
+                let index = self.state.selectIndex.value[1]
+                var deleteData = self.state.sectionData.value[section].items
+                var updateData = self.state.sectionData.value
+                let filter = self.state.sectionData.value[section].type
+                deleteData.remove(at: index)
+                updateData[section].items = deleteData
+                self.state.sectionData.send(updateData)
+                if deleteData.count == 0 {
+                    self.action.appendSectionData.send(filter)
+                }
+            }
+            .store(in: &cancellables)
     }
 
     func setSignupModel() {

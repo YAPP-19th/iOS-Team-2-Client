@@ -115,7 +115,6 @@ class HistoryWriteViewController: UIViewController {
             .sink { [weak self] editData in
                 guard let self = self else { return }
                 guard let editData = editData else { return }
-                print("불러옴", editData)
                 self.mainNameTextField.text = editData.name
                 self.leftDateTextField.text = editData.startDate
                 self.rightDateTextField.text = editData.endDate

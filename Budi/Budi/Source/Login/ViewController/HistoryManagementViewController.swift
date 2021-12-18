@@ -100,7 +100,8 @@ class HistoryManagementViewController: UIViewController {
             }
         })
         let delete = UIAlertAction(title: "삭제", style: .destructive, handler: { _ in
-            print(section, index)
+            self.viewModel.action.cellSelectIndex.send([section, index])
+            self.viewModel.action.deleteSignupInfoData.send(())
         })
 
         let cancel = UIAlertAction(title: "완료", style: .cancel, handler: { _ in

@@ -20,6 +20,7 @@ final class DefaultTableViewCell: UITableViewCell {
     @IBOutlet weak var addButton: UIButton!
     @IBOutlet weak var moreButton: UIButton!
     
+    @IBOutlet weak var portfolioMoreButton: UIButton!
     @IBOutlet weak var portfolioLinkLabel: UILabel!
     @IBOutlet weak var portfolioView: UIView!
     override func prepareForReuse() {

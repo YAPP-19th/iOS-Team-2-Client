@@ -22,10 +22,10 @@ final class SignupViewModel: ViewModel {
         let fetchSignupPortfolioData = PassthroughSubject<Void, Never>()
         let appendSectionData = PassthroughSubject<ModalControl, Never>()
         let postCreateInfo = PassthroughSubject<Void, Never>()
+
         let setSignupInfoData = PassthroughSubject<Void, Never>()
         let setSignupPortfolioData = PassthroughSubject<Void, Never>()
         // 포트폴리오 뷰에 사용하는 PassthroughSubject
-        let porfolioTextField = PassthroughSubject<String, Never>()
         let cellSelectIndex = PassthroughSubject<[Int], Never>()
     }
 

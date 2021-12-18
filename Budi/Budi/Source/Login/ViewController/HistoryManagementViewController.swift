@@ -87,7 +87,13 @@ class HistoryManagementViewController: UIViewController {
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
 
         let edit = UIAlertAction(title: "수정", style: .default, handler: { _ in
-            print(section, index)
+            if section == 0 {
+                coordinator?.showCareerViewController()
+            } else if section == 1 {
+                coordinator?.showProjectViewController()
+            } else {
+                coordinator?.showPortfolioController()
+            }
         })
         let delete = UIAlertAction(title: "삭제", style: .destructive, handler: { _ in
             print(section, index)
@@ -171,19 +177,17 @@ extension HistoryManagementViewController: UITableViewDelegate, UITableViewDataS
             }
             .store(in: &cell.cancellables)
 
+        cell.portfolioMoreButton.tapPublisher
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in
+                self?.showActionSheet(section: indexPath.section, index: indexPath.item)
+            }
+            .store(in: &cell.cancellables)
+
         cell.moreButton.tapPublisher
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
-                if indexPath.section == 0 {
-                    print(indexPath.section, indexPath.row, indexPath.item)
-                    self?.showActionSheet(section: indexPath.section, index: indexPath.item)
-                } else if indexPath.section == 1 {
-                    print(indexPath.section, indexPath.row, indexPath.item)
-                    self?.showActionSheet(section: indexPath.section, index: indexPath.item)
-                } else if indexPath.section == 2 {
-                    print(indexPath.section, indexPath.row, indexPath.item)
-                    self?.showActionSheet(section: indexPath.section, index: indexPath.item)
-                }
+                self?.showActionSheet(section: indexPath.section, index: indexPath.item)
             }
             .store(in: &cell.cancellables)
 

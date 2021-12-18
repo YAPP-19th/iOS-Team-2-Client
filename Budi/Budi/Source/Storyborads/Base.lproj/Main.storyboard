@@ -874,8 +874,9 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="addButton" destination="woU-CJ-wjN" id="qUk-Kd-gmh"/>
-                                            <outlet property="moreButton" destination="PJZ-2X-AXi" id="M8K-mS-X52"/>
+                                            <outlet property="moreButton" destination="OM3-Hh-N9e" id="02B-AC-j7g"/>
                                             <outlet property="portfolioLinkLabel" destination="5b7-yg-JFo" id="YzU-Od-bXH"/>
+                                            <outlet property="portfolioMoreButton" destination="PJZ-2X-AXi" id="Jm0-ov-W0R"/>
                                             <outlet property="portfolioView" destination="kpX-Xy-xzV" id="daU-1d-v87"/>
                                             <outlet property="selectDayLabel" destination="0Xo-LQ-xsP" id="jeq-1s-3HQ"/>
                                             <outlet property="selectMainTitle" destination="9uB-VM-WKX" id="VTK-0B-C7w"/>

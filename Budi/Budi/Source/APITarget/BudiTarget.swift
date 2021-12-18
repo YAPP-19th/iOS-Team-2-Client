@@ -15,6 +15,7 @@ enum BudiTarget {
     case recruitingStatuses(id: Int)
     case postDefaultImageUrls
     case applies(accessToken: String, param: AppliesRequest)
+    case detailPositions(postion: Position)
 }
 
 extension BudiTarget: TargetType {
@@ -30,6 +31,8 @@ extension BudiTarget: TargetType {
         case .recruitingStatuses(let id): return "/posts/\(id)/recruitingStatus"
         case .postDefaultImageUrls: return "/infos/postDefaultImageUrls"
         case .applies: return "/applies"
+        case .posts: return "/posts"
+        case .detailPositions: return "/infos/positions"
         }
     }
 
@@ -45,6 +48,9 @@ extension BudiTarget: TargetType {
         case .post, .posts, .teamMembers, .recruitingStatuses, .postDefaultImageUrls: return .requestPlain
         case .createPost(_, let param): return .requestJSONEncodable(param)
         case .applies(_, let param): return .requestJSONEncodable(param)
+        case .detailPositions(let position):
+            return .requestParameters(parameters: ["position": position.stringValue], encoding: URLEncoding.default)
+        default: return .requestPlain
         }
     }
 

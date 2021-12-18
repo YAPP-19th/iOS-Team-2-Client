@@ -8,9 +8,10 @@
 import UIKit
 
 class LocationSearchViewController: UIViewController {
-    private let allLocation = Location().locations
+    private let allLocation = Location().location
     private var correct: [String] = []
-
+    weak var coordinator: LoginCoordinator?
+    private let alertView = AlertView()
     private let searchBar: UISearchBar = {
         let search = UISearchBar()
         search.placeholder = "도로명으로 검색"
@@ -49,7 +50,7 @@ class LocationSearchViewController: UIViewController {
     func dismissAlert() {
         UIView.animate(withDuration: 0.3, animations: {
             BackgroundView.instanceBackground.alpha = 0.0
-            AlertView.instanceAlert.alpha = 0.0
+            self.alertView.alpha = 0.0
         }, completion: nil)
     }
 
@@ -58,7 +59,7 @@ class LocationSearchViewController: UIViewController {
         // 일단 아무것도 하지 않으니 (뷰가 안만들어진듯) dismiss
         UIView.animate(withDuration: 0.3, animations: {
             BackgroundView.instanceBackground.alpha = 0.0
-            AlertView.instanceAlert.alpha = 0.0
+            self.alertView.alpha = 0.0
         }, completion: nil)
     }
 
@@ -98,13 +99,13 @@ class LocationSearchViewController: UIViewController {
     }
 
     private func configureAlert() {
-        AlertView.instanceAlert.showAlert(title: "버디 위치기반 서비스 이용약관에 동의하시겠습니까?", cancelTitle: "취소", doneTitle: "동의")
+        alertView.showAlert(title: "버디 위치기반 서비스 이용약관에 동의하시겠습니까?", cancelTitle: "취소", doneTitle: "동의")
         BackgroundView.instanceBackground.alpha = 0.0
-        AlertView.instanceAlert.alpha = 0.0
+        alertView.alpha = 0.0
         view.addSubview(BackgroundView.instanceBackground)
         BackgroundView.instanceBackground.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(AlertView.instanceAlert)
-        AlertView.instanceAlert.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(alertView)
+        alertView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             BackgroundView.instanceBackground.topAnchor.constraint(equalTo: view.topAnchor),
             BackgroundView.instanceBackground.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -112,15 +113,15 @@ class LocationSearchViewController: UIViewController {
             BackgroundView.instanceBackground.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
         NSLayoutConstraint.activate([
-            AlertView.instanceAlert.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            AlertView.instanceAlert.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            AlertView.instanceAlert.widthAnchor.constraint(equalToConstant: 343),
-            AlertView.instanceAlert.heightAnchor.constraint(equalToConstant: 208)
+            alertView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            alertView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            alertView.widthAnchor.constraint(equalToConstant: 343),
+            alertView.heightAnchor.constraint(equalToConstant: 208)
         ])
 
         UIView.animate(withDuration: 0.2, animations: {
             BackgroundView.instanceBackground.alpha = 0.5
-            AlertView.instanceAlert.alpha = 1.0
+            self.alertView.alpha = 1.0
         })
     }
 
@@ -183,7 +184,7 @@ class LocationSearchViewController: UIViewController {
 
 extension LocationSearchViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        let location = Location().locations
+        let location = Location().location
         if !searchText.isEmpty {
             for idx in location {
                 if idx.contains(searchText) {

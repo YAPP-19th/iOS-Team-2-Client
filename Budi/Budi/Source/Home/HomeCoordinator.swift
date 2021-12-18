@@ -18,10 +18,14 @@ final class HomeCoordinator: NavigationCoordinator {
     }
 
     func start() {
-        let viewController: HomeViewController = storyboard.instantiateViewController(
-            identifier: HomeViewController.identifier) { coder -> HomeViewController? in
-                let viewModel = HomeViewModel()
-                return HomeViewController(coder: coder, viewModel: viewModel)
+        let viewController: HomeContainerViewController = storyboard.instantiateViewController(
+            identifier: HomeContainerViewController.identifier) { coder -> HomeContainerViewController? in
+                let allVC = HomeContentViewController(viewModel: HomeAllContentViewModel())
+                let developerVC = HomeContentViewController(viewModel: HomeDeveloperContentViewModel())
+                let designerVC = HomeContentViewController(viewModel: HomeDesignerContentViewModel())
+                let productManagerVC = HomeContentViewController(viewModel: HomeProductManagerContentViewModel())
+
+                return HomeContainerViewController(coder: coder, contentViewControllers: [allVC, developerVC, designerVC, productManagerVC])
             }
         viewController.coordinator = self
         navigationController?.pushViewController(viewController, animated: true)

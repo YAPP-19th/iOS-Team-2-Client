@@ -9,6 +9,10 @@ import UIKit
 import Combine
 import CombineCocoa
 
+protocol HomeWritingImageBottomViewControllerDelegate: AnyObject {
+    func getImageUrlString(_ urlString: String)
+}
+
 final class HomeWritingImageBottomViewController: UIViewController {
     
     @IBOutlet private weak var backgroundButton: UIButton!
@@ -24,6 +28,7 @@ final class HomeWritingImageBottomViewController: UIViewController {
 
     private var isBottomViewShown: Bool = false
     
+    weak var delegate: HomeWritingImageBottomViewControllerDelegate?
     weak var coordinator: HomeCoordinator?
     private let viewModel: HomeWritingViewModel
     private var cancellables = Set<AnyCancellable>()
@@ -43,8 +48,6 @@ final class HomeWritingImageBottomViewController: UIViewController {
         configureCollectionView()
         bindViewModel()
         setPublisher()
-        
-        print("defaultImageUrls is \(viewModel.state.defaultImageUrls.value)")
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -127,5 +130,10 @@ extension HomeWritingImageBottomViewController: UICollectionViewDataSource, UICo
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         2
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let urlString = viewModel.state.defaultImageUrls.value[indexPath.row]
+        delegate?.getImageUrlString(urlString)
     }
 }

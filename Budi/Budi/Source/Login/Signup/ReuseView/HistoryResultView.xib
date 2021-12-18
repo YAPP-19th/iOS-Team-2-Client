@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HistoryResultView" customModule="Budi" customModuleProvider="target">
+            <connections>
+                <outlet property="mainTitleLabel" destination="ASW-5I-3Dw" id="kXk-Ud-q2c"/>
+                <outlet property="subDayTitleLabel" destination="qlu-Ol-zQf" id="34h-nr-mpu"/>
+                <outlet property="teamTitleLabel" destination="ANI-Ic-6ht" id="4tJ-qf-v5g"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="382" height="89"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KWR-IE-53m">
+                    <rect key="frame" x="0.0" y="0.0" width="382" height="89"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="회사이름" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ASW-5I-3Dw">
+                            <rect key="frame" x="16" y="14" width="56" height="20"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2019.01 ~ 재직 중 (2년 10개월)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qlu-Ol-zQf">
+                            <rect key="frame" x="16" y="38" width="184" height="17"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="displayP3"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="모바일 서비스팀" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ANI-Ic-6ht">
+                            <rect key="frame" x="16" y="59" width="89" height="17"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="displayP3"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstItem="ASW-5I-3Dw" firstAttribute="top" secondItem="KWR-IE-53m" secondAttribute="top" constant="14" id="2O2-Zz-Nlj"/>
+                        <constraint firstItem="ANI-Ic-6ht" firstAttribute="leading" secondItem="KWR-IE-53m" secondAttribute="leading" constant="16" id="CHI-U5-kLA"/>
+                        <constraint firstItem="qlu-Ol-zQf" firstAttribute="leading" secondItem="KWR-IE-53m" secondAttribute="leading" constant="16" id="Mvr-vV-DZv"/>
+                        <constraint firstItem="ANI-Ic-6ht" firstAttribute="top" secondItem="qlu-Ol-zQf" secondAttribute="bottom" constant="4" id="hxZ-C2-inW"/>
+                        <constraint firstItem="ASW-5I-3Dw" firstAttribute="leading" secondItem="KWR-IE-53m" secondAttribute="leading" constant="16" id="lDd-Sn-ldS"/>
+                        <constraint firstItem="qlu-Ol-zQf" firstAttribute="top" secondItem="ASW-5I-3Dw" secondAttribute="bottom" constant="4" id="rin-b5-GsU"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="8"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                            <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                            <real key="value" value="1"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="KWR-IE-53m" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="9Sd-yM-mLj"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="KWR-IE-53m" secondAttribute="bottom" id="DKJ-WC-Nn5"/>
+                <constraint firstItem="KWR-IE-53m" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="PC1-vH-ub8"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="KWR-IE-53m" secondAttribute="trailing" id="mbf-1W-MrT"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="185.50724637681162" y="336.49553571428572"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

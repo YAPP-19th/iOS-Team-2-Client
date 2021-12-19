@@ -77,6 +77,14 @@
                                 <viewLayoutGuide key="contentLayoutGuide" id="7hP-rR-phr"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="z7S-es-aSy"/>
                             </scrollView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gq0-jp-j9x">
+                                <rect key="frame" x="350" y="798" width="32" height="32"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="32" id="o9W-fZ-PDq"/>
+                                    <constraint firstAttribute="width" constant="32" id="ueg-Dw-EgT"/>
+                                </constraints>
+                            </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gUU-CD-N18">
                                 <rect key="frame" x="334" y="782" width="64" height="64"/>
                                 <constraints>
@@ -87,16 +95,23 @@
                                 <state key="normal" image="plus.circle.fill" catalog="system">
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="64" scale="large" weight="black"/>
                                 </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="32"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="zfP-PW-EY3"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="0Dx-Y8-OCY" firstAttribute="leading" secondItem="zfP-PW-EY3" secondAttribute="leading" id="0Qh-oa-cE4"/>
+                            <constraint firstItem="Gq0-jp-j9x" firstAttribute="centerX" secondItem="gUU-CD-N18" secondAttribute="centerX" id="1Tt-fT-qes"/>
                             <constraint firstItem="zfP-PW-EY3" firstAttribute="trailing" secondItem="gUU-CD-N18" secondAttribute="trailing" constant="16" id="8kD-MI-ImK"/>
                             <constraint firstItem="zfP-PW-EY3" firstAttribute="bottom" secondItem="0Dx-Y8-OCY" secondAttribute="bottom" id="BeH-qr-1u8"/>
                             <constraint firstItem="zfP-PW-EY3" firstAttribute="trailing" secondItem="6fz-dH-Ipw" secondAttribute="trailing" id="C1I-K6-cfE"/>
                             <constraint firstItem="6fz-dH-Ipw" firstAttribute="leading" secondItem="zfP-PW-EY3" secondAttribute="leading" id="NkZ-YD-Ngh"/>
+                            <constraint firstItem="Gq0-jp-j9x" firstAttribute="centerY" secondItem="gUU-CD-N18" secondAttribute="centerY" id="OOJ-zb-RHK"/>
                             <constraint firstItem="zfP-PW-EY3" firstAttribute="trailing" secondItem="0Dx-Y8-OCY" secondAttribute="trailing" id="Orn-aU-OrH"/>
                             <constraint firstItem="zfP-PW-EY3" firstAttribute="bottom" secondItem="gUU-CD-N18" secondAttribute="bottom" constant="16" id="XH8-Em-AcH"/>
                             <constraint firstItem="zfP-PW-EY3" firstAttribute="top" secondItem="6fz-dH-Ipw" secondAttribute="top" id="aGC-A7-tdc"/>

@@ -48,15 +48,6 @@ private extension HomeContentViewController {
                 self?.viewModel.action.refresh.send(())
             })
             .store(in: &cancellables)
-
-        collectionView.didScrollPublisher
-            .sink { [weak self] _ in
-                guard let self = self else { return }
-                if self.collectionView.contentOffset.y > self.collectionView.contentSize.height - (self.collectionView.bounds.height + 100) && !self.viewModel.nextPageisLoading {
-                    self.viewModel.nextPageisLoading = true
-                    self.viewModel.action.fetch.send(())
-                }
-            }.store(in: &cancellables)
     }
 
     func bindViewModel() {
@@ -79,9 +70,10 @@ private extension HomeContentViewController {
             collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
         collectionView.refreshControl = UIRefreshControl()
-        collectionView.collectionViewLayout = createLayout()
         collectionView.dataSource = self
         collectionView.delegate = self
+
+        collectionView.collectionViewLayout = createFlowLayout()
         collectionView.register(.init(nibName: HomeCell.identifier, bundle: nil), forCellWithReuseIdentifier: HomeCell.identifier)
     }
 }
@@ -110,24 +102,39 @@ extension HomeContentViewController: UICollectionViewDataSource {
     }
 }
 
-extension HomeContentViewController: UICollectionViewDelegate {
+extension HomeContentViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return homecellsize(for: indexPath)
+    }
 
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if self.collectionView.contentOffset.y > self.collectionView.contentSize.height - (self.collectionView.bounds.height + 100) && !self.viewModel.nextPageisLoading {
+            self.viewModel.nextPageisLoading = true
+            self.viewModel.action.fetch.send(())
+        }
+    }
 }
 
 private extension HomeContentViewController {
-    func createLayout() -> UICollectionViewCompositionalLayout {
-        return UICollectionViewCompositionalLayout { _, _ in
 
-            let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .fractionalWidth(263 / 343)))
-            item.contentInsets = .init(top: 0, leading: 0, bottom: 16, trailing: 0)
+    func createFlowLayout() -> UICollectionViewFlowLayout {
+        let layout = UICollectionViewFlowLayout()
+        layout.minimumLineSpacing = 8
+        layout.minimumInteritemSpacing = 8
+        layout.sectionInset = .init(top: 27, left: 16, bottom: 0, right: 16)
+        return layout
+    }
 
-            let group = NSCollectionLayoutGroup.vertical(layoutSize: .init(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(100)), subitems: [item])
+    private func homecellsize(for indexPath: IndexPath) -> CGSize {
+        guard let homeCell = Bundle.main.loadNibNamed(HomeCell.identifier, owner: self, options: nil)?.first as? HomeCell else { return .zero}
+        let post = viewModel.state.posts.value[indexPath.item]
+        homeCell.updateUI(post)
+        homeCell.setNeedsLayout()
+        homeCell.layoutIfNeeded()
 
-            let section = NSCollectionLayoutSection(group: group)
-
-            section.contentInsets = .init(top: 27, leading: 16, bottom: 0, trailing: 16)
-
-            return section
-        }
+        let width = collectionView.bounds.width - 32
+        let height: CGFloat = width * (230 / 343)
+        + homeCell.collectionView.contentSize.height
+        return .init(width: width, height: height)
     }
 }

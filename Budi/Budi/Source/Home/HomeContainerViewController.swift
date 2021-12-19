@@ -82,6 +82,7 @@ private extension HomeContainerViewController {
     func setView() {
         contentScrollView.isPagingEnabled = true
         contentScrollView.showsHorizontalScrollIndicator = false
+        teamAddButton.tintColor = UIColor.primary
         setContentViews()
     }
 

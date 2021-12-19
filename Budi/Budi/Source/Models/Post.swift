@@ -31,7 +31,7 @@ struct Post: Decodable {
     let onlineInfo: String
     let ownerID: Int
     let recruitingStatusResponses: [RecruitingStatusResponse]
-    let positions: [String]
+    var positions: [PositionData]
     let leader: Leader
     let startDate: Date
     let endDate: Date
@@ -52,8 +52,8 @@ struct Post: Decodable {
         case recruitingStatusResponses
         case positions
         case leader
-        case startDateString = "possibleStartYmdt"
-        case endDateString = "possibleEndYmdt"
+        case startDateString = "startDate"
+        case endDateString = "endDate"
         case createdDateString = "createdAt"
         case modifiedDateString = "modifiedAt"
     }
@@ -71,7 +71,7 @@ struct Post: Decodable {
         postStatus = (try? container.decode(String.self, forKey: .postStatus)) ?? ""
         onlineInfo = (try? container.decode(String.self, forKey: .onlineInfo)) ?? ""
         ownerID = (try? container.decode(Int.self, forKey: .ownerID)) ?? -1
-        positions = (try? container.decode([String].self, forKey: .positions)) ?? []
+        positions = (try? container.decode([PositionData].self, forKey: .positions)) ?? []
         
         leader = (try? container.decode(Leader.self, forKey: .leader)) ?? Leader(leaderId: 0, nickName: "닉네임", profileImageUrl: "", address: "서울시 서초구")
         
@@ -103,7 +103,7 @@ struct Post: Decodable {
         self.description = ""
         self.viewCount = 0
         self.ownerID = 0
-        self.positions = [""]
+        self.positions = []
         self.leader = Leader(leaderId: 0, nickName: "", profileImageUrl: "", address: "")
         self.createdDate = Date()
         self.modifiedDate = Date()
@@ -117,6 +117,11 @@ struct Leader: Codable {
     let nickName: String
     let profileImageUrl: String?
     let address: String?
+}
+
+struct PositionData: Codable {
+    let position: String
+    let colorCode: Int
 }
 
 // MARK: - Pageable

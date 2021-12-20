@@ -13,41 +13,26 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="HomeWritingMembersDetailPartBottomCollectionViewCell" customModule="Budi" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="79" height="32"/>
+            <rect key="frame" x="0.0" y="0.0" width="52" height="32"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="79" height="32"/>
+                <rect key="frame" x="0.0" y="0.0" width="52" height="32"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ert-7r-VTE">
-                        <rect key="frame" x="0.0" y="0.0" width="79" height="32"/>
+                        <rect key="frame" x="0.0" y="0.0" width="52" height="32"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="itB-7k-Znk">
-                                <rect key="frame" x="0.0" y="0.0" width="79" height="32"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E49-JU-TLA">
+                                <rect key="frame" x="7.5" y="7.5" width="37" height="17"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
-                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" title="iOS">
-                                    <color key="titleColor" name="DarkGray"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="4"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                        <real key="value" value="1"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                        <color key="value" name="LightGray"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </button>
+                                <color key="textColor" name="DarkGray"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="itB-7k-Znk" secondAttribute="trailing" id="3lV-Co-qNJ"/>
-                            <constraint firstItem="itB-7k-Znk" firstAttribute="leading" secondItem="Ert-7r-VTE" secondAttribute="leading" id="PR1-0P-5lQ"/>
-                            <constraint firstItem="itB-7k-Znk" firstAttribute="top" secondItem="Ert-7r-VTE" secondAttribute="top" id="cCu-jv-Wlv"/>
-                            <constraint firstAttribute="bottom" secondItem="itB-7k-Znk" secondAttribute="bottom" id="oq5-7k-D6u"/>
+                            <constraint firstItem="E49-JU-TLA" firstAttribute="centerY" secondItem="Ert-7r-VTE" secondAttribute="centerY" id="1If-DI-zaJ"/>
+                            <constraint firstItem="E49-JU-TLA" firstAttribute="centerX" secondItem="Ert-7r-VTE" secondAttribute="centerX" id="wEQ-UE-9ue"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -57,7 +42,7 @@
                                 <real key="value" value="1"/>
                             </userDefinedRuntimeAttribute>
                             <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                <color key="value" name="LightGray"/>
+                                <color key="value" name="Border"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </view>
@@ -70,19 +55,20 @@
                 <constraint firstItem="Ert-7r-VTE" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="Xfu-aU-B6q"/>
                 <constraint firstItem="Ert-7r-VTE" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="bPv-UF-MvY"/>
             </constraints>
-            <size key="customSize" width="79" height="32"/>
+            <size key="customSize" width="52" height="32"/>
             <connections>
-                <outlet property="partButton" destination="itB-7k-Znk" id="kLE-Oi-1Dv"/>
+                <outlet property="containerView" destination="Ert-7r-VTE" id="KFZ-Ea-AG8"/>
+                <outlet property="label" destination="E49-JU-TLA" id="B45-Dz-cyc"/>
             </connections>
-            <point key="canvasLocation" x="147.10144927536234" y="61.607142857142854"/>
+            <point key="canvasLocation" x="127.53623188405798" y="61.607142857142854"/>
         </collectionViewCell>
     </objects>
     <resources>
+        <namedColor name="Border">
+            <color red="0.87800002098083496" green="0.87800002098083496" blue="0.87800002098083496" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="DarkGray">
             <color red="0.36000001430511475" green="0.36000001430511475" blue="0.36000001430511475" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="LightGray">
-            <color red="0.86599999666213989" green="0.86599999666213989" blue="0.86599999666213989" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

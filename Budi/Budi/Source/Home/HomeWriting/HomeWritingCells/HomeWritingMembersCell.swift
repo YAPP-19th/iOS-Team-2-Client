@@ -6,33 +6,51 @@
 //
 
 import UIKit
-import Combine
-import CombineCocoa
-
-protocol HomeWritingMembersCellDelegate: AnyObject {
-    func showWritingMembersBottomView()
-}
 
 final class HomeWritingMembersCell: UICollectionViewCell {
     
-    @IBOutlet private  weak var addButton: UIButton!
+    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var addButton: UIButton!
     
-    weak var delegate: HomeWritingMembersCellDelegate?
-    private var cancellables = Set<AnyCancellable>()
-
+    var recruitingPositions: [RecruitingPosition] = [] {
+        didSet {
+            collectionView.reloadData()
+        }
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        setPublisher()
+        configureCollectionView()
     }
 }
 
-private extension HomeWritingMembersCell {
-    func setPublisher() {
-        addButton.tapPublisher
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] _ in
-                guard let self = self else { return }
-                self.delegate?.showWritingMembersBottomView()
-            }.store(in: &cancellables)
+// MARK: - CollectionView
+extension HomeWritingMembersCell: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    private func configureCollectionView() {
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        collectionView.register(.init(nibName: HomeWritingMembersUnitCell.identifier, bundle: nil), forCellWithReuseIdentifier: HomeWritingMembersUnitCell.identifier)
+    }
+
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        recruitingPositions.count
+    }
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeWritingMembersUnitCell.identifier, for: indexPath) as? HomeWritingMembersUnitCell else { return UICollectionViewCell() }
+        cell.configureUI(recruitingPositions[indexPath.row])
+        return cell
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        CGSize(width: collectionView.bounds.width, height: 48)
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        0
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        8
     }
 }

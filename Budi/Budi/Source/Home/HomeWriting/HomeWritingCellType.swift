@@ -48,7 +48,7 @@ enum HomeWritingCellType: Int, CaseIterable {
         case .duration: return 109
         case .online: return 117
         case .area: return 173 // 117 -> 173
-        case .members: return 117
+        case .members: return 286
         case .description: return 387
         }
     }

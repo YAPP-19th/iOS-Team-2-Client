@@ -9,5 +9,5 @@ import Foundation
 
 struct RecruitingPosition: Codable {
     let positionName: String
-    let recruitingNumber: Int
+    var recruitingNumber: Int
 }

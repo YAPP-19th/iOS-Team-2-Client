@@ -23,6 +23,7 @@ final class HomeWritingViewModel: ViewModel {
         let developerPositions = CurrentValueSubject<[String], Never>([])
         let designerPositions = CurrentValueSubject<[String], Never>([])
         let productManagerPositions = CurrentValueSubject<[String], Never>([])
+        let recruitingPositions = CurrentValueSubject<[RecruitingPosition], Never>([])
         
         let selectedImageUrl = CurrentValueSubject<String?, Never>(nil)
         let name = CurrentValueSubject<String?, Never>(nil)

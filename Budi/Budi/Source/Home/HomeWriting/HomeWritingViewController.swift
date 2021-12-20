@@ -109,9 +109,11 @@ extension HomeWritingViewController: LocationSearchViewControllerDelegate {
     }
 }
 
-extension HomeWritingViewController: HomeWritingMembersCellDelegate {
-    func showWritingMembersBottomView() {
-        coordinator?.showWritingMembersBottomViewController(self, viewModel)
+extension HomeWritingViewController: HomeWritingMembersBottomViewControllerDelegate {
+    func getRecruitingPositions(_ recruitingPositions: [RecruitingPosition]) {
+        print("recruitingPositions is \(recruitingPositions)")
+        viewModel.state.recruitingPositions.value = recruitingPositions
+        collectionView.reloadData()
     }
 }
 
@@ -195,7 +197,13 @@ extension HomeWritingViewController: UICollectionViewDataSource, UICollectionVie
             return cell
             
         case 6: guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeWritingMembersCell.identifier, for: indexPath) as? HomeWritingMembersCell else { return cell }
-            cell.delegate = self
+            cell.recruitingPositions = viewModel.state.recruitingPositions.value
+            cell.addButton.tapPublisher
+                .receive(on: DispatchQueue.main)
+                .sink { [weak self] _ in
+                    guard let self = self else { return }
+                    self.coordinator?.showWritingMembersBottomViewController(self, self.viewModel)
+                }.store(in: &cancellables)
             return cell
             
         case 7: guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeWritingDescriptionCell.identifier, for: indexPath) as? HomeWritingDescriptionCell else { return cell }

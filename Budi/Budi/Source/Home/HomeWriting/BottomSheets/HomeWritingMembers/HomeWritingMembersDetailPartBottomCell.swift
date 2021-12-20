@@ -7,11 +7,28 @@
 
 import UIKit
 
+protocol HomeWritingMembersDetailPartBottomCellDelegate: AnyObject {
+    func getSelectedParts(_ parts: [String])
+}
+
 final class HomeWritingMembersDetailPartBottomCell: UICollectionViewCell {
     
     @IBOutlet private weak var collectionView: UICollectionView!
     
-    private var partStrings: [String] = ["iOS", "하이브리드", "AOS", "Web", "블록체인", "AI", "웹서버", "기타"]
+    var partStrings: [String] = [] {
+        didSet {
+            collectionView.reloadData()
+        }
+    }
+    
+    var selectedPartStrings: [String] = [] {
+        didSet {
+            delegate?.getSelectedParts(selectedPartStrings)
+            collectionView.reloadData()
+        }
+    }
+    
+    weak var delegate: HomeWritingMembersDetailPartBottomCellDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -33,7 +50,9 @@ extension HomeWritingMembersDetailPartBottomCell: UICollectionViewDataSource, UI
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeWritingMembersDetailPartBottomCollectionViewCell.identifier, for: indexPath) as? HomeWritingMembersDetailPartBottomCollectionViewCell else { return UICollectionViewCell() }
-        cell.configureUI(partStrings[indexPath.row])
+        let partString = partStrings[indexPath.row]
+        cell.configureUI(partString)
+        cell.isPartSelected = selectedPartStrings.contains(partString)
         return cell
     }
 
@@ -48,5 +67,14 @@ extension HomeWritingMembersDetailPartBottomCell: UICollectionViewDataSource, UI
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         8
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let partString = partStrings[indexPath.row]
+        if selectedPartStrings.contains(partString) {
+            selectedPartStrings = selectedPartStrings.filter { $0 != partString }
+        } else {
+            selectedPartStrings.append(partString)
+        }
     }
 }

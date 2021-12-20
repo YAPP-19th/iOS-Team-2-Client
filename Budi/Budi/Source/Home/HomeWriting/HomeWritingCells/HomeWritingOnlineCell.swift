@@ -56,10 +56,10 @@ private extension HomeWritingOnlineCell {
     }
     
     func configureUI() {
-        onlineCircleContainerView.borderColor = isOnlineChecked ? .budiLightGreen : .budiLightGray
-        onlineCircleView.backgroundColor = isOnlineChecked ? .budiGreen : .white
+        onlineCircleContainerView.borderColor = isOnlineChecked ? .border : .border
+        onlineCircleView.backgroundColor = isOnlineChecked ? .primary : .white
         
-        offlineCircleContainerView.borderColor = !isOnlineChecked ? .budiLightGreen : .budiLightGray
-        offlineCircleView.backgroundColor = !isOnlineChecked ? .budiGreen : .white
+        offlineCircleContainerView.borderColor = !isOnlineChecked ? .border : .border
+        offlineCircleView.backgroundColor = !isOnlineChecked ? .primary : .white
     }
 }

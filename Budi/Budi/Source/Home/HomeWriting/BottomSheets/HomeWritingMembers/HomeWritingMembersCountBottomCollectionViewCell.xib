@@ -40,12 +40,12 @@
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aIJ-XJ-jfk" userLabel="Plus Button">
                                 <rect key="frame" x="342" y="4" width="32" height="32"/>
-                                <color key="backgroundColor" name="BackgroundGreen"/>
+                                <color key="backgroundColor" name="Primary_sub"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="32" id="A5x-ho-czh"/>
                                     <constraint firstAttribute="height" constant="32" id="bJa-8n-1r9"/>
                                 </constraints>
-                                <color key="tintColor" name="Green"/>
+                                <color key="tintColor" name="Primary"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" image="plus" catalog="system"/>
                                 <userDefinedRuntimeAttributes>
@@ -59,12 +59,12 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J5m-HM-cUK" userLabel="Minus Button">
                                 <rect key="frame" x="278" y="4" width="32" height="32"/>
-                                <color key="backgroundColor" name="BackgroundGreen"/>
+                                <color key="backgroundColor" name="Primary_sub"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="32" id="AF1-8B-vqW"/>
                                     <constraint firstAttribute="width" constant="32" id="Yi3-dO-Xjm"/>
                                 </constraints>
-                                <color key="tintColor" name="Green"/>
+                                <color key="tintColor" name="Primary"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" image="minus" catalog="system"/>
                                 <userDefinedRuntimeAttributes>
@@ -118,11 +118,11 @@
     <resources>
         <image name="minus" catalog="system" width="128" height="24"/>
         <image name="plus" catalog="system" width="128" height="113"/>
-        <namedColor name="BackgroundGreen">
-            <color red="0.94099998474121094" green="0.98400002717971802" blue="0.96799999475479126" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <namedColor name="Primary">
+            <color red="0.36899998784065247" green="0.37299999594688416" blue="0.85900002717971802" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <namedColor name="Green">
-            <color red="0.40799999237060547" green="0.86299997568130493" blue="0.67100000381469727" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <namedColor name="Primary_sub">
+            <color red="0.92549019607843142" green="0.92941176470588238" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

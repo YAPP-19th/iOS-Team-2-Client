@@ -51,7 +51,6 @@ final class HomeWritingPartBottomViewController: UIViewController {
         super.viewDidLoad()
         completeView.layer.addBorderTop()
         configureCollectionView()
-        bindViewModel()
         setPublisher()
     }
     
@@ -61,9 +60,6 @@ final class HomeWritingPartBottomViewController: UIViewController {
 }
 
 private extension HomeWritingPartBottomViewController {
-    func bindViewModel() {
-    }
-    
     func setPublisher() {
         completeButton.tapPublisher
             .receive(on: DispatchQueue.main)

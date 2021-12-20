@@ -24,12 +24,12 @@ final class HomeWritingPartBottomCell: UICollectionViewCell {
     }
     
     func configureSelectedUI() {
-        circleContainerView.borderColor = .budiLightGreen
-        circleView.backgroundColor = .budiGreen
+        circleContainerView.borderColor = .border
+        circleView.backgroundColor = .primary
     }
     
     func configureDeselectedUI() {
-        circleContainerView.borderColor = .budiLightGray
+        circleContainerView.borderColor = .border
         circleView.backgroundColor = .white
     }
 }

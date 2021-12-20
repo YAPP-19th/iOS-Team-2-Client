@@ -32,6 +32,8 @@ final class HomeWritingViewController: UIViewController {
         super.viewDidLoad()
         configureNavigationBar()
         configureCollectionView()
+        bindViewModel()
+        setPublisher()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -44,6 +46,54 @@ final class HomeWritingViewController: UIViewController {
 }
 
 private extension HomeWritingViewController {
+    func bindViewModel() {
+    }
+    
+    func setPublisher() {
+        completeButton.tapPublisher
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in
+                guard let self = self else { return }
+                guard let imageUrl = self.viewModel.state.selectedImageUrl.value,
+                      let title = self.viewModel.state.name.value,
+                      let categoryName = self.viewModel.state.part.value,
+                      let startDate = self.viewModel.state.startDate.value,
+                      let endDate = self.viewModel.state.endDate.value,
+                      let isOnline = self.viewModel.state.isOnline.value,
+                      let region = self.viewModel.state.area.value,
+                      !self.viewModel.state.recruitingPositions.value.isEmpty,
+                      let description = self.viewModel.state.description.value else { return }
+                
+                let param = PostRequest(imageUrl: imageUrl, title: title, categoryName: categoryName, startDate: startDate, endDate: endDate, onlineInfo: isOnline ? "온라인" : "오프라인", region: region, recruitingPositions: self.viewModel.state.recruitingPositions.value, description: description)
+                let testAccessToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJFeHBpcmVkUGVyaW9kIjoiMzYwMCIsInVzZXJJZCI6ImFhZGEyIiwiaXNzdWVyIjoiU1lKX0lTU1VFIiwibWVtYmVySWQiOjEsImV4cCI6MTY3MDQyMTM3MH0.LkYIbZwO3zrtvDqgxNFe6IxtKovBGgu28t3g_8zS7DY"
+                
+                print(param)
+                
+                self.viewModel.createPost(testAccessToken, param) { result in
+                    switch result {
+                    case .success(let response): print(response)
+                    case .failure(let error): print(error.localizedDescription)
+                    }
+                }
+                self.dismiss(animated: false, completion: nil)
+            }.store(in: &cancellables)
+    }
+    
+    func isValid() {
+        guard viewModel.state.selectedImageUrl.value != nil,
+              viewModel.state.name.value != nil,
+              viewModel.state.part.value != nil,
+              viewModel.state.startDate.value != nil,
+              viewModel.state.endDate.value != nil,
+              viewModel.state.isOnline.value != nil,
+              viewModel.state.area.value != nil,
+              !viewModel.state.recruitingPositions.value.isEmpty,
+              viewModel.state.description.value != nil else { return }
+        
+        completeButton.isEnabled = true
+        completeButton.backgroundColor = .primary
+    }
+    
     func configureNavigationBar() {
         title = "팀원 모집"
         tabBarController?.tabBar.isHidden = true
@@ -56,6 +106,7 @@ extension HomeWritingViewController: HomeWritingImageBottomViewControllerDelegat
         print("urlString is \(urlString)")
         viewModel.state.selectedImageUrl.value = urlString
         collectionView.reloadData()
+        isValid()
     }
 }
 
@@ -63,6 +114,7 @@ extension HomeWritingViewController: HomeWritingNameCellDelegate {
     func changeName(_ name: String) {
         print("name is \(name)")
         viewModel.state.name.value = name
+        isValid()
     }
 }
 
@@ -71,6 +123,7 @@ extension HomeWritingViewController: HomeWritingPartBottomViewControllerDelegate
         print("part is \(part)")
         viewModel.state.part.value = part
         collectionView.reloadData()
+        isValid()
     }
 }
 
@@ -79,6 +132,7 @@ extension HomeWritingViewController: HomeWritingDurationCellDelegate {
         print(isStartDate ? "isStartDate" : "isEndDate")
         self.isStartDate = isStartDate
         coordinator?.showDatePickerViewController(self)
+        isValid()
     }}
 
 extension HomeWritingViewController: DatePickerBottomViewControllerDelegate {
@@ -90,6 +144,7 @@ extension HomeWritingViewController: DatePickerBottomViewControllerDelegate {
             viewModel.state.endDate.value = date
         }
         collectionView.reloadData()
+        isValid()
     }
 }
 
@@ -98,6 +153,7 @@ extension HomeWritingViewController: HomeWritingOnlineCellDelegate {
         print("isOnline is \(isOnline)")
         viewModel.state.isOnline.value = isOnline
         collectionView.reloadData()
+        isValid()
     }
 }
 
@@ -106,6 +162,7 @@ extension HomeWritingViewController: LocationSearchViewControllerDelegate {
         print("location is \(location)")
         viewModel.state.area.value = location
         collectionView.reloadData()
+        isValid()
     }
 }
 
@@ -114,6 +171,7 @@ extension HomeWritingViewController: HomeWritingMembersBottomViewControllerDeleg
         print("recruitingPositions is \(recruitingPositions)")
         viewModel.state.recruitingPositions.value = recruitingPositions
         collectionView.reloadData()
+        isValid()
     }
 }
 
@@ -121,6 +179,7 @@ extension HomeWritingViewController: HomeWritingDescriptionCellDelegate {
     func changeDescription(_ description: String) {
         print("description is \(description)")
         viewModel.state.description.value = description
+        isValid()
     }
 }
 

@@ -35,7 +35,7 @@
                     <subviews>
                         <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" style="inline" translatesAutoresizingMaskIntoConstraints="NO" id="HTu-BC-yAO">
                             <rect key="frame" x="0.0" y="32" width="414" height="364"/>
-                            <color key="tintColor" name="Green"/>
+                            <color key="tintColor" name="Primary"/>
                             <locale key="locale" localeIdentifier="ko_KR"/>
                         </datePicker>
                     </subviews>
@@ -101,8 +101,8 @@
         <namedColor name="Gray">
             <color red="0.5559999942779541" green="0.5559999942779541" blue="0.5559999942779541" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <namedColor name="Green">
-            <color red="0.40799999237060547" green="0.86299997568130493" blue="0.67100000381469727" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <namedColor name="Primary">
+            <color red="0.36899998784065247" green="0.37299999594688416" blue="0.85900002717971802" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="TransparentDarkGray">
             <color red="0.0" green="0.0" blue="0.0" alpha="0.60000002384185791" colorSpace="custom" customColorSpace="sRGB"/>

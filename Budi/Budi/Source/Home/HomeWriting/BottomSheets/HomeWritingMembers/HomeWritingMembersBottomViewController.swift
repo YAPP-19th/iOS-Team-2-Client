@@ -57,7 +57,6 @@ final class HomeWritingMembersBottomViewController: UIViewController {
         super.viewDidLoad()
         completeView.layer.addBorderTop()
         configureCollectionView()
-        bindViewModel()
         setPublisher()
     }
     
@@ -67,7 +66,7 @@ final class HomeWritingMembersBottomViewController: UIViewController {
 }
 
 private extension HomeWritingMembersBottomViewController {
-    func bindViewModel() {
+    func setPublisher() {
         completeButton.tapPublisher
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
@@ -87,9 +86,6 @@ private extension HomeWritingMembersBottomViewController {
             .sink { [weak self] _ in
                 self?.hideBottomView()
             }.store(in: &cancellables)
-    }
-    
-    func setPublisher() {
     }
 }
 

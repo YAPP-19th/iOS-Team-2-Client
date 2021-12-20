@@ -55,7 +55,6 @@ final class RecruitingStatusBottomViewController: UIViewController {
         super.viewDidLoad()
         submitView.layer.addBorderTop()
         configureCollectionView()
-        bindViewModel()
         setPublisher()
     }
     
@@ -65,9 +64,6 @@ final class RecruitingStatusBottomViewController: UIViewController {
 }
 
 private extension RecruitingStatusBottomViewController {
-    func bindViewModel() {
-    }
-    
     func setPublisher() {
         submitButton.tapPublisher
             .receive(on: DispatchQueue.main)

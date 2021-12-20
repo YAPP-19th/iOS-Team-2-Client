@@ -57,7 +57,7 @@ class LocationSearchViewController: UIViewController {
                 NotificationCenter.default.post(name: NSNotification.Name("LocationNextActivation"), object: address)
                 self.delegate?.getLocation(address)
                 self.searchBar.text = address
-                self.nextButton.backgroundColor = UIColor.budiGreen
+                self.nextButton.backgroundColor = UIColor.primary
                 self.nextButton.isEnabled = true
             case .failure(let error): print(error.localizedDescription)
             }
@@ -134,10 +134,10 @@ class LocationSearchViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         tabBarController?.tabBar.isHidden = true
     }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        tabBarController?.tabBar.isHidden = false
-    }
+
+//    override func viewWillDisappear(_ animated: Bool) {
+//        tabBarController?.tabBar.isHidden = false
+//    }
 
     private func configureAlert() {
         alertView.showAlert(title: "버디 위치기반 서비스 이용약관에 동의하시겠습니까?", cancelTitle: "취소", doneTitle: "동의")

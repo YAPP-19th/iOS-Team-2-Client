@@ -62,9 +62,11 @@ extension HomeWritingViewController: HomeWritingNameCellDelegate {
     }
 }
 
-extension HomeWritingViewController: HomeWritingPartCellDelegate {
-    func showWritingPartBottomView() {
-        coordinator?.showWritingPartBottomViewController(self, viewModel)
+extension HomeWritingViewController: HomeWritingPartBottomViewControllerDelegate {
+    func getPart(_ part: String) {
+        print("part is \(part)")
+        viewModel.state.part.value = part
+        collectionView.reloadData()
     }
 }
 
@@ -135,6 +137,7 @@ extension HomeWritingViewController: UICollectionViewDataSource, UICollectionVie
         let cell = UICollectionViewCell()
 
         switch indexPath.row {
+    
         case 0: guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeWritingImageCell.identifier, for: indexPath) as? HomeWritingImageCell else { return cell }
             if let url = viewModel.state.selectedImageUrl.value {
                 cell.configureUI(url)
@@ -146,28 +149,44 @@ extension HomeWritingViewController: UICollectionViewDataSource, UICollectionVie
                     self.coordinator?.showWritingImageBottomViewController(self, self.viewModel)
                 }.store(in: &cancellables)
             return cell
+            
         case 1: guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeWritingNameCell.identifier, for: indexPath) as? HomeWritingNameCell else { return cell }
             cell.delegate = self
             return cell
+            
         case 2: guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeWritingPartCell.identifier, for: indexPath) as? HomeWritingPartCell else { return cell }
-            cell.delegate = self
+            if let part = viewModel.state.part.value {
+                cell.configureUI(part)
+            }
+            cell.selectPartButton.tapPublisher
+                .receive(on: DispatchQueue.main)
+                .sink { [weak self] _ in
+                    guard let self = self else { return }
+                    self.coordinator?.showWritingPartBottomViewController(self, self.viewModel)
+                }.store(in: &cancellables)
             return cell
+            
         case 3: guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeWritingDurationCell.identifier, for: indexPath) as? HomeWritingDurationCell else { return cell }
             cell.delegate = self
             cell.configureUI(viewModel.state.startDate.value, viewModel.state.endDate.value)
             return cell
+            
         case 4: guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeWritingOnlineCell.identifier, for: indexPath) as? HomeWritingOnlineCell else { return cell }
             cell.delegate = self
             return cell
+            
         case 5: guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeWritingAreaCell.identifier, for: indexPath) as? HomeWritingAreaCell else { return cell }
             cell.delegate = self
             return cell
+            
         case 6: guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeWritingMembersCell.identifier, for: indexPath) as? HomeWritingMembersCell else { return cell }
             cell.delegate = self
             return cell
+            
         case 7: guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeWritingDescriptionCell.identifier, for: indexPath) as? HomeWritingDescriptionCell else { return cell }
             cell.delegate = self
             return cell
+            
         default: break
         }
         

@@ -18,6 +18,8 @@ final class HomeWritingViewModel: ViewModel {
 
     struct State {
         let defaultImageUrls = CurrentValueSubject<[String], Never>([])
+        let parts = CurrentValueSubject<[String], Never>(["O2O", "공유서비스", "데이팅 서비스", "금융", "여행", "소셜네트워크", "부동산", "게임", "인테리어", "종교", "이커머스", "뷰티/패션", "헬스/스포츠", "교육", "미디어/광고", "의료/제약", "콘텐츠"])
+        
         let selectedImageUrl = CurrentValueSubject<String?, Never>(nil)
         let name = CurrentValueSubject<String?, Never>(nil)
         let part = CurrentValueSubject<String?, Never>(nil)

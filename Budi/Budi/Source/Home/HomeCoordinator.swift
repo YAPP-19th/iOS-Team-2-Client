@@ -56,6 +56,7 @@ extension HomeCoordinator {
         let viewController: HomeWritingPartBottomViewController = HomeWritingPartBottomViewController(nibName: HomeWritingPartBottomViewController.identifier, bundle: nil, viewModel: viewModel)
         viewController.modalPresentationStyle = .overCurrentContext
         viewController.coordinator = self
+        viewController.delegate = vc as? HomeWritingPartBottomViewControllerDelegate
         vc.present(viewController, animated: false, completion: nil)
     }
     

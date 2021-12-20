@@ -6,33 +6,17 @@
 //
 
 import UIKit
-import Combine
-import CombineCocoa
-
-protocol HomeWritingPartCellDelegate: AnyObject {
-    func showWritingPartBottomView()
-}
 
 final class HomeWritingPartCell: UICollectionViewCell {
     
-    @IBOutlet private weak var selectPartButton: UIButton!
+    @IBOutlet weak var selectPartButton: UIButton!
+    @IBOutlet private weak var textField: UITextField!
     
-    weak var delegate: HomeWritingPartCellDelegate?
-    private var cancellables = Set<AnyCancellable>()
-
     override func awakeFromNib() {
         super.awakeFromNib()
-        setPublisher()
     }
-}
-
-private extension HomeWritingPartCell {
-    func setPublisher() {
-        selectPartButton.tapPublisher
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] _ in
-                guard let self = self else { return }
-                self.delegate?.showWritingPartBottomView()
-            }.store(in: &cancellables)
+    
+    func configureUI(_ part: String) {
+        textField.text = part
     }
 }

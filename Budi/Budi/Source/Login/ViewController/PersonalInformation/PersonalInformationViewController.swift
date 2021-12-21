@@ -9,7 +9,7 @@ import UIKit
 import Combine
 import CombineCocoa
 
-class SignupNormalViewController: UIViewController {
+class PersonalInformationViewController: UIViewController {
 
     weak var coordinator: LoginCoordinator?
     private var viewModel = SignupViewModel()
@@ -240,7 +240,7 @@ extension UIScrollView {
     }
 }
 
-extension SignupNormalViewController: UIScrollViewDelegate {
+extension PersonalInformationViewController: UIScrollViewDelegate {
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         self.view.endEditing(true)
     }

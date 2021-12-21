@@ -31,10 +31,10 @@ class LocationSelectView: UIView {
         button.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 10)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 16)
         button.setTitleColor(UIColor.init(white: 0.3, alpha: 1), for: .normal)
-        button.backgroundColor = UIColor.budiGreen.withAlphaComponent(0.2)
+        button.backgroundColor = UIColor.primarySub
         button.layer.cornerRadius = 8
         button.layer.masksToBounds = true
-        button.addTarget(self, action: #selector(SignupNormalViewController.searchAction), for: .touchUpInside)
+        button.addTarget(self, action: #selector(PersonalInformationViewController.searchAction), for: .touchUpInside)
         return button
     }()
 

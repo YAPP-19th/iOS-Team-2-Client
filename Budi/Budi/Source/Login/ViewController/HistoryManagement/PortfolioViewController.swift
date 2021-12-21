@@ -14,13 +14,13 @@ class PortfolioViewController: UIViewController {
     weak var coordinator: LoginCoordinator?
     @IBOutlet weak var modalView: UIView!
     var viewModel: SignupViewModel
+    @IBOutlet weak var emptyViewButton: UIButton!
     @IBOutlet weak var portfolioTextField: UITextField!
     @IBOutlet weak var saveButton: UIButton!
     private var flag = false
     private var cancellables = Set<AnyCancellable>()
     private let panGesture = UIPanGestureRecognizer()
     private var viewTranslation = CGPoint(x: 0, y: 0)
-
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
         view.endEditing(true)
@@ -73,6 +73,15 @@ class PortfolioViewController: UIViewController {
                 self?.viewModel.action.fetchSignupInfoData.send(())
                 NotificationCenter.default.post(name: Notification.Name("Dismiss"), object: self)
                 self?.dismiss(animated: true, completion: nil)
+            }
+            .store(in: &cancellables)
+
+        emptyViewButton.tapPublisher
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in
+                guard let self = self else { return }
+                NotificationCenter.default.post(name: Notification.Name("Dismiss"), object: self)
+                self.dismiss(animated: true, completion: nil)
             }
             .store(in: &cancellables)
     }
@@ -142,6 +151,7 @@ class PortfolioViewController: UIViewController {
 
     private func configureLayout() {
         view.backgroundColor = .clear
+        emptyViewButton.setTitle("", for: .normal)
         modalView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         modalView.layer.cornerRadius = 20
         view.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
@@ -157,7 +167,7 @@ class PortfolioViewController: UIViewController {
                 case .changed:
                     self.viewTranslation = sender.translation(in: self.modalView)
 
-                    if self.viewTranslation.y > 200 {
+                    if self.viewTranslation.y > 100 {
                         NotificationCenter.default.post(name: Notification.Name("Dismiss"), object: self)
                         self.dismiss(animated: true, completion: nil)
                     } else if self.viewTranslation.y > 0 {
@@ -168,7 +178,7 @@ class PortfolioViewController: UIViewController {
                 case .ended:
                     print("ended")
                 default:
-                    if self.viewTranslation.y < 250 {
+                    if self.viewTranslation.y < 100 {
                         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
                             self.modalView.transform = .identity
                         })

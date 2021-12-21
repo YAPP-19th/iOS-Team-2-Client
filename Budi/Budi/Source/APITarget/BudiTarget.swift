@@ -12,14 +12,12 @@ enum BudiTarget {
     case filteredPosts(type: Position, page: Int = 0, size: Int = 10)
     case createPost(accessToken: String, param: PostRequest)
     case post(id: Int)
-    case posts
     case detailPositions(postion: Position)
     case createInfo(acessToken: String, param: CreateInfo)
     case teamMembers(id: Int)
     case recruitingStatuses(id: Int)
     case postDefaultImageUrls
     case applies(accessToken: String, param: AppliesRequest)
-    case detailPositions(postion: Position)
 }
 
 extension BudiTarget: TargetType {
@@ -47,8 +45,6 @@ extension BudiTarget: TargetType {
         switch self {
         case .createInfo:
             return .post
-        default:
-            return .get
         case .createPost: return .post
         case .applies: return .post
         default: return .get
@@ -73,8 +69,6 @@ extension BudiTarget: TargetType {
         switch self {
         case .createInfo(let accessToken, _):
             return ["accessToken": accessToken, "Content-Type": "application/json"]
-        default:
-            return ["Content-Type": "application/json"]
         case .createPost(let accessToken, _), .applies(let accessToken, _):
             return ["Content-Type": "application/json", "accessToken": "\(accessToken)"]
         default: return ["Content-Type": "application/json"]

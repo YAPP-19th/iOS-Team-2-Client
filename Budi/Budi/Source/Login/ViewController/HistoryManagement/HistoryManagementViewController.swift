@@ -67,13 +67,13 @@ class HistoryManagementViewController: UIViewController {
     func addButtonAction(_ button: UIButton) {
     }
     func modalViewBackgoundOn() {
-        UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseOut, animations: {
+        UIView.animate(withDuration: 0.4, delay: 0, options: .curveEaseOut, animations: {
             self.view.alpha = 0.5
         })
     }
 
     func modalViewBackgoundOff() {
-        UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseOut, animations: {
+        UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: {
             self.view.alpha = 1.0
         })
     }

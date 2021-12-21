@@ -35,7 +35,7 @@ final class AlertView: UIView {
         button.setTitle("지금 입력하기", for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
         button.setTitleColor(UIColor.init(white: 1, alpha: 1), for: .normal)
-        button.backgroundColor = UIColor.budiGreen
+        button.backgroundColor = UIColor.primary
         button.layer.cornerRadius = 8
         button.layer.masksToBounds = true
         button.addTarget(self, action: #selector(LocationSearchViewController.projectWriteAtcion), for: .touchUpInside)

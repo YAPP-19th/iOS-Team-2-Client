@@ -110,8 +110,11 @@ final class SignupViewModel: ViewModel {
             .sink { [weak self] position in
                 guard let self = self else { return }
                 var oldPostitionList = self.state.positionSelectData.value
-                oldPostitionList.insert(position, at: oldPostitionList.count)
-                self.state.positionSelectData.send(oldPostitionList)
+                let flag = oldPostitionList.contains(position)
+                if !flag {
+                    oldPostitionList.insert(position, at: oldPostitionList.count)
+                    self.state.positionSelectData.send(oldPostitionList)
+                }
             }
             .store(in: &cancellables)
 
@@ -400,7 +403,7 @@ final class SignupViewModel: ViewModel {
                         // 서버에 로그인 시도 하고 받은 데이터
                         let decodeData = try JSONDecoder().decode(APIResponse<BudiLoginResponse>.self, from: data)
                         self.state.budiLoginUserData.send(decodeData.data.userId)
-                        print("로그인 데이터 :", self.state.budiLoginUserData.value)
+                        //print("로그인 데이터 :", self.state.budiLoginUserData.value)
                         print("로그인 유저 아이디 :", decodeData.data.userId)
                         print("로그인 고유 토큰 :", decodeData.data.accessToken)
                     } catch {

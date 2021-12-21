@@ -6,11 +6,14 @@
 //
 
 import UIKit
+import Combine
+import CombineCocoa
 
 class LocationSearchViewController: UIViewController {
     private let allLocation = Location().location
     private var correct: [String] = []
     weak var coordinator: LoginCoordinator?
+    private var cancellables = Set<AnyCancellable>()
     private let alertView = AlertView()
     private let searchBar: UISearchBar = {
         let search = UISearchBar()
@@ -32,7 +35,7 @@ class LocationSearchViewController: UIViewController {
         button.imageEdgeInsets = UIEdgeInsets(top: 0, left: -2, bottom: 0, right: 0)
         button.setTitleColor(UIColor.init(white: 0.62, alpha: 1), for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
-        button.backgroundColor = UIColor(red: 0.95, green: 0.95, blue: 0.95, alpha: 1.00)
+        button.backgroundColor =  UIColor.primarySub
         button.layer.cornerRadius = 8
         button.layer.masksToBounds = true
         button.tintColor = .white
@@ -96,6 +99,16 @@ class LocationSearchViewController: UIViewController {
         configureLayout()
         configureTableView()
         configureAlert()
+        setPublisher()
+    }
+
+    private func setPublisher() {
+        searchTableView.didDeselectRowPublisher
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] idx in
+                print(idx.row)
+            }
+            .store(in: &cancellables)
     }
 
     private func configureAlert() {

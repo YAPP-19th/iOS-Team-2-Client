@@ -17,6 +17,7 @@ class HistoryWriteViewController: UIViewController {
     @IBOutlet weak var historySwitchView: UIView!
     @IBOutlet weak var modalView: UIView!
 
+    @IBOutlet weak var emptyViewButton: UIButton!
     @IBOutlet weak var mainNameTextField: UITextField!
 
     @IBOutlet weak var workingSwitchButton: UIButton!
@@ -202,6 +203,15 @@ class HistoryWriteViewController: UIViewController {
                 guard var data = self?.viewModel.state.writedInfoData.value else { return }
                 data.endDate = text
                 self?.viewModel.state.writedInfoData.send(data)
+            }
+            .store(in: &cancellables)
+
+        emptyViewButton.tapPublisher
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in
+                guard let self = self else { return }
+                NotificationCenter.default.post(name: Notification.Name("Dismiss"), object: self)
+                self.dismiss(animated: true, completion: nil)
             }
             .store(in: &cancellables)
 

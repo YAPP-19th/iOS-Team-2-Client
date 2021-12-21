@@ -172,13 +172,6 @@ class PositionViewController: UIViewController {
                 self.positionDetailCollectionView.reloadData()
             }
             .store(in: &cancellables)
-
-        viewModel.state.positionSelectData
-            .receive(on: DispatchQueue.main)
-            .sink { data in
-                print(data)
-            }
-            .store(in: &cancellables)
     }
 
     @objc
@@ -230,7 +223,6 @@ class PositionViewController: UIViewController {
     private func configureCollectionView() {
         positionDetailCollectionView.register(PositionDetailCollectionViewCell.self, forCellWithReuseIdentifier: PositionDetailCollectionViewCell.cellId)
         let flow = LeftAlignedCollectionViewFlowLayout()
-        
         positionDetailCollectionView.delegate = self
         positionDetailCollectionView.showsVerticalScrollIndicator = false
         positionDetailCollectionView.dataSource = self
@@ -370,6 +362,7 @@ extension PositionViewController: UICollectionViewDelegate, UICollectionViewDele
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PositionDetailCollectionViewCell.cellId, for: indexPath) as? PositionDetailCollectionViewCell else { return UICollectionViewCell() }
         guard let text = viewModel.state.positionData.value?[indexPath.row] else { return UICollectionViewCell() }
+
         cell.configureButtonText(text)
 
         cell.positionDetailButton.tapPublisher

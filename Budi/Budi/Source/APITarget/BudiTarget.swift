@@ -8,10 +8,18 @@
 import Moya
 
 enum BudiTarget {
+    case posts(page: Int = 0, size: Int = 10)
+    case filteredPosts(type: Position, page: Int = 0, size: Int = 10)
+    case createPost(accessToken: String, param: PostRequest)
     case post(id: Int)
     case posts
     case detailPositions(postion: Position)
     case createInfo(acessToken: String, param: CreateInfo)
+    case teamMembers(id: Int)
+    case recruitingStatuses(id: Int)
+    case postDefaultImageUrls
+    case applies(accessToken: String, param: AppliesRequest)
+    case detailPositions(postion: Position)
 }
 
 extension BudiTarget: TargetType {
@@ -21,10 +29,17 @@ extension BudiTarget: TargetType {
 
     var path: String {
         switch self {
-        case .post(let id): return "/posts/\(id)"
         case .posts: return "/posts"
         case .detailPositions: return "/infos/positions"
         case .createInfo: return "/members/createInfo"
+        case .filteredPosts(let type, _, _): return "/posts/positions/\(type.stringValue)"
+        case .createPost: return "/posts"
+        case .post(let id): return "/posts/\(id)"
+        case .teamMembers(let id): return "/posts/\(id)/members"
+        case .recruitingStatuses(let id): return "/posts/\(id)/recruitingStatus"
+        case .postDefaultImageUrls: return "/infos/postDefaultImageUrls"
+        case .applies: return "/applies"
+        case .detailPositions: return "/infos/positions"
         }
     }
 
@@ -34,11 +49,20 @@ extension BudiTarget: TargetType {
             return .post
         default:
             return .get
+        case .createPost: return .post
+        case .applies: return .post
+        default: return .get
         }
     }
 
     var task: Task {
         switch self {
+        case .createPost(_, let param): return .requestJSONEncodable(param)
+        case .applies(_, let param): return .requestJSONEncodable(param)
+        case .posts(let page, let size):
+            return .requestParameters(parameters: ["page": page, "size": size], encoding: URLEncoding.default)
+        case .filteredPosts(_, let page, let size):
+            return .requestParameters(parameters: ["page": page, "size": size], encoding: URLEncoding.default)
         case .detailPositions(let position):
             return .requestParameters(parameters: ["position": position.stringValue], encoding: URLEncoding.default)
         default: return .requestPlain
@@ -51,6 +75,9 @@ extension BudiTarget: TargetType {
             return ["accessToken": accessToken, "Content-Type": "application/json"]
         default:
             return ["Content-Type": "application/json"]
+        case .createPost(let accessToken, _), .applies(let accessToken, _):
+            return ["Content-Type": "application/json", "accessToken": "\(accessToken)"]
+        default: return ["Content-Type": "application/json"]
         }
     }
 

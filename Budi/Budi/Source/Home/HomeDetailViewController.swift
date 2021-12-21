@@ -4,7 +4,6 @@
 //
 //  Created by leeesangheee on 2021/11/02.
 //
-
 import UIKit
 import Moya
 import Combine
@@ -12,19 +11,14 @@ import CombineCocoa
 
 final class HomeDetailViewController: UIViewController {
 
-    @IBOutlet weak var mainCollectionView: UICollectionView!
-    @IBOutlet weak var backgroundView: UIView!
+    @IBOutlet private weak var mainCollectionView: UICollectionView!
+    @IBOutlet private weak var backgroundView: UIView!
 
-    @IBOutlet weak var bottomSheetContainerView: UIView!
-    @IBOutlet weak var bottomSheetCollectionView: UICollectionView!
-    @IBOutlet weak var bottomSheetCloseButton: UIButton!
+    @IBOutlet private weak var bottomView: UIView!
+    @IBOutlet private weak var heartButton: UIButton!
+    @IBOutlet private weak var heartCountLabel: UILabel!
+    @IBOutlet private weak var submitButton: UIButton!
 
-    @IBOutlet weak var bottomView: UIView!
-    @IBOutlet weak var heartButton: UIButton!
-    @IBOutlet weak var heartCountLabel: UILabel!
-    @IBOutlet weak var submitButton: UIButton!
-
-    private var isBottomViewShown: Bool = false
     private var isHeartButtonChecked: Bool = false
 
     weak var coordinator: HomeCoordinator?
@@ -42,15 +36,15 @@ final class HomeDetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        bottomView.layer.addBorderTop()
         configureNavigationBar()
         configureCollectionView()
-        bottomView.layer.addBorderTop()
         bindViewModel()
         setPublisher()
     }
 
-    override func viewDidAppear(_ animated: Bool) {
-         super.viewDidAppear(animated)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         tabBarController?.tabBar.isHidden = true
         navigationController?.setTranslucent()
     }
@@ -63,6 +57,16 @@ final class HomeDetailViewController: UIViewController {
 }
 
 private extension HomeDetailViewController {
+    func bindViewModel() {
+        viewModel.state.post
+            .receive(on: DispatchQueue.main)
+            .sink(receiveCompletion: { [weak self] _ in
+                self?.mainCollectionView.reloadData()
+            }, receiveValue: { _ in
+                self.mainCollectionView.reloadData()
+            }).store(in: &cancellables)
+    }
+    
     func setPublisher() {
         heartButton.tapPublisher
             .receive(on: DispatchQueue.main)
@@ -76,157 +80,66 @@ private extension HomeDetailViewController {
         submitButton.tapPublisher
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
-                guard let self = self, !self.isBottomViewShown else { return }
-                self.backgroundView.isHidden = false
-                self.isBottomViewShown = true
-                
-                UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseIn, animations: { [weak self] in
-                    self?.bottomSheetContainerView.center.y -= self?.bottomSheetContainerView.bounds.height ?? 0
-                }, completion: nil)
-            }.store(in: &cancellables)
-
-        bottomSheetCloseButton.tapPublisher
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] _ in
                 guard let self = self else { return }
-                self.isBottomViewShown = false
-                
-                UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseIn, animations: { [weak self] in
-                    self?.bottomSheetContainerView.center.y += self?.bottomSheetContainerView.bounds.height ?? 0
-                }, completion: { [weak self] _ in
-                    self?.backgroundView.isHidden = true
-                })
+                self.coordinator?.showRecruitingStatusBottomViewController(self, self.viewModel)
             }.store(in: &cancellables)
-    }
-
-    func bindViewModel() {
-        viewModel.state.post
-            .receive(on: DispatchQueue.main)
-            .sink(receiveCompletion: { [weak self] _ in
-                self?.mainCollectionView.reloadData()
-            }, receiveValue: { post in
-                if let post = post { print(post) }
-                self.mainCollectionView.reloadData()
-                self.bottomSheetCollectionView.reloadData()
-            }).store(in: &cancellables)
-    }
-
-    func configureCollectionView() {
-        mainCollectionView.dataSource = self
-        mainCollectionView.delegate = self
-        mainCollectionView.register(.init(nibName: HomeDetailMainCell.identifier, bundle: nil), forCellWithReuseIdentifier: HomeDetailMainCell.identifier)
-        mainCollectionView.register(.init(nibName: HomeDetailStatusCell.identifier, bundle: nil), forCellWithReuseIdentifier: HomeDetailStatusCell.identifier)
-        mainCollectionView.register(.init(nibName: HomeDetailDescriptionCell.identifier, bundle: nil), forCellWithReuseIdentifier: HomeDetailDescriptionCell.identifier)
-        mainCollectionView.register(.init(nibName: HomeDetailLeaderCell.identifier, bundle: nil), forCellWithReuseIdentifier: HomeDetailLeaderCell.identifier)
-        mainCollectionView.register(.init(nibName: HomeDetailMemberCell.identifier, bundle: nil), forCellWithReuseIdentifier: HomeDetailMemberCell.identifier)
-
-        bottomSheetCollectionView.dataSource = self
-        bottomSheetCollectionView.delegate = self
-        bottomSheetCollectionView.register(.init(nibName: BottomSheetCell.identifier, bundle: nil), forCellWithReuseIdentifier: BottomSheetCell.identifier)
-    }
-}
-
-extension HomeDetailViewController: UICollectionViewDataSource, UICollectionViewDelegate {
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        1
-    }
-
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        switch collectionView {
-        case mainCollectionView: return 5
-        case bottomSheetCollectionView: return viewModel.state.post.value?.recruitingStatusResponses.count ?? 0
-        default: return 0
-        }
-    }
-
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = UICollectionViewCell()
-
-        if collectionView == mainCollectionView {
-            switch indexPath.row {
-            case 0:
-                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeDetailMainCell.identifier, for: indexPath) as? HomeDetailMainCell else { return cell }
-                if let post = viewModel.state.post.value {
-                    cell.updateUI(post)
-                }
-                return cell
-            case 1:
-                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeDetailStatusCell.identifier, for: indexPath) as? HomeDetailStatusCell else { return cell }
-                if let post = viewModel.state.post.value {
-//                    cell.updateUI(post.recruitingStatusResponses)
-                }
-                return cell
-            case 2:
-                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeDetailDescriptionCell.identifier, for: indexPath) as? HomeDetailDescriptionCell else { return cell }
-                if let post = viewModel.state.post.value {
-                    cell.updateUI(post.description)
-                }
-                return cell
-            case 3:
-                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeDetailLeaderCell.identifier, for: indexPath) as? HomeDetailLeaderCell else { return cell }
-                return cell
-            case 4:
-                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeDetailMemberCell.identifier, for: indexPath) as? HomeDetailMemberCell else { return cell }
-                return cell
-            default: break
-            }
-        }
-
-        if collectionView == bottomSheetCollectionView {
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BottomSheetCell.identifier, for: indexPath) as? BottomSheetCell else { return cell }
-            if let recruitingStatusResponses = viewModel.state.post.value?.recruitingStatusResponses[indexPath.row] {
-                cell.updateUI(status: recruitingStatusResponses)
-            }
-            return cell
-        }
-
-        return cell
-    }
-}
-
-extension HomeDetailViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        var size = CGSize(width: collectionView.frame.width, height: 0)
-
-        if collectionView == mainCollectionView {
-            switch indexPath.row {
-            case 0: size.height = 436
-            case 1: size.height = 181
-            case 2: size.height = 578
-            case 3: size.height = 176
-            case 4: size.height = 344
-            default: break
-            }
-        }
-
-        if collectionView == bottomSheetCollectionView {
-            size.height = 56
-        }
-
-        return size
-    }
-
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        switch collectionView {
-        case mainCollectionView: return 0
-        case bottomSheetCollectionView: return 8
-        default: return 0
-        }
     }
 }
 
 private extension HomeDetailViewController {
     func configureNavigationBar() {
-        let actionButton = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(actionButtonTapped))
-        navigationItem.rightBarButtonItem = actionButton
+        let shareButton = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareButtonTapped))
+        navigationItem.rightBarButtonItem = shareButton
         navigationController?.navigationBar.tintColor = .systemGray
     }
 
     @objc
-    func actionButtonTapped() {
-        let alert = GreetingAlertViewController()
-        alert.modalPresentationStyle = .overCurrentContext
-        alert.modalTransitionStyle = .crossDissolve
-        present(alert, animated: true, completion: nil)
+    func shareButtonTapped() {
+        print("버디 모집 공유")
+    }
+}
+
+// MARK: - Delegate
+extension HomeDetailViewController: RecruitingStatusBottomViewControllerDelegate {
+    func getSelectedRecruitingStatus(_ selectedRecruitingStatus: RecruitingStatus) {
+        let postId = viewModel.state.postId.value
+        let testAccessToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJFeHBpcmVkUGVyaW9kIjoiMzYwMCIsInVzZXJJZCI6ImFhZGEyIiwiaXNzdWVyIjoiU1lKX0lTU1VFIiwibWVtYmVySWQiOjEsImV4cCI6MTY3MDQyMTM3MH0.LkYIbZwO3zrtvDqgxNFe6IxtKovBGgu28t3g_8zS7DY"
+        
+        let param = AppliesRequest(postId: postId, recruitingPositionId: selectedRecruitingStatus.recruitingPositionId)
+        
+        viewModel.requestApplies(testAccessToken, param) { result in
+            switch result {
+            case .success(let response):
+                print("response is \(response)")
+                self.dismiss(animated: false) {
+                    self.coordinator?.showGreetingAlertViewController(self)
+                }
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+}
+
+// MARK: - CollectionView
+extension HomeDetailViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    private func configureCollectionView() {
+        HomeDetailCellType.configureCollectionView(self, mainCollectionView)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        HomeDetailCellType.numberOfItemsInSection
+    }
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        HomeDetailCellType.configureCell(collectionView, indexPath, viewModel)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        HomeDetailCellType.configureCellSize(collectionView, indexPath, viewModel)
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        HomeDetailCellType.minimumLineSpacingForSection
     }
 }

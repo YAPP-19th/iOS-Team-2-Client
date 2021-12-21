@@ -48,6 +48,15 @@ private extension HomeContentViewController {
                 self?.viewModel.action.refresh.send(())
             })
             .store(in: &cancellables)
+
+        collectionView.didScrollPublisher
+            .sink { [weak self] _ in
+                guard let self = self else { return }
+                if self.collectionView.contentOffset.y > self.collectionView.contentSize.height - (self.collectionView.bounds.height + 100) && !self.viewModel.nextPageisLoading {
+                    self.viewModel.nextPageisLoading = true
+                    self.viewModel.action.fetch.send(())
+                }
+            }.store(in: &cancellables)
     }
 
     func bindViewModel() {
@@ -89,13 +98,15 @@ extension HomeContentViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeCell.identifier, for: indexPath) as? HomeCell else { return UICollectionViewCell() }
         let post = viewModel.state.posts.value[indexPath.item]
+        
         cell.updateUI(post)
 
         return cell
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        coordinator?.showDetail()
+        let post = viewModel.state.posts.value[indexPath.item]
+        coordinator?.showDetail(post.postID)
     }
 }
 

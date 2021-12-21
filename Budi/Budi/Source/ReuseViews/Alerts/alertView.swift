@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AlertView: UIView {
+final class AlertView: UIView {
 
     private let titleLabel: UILabel = {
         let label = UILabel()

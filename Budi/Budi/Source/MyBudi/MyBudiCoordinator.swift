@@ -11,7 +11,6 @@ final class MyBudiCoordinator: NavigationCoordinator {
 
     weak var parentCoordinator: MainTabBarCoordinator?
     weak var navigationController: UINavigationController?
-    private let storyboard = UIStoryboard(name: "Main", bundle: nil)
 
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
@@ -19,7 +18,9 @@ final class MyBudiCoordinator: NavigationCoordinator {
     }
 
     func start() {
-        navigationController?.pushViewController(UIViewController(), animated: true)
+        let viewController: MyBudiViewController = MyBudiViewController(nibName: MyBudiViewController.identifier, bundle: nil)
+        viewController.coordinator = self
+        navigationController?.pushViewController(viewController, animated: true)
     }
 }
 

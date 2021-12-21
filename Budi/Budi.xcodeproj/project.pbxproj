@@ -67,6 +67,11 @@
 		5E91509E27722D85000578D4 /* MyBudiHelpCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E91509C27722D85000578D4 /* MyBudiHelpCell.swift */; };
 		5E91509F27722D85000578D4 /* MyBudiHelpCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E91509D27722D85000578D4 /* MyBudiHelpCell.xib */; };
 		5E9150A1277230C0000578D4 /* MyBudiMainCellType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9150A0277230C0000578D4 /* MyBudiMainCellType.swift */; };
+		5E9150A62772356A000578D4 /* MyBudiEditCellType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9150A52772356A000578D4 /* MyBudiEditCellType.swift */; };
+		5E9150A92772357C000578D4 /* MyBudiEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9150A72772357C000578D4 /* MyBudiEditViewController.swift */; };
+		5E9150AA2772357C000578D4 /* MyBudiEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E9150A82772357C000578D4 /* MyBudiEditViewController.xib */; };
+		5E9150AC27723668000578D4 /* MyBudiMainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9150AB27723668000578D4 /* MyBudiMainViewModel.swift */; };
+		5E9150AE277236F7000578D4 /* MyBudiEditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9150AD277236F7000578D4 /* MyBudiEditViewModel.swift */; };
 		5EA453692731412A00943C94 /* HomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA453672731412A00943C94 /* HomeCell.swift */; };
 		5EA4536A2731412A00943C94 /* HomeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EA453682731412A00943C94 /* HomeCell.xib */; };
 		5EA45370273144C200943C94 /* HomeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA4536F273144C200943C94 /* HomeDetailViewController.swift */; };
@@ -245,6 +250,11 @@
 		5E91509C27722D85000578D4 /* MyBudiHelpCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyBudiHelpCell.swift; sourceTree = "<group>"; };
 		5E91509D27722D85000578D4 /* MyBudiHelpCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyBudiHelpCell.xib; sourceTree = "<group>"; };
 		5E9150A0277230C0000578D4 /* MyBudiMainCellType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyBudiMainCellType.swift; sourceTree = "<group>"; };
+		5E9150A52772356A000578D4 /* MyBudiEditCellType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyBudiEditCellType.swift; sourceTree = "<group>"; };
+		5E9150A72772357C000578D4 /* MyBudiEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyBudiEditViewController.swift; sourceTree = "<group>"; };
+		5E9150A82772357C000578D4 /* MyBudiEditViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyBudiEditViewController.xib; sourceTree = "<group>"; };
+		5E9150AB27723668000578D4 /* MyBudiMainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyBudiMainViewModel.swift; sourceTree = "<group>"; };
+		5E9150AD277236F7000578D4 /* MyBudiEditViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyBudiEditViewModel.swift; sourceTree = "<group>"; };
 		5EA453672731412A00943C94 /* HomeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCell.swift; sourceTree = "<group>"; };
 		5EA453682731412A00943C94 /* HomeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeCell.xib; sourceTree = "<group>"; };
 		5EA4536F273144C200943C94 /* HomeDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HomeDetailViewController.swift; path = HomeDetailCells/HomeDetailViewController.swift; sourceTree = "<group>"; };
@@ -494,6 +504,11 @@
 		5E9150A227723448000578D4 /* Edit */ = {
 			isa = PBXGroup;
 			children = (
+				5E9150A42772355B000578D4 /* Cells */,
+				5E9150A52772356A000578D4 /* MyBudiEditCellType.swift */,
+				5E9150AD277236F7000578D4 /* MyBudiEditViewModel.swift */,
+				5E9150A72772357C000578D4 /* MyBudiEditViewController.swift */,
+				5E9150A82772357C000578D4 /* MyBudiEditViewController.xib */,
 			);
 			path = Edit;
 			sourceTree = "<group>";
@@ -502,11 +517,19 @@
 			isa = PBXGroup;
 			children = (
 				5E91508F277221D0000578D4 /* Cells */,
+				5E9150A0277230C0000578D4 /* MyBudiMainCellType.swift */,
+				5E9150AB27723668000578D4 /* MyBudiMainViewModel.swift */,
 				5E91508B27721D8B000578D4 /* MyBudiMainViewController.swift */,
 				5E91508C27721D8B000578D4 /* MyBudiMainViewController.xib */,
-				5E9150A0277230C0000578D4 /* MyBudiMainCellType.swift */,
 			);
 			path = Main;
+			sourceTree = "<group>";
+		};
+		5E9150A42772355B000578D4 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		5EA4536B2731413000943C94 /* Cells */ = {
@@ -1062,6 +1085,7 @@
 				5E915093277221F5000578D4 /* MyBudiProfileCell.xib in Resources */,
 				5E7EFE282732E06F007817C3 /* AlertViewController.xib in Resources */,
 				5E91509727722206000578D4 /* MyBudiLevelCell.xib in Resources */,
+				5E9150AA2772357C000578D4 /* MyBudiEditViewController.xib in Resources */,
 				5E7CF4C92770B79E007315F1 /* HomeWritingMembersPartUnitBottomCell.xib in Resources */,
 				5E820B7C2769E9D7004A03E9 /* HomeWritingMembersDetailPartBottomCell.xib in Resources */,
 				5E5517AA2768BCC300DC605E /* HomeWritingPartBottomCell.xib in Resources */,
@@ -1140,6 +1164,7 @@
 				A81D1087276485590022D610 /* ProjectHistory.swift in Sources */,
 				5E7CF4BF27708D50007315F1 /* RecruitingPosition.swift in Sources */,
 				5E24072527522CB500954BE7 /* HomeContainerViewController.swift in Sources */,
+				5E9150A62772356A000578D4 /* MyBudiEditCellType.swift in Sources */,
 				5E24072427522CA800954BE7 /* MainTabBarCoordinator.swift in Sources */,
 				5E88636E2767450A0022397A /* HomeWritingCellType.swift in Sources */,
 				5E820B7B2769E9D7004A03E9 /* HomeWritingMembersDetailPartBottomCell.swift in Sources */,
@@ -1176,6 +1201,7 @@
 				A8AB51DE2769D3EC003D151C /* LeftAlignedCollectionViewFlowLayout.swift in Sources */,
 				5E91509A27722213000578D4 /* MyBudiProjectCell.swift in Sources */,
 				5E88637E276771FB0022397A /* HomeWritingMembersBottomViewController.swift in Sources */,
+				5E9150AE277236F7000578D4 /* MyBudiEditViewModel.swift in Sources */,
 				5EFB0A5A27341C1100F39A4D /* ChattingTimeCell.swift in Sources */,
 				5EFB0A5627340BF100F39A4D /* ChattingMessageCell.swift in Sources */,
 				5EA453AC2731DDA700943C94 /* CALayer+addBorder.swift in Sources */,
@@ -1200,8 +1226,10 @@
 				A8CD0CEE2771CDCA00FFDE64 /* BudiLogin.swift in Sources */,
 				5E2554612732DF8A00033723 /* GreetingAlertViewController.swift in Sources */,
 				B92D5502274C039C00D0E851 /* HomeContentViewModel.swift in Sources */,
+				5E9150A92772357C000578D4 /* MyBudiEditViewController.swift in Sources */,
 				5EC2FF04275E5D8300FF5BB0 /* HomeWritingViewModel.swift in Sources */,
 				5E820B8F2769F963004A03E9 /* DatePickerBottomViewController.swift in Sources */,
+				5E9150AC27723668000578D4 /* MyBudiMainViewModel.swift in Sources */,
 				B92D5502274C039C00D0E851 /* HomeContentViewModel.swift in Sources */,
 				B9D66EB927146DF900668490 /* TabBarCoordinator.swift in Sources */,
 				B9D66EBF27146F2F00668490 /* HomeCoordinator.swift in Sources */,

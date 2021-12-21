@@ -18,12 +18,16 @@ final class MyBudiCoordinator: NavigationCoordinator {
     }
 
     func start() {
-        let viewController: MyBudiMainViewController = MyBudiMainViewController(nibName: MyBudiMainViewController.identifier, bundle: nil)
+        let viewController: MyBudiMainViewController = MyBudiMainViewController(nibName: MyBudiMainViewController.identifier, bundle: nil, viewModel: MyBudiMainViewModel())
         viewController.coordinator = self
         navigationController?.pushViewController(viewController, animated: true)
     }
 }
 
 extension MyBudiCoordinator {
-
+    func showEditViewController() {
+        let viewController: MyBudiEditViewController = MyBudiEditViewController(nibName: MyBudiEditViewController.identifier, bundle: nil, viewModel: MyBudiEditViewModel())
+        viewController.coordinator = self
+        navigationController?.pushViewController(viewController, animated: true)
+    }
 }

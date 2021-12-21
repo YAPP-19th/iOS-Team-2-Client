@@ -112,6 +112,9 @@
                 <constraint firstItem="1Jr-ZF-AiA" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="ZfI-JF-OC2"/>
                 <constraint firstAttribute="bottom" secondItem="1Jr-ZF-AiA" secondAttribute="bottom" id="fzL-OE-Kng"/>
             </constraints>
+            <connections>
+                <outlet property="editButton" destination="Hid-N9-hde" id="y31-sf-K3K"/>
+            </connections>
             <point key="canvasLocation" x="131.8840579710145" y="81.696428571428569"/>
         </collectionViewCell>
     </objects>

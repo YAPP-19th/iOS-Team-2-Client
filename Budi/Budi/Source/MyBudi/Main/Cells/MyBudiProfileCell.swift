@@ -8,7 +8,9 @@
 import UIKit
 
 final class MyBudiProfileCell: UICollectionViewCell {
-
+    
+    @IBOutlet weak var editButton: UIButton!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     }

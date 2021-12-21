@@ -23,7 +23,7 @@ class LocationSelectView: UIView {
         return label
     }()
 
-    private let locationSelectButton: UIButton = {
+    let locationSelectButton: UIButton = {
         let button = UIButton()
         button.setTitle("지역 선택하기", for: .normal)
         button.setImage(UIImage(named: "locationAddButton"), for: .normal)

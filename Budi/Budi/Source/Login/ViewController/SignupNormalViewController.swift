@@ -7,6 +7,7 @@
 
 import UIKit
 import Combine
+import CombineCocoa
 
 class SignupNormalViewController: UIViewController {
 
@@ -97,6 +98,12 @@ class SignupNormalViewController: UIViewController {
                 self?.introduceView.loadTextView(data?.email ?? "")
             })
             .store(in: &cancellables)
+
+        nickNameView.nickNameTextField.textPublisher
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] text in
+                
+            }
     }
 
     private func configureAddOserver() {

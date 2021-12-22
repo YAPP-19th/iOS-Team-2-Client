@@ -44,7 +44,9 @@ extension LoginCoordinator {
     }
 
     func showLocationSearchViewController() {
-        let viewController: LocationSearchViewController = storyboard.instantiateViewController(identifier: LocationSearchViewController.identifier)
+        let viewController: LocationSearchViewController = storyboard.instantiateViewController(identifier: LocationSearchViewController.identifier) { coder -> LocationSearchViewController? in
+            return LocationSearchViewController(coder: coder, viewModel: self.viewModel)
+        }
         viewController.navigationItem.title = "위치선택"
         viewController.coordinator = self
         navigationController?.pushViewController(viewController, animated: true)

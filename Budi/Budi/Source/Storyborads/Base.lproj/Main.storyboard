@@ -186,7 +186,7 @@
         <!--Personal Information View Controller-->
         <scene sceneID="g04-6z-NkS">
             <objects>
-                <viewController storyboardIdentifier="SignupNormalViewController" id="bvo-eb-ee0" customClass="PersonalInformationViewController" customModule="Budi" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PersonalInformationViewController" id="bvo-eb-ee0" customClass="PersonalInformationViewController" customModule="Budi" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="IT5-hY-ifF">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1234,7 +1234,7 @@
         <image name="ellipsis" catalog="system" width="128" height="37"/>
         <image name="face.smiling.fill" catalog="system" width="128" height="121"/>
         <image name="heart" catalog="system" width="128" height="109"/>
-        <image name="locationAddButton" width="22.5" height="22.5"/>
+        <image name="locationAddButton" width="24" height="24"/>
         <image name="paperplane.fill" catalog="system" width="128" height="118"/>
         <image name="plus.circle.fill" catalog="system" width="128" height="121"/>
         <namedColor name="DarkGray">

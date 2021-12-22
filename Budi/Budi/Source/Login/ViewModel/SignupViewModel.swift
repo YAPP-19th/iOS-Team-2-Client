@@ -16,7 +16,7 @@ final class SignupViewModel: ViewModel {
         let refresh = PassthroughSubject<Void, Never>()
         let positionFetch = PassthroughSubject<Position, Never>()
         let switchView = PassthroughSubject<ModalControl, Never>()
-
+        let checkSameId = PassthroughSubject<String, Never>()
         let positionSelect = PassthroughSubject<String, Never>()
         let positionDeSelect = PassthroughSubject<String, Never>()
 
@@ -40,7 +40,7 @@ final class SignupViewModel: ViewModel {
         let budiLoginUserData = CurrentValueSubject<String?, Never>(nil)
         // Budi 서버 포지션 선택 대응 정보 저장
         let positionData = CurrentValueSubject<[String]?, Never>(nil)
-
+        let checkIdStatus = CurrentValueSubject<Bool?, Never>(nil)
         let positionSelectData = CurrentValueSubject<[String], Never>([])
         // 앱 내 포지션 선택 정보 저장
         let selectPositionData = CurrentValueSubject<[String]?, Never>(nil)
@@ -82,6 +82,8 @@ final class SignupViewModel: ViewModel {
         let selectIndex = CurrentValueSubject<[Int], Never>([])
 
         let editData = CurrentValueSubject<Item?, Never>(nil)
+
+        let signUpPersonalInfoData = CurrentValueSubject<PersonalInfo, Never>(PersonalInfo(nickName: "", location: "", description: ""))
     }
 
     let action = Action()
@@ -269,6 +271,35 @@ final class SignupViewModel: ViewModel {
 
     // MARK: - 포지션 GET viewModel
     func getPositions() {
+        action.checkSameId
+            .receive(on: DispatchQueue.global())
+            .sink(receiveValue: { [weak self] name in
+                guard let self = self else { return }
+                if name == "" {
+                    print("일로 들어옴")
+                    self.state.checkIdStatus.send(nil)
+                } else {
+
+                    self.provider
+                        .requestPublisher(.checkDuplicateName(name: name))
+                        .map(APIResponse<NameDuplication>.self)
+                        .map(\.data)
+                        .sink(receiveCompletion: { [weak self] completion in
+                            switch completion {
+                            case .failure(let error):
+                                print(error.localizedDescription)
+                            case .finished:
+                                break
+                            }
+                            self?.state.checkIdStatus.send(nil)
+                        }, receiveValue: { post in
+                            self.state.checkIdStatus.send(post.exist)
+                        })
+                        .store(in: &self.cancellables)
+                }
+            })
+            .store(in: &cancellables)
+
         action.positionFetch
             .sink(receiveValue: { [weak self] selectedPosition in
                 guard let self = self else { return }

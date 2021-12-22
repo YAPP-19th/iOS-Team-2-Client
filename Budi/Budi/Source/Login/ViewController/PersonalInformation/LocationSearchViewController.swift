@@ -13,6 +13,7 @@ class LocationSearchViewController: UIViewController {
     private let allLocation = Location().location
     private var correct: [String] = []
     weak var coordinator: LoginCoordinator?
+    var viewModel: SignupViewModel
     private var cancellables = Set<AnyCancellable>()
     private let alertView = AlertView()
     private let searchBar: UISearchBar = {
@@ -81,13 +82,16 @@ class LocationSearchViewController: UIViewController {
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
         button.backgroundColor = UIColor.init(white: 0, alpha: 0.38)
         button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 25, right: 0)
-        button.addTarget(self, action: #selector(nextAction), for: .touchUpInside)
         return button
     }()
 
-    @objc
-    func nextAction() {
-        self.navigationController?.popViewController(animated: true)
+    init?(coder: NSCoder, viewModel: SignupViewModel) {
+        self.viewModel = viewModel
+        super.init(coder: coder)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 
     override func viewDidLoad() {
@@ -103,10 +107,11 @@ class LocationSearchViewController: UIViewController {
     }
 
     private func setPublisher() {
-        searchTableView.didDeselectRowPublisher
+        nextButton.tapPublisher
             .receive(on: DispatchQueue.main)
-            .sink { [weak self] idx in
-                print(idx.row)
+            .sink { [weak self] _ in
+                guard let self = self else { return }
+                self.navigationController?.popViewController(animated: true)
             }
             .store(in: &cancellables)
     }
@@ -231,12 +236,13 @@ extension LocationSearchViewController: UITableViewDelegate, UITableViewDataSour
         let data = correct[indexPath.row]
         nextButton.backgroundColor = UIColor.budiGreen
         nextButton.isEnabled = true
+        print(indexPath.row)
         self.view.endEditing(true)
         NotificationCenter.default.post(name: NSNotification.Name("LocationNextActivation"), object: data)
     }
 
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        self.view.endEditing(true)
+        view.endEditing(true)
     }
 
 }

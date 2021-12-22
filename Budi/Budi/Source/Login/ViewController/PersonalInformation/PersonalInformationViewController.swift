@@ -64,9 +64,7 @@ class PersonalInformationViewController: UIViewController {
 
     @objc
     func searchAction() {
-        let locationSearch = LocationSearchViewController()
-        locationSearch.navigationItem.title = "지역 선택"
-        navigationController?.pushViewController(locationSearch, animated: true)
+        coordinator?.showLocationSearchViewController()
         NSLayoutConstraint.deactivate(defaultConstraint)
         NSLayoutConstraint.activate(newConstraint)
         NotificationCenter.default.post(name: NSNotification.Name("ActivationNext"), object: nil, userInfo: nil)
@@ -88,6 +86,7 @@ class PersonalInformationViewController: UIViewController {
         keyBoardNotification()
         keyBoardDismiss()
         bindViewModel()
+        setPublisher()
     }
 
     private func bindViewModel() {
@@ -99,11 +98,41 @@ class PersonalInformationViewController: UIViewController {
             })
             .store(in: &cancellables)
 
+        viewModel.state.checkIdStatus
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] flag in
+                guard let self = self else { return }
+                guard let flag = flag else { return }
+                self.nickNameView.checkID(flag: flag)
+            }
+            .store(in: &cancellables)
+
+        viewModel.state.signUpPersonalInfoData
+            .receive(on: DispatchQueue.main)
+            .sink { data in
+                print(data)
+            }
+            .store(in: &cancellables)
+
+    }
+
+    private func setPublisher() {
         nickNameView.nickNameTextField.textPublisher
+            .throttle(for: 0.8, scheduler: DispatchQueue.main, latest: true)
             .receive(on: DispatchQueue.main)
             .sink { [weak self] text in
-                
+                guard let self = self else { return }
+                var changeData = self.viewModel.state.signUpPersonalInfoData.value
+                guard let text = text else { return }
+                changeData.nickName = text
+                if text == "" {
+                    self.nickNameView.emptyText()
+                }
+                self.viewModel.action.checkSameId.send(text)
+                self.viewModel.state.signUpPersonalInfoData.send(changeData)
             }
+            .store(in: &cancellables)
+
     }
 
     private func configureAddOserver() {
@@ -114,7 +143,9 @@ class PersonalInformationViewController: UIViewController {
     @objc
     func loadLocation(_ notification: NSNotification) {
         let select = notification.object as? String ?? ""
+        
         locationSelectView.locationSelected(select)
+        view.layoutIfNeeded()
 
     }
 

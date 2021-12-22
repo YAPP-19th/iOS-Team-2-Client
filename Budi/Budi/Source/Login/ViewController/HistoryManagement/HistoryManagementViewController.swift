@@ -186,7 +186,6 @@ extension HistoryManagementViewController: UITableViewDelegate, UITableViewDataS
             .receive(on: DispatchQueue.main)
             .sink { _ in
                 self.viewModel.action.setSignupInfoData.send(())
-                print("선택 인덱스 ",indexPath.section, indexPath.item)
                 self.showActionSheet(section: indexPath.section, index: indexPath.item)
             }
             .store(in: &cell.cancellables)
@@ -195,7 +194,6 @@ extension HistoryManagementViewController: UITableViewDelegate, UITableViewDataS
             .receive(on: DispatchQueue.main)
             .sink { _ in
                 self.viewModel.action.setSignupInfoData.send(())
-                print("선택 인덱스 ", indexPath.section, indexPath.item)
                 self.showActionSheet(section: indexPath.section, index: indexPath.item)
             }
             .store(in: &cell.cancellables)

@@ -18,6 +18,7 @@ enum BudiTarget {
     case recruitingStatuses(id: Int)
     case postDefaultImageUrls
     case applies(accessToken: String, param: AppliesRequest)
+    case checkDuplicateName(name: String)
 }
 
 extension BudiTarget: TargetType {
@@ -38,6 +39,7 @@ extension BudiTarget: TargetType {
         case .postDefaultImageUrls: return "/infos/postDefaultImageUrls"
         case .applies: return "/applies"
         case .detailPositions: return "/infos/positions"
+        case .checkDuplicateName: return "/members/checkDuplicateName"
         }
     }
 
@@ -53,6 +55,8 @@ extension BudiTarget: TargetType {
 
     var task: Task {
         switch self {
+        case .checkDuplicateName(let name):
+            return .requestParameters(parameters: ["name": name], encoding: URLEncoding.default)
         case .createPost(_, let param): return .requestJSONEncodable(param)
         case .applies(_, let param): return .requestJSONEncodable(param)
         case .posts(let page, let size):

@@ -28,7 +28,9 @@ final class LoginCoordinator: NavigationCoordinator {
 
 extension LoginCoordinator {
     func showSignupNormalViewController() {
-        let viewController: PersonalInformationViewController = storyboard.instantiateViewController(identifier: PersonalInformationViewController.identifier)
+        let viewController: PersonalInformationViewController = storyboard.instantiateViewController(identifier: PersonalInformationViewController.identifier) { coder -> PersonalInformationViewController? in
+            return PersonalInformationViewController(coder: coder, viewModel: self.viewModel)
+        }
         viewController.navigationItem.title = "회원가입"
         viewController.coordinator = self
         navigationController?.pushViewController(viewController, animated: true)

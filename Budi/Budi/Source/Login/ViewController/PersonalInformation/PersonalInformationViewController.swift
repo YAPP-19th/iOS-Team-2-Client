@@ -12,11 +12,15 @@ import CombineCocoa
 class PersonalInformationViewController: UIViewController {
 
     weak var coordinator: LoginCoordinator?
-    private var viewModel = SignupViewModel()
+    private var viewModel: SignupViewModel
     private var cancellables = Set<AnyCancellable>()
 
     override func viewDidLayoutSubviews() {
         scrollView.updateContentView()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
     }
 
     private let introduceView = IntroduceView()
@@ -67,7 +71,6 @@ class PersonalInformationViewController: UIViewController {
         coordinator?.showLocationSearchViewController()
         NSLayoutConstraint.deactivate(defaultConstraint)
         NSLayoutConstraint.activate(newConstraint)
-        NotificationCenter.default.post(name: NSNotification.Name("ActivationNext"), object: nil, userInfo: nil)
     }
 
     @objc
@@ -76,12 +79,20 @@ class PersonalInformationViewController: UIViewController {
         nextButton.backgroundColor = UIColor.budiGreen
     }
 
+    init?(coder: NSCoder, viewModel: SignupViewModel) {
+        self.viewModel = viewModel
+        super.init(coder: coder)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         nextButton.isEnabled = false
         scrollView.delegate = self
         self.addBackButton()
-        configureAddOserver()
         configureLayout()
         keyBoardNotification()
         keyBoardDismiss()
@@ -93,8 +104,7 @@ class PersonalInformationViewController: UIViewController {
         viewModel.state.naverData
             .receive(on: DispatchQueue.main)
             .sink(receiveValue: { [weak self] data in
-                self?.nickNameView.loadNameText(data?.name ?? "")
-                self?.introduceView.loadTextView(data?.email ?? "")
+                print("네이버로 로그인 성공")
             })
             .store(in: &cancellables)
 
@@ -109,8 +119,23 @@ class PersonalInformationViewController: UIViewController {
 
         viewModel.state.signUpPersonalInfoData
             .receive(on: DispatchQueue.main)
-            .sink { data in
+            .sink { [weak self] data in
                 print(data)
+                guard let self = self else { return }
+                if !data.location.isEmpty {
+                    self.locationSelectView.locationSelected(data.location)
+                    NSLayoutConstraint.deactivate(self.defaultConstraint)
+                    NSLayoutConstraint.activate(self.newConstraint)
+                    self.view.layoutIfNeeded()
+                }
+
+                if !data.nickName.isEmpty && !data.description.isEmpty && !data.location.isEmpty {
+                    self.nextButton.isEnabled = true
+                    self.nextButton.backgroundColor = UIColor.primary
+                } else {
+                    self.nextButton.isEnabled = false
+                    self.nextButton.backgroundColor = UIColor.textDisabled
+                }
             }
             .store(in: &cancellables)
 
@@ -133,19 +158,16 @@ class PersonalInformationViewController: UIViewController {
             }
             .store(in: &cancellables)
 
-    }
-
-    private func configureAddOserver() {
-        NotificationCenter.default.addObserver(self, selector: #selector(activationNextButton), name: NSNotification.Name("ActivationNext"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(loadLocation), name: NSNotification.Name("LocationNextActivation"), object: nil)
-    }
-
-    @objc
-    func loadLocation(_ notification: NSNotification) {
-        let select = notification.object as? String ?? ""
-        
-        locationSelectView.locationSelected(select)
-        view.layoutIfNeeded()
+        introduceView.introTextView.textPublisher
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] text in
+                guard let self = self else { return }
+                var changeData = self.viewModel.state.signUpPersonalInfoData.value
+                guard let text = text else { return }
+                changeData.description = text
+                self.viewModel.state.signUpPersonalInfoData.send(changeData)
+            }
+            .store(in: &cancellables)
 
     }
 

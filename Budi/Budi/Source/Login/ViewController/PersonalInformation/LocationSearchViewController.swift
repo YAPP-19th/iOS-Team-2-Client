@@ -114,6 +114,7 @@ class LocationSearchViewController: UIViewController {
                 self.navigationController?.popViewController(animated: true)
             }
             .store(in: &cancellables)
+
     }
 
     private func configureAlert() {
@@ -236,9 +237,14 @@ extension LocationSearchViewController: UITableViewDelegate, UITableViewDataSour
         let data = correct[indexPath.row]
         nextButton.backgroundColor = UIColor.budiGreen
         nextButton.isEnabled = true
-        print(indexPath.row)
+
+        var changeData = viewModel.state.signUpPersonalInfoData.value
+        changeData.location = correct[indexPath.row]
+        print(changeData)
+        viewModel.state.signUpPersonalInfoData.send(changeData)
+        print(viewModel.state.signUpPersonalInfoData.value)
         self.view.endEditing(true)
-        NotificationCenter.default.post(name: NSNotification.Name("LocationNextActivation"), object: data)
+
     }
 
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {

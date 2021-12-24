@@ -703,6 +703,11 @@
                                                             <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="0.87" colorSpace="custom" customColorSpace="displayP3"/>
                                                             <state key="normal" title="Button"/>
                                                             <buttonConfiguration key="configuration" style="plain" image="locationAddButton" title="경력을 추가해보세요"/>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                    <real key="value" value="8"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
                                                         </button>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kpX-Xy-xzV" userLabel="PortfolioView">
                                                             <rect key="frame" x="0.0" y="0.0" width="382" height="80"/>
@@ -791,7 +796,7 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </view>
                                                     </subviews>
-                                                    <color key="backgroundColor" red="0.883582592" green="0.97287768129999996" blue="0.93188983199999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="backgroundColor" name="Primary_sub"/>
                                                     <constraints>
                                                         <constraint firstAttribute="bottom" secondItem="DeB-mp-Pix" secondAttribute="bottom" id="9gk-dv-KgA"/>
                                                         <constraint firstAttribute="trailing" secondItem="DeB-mp-Pix" secondAttribute="trailing" id="Fqm-5b-jPg"/>
@@ -837,7 +842,7 @@
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UQT-hi-sm0">
                                 <rect key="frame" x="0.0" y="813" width="414" height="83"/>
-                                <color key="backgroundColor" name="Green"/>
+                                <color key="backgroundColor" name="Primary"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="83" id="qQQ-Ob-Cnb"/>
                                 </constraints>
@@ -1245,6 +1250,12 @@
         </namedColor>
         <namedColor name="Green">
             <color red="0.40799999237060547" green="0.86299997568130493" blue="0.67100000381469727" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Primary">
+            <color red="0.36899998784065247" green="0.37299999594688416" blue="0.85900002717971802" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Primary_sub">
+            <color red="0.92549019607843142" green="0.92941176470588238" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

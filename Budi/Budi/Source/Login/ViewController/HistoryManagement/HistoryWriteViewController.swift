@@ -105,7 +105,7 @@ class HistoryWriteViewController: UIViewController {
                 print("일한 날짜", data.startDate, data.endDate)
                 print("직책", data.description)
                 self.saveButton.isEnabled = data.mainName.count >= 1 && data.description.count >= 1 && data.startDate.count >= 1 && data.endDate.count >= 1 ? true : false
-                self.saveButton.backgroundColor = data.mainName.count >= 1 && data.description.count >= 1 && data.startDate.count >= 1 && data.endDate.count >= 1 ? UIColor.budiGreen : UIColor.budiGray
+                self.saveButton.backgroundColor = data.mainName.count >= 1 && data.description.count >= 1 && data.startDate.count >= 1 && data.endDate.count >= 1 ? UIColor.primary : UIColor.textDisabled
                 self.saveButton.setTitleColor(UIColor.white, for: .normal)
                 self.saveButton.setTitleColor(UIColor.white, for: .disabled)
             }
@@ -169,13 +169,13 @@ class HistoryWriteViewController: UIViewController {
                 if !self.workingSwitchButton.isSelected {
                     self.workingSwitchButton.isSelected = true
                     self.workingSwitchButton.imageView?.image = UIImage(systemName: "checkmark.circle.fill")
-                    self.workingSwitchButton.tintColor = UIColor.budiGreen
+                    self.workingSwitchButton.tintColor = UIColor.primary
                     self.rightDateTextField.text = "현재"
                     self.rightDateTextField.isSelected = false
                 } else {
                     self.workingSwitchButton.isSelected = false
                     self.workingSwitchButton.imageView?.image = UIImage(systemName: "checkmark.circle")
-                    self.workingSwitchButton.tintColor = UIColor.systemGray
+                    self.workingSwitchButton.tintColor = UIColor.textDisabled
                     self.rightDateTextField.text = ""
                     self.rightDateTextField.isSelected = true
                 }

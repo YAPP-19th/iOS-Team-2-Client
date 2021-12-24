@@ -235,7 +235,7 @@ extension LocationSearchViewController: UITableViewDelegate, UITableViewDataSour
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let data = correct[indexPath.row]
-        nextButton.backgroundColor = UIColor.budiGreen
+        nextButton.backgroundColor = UIColor.primary
         nextButton.isEnabled = true
 
         var changeData = viewModel.state.signUpPersonalInfoData.value

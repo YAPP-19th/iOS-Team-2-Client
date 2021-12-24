@@ -93,7 +93,7 @@ class PortfolioViewController: UIViewController {
                 guard let self = self else { return }
                 guard let data = data else { return }
                 self.saveButton.isEnabled = data.porflioLink.count >= 1 ? true : false
-                self.saveButton.backgroundColor = data.porflioLink.count >= 1 ? UIColor.budiGreen : UIColor.budiGray
+                self.saveButton.backgroundColor = data.porflioLink.count >= 1 ? UIColor.primary : UIColor.textDisabled
                 self.saveButton.setTitleColor(UIColor.white, for: .normal)
                 self.saveButton.setTitleColor(UIColor.white, for: .disabled)
             }

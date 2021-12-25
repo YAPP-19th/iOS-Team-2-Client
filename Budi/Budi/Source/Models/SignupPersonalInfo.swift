@@ -8,5 +8,7 @@
 import Foundation
 
 struct PersonalInfo {
-
+    var nickName: String
+    var location: String
+    var description: String
 }

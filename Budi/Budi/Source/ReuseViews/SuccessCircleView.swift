@@ -22,9 +22,9 @@ class SuccessCircleView: UIView {
         check.widthAnchor.constraint(equalToConstant: 16).isActive = true
         check.heightAnchor.constraint(equalToConstant: 16).isActive = true
 
-        backgroundColor = UIColor.budiGreen
+        backgroundColor = UIColor.primary
         layer.borderWidth = 2
-        layer.borderColor = UIColor.budiGreen.cgColor
+        layer.borderColor = UIColor.primary.cgColor
         layer.cornerRadius = 14
     }
 

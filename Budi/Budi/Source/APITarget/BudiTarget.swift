@@ -12,14 +12,13 @@ enum BudiTarget {
     case filteredPosts(type: Position, page: Int = 0, size: Int = 10)
     case createPost(accessToken: String, param: PostRequest)
     case post(id: Int)
-    case posts
     case detailPositions(postion: Position)
     case createInfo(acessToken: String, param: CreateInfo)
     case teamMembers(id: Int)
     case recruitingStatuses(id: Int)
     case postDefaultImageUrls
     case applies(accessToken: String, param: AppliesRequest)
-    case detailPositions(postion: Position)
+    case checkDuplicateName(name: String)
 }
 
 extension BudiTarget: TargetType {
@@ -40,15 +39,13 @@ extension BudiTarget: TargetType {
         case .postDefaultImageUrls: return "/infos/postDefaultImageUrls"
         case .applies: return "/applies"
         case .detailPositions: return "/infos/positions"
+        case .checkDuplicateName: return "/members/checkDuplicateName"
         }
     }
 
     var method: Moya.Method {
         switch self {
-        case .createInfo:
-            return .post
-        default:
-            return .get
+        case .createInfo: return .post
         case .createPost: return .post
         case .applies: return .post
         default: return .get
@@ -57,6 +54,9 @@ extension BudiTarget: TargetType {
 
     var task: Task {
         switch self {
+        case .createInfo(_, let info) : return .requestJSONEncodable(info)
+        case .checkDuplicateName(let name):
+            return .requestParameters(parameters: ["name": name], encoding: URLEncoding.default)
         case .createPost(_, let param): return .requestJSONEncodable(param)
         case .applies(_, let param): return .requestJSONEncodable(param)
         case .posts(let page, let size):
@@ -73,8 +73,6 @@ extension BudiTarget: TargetType {
         switch self {
         case .createInfo(let accessToken, _):
             return ["accessToken": accessToken, "Content-Type": "application/json"]
-        default:
-            return ["Content-Type": "application/json"]
         case .createPost(let accessToken, _), .applies(let accessToken, _):
             return ["Content-Type": "application/json", "accessToken": "\(accessToken)"]
         default: return ["Content-Type": "application/json"]

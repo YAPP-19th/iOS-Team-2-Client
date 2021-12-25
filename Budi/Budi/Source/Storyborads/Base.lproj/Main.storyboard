@@ -183,10 +183,10 @@
             </objects>
             <point key="canvasLocation" x="843" y="1"/>
         </scene>
-        <!--Signup Normal View Controller-->
+        <!--Personal Information View Controller-->
         <scene sceneID="g04-6z-NkS">
             <objects>
-                <viewController storyboardIdentifier="SignupNormalViewController" id="bvo-eb-ee0" customClass="SignupNormalViewController" customModule="Budi" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PersonalInformationViewController" id="bvo-eb-ee0" customClass="PersonalInformationViewController" customModule="Budi" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="IT5-hY-ifF">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -582,11 +582,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="ieu-6n-wXB">
-<<<<<<< HEAD
                                 <rect key="frame" x="0.0" y="44" width="414" height="769"/>
-=======
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
->>>>>>> main
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="bY5-iE-b5d">
@@ -669,7 +665,7 @@
                                             </constraints>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o04-db-Rk0" userLabel="blackLineView">
-                                            <rect key="frame" x="0.0" y="189.5" width="414" height="8"/>
+                                            <rect key="frame" x="0.0" y="197.5" width="414" height="8"/>
                                             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.080000000000000002" colorSpace="custom" customColorSpace="displayP3"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="8" id="opl-k7-wPa"/>
@@ -682,18 +678,14 @@
                                         <constraint firstAttribute="trailing" secondItem="o04-db-Rk0" secondAttribute="trailing" id="V8S-EX-NM8"/>
                                         <constraint firstItem="o04-db-Rk0" firstAttribute="leading" secondItem="bY5-iE-b5d" secondAttribute="leading" id="as7-5F-7fN"/>
                                         <constraint firstItem="fka-l6-mes" firstAttribute="top" secondItem="bY5-iE-b5d" secondAttribute="top" constant="16" id="dbY-I0-cpL"/>
-                                        <constraint firstItem="o04-db-Rk0" firstAttribute="top" secondItem="9jS-bu-R6a" secondAttribute="bottom" constant="8" id="icu-As-xRW"/>
+                                        <constraint firstItem="o04-db-Rk0" firstAttribute="top" secondItem="9jS-bu-R6a" secondAttribute="bottom" constant="16" id="icu-As-xRW"/>
                                         <constraint firstItem="9jS-bu-R6a" firstAttribute="leading" secondItem="bY5-iE-b5d" secondAttribute="leading" constant="28" id="lPt-yL-Wrd"/>
                                         <constraint firstItem="fka-l6-mes" firstAttribute="leading" secondItem="bY5-iE-b5d" secondAttribute="leading" constant="16" id="uqu-Np-Wvd"/>
                                         <constraint firstAttribute="trailing" secondItem="9jS-bu-R6a" secondAttribute="trailing" constant="28" id="ydv-2o-RFU"/>
                                     </constraints>
                                 </view>
                                 <prototypes>
-<<<<<<< HEAD
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="DefaultTableViewCell" rowHeight="90" id="lbX-1V-Hlc" customClass="DefaultTableViewCell" customModule="Budi" customModuleProvider="target">
-=======
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="DefaultTableViewCell" rowHeight="90" id="lbX-1V-Hlc" customClass="DefaultTableViewCell" customModule="Budi" customModuleProvider="target">
->>>>>>> main
                                         <rect key="frame" x="0.0" y="244.5" width="414" height="90"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="lbX-1V-Hlc" id="jiv-n0-752">
@@ -711,8 +703,12 @@
                                                             <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="0.87" colorSpace="custom" customColorSpace="displayP3"/>
                                                             <state key="normal" title="Button"/>
                                                             <buttonConfiguration key="configuration" style="plain" image="locationAddButton" title="경력을 추가해보세요"/>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                    <real key="value" value="8"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
                                                         </button>
-<<<<<<< HEAD
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kpX-Xy-xzV" userLabel="PortfolioView">
                                                             <rect key="frame" x="0.0" y="0.0" width="382" height="80"/>
                                                             <subviews>
@@ -748,8 +744,6 @@
                                                                 </userDefinedRuntimeAttribute>
                                                             </userDefinedRuntimeAttributes>
                                                         </view>
-=======
->>>>>>> main
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DeB-mp-Pix">
                                                             <rect key="frame" x="0.0" y="0.0" width="382" height="80"/>
                                                             <subviews>
@@ -771,7 +765,6 @@
                                                                     <color key="textColor" white="0.0" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-<<<<<<< HEAD
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OM3-Hh-N9e">
                                                                     <rect key="frame" x="342" y="30" width="19" height="22"/>
                                                                     <color key="tintColor" name="DarkGray"/>
@@ -782,19 +775,11 @@
                                                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                             <constraints>
                                                                 <constraint firstItem="OM3-Hh-N9e" firstAttribute="top" secondItem="DeB-mp-Pix" secondAttribute="top" constant="30" id="BOw-QO-5XD"/>
-=======
-                                                            </subviews>
-                                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                                            <constraints>
->>>>>>> main
                                                                 <constraint firstItem="LV2-wI-aGT" firstAttribute="top" secondItem="0Xo-LQ-xsP" secondAttribute="bottom" constant="4" id="DZ3-lg-vXj"/>
                                                                 <constraint firstItem="9uB-VM-WKX" firstAttribute="leading" secondItem="DeB-mp-Pix" secondAttribute="leading" constant="16" id="OHE-FX-ZK8"/>
                                                                 <constraint firstItem="0Xo-LQ-xsP" firstAttribute="top" secondItem="9uB-VM-WKX" secondAttribute="bottom" constant="4" id="QJe-oR-MYt"/>
                                                                 <constraint firstItem="LV2-wI-aGT" firstAttribute="leading" secondItem="DeB-mp-Pix" secondAttribute="leading" constant="16" id="dVR-Mg-EnJ"/>
-<<<<<<< HEAD
                                                                 <constraint firstAttribute="trailing" secondItem="OM3-Hh-N9e" secondAttribute="trailing" constant="21" id="ff8-Q0-85B"/>
-=======
->>>>>>> main
                                                                 <constraint firstItem="9uB-VM-WKX" firstAttribute="top" secondItem="DeB-mp-Pix" secondAttribute="top" constant="14" id="iaz-JE-8DK"/>
                                                                 <constraint firstItem="0Xo-LQ-xsP" firstAttribute="leading" secondItem="DeB-mp-Pix" secondAttribute="leading" constant="16" id="jNz-De-6sJ"/>
                                                             </constraints>
@@ -811,27 +796,20 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </view>
                                                     </subviews>
-                                                    <color key="backgroundColor" red="0.883582592" green="0.97287768129999996" blue="0.93188983199999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="backgroundColor" name="Primary_sub"/>
                                                     <constraints>
                                                         <constraint firstAttribute="bottom" secondItem="DeB-mp-Pix" secondAttribute="bottom" id="9gk-dv-KgA"/>
                                                         <constraint firstAttribute="trailing" secondItem="DeB-mp-Pix" secondAttribute="trailing" id="Fqm-5b-jPg"/>
-<<<<<<< HEAD
                                                         <constraint firstAttribute="trailing" secondItem="kpX-Xy-xzV" secondAttribute="trailing" id="GGp-rz-4AP"/>
                                                         <constraint firstItem="kpX-Xy-xzV" firstAttribute="top" secondItem="DbK-Ai-xhZ" secondAttribute="top" id="HU0-LY-boT"/>
-=======
->>>>>>> main
                                                         <constraint firstItem="DeB-mp-Pix" firstAttribute="leading" secondItem="DbK-Ai-xhZ" secondAttribute="leading" id="Kwi-lR-XjQ"/>
                                                         <constraint firstAttribute="trailing" secondItem="woU-CJ-wjN" secondAttribute="trailing" id="R4F-Mp-CVN"/>
                                                         <constraint firstAttribute="bottom" secondItem="woU-CJ-wjN" secondAttribute="bottom" id="SJV-hG-y9d"/>
                                                         <constraint firstItem="woU-CJ-wjN" firstAttribute="leading" secondItem="DbK-Ai-xhZ" secondAttribute="leading" id="Tzd-9F-4mx"/>
                                                         <constraint firstItem="woU-CJ-wjN" firstAttribute="top" secondItem="DbK-Ai-xhZ" secondAttribute="top" id="eKc-Q6-qaz"/>
-<<<<<<< HEAD
                                                         <constraint firstAttribute="bottom" secondItem="kpX-Xy-xzV" secondAttribute="bottom" id="iMD-cA-tGI"/>
                                                         <constraint firstItem="DeB-mp-Pix" firstAttribute="top" secondItem="DbK-Ai-xhZ" secondAttribute="top" id="mHa-Rc-C0x"/>
                                                         <constraint firstItem="kpX-Xy-xzV" firstAttribute="leading" secondItem="DbK-Ai-xhZ" secondAttribute="leading" id="uw4-ew-lqC"/>
-=======
-                                                        <constraint firstItem="DeB-mp-Pix" firstAttribute="top" secondItem="DbK-Ai-xhZ" secondAttribute="top" id="mHa-Rc-C0x"/>
->>>>>>> main
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -849,13 +827,10 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="addButton" destination="woU-CJ-wjN" id="qUk-Kd-gmh"/>
-<<<<<<< HEAD
                                             <outlet property="moreButton" destination="OM3-Hh-N9e" id="02B-AC-j7g"/>
                                             <outlet property="portfolioLinkLabel" destination="5b7-yg-JFo" id="YzU-Od-bXH"/>
                                             <outlet property="portfolioMoreButton" destination="PJZ-2X-AXi" id="Jm0-ov-W0R"/>
                                             <outlet property="portfolioView" destination="kpX-Xy-xzV" id="daU-1d-v87"/>
-=======
->>>>>>> main
                                             <outlet property="selectDayLabel" destination="0Xo-LQ-xsP" id="jeq-1s-3HQ"/>
                                             <outlet property="selectMainTitle" destination="9uB-VM-WKX" id="VTK-0B-C7w"/>
                                             <outlet property="selectTeamLabel" destination="LV2-wI-aGT" id="VOf-ra-KfA"/>
@@ -865,10 +840,9 @@
                                 </prototypes>
                                 <sections/>
                             </tableView>
-<<<<<<< HEAD
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UQT-hi-sm0">
                                 <rect key="frame" x="0.0" y="813" width="414" height="83"/>
-                                <color key="backgroundColor" name="Green"/>
+                                <color key="backgroundColor" name="Primary"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="83" id="qQQ-Ob-Cnb"/>
                                 </constraints>
@@ -880,28 +854,21 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                             </button>
-=======
->>>>>>> main
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="mjC-gJ-WbZ"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-<<<<<<< HEAD
                             <constraint firstItem="mjC-gJ-WbZ" firstAttribute="trailing" secondItem="UQT-hi-sm0" secondAttribute="trailing" id="6Ix-ZN-88W"/>
                             <constraint firstItem="UQT-hi-sm0" firstAttribute="leading" secondItem="mjC-gJ-WbZ" secondAttribute="leading" id="Hnx-JG-mAI"/>
                             <constraint firstItem="ieu-6n-wXB" firstAttribute="leading" secondItem="mjC-gJ-WbZ" secondAttribute="leading" id="NhC-DU-WYY"/>
                             <constraint firstItem="mjC-gJ-WbZ" firstAttribute="trailing" secondItem="ieu-6n-wXB" secondAttribute="trailing" id="bI6-bq-tqI"/>
                             <constraint firstAttribute="bottom" secondItem="UQT-hi-sm0" secondAttribute="bottom" id="jAq-vy-VY4"/>
                             <constraint firstItem="UQT-hi-sm0" firstAttribute="top" secondItem="ieu-6n-wXB" secondAttribute="bottom" id="nAe-L1-COq"/>
-=======
-                            <constraint firstItem="mjC-gJ-WbZ" firstAttribute="bottom" secondItem="ieu-6n-wXB" secondAttribute="bottom" id="2G0-Wr-Qeu"/>
-                            <constraint firstItem="ieu-6n-wXB" firstAttribute="leading" secondItem="mjC-gJ-WbZ" secondAttribute="leading" id="NhC-DU-WYY"/>
-                            <constraint firstItem="mjC-gJ-WbZ" firstAttribute="trailing" secondItem="ieu-6n-wXB" secondAttribute="trailing" id="bI6-bq-tqI"/>
->>>>>>> main
                             <constraint firstItem="ieu-6n-wXB" firstAttribute="top" secondItem="mjC-gJ-WbZ" secondAttribute="top" id="rb2-g5-xAU"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="doneButton" destination="UQT-hi-sm0" id="pJi-gW-J0W"/>
                         <outlet property="progressView" destination="9jS-bu-R6a" id="aXO-a8-ewz"/>
                         <outlet property="tableView" destination="ieu-6n-wXB" id="kXZ-6F-M48"/>
                     </connections>
@@ -918,7 +885,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-<<<<<<< HEAD
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aDT-eq-jl7">
+                                <rect key="frame" x="0.0" y="44" width="414" height="300"/>
+                                <buttonConfiguration key="configuration" style="plain"/>
+                            </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OpK-aY-umU">
                                 <rect key="frame" x="0.0" y="344" width="414" height="552"/>
                                 <subviews>
@@ -1121,7 +1091,6 @@
                                     <constraint firstAttribute="trailing" secondItem="kfy-bE-69L" secondAttribute="trailing" id="JiG-8h-iCR"/>
                                     <constraint firstItem="43J-8l-JRS" firstAttribute="leading" secondItem="OpK-aY-umU" secondAttribute="leading" id="OuJ-Fl-nPx"/>
                                     <constraint firstItem="xHE-8Y-Ymn" firstAttribute="leading" secondItem="OpK-aY-umU" secondAttribute="leading" id="VHm-oU-sK3"/>
-                                    <constraint firstAttribute="height" constant="552" id="Wii-Wj-2ZF"/>
                                     <constraint firstItem="kfy-bE-69L" firstAttribute="leading" secondItem="OpK-aY-umU" secondAttribute="leading" id="eWV-Ch-k03"/>
                                     <constraint firstItem="dgV-N3-Tp5" firstAttribute="top" secondItem="kfy-bE-69L" secondAttribute="bottom" id="fNW-bw-JZE"/>
                                     <constraint firstItem="kfy-bE-69L" firstAttribute="top" secondItem="OpK-aY-umU" secondAttribute="top" constant="8" id="hJI-MT-joW"/>
@@ -1139,6 +1108,10 @@
                             <constraint firstItem="OpK-aY-umU" firstAttribute="leading" secondItem="w2s-cn-JDr" secondAttribute="leading" id="0Ai-KE-4w1"/>
                             <constraint firstItem="OpK-aY-umU" firstAttribute="leading" secondItem="w2s-cn-JDr" secondAttribute="leading" id="7lm-oe-2Gl"/>
                             <constraint firstItem="w2s-cn-JDr" firstAttribute="trailing" secondItem="OpK-aY-umU" secondAttribute="trailing" id="AH2-7i-If1"/>
+                            <constraint firstItem="aDT-eq-jl7" firstAttribute="top" secondItem="w2s-cn-JDr" secondAttribute="top" id="LYo-aR-D3X"/>
+                            <constraint firstItem="aDT-eq-jl7" firstAttribute="leading" secondItem="w2s-cn-JDr" secondAttribute="leading" id="Zd7-nM-Cbv"/>
+                            <constraint firstItem="w2s-cn-JDr" firstAttribute="trailing" secondItem="aDT-eq-jl7" secondAttribute="trailing" id="ZeI-wv-S1F"/>
+                            <constraint firstItem="OpK-aY-umU" firstAttribute="top" secondItem="aDT-eq-jl7" secondAttribute="bottom" id="aVr-0n-ogu"/>
                             <constraint firstItem="OpK-aY-umU" firstAttribute="bottom" secondItem="sdz-qD-CdM" secondAttribute="bottom" id="eoc-WI-KFF"/>
                             <constraint firstItem="OpK-aY-umU" firstAttribute="trailing" secondItem="w2s-cn-JDr" secondAttribute="trailing" id="gQC-Cg-6W0"/>
                             <constraint firstItem="OpK-aY-umU" firstAttribute="top" secondItem="w2s-cn-JDr" secondAttribute="top" constant="300" id="sOe-Yf-lQB"/>
@@ -1147,6 +1120,7 @@
                     <connections>
                         <outlet property="descriptionMainLabel" destination="z6c-NP-BgU" id="64l-pg-1lm"/>
                         <outlet property="descriptionTextField" destination="zxw-YF-azu" id="7Kg-UR-8UW"/>
+                        <outlet property="emptyViewButton" destination="aDT-eq-jl7" id="nUD-NW-aC2"/>
                         <outlet property="historyNoSwitchView" destination="43J-8l-JRS" id="grn-Vl-gSy"/>
                         <outlet property="historySwitchView" destination="dgV-N3-Tp5" id="csl-2E-JZV"/>
                         <outlet property="leftDateTextField" destination="Ean-z4-xrM" id="9oB-jR-2qR"/>
@@ -1172,6 +1146,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UWS-eI-O0T">
+                                <rect key="frame" x="0.0" y="44" width="414" height="552"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title=""/>
+                            </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CHg-uh-aBl">
                                 <rect key="frame" x="0.0" y="596" width="414" height="300"/>
                                 <subviews>
@@ -1231,12 +1210,20 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="dWa-dm-uXU"/>
                         <constraints>
+                            <constraint firstItem="UWS-eI-O0T" firstAttribute="top" secondItem="dWa-dm-uXU" secondAttribute="top" id="2NQ-Vq-Asy"/>
+                            <constraint firstItem="UWS-eI-O0T" firstAttribute="trailing" secondItem="dWa-dm-uXU" secondAttribute="trailing" id="GF5-kC-zgI"/>
+                            <constraint firstItem="UWS-eI-O0T" firstAttribute="leading" secondItem="dWa-dm-uXU" secondAttribute="leading" id="H7c-yK-V47"/>
+                            <constraint firstItem="CHg-uh-aBl" firstAttribute="top" secondItem="UWS-eI-O0T" secondAttribute="bottom" id="Stc-gA-RNE"/>
                             <constraint firstItem="dWa-dm-uXU" firstAttribute="trailing" secondItem="CHg-uh-aBl" secondAttribute="trailing" id="VBI-zd-vyA"/>
+                            <constraint firstItem="UWS-eI-O0T" firstAttribute="top" secondItem="dWa-dm-uXU" secondAttribute="top" id="Wsy-bK-C8W"/>
+                            <constraint firstItem="UWS-eI-O0T" firstAttribute="leading" secondItem="dWa-dm-uXU" secondAttribute="leading" id="XU5-6k-Fnh"/>
                             <constraint firstAttribute="bottom" secondItem="CHg-uh-aBl" secondAttribute="bottom" id="q3e-hl-I8J"/>
+                            <constraint firstItem="dWa-dm-uXU" firstAttribute="trailing" secondItem="UWS-eI-O0T" secondAttribute="trailing" id="thx-ha-O76"/>
                             <constraint firstItem="CHg-uh-aBl" firstAttribute="leading" secondItem="dWa-dm-uXU" secondAttribute="leading" id="vzY-ZM-kVe"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="emptyViewButton" destination="UWS-eI-O0T" id="hJO-WO-X78"/>
                         <outlet property="modalView" destination="CHg-uh-aBl" id="50k-yG-pRp"/>
                         <outlet property="portfolioTextField" destination="sLd-i1-kcQ" id="1bz-mu-MwC"/>
                         <outlet property="saveButton" destination="5Zd-14-PWe" id="ii1-dk-Smx"/>
@@ -1244,54 +1231,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wEw-9S-aut" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5033" y="1"/>
-=======
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xza-qm-GjA" customClass="HistorySingleWriteView" customModule="Budi" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="52" width="414" height="109"/>
-                                <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="109" id="36W-oA-W2B"/>
-                                </constraints>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tSD-eF-8ah" customClass="HistoryDateWriteView" customModule="Budi" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="161" width="414" height="141"/>
-                                <color key="backgroundColor" systemColor="systemBrownColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="141" id="unp-NF-bNN"/>
-                                </constraints>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Hj-uz-wcH" customClass="HistorySingleWriteView" customModule="Budi" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="302" width="414" height="109"/>
-                                <color key="backgroundColor" systemColor="systemGray2Color"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="109" id="c8z-0b-MBb"/>
-                                </constraints>
-                            </view>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="w2s-cn-JDr"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="w2s-cn-JDr" firstAttribute="trailing" secondItem="tSD-eF-8ah" secondAttribute="trailing" id="20i-Ay-cio"/>
-                            <constraint firstItem="8Hj-uz-wcH" firstAttribute="leading" secondItem="w2s-cn-JDr" secondAttribute="leading" id="D26-bW-oZW"/>
-                            <constraint firstItem="w2s-cn-JDr" firstAttribute="trailing" secondItem="8Hj-uz-wcH" secondAttribute="trailing" id="Eec-BY-yvw"/>
-                            <constraint firstItem="tSD-eF-8ah" firstAttribute="top" secondItem="Xza-qm-GjA" secondAttribute="bottom" id="FPq-2H-XsP"/>
-                            <constraint firstItem="8Hj-uz-wcH" firstAttribute="top" secondItem="tSD-eF-8ah" secondAttribute="bottom" id="G7q-Rb-fGf"/>
-                            <constraint firstItem="tSD-eF-8ah" firstAttribute="leading" secondItem="w2s-cn-JDr" secondAttribute="leading" id="hs5-M2-s04"/>
-                            <constraint firstItem="Xza-qm-GjA" firstAttribute="leading" secondItem="w2s-cn-JDr" secondAttribute="leading" id="tzx-fp-y8f"/>
-                            <constraint firstItem="Xza-qm-GjA" firstAttribute="top" secondItem="w2s-cn-JDr" secondAttribute="top" constant="8" id="udw-n8-gCZ"/>
-                            <constraint firstItem="w2s-cn-JDr" firstAttribute="trailing" secondItem="Xza-qm-GjA" secondAttribute="trailing" id="zLu-X8-uld"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="datePickerView" destination="tSD-eF-8ah" id="rLQ-sE-FJX"/>
-                        <outlet property="firstTypingView" destination="Xza-qm-GjA" id="Fo2-Wh-plL"/>
-                        <outlet property="secondTypingView" destination="8Hj-uz-wcH" id="RPX-Qw-C6X"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="FYd-yO-P8E" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4332" y="1"/>
->>>>>>> main
+            <point key="canvasLocation" x="5031.884057971015" y="0.6696428571428571"/>
         </scene>
     </scenes>
     <resources>
@@ -1300,7 +1240,7 @@
         <image name="ellipsis" catalog="system" width="128" height="37"/>
         <image name="face.smiling.fill" catalog="system" width="128" height="121"/>
         <image name="heart" catalog="system" width="128" height="109"/>
-        <image name="locationAddButton" width="22.5" height="22.5"/>
+        <image name="locationAddButton" width="24" height="24"/>
         <image name="paperplane.fill" catalog="system" width="128" height="118"/>
         <image name="plus.circle.fill" catalog="system" width="128" height="121"/>
         <namedColor name="DarkGray">
@@ -1312,23 +1252,17 @@
         <namedColor name="Green">
             <color red="0.40799999237060547" green="0.86299997568130493" blue="0.67100000381469727" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <systemColor name="opaqueSeparatorColor">
-            <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
+        <namedColor name="Primary">
+            <color red="0.36899998784065247" green="0.37299999594688416" blue="0.85900002717971802" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Primary_sub">
+            <color red="0.92549019607843142" green="0.92941176470588238" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemBrownColor">
             <color red="0.63529411764705879" green="0.51764705882352946" blue="0.36862745098039218" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
-<<<<<<< HEAD
-=======
-        <systemColor name="systemGray2Color">
-            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemGray4Color">
-            <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
->>>>>>> main
     </resources>
 </document>

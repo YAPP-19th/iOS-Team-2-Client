@@ -16,7 +16,7 @@ class PositionDetailCollectionViewCell: UICollectionViewCell {
     let positionDetailButton: UIButton = {
         let button = UIButton()
         button.layer.borderWidth = 1.0
-        button.layer.borderColor = UIColor.init(white: 0.2, alpha: 0.4).cgColor
+        button.layer.borderColor = UIColor.textDisabled.cgColor
         button.layer.cornerRadius = 5
         button.setTitleColor(UIColor.init(white: 0.4, alpha: 1.0), for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 13)

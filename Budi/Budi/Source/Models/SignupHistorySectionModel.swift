@@ -18,6 +18,7 @@ struct Item {
     var description: String
     var endDate: String
     var name: String
+    var nowWork: Bool
     var startDate: String
     var portfolioLink: String
 }

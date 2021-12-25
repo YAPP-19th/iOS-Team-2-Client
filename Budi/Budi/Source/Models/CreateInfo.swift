@@ -1,9 +1,8 @@
 //
-//  CareerList.swift
+//  CreateInfo.swift
 //  Budi
 //
 //  Created by 인병윤 on 2021/12/16.
-//
 import Foundation
 
 // MARK: - CreateInfo
@@ -16,7 +15,7 @@ struct CreateInfo: Codable {
 
     enum CodingKeys: String, CodingKey {
         case basePosition, careerList
-        case createInfoDescription = "description"
+        case createInfoDescription
         case memberAddress, nickName, portfolioLink, positionList, projectList
     }
 }
@@ -31,9 +30,9 @@ struct CareerList: Codable {
 
     enum CodingKeys: String, CodingKey {
         case companyName
-        case careerListDescription = "description"
+        case careerListDescription
         case endDate
-        case memberID = "memberId"
+        case memberID
         case nowWorks, startDate, teamName, workRequestList
     }
 }
@@ -43,7 +42,7 @@ struct TList: Codable {
     let tListDescription, endDate, name, startDate: String
 
     enum CodingKeys: String, CodingKey {
-        case tListDescription = "description"
+        case tListDescription
         case endDate, name, startDate
     }
 }

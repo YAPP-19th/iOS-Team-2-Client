@@ -45,8 +45,7 @@ extension BudiTarget: TargetType {
 
     var method: Moya.Method {
         switch self {
-        case .createInfo:
-            return .post
+        case .createInfo: return .post
         case .createPost: return .post
         case .applies: return .post
         default: return .get
@@ -55,6 +54,7 @@ extension BudiTarget: TargetType {
 
     var task: Task {
         switch self {
+        case .createInfo(_, let info) : return .requestJSONEncodable(info)
         case .checkDuplicateName(let name):
             return .requestParameters(parameters: ["name": name], encoding: URLEncoding.default)
         case .createPost(_, let param): return .requestJSONEncodable(param)

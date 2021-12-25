@@ -120,12 +120,27 @@ class HistoryWriteViewController: UIViewController {
                 self.leftDateTextField.text = editData.startDate
                 self.rightDateTextField.text = editData.endDate
                 self.descriptionTextField.text = editData.description
+                self.workingSwitchButton.isSelected = editData.nowWork
+                if self.workingSwitchButton.isSelected {
+                    self.workingSwitchButton.isSelected = true
+                    self.workingSwitchButton.imageView?.image = UIImage(systemName: "checkmark.circle.fill")
+                    self.workingSwitchButton.tintColor = UIColor.primary
+                    self.rightDateTextField.text = "현재"
+                    self.rightDateTextField.isSelected = false
+                } else {
+                    self.workingSwitchButton.isSelected = false
+                    self.workingSwitchButton.imageView?.image = UIImage(systemName: "checkmark.circle")
+                    self.workingSwitchButton.tintColor = UIColor.textDisabled
+                    self.rightDateTextField.isSelected = true
+                }
+
                 guard var data = self.viewModel.state.writedInfoData.value else { return }
                 data.mainName = editData.name
                 data.startDate = editData.startDate
                 data.endDate = editData.endDate
                 data.description = editData.description
                 data.porflioLink = editData.portfolioLink
+                data.nowWorks = editData.nowWork
                 self.viewModel.state.writedInfoData.send(data)
             }
             .store(in: &cancellables)
@@ -168,12 +183,18 @@ class HistoryWriteViewController: UIViewController {
             .sink { _ in
                 if !self.workingSwitchButton.isSelected {
                     self.workingSwitchButton.isSelected = true
+                    guard var data = self.viewModel.state.writedInfoData.value else { return }
+                    data.nowWorks = self.workingSwitchButton.isSelected
+                    self.viewModel.state.writedInfoData.send(data)
                     self.workingSwitchButton.imageView?.image = UIImage(systemName: "checkmark.circle.fill")
                     self.workingSwitchButton.tintColor = UIColor.primary
                     self.rightDateTextField.text = "현재"
                     self.rightDateTextField.isSelected = false
                 } else {
                     self.workingSwitchButton.isSelected = false
+                    guard var data = self.viewModel.state.writedInfoData.value else { return }
+                    data.nowWorks = self.workingSwitchButton.isSelected
+                    self.viewModel.state.writedInfoData.send(data)
                     self.workingSwitchButton.imageView?.image = UIImage(systemName: "checkmark.circle")
                     self.workingSwitchButton.tintColor = UIColor.textDisabled
                     self.rightDateTextField.text = ""
@@ -219,7 +240,7 @@ class HistoryWriteViewController: UIViewController {
 
     private func dateFormatter(_ date: Date) -> String {
         let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy년MM월dd일"
+        formatter.dateFormat = "yyyy-MM-dd"
         return formatter.string(from: date)
     }
 

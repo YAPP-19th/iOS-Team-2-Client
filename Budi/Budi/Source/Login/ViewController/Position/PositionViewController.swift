@@ -294,11 +294,13 @@ class PositionViewController: UIViewController {
             BackgroundView.instanceBackground.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             BackgroundView.instanceBackground.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
+        
         NSLayoutConstraint.activate([
-            alertView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            alertView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            alertView.widthAnchor.constraint(equalToConstant: 343),
-            alertView.heightAnchor.constraint(equalToConstant: 208)
+            alertView.topAnchor.constraint(equalTo: view.topAnchor, constant: 220),
+            alertView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -240),
+            alertView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 48),
+            alertView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -48),
+            alertView.heightAnchor.constraint(equalToConstant: 372)
         ])
 
         UIView.animate(withDuration: 0.2, animations: {

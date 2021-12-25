@@ -9,6 +9,14 @@ import UIKit
 
 final class AlertView: UIView {
 
+    private let alertImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "LoginAlert")
+        imageView.contentMode = .scaleAspectFit
+
+        return imageView
+    }()
+
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 18)
@@ -66,6 +74,11 @@ final class AlertView: UIView {
     private func configureLayout() {
 
         addSubview(xmarkButton)
+        addSubview(titleLabel)
+        addSubview(cancelButton)
+        addSubview(doneButton)
+        addSubview(alertImageView)
+
         xmarkButton.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
@@ -73,33 +86,39 @@ final class AlertView: UIView {
             xmarkButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16)
         ])
 
-        addSubview(titleLabel)
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 41),
+            titleLabel.topAnchor.constraint(equalTo: alertImageView.bottomAnchor, constant: 4),
             titleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 55),
             titleLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -55)
         ])
 
-        addSubview(cancelButton)
         cancelButton.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
-            cancelButton.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 60),
+            cancelButton.topAnchor.constraint(equalTo: doneButton.bottomAnchor, constant: 8),
             cancelButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 15),
-            cancelButton.widthAnchor.constraint(equalToConstant: 153),
-            cancelButton.heightAnchor.constraint(equalToConstant: 48)
+            cancelButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -15),
+            cancelButton.heightAnchor.constraint(equalToConstant: 46)
         ])
 
-        addSubview(doneButton)
         doneButton.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
-            doneButton.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 60),
+            doneButton.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 32),
             doneButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -15),
-            doneButton.widthAnchor.constraint(equalToConstant: 153),
-            doneButton.heightAnchor.constraint(equalToConstant: 48)
+            doneButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 15),
+            doneButton.heightAnchor.constraint(equalToConstant: 46)
+        ])
+
+        alertImageView.translatesAutoresizingMaskIntoConstraints = false
+
+        NSLayoutConstraint.activate([
+            alertImageView.topAnchor.constraint(equalTo: self.topAnchor, constant: 24),
+            alertImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 40),
+            alertImageView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -40),
+            alertImageView.bottomAnchor.constraint(equalTo: titleLabel.topAnchor, constant: 4)
         ])
     }
 

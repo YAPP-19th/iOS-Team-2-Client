@@ -15,6 +15,7 @@ class HistoryManagementViewController: UIViewController {
 
     private var cancellables = Set<AnyCancellable>()
 
+    @IBOutlet weak var doneButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var progressView: ProgressView!
     private var section: Int = 0
@@ -33,7 +34,17 @@ class HistoryManagementViewController: UIViewController {
         self.addBackButton()
         configureLayout()
         bindViewModel()
-        viewModel.action.postCreateInfo.send(())
+        buttonPublisher()
+    }
+
+    private func buttonPublisher() {
+        doneButton.tapPublisher
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] in
+                guard let self = self else { return }
+                self.viewModel.action.postCreateInfo.send(())
+            }
+            .store(in: &cancellables)
     }
 
     private func bindViewModel() {
@@ -66,6 +77,7 @@ class HistoryManagementViewController: UIViewController {
     @objc
     func addButtonAction(_ button: UIButton) {
     }
+
     func modalViewBackgoundOn() {
         UIView.animate(withDuration: 0.4, delay: 0, options: .curveEaseOut, animations: {
             self.view.alpha = 0.5

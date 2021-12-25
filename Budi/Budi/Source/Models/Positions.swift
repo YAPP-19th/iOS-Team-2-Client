@@ -22,4 +22,15 @@ enum Position {
             return "개발"
         }
     }
+
+    var integerValue: Int {
+        switch self {
+        case .developer:
+            return 1
+        case .productManager:
+            return 2
+        case .designer:
+            return 3
+        }
+    }
 }

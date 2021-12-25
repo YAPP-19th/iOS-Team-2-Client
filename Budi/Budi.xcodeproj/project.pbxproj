@@ -123,6 +123,7 @@
 		A85C920B276A35270097E444 /* PortfolioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85C920A276A35260097E444 /* PortfolioViewController.swift */; };
 		A85C920D276A42210097E444 /* CreateInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85C920C276A42210097E444 /* CreateInfo.swift */; };
 		A8936FB82772F77600BE2C1D /* NameDuplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8936FB72772F77600BE2C1D /* NameDuplication.swift */; };
+		A8936FBC2777192500BE2C1D /* UserInfoUploadSuccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8936FBB2777192500BE2C1D /* UserInfoUploadSuccess.swift */; };
 		A8A6D9F1273CCB5500C84C52 /* BackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A6D9F0273CCB5500C84C52 /* BackgroundView.swift */; };
 		A8A6D9F9273D2D1800C84C52 /* BackButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A6D9F8273D2D1800C84C52 /* BackButtonExtension.swift */; };
 		A8AB51DE2769D3EC003D151C /* LeftAlignedCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8AB51DD2769D3EB003D151C /* LeftAlignedCollectionViewFlowLayout.swift */; };
@@ -282,6 +283,7 @@
 		A85C920A276A35260097E444 /* PortfolioViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioViewController.swift; sourceTree = "<group>"; };
 		A85C920C276A42210097E444 /* CreateInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateInfo.swift; sourceTree = "<group>"; };
 		A8936FB72772F77600BE2C1D /* NameDuplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameDuplication.swift; sourceTree = "<group>"; };
+		A8936FBB2777192500BE2C1D /* UserInfoUploadSuccess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoUploadSuccess.swift; sourceTree = "<group>"; };
 		A8A6D9F0273CCB5500C84C52 /* BackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundView.swift; sourceTree = "<group>"; };
 		A8A6D9F8273D2D1800C84C52 /* BackButtonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButtonExtension.swift; sourceTree = "<group>"; };
 		A8AB51DD2769D3EB003D151C /* LeftAlignedCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftAlignedCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
@@ -707,6 +709,7 @@
 				A8CD0CED2771CDCA00FFDE64 /* BudiLogin.swift */,
 				A8CD0CEF2771CE3A00FFDE64 /* BudiLoginResponse.swift */,
 				A8936FB72772F77600BE2C1D /* NameDuplication.swift */,
+				A8936FBB2777192500BE2C1D /* UserInfoUploadSuccess.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1134,6 +1137,7 @@
 				A8CD935C27383CB300299AB4 /* LocationSearchViewController.swift in Sources */,
 				5E820B8A2769F04A004A03E9 /* HomeWritingMembersDetailPartBottomCollectionViewCell.swift in Sources */,
 				B9D66EC42714703B00668490 /* TeamSearchCoordinator.swift in Sources */,
+				A8936FBC2777192500BE2C1D /* UserInfoUploadSuccess.swift in Sources */,
 				A85325BB274773F90073FAFB /* SignupViewModel.swift in Sources */,
 				A8CD933C273676F800299AB4 /* NickNameView.swift in Sources */,
 				5EC2FEF9275E191F00FF5BB0 /* HomeDetailStatusUnitCell.swift in Sources */,

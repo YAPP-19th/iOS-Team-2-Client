@@ -868,6 +868,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="doneButton" destination="UQT-hi-sm0" id="pJi-gW-J0W"/>
                         <outlet property="progressView" destination="9jS-bu-R6a" id="aXO-a8-ewz"/>
                         <outlet property="tableView" destination="ieu-6n-wXB" id="kXZ-6F-M48"/>
                     </connections>

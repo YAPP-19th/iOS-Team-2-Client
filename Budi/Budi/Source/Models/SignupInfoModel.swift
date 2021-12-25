@@ -11,6 +11,7 @@ struct SignupInfoModel {
     var mainName: String
     var startDate: String
     var endDate: String
+    var nowWorks: Bool
     var description: String
     var porflioLink: String
 }

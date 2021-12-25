@@ -46,12 +46,13 @@ final class SignupViewModel: ViewModel {
         let selectPositionData = CurrentValueSubject<[String]?, Never>(nil)
         // 이력 관리 선택한 뷰 관리 (경력, 프로젝트 이력 뷰)
         let reUseModalView = CurrentValueSubject<ModalControl?, Never>(nil)
+        let selectedPosition = CurrentValueSubject<Position, Never>(.developer)
 
         let writedInfoData = CurrentValueSubject<SignupInfoModel?, Never>(
-            SignupInfoModel(mainName: "", startDate: "", endDate: "", description: "", porflioLink: "")
+            SignupInfoModel(mainName: "", startDate: "", endDate: "", nowWorks: false, description: "", porflioLink: "")
         )
         let writedPortfolioData = CurrentValueSubject<SignupInfoModel, Never>(
-            SignupInfoModel(mainName: "", startDate: "", endDate: "", description: "", porflioLink: "")
+            SignupInfoModel(mainName: "", startDate: "", endDate: "", nowWorks: false, description: "", porflioLink: "")
         )
 
         let sectionData = CurrentValueSubject<[HistorySectionModel], Never>(
@@ -61,7 +62,7 @@ final class SignupViewModel: ViewModel {
                     sectionTitle: ModalControl.career.stringValue ,
                     items: [
                         Item(itemInfo: ItemInfo(isInclude: false, buttonTitle: "경력을 추가해보세요"),
-                             description: "", endDate: "", name: "", startDate: "", portfolioLink: "")
+                             description: "", endDate: "", name: "", nowWork: false, startDate: "", portfolioLink: "")
                     ]),
 
                 HistorySectionModel.init(
@@ -69,14 +70,14 @@ final class SignupViewModel: ViewModel {
                     sectionTitle: ModalControl.project.stringValue ,
                     items: [
                         Item(itemInfo: ItemInfo(isInclude: false, buttonTitle: "프로젝트 이력을 추가해보세요"),
-                             description: "", endDate: "", name: "", startDate: "", portfolioLink: "")]),
+                             description: "", endDate: "", name: "", nowWork: false, startDate: "", portfolioLink: "")]),
 
                 HistorySectionModel.init(
                     type: .portfolio,
                     sectionTitle: ModalControl.portfolio.stringValue ,
                     items: [
                         Item(itemInfo: ItemInfo(isInclude: false, buttonTitle: "포트폴리오를 추가해보세요"),
-                             description: "", endDate: "", name: "", startDate: "", portfolioLink: "")])
+                             description: "", endDate: "", name: "", nowWork: false, startDate: "", portfolioLink: "")])
             ])
 
         let selectIndex = CurrentValueSubject<[Int], Never>([])
@@ -84,7 +85,10 @@ final class SignupViewModel: ViewModel {
         let editData = CurrentValueSubject<Item?, Never>(nil)
 
         let signUpPersonalInfoData = CurrentValueSubject<PersonalInfo, Never>(PersonalInfo(nickName: "", location: "", description: ""))
+
+        let userInfoUploadStatus = CurrentValueSubject<String?, Never>(nil)
     }
+
 
     let action = Action()
     let state = State()
@@ -140,7 +144,6 @@ final class SignupViewModel: ViewModel {
                 guard let self = self else { return }
                 let section = self.state.selectIndex.value[0]
                 let index = self.state.selectIndex.value[1]
-                print("인덱스", section, index)
                 let data = self.state.sectionData.value[section].items[index]
                 print(data)
                 self.state.editData.send(data)
@@ -171,7 +174,7 @@ final class SignupViewModel: ViewModel {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
                 guard let self = self else { return }
-                self.state.writedInfoData.send(SignupInfoModel(mainName: "", startDate: "", endDate: "", description: "", porflioLink: ""))
+                self.state.writedInfoData.send(SignupInfoModel(mainName: "", startDate: "", endDate: "", nowWorks: false, description: "", porflioLink: ""))
             }
             .store(in: &cancellables)
     }
@@ -193,13 +196,12 @@ final class SignupViewModel: ViewModel {
             .sink { filter in
                 switch filter {
                 case .career:
-
                     let index = self.state.sectionData.value.firstIndex { $0.type == .career }
                     guard let index = index else { return }
                     var oldValue = self.state.sectionData.value
                     var selectItems = self.state.sectionData.value[index].items
 
-                    let item = Item(itemInfo: ItemInfo(isInclude: false, buttonTitle: "경력을 추가해보세요"), description: "", endDate: "", name: "", startDate: "", portfolioLink: "")
+                    let item = Item(itemInfo: ItemInfo(isInclude: false, buttonTitle: "경력을 추가해보세요"), description: "", endDate: "", name: "", nowWork: false, startDate: "", portfolioLink: "")
                     selectItems.insert(item, at: selectItems.count)
                     oldValue[index].items = selectItems
                     self.state.sectionData.send(oldValue)
@@ -211,7 +213,7 @@ final class SignupViewModel: ViewModel {
                     var oldValue = self.state.sectionData.value
                     var selectItems = self.state.sectionData.value[index].items
 
-                    let item = Item(itemInfo: ItemInfo(isInclude: false, buttonTitle: "프로젝트 이력을 추가해보세요"), description: "", endDate: "", name: "", startDate: "", portfolioLink: "")
+                    let item = Item(itemInfo: ItemInfo(isInclude: false, buttonTitle: "프로젝트 이력을 추가해보세요"), description: "", endDate: "", name: "", nowWork: false, startDate: "", portfolioLink: "")
 
                     selectItems.insert(item, at: selectItems.count)
                     oldValue[index].items = selectItems
@@ -224,7 +226,7 @@ final class SignupViewModel: ViewModel {
                     var oldValue = self.state.sectionData.value
                     var selectItems = self.state.sectionData.value[index].items
 
-                    let item = Item(itemInfo: ItemInfo(isInclude: false, buttonTitle: "포트폴리오를 추가해보세요"), description: "", endDate: "", name: "", startDate: "", portfolioLink: "")
+                    let item = Item(itemInfo: ItemInfo(isInclude: false, buttonTitle: "포트폴리오를 추가해보세요"), description: "", endDate: "", name: "", nowWork: false, startDate: "", portfolioLink: "")
 
                     selectItems.insert(item, at: selectItems.count)
                     oldValue[index].items = selectItems
@@ -252,7 +254,7 @@ final class SignupViewModel: ViewModel {
                 changeData.endDate = data.endDate
                 changeData.description = data.description
                 changeData.portfolioLink = data.porflioLink
-                print("저장할 때", changeData.name, changeData.portfolioLink)
+                changeData.nowWork = data.nowWorks
                 oldData[section].items[index] = changeData
                 self.state.sectionData.send(oldData)
             }
@@ -276,10 +278,8 @@ final class SignupViewModel: ViewModel {
             .sink(receiveValue: { [weak self] name in
                 guard let self = self else { return }
                 if name == "" {
-                    print("일로 들어옴")
                     self.state.checkIdStatus.send(nil)
                 } else {
-
                     self.provider
                         .requestPublisher(.checkDuplicateName(name: name))
                         .map(APIResponse<NameDuplication>.self)
@@ -314,6 +314,7 @@ final class SignupViewModel: ViewModel {
                         print(error.localizedDescription)
                     }, receiveValue: { post in
                         self.state.positionData.send(post)
+                        self.state.selectedPosition.send(selectedPosition)
                     })
                     .store(in: &self.cancellables)
             }).store(in: &cancellables)
@@ -324,35 +325,67 @@ final class SignupViewModel: ViewModel {
             .sink(receiveValue: { [weak self] _ in
                 guard let self = self else { return }
                 let accsessToken = self.state.budiLoginUserData.value
-                print("엑세스", accsessToken)
                 let careerList = self.state.sectionData.value[0].items
-                let param = CreateInfo(
-                    basePosition: 0,
-                    careerList: [
-                        CareerList(companyName: careerList[0].name,
-                                   careerListDescription: "empty",
-                                   endDate: careerList[0].endDate,
-                                   memberID: 0,
-                                   nowWorks: false,
-                                   startDate: careerList[0].startDate,
-                                   teamName: careerList[0].description,
-                                   workRequestList: [TList(tListDescription: "", endDate: "", name: "", startDate: "")])
-                    ],
-                    createInfoDescription: "열심히 해봐요!",
-                    memberAddress: "서울시 강남구",
-                    nickName: "NickName",
-                    portfolioLink: ["string"],
-                    positionList: ["string"],
-                    projectList: [TList(tListDescription: "", endDate: "", name: "", startDate: "")]
-                )
+                let projectList = self.state.sectionData.value[1].items
+                let portfolioList = self.state.sectionData.value[2].items
+                var uploadCareerList: [CareerList] = []
+                var uploadProjectList: [TList] = []
+                var uploadPortfolioList: [String] = []
+                // 커리어 리스트 변환
+                for career in careerList {
+                    let tmp = CareerList(companyName: career.name,
+                                         careerListDescription: career.description,
+                                         endDate: career.endDate,
+                                         memberID: self.state.selectedPosition.value.integerValue,
+                                         nowWorks: career.nowWork,
+                                         startDate: career.startDate,
+                                         teamName: career.description,
+                                         workRequestList: [
+                                            TList(tListDescription: career.description,
+                                                  endDate: career.endDate,
+                                                  name: career.name,
+                                                  startDate: career.startDate)
+                                         ])
+                    uploadCareerList.append(tmp)
+                }
 
-                self.provider.requestPublisher(.createInfo(acessToken: accsessToken ?? "nil", param: param), callbackQueue: .global())
+                // 프로젝트 리스트 변환
+                for project in projectList {
+                    let tmp = TList(tListDescription: project.description,
+                                    endDate: project.endDate,
+                                    name: project.name,
+                                    startDate: project.startDate)
+                    uploadProjectList.append(tmp)
+                }
+
+                // 포트폴리오 리스트 변환
+                for portfolio in portfolioList {
+                    uploadPortfolioList.append(portfolio.portfolioLink)
+                }
+
+                let param = CreateInfo(
+                    basePosition: self.state.selectedPosition.value.integerValue,
+                    careerList: uploadCareerList,
+                    createInfoDescription: self.state.signUpPersonalInfoData.value.description,
+                    memberAddress: self.state.signUpPersonalInfoData.value.location,
+                    nickName: self.state.signUpPersonalInfoData.value.nickName,
+                    portfolioLink: uploadPortfolioList,
+                    positionList: self.state.selectPositionData.value ?? [],
+                    projectList: uploadProjectList
+                )
+                print("파라미터 ", param)
+                self.provider.requestPublisher(.createInfo(acessToken: accsessToken ?? "43d", param: param))
+                    .map(UserInfoUploadSuccess.self)
                     .sink(receiveCompletion: { [weak self] completion in
+                        guard let self = self else { return }
                         guard case let .failure(error) = completion else { return }
-                        self?.state.positionData.send(nil)
-                        print("에러", error.localizedDescription)
-                    }, receiveValue: {  post in
-                        print("dsfds", post)
+                        self.state.userInfoUploadStatus.send(nil)
+                        print(error.localizedDescription)
+
+                    }, receiveValue: { post in
+                        print(post)
+                        self.state.userInfoUploadStatus.send(post.message)
+
                     })
                     .store(in: &self.cancellables)
             })

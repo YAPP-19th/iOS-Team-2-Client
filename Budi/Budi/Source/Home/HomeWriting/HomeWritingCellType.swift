@@ -6,8 +6,6 @@
 //
 
 import UIKit
-import Combine
-import CombineCocoa
 
 enum HomeWritingCellType: Int, CaseIterable {
     case image = 0

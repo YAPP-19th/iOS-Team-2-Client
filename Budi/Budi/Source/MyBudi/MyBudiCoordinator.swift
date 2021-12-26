@@ -18,7 +18,7 @@ final class MyBudiCoordinator: NavigationCoordinator {
     }
 
     func start() {
-        let viewController: MyBudiViewController = MyBudiViewController(nibName: MyBudiViewController.identifier, bundle: nil)
+        let viewController: MyBudiMainViewController = MyBudiMainViewController(nibName: MyBudiMainViewController.identifier, bundle: nil)
         viewController.coordinator = self
         navigationController?.pushViewController(viewController, animated: true)
     }

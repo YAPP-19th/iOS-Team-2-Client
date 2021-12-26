@@ -22,6 +22,12 @@ extension String {
 
 extension Date {
 
+    func convertStringyyyyMMdd() -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        return formatter.string(from: self)
+    }
+
     func convertTimePassedString() -> String {
         let date = self
 

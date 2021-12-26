@@ -45,14 +45,14 @@ extension HomeCell: UICollectionViewDataSource {
         if let post = post {
             switch post.positions[indexPath.item].colorCode {
             case 1:
-                cell.backgroundColor = .init(hexString: "#FEEDED")
-                cell.label.textColor = .init(hexString: "#E96262")
-            case 2:
                 cell.backgroundColor = .init(hexString: "#E7F1FB")
                 cell.label.textColor = .init(hexString: "#3382E0")
-            case 3:
+            case 2:
                 cell.backgroundColor = .init(hexString: "#E8F8F5")
                 cell.label.textColor = .init(hexString: "#40C1A2")
+            case 3:
+                cell.backgroundColor = .init(hexString: "#FEEDED")
+                cell.label.textColor = .init(hexString: "#E96262")
             default:
                 break
             }

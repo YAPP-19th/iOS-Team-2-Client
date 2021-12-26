@@ -34,6 +34,10 @@ final class HomeWritingViewController: UIViewController {
         configureCollectionView()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        tabBarController?.tabBar.isHidden = true
+    }
+    
     override func viewWillDisappear(_ animated: Bool) {
         tabBarController?.tabBar.isHidden = false
     }
@@ -93,12 +97,15 @@ extension HomeWritingViewController: HomeWritingOnlineCellDelegate {
     func changeOnline(_ isOnline: Bool) {
         print("isOnline is \(isOnline)")
         viewModel.state.isOnline.value = isOnline
+        collectionView.reloadData()
     }
 }
 
-extension HomeWritingViewController: HomeWritingAreaCellDelegate {
-    func showLocationSearchViewController() {
-        coordinator?.showLocationSearchViewController()
+extension HomeWritingViewController: LocationSearchViewControllerDelegate {
+    func getLocation(_ location: String) {
+        print("location is \(location)")
+        viewModel.state.area.value = location
+        collectionView.reloadData()
     }
 }
 
@@ -176,7 +183,15 @@ extension HomeWritingViewController: UICollectionViewDataSource, UICollectionVie
             return cell
             
         case 5: guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeWritingAreaCell.identifier, for: indexPath) as? HomeWritingAreaCell else { return cell }
-            cell.delegate = self
+            if let area = viewModel.state.area.value {
+                cell.configureUI(area)
+            }
+            cell.selectButton.tapPublisher
+                .receive(on: DispatchQueue.main)
+                .sink { [weak self] _ in
+                    guard let self = self else { return }
+                    self.coordinator?.showLocationSearchViewController(self)
+                }.store(in: &cancellables)
             return cell
             
         case 6: guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeWritingMembersCell.identifier, for: indexPath) as? HomeWritingMembersCell else { return cell }

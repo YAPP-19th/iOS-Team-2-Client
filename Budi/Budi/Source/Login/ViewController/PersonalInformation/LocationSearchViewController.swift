@@ -9,12 +9,17 @@ import UIKit
 import Combine
 import CombineCocoa
 
+protocol LocationSearchViewControllerDelegate: AnyObject {
+    func getLocation(_ location: String)
+}
+
 class LocationSearchViewController: UIViewController {
     private let allLocation = Location().location
     private var correct: [String] = []
     weak var coordinator: LoginCoordinator?
     var viewModel: SignupViewModel
     private var cancellables = Set<AnyCancellable>()
+    weak var delegate: LocationSearchViewControllerDelegate?
     private let alertView = AlertView()
     private let searchBar: UISearchBar = {
         let search = UISearchBar()
@@ -115,6 +120,14 @@ class LocationSearchViewController: UIViewController {
             }
             .store(in: &cancellables)
 
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        tabBarController?.tabBar.isHidden = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        tabBarController?.tabBar.isHidden = false
     }
 
     private func configureAlert() {
@@ -245,7 +258,7 @@ extension LocationSearchViewController: UITableViewDelegate, UITableViewDataSour
         viewModel.state.signUpPersonalInfoData.send(changeData)
         print(viewModel.state.signUpPersonalInfoData.value)
         self.view.endEditing(true)
-
+        delegate?.getLocation(data)
     }
 
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {

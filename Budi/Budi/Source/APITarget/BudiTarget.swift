@@ -38,7 +38,6 @@ extension BudiTarget: TargetType {
         case .recruitingStatuses(let id): return "/posts/\(id)/recruitingStatus"
         case .postDefaultImageUrls: return "/infos/postDefaultImageUrls"
         case .applies: return "/applies"
-        case .detailPositions: return "/infos/positions"
         case .checkDuplicateName: return "/members/checkDuplicateName"
         }
     }

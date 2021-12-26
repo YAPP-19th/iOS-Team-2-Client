@@ -9,17 +9,12 @@
 /* Begin PBXBuildFile section */
 		5E24071D275225A600954BE7 /* BudiTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E24071C275225A600954BE7 /* BudiTarget.swift */; };
 		5E240721275225CD00954BE7 /* String+date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E240720275225CD00954BE7 /* String+date.swift */; };
-		5E24072327522BCE00954BE7 /* alertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E24072227522BCE00954BE7 /* alertView.swift */; };
-		5E24072427522CA800954BE7 /* MainTabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9D66EBA27146E1F00668490 /* MainTabBarCoordinator.swift */; };
-		5E24072527522CB500954BE7 /* HomeContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9D66ECB2714716400668490 /* HomeContainerViewController.swift */; };
 		5E2554352732770B00033723 /* HomeDetailPersonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2554332732770B00033723 /* HomeDetailPersonCell.swift */; };
 		5E2554362732770B00033723 /* HomeDetailPersonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E2554342732770B00033723 /* HomeDetailPersonCell.xib */; };
 		5E2554382732AD0800033723 /* UIView+IBInspectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2554372732AD0800033723 /* UIView+IBInspectable.swift */; };
 		5E2554612732DF8A00033723 /* GreetingAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E25545F2732DF8A00033723 /* GreetingAlertViewController.swift */; };
 		5E2554622732DF8A00033723 /* GreetingAlertViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E2554602732DF8A00033723 /* GreetingAlertViewController.xib */; };
-		5E45AD132732F47800F0A80C /* RecruitingStatusBottomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E45AD112732F47800F0A80C /* RecruitingStatusBottomViewController.swift */; };
 		5E45AD142732F47800F0A80C /* RecruitingStatusBottomViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E45AD122732F47800F0A80C /* RecruitingStatusBottomViewController.xib */; };
-		5E45AD172732F78200F0A80C /* RecruitingStatusBottomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E45AD152732F78200F0A80C /* RecruitingStatusBottomCell.swift */; };
 		5E45AD182732F78200F0A80C /* RecruitingStatusBottomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E45AD162732F78200F0A80C /* RecruitingStatusBottomCell.xib */; };
 		5E5517A92768BCC300DC605E /* HomeWritingPartBottomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5517A72768BCC300DC605E /* HomeWritingPartBottomCell.swift */; };
 		5E5517AA2768BCC300DC605E /* HomeWritingPartBottomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E5517A82768BCC300DC605E /* HomeWritingPartBottomCell.xib */; };
@@ -74,7 +69,6 @@
 		5E9150AE277236F7000578D4 /* MyBudiEditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9150AD277236F7000578D4 /* MyBudiEditViewModel.swift */; };
 		5EA453692731412A00943C94 /* HomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA453672731412A00943C94 /* HomeCell.swift */; };
 		5EA4536A2731412A00943C94 /* HomeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EA453682731412A00943C94 /* HomeCell.xib */; };
-		5EA45370273144C200943C94 /* HomeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA4536F273144C200943C94 /* HomeDetailViewController.swift */; };
 		5EA453902731774100943C94 /* HomeDetailMemberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA4538E2731774100943C94 /* HomeDetailMemberCell.swift */; };
 		5EA453912731774100943C94 /* HomeDetailMemberCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EA4538F2731774100943C94 /* HomeDetailMemberCell.xib */; };
 		5EA453942731775600943C94 /* HomeDetailLeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA453922731775600943C94 /* HomeDetailLeaderCell.swift */; };
@@ -123,14 +117,11 @@
 		5EFB0A5727340BF100F39A4D /* ChattingMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EFB0A5527340BF100F39A4D /* ChattingMessageCell.xib */; };
 		5EFB0A5A27341C1100F39A4D /* ChattingTimeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EFB0A5827341C1100F39A4D /* ChattingTimeCell.swift */; };
 		5EFB0A5B27341C1100F39A4D /* ChattingTimeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EFB0A5927341C1100F39A4D /* ChattingTimeCell.xib */; };
-		A81D105D276482590022D610 /* HistoryManagementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81D105C276482590022D610 /* HistoryManagementViewController.swift */; };
 		A81D105F2764828A0022D610 /* HistoryWriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81D105E2764828A0022D610 /* HistoryWriteViewController.swift */; };
 		A81D1061276482950022D610 /* DefaultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81D1060276482950022D610 /* DefaultTableViewCell.swift */; };
 		A81D1063276482B70022D610 /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81D1062276482B70022D610 /* Section.swift */; };
 		A81D1074276482F90022D610 /* DefaultHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81D1065276482F80022D610 /* DefaultHeaderView.swift */; };
 		A81D1075276482F90022D610 /* DefaultHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A81D1066276482F80022D610 /* DefaultHeaderView.xib */; };
-		A81D1084276483060022D610 /* HistoryManagementViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81D1083276483060022D610 /* HistoryManagementViewModel.swift */; };
-		A81D1087276485590022D610 /* ProjectHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81D1085276485590022D610 /* ProjectHistory.swift */; };
 		A81D1088276485590022D610 /* WorkHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81D1086276485590022D610 /* WorkHistory.swift */; };
 		A81D108C2764950F0022D610 /* Positions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81D108B2764950F0022D610 /* Positions.swift */; };
 		A81D10CC2765174E0022D610 /* PositionDetailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81D10CB2765174E0022D610 /* PositionDetailCollectionViewCell.swift */; };
@@ -166,11 +157,20 @@
 		A8CD935E273849F800299AB4 /* LocationDummyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CD935D273849F800299AB4 /* LocationDummyData.swift */; };
 		A8CD936127384C4900299AB4 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CD936027384C4900299AB4 /* SearchTableViewCell.swift */; };
 		B92D54F9274C02EB00D0E851 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = B92D54F8274C02EB00D0E851 /* .swiftlint.yml */; };
-		B92D5502274C039C00D0E851 /* HomeContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92D5501274C039C00D0E851 /* HomeContentViewModel.swift */; };
 		B92D5505274C03AB00D0E851 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92D5504274C03AA00D0E851 /* Post.swift */; };
 		B94DCA8327521648006A9E0D /* APIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B94DCA8227521648006A9E0D /* APIResponse.swift */; };
 		B9535E15276DD8E2000081CF /* PositionLabelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9535E13276DD8E2000081CF /* PositionLabelCell.swift */; };
 		B9535E16276DD8E2000081CF /* PositionLabelCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9535E14276DD8E2000081CF /* PositionLabelCell.xib */; };
+		B968415F277853BC002F5D3D /* ProjectHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81D1085276485590022D610 /* ProjectHistory.swift */; };
+		B9684160277853C8002F5D3D /* MainTabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9D66EBA27146E1F00668490 /* MainTabBarCoordinator.swift */; };
+		B9684161277853D0002F5D3D /* RecruitingStatusBottomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E45AD112732F47800F0A80C /* RecruitingStatusBottomViewController.swift */; };
+		B9684162277853D8002F5D3D /* RecruitingStatusBottomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E45AD152732F78200F0A80C /* RecruitingStatusBottomCell.swift */; };
+		B9684163277853DC002F5D3D /* HistoryManagementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81D105C276482590022D610 /* HistoryManagementViewController.swift */; };
+		B9684164277853DE002F5D3D /* HistoryManagementViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81D1083276483060022D610 /* HistoryManagementViewModel.swift */; };
+		B9684165277853E3002F5D3D /* HomeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA4536F273144C200943C94 /* HomeDetailViewController.swift */; };
+		B9684166277853E7002F5D3D /* HomeContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9D66ECB2714716400668490 /* HomeContainerViewController.swift */; };
+		B9684167277853EF002F5D3D /* HomeContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92D5501274C039C00D0E851 /* HomeContentViewModel.swift */; };
+		B9684168277853F3002F5D3D /* alertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E24072227522BCE00954BE7 /* alertView.swift */; };
 		B97DBB9527147D970018C1D2 /* UIViewController+identifer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B97DBB9427147D970018C1D2 /* UIViewController+identifer.swift */; };
 		B98E530A27396B3F00C73374 /* UINavigationController+translucent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98E530927396B3F00C73374 /* UINavigationController+translucent.swift */; };
 		B9BEF8972767978E00C889B4 /* HomeContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9BEF8962767978E00C889B4 /* HomeContentViewController.swift */; };
@@ -1078,8 +1078,6 @@
 				B9BF787B27004095000BE0EF /* Main.storyboard in Resources */,
 				5EB4303E2758956E00283239 /* HomeWritingAreaCell.xib in Resources */,
 				5EA453952731775600943C94 /* HomeDetailLeaderCell.xib in Resources */,
-				A81D107C276482F90022D610 /* HistoryAddButtonView.xib in Resources */,
-				A81D1081276482F90022D610 /* HistorySingleWriteView.xib in Resources */,
 				B9535E16276DD8E2000081CF /* PositionLabelCell.xib in Resources */,
 				5EA453992731776900943C94 /* HomeDetailStatusCell.xib in Resources */,
 				5E915093277221F5000578D4 /* MyBudiProfileCell.xib in Resources */,
@@ -1158,14 +1156,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A81D1087276485590022D610 /* ProjectHistory.swift in Sources */,
-				5E24072527522CB500954BE7 /* HomeContainerViewController.swift in Sources */,
-				5E24072427522CA800954BE7 /* MainTabBarCoordinator.swift in Sources */,
-				A81D1087276485590022D610 /* ProjectHistory.swift in Sources */,
+				B9684168277853F3002F5D3D /* alertView.swift in Sources */,
+				B9684167277853EF002F5D3D /* HomeContentViewModel.swift in Sources */,
+				B9684166277853E7002F5D3D /* HomeContainerViewController.swift in Sources */,
+				B9684165277853E3002F5D3D /* HomeDetailViewController.swift in Sources */,
+				B9684164277853DE002F5D3D /* HistoryManagementViewModel.swift in Sources */,
+				B9684163277853DC002F5D3D /* HistoryManagementViewController.swift in Sources */,
+				B9684162277853D8002F5D3D /* RecruitingStatusBottomCell.swift in Sources */,
+				B9684161277853D0002F5D3D /* RecruitingStatusBottomViewController.swift in Sources */,
+				B9684160277853C8002F5D3D /* MainTabBarCoordinator.swift in Sources */,
+				B968415F277853BC002F5D3D /* ProjectHistory.swift in Sources */,
 				5E7CF4BF27708D50007315F1 /* RecruitingPosition.swift in Sources */,
-				5E24072527522CB500954BE7 /* HomeContainerViewController.swift in Sources */,
 				5E9150A62772356A000578D4 /* MyBudiEditCellType.swift in Sources */,
-				5E24072427522CA800954BE7 /* MainTabBarCoordinator.swift in Sources */,
 				5E88636E2767450A0022397A /* HomeWritingCellType.swift in Sources */,
 				5E820B7B2769E9D7004A03E9 /* HomeWritingMembersDetailPartBottomCell.swift in Sources */,
 				5E8863822767AE190022397A /* HomeWritingImageBottomCell.swift in Sources */,
@@ -1225,12 +1227,10 @@
 				B97DBB9527147D970018C1D2 /* UIViewController+identifer.swift in Sources */,
 				A8CD0CEE2771CDCA00FFDE64 /* BudiLogin.swift in Sources */,
 				5E2554612732DF8A00033723 /* GreetingAlertViewController.swift in Sources */,
-				B92D5502274C039C00D0E851 /* HomeContentViewModel.swift in Sources */,
 				5E9150A92772357C000578D4 /* MyBudiEditViewController.swift in Sources */,
 				5EC2FF04275E5D8300FF5BB0 /* HomeWritingViewModel.swift in Sources */,
 				5E820B8F2769F963004A03E9 /* DatePickerBottomViewController.swift in Sources */,
 				5E9150AC27723668000578D4 /* MyBudiMainViewModel.swift in Sources */,
-				B92D5502274C039C00D0E851 /* HomeContentViewModel.swift in Sources */,
 				B9D66EB927146DF900668490 /* TabBarCoordinator.swift in Sources */,
 				B9D66EBF27146F2F00668490 /* HomeCoordinator.swift in Sources */,
 				5EFB0A4F2733FDD100F39A4D /* ChattingDetailViewController.swift in Sources */,
@@ -1242,7 +1242,6 @@
 				5E820B772769E9CA004A03E9 /* HomeWritingMembersPartBottomCell.swift in Sources */,
 				5E820B92276A3699004A03E9 /* TeamMember.swift in Sources */,
 				5EFB0A4A2733EAA300F39A4D /* ChattingCell.swift in Sources */,
-				A81D107F276482F90022D610 /* HistorySingleWriteView.swift in Sources */,
 				B9535E15276DD8E2000081CF /* PositionLabelCell.swift in Sources */,
 				5EA575FE274E9C4800DF6974 /* String+baseURL.swift in Sources */,
 				5E58E6B5276BA73500ABBF1C /* PostRequest.swift in Sources */,
@@ -1277,28 +1276,12 @@
 				5EF5F3292741590300A5F6E2 /* LocationManager.swift in Sources */,
 				5E915092277221F5000578D4 /* MyBudiProfileCell.swift in Sources */,
 				5E7EFE272732E06F007817C3 /* AlertViewController.swift in Sources */,
-				5E45AD132732F47800F0A80C /* RecruitingStatusBottomViewController.swift in Sources */,
-				5E24072327522BCE00954BE7 /* alertView.swift in Sources */,
 				A84F2675276DE9F200C65DA1 /* SignupPersonalInfo.swift in Sources */,
-				5EA45370273144C200943C94 /* HomeDetailViewController.swift in Sources */,
-				A81D1084276483060022D610 /* HistoryManagementViewModel.swift in Sources */,
 				A85C920D276A42210097E444 /* CreateInfo.swift in Sources */,
-				A81D105D276482590022D610 /* HistoryManagementViewController.swift in Sources */,
-				5E45AD172732F78200F0A80C /* RecruitingStatusBottomCell.swift in Sources */,
 				5EBD9D5D276DB57B00615319 /* HomeDetailViewModel.swift in Sources */,
 				5E91508D27721D8B000578D4 /* MyBudiMainViewController.swift in Sources */,
-				5E45AD132732F47800F0A80C /* RecruitingStatusBottomViewController.swift in Sources */,
-				5E24072327522BCE00954BE7 /* alertView.swift in Sources */,
 				5E58E6B1276B588C00ABBF1C /* AppliesRequest.swift in Sources */,
 				5EB430452758959600283239 /* HomeWritingDescriptionCell.swift in Sources */,
-				5EA45370273144C200943C94 /* HomeDetailViewController.swift in Sources */,
-				5E45AD172732F78200F0A80C /* RecruitingStatusBottomCell.swift in Sources */,
-				5E45AD132732F47800F0A80C /* RecruitingStatusBottomViewController.swift in Sources */,
-				5E24072327522BCE00954BE7 /* alertView.swift in Sources */,
-				5EA45370273144C200943C94 /* HomeDetailViewController.swift in Sources */,
-				A81D1084276483060022D610 /* HistoryManagementViewModel.swift in Sources */,
-				A81D105D276482590022D610 /* HistoryManagementViewController.swift in Sources */,
-				5E45AD172732F78200F0A80C /* RecruitingStatusBottomCell.swift in Sources */,
 				A81D1061276482950022D610 /* DefaultTableViewCell.swift in Sources */,
 				5E91509627722206000578D4 /* MyBudiLevelCell.swift in Sources */,
 			);
@@ -1451,7 +1434,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = ZMXTCSPNUZ;
+				DEVELOPMENT_TEAM = V37X2D6JM3;
 				INFOPLIST_FILE = Budi/Resource/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1471,7 +1454,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = ZMXTCSPNUZ;
+				DEVELOPMENT_TEAM = V37X2D6JM3;
 				INFOPLIST_FILE = Budi/Resource/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

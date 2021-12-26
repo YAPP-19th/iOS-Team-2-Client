@@ -25,6 +25,7 @@
 		5E5517AA2768BCC300DC605E /* HomeWritingPartBottomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E5517A82768BCC300DC605E /* HomeWritingPartBottomCell.xib */; };
 		5E58E6B1276B588C00ABBF1C /* AppliesRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E58E6B0276B588C00ABBF1C /* AppliesRequest.swift */; };
 		5E58E6B5276BA73500ABBF1C /* PostRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E58E6B4276BA73500ABBF1C /* PostRequest.swift */; };
+		5E7CF4BF27708D50007315F1 /* RecruitingPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7CF4BE27708D50007315F1 /* RecruitingPosition.swift */; };
 		5E7EFE272732E06F007817C3 /* AlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7EFE252732E06E007817C3 /* AlertViewController.swift */; };
 		5E7EFE282732E06F007817C3 /* AlertViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E7EFE262732E06F007817C3 /* AlertViewController.xib */; };
 		5E820B742769E41E004A03E9 /* UIButton+IBInspectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E820B732769E41E004A03E9 /* UIButton+IBInspectable.swift */; };
@@ -187,6 +188,7 @@
 		5E5517A82768BCC300DC605E /* HomeWritingPartBottomCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeWritingPartBottomCell.xib; sourceTree = "<group>"; };
 		5E58E6B0276B588C00ABBF1C /* AppliesRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppliesRequest.swift; sourceTree = "<group>"; };
 		5E58E6B4276BA73500ABBF1C /* PostRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRequest.swift; sourceTree = "<group>"; };
+		5E7CF4BE27708D50007315F1 /* RecruitingPosition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecruitingPosition.swift; sourceTree = "<group>"; };
 		5E7EFE252732E06E007817C3 /* AlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewController.swift; sourceTree = "<group>"; };
 		5E7EFE262732E06F007817C3 /* AlertViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlertViewController.xib; sourceTree = "<group>"; };
 		5E820B732769E41E004A03E9 /* UIButton+IBInspectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+IBInspectable.swift"; sourceTree = "<group>"; };
@@ -720,6 +722,7 @@
 				A8CD0CEF2771CE3A00FFDE64 /* BudiLoginResponse.swift */,
 				A8936FB72772F77600BE2C1D /* NameDuplication.swift */,
 				A8936FBB2777192500BE2C1D /* UserInfoUploadSuccess.swift */,
+				5E7CF4BE27708D50007315F1 /* RecruitingPosition.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1059,6 +1062,7 @@
 				5E24072527522CB500954BE7 /* HomeContainerViewController.swift in Sources */,
 				5E24072427522CA800954BE7 /* MainTabBarCoordinator.swift in Sources */,
 				A81D1087276485590022D610 /* ProjectHistory.swift in Sources */,
+				5E7CF4BF27708D50007315F1 /* RecruitingPosition.swift in Sources */,
 				5E24072527522CB500954BE7 /* HomeContainerViewController.swift in Sources */,
 				5E24072427522CA800954BE7 /* MainTabBarCoordinator.swift in Sources */,
 				5E88636E2767450A0022397A /* HomeWritingCellType.swift in Sources */,

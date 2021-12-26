@@ -14,7 +14,6 @@ protocol LocationSearchViewControllerDelegate: AnyObject {
 }
 
 class LocationSearchViewController: UIViewController {
-    private let allLocation = Location().location
     private var correct: [String] = []
     weak var coordinator: LoginCoordinator?
     var viewModel: SignupViewModel
@@ -52,7 +51,17 @@ class LocationSearchViewController: UIViewController {
 
     @objc
     func locationButtonAction() {
-        print("준비중")
+        LocationManager.shared.getAddress { result in
+            switch result {
+            case .success(let address):
+                NotificationCenter.default.post(name: NSNotification.Name("LocationNextActivation"), object: address)
+                self.delegate?.getLocation(address)
+                self.searchBar.text = address
+                self.nextButton.backgroundColor = UIColor.budiGreen
+                self.nextButton.isEnabled = true
+            case .failure(let error): print(error.localizedDescription)
+            }
+        }
     }
 
     @objc
@@ -109,6 +118,7 @@ class LocationSearchViewController: UIViewController {
         configureTableView()
         configureAlert()
         setPublisher()
+        LocationManager.shared.requestWhenInUseAuthorization()
     }
 
     private func setPublisher() {
@@ -119,7 +129,6 @@ class LocationSearchViewController: UIViewController {
                 self.navigationController?.popViewController(animated: true)
             }
             .store(in: &cancellables)
-
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -210,22 +219,15 @@ class LocationSearchViewController: UIViewController {
             searchTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             searchTableView.bottomAnchor.constraint(equalTo: nextButton.topAnchor)
         ])
-
     }
-
 }
 
 extension LocationSearchViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        let location = Location().location
+        let filteredLocations = LocationManager.shared.searchAddress(searchText)
+        
         if !searchText.isEmpty {
-            for idx in location {
-                if idx.contains(searchText) {
-                    if !correct.contains(idx) {
-                        correct.append(idx)
-                    }
-                }
-            }
+            correct.append(contentsOf: filteredLocations)
             searchTableView.reloadData()
         } else {
             correct = []
@@ -264,5 +266,4 @@ extension LocationSearchViewController: UITableViewDelegate, UITableViewDataSour
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         view.endEditing(true)
     }
-
 }

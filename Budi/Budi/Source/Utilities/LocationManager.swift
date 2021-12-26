@@ -21,9 +21,8 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
         print(error.localizedDescription)
     }
 
-    func searchAddress(_ searchText: String, _ completion: @escaping ([String]) -> Void) {
-        let result = Location().location.filter { $0.contains(searchText) }
-        completion(result)
+    func searchAddress(_ searchText: String) -> [String] {
+        Location.locations.filter { $0.contains(searchText) }
     }
 
     func getAddress(_ completion: @escaping (Result<String, Error>) -> Void) {

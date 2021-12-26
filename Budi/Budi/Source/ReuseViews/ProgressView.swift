@@ -191,24 +191,24 @@ class ProgressView: UIView {
     }
 
     private func numberOneColorSet() {
-        numberOne.textColor = UIColor(red: 0.41, green: 0.86, blue: 0.67, alpha: 1.00)
+        numberOne.textColor = UIColor.primary
         numberOne.alpha = 1
-        oneView.layer.borderColor = UIColor(red: 0.41, green: 0.86, blue: 0.67, alpha: 1.00).cgColor
+        oneView.layer.borderColor = UIColor.primary.cgColor
         stepOneLabel.alpha = 1
     }
 
     private func numberTwoColorSet() {
         removeOne()
-        numberTwo.textColor = UIColor(red: 0.41, green: 0.86, blue: 0.67, alpha: 1.00)
+        numberTwo.textColor = UIColor.primary
         numberTwo.alpha = 1
-        twoView.layer.borderColor = UIColor(red: 0.41, green: 0.86, blue: 0.67, alpha: 1.00).cgColor
+        twoView.layer.borderColor = UIColor.primary.cgColor
         stepTwoLabel.alpha = 1
     }
     private func numberThreeColorSet() {
         removeTwo()
-        numberThree.textColor = UIColor(red: 0.41, green: 0.86, blue: 0.67, alpha: 1.00)
+        numberThree.textColor = UIColor.primary
         numberThree.alpha = 1
-        threeView.layer.borderColor = UIColor(red: 0.41, green: 0.86, blue: 0.67, alpha: 1.00).cgColor
+        threeView.layer.borderColor = UIColor.primary.cgColor
         stepThreeLabel.alpha = 1
     }
 

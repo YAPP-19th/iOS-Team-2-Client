@@ -11,13 +11,13 @@ class IntroduceView: UIView {
 
     private let introduceLabel: UILabel = {
         let label = UILabel()
-        label.text = "설명"
+        label.text = "한줄소개"
         label.font = UIFont.boldSystemFont(ofSize: 14)
         label.textColor = UIColor.init(white: 0, alpha: 0.7)
         return label
     }()
 
-    private let introTextView: UITextView = {
+    let introTextView: UITextView = {
         let textView = UITextView()
         textView.font = UIFont.systemFont(ofSize: 14)
         textView.layer.borderWidth = 0.5
@@ -47,7 +47,8 @@ class IntroduceView: UIView {
 
     private func configureTextView() {
         introTextView.delegate = self
-        introTextView.text = "핵심 목표와 성과, 문제를 해결한 방법이나 기술 등을 요약해주세요. 글자 제한은 최대 200자 입니다."
+        introTextView.text = "버디에게 나를 소개해보세요"
+        introTextView.contentInset = UIEdgeInsets(top: 8, left: 0, bottom: 0, right: 0)
         introTextView.textColor = UIColor.lightGray
     }
 
@@ -62,7 +63,7 @@ class IntroduceView: UIView {
         introTextView.topAnchor.constraint(equalTo: introduceLabel.bottomAnchor, constant: 16).isActive = true
         introTextView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16).isActive = true
         introTextView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16).isActive = true
-        introTextView.heightAnchor.constraint(equalToConstant: 98).isActive = true
+        introTextView.heightAnchor.constraint(equalToConstant: 48).isActive = true
     }
 }
 

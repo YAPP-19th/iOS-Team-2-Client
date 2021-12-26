@@ -28,16 +28,17 @@ final class LoginCoordinator: NavigationCoordinator {
 
 extension LoginCoordinator {
     func showSignupNormalViewController() {
-        let viewController: SignupNormalViewController = storyboard.instantiateViewController(identifier: SignupNormalViewController.identifier)
+        let viewController: PersonalInformationViewController = storyboard.instantiateViewController(identifier: PersonalInformationViewController.identifier) { coder -> PersonalInformationViewController? in
+            return PersonalInformationViewController(coder: coder, viewModel: self.viewModel)
+        }
         viewController.navigationItem.title = "회원가입"
         viewController.coordinator = self
         navigationController?.pushViewController(viewController, animated: true)
     }
 
     func showHistoryManagementViewController() {
-        print("ㅇㅅㅇ")
         let viewController: HistoryManagementViewController = storyboard.instantiateViewController(identifier: HistoryManagementViewController.identifier) { coder -> HistoryManagementViewController? in
-            return HistoryManagementViewController(coder: coder, viewModel: self.historyViewModel)
+            return HistoryManagementViewController(coder: coder, viewModel: self.viewModel)
         }
         viewController.navigationItem.title = "회원가입"
         viewController.coordinator = self
@@ -45,7 +46,9 @@ extension LoginCoordinator {
     }
 
     func showLocationSearchViewController() {
-        let viewController: LocationSearchViewController = storyboard.instantiateViewController(identifier: LocationSearchViewController.identifier)
+        let viewController: LocationSearchViewController = storyboard.instantiateViewController(identifier: LocationSearchViewController.identifier) { coder -> LocationSearchViewController? in
+            return LocationSearchViewController(coder: coder, viewModel: self.viewModel)
+        }
         viewController.navigationItem.title = "위치선택"
         viewController.coordinator = self
         navigationController?.pushViewController(viewController, animated: true)
@@ -60,19 +63,34 @@ extension LoginCoordinator {
         navigationController?.pushViewController(viewController, animated: true)
     }
 
-    func showHistoryWriteViewController(_ number: Int) {
+    func showCareerViewController() {
         let viewController: HistoryWriteViewController = storyboard.instantiateViewController(identifier: HistoryWriteViewController.identifier) { coder -> HistoryWriteViewController? in
-            return HistoryWriteViewController(coder: coder, viewModel: self.historyViewModel)
+            return HistoryWriteViewController(coder: coder, viewModel: self.viewModel)
         }
-        if number == 1 {
-            viewController.navigationItem.title = "경력 작성"
-            viewController.viewModel.action.tag.send(1)
-        } else if number == 2 {
-            viewController.navigationItem.title = "프로젝트 이력 작성"
-            viewController.viewModel.action.tag.send(2)
+
+        viewController.coordinator = self
+        viewController.viewModel.action.switchView.send(ModalControl.career)
+        viewController.modalPresentationStyle = .overFullScreen
+        navigationController?.present(viewController, animated: true, completion: nil)
+    }
+
+    func showProjectViewController() {
+        let viewController: HistoryWriteViewController = storyboard.instantiateViewController(identifier: HistoryWriteViewController.identifier) { coder -> HistoryWriteViewController? in
+            return HistoryWriteViewController(coder: coder, viewModel: self.viewModel)
         }
         viewController.coordinator = self
-        navigationController?.pushViewController(viewController, animated: true)
+        viewController.viewModel.action.switchView.send(ModalControl.project)
+        viewController.modalPresentationStyle = .overFullScreen
+        navigationController?.present(viewController, animated: true, completion: nil)
+    }
 
+    func showPortfolioController() {
+        let viewController: PortfolioViewController = storyboard.instantiateViewController(identifier: PortfolioViewController.identifier) { coder -> PortfolioViewController? in
+            return PortfolioViewController(coder: coder, viewModel: self.viewModel)
+        }
+        viewController.coordinator = self
+        viewController.modalPresentationStyle = .overFullScreen
+        viewController.viewModel.action.switchView.send(ModalControl.portfolio)
+        navigationController?.present(viewController, animated: true, completion: nil)
     }
 }

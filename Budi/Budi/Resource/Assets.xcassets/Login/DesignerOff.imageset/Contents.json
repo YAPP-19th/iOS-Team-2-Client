@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "chevron_right.png",
+      "filename" : "job_disgn_disabled.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "chevron_right@2x.png",
+      "filename" : "job_disgn_disabled@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "chevron_right@3x.png",
+      "filename" : "job_disgn_disabled@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

@@ -132,16 +132,27 @@ class PositionViewController: UIViewController {
         alertView.doneButton.tapPublisher
             .receive(on: DispatchQueue.main)
             .sink { _ in
-
                 self.coordinator?.showHistoryManagementViewController()
             }
             .store(in: &cancellables)
 
-        normalPositionView.productManagerButton
+        normalPositionView.plannerButton
             .tapPublisher
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
-                self?.viewModel.action.positionFetch.send(Position.productManager)
+                guard let self = self else { return }
+
+                if !self.normalPositionView.plannerButton.isSelected {
+                    self.normalPositionView.plannerButton.isSelected = !self.normalPositionView.plannerButton.isSelected
+                }
+
+                for button in self.normalPositionView.buttons {
+                    if button.isSelected && button != self.normalPositionView.plannerButton {
+                        button.isSelected = !button.isSelected
+                    }
+                }
+
+                self.viewModel.action.positionFetch.send(Position.productManager)
             }
             .store(in: &cancellables)
 
@@ -149,8 +160,19 @@ class PositionViewController: UIViewController {
             .tapPublisher
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
-                print("\(Position.developer)")
-                self?.viewModel.action.positionFetch.send(Position.developer)
+                guard let self = self else { return }
+
+                if !self.normalPositionView.developerButton.isSelected {
+                    self.normalPositionView.developerButton.isSelected = !self.normalPositionView.developerButton.isSelected
+                }
+
+                for button in self.normalPositionView.buttons {
+                    if button.isSelected && button != self.normalPositionView.developerButton {
+                        button.isSelected = !button.isSelected
+                    }
+                }
+
+                self.viewModel.action.positionFetch.send(Position.developer)
             }
             .store(in: &cancellables)
 
@@ -158,8 +180,19 @@ class PositionViewController: UIViewController {
             .tapPublisher
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
-                print("\(Position.designer)")
-                self?.viewModel.action.positionFetch.send(Position.designer)
+                guard let self = self else { return }
+
+                if !self.normalPositionView.designerButton.isSelected {
+                    self.normalPositionView.designerButton.isSelected = !self.normalPositionView.designerButton.isSelected
+                }
+
+                for button in self.normalPositionView.buttons {
+                    if button.isSelected && button != self.normalPositionView.designerButton {
+                        button.isSelected = !button.isSelected
+                    }
+                }
+
+                self.viewModel.action.positionFetch.send(Position.designer)
             }
             .store(in: &cancellables)
 
@@ -171,8 +204,23 @@ class PositionViewController: UIViewController {
             .sink { positionData in
                 guard let data = positionData else { return }
                 print(data)
-                print(self.viewModel.state.positionData.value?.count)
                 self.positionDetailCollectionView.reloadData()
+            }
+            .store(in: &cancellables)
+
+        viewModel.state.positionSelectData
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] data in
+                guard let self = self else { return }
+                print(data)
+                if data.isEmpty {
+                    self.nextButton.isEnabled = false
+                    self.nextButton.backgroundColor = UIColor.textDisabled
+                } else {
+                    self.nextButton.isEnabled = true
+                    self.nextButton.backgroundColor = UIColor.primary
+                }
+
             }
             .store(in: &cancellables)
     }
@@ -225,8 +273,7 @@ class PositionViewController: UIViewController {
 
     private func configureCollectionView() {
         positionDetailCollectionView.register(PositionDetailCollectionViewCell.self, forCellWithReuseIdentifier: PositionDetailCollectionViewCell.cellId)
-        let flow = UICollectionViewFlowLayout()
-        flow.itemSize = CGSize(width: 50, height: 32)
+        let flow = LeftAlignedCollectionViewFlowLayout()
         positionDetailCollectionView.delegate = self
         positionDetailCollectionView.showsVerticalScrollIndicator = false
         positionDetailCollectionView.dataSource = self
@@ -247,11 +294,13 @@ class PositionViewController: UIViewController {
             BackgroundView.instanceBackground.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             BackgroundView.instanceBackground.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
+        
         NSLayoutConstraint.activate([
-            alertView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            alertView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            alertView.widthAnchor.constraint(equalToConstant: 343),
-            alertView.heightAnchor.constraint(equalToConstant: 208)
+            alertView.topAnchor.constraint(equalTo: view.topAnchor, constant: 220),
+            alertView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -240),
+            alertView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 48),
+            alertView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -48),
+            alertView.heightAnchor.constraint(equalToConstant: 372)
         ])
 
         UIView.animate(withDuration: 0.2, animations: {
@@ -320,7 +369,7 @@ class PositionViewController: UIViewController {
             normalPositionView.topAnchor.constraint(equalTo: normalPositionLabel.bottomAnchor),
             normalPositionView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
             normalPositionView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
-            normalPositionView.heightAnchor.constraint(equalToConstant: 150)
+            normalPositionView.heightAnchor.constraint(equalToConstant: 120)
         ])
 
         scrollView.addSubview(detailPositionLabel)
@@ -335,8 +384,8 @@ class PositionViewController: UIViewController {
         positionDetailCollectionView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             positionDetailCollectionView.topAnchor.constraint(equalTo: detailPositionLabel.bottomAnchor, constant: 16),
-            positionDetailCollectionView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 16),
-            positionDetailCollectionView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -16),
+            positionDetailCollectionView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            positionDetailCollectionView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
             positionDetailCollectionView.heightAnchor.constraint(equalToConstant: 150)
         ])
     }
@@ -348,22 +397,50 @@ extension PositionViewController: UICollectionViewDelegate, UICollectionViewDele
         return data
     }
 
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        0
+    }
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PositionDetailCollectionViewCell.cellId, for: indexPath) as? PositionDetailCollectionViewCell else { return .zero }
         guard let text = viewModel.state.positionData.value?[indexPath.row] else { return CGSize() }
+
         cell.configureButtonText(text)
         cell.positionDetailButton.sizeToFit()
         let cellWidth = cell.positionDetailButton.frame.width
-        return CGSize(width: cellWidth + 5, height: 32)
+
+        return CGSize(width: cellWidth, height: 32)
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PositionDetailCollectionViewCell.cellId, for: indexPath) as? PositionDetailCollectionViewCell else { return UICollectionViewCell() }
         guard let text = viewModel.state.positionData.value?[indexPath.row] else { return UICollectionViewCell() }
-        cell.backgroundColor = UIColor.budiGray
+
         cell.configureButtonText(text)
+
+        cell.positionDetailButton.tapPublisher
+            .receive(on: DispatchQueue.main)
+            .sink {
+                cell.positionDetailButton.isSelected = !cell.positionDetailButton.isSelected
+                print(indexPath.row)
+                if cell.positionDetailButton.isSelected {
+                    cell.positionDetailButton.backgroundColor = UIColor.primarySub
+                    cell.positionDetailButton.layer.borderColor = UIColor.primary.cgColor
+                    self.viewModel.action.positionSelect.send(text)
+                } else {
+                    cell.positionDetailButton.backgroundColor = UIColor.white
+                    cell.positionDetailButton.layer.borderColor = UIColor.textDisabled.cgColor
+                    self.viewModel.action.positionDeSelect.send(text)
+                }
+            }
+            .store(in: &cell.cancellables)
 
         return cell
 
     }
+
+    func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
 }

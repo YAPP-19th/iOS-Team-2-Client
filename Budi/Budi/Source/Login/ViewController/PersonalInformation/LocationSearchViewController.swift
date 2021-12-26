@@ -6,11 +6,15 @@
 //
 
 import UIKit
+import Combine
+import CombineCocoa
 
 class LocationSearchViewController: UIViewController {
     private let allLocation = Location().location
     private var correct: [String] = []
     weak var coordinator: LoginCoordinator?
+    var viewModel: SignupViewModel
+    private var cancellables = Set<AnyCancellable>()
     private let alertView = AlertView()
     private let searchBar: UISearchBar = {
         let search = UISearchBar()
@@ -32,7 +36,7 @@ class LocationSearchViewController: UIViewController {
         button.imageEdgeInsets = UIEdgeInsets(top: 0, left: -2, bottom: 0, right: 0)
         button.setTitleColor(UIColor.init(white: 0.62, alpha: 1), for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
-        button.backgroundColor = UIColor(red: 0.95, green: 0.95, blue: 0.95, alpha: 1.00)
+        button.backgroundColor =  UIColor.primarySub
         button.layer.cornerRadius = 8
         button.layer.masksToBounds = true
         button.tintColor = .white
@@ -78,13 +82,16 @@ class LocationSearchViewController: UIViewController {
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
         button.backgroundColor = UIColor.init(white: 0, alpha: 0.38)
         button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 25, right: 0)
-        button.addTarget(self, action: #selector(nextAction), for: .touchUpInside)
         return button
     }()
 
-    @objc
-    func nextAction() {
-        self.navigationController?.popViewController(animated: true)
+    init?(coder: NSCoder, viewModel: SignupViewModel) {
+        self.viewModel = viewModel
+        super.init(coder: coder)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 
     override func viewDidLoad() {
@@ -96,6 +103,18 @@ class LocationSearchViewController: UIViewController {
         configureLayout()
         configureTableView()
         configureAlert()
+        setPublisher()
+    }
+
+    private func setPublisher() {
+        nextButton.tapPublisher
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in
+                guard let self = self else { return }
+                self.navigationController?.popViewController(animated: true)
+            }
+            .store(in: &cancellables)
+
     }
 
     private func configureAlert() {
@@ -113,10 +132,11 @@ class LocationSearchViewController: UIViewController {
             BackgroundView.instanceBackground.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
         NSLayoutConstraint.activate([
-            alertView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            alertView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            alertView.widthAnchor.constraint(equalToConstant: 343),
-            alertView.heightAnchor.constraint(equalToConstant: 208)
+            alertView.topAnchor.constraint(equalTo: view.topAnchor, constant: 220),
+            alertView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -240),
+            alertView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 48),
+            alertView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -48),
+            alertView.heightAnchor.constraint(equalToConstant: 372)
         ])
 
         UIView.animate(withDuration: 0.2, animations: {
@@ -216,14 +236,20 @@ extension LocationSearchViewController: UITableViewDelegate, UITableViewDataSour
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let data = correct[indexPath.row]
-        nextButton.backgroundColor = UIColor.budiGreen
+        nextButton.backgroundColor = UIColor.primary
         nextButton.isEnabled = true
+
+        var changeData = viewModel.state.signUpPersonalInfoData.value
+        changeData.location = correct[indexPath.row]
+        print(changeData)
+        viewModel.state.signUpPersonalInfoData.send(changeData)
+        print(viewModel.state.signUpPersonalInfoData.value)
         self.view.endEditing(true)
-        NotificationCenter.default.post(name: NSNotification.Name("LocationNextActivation"), object: data)
+
     }
 
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        self.view.endEditing(true)
+        view.endEditing(true)
     }
 
 }

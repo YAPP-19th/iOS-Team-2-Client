@@ -12,11 +12,13 @@ enum BudiTarget {
     case filteredPosts(type: Position, page: Int = 0, size: Int = 10)
     case createPost(accessToken: String, param: PostRequest)
     case post(id: Int)
+    case detailPositions(postion: Position)
+    case createInfo(acessToken: String, param: CreateInfo)
     case teamMembers(id: Int)
     case recruitingStatuses(id: Int)
     case postDefaultImageUrls
     case applies(accessToken: String, param: AppliesRequest)
-    case detailPositions(postion: Position)
+    case checkDuplicateName(name: String)
 }
 
 extension BudiTarget: TargetType {
@@ -27,6 +29,8 @@ extension BudiTarget: TargetType {
     var path: String {
         switch self {
         case .posts: return "/posts"
+        case .detailPositions: return "/infos/positions"
+        case .createInfo: return "/members/createInfo"
         case .filteredPosts(let type, _, _): return "/posts/positions/\(type.stringValue)"
         case .createPost: return "/posts"
         case .post(let id): return "/posts/\(id)"
@@ -35,11 +39,13 @@ extension BudiTarget: TargetType {
         case .postDefaultImageUrls: return "/infos/postDefaultImageUrls"
         case .applies: return "/applies"
         case .detailPositions: return "/infos/positions"
+        case .checkDuplicateName: return "/members/checkDuplicateName"
         }
     }
 
     var method: Moya.Method {
         switch self {
+        case .createInfo: return .post
         case .createPost: return .post
         case .applies: return .post
         default: return .get
@@ -48,6 +54,9 @@ extension BudiTarget: TargetType {
 
     var task: Task {
         switch self {
+        case .createInfo(_, let info) : return .requestJSONEncodable(info)
+        case .checkDuplicateName(let name):
+            return .requestParameters(parameters: ["name": name], encoding: URLEncoding.default)
         case .createPost(_, let param): return .requestJSONEncodable(param)
         case .applies(_, let param): return .requestJSONEncodable(param)
         case .posts(let page, let size):
@@ -62,6 +71,8 @@ extension BudiTarget: TargetType {
 
     var headers: [String: String]? {
         switch self {
+        case .createInfo(let accessToken, _):
+            return ["accessToken": accessToken, "Content-Type": "application/json"]
         case .createPost(let accessToken, _), .applies(let accessToken, _):
             return ["Content-Type": "application/json", "accessToken": "\(accessToken)"]
         default: return ["Content-Type": "application/json"]
@@ -71,4 +82,5 @@ extension BudiTarget: TargetType {
     var validationType: ValidationType {
       return .successCodes
     }
+
 }

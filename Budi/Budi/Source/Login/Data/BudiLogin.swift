@@ -6,13 +6,13 @@
 //
 import Foundation
 
-struct Login: Codable {
+struct BudiLogin: Codable {
     let loginId: String
     let name: String?
     let email: String?
 }
 
-struct LoginResponse: Decodable {
+struct BudiLoginResponse: Decodable {
     let userId: String
     let accessToken: String
 }

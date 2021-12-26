@@ -59,7 +59,7 @@ extension HomeCoordinator {
         vc.present(viewController, animated: false, completion: nil)
     }
     
-    func showDatePickerViewController(_ vc: UIViewController) {
+    func showDatePickerViewController(_ vc: UIViewController, _ minimumDate: Date? = nil) {
         let viewController: DatePickerBottomViewController = DatePickerBottomViewController(nibName: DatePickerBottomViewController.identifier, bundle: nil)
         viewController.delegate = vc as? DatePickerBottomViewControllerDelegate
         viewController.modalPresentationStyle = .overCurrentContext

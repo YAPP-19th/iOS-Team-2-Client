@@ -215,7 +215,7 @@
 		5E8863812767AE190022397A /* HomeWritingImageBottomCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeWritingImageBottomCell.xib; sourceTree = "<group>"; };
 		5EA453672731412A00943C94 /* HomeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCell.swift; sourceTree = "<group>"; };
 		5EA453682731412A00943C94 /* HomeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeCell.xib; sourceTree = "<group>"; };
-		5EA4536F273144C200943C94 /* HomeDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailViewController.swift; sourceTree = "<group>"; };
+		5EA4536F273144C200943C94 /* HomeDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HomeDetailViewController.swift; path = HomeDetailCells/HomeDetailViewController.swift; sourceTree = "<group>"; };
 		5EA4538E2731774100943C94 /* HomeDetailMemberCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailMemberCell.swift; sourceTree = "<group>"; };
 		5EA4538F2731774100943C94 /* HomeDetailMemberCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeDetailMemberCell.xib; sourceTree = "<group>"; };
 		5EA453922731775600943C94 /* HomeDetailLeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailLeaderCell.swift; sourceTree = "<group>"; };
@@ -245,7 +245,7 @@
 		5EB4303C2758956E00283239 /* HomeWritingAreaCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeWritingAreaCell.xib; sourceTree = "<group>"; };
 		5EB430432758959600283239 /* HomeWritingDescriptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWritingDescriptionCell.swift; sourceTree = "<group>"; };
 		5EB430442758959600283239 /* HomeWritingDescriptionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeWritingDescriptionCell.xib; sourceTree = "<group>"; };
-		5EBD9D5C276DB57B00615319 /* HomeDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailViewModel.swift; sourceTree = "<group>"; };
+		5EBD9D5C276DB57B00615319 /* HomeDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HomeDetailViewModel.swift; path = HomeDetailCells/HomeDetailViewModel.swift; sourceTree = "<group>"; };
 		5EBD9D5E276DB5DC00615319 /* HomeWritingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWritingViewController.swift; sourceTree = "<group>"; };
 		5EC2FEF7275E191E00FF5BB0 /* HomeDetailStatusUnitCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailStatusUnitCell.swift; sourceTree = "<group>"; };
 		5EC2FEF8275E191E00FF5BB0 /* HomeDetailStatusUnitCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeDetailStatusUnitCell.xib; sourceTree = "<group>"; };
@@ -503,6 +503,8 @@
 				5E7EFE292732E68D007817C3 /* BottomSheets */,
 				5EA4537727316C8800943C94 /* HomeDetailCells */,
 				5EC2FEFF275E504800FF5BB0 /* HomeDetailCellType.swift */,
+				5EBD9D5C276DB57B00615319 /* HomeDetailViewModel.swift */,
+				5EA4536F273144C200943C94 /* HomeDetailViewController.swift */,
 			);
 			path = HomeDetail;
 			sourceTree = "<group>";
@@ -809,8 +811,6 @@
 				B9D66ECB2714716400668490 /* HomeContainerViewController.swift */,
 				B9BEF8962767978E00C889B4 /* HomeContentViewController.swift */,
 				B92D5501274C039C00D0E851 /* HomeContentViewModel.swift */,
-				5EBD9D5C276DB57B00615319 /* HomeDetailViewModel.swift */,
-				5EA4536F273144C200943C94 /* HomeDetailViewController.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";

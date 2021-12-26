@@ -12,6 +12,8 @@ final class HomeWritingViewController: UIViewController {
 
     @IBOutlet private weak var collectionView: UICollectionView!
     
+    private var isStartDate: Bool = true
+    
     weak var coordinator: HomeCoordinator?
     private let viewModel: HomeWritingViewModel
     private var cancellables = Set<AnyCancellable>()
@@ -55,6 +57,7 @@ extension HomeWritingViewController: HomeWritingImageBottomViewControllerDelegat
 extension HomeWritingViewController: HomeWritingNameCellDelegate {
     func changeName(_ name: String) {
         print("name is \(name)")
+        viewModel.state.name.value = name
     }
 }
 
@@ -67,18 +70,26 @@ extension HomeWritingViewController: HomeWritingPartCellDelegate {
 extension HomeWritingViewController: HomeWritingDurationCellDelegate {
     func showDatePickerBottomView(_ isStartDate: Bool) {
         print(isStartDate ? "isStartDate" : "isEndDate")
+        self.isStartDate = isStartDate
         coordinator?.showDatePickerViewController(self)
     }}
 
 extension HomeWritingViewController: DatePickerBottomViewControllerDelegate {
     func getDateFromDatePicker(_ date: Date) {
         print("date is \(date)")
+        if isStartDate {
+            viewModel.state.startDate.value = date
+        } else {
+            viewModel.state.endDate.value = date
+        }
+        collectionView.reloadData()
     }
 }
 
 extension HomeWritingViewController: HomeWritingOnlineCellDelegate {
     func changeOnline(_ isOnline: Bool) {
         print("isOnline is \(isOnline)")
+        viewModel.state.isOnline.value = isOnline
     }
 }
 
@@ -97,6 +108,7 @@ extension HomeWritingViewController: HomeWritingMembersCellDelegate {
 extension HomeWritingViewController: HomeWritingDescriptionCellDelegate {
     func changeDescription(_ description: String) {
         print("description is \(description)")
+        viewModel.state.description.value = description
     }
 }
 
@@ -141,6 +153,7 @@ extension HomeWritingViewController: UICollectionViewDataSource, UICollectionVie
             return cell
         case 3: guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeWritingDurationCell.identifier, for: indexPath) as? HomeWritingDurationCell else { return cell }
             cell.delegate = self
+            cell.configureUI(viewModel.state.startDate.value, viewModel.state.endDate.value)
             return cell
         case 4: guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeWritingOnlineCell.identifier, for: indexPath) as? HomeWritingOnlineCell else { return cell }
             cell.delegate = self

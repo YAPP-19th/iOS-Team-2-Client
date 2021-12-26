@@ -19,6 +19,14 @@ final class HomeWritingViewModel: ViewModel {
     struct State {
         let defaultImageUrls = CurrentValueSubject<[String], Never>([])
         let selectedImageUrl = CurrentValueSubject<String?, Never>(nil)
+        let name = CurrentValueSubject<String?, Never>(nil)
+        let part = CurrentValueSubject<String?, Never>(nil)
+        let startDate = CurrentValueSubject<Date?, Never>(nil)
+        let endDate = CurrentValueSubject<Date?, Never>(nil)
+        let area = CurrentValueSubject<String?, Never>(nil)
+        let members = CurrentValueSubject<[TeamMember], Never>([])
+        let isOnline = CurrentValueSubject<Bool?, Never>(nil)
+        let description = CurrentValueSubject<String?, Never>(nil)
     }
     
     let action = Action()

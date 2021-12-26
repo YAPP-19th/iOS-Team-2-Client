@@ -31,14 +31,10 @@
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="center" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="aMG-Ev-qH7" userLabel="TextField Stack View">
                                 <rect key="frame" x="16" y="53" width="343" height="40"/>
                                 <subviews>
-                                    <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="2021.05.06" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NgO-Wb-LEy" userLabel="Start Time TextField">
+                                    <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="2021.05.06" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NgO-Wb-LEy" userLabel="Start Date TextField">
                                         <rect key="frame" x="0.0" y="3" width="154" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
-                                        <connections>
-                                            <action selector="startTimeTextFieldTapped:" destination="gTV-IL-0wX" eventType="touchUpInside" id="aqW-Hs-hUc"/>
-                                            <action selector="touchDownStartTimeTextField:" destination="gTV-IL-0wX" eventType="touchDown" id="gpk-ut-ueW"/>
-                                        </connections>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="~" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MIz-mc-kaN">
                                         <rect key="frame" x="160" y="10" width="16.5" height="20.5"/>
@@ -46,13 +42,10 @@
                                         <color key="textColor" name="Gray"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="2021.05.06" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IMl-oO-I1x" userLabel="End Time TextField">
+                                    <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="2021.05.06" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IMl-oO-I1x" userLabel="End Date TextField">
                                         <rect key="frame" x="182.5" y="3" width="160.5" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
-                                        <connections>
-                                            <action selector="touchDownEndTimeTextField:" destination="gTV-IL-0wX" eventType="touchDown" id="m4S-ty-kiG"/>
-                                        </connections>
                                     </textField>
                                 </subviews>
                             </stackView>
@@ -63,14 +56,14 @@
                                         <rect key="frame" x="0.0" y="5" width="159.5" height="30"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <connections>
-                                            <action selector="startTimeContainerButtonTapped:" destination="gTV-IL-0wX" eventType="touchUpInside" id="7vZ-L8-CZ5"/>
+                                            <action selector="startTimeContainerButtonTapped:" destination="gTV-IL-0wX" eventType="touchUpInside" id="OzW-0M-lih"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Fh-Zc-gHn" userLabel="End Time Container Button">
                                         <rect key="frame" x="183.5" y="5" width="159.5" height="30"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <connections>
-                                            <action selector="endTimeContainerButtonTapped:" destination="gTV-IL-0wX" eventType="touchUpInside" id="ifw-O1-zkw"/>
+                                            <action selector="endTimeContainerButtonTapped:" destination="gTV-IL-0wX" eventType="touchUpInside" id="nSK-5V-TLz"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -101,8 +94,8 @@
             </constraints>
             <size key="customSize" width="47" height="49"/>
             <connections>
-                <outlet property="endTimeTextField" destination="IMl-oO-I1x" id="UsQ-kn-C2R"/>
-                <outlet property="startTimeTextField" destination="NgO-Wb-LEy" id="oee-AM-wxA"/>
+                <outlet property="endDateTextField" destination="IMl-oO-I1x" id="aR3-Wg-SrS"/>
+                <outlet property="startDateTextField" destination="NgO-Wb-LEy" id="XsC-G6-ejs"/>
             </connections>
             <point key="canvasLocation" x="129.71014492753625" y="80.022321428571431"/>
         </collectionViewCell>

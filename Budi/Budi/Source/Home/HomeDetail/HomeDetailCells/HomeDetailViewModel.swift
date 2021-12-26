@@ -25,7 +25,7 @@ final class HomeDetailViewModel: ViewModel {
     let action = Action()
     let state = State()
     private var cancellables = Set<AnyCancellable>()
-    let provider = MoyaProvider<BudiTarget>()
+    private let provider = MoyaProvider<BudiTarget>()
     
     func requestApplies(_ accessToken: String, _ param: AppliesRequest, _ completion: @escaping (Result<Moya.Response, Error>) -> Void) {
         

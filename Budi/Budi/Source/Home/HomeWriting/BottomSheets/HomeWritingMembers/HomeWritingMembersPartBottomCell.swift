@@ -7,47 +7,61 @@
 
 import UIKit
 
+protocol HomeWritingMembersPartBottomCellDelegate: AnyObject {
+    func getPosition(_ position: Position)
+}
+
 final class HomeWritingMembersPartBottomCell: UICollectionViewCell {
     
-    @IBOutlet private weak var programmerLabel: UILabel!
-    @IBOutlet private weak var designerLabel: UILabel!
-    @IBOutlet private weak var plannerLabel: UILabel!
-    
-    @IBAction private func programmerButtonTapped(_ sender: Any) {
-        isCheckedToggle()
-        isProgrammerChecked.toggle()
-        configureUI()
-    }
-    @IBAction private func designerButtonTapped(_ sender: Any) {
-        isCheckedToggle()
-        isDesignerChecked.toggle()
-        configureUI()
-    }
-    @IBAction private func plannerButtonTapped(_ sender: Any) {
-        isCheckedToggle()
-        isPlannerChecked.toggle()
-        configureUI()
-    }
-    
-    private var isProgrammerChecked: Bool = false
-    private var isDesignerChecked: Bool = false
-    private var isPlannerChecked: Bool = false
+    @IBOutlet private weak var collectionView: UICollectionView!
+
+    weak var delegate: HomeWritingMembersPartBottomCellDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        configureCollectionView()
+    }
+}
+
+// MARK: - CollectionView
+extension HomeWritingMembersPartBottomCell: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    private func configureCollectionView() {
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        
+        collectionView.register(.init(nibName: HomeWritingMembersPartUnitBottomCell.identifier, bundle: nil), forCellWithReuseIdentifier: HomeWritingMembersPartUnitBottomCell.identifier)
+    }
+
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        Position.allCases.count
+    }
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeWritingMembersPartUnitBottomCell.identifier, for: indexPath) as? HomeWritingMembersPartUnitBottomCell else { return UICollectionViewCell() }
+        cell.position = Position.allCases[indexPath.row]
+        return cell
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        CGSize(width: 80, height: collectionView.bounds.height)
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        0
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        (collectionView.bounds.width - 80*3) / 2
     }
     
-    private func isCheckedToggle() {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        delegate?.getPosition(Position.allCases[indexPath.row])
+        guard let cell = collectionView.cellForItem(at: indexPath) as? HomeWritingMembersPartUnitBottomCell else { return }
+        cell.configureSelectedUI()
     }
     
-    private func configureUI() {
-        programmerLabel.textColor = isProgrammerChecked ? .budiGreen : .budiGray
-        programmerLabel.font = .systemFont(ofSize: 14, weight: isProgrammerChecked ? .semibold : .regular)
-        
-        designerLabel.textColor = isDesignerChecked ? .budiGreen : .budiGray
-        designerLabel.font = .systemFont(ofSize: 14, weight: isDesignerChecked ? .semibold : .regular)
-        
-        plannerLabel.textColor = isPlannerChecked ? .budiGreen : .budiGray
-        plannerLabel.font = .systemFont(ofSize: 14, weight: isPlannerChecked ? .semibold : .regular)
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        guard let cell = collectionView.cellForItem(at: indexPath) as? HomeWritingMembersPartUnitBottomCell else { return }
+        cell.configureDeselectedUI()
     }
 }

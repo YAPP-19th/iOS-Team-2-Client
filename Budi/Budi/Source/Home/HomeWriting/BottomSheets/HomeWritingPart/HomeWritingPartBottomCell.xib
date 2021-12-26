@@ -56,7 +56,7 @@
                                                 <real key="value" value="2"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                <color key="value" name="LightGray"/>
+                                                <color key="value" name="Border"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
@@ -76,39 +76,30 @@
                             <constraint firstItem="5EH-IZ-ABk" firstAttribute="top" secondItem="0M8-Mw-08U" secondAttribute="top" id="uJj-v6-aVx"/>
                         </constraints>
                     </view>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GET-Y7-gjC" userLabel="ContainerButton">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
-                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                    </button>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="GET-Y7-gjC" secondAttribute="bottom" id="FdN-3m-7Ha"/>
-                <constraint firstItem="GET-Y7-gjC" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="G0n-tt-CGc"/>
                 <constraint firstAttribute="bottom" secondItem="0M8-Mw-08U" secondAttribute="bottom" id="Iyn-4O-iIN"/>
                 <constraint firstItem="0M8-Mw-08U" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="bJp-NP-F6t"/>
-                <constraint firstItem="GET-Y7-gjC" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="cgK-tL-SMD"/>
                 <constraint firstAttribute="trailing" secondItem="0M8-Mw-08U" secondAttribute="trailing" id="ixk-Ss-WPq"/>
-                <constraint firstAttribute="trailing" secondItem="GET-Y7-gjC" secondAttribute="trailing" id="stT-nH-LMK"/>
                 <constraint firstItem="0M8-Mw-08U" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="ved-Cw-6HW"/>
             </constraints>
             <size key="customSize" width="375" height="40"/>
             <connections>
                 <outlet property="circleContainerView" destination="xcX-hP-2bI" id="9Aj-Dd-6A9"/>
                 <outlet property="circleView" destination="deM-Eu-Rci" id="Xgy-lA-k94"/>
-                <outlet property="containerButton" destination="GET-Y7-gjC" id="9mQ-0O-XpC"/>
                 <outlet property="partLabel" destination="NSN-A0-qn1" id="3DD-oZ-EUk"/>
             </connections>
             <point key="canvasLocation" x="364.49275362318843" y="63.616071428571423"/>
         </collectionViewCell>
     </objects>
     <resources>
+        <namedColor name="Border">
+            <color red="0.87800002098083496" green="0.87800002098083496" blue="0.87800002098083496" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="DarkGray">
             <color red="0.36000001430511475" green="0.36000001430511475" blue="0.36000001430511475" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="LightGray">
-            <color red="0.86599999666213989" green="0.86599999666213989" blue="0.86599999666213989" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

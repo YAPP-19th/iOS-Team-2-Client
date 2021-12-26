@@ -12,9 +12,9 @@ protocol HomeWritingDurationCellDelegate: AnyObject {
 }
 
 final class HomeWritingDurationCell: UICollectionViewCell {
-    
-    @IBOutlet private weak var startTimeTextField: UITextField!
-    @IBOutlet private weak var endTimeTextField: UITextField!
+
+    @IBOutlet private weak var startDateTextField: UITextField!
+    @IBOutlet private weak var endDateTextField: UITextField!
     
     @IBAction private func startTimeContainerButtonTapped(_ sender: Any) {
         delegate?.showDatePickerBottomView(true)
@@ -27,5 +27,18 @@ final class HomeWritingDurationCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+    }
+    
+    func configureUI(_ startDate: Date?, _ endDate: Date?) {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy.MM.dd"
+        formatter.timeZone = TimeZone(abbreviation: "Asia/Seoul")
+        
+        if let startDate = startDate {
+            startDateTextField.text = formatter.string(from: startDate)
+        }
+        if let endDate = endDate {
+            endDateTextField.text = formatter.string(from: endDate)
+        }
     }
 }

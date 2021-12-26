@@ -48,6 +48,7 @@ extension HomeCoordinator {
         let viewController: HomeWritingImageBottomViewController = HomeWritingImageBottomViewController(nibName: HomeWritingImageBottomViewController.identifier, bundle: nil, viewModel: viewModel)
         viewController.modalPresentationStyle = .overCurrentContext
         viewController.coordinator = self
+        viewController.delegate = vc as? HomeWritingImageBottomViewControllerDelegate
         vc.present(viewController, animated: false, completion: nil)
     }
     
@@ -55,13 +56,14 @@ extension HomeCoordinator {
         let viewController: HomeWritingPartBottomViewController = HomeWritingPartBottomViewController(nibName: HomeWritingPartBottomViewController.identifier, bundle: nil, viewModel: viewModel)
         viewController.modalPresentationStyle = .overCurrentContext
         viewController.coordinator = self
+        viewController.delegate = vc as? HomeWritingPartBottomViewControllerDelegate
         vc.present(viewController, animated: false, completion: nil)
     }
     
-    func showDatePickerViewController(_ vc: UIViewController) {
+    func showDatePickerViewController(_ vc: UIViewController, _ minimumDate: Date? = nil) {
         let viewController: DatePickerBottomViewController = DatePickerBottomViewController(nibName: DatePickerBottomViewController.identifier, bundle: nil)
-        viewController.delegate = vc as? DatePickerBottomViewControllerDelegate
         viewController.modalPresentationStyle = .overCurrentContext
+        viewController.delegate = vc as? DatePickerBottomViewControllerDelegate
         vc.present(viewController, animated: false, completion: nil)
     }
     
@@ -79,6 +81,7 @@ extension HomeCoordinator {
         let viewController: HomeWritingMembersBottomViewController = HomeWritingMembersBottomViewController(nibName: HomeWritingMembersBottomViewController.identifier, bundle: nil, viewModel: viewModel)
         viewController.modalPresentationStyle = .overCurrentContext
         viewController.coordinator = self
+        viewController.delegate = vc as? HomeWritingMembersBottomViewControllerDelegate
         vc.present(viewController, animated: false, completion: nil)
     }
 }

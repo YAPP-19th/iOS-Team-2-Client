@@ -9,10 +9,13 @@ import UIKit
 import Combine
 import CombineCocoa
 
+protocol HomeWritingPartBottomViewControllerDelegate: AnyObject {
+    func getPart(_ part: String)
+}
+
 final class HomeWritingPartBottomViewController: UIViewController {
     
     @IBOutlet private weak var backgroundButton: UIButton!
-    
     @IBOutlet private weak var bottomView: UIView!
     
     @IBOutlet private weak var completeView: UIView!
@@ -22,7 +25,15 @@ final class HomeWritingPartBottomViewController: UIViewController {
     @IBOutlet private weak var bottomViewTopConstraint: NSLayoutConstraint!
     
     private var isBottomViewShown: Bool = false
+    private var selectedPart: String?
+    private var isPartSelected: Bool = false {
+        didSet {
+            completeButton.isEnabled = true
+            completeButton.backgroundColor = .primary
+        }
+    }
     
+    weak var delegate: HomeWritingPartBottomViewControllerDelegate?
     weak var coordinator: HomeCoordinator?
     private let viewModel: HomeWritingViewModel
     private var cancellables = Set<AnyCancellable>()
@@ -40,7 +51,6 @@ final class HomeWritingPartBottomViewController: UIViewController {
         super.viewDidLoad()
         completeView.layer.addBorderTop()
         configureCollectionView()
-        bindViewModel()
         setPublisher()
     }
     
@@ -50,10 +60,17 @@ final class HomeWritingPartBottomViewController: UIViewController {
 }
 
 private extension HomeWritingPartBottomViewController {
-    func bindViewModel() {
-    }
-    
     func setPublisher() {
+        completeButton.tapPublisher
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in
+                guard let self = self else { return }
+                if let part = self.selectedPart {
+                    self.delegate?.getPart(part)
+                }
+                self.hideBottomView()
+            }.store(in: &cancellables)
+        
         backgroundButton.tapPublisher
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
@@ -98,11 +115,12 @@ extension HomeWritingPartBottomViewController: UICollectionViewDataSource, UICol
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        12
+        viewModel.state.parts.value.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeWritingPartBottomCell.identifier, for: indexPath) as? HomeWritingPartBottomCell else { return UICollectionViewCell() }
+        cell.configureUI(viewModel.state.parts.value[indexPath.row])
         return cell
     }
 
@@ -116,5 +134,17 @@ extension HomeWritingPartBottomViewController: UICollectionViewDataSource, UICol
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         8
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        isPartSelected = true
+        guard let cell = collectionView.cellForItem(at: indexPath) as? HomeWritingPartBottomCell else { return }
+        cell.configureSelectedUI()
+        selectedPart = viewModel.state.parts.value[indexPath.row]
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        guard let cell = collectionView.cellForItem(at: indexPath) as? HomeWritingPartBottomCell else { return }
+        cell.configureDeselectedUI()
     }
 }

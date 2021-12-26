@@ -63,9 +63,9 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bPX-eT-Giu" userLabel="Complete View">
                     <rect key="frame" x="0.0" y="801" width="414" height="95"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SD7-rM-Lx0">
+                        <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SD7-rM-Lx0">
                             <rect key="frame" x="16" y="8" width="382" height="48"/>
-                            <color key="backgroundColor" name="Gray"/>
+                            <color key="backgroundColor" name="Text_disabled"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="48" id="AXn-tO-Vez"/>
                             </constraints>
@@ -103,8 +103,8 @@
         </view>
     </objects>
     <resources>
-        <namedColor name="Gray">
-            <color red="0.5559999942779541" green="0.5559999942779541" blue="0.5559999942779541" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <namedColor name="Text_disabled">
+            <color red="0.61960784313725492" green="0.61960784313725492" blue="0.61960784313725492" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="TransparentGray">
             <color red="0.0" green="0.0" blue="0.0" alpha="0.40000000596046448" colorSpace="custom" customColorSpace="sRGB"/>

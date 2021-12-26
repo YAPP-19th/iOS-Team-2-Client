@@ -80,6 +80,7 @@
             </constraints>
             <connections>
                 <outlet property="selectPartButton" destination="w9F-7O-9SC" id="m5u-qR-mAc"/>
+                <outlet property="textField" destination="4dE-rd-jcP" id="Mtb-Q2-A7e"/>
             </connections>
             <point key="canvasLocation" x="131.15942028985509" y="80.691964285714278"/>
         </collectionViewCell>

@@ -9,12 +9,16 @@ import UIKit
 import Combine
 import CombineCocoa
 
+protocol LocationSearchViewControllerDelegate: AnyObject {
+    func getLocation(_ location: String)
+}
+
 class LocationSearchViewController: UIViewController {
-    private let allLocation = Location().location
     private var correct: [String] = []
     weak var coordinator: LoginCoordinator?
     var viewModel: SignupViewModel
     private var cancellables = Set<AnyCancellable>()
+    weak var delegate: LocationSearchViewControllerDelegate?
     private let alertView = AlertView()
     private let searchBar: UISearchBar = {
         let search = UISearchBar()
@@ -47,7 +51,17 @@ class LocationSearchViewController: UIViewController {
 
     @objc
     func locationButtonAction() {
-        print("준비중")
+        LocationManager.shared.getAddress { result in
+            switch result {
+            case .success(let address):
+                NotificationCenter.default.post(name: NSNotification.Name("LocationNextActivation"), object: address)
+                self.delegate?.getLocation(address)
+                self.searchBar.text = address
+                self.nextButton.backgroundColor = UIColor.primary
+                self.nextButton.isEnabled = true
+            case .failure(let error): print(error.localizedDescription)
+            }
+        }
     }
 
     @objc
@@ -104,6 +118,7 @@ class LocationSearchViewController: UIViewController {
         configureTableView()
         configureAlert()
         setPublisher()
+        LocationManager.shared.requestWhenInUseAuthorization()
     }
 
     private func setPublisher() {
@@ -114,8 +129,15 @@ class LocationSearchViewController: UIViewController {
                 self.navigationController?.popViewController(animated: true)
             }
             .store(in: &cancellables)
-
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        tabBarController?.tabBar.isHidden = true
+    }
+
+//    override func viewWillDisappear(_ animated: Bool) {
+//        tabBarController?.tabBar.isHidden = false
+//    }
 
     private func configureAlert() {
         alertView.showAlert(title: "버디 위치기반 서비스 이용약관에 동의하시겠습니까?", cancelTitle: "취소", doneTitle: "동의")
@@ -197,22 +219,15 @@ class LocationSearchViewController: UIViewController {
             searchTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             searchTableView.bottomAnchor.constraint(equalTo: nextButton.topAnchor)
         ])
-
     }
-
 }
 
 extension LocationSearchViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        let location = Location().location
+        let filteredLocations = LocationManager.shared.searchAddress(searchText)
+        
         if !searchText.isEmpty {
-            for idx in location {
-                if idx.contains(searchText) {
-                    if !correct.contains(idx) {
-                        correct.append(idx)
-                    }
-                }
-            }
+            correct.append(contentsOf: filteredLocations)
             searchTableView.reloadData()
         } else {
             correct = []
@@ -245,11 +260,10 @@ extension LocationSearchViewController: UITableViewDelegate, UITableViewDataSour
         viewModel.state.signUpPersonalInfoData.send(changeData)
         print(viewModel.state.signUpPersonalInfoData.value)
         self.view.endEditing(true)
-
+        delegate?.getLocation(data)
     }
 
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         view.endEditing(true)
     }
-
 }

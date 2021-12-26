@@ -145,7 +145,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I6L-cL-esJ" userLabel="Complete View">
                     <rect key="frame" x="0.0" y="801" width="414" height="95"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A9E-z5-G0V">
+                        <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A9E-z5-G0V">
                             <rect key="frame" x="16" y="8" width="382" height="48"/>
                             <color key="backgroundColor" name="Gray"/>
                             <constraints>

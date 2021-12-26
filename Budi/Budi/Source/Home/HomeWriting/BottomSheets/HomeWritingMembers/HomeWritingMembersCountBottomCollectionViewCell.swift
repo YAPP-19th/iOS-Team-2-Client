@@ -7,36 +7,46 @@
 
 import UIKit
 
-protocol HomeWritingMembersCountBottomCollectionViewCellDelegate: AnyObject {
-    func getCount(_ count: Int)
-}
-
 final class HomeWritingMembersCountBottomCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet private weak var containerView: UIView!
-    
     @IBOutlet private weak var partLabel: UILabel!
     @IBOutlet private weak var countLabel: UILabel!
     
+    var recruitingPosition: RecruitingPosition? {
+        didSet {
+            configureUI()
+        }
+    }
+    
     @IBAction func minusButtonTapped(_ sender: Any) {
-        if count > 1 {
-            count -= 1
-            countLabel.text = String(count)
-            delegate?.getCount(count)
+        if recruitingPosition?.recruitingNumber ?? 0 > 1 {
+            recruitingPosition?.recruitingNumber -= 1
+            if let count = recruitingPosition?.recruitingNumber {
+                countLabel.text = String(count)
+            }
         }
     }
     @IBAction func plusButtonTapped(_ sender: Any) {
-        count += 1
-        countLabel.text = String(count)
-        delegate?.getCount(count)
+        recruitingPosition?.recruitingNumber += 1
+        if let count = recruitingPosition?.recruitingNumber {
+            countLabel.text = String(count)
+        }
     }
-    
-    private var count: Int = 1
-    
-    weak var delegate: HomeWritingMembersCountBottomCollectionViewCellDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
         containerView.layer.addBorderBottom()
+    }
+    
+    func configureUI(_ part: String) {
+        partLabel.text = part
+    }
+    
+    func configureUI() {
+        if let recruitingPosition = recruitingPosition {
+            partLabel.text = recruitingPosition.positionName
+            countLabel.text = String(recruitingPosition.recruitingNumber)
+        }
     }
 }

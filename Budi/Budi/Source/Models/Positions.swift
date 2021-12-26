@@ -5,21 +5,42 @@
 //  Created by 인병윤 on 2021/12/11.
 //
 
-import Foundation
+import UIKit
 
-enum Position {
-    case productManager
-    case designer
-    case developer
+enum Position: String, CaseIterable {
+    case developer = "개발자"
+    case designer = "디자이너"
+    case productManager = "기획자"
 
     var stringValue: String {
         switch self {
-        case .productManager:
-            return "기획"
-        case .designer:
-            return "디자인"
-        case .developer:
-            return "개발"
+        case .developer: return "개발"
+        case .designer: return "디자인"
+        case .productManager: return "기획"
+        }
+    }
+    
+    var characterImage: UIImage? {
+        switch self {
+        case .developer: return UIImage(named: "Developer")
+        case .designer: return UIImage(named: "Designer")
+        case .productManager: return UIImage(named: "Planner")
+        }
+    }
+    
+    var characterBackgroundImage: UIImage? {
+        switch self {
+        case .developer: return UIImage(named: "Developer_Background")
+        case .designer: return UIImage(named: "Designer_Background")
+        case .productManager: return UIImage(named: "Planner_Background")
+        }
+    }
+    
+    var characterBackgroundGrayImage: UIImage? {
+        switch self {
+        case .developer: return UIImage(named: "Developer_Background_Gray")
+        case .designer: return UIImage(named: "Designer_Background_Gray")
+        case .productManager: return UIImage(named: "Planner_Background_Gray")
         }
     }
 

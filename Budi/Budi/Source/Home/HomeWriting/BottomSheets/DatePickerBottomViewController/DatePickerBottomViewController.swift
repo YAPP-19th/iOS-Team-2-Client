@@ -15,21 +15,24 @@ protocol DatePickerBottomViewControllerDelegate: AnyObject {
 
 final class DatePickerBottomViewController: UIViewController {
 
-    @IBOutlet weak var backgroundButton: UIButton!
-    @IBAction func backgroundButtonTapped(_ sender: Any) {
-        hideBottomView()
-    }
-    
+    @IBOutlet private weak var backgroundButton: UIButton!
     @IBOutlet private weak var completeButton: UIButton!
-    @IBAction private func completeButtonTapped(_ sender: Any) {
-    }
     
-    @IBOutlet weak var datePicker: UIDatePicker!
+    @IBOutlet private weak var datePicker: UIDatePicker!
     
-    @IBOutlet weak var bottomView: UIView!
+    @IBOutlet private weak var bottomView: UIView!
     @IBOutlet private weak var bottomViewTopConstraint: NSLayoutConstraint!
     
     private var isBottomViewShown: Bool = false
+    private var isDateSelected: Bool = false
+    private var date: Date? {
+        didSet {
+            if isDateSelected {
+                completeButton.isEnabled = true
+                completeButton.backgroundColor = .primary
+            }
+        }
+    }
     
     weak var delegate: DatePickerBottomViewControllerDelegate?
     private var cancellables = Set<AnyCancellable>()
@@ -37,6 +40,7 @@ final class DatePickerBottomViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setPublisher()
+        datePicker.minimumDate = Date()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -50,7 +54,22 @@ private extension DatePickerBottomViewController {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] date in
                 guard let self = self else { return }
+                self.date = date
+                self.isDateSelected = true
+            }.store(in: &cancellables)
+        
+        completeButton.tapPublisher
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] date in
+                guard let self = self, let date = self.date else { return }
                 self.delegate?.getDateFromDatePicker(date)
+                self.hideBottomView()
+            }.store(in: &cancellables)
+        
+        backgroundButton.tapPublisher
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] date in
+                self?.hideBottomView()
             }.store(in: &cancellables)
     }
     

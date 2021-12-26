@@ -46,7 +46,7 @@ enum HomeWritingCellType: Int, CaseIterable {
         case .duration: return 109
         case .online: return 117
         case .area: return 173 // 117 -> 173
-        case .members: return 117
+        case .members: return 286
         case .description: return 387
         }
     }
@@ -66,39 +66,5 @@ enum HomeWritingCellType: Int, CaseIterable {
         let size = CGSize(width: collectionView.frame.width, height: cellType?.height ?? 0)
         
         return size
-    }
-
-    static func configureCell(_ viewController: UIViewController, _ collectionView: UICollectionView, _ indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = UICollectionViewCell()
-
-        switch indexPath.row {
-        case 0: guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeWritingImageCell.identifier, for: indexPath) as? HomeWritingImageCell else { return cell }
-            cell.delegate = viewController as? HomeWritingImageCellDelegate
-            return cell
-        case 1: guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeWritingNameCell.identifier, for: indexPath) as? HomeWritingNameCell else { return cell }
-            cell.delegate = viewController as? HomeWritingNameCellDelegate
-            return cell
-        case 2: guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeWritingPartCell.identifier, for: indexPath) as? HomeWritingPartCell else { return cell }
-            cell.delegate = viewController as? HomeWritingPartCellDelegate
-            return cell
-        case 3: guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeWritingDurationCell.identifier, for: indexPath) as? HomeWritingDurationCell else { return cell }
-            cell.delegate = viewController as? HomeWritingDurationCellDelegate
-            return cell
-        case 4: guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeWritingOnlineCell.identifier, for: indexPath) as? HomeWritingOnlineCell else { return cell }
-            cell.delegate = viewController as? HomeWritingOnlineCellDelegate
-            return cell
-        case 5: guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeWritingAreaCell.identifier, for: indexPath) as? HomeWritingAreaCell else { return cell }
-            cell.delegate = viewController as? HomeWritingAreaCellDelegate
-            return cell
-        case 6: guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeWritingMembersCell.identifier, for: indexPath) as? HomeWritingMembersCell else { return cell }
-            cell.delegate = viewController as? HomeWritingMembersCellDelegate
-            return cell
-        case 7: guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeWritingDescriptionCell.identifier, for: indexPath) as? HomeWritingDescriptionCell else { return cell }
-            cell.delegate = viewController as? HomeWritingDescriptionCellDelegate
-            return cell
-        default: break
-        }
-        
-        return cell
     }
 }

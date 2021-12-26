@@ -28,6 +28,13 @@ final class HomeWritingImageBottomViewController: UIViewController {
 
     private var isBottomViewShown: Bool = false
     
+    private var selectedIndex: Int? {
+        didSet {
+            completeButton.isEnabled = true
+            completeButton.backgroundColor = .primary
+        }
+    }
+    
     weak var delegate: HomeWritingImageBottomViewControllerDelegate?
     weak var coordinator: HomeCoordinator?
     private let viewModel: HomeWritingViewModel
@@ -46,7 +53,6 @@ final class HomeWritingImageBottomViewController: UIViewController {
         super.viewDidLoad()
         completeView.layer.addBorderTop()
         configureCollectionView()
-        bindViewModel()
         setPublisher()
     }
     
@@ -56,9 +62,6 @@ final class HomeWritingImageBottomViewController: UIViewController {
 }
 
 private extension HomeWritingImageBottomViewController {
-    func bindViewModel() {
-    }
-    
     func setPublisher() {
         backgroundButton.tapPublisher
             .receive(on: DispatchQueue.main)
@@ -70,6 +73,15 @@ private extension HomeWritingImageBottomViewController {
             .receive(on: DispatchQueue.main)
             .sink { _ in
                 print("내 앨범에서 추가")
+            }.store(in: &cancellables)
+        
+        completeButton.tapPublisher
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in
+                guard let self = self, let selectedIndex = self.selectedIndex else { return }
+                let urlString = self.viewModel.state.defaultImageUrls.value[selectedIndex]
+                self.delegate?.getImageUrlString(urlString)
+                self.hideBottomView()
             }.store(in: &cancellables)
     }
 }
@@ -133,7 +145,14 @@ extension HomeWritingImageBottomViewController: UICollectionViewDataSource, UICo
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let urlString = viewModel.state.defaultImageUrls.value[indexPath.row]
-        delegate?.getImageUrlString(urlString)
+        selectedIndex = indexPath.row
+
+        guard let cell = collectionView.cellForItem(at: indexPath) as? HomeWritingImageBottomCell else { return }
+        cell.addBorder()
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        guard let cell = collectionView.cellForItem(at: indexPath) as? HomeWritingImageBottomCell else { return }
+        cell.removeBorder()
     }
 }

@@ -11,6 +11,17 @@ final class HomeWritingMembersCountBottomCell: UICollectionViewCell {
 
     @IBOutlet private weak var collectionView: UICollectionView!
     
+    var selectedParts: [String] = [] {
+        didSet {
+            collectionView.reloadData()
+        }
+    }
+    var recruitingPositions: [RecruitingPosition] = [] {
+        didSet {
+            collectionView.reloadData()
+        }
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         configureCollectionView()
@@ -26,11 +37,14 @@ extension HomeWritingMembersCountBottomCell: UICollectionViewDataSource, UIColle
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        2
+        selectedParts.count
+//        recruitingPositions.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeWritingMembersCountBottomCollectionViewCell.identifier, for: indexPath) as? HomeWritingMembersCountBottomCollectionViewCell else { return UICollectionViewCell() }
+//        cell.recruitingPosition = recruitingPositions[indexPath.row]
+        cell.configureUI(selectedParts[indexPath.row])
         return cell
     }
 

@@ -30,15 +30,3 @@ struct PostRequest: Codable {
         self.description = description
     }
 }
-
-struct RecruitingPosition: Codable {
-    let positionName: String
-    let recruitingNumber: Int
-}
-
-enum OnlineInfo: String {
-    case notDetermined = "미정"
-    case online = "온라인"
-    case offline = "오프라인"
-    case onOffline = "온오프라인"
-}

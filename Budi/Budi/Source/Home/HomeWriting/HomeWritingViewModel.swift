@@ -18,7 +18,7 @@ final class HomeWritingViewModel: ViewModel {
 
     struct State {
         let defaultImageUrls = CurrentValueSubject<[String], Never>([])
-        let parts = CurrentValueSubject<[String], Never>(["O2O", "공유서비스", "데이팅 서비스", "금융", "여행", "소셜네트워크", "부동산", "게임", "인테리어", "종교", "이커머스", "뷰티/패션", "헬스/스포츠", "교육", "미디어/광고", "의료/제약", "콘텐츠"])
+        let parts = CurrentValueSubject<[String], Never>([])
         
         let developerPositions = CurrentValueSubject<[String], Never>([])
         let designerPositions = CurrentValueSubject<[String], Never>([])
@@ -64,6 +64,17 @@ final class HomeWritingViewModel: ViewModel {
                     .sink(receiveCompletion: { _ in
                     }, receiveValue: { [weak self] defaultImageUrls in
                         self?.state.defaultImageUrls.send(defaultImageUrls)
+                    })
+                    .store(in: &self.cancellables)
+                
+                self.provider
+                    .requestPublisher(.postCategory)
+                    .map(APIResponse<[String]>.self)
+                    .map(\.data)
+                    .sink(receiveCompletion: { _ in
+                    }, receiveValue: { [weak self] postCategory in
+                        print(postCategory)
+                        self?.state.parts.send(postCategory)
                     })
                     .store(in: &self.cancellables)
                 

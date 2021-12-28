@@ -19,6 +19,7 @@ enum BudiTarget {
     case postDefaultImageUrls
     case applies(accessToken: String, param: AppliesRequest)
     case checkDuplicateName(name: String)
+    case postCategory
 }
 
 extension BudiTarget: TargetType {
@@ -39,6 +40,7 @@ extension BudiTarget: TargetType {
         case .postDefaultImageUrls: return "/infos/postDefaultImageUrls"
         case .applies: return "/applies"
         case .checkDuplicateName: return "/members/checkDuplicateName"
+        case .postCategory: return "/infos/postCategory"
         }
     }
 

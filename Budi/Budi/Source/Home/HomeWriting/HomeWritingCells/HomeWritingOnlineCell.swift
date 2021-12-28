@@ -28,6 +28,10 @@ final class HomeWritingOnlineCell: UICollectionViewCell {
     weak var delegate: HomeWritingOnlineCellDelegate?
     private var cancellables = Set<AnyCancellable>()
     
+    override func prepareForReuse() {
+        cancellables.removeAll()
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         setPublisher()

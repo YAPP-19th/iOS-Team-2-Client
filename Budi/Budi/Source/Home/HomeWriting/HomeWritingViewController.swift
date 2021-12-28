@@ -131,13 +131,14 @@ extension HomeWritingViewController: HomeWritingDurationCellDelegate {
     func showDatePickerBottomView(_ isStartDate: Bool) {
         print(isStartDate ? "isStartDate" : "isEndDate")
         self.isStartDate = isStartDate
-        coordinator?.showDatePickerViewController(self)
+        let limitDate: Date? = isStartDate ? viewModel.state.endDate.value : viewModel.state.startDate.value
+        coordinator?.showDatePickerViewController(self, isStartDate, limitDate)
         isValid()
     }}
 
 extension HomeWritingViewController: DatePickerBottomViewControllerDelegate {
     func getDateFromDatePicker(_ date: Date) {
-        print("\(isStartDate ? "isStartDate" : "isEndDate") is \(date)")
+        print("date is \(date)")
         if isStartDate {
             viewModel.state.startDate.value = date
         } else {

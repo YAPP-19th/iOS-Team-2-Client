@@ -65,7 +65,7 @@ private extension HomeWritingViewController {
                       let description = self.viewModel.state.description.value else { return }
                 
                 let param = PostRequest(imageUrl: imageUrl, title: title, categoryName: categoryName, startDate: startDate, endDate: endDate, onlineInfo: isOnline ? "온라인" : "오프라인", region: region, recruitingPositions: self.viewModel.state.recruitingPositions.value, description: description)
-                let testAccessToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJFeHBpcmVkUGVyaW9kIjoiMzYwMCIsInVzZXJJZCI6ImFhZGEyIiwiaXNzdWVyIjoiU1lKX0lTU1VFIiwibWVtYmVySWQiOjEsImV4cCI6MTY3MDQyMTM3MH0.LkYIbZwO3zrtvDqgxNFe6IxtKovBGgu28t3g_8zS7DY"
+                let testAccessToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJFeHBpcmVkUGVyaW9kIjoiMzYwMCIsInVzZXJJZCI6IjEyMzQiLCJpc3N1ZXIiOiJTWUpfSVNTVUUiLCJtZW1iZXJJZCI6MzYsImV4cCI6MTY3MTU5NDI4NX0.1xWniyY4AknhD7rQZ4TdtusNGnFtCbRNd_jIOpQ3QH8"
                 
                 print(param)
                 
@@ -251,7 +251,7 @@ extension HomeWritingViewController: UICollectionViewDataSource, UICollectionVie
                 .receive(on: DispatchQueue.main)
                 .sink { [weak self] _ in
                     guard let self = self else { return }
-                    self.coordinator?.showLocationSearchViewController()
+                    self.coordinator?.showLocationSearchViewController(self)
                 }.store(in: &cancellables)
             return cell
             

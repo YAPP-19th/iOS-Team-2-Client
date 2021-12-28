@@ -116,7 +116,6 @@ class LocationSearchViewController: UIViewController {
         self.addBackButton()
         configureLayout()
         configureTableView()
-        configureAlert()
         setPublisher()
         LocationManager.shared.requestWhenInUseAuthorization()
     }
@@ -138,34 +137,6 @@ class LocationSearchViewController: UIViewController {
 //    override func viewWillDisappear(_ animated: Bool) {
 //        tabBarController?.tabBar.isHidden = false
 //    }
-
-    private func configureAlert() {
-        alertView.showAlert(title: "버디 위치기반 서비스 이용약관에 동의하시겠습니까?", cancelTitle: "취소", doneTitle: "동의")
-        BackgroundView.instanceBackground.alpha = 0.0
-        alertView.alpha = 0.0
-        view.addSubview(BackgroundView.instanceBackground)
-        BackgroundView.instanceBackground.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(alertView)
-        alertView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            BackgroundView.instanceBackground.topAnchor.constraint(equalTo: view.topAnchor),
-            BackgroundView.instanceBackground.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            BackgroundView.instanceBackground.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            BackgroundView.instanceBackground.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        ])
-        NSLayoutConstraint.activate([
-            alertView.topAnchor.constraint(equalTo: view.topAnchor, constant: 220),
-            alertView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -240),
-            alertView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 48),
-            alertView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -48),
-            alertView.heightAnchor.constraint(equalToConstant: 372)
-        ])
-
-        UIView.animate(withDuration: 0.2, animations: {
-            BackgroundView.instanceBackground.alpha = 0.5
-            self.alertView.alpha = 1.0
-        })
-    }
 
     private func configureTableView() {
         searchTableView.register(SearchTableViewCell.self, forCellReuseIdentifier: SearchTableViewCell.cellId)

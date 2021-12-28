@@ -137,7 +137,7 @@ extension HomeWritingViewController: HomeWritingDurationCellDelegate {
 
 extension HomeWritingViewController: DatePickerBottomViewControllerDelegate {
     func getDateFromDatePicker(_ date: Date) {
-        print("date is \(date)")
+        print("\(isStartDate ? "isStartDate" : "isEndDate") is \(date)")
         if isStartDate {
             viewModel.state.startDate.value = date
         } else {

@@ -103,11 +103,10 @@ private extension HomeDetailViewController {
 extension HomeDetailViewController: RecruitingStatusBottomViewControllerDelegate {
     func getSelectedRecruitingStatus(_ selectedRecruitingStatus: RecruitingStatus) {
         let postId = viewModel.state.postId.value
-        let testAccessToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJFeHBpcmVkUGVyaW9kIjoiMzYwMCIsInVzZXJJZCI6ImFhZGEyIiwiaXNzdWVyIjoiU1lKX0lTU1VFIiwibWVtYmVySWQiOjEsImV4cCI6MTY3MDQyMTM3MH0.LkYIbZwO3zrtvDqgxNFe6IxtKovBGgu28t3g_8zS7DY"
         
         let param = AppliesRequest(postId: postId, recruitingPositionId: selectedRecruitingStatus.recruitingPositionId)
         
-        viewModel.requestApplies(testAccessToken, param) { result in
+        viewModel.requestApplies(TEST_ACCESS_TOKEN, param) { result in
             switch result {
             case .success(let response):
                 print("response is \(response)")

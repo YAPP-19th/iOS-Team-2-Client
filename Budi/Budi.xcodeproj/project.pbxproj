@@ -14,6 +14,7 @@
 		5E2554382732AD0800033723 /* UIView+IBInspectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2554372732AD0800033723 /* UIView+IBInspectable.swift */; };
 		5E2554612732DF8A00033723 /* GreetingAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E25545F2732DF8A00033723 /* GreetingAlertViewController.swift */; };
 		5E2554622732DF8A00033723 /* GreetingAlertViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E2554602732DF8A00033723 /* GreetingAlertViewController.xib */; };
+		5E43B21F277C973F006E399C /* TestAccessToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E43B21E277C973F006E399C /* TestAccessToken.swift */; };
 		5E45AD142732F47800F0A80C /* RecruitingStatusBottomViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E45AD122732F47800F0A80C /* RecruitingStatusBottomViewController.xib */; };
 		5E45AD182732F78200F0A80C /* RecruitingStatusBottomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E45AD162732F78200F0A80C /* RecruitingStatusBottomCell.xib */; };
 		5E5517A92768BCC300DC605E /* HomeWritingPartBottomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5517A72768BCC300DC605E /* HomeWritingPartBottomCell.swift */; };
@@ -200,6 +201,7 @@
 		5E2554372732AD0800033723 /* UIView+IBInspectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+IBInspectable.swift"; sourceTree = "<group>"; };
 		5E25545F2732DF8A00033723 /* GreetingAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GreetingAlertViewController.swift; sourceTree = "<group>"; };
 		5E2554602732DF8A00033723 /* GreetingAlertViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GreetingAlertViewController.xib; sourceTree = "<group>"; };
+		5E43B21E277C973F006E399C /* TestAccessToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestAccessToken.swift; sourceTree = "<group>"; };
 		5E45AD112732F47800F0A80C /* RecruitingStatusBottomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecruitingStatusBottomViewController.swift; sourceTree = "<group>"; };
 		5E45AD122732F47800F0A80C /* RecruitingStatusBottomViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecruitingStatusBottomViewController.xib; sourceTree = "<group>"; };
 		5E45AD152732F78200F0A80C /* RecruitingStatusBottomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecruitingStatusBottomCell.swift; sourceTree = "<group>"; };
@@ -788,6 +790,7 @@
 			isa = PBXGroup;
 			children = (
 				5E24071C275225A600954BE7 /* BudiTarget.swift */,
+				5E43B21E277C973F006E399C /* TestAccessToken.swift */,
 			);
 			path = APITarget;
 			sourceTree = "<group>";
@@ -1270,6 +1273,7 @@
 				5EC2FEF9275E191F00FF5BB0 /* HomeDetailStatusUnitCell.swift in Sources */,
 				5E24071D275225A600954BE7 /* BudiTarget.swift in Sources */,
 				A8CD93372736702500299AB4 /* SuccessCircleView.swift in Sources */,
+				5E43B21F277C973F006E399C /* TestAccessToken.swift in Sources */,
 				5EB430352758953000283239 /* HomeWritingOnlineCell.swift in Sources */,
 				5EA453902731774100943C94 /* HomeDetailMemberCell.swift in Sources */,
 				A81D1088276485590022D610 /* WorkHistory.swift in Sources */,

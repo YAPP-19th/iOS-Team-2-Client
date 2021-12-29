@@ -19,11 +19,9 @@ final class HomeWritingViewModel: ViewModel {
     struct State {
         let defaultImageUrls = CurrentValueSubject<[String], Never>([])
         let parts = CurrentValueSubject<[String], Never>([])
-        
         let developerPositions = CurrentValueSubject<[String], Never>([])
         let designerPositions = CurrentValueSubject<[String], Never>([])
         let productManagerPositions = CurrentValueSubject<[String], Never>([])
-        let recruitingPositions = CurrentValueSubject<[RecruitingPosition], Never>([])
         
         let selectedImageUrl = CurrentValueSubject<String?, Never>(nil)
         let name = CurrentValueSubject<String?, Never>(nil)
@@ -31,7 +29,7 @@ final class HomeWritingViewModel: ViewModel {
         let startDate = CurrentValueSubject<Date?, Never>(nil)
         let endDate = CurrentValueSubject<Date?, Never>(nil)
         let area = CurrentValueSubject<String?, Never>(nil)
-        let members = CurrentValueSubject<[TeamMember], Never>([])
+        let recruitingPositions = CurrentValueSubject<[RecruitingPosition], Never>([])
         let isOnline = CurrentValueSubject<Bool?, Never>(nil)
         let description = CurrentValueSubject<String?, Never>(nil)
     }
@@ -42,11 +40,13 @@ final class HomeWritingViewModel: ViewModel {
     private let provider = MoyaProvider<BudiTarget>()
     
     func createPost(_ accessToken: String, _ param: PostRequest, _ completion: @escaping (Result<Moya.Response, Error>) -> Void) {
+        print("param is \(param)")
         provider.request(.createPost(accessToken: accessToken, param: param)) { response in
             switch response {
             case .success(let response):
                 completion(.success(response))
             case .failure(let error):
+                print(error.localizedDescription)
                 completion(.failure(error))
             }
         }
@@ -73,7 +73,6 @@ final class HomeWritingViewModel: ViewModel {
                     .map(\.data)
                     .sink(receiveCompletion: { _ in
                     }, receiveValue: { [weak self] postCategory in
-                        print(postCategory)
                         self?.state.parts.send(postCategory)
                     })
                     .store(in: &self.cancellables)
@@ -84,7 +83,7 @@ final class HomeWritingViewModel: ViewModel {
                     .map(\.data)
                     .sink(receiveCompletion: { _ in
                     }, receiveValue: { [weak self] positions in
-                        self?.state.developerPositions.send(positions)
+                        self?.state.developerPositions.send(!positions.isEmpty ? positions : ["개발"])
                     })
                     .store(in: &self.cancellables)
                 
@@ -94,7 +93,7 @@ final class HomeWritingViewModel: ViewModel {
                     .map(\.data)
                     .sink(receiveCompletion: { _ in
                     }, receiveValue: { [weak self] positions in
-                        self?.state.designerPositions.send(positions)
+                        self?.state.designerPositions.send(!positions.isEmpty ? positions : ["디자인"])
                     })
                     .store(in: &self.cancellables)
                 
@@ -104,7 +103,7 @@ final class HomeWritingViewModel: ViewModel {
                     .map(\.data)
                     .sink(receiveCompletion: { _ in
                     }, receiveValue: { [weak self] positions in
-                        self?.state.productManagerPositions.send(positions)
+                        self?.state.productManagerPositions.send(!positions.isEmpty ? positions : ["기획"])
                     })
                     .store(in: &self.cancellables)
                 

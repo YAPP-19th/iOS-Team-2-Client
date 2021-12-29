@@ -40,14 +40,14 @@ final class HomeDetailViewModel: ViewModel {
     }
 
     init(_ postId: Int) {
-        let postId = postId
-        
+        self.state.postId.value = postId
+                
         action.fetch
             .sink(receiveValue: { [weak self] _ in
                 guard let self = self else { return }
 
                 self.provider
-                    .requestPublisher(.post(id: postId))
+                    .requestPublisher(.post(accessToken: TEST_ACCESS_TOKEN, id: postId))
                     .map(APIResponse<Post>.self)
                     .map(\.data)
                     .sink(receiveCompletion: { _ in

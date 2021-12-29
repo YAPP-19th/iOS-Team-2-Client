@@ -53,8 +53,8 @@ private extension HomeWritingViewController {
         completeButton.tapPublisher
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
-                guard let self = self else { return }
-                guard let imageUrl = self.viewModel.state.selectedImageUrl.value,
+                guard let self = self,
+                      let imageUrl = self.viewModel.state.selectedImageUrl.value,
                       let title = self.viewModel.state.name.value,
                       let categoryName = self.viewModel.state.part.value,
                       let startDate = self.viewModel.state.startDate.value,
@@ -64,12 +64,11 @@ private extension HomeWritingViewController {
                       !self.viewModel.state.recruitingPositions.value.isEmpty,
                       let description = self.viewModel.state.description.value else { return }
                 
-                let param = PostRequest(imageUrl: imageUrl, title: title, categoryName: categoryName, startDate: startDate, endDate: endDate, onlineInfo: isOnline ? "온라인" : "오프라인", region: region, recruitingPositions: self.viewModel.state.recruitingPositions.value, description: description)
-                let testAccessToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJFeHBpcmVkUGVyaW9kIjoiMzYwMCIsInVzZXJJZCI6IjEyMzQiLCJpc3N1ZXIiOiJTWUpfSVNTVUUiLCJtZW1iZXJJZCI6MzYsImV4cCI6MTY3MTU5NDI4NX0.1xWniyY4AknhD7rQZ4TdtusNGnFtCbRNd_jIOpQ3QH8"
+                let recruitingPositions = self.viewModel.state.recruitingPositions.value
                 
-                print(param)
+                let param = PostRequest(imageUrl: imageUrl, title: title, categoryName: categoryName, startDate: startDate, endDate: endDate, onlineInfo: isOnline ? "온라인" : "오프라인", region: region, recruitingPositions: recruitingPositions, description: description)
                 
-                self.viewModel.createPost(testAccessToken, param) { result in
+                self.viewModel.createPost(TEST_ACCESS_TOKEN, param) { result in
                     switch result {
                     case .success(let response): print(response)
                     case .failure(let error): print(error.localizedDescription)

@@ -160,6 +160,7 @@
 		A8CD936127384C4900299AB4 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CD936027384C4900299AB4 /* SearchTableViewCell.swift */; };
 		B92D54F9274C02EB00D0E851 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = B92D54F8274C02EB00D0E851 /* .swiftlint.yml */; };
 		B92D5505274C03AB00D0E851 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92D5504274C03AA00D0E851 /* Post.swift */; };
+		B94D2D9A277DE9E700DD7FDD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B94D2D99277DE9E700DD7FDD /* GoogleService-Info.plist */; };
 		B94DCA8327521648006A9E0D /* APIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B94DCA8227521648006A9E0D /* APIResponse.swift */; };
 		B9535E15276DD8E2000081CF /* PositionLabelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9535E13276DD8E2000081CF /* PositionLabelCell.swift */; };
 		B9535E16276DD8E2000081CF /* PositionLabelCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9535E14276DD8E2000081CF /* PositionLabelCell.xib */; };
@@ -173,6 +174,8 @@
 		B9684166277853E7002F5D3D /* HomeContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9D66ECB2714716400668490 /* HomeContainerViewController.swift */; };
 		B9684167277853EF002F5D3D /* HomeContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92D5501274C039C00D0E851 /* HomeContentViewModel.swift */; };
 		B9684168277853F3002F5D3D /* alertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E24072227522BCE00954BE7 /* alertView.swift */; };
+		B968416B277862ED002F5D3D /* TeamSearchDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9684169277862ED002F5D3D /* TeamSearchDetailCell.swift */; };
+		B968416C277862ED002F5D3D /* TeamSearchDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B968416A277862ED002F5D3D /* TeamSearchDetailCell.xib */; };
 		B97DBB9527147D970018C1D2 /* UIViewController+identifer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B97DBB9427147D970018C1D2 /* UIViewController+identifer.swift */; };
 		B98E530A27396B3F00C73374 /* UINavigationController+translucent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98E530927396B3F00C73374 /* UINavigationController+translucent.swift */; };
 		B9BEF8972767978E00C889B4 /* HomeContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9BEF8962767978E00C889B4 /* HomeContentViewController.swift */; };
@@ -359,9 +362,12 @@
 		B92D54FE274C037E00D0E851 /* String+date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+date.swift"; sourceTree = "<group>"; };
 		B92D5501274C039C00D0E851 /* HomeContentViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeContentViewModel.swift; sourceTree = "<group>"; };
 		B92D5504274C03AA00D0E851 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		B94D2D99277DE9E700DD7FDD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B94DCA8227521648006A9E0D /* APIResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIResponse.swift; sourceTree = "<group>"; };
 		B9535E13276DD8E2000081CF /* PositionLabelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositionLabelCell.swift; sourceTree = "<group>"; };
 		B9535E14276DD8E2000081CF /* PositionLabelCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PositionLabelCell.xib; sourceTree = "<group>"; };
+		B9684169277862ED002F5D3D /* TeamSearchDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamSearchDetailCell.swift; sourceTree = "<group>"; };
+		B968416A277862ED002F5D3D /* TeamSearchDetailCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TeamSearchDetailCell.xib; sourceTree = "<group>"; };
 		B97DBB9427147D970018C1D2 /* UIViewController+identifer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+identifer.swift"; sourceTree = "<group>"; };
 		B98E530927396B3F00C73374 /* UINavigationController+translucent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationController+translucent.swift"; sourceTree = "<group>"; };
 		B9BEF8962767978E00C889B4 /* HomeContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeContentViewController.swift; sourceTree = "<group>"; };
@@ -639,6 +645,8 @@
 			children = (
 				5EFB0A432733E36800F39A4D /* TeamSearchCell.swift */,
 				5EFB0A442733E36800F39A4D /* TeamSearchCell.xib */,
+				B9684169277862ED002F5D3D /* TeamSearchDetailCell.swift */,
+				B968416A277862ED002F5D3D /* TeamSearchDetailCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -887,6 +895,7 @@
 		B9D66EB2271469AB00668490 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				B94D2D99277DE9E700DD7FDD /* GoogleService-Info.plist */,
 				B9BF787C27004096000BE0EF /* Assets.xcassets */,
 				B9BF788127004096000BE0EF /* Info.plist */,
 			);
@@ -1055,8 +1064,10 @@
 				5EFB0A5B27341C1100F39A4D /* ChattingTimeCell.xib in Resources */,
 				5E88637F276771FB0022397A /* HomeWritingMembersBottomViewController.xib in Resources */,
 				5EA453A12731778000943C94 /* HomeDetailMainCell.xib in Resources */,
+				B94D2D9A277DE9E700DD7FDD /* GoogleService-Info.plist in Resources */,
 				5EB430322758952500283239 /* HomeWritingDurationCell.xib in Resources */,
 				5E820B872769F033004A03E9 /* HomeWritingMembersCountBottomCollectionViewCell.xib in Resources */,
+				B968416C277862ED002F5D3D /* TeamSearchDetailCell.xib in Resources */,
 				5E886377276771E00022397A /* HomeWritingImageBottomViewController.xib in Resources */,
 				A8936FC027785B7400BE2C1D /* PortfolioURLTableViewCell.xib in Resources */,
 				5E8863832767AE190022397A /* HomeWritingImageBottomCell.xib in Resources */,
@@ -1234,6 +1245,7 @@
 				B9BF787427004094000BE0EF /* AppDelegate.swift in Sources */,
 				A81D105F2764828A0022D610 /* HistoryWriteViewController.swift in Sources */,
 				5EFB0A522734016600F39A4D /* MyChattingMessageCell.swift in Sources */,
+				B968416B277862ED002F5D3D /* TeamSearchDetailCell.swift in Sources */,
 				B97DBB9527147D970018C1D2 /* UIViewController+identifer.swift in Sources */,
 				A8CD0CEE2771CDCA00FFDE64 /* BudiLogin.swift in Sources */,
 				5E2554612732DF8A00033723 /* GreetingAlertViewController.swift in Sources */,
@@ -1451,10 +1463,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = kr.dochoi.Budi1;
+				PRODUCT_BUNDLE_IDENTIFIER = kr.dochoi.Budi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -1472,10 +1484,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = kr.dochoi.Budi1;
+				PRODUCT_BUNDLE_IDENTIFIER = kr.dochoi.Budi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

@@ -21,6 +21,10 @@ class TeamSearchViewController: UIViewController {
 
 private extension TeamSearchViewController {
     func configureCollectionView() {
+        let flowLayout = UICollectionViewFlowLayout()
+        flowLayout.minimumLineSpacing = 0
+        flowLayout.minimumInteritemSpacing = 0
+        collecitonView.collectionViewLayout = flowLayout
         collecitonView.dataSource = self
         collecitonView.delegate = self
         collecitonView.register(.init(nibName: TeamSearchCell.identifier, bundle: nil), forCellWithReuseIdentifier: TeamSearchCell.identifier)
@@ -48,7 +52,7 @@ extension TeamSearchViewController: UICollectionViewDelegate {
 
 extension TeamSearchViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        CGSize(width: view.frame.width, height: 350)
+        CGSize(width: collecitonView.bounds.width, height: 468)
     }
 }
 

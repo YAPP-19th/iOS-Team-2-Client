@@ -7,8 +7,9 @@
 
 import UIKit
 
-class TeamSearchCell: UICollectionViewCell {
+final class TeamSearchCell: UICollectionViewCell {
 
+    @IBOutlet private weak var collectionView: UICollectionView!
     override func awakeFromNib() {
         super.awakeFromNib()
     }

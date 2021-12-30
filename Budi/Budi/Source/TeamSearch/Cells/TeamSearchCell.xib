@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -22,38 +21,53 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xbf-pw-CRT">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="350"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yit-qb-TaU">
-                                <rect key="frame" x="16" y="24" width="24" height="24"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="B9Z-jb-7xe">
+                                <rect key="frame" x="20" y="24" width="335" height="20"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="NRR-qi-9L3">
-                                        <rect key="frame" x="3" y="3.5" width="18" height="17"/>
+                                        <rect key="frame" x="0.0" y="0.5" width="24" height="19"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="tintColor" name="Black"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="24" id="0s1-qV-IAM"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="개발자 버디" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mw3-cN-wxd">
+                                        <rect key="frame" x="33" y="0.0" width="281" height="20"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                        <color key="textColor" name="Black"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chevron.forward" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="yt3-VJ-f7T">
+                                        <rect key="frame" x="323" y="2" width="12" height="16.5"/>
+                                        <color key="tintColor" name="Black"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="12" id="ZFH-Ku-Lyd"/>
+                                            <constraint firstAttribute="height" constant="20" id="d6y-CL-s8i"/>
+                                        </constraints>
                                     </imageView>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="24" id="1fT-RI-bYS"/>
-                                    <constraint firstItem="NRR-qi-9L3" firstAttribute="top" secondItem="yit-qb-TaU" secondAttribute="top" constant="3" id="48z-FM-6xH"/>
-                                    <constraint firstAttribute="bottom" secondItem="NRR-qi-9L3" secondAttribute="bottom" constant="3" id="KO5-mF-VpJ"/>
-                                    <constraint firstAttribute="trailing" secondItem="NRR-qi-9L3" secondAttribute="trailing" constant="3" id="dUe-sG-aP8"/>
-                                    <constraint firstAttribute="width" constant="24" id="lxZ-85-A2t"/>
-                                    <constraint firstItem="NRR-qi-9L3" firstAttribute="leading" secondItem="yit-qb-TaU" secondAttribute="leading" constant="3" id="ndm-ce-AIm"/>
-                                </constraints>
-                            </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="개발자 버디" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mw3-cN-wxd">
-                                <rect key="frame" x="46" y="24" width="91" height="24"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                <color key="textColor" name="Black"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            </stackView>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Wjw-ay-R5G">
+                                <rect key="frame" x="16" y="68" width="343" height="250"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="bn8-qy-cHY">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                            </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="yit-qb-TaU" firstAttribute="leading" secondItem="xbf-pw-CRT" secondAttribute="leading" constant="16" id="Gc3-e2-T1h"/>
-                            <constraint firstItem="yit-qb-TaU" firstAttribute="top" secondItem="xbf-pw-CRT" secondAttribute="top" constant="24" id="YnS-yP-8Eb"/>
-                            <constraint firstItem="mw3-cN-wxd" firstAttribute="centerY" secondItem="yit-qb-TaU" secondAttribute="centerY" id="Zp3-NI-3W7"/>
-                            <constraint firstItem="mw3-cN-wxd" firstAttribute="leading" secondItem="yit-qb-TaU" secondAttribute="trailing" constant="6" id="zEa-qY-4AD"/>
+                            <constraint firstAttribute="trailing" secondItem="B9Z-jb-7xe" secondAttribute="trailing" constant="20" id="5Jm-14-0tV"/>
+                            <constraint firstItem="Wjw-ay-R5G" firstAttribute="leading" secondItem="xbf-pw-CRT" secondAttribute="leading" constant="16" id="9eV-Iw-Gak"/>
+                            <constraint firstAttribute="bottom" secondItem="Wjw-ay-R5G" secondAttribute="bottom" constant="32" id="Bkw-Ae-xqa"/>
+                            <constraint firstItem="B9Z-jb-7xe" firstAttribute="leading" secondItem="xbf-pw-CRT" secondAttribute="leading" constant="20" id="SkK-Dy-J6f"/>
+                            <constraint firstItem="Wjw-ay-R5G" firstAttribute="top" secondItem="B9Z-jb-7xe" secondAttribute="bottom" constant="24" id="e7G-xw-P0h"/>
+                            <constraint firstItem="B9Z-jb-7xe" firstAttribute="top" secondItem="xbf-pw-CRT" secondAttribute="top" constant="24" id="hCl-Q1-DcU"/>
+                            <constraint firstAttribute="trailing" secondItem="Wjw-ay-R5G" secondAttribute="trailing" constant="16" id="l24-r3-bDe"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -66,16 +80,17 @@
                 <constraint firstAttribute="bottom" secondItem="xbf-pw-CRT" secondAttribute="bottom" id="qQL-cR-IXj"/>
             </constraints>
             <size key="customSize" width="375" height="350"/>
+            <connections>
+                <outlet property="collectionView" destination="Wjw-ay-R5G" id="e05-t5-op3"/>
+            </connections>
             <point key="canvasLocation" x="367.39130434782612" y="199.55357142857142"/>
         </collectionViewCell>
     </objects>
     <resources>
+        <image name="chevron.forward" catalog="system" width="96" height="128"/>
         <image name="person.circle.fill" catalog="system" width="128" height="121"/>
         <namedColor name="Black">
-            <color red="0.0" green="0.0" blue="0.0" alpha="0.87000000476837158" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.11699999868869781" green="0.11699999868869781" blue="0.11699999868869781" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
     </resources>
 </document>

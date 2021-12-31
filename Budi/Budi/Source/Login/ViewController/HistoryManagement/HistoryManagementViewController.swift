@@ -69,7 +69,9 @@ class HistoryManagementViewController: UIViewController {
         progressView.changeColor(index: 3)
 
         let nib = UINib(nibName: DefaultHeaderView.cellId, bundle: nil)
+        let portNib = UINib(nibName: PortfolioURLTableViewCell.cellId, bundle: nil)
         tableView.register(nib, forHeaderFooterViewReuseIdentifier: DefaultHeaderView.cellId)
+        tableView.register(portNib, forCellReuseIdentifier: PortfolioURLTableViewCell.cellId)
         tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
 
     }
@@ -164,10 +166,21 @@ extension HistoryManagementViewController: UITableViewDelegate, UITableViewDataS
 
         guard let cell = tableView.dequeueReusableCell(withIdentifier: DefaultTableViewCell.cellId, for: indexPath) as? DefaultTableViewCell else { return UITableViewCell() }
         let data = viewModel.state.sectionData.value[indexPath.section].items[indexPath.row]
-        print(data)
+
         if data.itemInfo.isInclude {
             if data.portfolioLink.count >= 1 {
-                cell.configurePortfolioLabel(link: data.portfolioLink)
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: PortfolioURLTableViewCell.cellId, for: indexPath) as? PortfolioURLTableViewCell else { return UITableViewCell() }
+                cell.configureParsing(url: data.portfolioLink)
+
+                cell.editButton.tapPublisher
+                    .receive(on: DispatchQueue.main)
+                    .sink { _ in
+                        self.viewModel.action.setSignupInfoData.send(())
+                        self.showActionSheet(section: indexPath.section, index: indexPath.item)
+                    }
+                    .store(in: &cell.cancellables)
+
+                return cell
             } else {
                 cell.configureLabel(main: data.name, date: data.startDate + " ~ " + data.endDate, sub: data.description)
             }
@@ -191,14 +204,6 @@ extension HistoryManagementViewController: UITableViewDelegate, UITableViewDataS
                     self?.section = indexPath.section
                 }
                 self?.modalViewBackgoundOn()
-            }
-            .store(in: &cell.cancellables)
-
-        cell.portfolioMoreButton.tapPublisher
-            .receive(on: DispatchQueue.main)
-            .sink { _ in
-                self.viewModel.action.setSignupInfoData.send(())
-                self.showActionSheet(section: indexPath.section, index: indexPath.item)
             }
             .store(in: &cell.cancellables)
 

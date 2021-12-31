@@ -7,10 +7,24 @@
 
 import UIKit
 import NaverThirdPartyLogin
+import AuthenticationServices
+import Combine
+import CombineCocoa
+
 class LoginSelectViewController: UIViewController {
 
     weak var coordinator: LoginCoordinator?
     let loginInstance = NaverThirdPartyLoginConnection.getSharedInstance()
+    let appleAuthButton = ASAuthorizationAppleIDButton(type: .continue, style: .black)
+
+    private let budiLogoImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "BudiLogo")
+        imageView.contentMode = .scaleAspectFit
+
+        return imageView
+    }()
+
     private let helloLabel: UILabel = {
         let label = UILabel()
 
@@ -23,15 +37,14 @@ class LoginSelectViewController: UIViewController {
 
     private let naverLoginButton: UIButton = {
         let button = UIButton(type: .custom)
-        button.setImage(UIImage(named: "naverImage"), for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 16)
         button.setTitle("네이버 계정으로 계속하기", for: .normal)
-        button.titleLabel?.textAlignment = .left
-        button.imageView?.contentMode = .scaleAspectFit
+        button.setBackgroundImage(UIImage(named: "naverLogin"), for: .normal)
+        button.setTitleColor(UIColor(red: 0.13, green: 0.13, blue: 0.13, alpha: 1.00), for: .normal)
+        button.titleLabel?.textAlignment = .center
         button.semanticContentAttribute = .forceLeftToRight
-        button.titleEdgeInsets = UIEdgeInsets(top: 0, left: -30, bottom: 0, right: 0)
-        button.contentEdgeInsets = UIEdgeInsets(top: 10, left: -30, bottom: 10, right: 0)
-        button.backgroundColor = UIColor(red: 0.11, green: 0.78, blue: 0.00, alpha: 1.00)
+        button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 33, bottom: 0, right: 0)
+        button.backgroundColor = UIColor.white
         button.layer.cornerRadius = 6
         button.layer.masksToBounds = true
         button.addTarget(self, action: #selector(moveSignupAction), for: .touchUpInside)
@@ -58,16 +71,29 @@ class LoginSelectViewController: UIViewController {
         loginInstance?.delegate = self
         loginInstance?.requestDeleteToken()
         configureLayout()
+        setPublisher()
+    }
+
+    private func setPublisher() {
+        appleAuthButton.addTarget(self, action: #selector(appleLoginAction), for: .touchUpInside)
+    }
+
+    @objc
+    func appleLoginAction(_ sender: ASAuthorizationAppleIDButton) {
+        print("hello")
     }
 
     private func configureLayout() {
-        view.addSubview(helloLabel)
-        helloLabel.translatesAutoresizingMaskIntoConstraints = false
 
-        helloLabel.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor).isActive = true
-        helloLabel.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor).isActive = true
-        helloLabel.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor).isActive = true
-        helloLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        view.addSubview(budiLogoImageView)
+        budiLogoImageView.translatesAutoresizingMaskIntoConstraints = false
+
+        NSLayoutConstraint.activate([
+            budiLogoImageView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+            budiLogoImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 44),
+            budiLogoImageView.widthAnchor.constraint(equalToConstant: 44.2),
+            budiLogoImageView.heightAnchor.constraint(equalToConstant: 60)
+        ])
 
         view.addSubview(privacyButton)
         privacyButton.translatesAutoresizingMaskIntoConstraints = false
@@ -79,9 +105,20 @@ class LoginSelectViewController: UIViewController {
         naverLoginButton.translatesAutoresizingMaskIntoConstraints = false
         naverLoginButton.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor).isActive = true
         naverLoginButton.bottomAnchor.constraint(equalTo: privacyButton.topAnchor, constant: -10).isActive = true
-        naverLoginButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20).isActive = true
-        naverLoginButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20).isActive = true
+        naverLoginButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 24).isActive = true
+        naverLoginButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -24).isActive = true
         naverLoginButton.heightAnchor.constraint(equalToConstant: 48).isActive = true
+
+        view.addSubview(appleAuthButton)
+        appleAuthButton.translatesAutoresizingMaskIntoConstraints = false
+
+        NSLayoutConstraint.activate([
+            appleAuthButton.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+            appleAuthButton.bottomAnchor.constraint(equalTo: naverLoginButton.topAnchor, constant: -10),
+            appleAuthButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 24),
+            appleAuthButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -24),
+            appleAuthButton.heightAnchor.constraint(equalToConstant: 48)
+        ])
 
     }
 }

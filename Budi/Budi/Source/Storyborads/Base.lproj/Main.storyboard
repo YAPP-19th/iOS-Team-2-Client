@@ -516,7 +516,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="collecitonView" destination="qrS-tt-w7e" id="9RF-hm-wFU"/>
+                        <outlet property="collectionView" destination="qrS-tt-w7e" id="9RF-hm-wFU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FQz-bG-gWP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

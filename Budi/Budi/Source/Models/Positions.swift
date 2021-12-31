@@ -19,6 +19,14 @@ enum Position: String, CaseIterable {
         case .productManager: return "기획"
         }
     }
+
+    var englishStringValue: String {
+        switch self {
+        case .developer: return "developer"
+        case .designer: return "designer"
+        case .productManager: return "planner"
+        }
+    }
     
     var characterImage: UIImage? {
         switch self {
@@ -41,6 +49,17 @@ enum Position: String, CaseIterable {
         case .developer: return UIImage(named: "Developer_Background_Gray")
         case .designer: return UIImage(named: "Designer_Background_Gray")
         case .productManager: return UIImage(named: "Planner_Background_Gray")
+        }
+    }
+
+    var teamSearchCharacter: UIImage {
+        switch self {
+        case .developer:
+            return #imageLiteral(resourceName: "Job_Dev")
+        case .designer:
+            return #imageLiteral(resourceName: "Job_Design")
+        case .productManager:
+            return #imageLiteral(resourceName: "Job_Planner")
         }
     }
 

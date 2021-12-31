@@ -161,6 +161,8 @@
 		B92D54F9274C02EB00D0E851 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = B92D54F8274C02EB00D0E851 /* .swiftlint.yml */; };
 		B92D5505274C03AB00D0E851 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92D5504274C03AA00D0E851 /* Post.swift */; };
 		B94D2D9A277DE9E700DD7FDD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B94D2D99277DE9E700DD7FDD /* GoogleService-Info.plist */; };
+		B94D2D9C277DFE2300DD7FDD /* TeamSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B94D2D9B277DFE2300DD7FDD /* TeamSearchViewModel.swift */; };
+		B94D2D9E277E035300DD7FDD /* MemberTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = B94D2D9D277E035300DD7FDD /* MemberTarget.swift */; };
 		B94DCA8327521648006A9E0D /* APIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B94DCA8227521648006A9E0D /* APIResponse.swift */; };
 		B9535E15276DD8E2000081CF /* PositionLabelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9535E13276DD8E2000081CF /* PositionLabelCell.swift */; };
 		B9535E16276DD8E2000081CF /* PositionLabelCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9535E14276DD8E2000081CF /* PositionLabelCell.xib */; };
@@ -363,6 +365,8 @@
 		B92D5501274C039C00D0E851 /* HomeContentViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeContentViewModel.swift; sourceTree = "<group>"; };
 		B92D5504274C03AA00D0E851 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		B94D2D99277DE9E700DD7FDD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		B94D2D9B277DFE2300DD7FDD /* TeamSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamSearchViewModel.swift; sourceTree = "<group>"; };
+		B94D2D9D277E035300DD7FDD /* MemberTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberTarget.swift; sourceTree = "<group>"; };
 		B94DCA8227521648006A9E0D /* APIResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIResponse.swift; sourceTree = "<group>"; };
 		B9535E13276DD8E2000081CF /* PositionLabelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositionLabelCell.swift; sourceTree = "<group>"; };
 		B9535E14276DD8E2000081CF /* PositionLabelCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PositionLabelCell.xib; sourceTree = "<group>"; };
@@ -803,6 +807,7 @@
 			isa = PBXGroup;
 			children = (
 				5E24071C275225A600954BE7 /* BudiTarget.swift */,
+				B94D2D9D277E035300DD7FDD /* MemberTarget.swift */,
 			);
 			path = APITarget;
 			sourceTree = "<group>";
@@ -951,6 +956,7 @@
 				5EFB0A422733E34D00F39A4D /* Cells */,
 				B9D66EC32714703B00668490 /* TeamSearchCoordinator.swift */,
 				5EFB0A402733CD7700F39A4D /* TeamSearchViewController.swift */,
+				B94D2D9B277DFE2300DD7FDD /* TeamSearchViewModel.swift */,
 			);
 			path = TeamSearch;
 			sourceTree = "<group>";
@@ -1206,6 +1212,7 @@
 				5E820B742769E41E004A03E9 /* UIButton+IBInspectable.swift in Sources */,
 				A8CD936127384C4900299AB4 /* SearchTableViewCell.swift in Sources */,
 				A85C920B276A35270097E444 /* PortfolioViewController.swift in Sources */,
+				B94D2D9C277DFE2300DD7FDD /* TeamSearchViewModel.swift in Sources */,
 				B92D5505274C03AB00D0E851 /* Post.swift in Sources */,
 				5EB4302D2758951600283239 /* HomeWritingPartCell.swift in Sources */,
 				A81D108C2764950F0022D610 /* Positions.swift in Sources */,
@@ -1251,6 +1258,7 @@
 				5E2554612732DF8A00033723 /* GreetingAlertViewController.swift in Sources */,
 				5E9150A92772357C000578D4 /* MyBudiEditViewController.swift in Sources */,
 				5EC2FF04275E5D8300FF5BB0 /* HomeWritingViewModel.swift in Sources */,
+				B94D2D9E277E035300DD7FDD /* MemberTarget.swift in Sources */,
 				5E820B8F2769F963004A03E9 /* DatePickerBottomViewController.swift in Sources */,
 				5E9150AC27723668000578D4 /* MyBudiMainViewModel.swift in Sources */,
 				B9D66EB927146DF900668490 /* TabBarCoordinator.swift in Sources */,

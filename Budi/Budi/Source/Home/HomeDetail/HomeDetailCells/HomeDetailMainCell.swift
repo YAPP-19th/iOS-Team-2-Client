@@ -11,20 +11,26 @@ import Kingfisher
 final class HomeDetailMainCell: UICollectionViewCell {
 
     @IBOutlet private weak var imageView: UIImageView!
+    @IBOutlet private weak var viewCountLabel: UILabel!
+    
     @IBOutlet private weak var categoryLabel: UILabel!
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var dateLabel: UILabel!
     @IBOutlet private weak var regionLabel: UILabel!
-
+    @IBOutlet private weak var onlineInfoLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     }
 
     func updateUI(_ post: Post) {
+        viewCountLabel.text = "\(post.viewCount)"
         categoryLabel.text = post.category
         titleLabel.text = post.title
         dateLabel.text = getDatePeriod(post.startDate, post.endDate)
         regionLabel.text = post.region
+        onlineInfoLabel.text = post.onlineInfo
+        
         if let url = URL(string: post.imageUrl) {
             imageView.kf.setImage(with: url, placeholder: UIImage(named: "defaultBackground"))
         }

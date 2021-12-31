@@ -18,16 +18,16 @@ final class HomeDetailStatusUnitCell: UICollectionViewCell {
     }
     
     func updateUI(_ recruitingStatus: RecruitingStatus) {
-        let positionName = recruitingStatus.positionName
-        positionNameLabel.text = positionName
-        countLabel.text = "\(recruitingStatus.status)/\(recruitingStatus.status)"
-        
-        if positionName.contains("개발") {
-            characterImageView.image = UIImage(named: "Developer")
-        } else if positionName.contains("디자인") {
-            characterImageView.image = UIImage(named: "Designer")
-        } else if positionName.contains("기획") {
-            characterImageView.image = UIImage(named: "Planner")
-        }
+//        let positionName = recruitingStatus.positionName
+//        positionNameLabel.text = positionName
+//        countLabel.text = "\(recruitingStatus.status)/\(recruitingStatus.status)"
+//        
+//        if positionName.contains("개발") {
+//            characterImageView.image = UIImage(named: "Developer")
+//        } else if positionName.contains("디자인") {
+//            characterImageView.image = UIImage(named: "Designer")
+//        } else if positionName.contains("기획") {
+//            characterImageView.image = UIImage(named: "Planner")
+//        }
     }
 }

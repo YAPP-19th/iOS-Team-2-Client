@@ -18,21 +18,21 @@ class HomeWritingMembersUnitCell: UICollectionViewCell {
     }
     
     func configureUI(_ position: RecruitingPosition) {
-        let positionName = position.positionName
-        positionLabel.text = positionName
-        countLabel.text = String(position.recruitingNumber)
-        
-        var characterImage: UIImage?
-        if positionName.contains("개발") {
-            characterImage = Position.developer.characterImage
-        } else if positionName.contains("디자인") {
-            characterImage = Position.designer.characterImage
-        } else if positionName.contains("기획") {
-            characterImage = Position.productManager.characterImage
-        }
-        
-        if let characterImage = characterImage {
-            imageView.image = characterImage
-        }
+//        let positionName = position.positionName
+//        positionLabel.text = positionName
+//        countLabel.text = String(position.recruitingNumber)
+//        
+//        var characterImage: UIImage?
+//        if positionName.contains("개발") {
+//            characterImage = Position.developer.characterImage
+//        } else if positionName.contains("디자인") {
+//            characterImage = Position.designer.characterImage
+//        } else if positionName.contains("기획") {
+//            characterImage = Position.productManager.characterImage
+//        }
+//        
+//        if let characterImage = characterImage {
+//            imageView.image = characterImage
+//        }
     }
 }

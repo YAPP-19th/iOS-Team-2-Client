@@ -20,18 +20,18 @@ final class HomeWritingMembersCountBottomCollectionViewCell: UICollectionViewCel
     }
     
     @IBAction func minusButtonTapped(_ sender: Any) {
-        if recruitingPosition?.recruitingNumber ?? 0 > 1 {
-            recruitingPosition?.recruitingNumber -= 1
-            if let count = recruitingPosition?.recruitingNumber {
-                countLabel.text = String(count)
-            }
-        }
+//        if recruitingPosition?.recruitingNumber ?? 0 > 1 {
+//            recruitingPosition?.recruitingNumber -= 1
+//            if let count = recruitingPosition?.recruitingNumber {
+//                countLabel.text = String(count)
+//            }
+//        }
     }
     @IBAction func plusButtonTapped(_ sender: Any) {
-        recruitingPosition?.recruitingNumber += 1
-        if let count = recruitingPosition?.recruitingNumber {
-            countLabel.text = String(count)
-        }
+//        recruitingPosition?.recruitingNumber += 1
+//        if let count = recruitingPosition?.recruitingNumber {
+//            countLabel.text = String(count)
+//        }
     }
     
     override func awakeFromNib() {
@@ -44,9 +44,9 @@ final class HomeWritingMembersCountBottomCollectionViewCell: UICollectionViewCel
     }
     
     func configureUI() {
-        if let recruitingPosition = recruitingPosition {
-            partLabel.text = recruitingPosition.positionName
-            countLabel.text = String(recruitingPosition.recruitingNumber)
-        }
+//        if let recruitingPosition = recruitingPosition {
+//            partLabel.text = recruitingPosition.positionName
+//            countLabel.text = String(recruitingPosition.recruitingNumber)
+//        }
     }
 }

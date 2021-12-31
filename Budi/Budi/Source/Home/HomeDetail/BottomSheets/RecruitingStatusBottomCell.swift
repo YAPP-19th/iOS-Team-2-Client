@@ -16,7 +16,7 @@ final class RecruitingStatusBottomCell: UICollectionViewCell {
 
     var recruitingStatus: RecruitingStatus? {
         didSet {
-            textLabel.text = recruitingStatus?.positionName
+//            textLabel.text = recruitingStatus?.positionName
         }
     }
     var isChecked: Bool = false {

@@ -10,7 +10,7 @@ import UIKit
 final class HomeDetailLeaderCell: UICollectionViewCell {
 
     @IBOutlet private weak var collectionView: UICollectionView!
-    var leader: Leader = Leader(leaderId: 0, nickName: "", profileImageUrl: "", address: "") {
+    var leader: Leader = Leader(leaderId: 0, nickName: "", profileImageUrl: "", address: "", position: "") {
         didSet {
             collectionView.reloadData()
         }

@@ -102,7 +102,6 @@ private extension HomeWritingViewController {
 // MARK: - Delegate
 extension HomeWritingViewController: HomeWritingImageBottomViewControllerDelegate {
     func getImageUrlString(_ urlString: String) {
-        print("urlString is \(urlString)")
         viewModel.state.selectedImageUrl.value = urlString
         collectionView.reloadData()
         isValid()
@@ -111,7 +110,6 @@ extension HomeWritingViewController: HomeWritingImageBottomViewControllerDelegat
 
 extension HomeWritingViewController: HomeWritingNameCellDelegate {
     func changeName(_ name: String) {
-        print("name is \(name)")
         viewModel.state.name.value = name
         isValid()
     }
@@ -119,7 +117,6 @@ extension HomeWritingViewController: HomeWritingNameCellDelegate {
 
 extension HomeWritingViewController: HomeWritingPartBottomViewControllerDelegate {
     func getPart(_ part: String) {
-        print("part is \(part)")
         viewModel.state.part.value = part
         collectionView.reloadData()
         isValid()
@@ -128,7 +125,6 @@ extension HomeWritingViewController: HomeWritingPartBottomViewControllerDelegate
 
 extension HomeWritingViewController: HomeWritingDurationCellDelegate {
     func showDatePickerBottomView(_ isStartDate: Bool) {
-        print(isStartDate ? "isStartDate" : "isEndDate")
         self.isStartDate = isStartDate
         let limitDate: Date? = isStartDate ? viewModel.state.endDate.value : viewModel.state.startDate.value
         coordinator?.showDatePickerViewController(self, isStartDate, limitDate)
@@ -137,7 +133,6 @@ extension HomeWritingViewController: HomeWritingDurationCellDelegate {
 
 extension HomeWritingViewController: DatePickerBottomViewControllerDelegate {
     func getDateFromDatePicker(_ date: Date) {
-        print("date is \(date)")
         if isStartDate {
             viewModel.state.startDate.value = date
         } else {
@@ -150,7 +145,6 @@ extension HomeWritingViewController: DatePickerBottomViewControllerDelegate {
 
 extension HomeWritingViewController: HomeWritingOnlineCellDelegate {
     func changeOnline(_ isOnline: Bool) {
-        print("isOnline is \(isOnline)")
         viewModel.state.isOnline.value = isOnline
         collectionView.reloadData()
         isValid()
@@ -159,7 +153,6 @@ extension HomeWritingViewController: HomeWritingOnlineCellDelegate {
 
 extension HomeWritingViewController: LocationSearchViewControllerDelegate {
     func getLocation(_ location: String) {
-        print("location is \(location)")
         viewModel.state.area.value = location
         collectionView.reloadData()
         isValid()
@@ -168,7 +161,6 @@ extension HomeWritingViewController: LocationSearchViewControllerDelegate {
 
 extension HomeWritingViewController: HomeWritingMembersBottomViewControllerDelegate {
     func getRecruitingPositions(_ recruitingPositions: [RecruitingPosition]) {
-        print("recruitingPositions is \(recruitingPositions)")
         viewModel.state.recruitingPositions.value = recruitingPositions
         collectionView.reloadData()
         isValid()
@@ -177,7 +169,6 @@ extension HomeWritingViewController: HomeWritingMembersBottomViewControllerDeleg
 
 extension HomeWritingViewController: HomeWritingDescriptionCellDelegate {
     func changeDescription(_ description: String) {
-        print("description is \(description)")
         viewModel.state.description.value = description
         isValid()
     }

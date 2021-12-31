@@ -72,10 +72,10 @@ private extension HomeWritingMembersBottomViewController {
             .sink { [weak self] _ in
                 guard let self = self else { return }
                 
-                self.selectedParts.forEach {
-                    let position = RecruitingPosition(positionName: $0, recruitingNumber: 1)
-                    self.recruitingPositions.append(position)
-                }
+//                self.selectedParts.forEach {
+//                    let position = RecruitingPosition(positionName: $0, recruitingNumber: 1)
+//                    self.recruitingPositions.append(position)
+//                }
                 
                 self.delegate?.getRecruitingPositions(self.recruitingPositions)
                 self.hideBottomView()

@@ -11,7 +11,7 @@ import AuthenticationServices
 import Combine
 import CombineCocoa
 
-class LoginSelectViewController: UIViewController {
+class LoginSelectViewController: UIViewController  {
 
     weak var coordinator: LoginCoordinator?
     let loginInstance = NaverThirdPartyLoginConnection.getSharedInstance()
@@ -80,7 +80,14 @@ class LoginSelectViewController: UIViewController {
 
     @objc
     func appleLoginAction(_ sender: ASAuthorizationAppleIDButton) {
-        print("hello")
+        let appleIDProvider = ASAuthorizationAppleIDProvider()
+        let request = appleIDProvider.createRequest()
+        request.requestedScopes = [.fullName, .email]
+
+        let authorizationController = ASAuthorizationController(authorizationRequests: [request])
+        authorizationController.delegate = self
+        authorizationController.presentationContextProvider = self
+        authorizationController.performRequests()
     }
 
     private func configureLayout() {
@@ -125,7 +132,47 @@ class LoginSelectViewController: UIViewController {
 
 extension LoginSelectViewController: NaverThirdPartyLoginConnectionDelegate {
     func oauth20ConnectionDidFinishRequestACTokenWithAuthCode() {
-        coordinator?.showSignupNormalViewController()
+        guard let isValidAccessToken = loginInstance?.isValidAccessTokenExpireTimeNow() else { return }
+
+        if !isValidAccessToken {
+            return
+        }
+
+//        guard let tokenType = loginInstance?.tokenType else { return }
+//        guard let accessToken = loginInstance?.accessToken else { return }
+//        let urlStr = "https://openapi.naver.com/v1/nid/me"
+//
+//        guard let url = URL(string: urlStr) else { return }
+//        let auth = "\(tokenType) \(accessToken)"
+//        var request = URLRequest(url: url)
+//        request.setValue(auth, forHTTPHeaderField: "Authorization")
+//
+//        URLSession.shared.dataTaskPublisher(for: request)
+//            .subscribe(on: DispatchQueue.global(qos: .background))
+//            .receive(on: DispatchQueue.main)
+//            .tryMap { data, response -> Data in
+//                guard
+//                    let response = response as? HTTPURLResponse,
+//                    response.statusCode < 400 else { throw URLError(.badServerResponse) }
+//                return data
+//            }
+//            .decode(type: Response.self, decoder: JSONDecoder())
+//            .sink(receiveCompletion: { [weak self] completion in
+//                guard case let .failure(error) = completion else { return }
+//                print(error)
+//                self?.state.loginUserInfo.send(nil)
+//            }, receiveValue: { [weak self] posts in
+//                print()
+//                DispatchQueue.main.async {
+//        coordinator?.showSignupNormalViewController(userLogininfo: info)
+//                    coordinator?.showSignupNormalViewController()
+//                }
+//
+//                self?.state.loginUserInfo.send(posts.response)
+//            })
+//            .store(in: &self.cancellables)
+
+
     }
 
     func oauth20ConnectionDidFinishRequestACTokenWithRefreshToken() {
@@ -140,4 +187,29 @@ extension LoginSelectViewController: NaverThirdPartyLoginConnectionDelegate {
         print("error: \(error.localizedDescription)")
     }
 
+}
+extension LoginSelectViewController: ASAuthorizationControllerDelegate {
+    func authorizationController(controller: ASAuthorizationController,
+                                 didCompleteWithAuthorization authorization: ASAuthorization) {
+        let credential = authorization.credential as? ASAuthorizationAppleIDCredential
+        guard
+              let hashcode = credential?.user else { return }
+        let info = LoginUserInfo(nickname: nil, email: nil, name: nil, id: hashcode)
+        coordinator?.showSignupNormalViewController(userLogininfo: info)
+    }
+
+    func LoginSelectViewController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
+        let alertController = UIAlertController(title: "로그인 실패!\n\(error.localizedDescription)",
+                                                message: nil,
+                                                preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .cancel)
+        alertController.addAction(okAction)
+        present(alertController, animated: true, completion: nil)
+    }
+}
+
+extension LoginSelectViewController: ASAuthorizationControllerPresentationContextProviding {
+    func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
+        return view.window ?? ASPresentationAnchor()
+    }
 }

@@ -19,8 +19,8 @@ extension MemberTarget: TargetType {
 
     var path: String {
         switch self {
-        case .memberDetails(_, let id): return "/api/v1/members/budiDetails/\(id)"
-        case .memberList(let postion): return "/api/v1/members/budiLists/\(postion.englishStringValue)"
+        case .memberDetails(_, let id): return "/members/budiDetails/\(id)"
+        case .memberList(let postion): return "/members/budiLists/\(postion.englishStringValue)"
         }
     }
 

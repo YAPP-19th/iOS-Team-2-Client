@@ -35,8 +35,8 @@ final class SignupViewModel: ViewModel {
     }
 
     struct State {
-        // 네이버 로그인 시 정보 저장
-        let naverData = CurrentValueSubject<NaverData?, Never>(nil)
+        // 클라이언트 로그인 시 정보 저장
+        var loginUserInfo: LoginUserInfo? = nil
         // Budi 서버 로그인 정보 저장
         let budiLoginUserData = CurrentValueSubject<String?, Never>(nil)
         // Budi 서버 포지션 선택 대응 정보 저장
@@ -92,14 +92,13 @@ final class SignupViewModel: ViewModel {
 
 
     let action = Action()
-    let state = State()
+    var state = State()
 
     private var cancellables = Set<AnyCancellable>()
     private let provider = MoyaProvider<BudiTarget>()
     let loginInstance = NaverThirdPartyLoginConnection.getSharedInstance()
 
     init() {
-        getNaverInfo()
         getPositions()
         switchView()
         fetchSectionData()
@@ -414,80 +413,82 @@ final class SignupViewModel: ViewModel {
         var request = URLRequest(url: url)
         request.setValue(auth, forHTTPHeaderField: "Authorization")
 
-        action.fetch
-            .sink(receiveValue: { [weak self] _ in
-                guard let self = self else { return }
-                URLSession.shared.dataTaskPublisher(for: request)
-                    .subscribe(on: DispatchQueue.global(qos: .background))
-                    .receive(on: DispatchQueue.main)
-                    .tryMap { data, response -> Data in
-                        guard
-                            let response = response as? HTTPURLResponse,
-                            response.statusCode < 400 else { throw URLError(.badServerResponse) }
-                        return data
-                    }
-                    .decode(type: Response.self, decoder: JSONDecoder())
-                    .sink(receiveCompletion: { [weak self] completion in
-                        guard case let .failure(error) = completion else { return }
-                        print(error)
-                        self?.state.naverData.send(nil)
-                    }, receiveValue: { [weak self] posts in
-                        print()
-                        self?.state.naverData.send(posts.response)
-                    })
-                    .store(in: &self.cancellables)
-
-            })
-            .store(in: &cancellables)
-
-        action.refresh
-            .sink { [weak self] _ in
-                self?.action.fetch.send(())
-            }.store(in: &cancellables)
-
-        action.fetch.send(())
+//        URLSession.shared.dataTaskPublisher(for: request)
+//            .subscribe(on: DispatchQueue.global(qos: .background))
+//            .receive(on: DispatchQueue.main)
+//            .tryMap { data, response -> Data in
+//                guard
+//                    let response = response as? HTTPURLResponse,
+//                    response.statusCode < 400 else { throw URLError(.badServerResponse) }
+//                return data
+//            }
+//            .decode(type: Response.self, decoder: JSONDecoder())
+//            .sink(receiveCompletion: { [weak self] completion in
+//                guard case let .failure(error) = completion else { return }
+//                print(error)
+//                self?.state.loginUserInfo.send(nil)
+//            }, receiveValue: { [weak self] posts in
+//                print()
+//                self?.state.loginUserInfo.send(posts.response)
+//            })
+//            .store(in: &self.cancellables)
+//        action.fetch
+//            .sink(receiveValue: { [weak self] _ in
+//                guard let self = self else { return }
+//
+//
+//            })
+//            .store(in: &cancellables)
+//
+//        action.refresh
+//            .sink { [weak self] _ in
+//                self?.action.fetch.send(())
+//            }.store(in: &cancellables)
+//
+//        action.fetch.send(())
     }
 
     // MARK: - Budi 서버에 POST 보내는 viewModel
     func pushServer() {
-        guard let id = state.naverData.value?.id else { return }
-        let loginData = BudiLogin(loginId: id, name: state.naverData.value?.name, email: state.naverData.value?.email)
+        guard let id = state.loginUserInfo?.id else { return }
+        let loginData = BudiLogin(loginId: id, name: state.loginUserInfo?.name, email: state.loginUserInfo?.email)
         guard let uploadData = try? JSONEncoder().encode(loginData) else { return }
 
         guard let url = URL(string: .baseURLString+"/auth/login") else { return }
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        action.fetch
-            .sink(receiveValue: { [weak self] _ in
-                guard let self = self else { return }
-                URLSession.shared.uploadTask(with: request, from: uploadData) { (data, response, error) in
-                    if let error = error {
-                        NSLog("Error:\(error.localizedDescription)")
-                        return
-                    }
-                    print("응답 완료")
-                    guard let data = data else { return }
-                    do {
-                        // 서버에 로그인 시도 하고 받은 데이터
-                        let decodeData = try JSONDecoder().decode(APIResponse<BudiLoginResponse>.self, from: data)
-                        self.state.budiLoginUserData.send(decodeData.data.userId)
-                        //print("로그인 데이터 :", self.state.budiLoginUserData.value)
-                        print("로그인 유저 아이디 :", decodeData.data.userId)
-                        print("로그인 고유 토큰 :", decodeData.data.accessToken)
-                    } catch {
-                        print("Error")
-                    }
-                }
-                .resume()
-            })
-            .store(in: &cancellables)
-
-        action.refresh
-            .sink { [weak self] _ in
-                self?.action.fetch.send(())
-            }.store(in: &cancellables)
-
-        action.fetch.send(())
+        URLSession.shared.uploadTask(with: request, from: uploadData) { (data, response, error) in
+            if let error = error {
+                NSLog("Error:\(error.localizedDescription)")
+                return
+            }
+            print("응답 완료")
+            guard let data = data else { return }
+            do {
+                // 서버에 로그인 시도 하고 받은 데이터
+                let decodeData = try JSONDecoder().decode(APIResponse<BudiLoginResponse>.self, from: data)
+                self.state.budiLoginUserData.send(decodeData.data.userId)
+                //print("로그인 데이터 :", self.state.budiLoginUserData.value)
+                print("로그인 유저 아이디 :", decodeData.data.userId)
+                print("로그인 고유 토큰 :", decodeData.data.accessToken)
+            } catch {
+                print("Error")
+            }
+        }
+        .resume()
+//        action.fetch
+//            .sink(receiveValue: { [weak self] _ in
+//                guard let self = self else { return }
+//
+//            })
+//            .store(in: &cancellables)
+//
+//        action.refresh
+//            .sink { [weak self] _ in
+//                self?.action.fetch.send(())
+//            }.store(in: &cancellables)
+//
+//        action.fetch.send(())
     }
 }

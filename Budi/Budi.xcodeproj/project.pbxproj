@@ -130,7 +130,7 @@
 		A84F266F276B7CD600C65DA1 /* SignupHistorySectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84F266E276B7CD500C65DA1 /* SignupHistorySectionModel.swift */; };
 		A84F2673276DA9FA00C65DA1 /* SignupInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84F2672276DA9FA00C65DA1 /* SignupInfoModel.swift */; };
 		A84F2675276DE9F200C65DA1 /* SignupPersonalInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84F2674276DE9F200C65DA1 /* SignupPersonalInfo.swift */; };
-		A85325B52746C4580073FAFB /* NaverData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85325B42746C4580073FAFB /* NaverData.swift */; };
+		A85325B52746C4580073FAFB /* LoginUserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85325B42746C4580073FAFB /* LoginUserInfo.swift */; };
 		A85325BB274773F90073FAFB /* SignupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85325BA274773F90073FAFB /* SignupViewModel.swift */; };
 		A85C920B276A35270097E444 /* PortfolioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85C920A276A35260097E444 /* PortfolioViewController.swift */; };
 		A85C920D276A42210097E444 /* CreateInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85C920C276A42210097E444 /* CreateInfo.swift */; };
@@ -330,7 +330,7 @@
 		A84F266E276B7CD500C65DA1 /* SignupHistorySectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupHistorySectionModel.swift; sourceTree = "<group>"; };
 		A84F2672276DA9FA00C65DA1 /* SignupInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupInfoModel.swift; sourceTree = "<group>"; };
 		A84F2674276DE9F200C65DA1 /* SignupPersonalInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupPersonalInfo.swift; sourceTree = "<group>"; };
-		A85325B42746C4580073FAFB /* NaverData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaverData.swift; sourceTree = "<group>"; };
+		A85325B42746C4580073FAFB /* LoginUserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUserInfo.swift; sourceTree = "<group>"; };
 		A85325BA274773F90073FAFB /* SignupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewModel.swift; sourceTree = "<group>"; };
 		A85C920A276A35260097E444 /* PortfolioViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioViewController.swift; sourceTree = "<group>"; };
 		A85C920C276A42210097E444 /* CreateInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateInfo.swift; sourceTree = "<group>"; };
@@ -787,7 +787,7 @@
 			children = (
 				A81D1062276482B70022D610 /* Section.swift */,
 				A8CD935D273849F800299AB4 /* LocationDummyData.swift */,
-				A85325B42746C4580073FAFB /* NaverData.swift */,
+				A85325B42746C4580073FAFB /* LoginUserInfo.swift */,
 				A8AB51E7276A0416003D151C /* ModalControl.swift */,
 			);
 			path = Data;
@@ -1246,7 +1246,7 @@
 				5E2554352732770B00033723 /* HomeDetailPersonCell.swift in Sources */,
 				5EB430392758954A00283239 /* HomeWritingMembersCell.swift in Sources */,
 				B9D66EC62714706700668490 /* ChattingCoordinator.swift in Sources */,
-				A85325B52746C4580073FAFB /* NaverData.swift in Sources */,
+				A85325B52746C4580073FAFB /* LoginUserInfo.swift in Sources */,
 				5E91509E27722D85000578D4 /* MyBudiHelpCell.swift in Sources */,
 				A8CD93442736E82300299AB4 /* PositionViewController.swift in Sources */,
 				B9BF787427004094000BE0EF /* AppDelegate.swift in Sources */,
@@ -1465,7 +1465,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Budi/Budi.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = ZMXTCSPNUZ;
+				DEVELOPMENT_TEAM = V37X2D6JM3;
 				INFOPLIST_FILE = Budi/Resource/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1486,7 +1486,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Budi/Budi.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = ZMXTCSPNUZ;
+				DEVELOPMENT_TEAM = V37X2D6JM3;
 				INFOPLIST_FILE = Budi/Resource/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "Designer_1x.png",
+      "filename" : "Job_Design.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "Designer_2x.png",
+      "filename" : "Job_Design-1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "Designer_3x.png",
+      "filename" : "Job_Design-2.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

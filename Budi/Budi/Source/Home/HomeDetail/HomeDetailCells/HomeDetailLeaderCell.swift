@@ -10,9 +10,18 @@ import UIKit
 final class HomeDetailLeaderCell: UICollectionViewCell {
 
     @IBOutlet private weak var collectionView: UICollectionView!
+    @IBOutlet private weak var dividerView: UIView!
+
     var leader: Leader = Leader(leaderId: 0, nickName: "", profileImageUrl: "", address: "", position: "") {
         didSet {
             collectionView.reloadData()
+        }
+    }
+    var isTeamMembersEmpty: Bool = true {
+        didSet {
+            if isTeamMembersEmpty {
+                dividerView.backgroundColor = .white
+            }
         }
     }
 
@@ -20,9 +29,6 @@ final class HomeDetailLeaderCell: UICollectionViewCell {
         super.awakeFromNib()
         configureCollectionView()
     }
-}
-
-private extension HomeDetailLeaderCell {
 }
 
 extension HomeDetailLeaderCell: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -38,11 +44,11 @@ extension HomeDetailLeaderCell: UICollectionViewDataSource, UICollectionViewDele
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeDetailPersonCell.identifier, for: indexPath) as? HomeDetailPersonCell else { return UICollectionViewCell() }
-        cell.updateUI(leader.nickName, leader.profileImageUrl, leader.address)
+        cell.updateUI(imageUrl: leader.profileImageUrl, name: leader.nickName, job: leader.position, address: leader.address)
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        CGSize(width: collectionView.frame.width, height: 80)
+        CGSize(width: collectionView.frame.width, height: 100)
     }
 }

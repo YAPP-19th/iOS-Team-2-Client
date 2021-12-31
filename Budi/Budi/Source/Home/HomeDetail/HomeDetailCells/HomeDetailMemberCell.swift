@@ -41,12 +41,12 @@ extension HomeDetailMemberCell: UICollectionViewDataSource, UICollectionViewDele
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeDetailPersonCell.identifier, for: indexPath) as? HomeDetailPersonCell else { return UICollectionViewCell() }
         let teamMember = teamMembers[indexPath.row]
-        cell.updateUI(teamMember.nickName, "\(String(describing: teamMember.profileImageUrl))", teamMember.address)
+        cell.updateUI(imageUrl: "\(String(describing: teamMember.profileImageUrl))", name: teamMember.nickName ?? "", job: "", address: teamMember.address ?? "")
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        CGSize(width: collectionView.frame.width, height: 99)
+        CGSize(width: collectionView.frame.width, height: 100)
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {

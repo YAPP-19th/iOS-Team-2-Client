@@ -31,10 +31,22 @@ final class HomeDetailViewModel: ViewModel {
         
         provider.request(.applies(accessToken: accessToken, param: param)) { response in
             switch response {
+            case .success(let response): completion(.success(response))
+            case .failure(let error): completion(.failure(error))
+            }
+        }
+    }
+    
+    func requestLikePost(_ accessToken: String, _ completion: @escaping (Result<Moya.Response, Error>) -> Void) {
+        provider.request(.likePosts(accessToken: accessToken, id: self.state.postId.value)) { response in
+            switch response {
             case .success(let response):
+                self.state.post.value?.isLiked.toggle()
+                if let isLiked = self.state.post.value?.isLiked {
+                    self.state.post.value?.likeCount += (isLiked ? 1 : (-1))
+                }
                 completion(.success(response))
-            case .failure(let error):
-                completion(.failure(error))
+            case .failure(let error): completion(.failure(error))
             }
         }
     }

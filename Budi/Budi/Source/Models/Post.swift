@@ -34,8 +34,8 @@ struct Post: Decodable {
     let createdDate: Date
     let modifiedDate: Date
     let leader: Leader
-    let isLiked: Bool
-    let likeCount: Int
+    var isLiked: Bool
+    var likeCount: Int
     let ownerID: Int
     var positions: [PositionData]
 

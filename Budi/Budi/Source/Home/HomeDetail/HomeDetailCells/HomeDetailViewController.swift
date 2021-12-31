@@ -19,8 +19,6 @@ final class HomeDetailViewController: UIViewController {
     @IBOutlet private weak var heartCountLabel: UILabel!
     @IBOutlet private weak var submitButton: UIButton!
 
-    private var isHeartButtonChecked: Bool = false
-
     weak var coordinator: HomeCoordinator?
     private let viewModel: HomeDetailViewModel
     private var cancellables = Set<AnyCancellable>()
@@ -38,6 +36,7 @@ final class HomeDetailViewController: UIViewController {
         super.viewDidLoad()
         bottomView.layer.addBorderTop()
         configureNavigationBar()
+        configureHeartButton()
         configureCollectionView()
         bindViewModel()
         setPublisher()
@@ -60,28 +59,33 @@ private extension HomeDetailViewController {
     func bindViewModel() {
         viewModel.state.post
             .receive(on: DispatchQueue.main)
-            .sink(receiveCompletion: { [weak self] _ in
+            .sink(receiveValue: { [weak self] _ in
+                self?.configureHeartButton()
                 self?.mainCollectionView.reloadData()
-            }, receiveValue: { _ in
-                self.mainCollectionView.reloadData()
             }).store(in: &cancellables)
     }
     
     func setPublisher() {
-        heartButton.tapPublisher
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] _ in
-                guard let self = self else { return }
-                self.isHeartButtonChecked.toggle()
-                self.heartButton.setImage(UIImage(systemName: self.isHeartButtonChecked ? "heart.fill" : "heart"), for: .normal)
-                self.heartButton.tintColor = self.isHeartButtonChecked ? UIColor.primary : UIColor.textDisabled
-            }.store(in: &cancellables)
-
         submitButton.tapPublisher
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
                 guard let self = self else { return }
                 self.coordinator?.showRecruitingStatusBottomViewController(self, self.viewModel)
+            }.store(in: &cancellables)
+        
+        heartButton.tapPublisher
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in
+                guard let self = self else { return }
+                self.viewModel.requestLikePost(TEST_ACCESS_TOKEN) { response in
+                    switch response {
+                    case .success:
+                        guard let isLiked = self.viewModel.state.post.value?.isLiked else { return }
+                        self.heartButton.setImage(UIImage(systemName: isLiked ? "heart.fill" : "heart"), for: .normal)
+                        self.heartButton.tintColor = isLiked ? UIColor.primary : UIColor.textDisabled
+                    case .failure(let error): print(error.localizedDescription)
+                    }
+                }
             }.store(in: &cancellables)
     }
 }
@@ -96,6 +100,13 @@ private extension HomeDetailViewController {
     @objc
     func shareButtonTapped() {
         print("버디 모집 공유")
+    }
+    
+    func configureHeartButton() {
+        guard let likeCount = viewModel.state.post.value?.likeCount, let isLiked = viewModel.state.post.value?.isLiked else { return }
+        heartCountLabel.text = "\(likeCount)"
+        heartButton.setImage(UIImage(systemName: isLiked ? "heart.fill" : "heart"), for: .normal)
+        heartButton.tintColor = isLiked ? UIColor.primary : UIColor.textDisabled
     }
 }
 

@@ -20,6 +20,7 @@ enum BudiTarget {
     case applies(accessToken: String, param: AppliesRequest)
     case checkDuplicateName(name: String)
     case postCategory
+    case likePosts(accessToken: String, id: Int)
 }
 
 extension BudiTarget: TargetType {
@@ -41,6 +42,7 @@ extension BudiTarget: TargetType {
         case .applies: return "/applies"
         case .checkDuplicateName: return "/members/checkDuplicateName"
         case .postCategory: return "/infos/postCategory"
+        case .likePosts(_, let id): return "/post/\(id)/like-posts"
         }
     }
 
@@ -49,6 +51,7 @@ extension BudiTarget: TargetType {
         case .createInfo: return .post
         case .createPost: return .post
         case .applies: return .post
+        case .likePosts: return .put
         default: return .get
         }
     }
@@ -74,7 +77,7 @@ extension BudiTarget: TargetType {
         switch self {
         case .createInfo(let accessToken, _):
             return ["accessToken": accessToken, "Content-Type": "application/json"]
-        case .createPost(let accessToken, _), .applies(let accessToken, _), .post(let accessToken, _):
+        case .createPost(let accessToken, _), .applies(let accessToken, _), .post(let accessToken, _), .likePosts(let accessToken, _):
             return ["Content-Type": "application/json", "accessToken": "\(accessToken)"]
         default: return ["Content-Type": "application/json"]
         }

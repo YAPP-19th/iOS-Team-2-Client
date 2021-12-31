@@ -18,6 +18,7 @@
                 <outlet property="closeButton" destination="Q3E-PJ-zoC" id="rnb-vJ-l22"/>
                 <outlet property="collectionView" destination="fPm-5x-hnN" id="hYN-SH-9ss"/>
                 <outlet property="heartButton" destination="vqy-OV-iC3" id="Kom-fD-7qc"/>
+                <outlet property="heartCountLabel" destination="lc8-7W-aOf" id="7pK-NS-9nb"/>
                 <outlet property="submitButton" destination="trt-dp-HDq" id="pFy-6l-Je6"/>
                 <outlet property="submitView" destination="R6q-jd-m7o" id="2zO-QB-ULA"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -119,8 +120,8 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qTx-uq-Uis">
                             <rect key="frame" x="16" y="8" width="48" height="48"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="512" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lc8-7W-aOf">
-                                    <rect key="frame" x="14.5" y="34" width="19" height="14"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lc8-7W-aOf">
+                                    <rect key="frame" x="20.5" y="34" width="7" height="14"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                     <color key="textColor" name="Text_disabled"/>
                                     <nil key="highlightedColor"/>

@@ -23,6 +23,7 @@ final class RecruitingStatusBottomViewController: UIViewController {
     @IBOutlet private weak var submitView: UIView!
     @IBOutlet private weak var submitButton: UIButton!
     @IBOutlet private weak var heartButton: UIButton!
+    @IBOutlet private weak var heartCountLabel: UILabel!
     
     @IBAction private func backgroundButtonTapped(_ sender: Any) {
         hideBottomView()
@@ -55,6 +56,7 @@ final class RecruitingStatusBottomViewController: UIViewController {
         super.viewDidLoad()
         submitView.layer.addBorderTop()
         configureCollectionView()
+        bindViewModel()
         setPublisher()
     }
     
@@ -64,6 +66,14 @@ final class RecruitingStatusBottomViewController: UIViewController {
 }
 
 private extension RecruitingStatusBottomViewController {
+    func bindViewModel() {
+        viewModel.state.post
+            .receive(on: DispatchQueue.main)
+            .sink(receiveValue: { [weak self] _ in
+                self?.configureHeartButton()
+            }).store(in: &cancellables)
+    }
+    
     func setPublisher() {
         submitButton.tapPublisher
             .receive(on: DispatchQueue.main)
@@ -76,10 +86,15 @@ private extension RecruitingStatusBottomViewController {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
                 guard let self = self else { return }
-                self.isHeartButtonChecked.toggle()
-                self.heartButton.setImage(UIImage(systemName: self.isHeartButtonChecked ? "heart.fill" : "heart"), for: .normal)
-                self.heartButton.tintColor = self.isHeartButtonChecked ? UIColor.primary : UIColor.textDisabled
-                self.view.layoutIfNeeded()
+                self.viewModel.requestLikePost(TEST_ACCESS_TOKEN) { response in
+                    switch response {
+                    case .success:
+                        guard let isLiked = self.viewModel.state.post.value?.isLiked else { return }
+                        self.heartButton.setImage(UIImage(systemName: isLiked ? "heart.fill" : "heart"), for: .normal)
+                        self.heartButton.tintColor = isLiked ? UIColor.primary : UIColor.textDisabled
+                    case .failure(let error): print(error.localizedDescription)
+                    }
+                }
             }.store(in: &cancellables)
         
         closeButton.tapPublisher
@@ -131,6 +146,13 @@ private extension RecruitingStatusBottomViewController {
             
         }
         animator.startAnimation()
+    }
+    
+    func configureHeartButton() {
+        guard let likeCount = viewModel.state.post.value?.likeCount, let isLiked = viewModel.state.post.value?.isLiked else { return }
+        heartCountLabel.text = "\(likeCount)"
+        heartButton.setImage(UIImage(systemName: isLiked ? "heart.fill" : "heart"), for: .normal)
+        heartButton.tintColor = isLiked ? UIColor.primary : UIColor.textDisabled
     }
 }
 

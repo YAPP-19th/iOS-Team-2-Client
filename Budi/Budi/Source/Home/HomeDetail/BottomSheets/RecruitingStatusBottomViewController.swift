@@ -33,7 +33,7 @@ final class RecruitingStatusBottomViewController: UIViewController {
     private var selectedRecruitingStatus: RecruitingStatus? = nil {
         didSet {
             submitButton.isEnabled = (selectedRecruitingStatus != nil)
-            submitButton.backgroundColor = (selectedRecruitingStatus != nil) ? .budiGreen : .budiGray
+            submitButton.backgroundColor = (selectedRecruitingStatus != nil) ? .primary : .textDisabled
         }
     }
     
@@ -78,7 +78,7 @@ private extension RecruitingStatusBottomViewController {
                 guard let self = self else { return }
                 self.isHeartButtonChecked.toggle()
                 self.heartButton.setImage(UIImage(systemName: self.isHeartButtonChecked ? "heart.fill" : "heart"), for: .normal)
-                self.heartButton.tintColor = self.isHeartButtonChecked ? UIColor.budiGreen : UIColor.budiGray
+                self.heartButton.tintColor = self.isHeartButtonChecked ? UIColor.primary : UIColor.textDisabled
                 self.view.layoutIfNeeded()
             }.store(in: &cancellables)
         
@@ -163,14 +163,12 @@ extension RecruitingStatusBottomViewController: UICollectionViewDataSource, UICo
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let cell = collectionView.cellForItem(at: indexPath) as? RecruitingStatusBottomCell else { return }
         let recruitingStatus = viewModel.state.recruitingStatuses.value[indexPath.row]
-
         selectedRecruitingStatus = recruitingStatus
         cell.isChecked = true
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         guard let cell = collectionView.cellForItem(at: indexPath) as? RecruitingStatusBottomCell else { return }
-        
         cell.isChecked = false
     }
 }

@@ -74,7 +74,7 @@ private extension HomeDetailViewController {
                 guard let self = self else { return }
                 self.isHeartButtonChecked.toggle()
                 self.heartButton.setImage(UIImage(systemName: self.isHeartButtonChecked ? "heart.fill" : "heart"), for: .normal)
-                self.heartButton.tintColor = self.isHeartButtonChecked ? UIColor.budiGreen : UIColor.budiGray
+                self.heartButton.tintColor = self.isHeartButtonChecked ? UIColor.primary : UIColor.textDisabled
             }.store(in: &cancellables)
 
         submitButton.tapPublisher

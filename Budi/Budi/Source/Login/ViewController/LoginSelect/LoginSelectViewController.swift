@@ -15,7 +15,7 @@ class LoginSelectViewController: UIViewController {
 
     weak var coordinator: LoginCoordinator?
     let loginInstance = NaverThirdPartyLoginConnection.getSharedInstance()
-    let appleAuthButton = ASAuthorizationAppleIDButton()
+    let appleAuthButton = ASAuthorizationAppleIDButton(type: .continue, style: .black)
 
     private let budiLogoImageView: UIImageView = {
         let imageView = UIImageView()

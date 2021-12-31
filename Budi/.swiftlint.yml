@@ -5,21 +5,26 @@ disabled_rules:
     - multiple_closures_with_trailing_closure
     - unused_closure_parameter
     - type_name
+    - comment_spacing
 
 excluded:
   - Pods
   
 type_body_length:
-  warning: 300
-  error: 500
+  warning: 500
+  error: 800
 
 function_body_length:
   warning: 100
   error: 200
   
 line_length:
-  warning: 300
-  error: 500
+  warning: 500
+  error: 800
+  
+file_length:
+  warning: 500
+  error: 800
 
 ignores_function_declarations: true
 ignores_comments: true

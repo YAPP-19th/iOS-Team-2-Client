@@ -41,10 +41,12 @@ final class HomeWritingViewModel: ViewModel {
     
     func createPost(_ accessToken: String, _ param: PostRequest, _ completion: @escaping (Result<Moya.Response, Error>) -> Void) {
         print("param is \(param)")
+        
         provider.request(.createPost(accessToken: accessToken, param: param)) { response in
             switch response {
             case .success(let response):
                 completion(.success(response))
+                
             case .failure(let error):
                 print(error.localizedDescription)
                 completion(.failure(error))
@@ -83,7 +85,7 @@ final class HomeWritingViewModel: ViewModel {
                     .map(\.data)
                     .sink(receiveCompletion: { _ in
                     }, receiveValue: { [weak self] positions in
-                        self?.state.developerPositions.send(!positions.isEmpty ? positions : ["개발"])
+                        self?.state.developerPositions.send(!positions.isEmpty ? positions : ["iOS 개발"])
                     })
                     .store(in: &self.cancellables)
                 
@@ -93,7 +95,7 @@ final class HomeWritingViewModel: ViewModel {
                     .map(\.data)
                     .sink(receiveCompletion: { _ in
                     }, receiveValue: { [weak self] positions in
-                        self?.state.designerPositions.send(!positions.isEmpty ? positions : ["디자인"])
+                        self?.state.designerPositions.send(!positions.isEmpty ? positions : ["?디자인"])
                     })
                     .store(in: &self.cancellables)
                 
@@ -103,7 +105,7 @@ final class HomeWritingViewModel: ViewModel {
                     .map(\.data)
                     .sink(receiveCompletion: { _ in
                     }, receiveValue: { [weak self] positions in
-                        self?.state.productManagerPositions.send(!positions.isEmpty ? positions : ["기획"])
+                        self?.state.productManagerPositions.send(!positions.isEmpty ? positions : ["?기획"])
                     })
                     .store(in: &self.cancellables)
                 

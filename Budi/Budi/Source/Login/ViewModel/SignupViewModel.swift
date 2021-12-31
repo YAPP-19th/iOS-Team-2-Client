@@ -9,6 +9,7 @@ import UIKit
 import Combine
 import NaverThirdPartyLogin
 import Moya
+import AuthenticationServices
 
 final class SignupViewModel: ViewModel {
     struct Action {
@@ -390,6 +391,10 @@ final class SignupViewModel: ViewModel {
                     .store(in: &self.cancellables)
             })
             .store(in: &cancellables)
+    }
+
+    func getAppleLoginInfo() {
+
     }
 
     // MARK: - 네이버 로그인 viewModel

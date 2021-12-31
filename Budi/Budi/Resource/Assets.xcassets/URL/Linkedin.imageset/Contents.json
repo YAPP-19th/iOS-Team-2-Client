@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "naverImage.png",
+      "filename" : "portfolio_linkedin.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "naverImage@2x.png",
+      "filename" : "portfolio_linkedin@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "naverImage@3x.png",
+      "filename" : "portfolio_linkedin@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

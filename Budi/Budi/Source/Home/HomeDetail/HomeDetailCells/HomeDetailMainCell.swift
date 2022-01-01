@@ -18,6 +18,7 @@ final class HomeDetailMainCell: UICollectionViewCell {
     @IBOutlet private weak var dateLabel: UILabel!
     @IBOutlet private weak var regionLabel: UILabel!
     @IBOutlet private weak var onlineInfoLabel: UILabel!
+    @IBOutlet private weak var onlineInfoLabelWidthConstraint: NSLayoutConstraint!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -30,6 +31,9 @@ final class HomeDetailMainCell: UICollectionViewCell {
         dateLabel.text = getDatePeriod(post.startDate, post.endDate)
         regionLabel.text = post.region
         onlineInfoLabel.text = post.onlineInfo
+        if post.onlineInfo == "오프라인" {
+            onlineInfoLabelWidthConstraint.constant = 68
+        }
         
         if let url = URL(string: post.imageUrl) {
             imageView.kf.setImage(with: url, placeholder: UIImage(named: "defaultBackground"))

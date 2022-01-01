@@ -159,6 +159,7 @@
                 <outlet property="dateLabel" destination="bXQ-xp-xdt" id="eT2-rL-ymD"/>
                 <outlet property="imageView" destination="9ey-eB-KcI" id="bVR-JN-ZGz"/>
                 <outlet property="onlineInfoLabel" destination="phW-pe-q0D" id="Eu4-hC-d8I"/>
+                <outlet property="onlineInfoLabelWidthConstraint" destination="9Y1-sj-IlJ" id="4FA-1W-Ohx"/>
                 <outlet property="regionLabel" destination="OV5-de-N7v" id="aqJ-6A-287"/>
                 <outlet property="titleLabel" destination="09E-N0-an2" id="yFh-L5-isw"/>
                 <outlet property="viewCountLabel" destination="OFr-7X-wTy" id="X4v-y8-wzK"/>

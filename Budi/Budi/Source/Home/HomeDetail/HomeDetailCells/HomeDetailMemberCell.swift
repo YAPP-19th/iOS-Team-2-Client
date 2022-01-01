@@ -13,7 +13,6 @@ final class HomeDetailMemberCell: UICollectionViewCell {
     
     var teamMembers: [TeamMember] = [] {
         didSet {
-            print("teamMembers 받음 \(teamMembers)")
             collectionView.reloadData()
         }
     }
@@ -22,10 +21,6 @@ final class HomeDetailMemberCell: UICollectionViewCell {
         super.awakeFromNib()
         configureCollectionView()
     }
-}
-
-private extension HomeDetailMemberCell {
-
 }
 
 extension HomeDetailMemberCell: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {

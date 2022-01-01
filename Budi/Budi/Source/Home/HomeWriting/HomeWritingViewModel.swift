@@ -42,14 +42,19 @@ final class HomeWritingViewModel: ViewModel {
     func createPost(_ accessToken: String, _ param: PostRequest, _ completion: @escaping (Result<Moya.Response, Error>) -> Void) {
         print("param is \(param)")
         
-        provider.request(.createPost(accessToken: accessToken, param: param)) { response in
-            switch response {
-            case .success(let response):
-                completion(.success(response))
-                
-            case .failure(let error):
-                print(error.localizedDescription)
-                completion(.failure(error))
+        provider.request(.createPost(accessToken: accessToken, param: param)) { result in
+            switch result {
+            case .success(let response): completion(.success(response))
+            case .failure(let error): completion(.failure(error))
+            }
+        }
+    }
+    
+    func convertImageToURL(_ param: ConvertImageRequest, _ completion: @escaping (Result<Moya.Response, Error>) -> Void) {        
+        provider.request(.convertImage(param: param)) { result in
+            switch result {
+            case .success(let response): completion(.success(response))
+            case .failure(let error): completion(.failure(error))
             }
         }
     }

@@ -124,10 +124,32 @@ extension HomeWritingImageBottomViewController: UIImagePickerControllerDelegate 
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         guard let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else { return }
-        print("image is \(image)")
-        // 이미지 jpeg로 변환, 용량 낮추기
-        // 이미지 URL 변환
-        imagePickerController.dismiss(animated: true, completion: nil)
+        guard let jpegData = image.jpegData(compressionQuality: 0.2) else {
+            imagePickerController.dismiss(animated: true, completion: nil)
+            return }
+        
+        let jpegDataString = String(decoding: jpegData, as: UTF8.self)
+        let param = ConvertImageRequest(imageString: jpegDataString)
+        
+        viewModel.convertImageToURL(param) { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case .success(let response):
+                print("response is \(response)")
+                
+                let json = try? response.mapJSON() as Any
+                print("json is \(String(describing: json))")
+                
+// MARK: - URL 생성완료 후 뷰모델에 저장
+                let selectedImageUrl: String = ""
+                self.viewModel.state.selectedImageUrl.value = selectedImageUrl
+                
+                self.imagePickerController.dismiss(animated: true, completion: nil)
+            case .failure(let error):
+                print("error is \(error.localizedDescription)")
+                self.imagePickerController.dismiss(animated: true, completion: nil)
+            }
+        }
     }
 }
 

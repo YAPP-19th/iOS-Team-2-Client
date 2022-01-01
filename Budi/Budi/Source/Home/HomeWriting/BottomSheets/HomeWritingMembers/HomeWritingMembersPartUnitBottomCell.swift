@@ -25,7 +25,7 @@ class HomeWritingMembersPartUnitBottomCell: UICollectionViewCell {
     }
 
     func configureUI(_ position: Position) {
-        label.text = position.rawValue
+        label.text = position.jobStringValue
         if let image = position.characterBackgroundGrayImage {
             imageView.image = image
         }

@@ -13,16 +13,30 @@ final class HomeDetailPersonCell: UICollectionViewCell {
     @IBOutlet private weak var nameLabel: UILabel!
     @IBOutlet private weak var jobLabel: UILabel!
     @IBOutlet private weak var addressLabel: UILabel!
+    @IBOutlet private weak var characterImageView: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
     }
     
-    func updateUI(imageUrl: String, name: String, job: String, address: String) {
-        nameLabel.text = name
-        addressLabel.text = address
-        jobLabel.text = job
-        if let url = URL(string: imageUrl) {
+    func updateUI(_ leader: Leader) {
+        nameLabel.text = leader.nickName
+        jobLabel.text = leader.position
+        addressLabel.text = leader.address
+        // MARK: - 서버에 leader.position 정보에 colorCode가 추가되면 수정 및 적용
+        let colorCode = 1
+        characterImageView.image = Position(rawValue: colorCode)?.characterImage
+        if let url = URL(string: leader.profileImageUrl) {
+            profileImageView.kf.setImage(with: url, placeholder: UIImage(named: "person.circle.fill"))
+        }
+    }
+    
+    func updateUI(_ teamMember: TeamMember) {
+        nameLabel.text = teamMember.nickName
+        jobLabel.text = teamMember.position.position
+        addressLabel.text = teamMember.address
+        characterImageView.image = Position(rawValue: teamMember.position.colorCode)?.characterImage
+        if let url = URL(string: teamMember.profileImageUrl) {
             profileImageView.kf.setImage(with: url, placeholder: UIImage(named: "person.circle.fill"))
         }
     }

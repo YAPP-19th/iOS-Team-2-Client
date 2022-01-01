@@ -22,20 +22,20 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kmd-td-P4v">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8pu-zm-swg">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8pu-zm-swg">
                                 <rect key="frame" x="16" y="14" width="64" height="64"/>
                                 <color key="tintColor" name="LightGray"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="64" id="dcV-3A-XJe"/>
                                     <constraint firstAttribute="height" constant="64" id="tKk-m6-Bk9"/>
                                 </constraints>
-                                <imageReference key="image" image="Developer" symbolScale="default"/>
+                                <imageReference key="image" image="Developer_Background" symbolScale="default"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                         <real key="value" value="1"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                        <color key="value" name="LightGray"/>
+                                        <color key="value" name="Border"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                         <real key="value" value="32"/>
@@ -70,12 +70,21 @@
                                     </label>
                                 </subviews>
                             </stackView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Developer" translatesAutoresizingMaskIntoConstraints="NO" id="frO-Oe-nMJ">
+                                <rect key="frame" x="60" y="48" width="30" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="83s-Nl-vXD"/>
+                                    <constraint firstAttribute="width" constant="30" id="EDi-Hv-IzK"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="frO-Oe-nMJ" firstAttribute="bottom" secondItem="8pu-zm-swg" secondAttribute="bottom" id="D5W-9w-DqB"/>
                             <constraint firstItem="949-d4-7ID" firstAttribute="leading" secondItem="8pu-zm-swg" secondAttribute="trailing" constant="14" id="Exa-pX-eUx"/>
                             <constraint firstItem="8pu-zm-swg" firstAttribute="centerY" secondItem="Kmd-td-P4v" secondAttribute="centerY" constant="-4" id="LKA-zC-LWO"/>
                             <constraint firstItem="8pu-zm-swg" firstAttribute="leading" secondItem="Kmd-td-P4v" secondAttribute="leading" constant="16" id="MQ4-b4-O3x"/>
+                            <constraint firstItem="frO-Oe-nMJ" firstAttribute="trailing" secondItem="8pu-zm-swg" secondAttribute="trailing" constant="10" id="Yjq-hF-3pH"/>
                             <constraint firstItem="949-d4-7ID" firstAttribute="centerY" secondItem="Kmd-td-P4v" secondAttribute="centerY" id="pY6-gh-4xV"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
@@ -102,15 +111,20 @@
             <size key="customSize" width="375" height="99"/>
             <connections>
                 <outlet property="addressLabel" destination="y6T-e6-DTy" id="LVJ-RG-qi1"/>
+                <outlet property="characterImageView" destination="frO-Oe-nMJ" id="us6-bN-HBw"/>
                 <outlet property="jobLabel" destination="Txh-Uf-rvT" id="8ri-U9-tfi"/>
                 <outlet property="nameLabel" destination="exv-vC-l1I" id="Via-S2-HAc"/>
                 <outlet property="profileImageView" destination="8pu-zm-swg" id="RCI-FF-WXs"/>
             </connections>
-            <point key="canvasLocation" x="367.39130434782612" y="98.772321428571431"/>
+            <point key="canvasLocation" x="367.39130434782612" y="98.4375"/>
         </collectionViewCell>
     </objects>
     <resources>
         <image name="Developer" width="40" height="40"/>
+        <image name="Developer_Background" width="80" height="80.5"/>
+        <namedColor name="Border">
+            <color red="0.87800002098083496" green="0.87800002098083496" blue="0.87800002098083496" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="DarkGray">
             <color red="0.36000001430511475" green="0.36000001430511475" blue="0.36000001430511475" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

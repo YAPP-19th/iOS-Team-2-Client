@@ -7,16 +7,24 @@
 
 import UIKit
 
-enum Position: String, CaseIterable {
-    case developer = "개발자"
-    case designer = "디자이너"
-    case productManager = "기획자"
+enum Position: Int, CaseIterable {
+    case developer = 1
+    case designer
+    case productManager
 
     var stringValue: String {
         switch self {
         case .developer: return "개발"
         case .designer: return "디자인"
         case .productManager: return "기획"
+        }
+    }
+    
+    var jobStringValue: String {
+        switch self {
+        case .developer: return "개발자"
+        case .designer: return "디자이너"
+        case .productManager: return "기획자"
         }
     }
     

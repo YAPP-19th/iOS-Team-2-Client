@@ -44,7 +44,7 @@ extension HomeDetailLeaderCell: UICollectionViewDataSource, UICollectionViewDele
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeDetailPersonCell.identifier, for: indexPath) as? HomeDetailPersonCell else { return UICollectionViewCell() }
-        cell.updateUI(imageUrl: leader.profileImageUrl, name: leader.nickName, job: leader.position, address: leader.address)
+        cell.updateUI(leader)
         return cell
     }
     

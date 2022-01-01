@@ -35,6 +35,7 @@ final class HomeWritingImageBottomViewController: UIViewController {
         }
     }
     
+    private let imagePickerController = UIImagePickerController()
     weak var delegate: HomeWritingImageBottomViewControllerDelegate?
     weak var coordinator: HomeCoordinator?
     private let viewModel: HomeWritingViewModel
@@ -53,6 +54,7 @@ final class HomeWritingImageBottomViewController: UIViewController {
         super.viewDidLoad()
         completeView.layer.addBorderTop()
         configureCollectionView()
+        configureImagePickerController()
         setPublisher()
     }
     
@@ -71,8 +73,9 @@ private extension HomeWritingImageBottomViewController {
         
         myAlbumButton.tapPublisher
             .receive(on: DispatchQueue.main)
-            .sink { _ in
-                print("내 앨범에서 추가")
+            .sink { [weak self] in
+                guard let self = self else { return }
+                self.present(self.imagePickerController, animated: true, completion: nil)
             }.store(in: &cancellables)
         
         completeButton.tapPublisher
@@ -110,6 +113,20 @@ private extension HomeWritingImageBottomViewController {
             self?.isBottomViewShown = false
         }
         animator.startAnimation()
+    }
+}
+
+// MARK: - ImagePickerController
+extension HomeWritingImageBottomViewController: UIImagePickerControllerDelegate & UINavigationControllerDelegate {
+    private func configureImagePickerController() {
+        imagePickerController.delegate = self
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        guard let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else { return }
+        // 이미지 용량 낮추기
+        // 이미지 URL 변환
+        imagePickerController.dismiss(animated: true, completion: nil)
     }
 }
 

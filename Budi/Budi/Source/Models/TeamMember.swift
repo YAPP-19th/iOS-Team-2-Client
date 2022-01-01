@@ -13,7 +13,7 @@ struct TeamMemberContainer: Codable {
 
 struct TeamMember: Codable {
     let memberId: Int
-    let nickName: String?
-    let profileImageUrl: URL?
-    let address: String?
+    let nickName: String
+    let profileImageUrl: URL
+    let address: String
 }

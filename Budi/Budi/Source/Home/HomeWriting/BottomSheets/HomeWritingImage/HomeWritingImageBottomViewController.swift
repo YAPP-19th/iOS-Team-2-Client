@@ -124,7 +124,8 @@ extension HomeWritingImageBottomViewController: UIImagePickerControllerDelegate 
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         guard let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else { return }
-        // 이미지 용량 낮추기
+        print("image is \(image)")
+        // 이미지 jpeg로 변환, 용량 낮추기
         // 이미지 URL 변환
         imagePickerController.dismiss(animated: true, completion: nil)
     }

@@ -6,6 +6,7 @@ disabled_rules:
     - unused_closure_parameter
     - type_name
     - comment_spacing
+    - colon
 
 excluded:
   - Pods

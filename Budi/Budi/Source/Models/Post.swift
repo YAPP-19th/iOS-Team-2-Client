@@ -36,6 +36,7 @@ struct Post: Decodable {
     let leader: Leader
     var isLiked: Bool
     var likeCount: Int
+    var isAlreadyApplied: Bool
     let ownerID: Int
     var positions: [PositionData]
 
@@ -56,6 +57,7 @@ struct Post: Decodable {
         case leader
         case isLiked
         case likeCount
+        case isAlreadyApplied
         case ownerID = "ownerId"
         case positions
     }
@@ -87,6 +89,7 @@ struct Post: Decodable {
         leader = (try? container.decode(Leader.self, forKey: .leader)) ?? Leader(leaderId: 0, nickName: "", profileImageUrl: "", address: "", position: "")
         isLiked = (try? container.decode(Bool.self, forKey: .isLiked)) ?? false
         likeCount = (try? container.decode(Int.self, forKey: .likeCount)) ?? -1
+        isAlreadyApplied = (try? container.decode(Bool.self, forKey: .isAlreadyApplied)) ?? false
         
         ownerID = (try? container.decode(Int.self, forKey: .ownerID)) ?? -1
         positions = (try? container.decode([PositionData].self, forKey: .positions)) ?? []
@@ -109,6 +112,7 @@ struct Post: Decodable {
         self.leader = Leader(leaderId: 0, nickName: "", profileImageUrl: "", address: "", position: "")
         self.isLiked = false
         self.likeCount = -1
+        self.isAlreadyApplied = false
         self.ownerID = -1
         self.positions = []
     }

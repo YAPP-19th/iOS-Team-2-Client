@@ -36,7 +36,6 @@ final class HomeDetailViewController: UIViewController {
         super.viewDidLoad()
         bottomView.layer.addBorderTop()
         configureNavigationBar()
-        configureHeartButton()
         configureCollectionView()
         bindViewModel()
         setPublisher()
@@ -61,6 +60,7 @@ private extension HomeDetailViewController {
             .receive(on: DispatchQueue.main)
             .sink(receiveValue: { [weak self] _ in
                 self?.configureHeartButton()
+                self?.configureSubmitButton()
                 self?.mainCollectionView.reloadData()
             }).store(in: &cancellables)
     }
@@ -71,6 +71,7 @@ private extension HomeDetailViewController {
             .sink { [weak self] _ in
                 guard let self = self else { return }
                 self.coordinator?.showRecruitingStatusBottomViewController(self, self.viewModel)
+                self.viewModel.state.post.value?.isAlreadyApplied = true
             }.store(in: &cancellables)
         
         heartButton.tapPublisher
@@ -107,6 +108,15 @@ private extension HomeDetailViewController {
         heartCountLabel.text = "\(likeCount)"
         heartButton.setImage(UIImage(systemName: isLiked ? "heart.fill" : "heart"), for: .normal)
         heartButton.tintColor = isLiked ? UIColor.primary : UIColor.textDisabled
+    }
+    
+    func configureSubmitButton() {
+        guard let isAlreadyApplied = viewModel.state.post.value?.isAlreadyApplied else { return }
+        if isAlreadyApplied {
+            submitButton.isEnabled = false
+            submitButton.setTitle("지원완료", for: .normal)
+            submitButton.backgroundColor = .textDisabled
+        }
     }
 }
 

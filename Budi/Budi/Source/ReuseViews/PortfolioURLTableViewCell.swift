@@ -31,9 +31,19 @@ class PortfolioURLTableViewCell: UITableViewCell {
 
     func configureParsing(url: String) {
         let sep = url.split(separator: "/")
-        print(sep)
+        if sep[0] == "https:" {
+            switch sep[1] {
+            case "www.behance.net":
+                portfolioUrlFaviconImageView.image = UIImage(named: "Behance")
+            case "www.linkedin.com":
+                portfolioUrlFaviconImageView.image = UIImage(named: "Linkedin")
+            case "www.instagram.com":
+                portfolioUrlFaviconImageView.image = UIImage(named: "Instagram")
+            default:
+                portfolioUrlFaviconImageView.image = UIImage(named: "Others")
+            }
+        }
         portfolioUrlLabel.text = url
-        portfolioUrlFaviconImageView.image = UIImage(named: "Linkedin")
     }
     
 }

@@ -18,7 +18,7 @@ class HomeWritingMembersUnitCell: UICollectionViewCell {
     }
     
     func configureUI(position: RecruitingPosition, colorCode: Int) {
-        positionLabel.text = position.position
+        positionLabel.text = position.positionName
         countLabel.text = "\(position.recruitingNumber)"
         imageView.image = Position(rawValue: colorCode)?.characterImage
     }

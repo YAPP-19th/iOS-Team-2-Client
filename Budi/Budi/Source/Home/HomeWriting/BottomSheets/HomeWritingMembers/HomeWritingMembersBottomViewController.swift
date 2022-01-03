@@ -123,7 +123,7 @@ extension HomeWritingMembersBottomViewController: HomeWritingMembersDetailPartBo
         selectedParts = parts
         var positions: [RecruitingPosition] = []
         selectedParts.forEach {
-            let recruitingPosition = RecruitingPosition(position: $0, recruitingNumber: 1)
+            let recruitingPosition = RecruitingPosition(positionName: $0, recruitingNumber: 1)
             positions.append(recruitingPosition)
         }
         recruitingPositions = positions

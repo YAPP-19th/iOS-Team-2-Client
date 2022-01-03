@@ -66,15 +66,24 @@ private extension HomeWritingViewController {
                 
                 let recruitingPositions = self.viewModel.state.recruitingPositions.value
                 
-                let param = PostRequest(imageUrl: imageUrl, title: title, categoryName: categoryName, startDate: startDate.convertStringyyyyMMddTHHmmSS(), endDate: endDate.convertStringyyyyMMddTHHmmSS(), onlineInfo: isOnline ? "온라인" : "오프라인", region: region, recruitingPositions: recruitingPositions, description: description)
+                let param = PostRequest(imageUrl: imageUrl,
+                                        title: title,
+                                        categoryName: categoryName,
+                                        startDate: startDate.convertStringyyyyMMddTHHmmSS(),
+                                        endDate: endDate.convertStringyyyyMMddTHHmmSS(),
+                                        onlineInfo: isOnline ? "온라인" : "오프라인",
+                                        region: region,
+                                        recruitingPositions: recruitingPositions,
+                                        description: description)
                 
                 self.viewModel.createPost(TEST_ACCESS_TOKEN, param) { result in
                     switch result {
-                    case .success(let response): print("response is \(response)")
+                    case .success(let response):
+                        print("response is \(response)")
                     case .failure(let error): print("error is \(error.localizedDescription)")
                     }
                 }
-                self.dismiss(animated: false, completion: nil)
+                self.navigationController?.popViewController(animated: true)
             }.store(in: &cancellables)
     }
     

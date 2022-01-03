@@ -812,6 +812,7 @@
 				5E820B91276A3699004A03E9 /* TeamMember.swift */,
 				5E820B93276A36DA004A03E9 /* RecruitingStatus.swift */,
 				5E58E6B4276BA73500ABBF1C /* PostRequest.swift */,
+				5E801F1D2782A74400FFC2D3 /* RecruitingPosition.swift */,
 				5E58E6B0276B588C00ABBF1C /* AppliesRequest.swift */,
 				B94DCA8227521648006A9E0D /* APIResponse.swift */,
 				A81D108B2764950F0022D610 /* Positions.swift */,
@@ -821,7 +822,6 @@
 				A8936FBB2777192500BE2C1D /* UserInfoUploadSuccess.swift */,
 				5ED53D6F277F8DEF002871CD /* LikePosts.swift */,
 				5E7601F72780BD000086BC6C /* ConvertImageRequest.swift */,
-				5E801F1D2782A74400FFC2D3 /* RecruitingPosition.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";

@@ -8,10 +8,10 @@
 import Foundation
 
 struct RecruitingPosition: Codable, Hashable {
-    let position: String
+    let positionName: String
     var recruitingNumber: Int
     
     static func == (lhs: RecruitingPosition, rhs: RecruitingPosition) -> Bool {
-        lhs.position == rhs.position
+        lhs.positionName == rhs.positionName
     }
 }

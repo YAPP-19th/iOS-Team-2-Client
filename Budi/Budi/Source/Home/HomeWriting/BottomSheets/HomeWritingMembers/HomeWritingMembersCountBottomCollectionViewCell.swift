@@ -53,7 +53,7 @@ final class HomeWritingMembersCountBottomCollectionViewCell: UICollectionViewCel
     
     func configureUI() {
         if let recruitingPosition = recruitingPosition {
-            partLabel.text = recruitingPosition.position
+            partLabel.text = recruitingPosition.positionName
             countLabel.text = String(recruitingPosition.recruitingNumber)
         }
     }

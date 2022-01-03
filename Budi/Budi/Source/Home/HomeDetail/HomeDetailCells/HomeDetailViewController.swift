@@ -132,7 +132,7 @@ extension HomeDetailViewController: RecruitingStatusBottomViewControllerDelegate
             case .success(let response):
                 print("response is \(response)")
                 self.dismiss(animated: false) {
-                    self.coordinator?.showGreetingAlertViewController(self)
+                    self.coordinator?.showGreetingAlertViewController(self, text: "지원해주셔서 감사합니다 팀 리더에게 반갑게 인사를 해보세요!")
                 }
             case .failure(let error):
                 print(error.localizedDescription)

@@ -8,8 +8,6 @@
 import UIKit
 
 final class LoginCoordinator: NavigationCoordinator {
-    private let historyViewModel = HistoryManagementViewModel()
-    private let viewModel = SignupViewModel()
     weak var navigationController: UINavigationController?
     private let storyboard = UIStoryboard(name: "Main", bundle: nil)
 
@@ -30,44 +28,46 @@ extension LoginCoordinator {
     func showSignupNormalViewController(userLogininfo: LoginUserInfo) {
         let viewController: PersonalInformationViewController = storyboard.instantiateViewController(identifier: PersonalInformationViewController.identifier) { [weak self] coder -> PersonalInformationViewController? in
             guard let self = self else { return nil }
-            self.viewModel.state.loginUserInfo = userLogininfo
-            return PersonalInformationViewController(coder: coder, viewModel: self.viewModel)
+            let viewModel = SignupViewModel()
+            viewModel.state.loginUserInfo = userLogininfo
+            return PersonalInformationViewController(coder: coder, viewModel: viewModel)
         }
         viewController.navigationItem.title = "회원가입"
         viewController.coordinator = self
         navigationController?.pushViewController(viewController, animated: true)
     }
 
-    func showHistoryManagementViewController() {
+    func showHistoryManagementViewController(viewModel: SignupViewModel) {
         let viewController: HistoryManagementViewController = storyboard.instantiateViewController(identifier: HistoryManagementViewController.identifier) { coder -> HistoryManagementViewController? in
-            return HistoryManagementViewController(coder: coder, viewModel: self.viewModel)
+
+            return HistoryManagementViewController(coder: coder, viewModel: viewModel)
         }
         viewController.navigationItem.title = "회원가입"
         viewController.coordinator = self
         navigationController?.pushViewController(viewController, animated: true)
     }
 
-    func showLocationSearchViewController() {
+    func showLocationSearchViewController(viewModel: SignupViewModel) {
         let viewController: LocationSearchViewController = storyboard.instantiateViewController(identifier: LocationSearchViewController.identifier) { coder -> LocationSearchViewController? in
-            return LocationSearchViewController(coder: coder, viewModel: self.viewModel)
+            return LocationSearchViewController(coder: coder, viewModel: viewModel)
         }
         viewController.navigationItem.title = "위치선택"
         viewController.coordinator = self
         navigationController?.pushViewController(viewController, animated: true)
     }
 
-    func showPositionViewController() {
+    func showPositionViewController(viewModel: SignupViewModel) {
         let viewController: PositionViewController = storyboard.instantiateViewController(identifier: PositionViewController.identifier) { coder -> PositionViewController? in
-            return PositionViewController(coder: coder, viewModel: self.viewModel)
+            return PositionViewController(coder: coder, viewModel: viewModel)
         }
         viewController.navigationItem.title = "회원가입"
         viewController.coordinator = self
         navigationController?.pushViewController(viewController, animated: true)
     }
 
-    func showCareerViewController() {
+    func showCareerViewController(viewModel: SignupViewModel) {
         let viewController: HistoryWriteViewController = storyboard.instantiateViewController(identifier: HistoryWriteViewController.identifier) { coder -> HistoryWriteViewController? in
-            return HistoryWriteViewController(coder: coder, viewModel: self.viewModel)
+            return HistoryWriteViewController(coder: coder, viewModel: viewModel)
         }
 
         viewController.coordinator = self
@@ -76,9 +76,9 @@ extension LoginCoordinator {
         navigationController?.present(viewController, animated: true, completion: nil)
     }
 
-    func showProjectViewController() {
+    func showProjectViewController(viewModel: SignupViewModel) {
         let viewController: HistoryWriteViewController = storyboard.instantiateViewController(identifier: HistoryWriteViewController.identifier) { coder -> HistoryWriteViewController? in
-            return HistoryWriteViewController(coder: coder, viewModel: self.viewModel)
+            return HistoryWriteViewController(coder: coder, viewModel: viewModel)
         }
         viewController.coordinator = self
         viewController.viewModel.action.switchView.send(ModalControl.project)
@@ -86,9 +86,9 @@ extension LoginCoordinator {
         navigationController?.present(viewController, animated: true, completion: nil)
     }
 
-    func showPortfolioController() {
+    func showPortfolioController(viewModel: SignupViewModel) {
         let viewController: PortfolioViewController = storyboard.instantiateViewController(identifier: PortfolioViewController.identifier) { coder -> PortfolioViewController? in
-            return PortfolioViewController(coder: coder, viewModel: self.viewModel)
+            return PortfolioViewController(coder: coder, viewModel: viewModel)
         }
         viewController.coordinator = self
         viewController.modalPresentationStyle = .overFullScreen

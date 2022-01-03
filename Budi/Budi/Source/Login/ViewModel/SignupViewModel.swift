@@ -313,6 +313,7 @@ final class SignupViewModel: ViewModel {
                         self?.state.positionData.send(nil)
                         print(error.localizedDescription)
                     }, receiveValue: { post in
+                        print("왜 안들어옴", post)
                         self.state.positionData.send(post)
                         self.state.selectedPosition.send(selectedPosition)
                     })

@@ -109,6 +109,7 @@ class PositionViewController: UIViewController {
 
     init?(coder: NSCoder, viewModel: SignupViewModel) {
         self.viewModel = viewModel
+        print("뷰 넘어와서", self.viewModel.state.loginUserInfo?.id)
         super.init(coder: coder)
     }
 
@@ -132,7 +133,7 @@ class PositionViewController: UIViewController {
         alertView.doneButton.tapPublisher
             .receive(on: DispatchQueue.main)
             .sink { _ in
-                self.coordinator?.showHistoryManagementViewController()
+                self.coordinator?.showHistoryManagementViewController(viewModel: self.viewModel)
             }
             .store(in: &cancellables)
 
@@ -384,7 +385,7 @@ class PositionViewController: UIViewController {
         positionDetailCollectionView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             positionDetailCollectionView.topAnchor.constraint(equalTo: detailPositionLabel.bottomAnchor, constant: 16),
-            positionDetailCollectionView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            positionDetailCollectionView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 16),
             positionDetailCollectionView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
             positionDetailCollectionView.heightAnchor.constraint(equalToConstant: 150)
         ])

@@ -106,11 +106,11 @@ class HistoryManagementViewController: UIViewController {
             self.viewModel.action.loadEditData.send(())
             self.modalViewBackgoundOn()
             if section == 0 {
-                self.coordinator?.showCareerViewController()
+                self.coordinator?.showCareerViewController(viewModel: self.viewModel)
             } else if section == 1 {
-                self.coordinator?.showProjectViewController()
+                self.coordinator?.showProjectViewController(viewModel: self.viewModel)
             } else {
-                self.coordinator?.showPortfolioController()
+                self.coordinator?.showPortfolioController(viewModel: self.viewModel)
             }
         })
         let delete = UIAlertAction(title: "삭제", style: .destructive, handler: { _ in
@@ -190,20 +190,21 @@ extension HistoryManagementViewController: UITableViewDelegate, UITableViewDataS
 
         cell.addButton.tapPublisher
             .sink { [weak self] _ in
-                self?.viewModel.action.cellSelectIndex.send([indexPath.section, indexPath.item])
-                self?.viewModel.action.setSignupInfoData.send(())
-                self?.viewModel.state.editData.send(nil)
+                guard let self = self else { return }
+                self.viewModel.action.cellSelectIndex.send([indexPath.section, indexPath.item])
+                self.viewModel.action.setSignupInfoData.send(())
+                self.viewModel.state.editData.send(nil)
                 if indexPath.section == 0 {
-                    self?.coordinator?.showCareerViewController()
-                    self?.section = indexPath.section
+                    self.coordinator?.showCareerViewController(viewModel: self.viewModel)
+                    self.section = indexPath.section
                 } else if indexPath.section == 1 {
-                    self?.coordinator?.showProjectViewController()
-                    self?.section = indexPath.section
+                    self.coordinator?.showProjectViewController(viewModel: self.viewModel)
+                    self.section = indexPath.section
                 } else if indexPath.section == 2 {
-                    self?.coordinator?.showPortfolioController()
-                    self?.section = indexPath.section
+                    self.coordinator?.showPortfolioController(viewModel: self.viewModel)
+                    self.section = indexPath.section
                 }
-                self?.modalViewBackgoundOn()
+                self.modalViewBackgoundOn()
             }
             .store(in: &cell.cancellables)
 

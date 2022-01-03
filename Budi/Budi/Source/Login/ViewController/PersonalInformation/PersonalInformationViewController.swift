@@ -52,7 +52,8 @@ class PersonalInformationViewController: UIViewController {
     @objc
     func nextAction() {
         viewModel.pushServer()
-        coordinator?.showPositionViewController()
+        print(self.viewModel.state.loginUserInfo?.id)
+        coordinator?.showPositionViewController(viewModel: self.viewModel)
     }
 
     private let scrollView: UIScrollView = {
@@ -68,7 +69,7 @@ class PersonalInformationViewController: UIViewController {
 
     @objc
     func searchAction() {
-        coordinator?.showLocationSearchViewController()
+        coordinator?.showLocationSearchViewController(viewModel: self.viewModel)
         NSLayoutConstraint.deactivate(defaultConstraint)
         NSLayoutConstraint.activate(newConstraint)
     }

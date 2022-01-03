@@ -11,19 +11,9 @@ struct RecruitingStatusContainer: Codable {
     let recruitingStatuses: [RecruitingStatus]
 }
 
-// Codable, Hashable -> Codable
 struct RecruitingStatus: Codable {
     let recruitingPositionId: Int
-    let positions: RecruitingPosition
+    let positions: PositionData
     let recruitingNumber: Int
     let approvedStatus: String
-    
-//    static func == (lhs: RecruitingStatus, rhs: RecruitingStatus) -> Bool {
-//        lhs.recruitingPositionId == rhs.recruitingPositionId
-//    }
-}
-
-struct RecruitingPosition: Codable {
-    let position: String
-    let colorCode: Int
 }

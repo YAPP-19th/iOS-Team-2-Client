@@ -161,6 +161,7 @@ extension HomeWritingViewController: LocationSearchViewControllerDelegate {
 
 extension HomeWritingViewController: HomeWritingMembersBottomViewControllerDelegate {
     func getRecruitingPositions(_ recruitingPositions: [RecruitingPosition]) {
+        print("recruitingPositions is \(recruitingPositions)")
         viewModel.state.recruitingPositions.value = recruitingPositions
         collectionView.reloadData()
         isValid()

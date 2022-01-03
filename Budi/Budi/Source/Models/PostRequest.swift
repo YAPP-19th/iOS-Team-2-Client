@@ -30,3 +30,8 @@ struct PostRequest: Codable {
         self.description = description
     }
 }
+
+struct RecruitingPosition: Codable {
+    let position: String
+    let recruitingNumber: Int
+}

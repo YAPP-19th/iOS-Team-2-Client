@@ -106,10 +106,8 @@ class HistoryManagementViewController: UIViewController {
             self.viewModel.action.loadEditData.send(())
             self.modalViewBackgoundOn()
             if section == 0 {
-                self.coordinator?.showCareerViewController(viewModel: self.viewModel)
-            } else if section == 1 {
                 self.coordinator?.showProjectViewController(viewModel: self.viewModel)
-            } else {
+            } else if section == 1 {
                 self.coordinator?.showPortfolioController(viewModel: self.viewModel)
             }
         })
@@ -195,12 +193,9 @@ extension HistoryManagementViewController: UITableViewDelegate, UITableViewDataS
                 self.viewModel.action.setSignupInfoData.send(())
                 self.viewModel.state.editData.send(nil)
                 if indexPath.section == 0 {
-                    self.coordinator?.showCareerViewController(viewModel: self.viewModel)
-                    self.section = indexPath.section
-                } else if indexPath.section == 1 {
                     self.coordinator?.showProjectViewController(viewModel: self.viewModel)
                     self.section = indexPath.section
-                } else if indexPath.section == 2 {
+                } else if indexPath.section == 1 {
                     self.coordinator?.showPortfolioController(viewModel: self.viewModel)
                     self.section = indexPath.section
                 }

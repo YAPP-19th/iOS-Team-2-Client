@@ -20,6 +20,14 @@ enum Position: Int, CaseIterable {
         }
     }
     
+    var jobStringEnglishValue: String {
+        switch self {
+        case .developer: return "developer"
+        case .designer: return "designer"
+        case .productManager: return "planner"
+        }
+    }
+    
     var jobStringValue: String {
         switch self {
         case .developer: return "개발자"

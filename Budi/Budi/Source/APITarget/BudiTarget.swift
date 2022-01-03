@@ -12,7 +12,7 @@ enum BudiTarget {
     case filteredPosts(type: Position, page: Int = 0, size: Int = 10)
     case createPost(accessToken: String, param: PostRequest)
     case post(accessToken: String, id: Int)
-    case detailPositions(postion: Position)
+    case detailPositions(position: Position)
     case createInfo(acessToken: String, param: CreateInfo)
     case teamMembers(id: Int)
     case recruitingStatuses(id: Int)
@@ -71,7 +71,7 @@ extension BudiTarget: TargetType {
         case .filteredPosts(_, let page, let size):
             return .requestParameters(parameters: ["page": page, "size": size], encoding: URLEncoding.default)
         case .detailPositions(let position):
-            return .requestParameters(parameters: ["position": position.stringValue], encoding: URLEncoding.default)
+            return .requestParameters(parameters: ["position": position.jobStringEnglishValue], encoding: URLEncoding.default)
         case .convertImage(let param): return .requestJSONEncodable(param)
         default: return .requestPlain
         }

@@ -85,32 +85,32 @@ final class HomeWritingViewModel: ViewModel {
                     .store(in: &self.cancellables)
                 
                 self.provider
-                    .requestPublisher(.detailPositions(postion: .developer))
+                    .requestPublisher(.detailPositions(position: .developer))
                     .map(APIResponse<[String]>.self)
                     .map(\.data)
                     .sink(receiveCompletion: { _ in
                     }, receiveValue: { [weak self] positions in
-                        self?.state.developerPositions.send(!positions.isEmpty ? positions : ["iOS 개발"])
+                        self?.state.developerPositions.send(positions)
                     })
                     .store(in: &self.cancellables)
                 
                 self.provider
-                    .requestPublisher(.detailPositions(postion: .designer))
+                    .requestPublisher(.detailPositions(position: .designer))
                     .map(APIResponse<[String]>.self)
                     .map(\.data)
                     .sink(receiveCompletion: { _ in
                     }, receiveValue: { [weak self] positions in
-                        self?.state.designerPositions.send(!positions.isEmpty ? positions : ["?디자인"])
+                        self?.state.designerPositions.send(positions)
                     })
                     .store(in: &self.cancellables)
                 
                 self.provider
-                    .requestPublisher(.detailPositions(postion: .productManager))
+                    .requestPublisher(.detailPositions(position: .productManager))
                     .map(APIResponse<[String]>.self)
                     .map(\.data)
                     .sink(receiveCompletion: { _ in
                     }, receiveValue: { [weak self] positions in
-                        self?.state.productManagerPositions.send(!positions.isEmpty ? positions : ["?기획"])
+                        self?.state.productManagerPositions.send(positions)
                     })
                     .store(in: &self.cancellables)
                 

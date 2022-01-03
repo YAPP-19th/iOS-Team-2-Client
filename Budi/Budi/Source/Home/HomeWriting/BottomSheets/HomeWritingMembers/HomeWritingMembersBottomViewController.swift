@@ -71,10 +71,6 @@ private extension HomeWritingMembersBottomViewController {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
                 guard let self = self else { return }
-//                self.selectedParts.forEach {
-//                    let position = RecruitingPosition(position: $0, recruitingNumber: 1)
-//                    self.recruitingPositions.append(position)
-//                }
                 self.delegate?.getRecruitingPositions(self.recruitingPositions)
                 self.hideBottomView()
             }.store(in: &cancellables)
@@ -117,7 +113,6 @@ private extension HomeWritingMembersBottomViewController {
 // MARK: - Delegate
 extension HomeWritingMembersBottomViewController: HomeWritingMembersPartBottomCellDelegate {
     func getPosition(_ position: Position) {
-        print("position is \(position)")
         selectedPosition = position
         collectionView.reloadData()
     }
@@ -125,7 +120,6 @@ extension HomeWritingMembersBottomViewController: HomeWritingMembersPartBottomCe
 
 extension HomeWritingMembersBottomViewController: HomeWritingMembersDetailPartBottomCellDelegate {
     func getSelectedParts(_ parts: [String]) {
-        print("selectedParts is \(parts)")
         selectedParts = parts
         var positions: [RecruitingPosition] = []
         selectedParts.forEach {

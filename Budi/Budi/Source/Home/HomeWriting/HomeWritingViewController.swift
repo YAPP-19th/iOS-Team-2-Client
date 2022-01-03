@@ -186,7 +186,7 @@ extension HomeWritingViewController: UICollectionViewDataSource, UICollectionVie
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        HomeWritingCellType.configureCellSize(collectionView, indexPath)
+        HomeWritingCellType.configureCellSize(collectionView, indexPath, viewModel.state.recruitingPositions.value.count)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {

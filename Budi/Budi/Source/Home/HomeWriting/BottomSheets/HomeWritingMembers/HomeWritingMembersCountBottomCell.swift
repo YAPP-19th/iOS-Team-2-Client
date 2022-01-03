@@ -7,24 +7,36 @@
 
 import UIKit
 
+protocol HomeWritingMembersCountBottomCellDelegate: AnyObject {
+    func getRecruitingPositions(_ recruitingPositions: [RecruitingPosition])
+}
+
 final class HomeWritingMembersCountBottomCell: UICollectionViewCell {
 
     @IBOutlet private weak var collectionView: UICollectionView!
     
-    var selectedParts: [String] = [] {
-        didSet {
-            collectionView.reloadData()
-        }
-    }
     var recruitingPositions: [RecruitingPosition] = [] {
         didSet {
             collectionView.reloadData()
         }
     }
     
+    weak var delegate: HomeWritingMembersCountBottomCellDelegate?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         configureCollectionView()
+    }
+}
+
+// MARK: - Delegate
+extension HomeWritingMembersCountBottomCell: HomeWritingMembersCountBottomCollectionViewCellDelegate {
+    func getRecruitingPosition(_ recruitingPosition: RecruitingPosition) {
+        print("recruitingPosition is \(recruitingPosition)")
+        if let index = recruitingPositions.firstIndex(of: recruitingPosition) {
+            recruitingPositions[index] = recruitingPosition
+        }
+        delegate?.getRecruitingPositions(recruitingPositions)
     }
 }
 
@@ -37,14 +49,13 @@ extension HomeWritingMembersCountBottomCell: UICollectionViewDataSource, UIColle
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        selectedParts.count
-//        recruitingPositions.count
+        recruitingPositions.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeWritingMembersCountBottomCollectionViewCell.identifier, for: indexPath) as? HomeWritingMembersCountBottomCollectionViewCell else { return UICollectionViewCell() }
-//        cell.recruitingPosition = recruitingPositions[indexPath.row]
-        cell.configureUI(selectedParts[indexPath.row])
+        cell.delegate = self
+        cell.recruitingPosition = recruitingPositions[indexPath.row]
         return cell
     }
 

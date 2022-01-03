@@ -71,10 +71,10 @@ private extension HomeWritingMembersBottomViewController {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
                 guard let self = self else { return }
-                self.selectedParts.forEach {
-                    let position = RecruitingPosition(position: $0, recruitingNumber: 1)
-                    self.recruitingPositions.append(position)
-                }
+//                self.selectedParts.forEach {
+//                    let position = RecruitingPosition(position: $0, recruitingNumber: 1)
+//                    self.recruitingPositions.append(position)
+//                }
                 self.delegate?.getRecruitingPositions(self.recruitingPositions)
                 self.hideBottomView()
             }.store(in: &cancellables)
@@ -127,6 +127,20 @@ extension HomeWritingMembersBottomViewController: HomeWritingMembersDetailPartBo
     func getSelectedParts(_ parts: [String]) {
         print("selectedParts is \(parts)")
         selectedParts = parts
+        var positions: [RecruitingPosition] = []
+        selectedParts.forEach {
+            let recruitingPosition = RecruitingPosition(position: $0, recruitingNumber: 1)
+            positions.append(recruitingPosition)
+        }
+        recruitingPositions = positions
+        collectionView.reloadData()
+    }
+}
+
+extension HomeWritingMembersBottomViewController: HomeWritingMembersCountBottomCellDelegate {
+    func getRecruitingPositions(_ recruitingPositions: [RecruitingPosition]) {
+        print("recruitingPositions is \(recruitingPositions)")
+        self.recruitingPositions = recruitingPositions
         collectionView.reloadData()
     }
 }
@@ -163,8 +177,8 @@ extension HomeWritingMembersBottomViewController: UICollectionViewDataSource, UI
             return cell
             
         case 2: guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeWritingMembersCountBottomCell.identifier, for: indexPath) as? HomeWritingMembersCountBottomCell else { return UICollectionViewCell() }
+            cell.delegate = self
             cell.recruitingPositions = recruitingPositions
-            cell.selectedParts = selectedParts
             return cell
         default: break
         }

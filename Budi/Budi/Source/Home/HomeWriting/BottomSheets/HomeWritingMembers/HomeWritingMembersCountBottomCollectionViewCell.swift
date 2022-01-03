@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol HomeWritingMembersCountBottomCollectionViewCellDelegate: AnyObject {
+    func getRecruitingPosition(_ recruitingPosition: RecruitingPosition)
+}
+
 final class HomeWritingMembersCountBottomCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet private weak var containerView: UIView!
@@ -19,19 +23,27 @@ final class HomeWritingMembersCountBottomCollectionViewCell: UICollectionViewCel
         }
     }
     
+    weak var delegate: HomeWritingMembersCountBottomCollectionViewCellDelegate?
+    
     @IBAction func minusButtonTapped(_ sender: Any) {
-//        if recruitingPosition?.recruitingNumber ?? 0 > 1 {
-//            recruitingPosition?.recruitingNumber -= 1
-//            if let count = recruitingPosition?.recruitingNumber {
-//                countLabel.text = String(count)
-//            }
-//        }
+        if recruitingPosition?.recruitingNumber ?? 0 > 1 {
+            recruitingPosition?.recruitingNumber -= 1
+            if let recruitingPosition = recruitingPosition {
+                delegate?.getRecruitingPosition(recruitingPosition)
+            }
+            if let count = recruitingPosition?.recruitingNumber {
+                countLabel.text = String(count)
+            }
+        }
     }
     @IBAction func plusButtonTapped(_ sender: Any) {
-//        recruitingPosition?.recruitingNumber += 1
-//        if let count = recruitingPosition?.recruitingNumber {
-//            countLabel.text = String(count)
-//        }
+        recruitingPosition?.recruitingNumber += 1
+        if let recruitingPosition = recruitingPosition {
+            delegate?.getRecruitingPosition(recruitingPosition)
+        }
+        if let count = recruitingPosition?.recruitingNumber {
+            countLabel.text = String(count)
+        }
     }
     
     override func awakeFromNib() {
@@ -39,14 +51,10 @@ final class HomeWritingMembersCountBottomCollectionViewCell: UICollectionViewCel
         containerView.layer.addBorderBottom()
     }
     
-    func configureUI(_ part: String) {
-        partLabel.text = part
-    }
-    
     func configureUI() {
-//        if let recruitingPosition = recruitingPosition {
-//            partLabel.text = recruitingPosition.positionName
-//            countLabel.text = String(recruitingPosition.recruitingNumber)
-//        }
+        if let recruitingPosition = recruitingPosition {
+            partLabel.text = recruitingPosition.position
+            countLabel.text = String(recruitingPosition.recruitingNumber)
+        }
     }
 }

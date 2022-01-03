@@ -71,13 +71,6 @@ final class SignupViewModel: ViewModel {
                     sectionTitle: ModalControl.project.stringValue ,
                     items: [
                         Item(itemInfo: ItemInfo(isInclude: false, buttonTitle: "프로젝트 이력을 추가해보세요"),
-                             description: "", endDate: "", name: "", nowWork: false, startDate: "", portfolioLink: "")]),
-
-                HistorySectionModel.init(
-                    type: .portfolio,
-                    sectionTitle: ModalControl.portfolio.stringValue ,
-                    items: [
-                        Item(itemInfo: ItemInfo(isInclude: false, buttonTitle: "포트폴리오를 추가해보세요"),
                              description: "", endDate: "", name: "", nowWork: false, startDate: "", portfolioLink: "")])
             ])
 
@@ -89,7 +82,6 @@ final class SignupViewModel: ViewModel {
 
         let userInfoUploadStatus = CurrentValueSubject<String?, Never>(nil)
     }
-
 
     let action = Action()
     var state = State()
@@ -328,7 +320,6 @@ final class SignupViewModel: ViewModel {
                 let accsessToken = self.state.budiLoginUserData.value
                 let careerList = self.state.sectionData.value[0].items
                 let projectList = self.state.sectionData.value[1].items
-                let portfolioList = self.state.sectionData.value[2].items
                 var uploadCareerList: [CareerList] = []
                 var uploadProjectList: [TList] = []
                 var uploadPortfolioList: [String] = []
@@ -359,18 +350,13 @@ final class SignupViewModel: ViewModel {
                     uploadProjectList.append(tmp)
                 }
 
-                // 포트폴리오 리스트 변환
-                for portfolio in portfolioList {
-                    uploadPortfolioList.append(portfolio.portfolioLink)
-                }
-
                 let param = CreateInfo(
                     basePosition: self.state.selectedPosition.value.integerValue,
                     careerList: uploadCareerList,
                     createInfoDescription: self.state.signUpPersonalInfoData.value.description,
                     memberAddress: self.state.signUpPersonalInfoData.value.location,
                     nickName: self.state.signUpPersonalInfoData.value.nickName,
-                    portfolioLink: uploadPortfolioList,
+                    portfolioLink: [],
                     positionList: self.state.selectPositionData.value ?? [],
                     projectList: uploadProjectList
                 )

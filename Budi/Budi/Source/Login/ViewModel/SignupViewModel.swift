@@ -386,46 +386,13 @@ final class SignupViewModel: ViewModel {
         let auth = "\(tokenType) \(accessToken)"
         var request = URLRequest(url: url)
         request.setValue(auth, forHTTPHeaderField: "Authorization")
-
-//        URLSession.shared.dataTaskPublisher(for: request)
-//            .subscribe(on: DispatchQueue.global(qos: .background))
-//            .receive(on: DispatchQueue.main)
-//            .tryMap { data, response -> Data in
-//                guard
-//                    let response = response as? HTTPURLResponse,
-//                    response.statusCode < 400 else { throw URLError(.badServerResponse) }
-//                return data
-//            }
-//            .decode(type: Response.self, decoder: JSONDecoder())
-//            .sink(receiveCompletion: { [weak self] completion in
-//                guard case let .failure(error) = completion else { return }
-//                print(error)
-//                self?.state.loginUserInfo.send(nil)
-//            }, receiveValue: { [weak self] posts in
-//                print()
-//                self?.state.loginUserInfo.send(posts.response)
-//            })
-//            .store(in: &self.cancellables)
-//        action.fetch
-//            .sink(receiveValue: { [weak self] _ in
-//                guard let self = self else { return }
-//
-//
-//            })
-//            .store(in: &cancellables)
-//
-//        action.refresh
-//            .sink { [weak self] _ in
-//                self?.action.fetch.send(())
-//            }.store(in: &cancellables)
-//
-//        action.fetch.send(())
     }
 
     // MARK: - Budi 서버에 POST 보내는 viewModel
     func pushServer() {
         guard let id = state.loginUserInfo?.id else { return }
-        let loginData = BudiLogin(loginId: id, name: state.loginUserInfo?.name, email: state.loginUserInfo?.email)
+        let replaceId = id.replacingOccurrences(of: ".", with: "")
+        let loginData = BudiLogin(loginId: "\(replaceId)")
         guard let uploadData = try? JSONEncoder().encode(loginData) else { return }
 
         guard let url = URL(string: .baseURLString+"/auth/login") else { return }
@@ -442,8 +409,8 @@ final class SignupViewModel: ViewModel {
             do {
                 // 서버에 로그인 시도 하고 받은 데이터
                 let decodeData = try JSONDecoder().decode(APIResponse<BudiLoginResponse>.self, from: data)
+
                 self.state.budiLoginUserData.send(decodeData.data.userId)
-                //print("로그인 데이터 :", self.state.budiLoginUserData.value)
                 print("로그인 유저 아이디 :", decodeData.data.userId)
                 print("로그인 고유 토큰 :", decodeData.data.accessToken)
             } catch {

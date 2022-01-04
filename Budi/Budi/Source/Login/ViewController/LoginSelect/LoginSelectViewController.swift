@@ -191,7 +191,12 @@ extension LoginSelectViewController: ASAuthorizationControllerDelegate {
         let credential = authorization.credential as? ASAuthorizationAppleIDCredential
         guard
               let hashcode = credential?.user else { return }
+        let num = credential.hashValue
+        print("애플로그인 넘버",num)
+        print(hashcode)
         let info = LoginUserInfo(nickname: nil, email: nil, name: nil, id: hashcode)
+
+
         coordinator?.showSignupNormalViewController(userLogininfo: info)
     }
 

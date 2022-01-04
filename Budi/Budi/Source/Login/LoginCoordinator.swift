@@ -30,6 +30,7 @@ extension LoginCoordinator {
             guard let self = self else { return nil }
             let viewModel = SignupViewModel()
             viewModel.state.loginUserInfo = userLogininfo
+            
             return PersonalInformationViewController(coder: coder, viewModel: viewModel)
         }
         viewController.navigationItem.title = "회원가입"

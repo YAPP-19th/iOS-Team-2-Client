@@ -52,7 +52,6 @@ class PersonalInformationViewController: UIViewController {
     @objc
     func nextAction() {
         viewModel.pushServer()
-        print(self.viewModel.state.loginUserInfo?.id)
         coordinator?.showPositionViewController(viewModel: self.viewModel)
     }
 
@@ -102,13 +101,6 @@ class PersonalInformationViewController: UIViewController {
     }
 
     private func bindViewModel() {
-//        viewModel.state.loginUserInfo
-//            .receive(on: DispatchQueue.main)
-//            .sink(receiveValue: { [weak self] data in
-//                print("네이버로 로그인 성공")
-//            })
-//            .store(in: &cancellables)
-
         viewModel.state.checkIdStatus
             .receive(on: DispatchQueue.main)
             .sink { [weak self] flag in

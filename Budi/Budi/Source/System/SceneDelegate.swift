@@ -26,7 +26,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.rootViewController = tabBarController
         window?.makeKeyAndVisible()
 
-//
+
 //        let navigationController = UINavigationController()
 //        guard let windowScene = scene as? UIWindowScene else { return }
 //

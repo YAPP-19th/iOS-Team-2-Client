@@ -52,7 +52,7 @@ class PersonalInformationViewController: UIViewController {
     @objc
     func nextAction() {
         viewModel.pushServer()
-        coordinator?.showPositionViewController()
+        coordinator?.showPositionViewController(viewModel: self.viewModel)
     }
 
     private let scrollView: UIScrollView = {
@@ -68,7 +68,7 @@ class PersonalInformationViewController: UIViewController {
 
     @objc
     func searchAction() {
-        coordinator?.showLocationSearchViewController()
+        coordinator?.showLocationSearchViewController(viewModel: self.viewModel)
         NSLayoutConstraint.deactivate(defaultConstraint)
         NSLayoutConstraint.activate(newConstraint)
     }
@@ -101,13 +101,6 @@ class PersonalInformationViewController: UIViewController {
     }
 
     private func bindViewModel() {
-//        viewModel.state.loginUserInfo
-//            .receive(on: DispatchQueue.main)
-//            .sink(receiveValue: { [weak self] data in
-//                print("네이버로 로그인 성공")
-//            })
-//            .store(in: &cancellables)
-
         viewModel.state.checkIdStatus
             .receive(on: DispatchQueue.main)
             .sink { [weak self] flag in

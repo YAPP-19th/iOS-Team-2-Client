@@ -385,7 +385,7 @@ class PositionViewController: UIViewController {
         positionDetailCollectionView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             positionDetailCollectionView.topAnchor.constraint(equalTo: detailPositionLabel.bottomAnchor, constant: 16),
-            positionDetailCollectionView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 16),
+            positionDetailCollectionView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 8),
             positionDetailCollectionView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
             positionDetailCollectionView.heightAnchor.constraint(equalToConstant: 150)
         ])

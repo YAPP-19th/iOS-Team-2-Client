@@ -16,7 +16,7 @@ class LoginSelectViewController: UIViewController  {
     weak var coordinator: LoginCoordinator?
     let loginInstance = NaverThirdPartyLoginConnection.getSharedInstance()
     let appleAuthButton = ASAuthorizationAppleIDButton(type: .continue, style: .black)
-
+    private var cancellables = Set<AnyCancellable>()
     private let budiLogoImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "BudiLogo")
@@ -138,40 +138,37 @@ extension LoginSelectViewController: NaverThirdPartyLoginConnectionDelegate {
             return
         }
 
-//        guard let tokenType = loginInstance?.tokenType else { return }
-//        guard let accessToken = loginInstance?.accessToken else { return }
-//        let urlStr = "https://openapi.naver.com/v1/nid/me"
-//
-//        guard let url = URL(string: urlStr) else { return }
-//        let auth = "\(tokenType) \(accessToken)"
-//        var request = URLRequest(url: url)
-//        request.setValue(auth, forHTTPHeaderField: "Authorization")
-//
-//        URLSession.shared.dataTaskPublisher(for: request)
-//            .subscribe(on: DispatchQueue.global(qos: .background))
-//            .receive(on: DispatchQueue.main)
-//            .tryMap { data, response -> Data in
-//                guard
-//                    let response = response as? HTTPURLResponse,
-//                    response.statusCode < 400 else { throw URLError(.badServerResponse) }
-//                return data
-//            }
-//            .decode(type: Response.self, decoder: JSONDecoder())
-//            .sink(receiveCompletion: { [weak self] completion in
-//                guard case let .failure(error) = completion else { return }
-//                print(error)
-//                self?.state.loginUserInfo.send(nil)
-//            }, receiveValue: { [weak self] posts in
-//                print()
-//                DispatchQueue.main.async {
-//        coordinator?.showSignupNormalViewController(userLogininfo: info)
-//                    coordinator?.showSignupNormalViewController()
-//                }
-//
-//                self?.state.loginUserInfo.send(posts.response)
-//            })
-//            .store(in: &self.cancellables)
+        guard let tokenType = loginInstance?.tokenType else { return }
+        guard let accessToken = loginInstance?.accessToken else { return }
+        let urlStr = "https://openapi.naver.com/v1/nid/me"
 
+        guard let url = URL(string: urlStr) else { return }
+        let auth = "\(tokenType) \(accessToken)"
+        var request = URLRequest(url: url)
+        request.setValue(auth, forHTTPHeaderField: "Authorization")
+
+        URLSession.shared.dataTaskPublisher(for: request)
+            .subscribe(on: DispatchQueue.global(qos: .background))
+            .receive(on: DispatchQueue.main)
+            .tryMap { data, response -> Data in
+                guard
+                    let response = response as? HTTPURLResponse,
+                    response.statusCode < 400 else { throw URLError(.badServerResponse) }
+                return data
+            }
+            .decode(type: Response.self, decoder: JSONDecoder())
+            .sink(receiveCompletion: { [weak self] completion in
+                guard let self = self else { return }
+                guard case let .failure(error) = completion else { return }
+                print(error)
+            }, receiveValue: { [weak self] posts in
+                guard let self = self else { return }
+                let info = LoginUserInfo(nickname: nil, email: nil, name: nil, id: posts.response.id)
+                DispatchQueue.main.async {
+                    self.coordinator?.showSignupNormalViewController(userLogininfo: info)
+                }
+            })
+            .store(in: &cancellables)
 
     }
 
@@ -194,7 +191,12 @@ extension LoginSelectViewController: ASAuthorizationControllerDelegate {
         let credential = authorization.credential as? ASAuthorizationAppleIDCredential
         guard
               let hashcode = credential?.user else { return }
+        let num = credential.hashValue
+        print("애플로그인 넘버",num)
+        print(hashcode)
         let info = LoginUserInfo(nickname: nil, email: nil, name: nil, id: hashcode)
+
+
         coordinator?.showSignupNormalViewController(userLogininfo: info)
     }
 

@@ -19,23 +19,23 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wuH-dm-qys">
-                        <rect key="frame" x="0.0" y="0.0" width="343" height="48"/>
+                        <rect key="frame" x="8" y="5" width="327" height="38"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ppZ-FT-cUB">
-                                <rect key="frame" x="16" y="10" width="28" height="28"/>
+                                <rect key="frame" x="16" y="5" width="28" height="28"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="28" id="Tcu-eT-WGf"/>
                                     <constraint firstAttribute="width" constant="28" id="V5T-kA-YK8"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="www.url.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pio-mV-HSC">
-                                <rect key="frame" x="52" y="14" width="283" height="21"/>
+                                <rect key="frame" x="52" y="10" width="267" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Lk-RE-qft">
-                                <rect key="frame" x="297" y="12" width="24" height="24"/>
+                                <rect key="frame" x="281" y="8" width="24" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="24" id="PmX-NP-twn"/>
                                     <constraint firstAttribute="width" constant="24" id="t1f-Lc-zey"/>
@@ -47,13 +47,15 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="ppZ-FT-cUB" firstAttribute="top" secondItem="wuH-dm-qys" secondAttribute="top" constant="10" id="0IM-4q-ZOg"/>
+                            <constraint firstItem="ppZ-FT-cUB" firstAttribute="top" secondItem="wuH-dm-qys" secondAttribute="top" constant="5" id="0IM-4q-ZOg"/>
                             <constraint firstItem="Pio-mV-HSC" firstAttribute="leading" secondItem="ppZ-FT-cUB" secondAttribute="trailing" constant="8" symbolic="YES" id="0wI-re-sCa"/>
                             <constraint firstAttribute="trailing" secondItem="9Lk-RE-qft" secondAttribute="trailing" constant="22" id="13b-9c-bWa"/>
-                            <constraint firstItem="9Lk-RE-qft" firstAttribute="top" secondItem="wuH-dm-qys" secondAttribute="top" constant="12" id="FiD-3U-rYX"/>
+                            <constraint firstAttribute="height" constant="38" id="BBN-kM-WIz"/>
+                            <constraint firstItem="9Lk-RE-qft" firstAttribute="top" secondItem="wuH-dm-qys" secondAttribute="top" constant="8" id="FiD-3U-rYX"/>
+                            <constraint firstAttribute="width" constant="327" id="K7Y-Yg-jV2"/>
                             <constraint firstAttribute="trailing" secondItem="Pio-mV-HSC" secondAttribute="trailing" constant="8" id="LSZ-ga-7bI"/>
                             <constraint firstItem="ppZ-FT-cUB" firstAttribute="leading" secondItem="wuH-dm-qys" secondAttribute="leading" constant="16" id="PIy-H8-PEm"/>
-                            <constraint firstItem="Pio-mV-HSC" firstAttribute="top" secondItem="wuH-dm-qys" secondAttribute="top" constant="14" id="yBr-v5-uOB"/>
+                            <constraint firstItem="Pio-mV-HSC" firstAttribute="top" secondItem="wuH-dm-qys" secondAttribute="top" constant="10" id="yBr-v5-uOB"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -69,10 +71,10 @@
                     </view>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="wuH-dm-qys" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="1QL-WB-JeK"/>
-                    <constraint firstAttribute="bottom" secondItem="wuH-dm-qys" secondAttribute="bottom" id="8Bf-th-tff"/>
-                    <constraint firstAttribute="trailing" secondItem="wuH-dm-qys" secondAttribute="trailing" id="8Kt-1m-4ML"/>
-                    <constraint firstItem="wuH-dm-qys" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="Fbf-Ju-fUI"/>
+                    <constraint firstItem="wuH-dm-qys" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="1QL-WB-JeK"/>
+                    <constraint firstAttribute="bottom" secondItem="wuH-dm-qys" secondAttribute="bottom" constant="5" id="8Bf-th-tff"/>
+                    <constraint firstAttribute="trailing" secondItem="wuH-dm-qys" secondAttribute="trailing" constant="8" id="8Kt-1m-4ML"/>
+                    <constraint firstItem="wuH-dm-qys" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="Fbf-Ju-fUI"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>

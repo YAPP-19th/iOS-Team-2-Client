@@ -17,8 +17,9 @@ class IntroduceView: UIView {
         return label
     }()
 
-    let introTextView: UITextView = {
-        let textView = UITextView()
+    let introTextView: UITextField = {
+        let textView = UITextField()
+        textView.placeholder = "버디에게 나를 소개해보세요"
         textView.font = UIFont.systemFont(ofSize: 14)
         textView.layer.borderWidth = 0.5
         textView.layer.borderColor = UIColor.systemGray5.cgColor
@@ -34,7 +35,6 @@ class IntroduceView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureLayout()
-        configureTextView()
     }
 
     required init?(coder: NSCoder) {
@@ -43,13 +43,6 @@ class IntroduceView: UIView {
 
     func loadTextView(_ text: String) {
         introTextView.text = text
-    }
-
-    private func configureTextView() {
-        introTextView.delegate = self
-        introTextView.text = "버디에게 나를 소개해보세요"
-        introTextView.contentInset = UIEdgeInsets(top: 8, left: 0, bottom: 0, right: 0)
-        introTextView.textColor = UIColor.lightGray
     }
 
     private func configureLayout() {
@@ -67,19 +60,4 @@ class IntroduceView: UIView {
     }
 }
 
-extension IntroduceView: UITextViewDelegate {
-    func textViewDidBeginEditing(_ textView: UITextView) {
-        if textView.textColor == UIColor.lightGray {
-            textView.text = nil
-            textView.textColor = UIColor.black
-        }
-    }
-
-    func textViewDidEndEditing(_ textView: UITextView) {
-        if textView.text.isEmpty {
-            textView.text = "핵심 목표와 성과, 문제를 해결한 방법이나 기술 등을 요약해주세요. 글자 제한은 최대 200자 입니다."
-            textView.textColor = UIColor.lightGray
-        }
-    }
-
-}
+extension IntroduceView: UITextViewDelegate {}

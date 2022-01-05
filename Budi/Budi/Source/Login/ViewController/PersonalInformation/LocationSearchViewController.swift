@@ -56,6 +56,9 @@ class LocationSearchViewController: UIViewController {
             case .success(let address):
                 NotificationCenter.default.post(name: NSNotification.Name("LocationNextActivation"), object: address)
                 self.delegate?.getLocation(address)
+                var changeData = self.viewModel.state.signUpPersonalInfoData.value
+                changeData.location = address
+                self.viewModel.state.signUpPersonalInfoData.send(changeData)
                 self.searchBar.text = address
                 self.nextButton.backgroundColor = UIColor.primary
                 self.nextButton.isEnabled = true
@@ -135,9 +138,6 @@ class LocationSearchViewController: UIViewController {
         tabBarController?.tabBar.isHidden = true
     }
 
-//    override func viewWillDisappear(_ animated: Bool) {
-//        tabBarController?.tabBar.isHidden = false
-//    }
 
     private func configureTableView() {
         searchTableView.register(SearchTableViewCell.self, forCellReuseIdentifier: SearchTableViewCell.cellId)
@@ -199,7 +199,9 @@ extension LocationSearchViewController: UISearchBarDelegate {
         let filteredLocations = LocationManager.shared.searchAddress(searchText)
         
         if !searchText.isEmpty {
-            correct.append(contentsOf: filteredLocations)
+            if correct != filteredLocations {
+                correct.append(contentsOf: filteredLocations)
+            }
             searchTableView.reloadData()
         } else {
             correct = []

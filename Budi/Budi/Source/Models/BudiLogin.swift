@@ -9,6 +9,4 @@ import Foundation
 
 struct BudiLogin: Codable {
     let loginId: String
-    let name: String?
-    let email: String?
 }

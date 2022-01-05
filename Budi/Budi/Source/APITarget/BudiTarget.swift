@@ -33,7 +33,7 @@ extension BudiTarget: TargetType {
         switch self {
         case .posts: return "/posts"
         case .detailPositions: return "/infos/positions"
-        case .createInfo: return "/members/createInfo"
+        case .createInfo: return "/members/infos"
         case .filteredPosts(let type, _, _): return "/posts/positions/\(type.stringValue)"
         case .createPost: return "/posts"
         case .post(_, let id): return "/posts/\(id)"

@@ -7,6 +7,8 @@
 
 import UIKit
 import NaverThirdPartyLogin
+import Firebase
+
 //swiftlint:disable
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -28,6 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         instance?.consumerSecret = kConsumerSecret
         // 애플리케이션 이름
         instance?.appName = kServiceAppName
+        FirebaseApp.configure()
         return true
     }
 

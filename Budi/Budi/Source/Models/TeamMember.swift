@@ -23,3 +23,19 @@ struct TeamMemberPosition: Codable {
     let position: String
     let colorCode: Int
 }
+
+struct SearchTeamMember: Codable {
+    let id: Int
+    let imgURL: String?
+    let nickName: String
+    let address: String
+    let introduce: String?
+    let position: [String]
+    let likeCount: Int
+
+    enum CodingKeys: String, CodingKey {
+        case id
+        case imgURL = "imgUrl"
+        case nickName, address, introduce, position, likeCount
+    }
+}

@@ -8,10 +8,10 @@
 import Foundation
 
 struct Response: Decodable {
-    let response: NaverData
+    let response: LoginUserInfo
 }
 
-struct NaverData: Decodable {
+struct LoginUserInfo: Decodable {
     let nickname: String?
     let email: String?
     let name: String?

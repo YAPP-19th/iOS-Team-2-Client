@@ -101,12 +101,12 @@ class PersonalInformationViewController: UIViewController {
     }
 
     private func bindViewModel() {
-        viewModel.state.naverData
-            .receive(on: DispatchQueue.main)
-            .sink(receiveValue: { [weak self] data in
-                print("네이버로 로그인 성공")
-            })
-            .store(in: &cancellables)
+//        viewModel.state.loginUserInfo
+//            .receive(on: DispatchQueue.main)
+//            .sink(receiveValue: { [weak self] data in
+//                print("네이버로 로그인 성공")
+//            })
+//            .store(in: &cancellables)
 
         viewModel.state.checkIdStatus
             .receive(on: DispatchQueue.main)

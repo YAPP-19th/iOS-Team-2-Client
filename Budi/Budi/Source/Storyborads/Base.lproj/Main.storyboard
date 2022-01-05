@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -191,13 +191,84 @@
                     <view key="view" contentMode="scaleToFill" id="i7K-ih-Aye">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="W2O-4K-16k">
+                                <rect key="frame" x="80" y="164" width="254" height="48"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sO1-Si-OLJ">
+                                        <rect key="frame" x="81" y="0.0" width="92" height="24"/>
+                                        <attributedString key="attributedText">
+                                            <fragment content="버디">
+                                                <attributes>
+                                                    <color key="NSColor" red="0.26274509800000001" green="0.2666666667" blue="0.74901960779999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <font key="NSFont" size="20" name="AppleSDGothicNeo-Bold"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                            <fragment content="를 통해">
+                                                <attributes>
+                                                    <color key="NSColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <font key="NSFont" size="20" name="AppleSDGothicNeo-Light"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                        </attributedString>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nJw-Ct-idu">
+                                        <rect key="frame" x="32.5" y="24" width="189" height="24"/>
+                                        <attributedString key="attributedText">
+                                            <fragment content="나라는 싹">
+                                                <attributes>
+                                                    <color key="NSColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <font key="NSFont" size="20" name="AppleSDGothicNeo-SemiBold"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                            <fragment content="을 틔워보세요!">
+                                                <attributes>
+                                                    <color key="NSColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <font key="NSFont" size="20" name="AppleSDGothicNeo-Light"/>
+                                                    <font key="NSOriginalFont" size="24" name="AppleSDGothicNeo-Light"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                        </attributedString>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LoginSelectBack" translatesAutoresizingMaskIntoConstraints="NO" id="5uV-s6-HnP">
+                                <rect key="frame" x="79" y="260" width="268" height="263"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="263" id="4jm-0v-VTS"/>
+                                </constraints>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LoginAlert" translatesAutoresizingMaskIntoConstraints="NO" id="xsy-oT-nAW">
+                                <rect key="frame" x="57" y="265" width="319" height="258"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="258" id="Fk8-kP-vzb"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="pTs-Tx-NI6"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="xsy-oT-nAW" firstAttribute="top" secondItem="W2O-4K-16k" secondAttribute="bottom" constant="53" id="1el-ED-3nX"/>
+                            <constraint firstItem="xsy-oT-nAW" firstAttribute="leading" secondItem="pTs-Tx-NI6" secondAttribute="leading" constant="57" id="7pm-n5-RTR"/>
+                            <constraint firstItem="pTs-Tx-NI6" firstAttribute="trailing" secondItem="5uV-s6-HnP" secondAttribute="trailing" constant="67" id="AK2-oV-wES"/>
+                            <constraint firstItem="W2O-4K-16k" firstAttribute="leading" secondItem="pTs-Tx-NI6" secondAttribute="leading" constant="80" id="blg-zS-ES4"/>
+                            <constraint firstItem="W2O-4K-16k" firstAttribute="top" secondItem="pTs-Tx-NI6" secondAttribute="top" constant="120" id="fqk-de-1k9"/>
+                            <constraint firstItem="pTs-Tx-NI6" firstAttribute="trailing" secondItem="W2O-4K-16k" secondAttribute="trailing" constant="80" id="j4V-K4-nbQ"/>
+                            <constraint firstItem="5uV-s6-HnP" firstAttribute="top" secondItem="W2O-4K-16k" secondAttribute="bottom" constant="48" id="n0J-Nh-Lwp"/>
+                            <constraint firstItem="5uV-s6-HnP" firstAttribute="leading" secondItem="pTs-Tx-NI6" secondAttribute="leading" constant="79" id="pVF-XB-eIr"/>
+                            <constraint firstItem="pTs-Tx-NI6" firstAttribute="trailing" secondItem="xsy-oT-nAW" secondAttribute="trailing" constant="38" id="x4t-cx-azg"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eUO-dB-Plf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="843" y="1"/>
+            <point key="canvasLocation" x="842.02898550724649" y="0.6696428571428571"/>
         </scene>
         <!--Personal Information View Controller-->
         <scene sceneID="g04-6z-NkS">
@@ -445,7 +516,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="collecitonView" destination="qrS-tt-w7e" id="9RF-hm-wFU"/>
+                        <outlet property="collectionView" destination="qrS-tt-w7e" id="9RF-hm-wFU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FQz-bG-gWP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1251,6 +1322,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="LoginAlert" width="199" height="151.5"/>
+        <image name="LoginSelectBack" width="268" height="263"/>
         <image name="checkmark.circle" catalog="system" width="128" height="121"/>
         <image name="checkmark.circle.fill" catalog="system" width="128" height="121"/>
         <image name="ellipsis" catalog="system" width="128" height="37"/>

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import simd
 
 final class TeamSearchCoordinator: NavigationCoordinator {
 
@@ -20,7 +21,9 @@ final class TeamSearchCoordinator: NavigationCoordinator {
 
     func start() {
         let viewController: TeamSearchViewController = storyboard.instantiateViewController(
-            identifier: TeamSearchViewController.identifier)
+            identifier: TeamSearchViewController.identifier) { coder -> TeamSearchViewController? in
+                return TeamSearchViewController(coder: coder, viewModel: TeamSearchViewModel())
+            }
         viewController.coordinator = self
         navigationController?.pushViewController(viewController, animated: true)
     }

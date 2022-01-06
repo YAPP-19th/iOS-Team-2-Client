@@ -13,6 +13,7 @@ final class MyBudiMainViewController: UIViewController {
     
     @IBOutlet private weak var collectionView: UICollectionView!
     
+    @IBOutlet weak var loginButton: UIButton!
     weak var coordinator: MyBudiCoordinator?
     private let viewModel: MyBudiMainViewModel
     private var cancellables = Set<AnyCancellable>()
@@ -30,6 +31,23 @@ final class MyBudiMainViewController: UIViewController {
         super.viewDidLoad()
         configureNavigationBar()
         configureCollectionView()
+        setPublisher()
+        self.viewModel.action.LoginStatusCheck.send(())
+    }
+
+    private func setPublisher() {
+        loginButton.tapPublisher
+            .sink { [weak self] _ in
+                guard let self = self else { return }
+                UserDefaults.standard.set(true, forKey: "isSwitch")
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let loginSelectViewController = storyboard.instantiateViewController(identifier: "LoginSelectViewController")
+                let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate
+
+                sceneDelegate?.moveLoginController(loginSelectViewController, animated: true)
+
+            }
+            .store(in: &cancellables)
     }
 }
 
@@ -72,6 +90,13 @@ extension MyBudiMainViewController: UICollectionViewDataSource, UICollectionView
             return cell
             
         case 3: guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MyBudiHelpCell.identifier, for: indexPath) as? MyBudiHelpCell else { return defaultCell }
+
+            cell.logoutButton.tapPublisher
+                .sink { [weak self] _ in
+                    guard let self = self else { return }
+                    UserDefaults.standard.removeObject(forKey: "accessToken")
+                }
+                .store(in: &cancellables)
             return cell
             
         default: break

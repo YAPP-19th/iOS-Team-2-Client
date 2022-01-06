@@ -17,6 +17,7 @@ enum BudiTarget {
     case teamMembers(id: Int)
     case recruitingStatuses(id: Int)
     case postDefaultImageUrls
+    case signUpStatusCheck(memberId: Int, header: LoginCheckModel)
     case applies(accessToken: String, param: AppliesRequest)
     case checkDuplicateName(name: String)
 }
@@ -28,6 +29,7 @@ extension BudiTarget: TargetType {
 
     var path: String {
         switch self {
+        case .signUpStatusCheck(let memberId,_): return "/members/budiDetails/\(memberId)"
         case .posts: return "/posts"
         case .detailPositions: return "/infos/positions"
         case .createInfo: return "/members/infos"
@@ -53,6 +55,7 @@ extension BudiTarget: TargetType {
 
     var task: Task {
         switch self {
+        case .signUpStatusCheck(_, _): return .requestParameters(parameters: ["accessToken": UserDefaults.standard.string(forKey: "accessToken") ?? ""], encoding: URLEncoding.default)
         case .createInfo(_, let info) : return .requestJSONEncodable(info)
         case .checkDuplicateName(let name):
             return .requestParameters(parameters: ["name": name], encoding: URLEncoding.default)

@@ -31,7 +31,7 @@ final class SignupViewModel: ViewModel {
         let cellSelectIndex = PassthroughSubject<[Int], Never>()
         let loadEditData = PassthroughSubject<Void, Never>()
         let deleteSignupInfoData = PassthroughSubject<Void, Never>()
-
+        let LoginStatusCheck = PassthroughSubject<Void, Never>()
     }
 
     struct State {
@@ -80,8 +80,9 @@ final class SignupViewModel: ViewModel {
         let signUpPersonalInfoData = CurrentValueSubject<PersonalInfo, Never>(PersonalInfo(nickName: "", location: "", description: ""))
 
         let userInfoUploadStatus = CurrentValueSubject<String?, Never>(nil)
-    }
 
+        let loginStatusData = CurrentValueSubject<LoginUserDetail?, Never>(nil)
+    }
 
     let action = Action()
     var state = State()
@@ -100,6 +101,38 @@ final class SignupViewModel: ViewModel {
         setSignupModel()
         signUpcellCRUD()
         postitionFunction()
+        loginStatusCheck()
+    }
+
+    func loginStatusCheck() {
+        action.LoginStatusCheck
+            .receive(on: DispatchQueue.global())
+            .sink { [weak self] _ in
+                guard let self = self else { return }
+                let loginModel = LoginCheckModel(accessToken: UserDefaults.standard.string(forKey: "accessToken") ?? "")
+                print("저장된 숫자:", UserDefaults.standard.integer(forKey: "memberId"))
+                print("저장된 엑세스 토큰:", UserDefaults.standard.string(forKey: "accessToken"))
+                self.provider
+                    .requestPublisher(.signUpStatusCheck(memberId: UserDefaults.standard.integer(forKey: "memberId"), header: loginModel))
+                    .map(APIResponse<LoginUserDetail>.self)
+                    .map(\.data)
+                    .sink(receiveCompletion: { [weak self] completion in
+                        guard let self = self else { return }
+                        switch completion {
+                        case .failure(let error):
+                            print(error.localizedDescription)
+                        case .finished:
+                            break
+                        }
+                        self.state.loginStatusData.send(nil)
+                    }, receiveValue: { post in
+                        print(post.id)
+                        print(post.nickName)
+                    })
+                    .store(in: &self.cancellables)
+
+            }
+            .store(in: &cancellables)
     }
 
     func postitionFunction() {
@@ -325,11 +358,13 @@ final class SignupViewModel: ViewModel {
                 var uploadPortfolioList: [String] = []
                 // 프로젝트 리스트 변환
                 for project in projectList {
-                    let tmp = TList(tListDescription: project.description,
+                    let tmp = TList(description: project.description,
                                     endDate: project.endDate,
                                     name: project.name,
                                     startDate: project.startDate)
-                    uploadProjectList.append(tmp)
+                    if !tmp.name.isEmpty {
+                        uploadProjectList.append(tmp)
+                    }
                 }
 
                 // 포트폴리오 리스트 변환
@@ -340,7 +375,7 @@ final class SignupViewModel: ViewModel {
                 let param = CreateInfo(
                     basePosition: self.state.selectedPosition.value.integerValue,
                     careerList: uploadCareerList,
-                    createInfoDescription: self.state.signUpPersonalInfoData.value.description,
+                    description: self.state.signUpPersonalInfoData.value.description,
                     memberAddress: self.state.signUpPersonalInfoData.value.location,
                     nickName: self.state.signUpPersonalInfoData.value.nickName,
                     portfolioLink: uploadPortfolioList,
@@ -348,7 +383,8 @@ final class SignupViewModel: ViewModel {
                     projectList: uploadProjectList
                 )
                 print("파라미터 ", param)
-                self.provider.requestPublisher(.createInfo(acessToken: accsessToken ?? "43d", param: param))
+                guard let accsessToken = accsessToken else { return }
+                self.provider.requestPublisher(.createInfo(acessToken: accsessToken, param: param))
                     .map(UserInfoUploadSuccess.self)
                     .sink(receiveCompletion: { [weak self] completion in
                         guard let self = self else { return }
@@ -358,6 +394,11 @@ final class SignupViewModel: ViewModel {
 
                     }, receiveValue: { post in
                         print(post)
+                        print(post.data.memberId)
+                        UserDefaults.standard.set(post.data.memberId, forKey: "memberId")
+                        UserDefaults.standard.set(accsessToken, forKey: "accessToken")
+                        print("저장된 숫자:", UserDefaults.standard.integer(forKey: "memberId"))
+                        print("저장된 엑세스 토큰:", UserDefaults.standard.string(forKey: "accessToken") ?? "")
                         self.state.userInfoUploadStatus.send(post.message)
 
                     })
@@ -410,7 +451,7 @@ final class SignupViewModel: ViewModel {
                 // 서버에 로그인 시도 하고 받은 데이터
                 let decodeData = try JSONDecoder().decode(APIResponse<BudiLoginResponse>.self, from: data)
 
-                self.state.budiLoginUserData.send(decodeData.data.userId)
+                self.state.budiLoginUserData.send(decodeData.data.accessToken)
                 print("로그인 유저 아이디 :", decodeData.data.userId)
                 print("로그인 고유 토큰 :", decodeData.data.accessToken)
             } catch {

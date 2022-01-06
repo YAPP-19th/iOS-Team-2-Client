@@ -12,6 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MyBudiMainViewController" customModule="Budi" customModuleProvider="target">
             <connections>
                 <outlet property="collectionView" destination="ogD-6a-m48" id="35N-Bz-eF3"/>
+                <outlet property="loginButton" destination="Aof-CS-hjd" id="OsJ-By-iXP"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -30,6 +31,11 @@
                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                     </collectionViewFlowLayout>
                 </collectionView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Aof-CS-hjd">
+                    <rect key="frame" x="287" y="762" width="61" height="31"/>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain" title="로그인"/>
+                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -37,7 +43,9 @@
                 <constraint firstItem="ogD-6a-m48" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="1hi-FH-CRy"/>
                 <constraint firstItem="ogD-6a-m48" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="2hb-8e-SFA"/>
                 <constraint firstItem="ogD-6a-m48" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="LPM-bH-ZYe"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Aof-CS-hjd" secondAttribute="trailing" constant="66" id="Y1i-tA-sey"/>
                 <constraint firstItem="ogD-6a-m48" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" constant="-16" id="hSq-9H-c9B"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Aof-CS-hjd" secondAttribute="bottom" constant="69" id="r3T-Ed-tna"/>
             </constraints>
             <point key="canvasLocation" x="131.8840579710145" y="69.642857142857139"/>
         </view>

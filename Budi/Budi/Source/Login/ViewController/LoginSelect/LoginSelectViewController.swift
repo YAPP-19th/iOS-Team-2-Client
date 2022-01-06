@@ -12,11 +12,11 @@ import Combine
 import CombineCocoa
 
 class LoginSelectViewController: UIViewController  {
-
     weak var coordinator: LoginCoordinator?
     let loginInstance = NaverThirdPartyLoginConnection.getSharedInstance()
     let appleAuthButton = ASAuthorizationAppleIDButton(type: .continue, style: .black)
     private var cancellables = Set<AnyCancellable>()
+    @IBOutlet weak var dismissButton: UIButton!
     private let budiLogoImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "BudiLogo")
@@ -27,7 +27,6 @@ class LoginSelectViewController: UIViewController  {
 
     private let helloLabel: UILabel = {
         let label = UILabel()
-
         label.text = "버디를 통해 나라는 싹을 틔워보세요!"
         label.font = UIFont.systemFont(ofSize: 15)
         label.textAlignment = .center
@@ -76,6 +75,13 @@ class LoginSelectViewController: UIViewController  {
 
     private func setPublisher() {
         appleAuthButton.addTarget(self, action: #selector(appleLoginAction), for: .touchUpInside)
+
+        dismissButton.tapPublisher
+            .sink { [weak self] _ in
+                guard let self = self else { return }
+                self.navigationController?.dismiss(animated: true, completion: nil)
+            }
+            .store(in: &cancellables)
     }
 
     @objc
@@ -192,11 +198,7 @@ extension LoginSelectViewController: ASAuthorizationControllerDelegate {
         guard
               let hashcode = credential?.user else { return }
         let num = credential.hashValue
-        print("애플로그인 넘버",num)
-        print(hashcode)
         let info = LoginUserInfo(nickname: nil, email: nil, name: nil, id: hashcode)
-
-
         coordinator?.showSignupNormalViewController(userLogininfo: info)
     }
 

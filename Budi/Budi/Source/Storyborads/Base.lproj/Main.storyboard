@@ -250,6 +250,11 @@
                                     <constraint firstAttribute="height" constant="258" id="Fk8-kP-vzb"/>
                                 </constraints>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="close" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k1k-4p-khc">
+                                <rect key="frame" x="30" y="44" width="41.5" height="32"/>
+                                <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <buttonConfiguration key="configuration" style="plain" image="xmark" catalog="system"/>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="pTs-Tx-NI6"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -257,14 +262,19 @@
                             <constraint firstItem="xsy-oT-nAW" firstAttribute="top" secondItem="W2O-4K-16k" secondAttribute="bottom" constant="53" id="1el-ED-3nX"/>
                             <constraint firstItem="xsy-oT-nAW" firstAttribute="leading" secondItem="pTs-Tx-NI6" secondAttribute="leading" constant="57" id="7pm-n5-RTR"/>
                             <constraint firstItem="pTs-Tx-NI6" firstAttribute="trailing" secondItem="5uV-s6-HnP" secondAttribute="trailing" constant="67" id="AK2-oV-wES"/>
+                            <constraint firstItem="k1k-4p-khc" firstAttribute="leading" secondItem="pTs-Tx-NI6" secondAttribute="leading" constant="30" id="Z6Y-5M-RjN"/>
                             <constraint firstItem="W2O-4K-16k" firstAttribute="leading" secondItem="pTs-Tx-NI6" secondAttribute="leading" constant="80" id="blg-zS-ES4"/>
                             <constraint firstItem="W2O-4K-16k" firstAttribute="top" secondItem="pTs-Tx-NI6" secondAttribute="top" constant="120" id="fqk-de-1k9"/>
                             <constraint firstItem="pTs-Tx-NI6" firstAttribute="trailing" secondItem="W2O-4K-16k" secondAttribute="trailing" constant="80" id="j4V-K4-nbQ"/>
                             <constraint firstItem="5uV-s6-HnP" firstAttribute="top" secondItem="W2O-4K-16k" secondAttribute="bottom" constant="48" id="n0J-Nh-Lwp"/>
+                            <constraint firstItem="k1k-4p-khc" firstAttribute="top" secondItem="pTs-Tx-NI6" secondAttribute="top" id="nfi-AX-jN4"/>
                             <constraint firstItem="5uV-s6-HnP" firstAttribute="leading" secondItem="pTs-Tx-NI6" secondAttribute="leading" constant="79" id="pVF-XB-eIr"/>
                             <constraint firstItem="pTs-Tx-NI6" firstAttribute="trailing" secondItem="xsy-oT-nAW" secondAttribute="trailing" constant="38" id="x4t-cx-azg"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="dismissButton" destination="k1k-4p-khc" id="qb3-7l-bHU"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eUO-dB-Plf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1332,6 +1342,7 @@
         <image name="locationAddButton" width="24" height="24"/>
         <image name="paperplane.fill" catalog="system" width="128" height="118"/>
         <image name="plus.circle.fill" catalog="system" width="128" height="121"/>
+        <image name="xmark" catalog="system" width="128" height="113"/>
         <namedColor name="DarkGray">
             <color red="0.36000001430511475" green="0.36000001430511475" blue="0.36000001430511475" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

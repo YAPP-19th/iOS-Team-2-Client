@@ -9,6 +9,7 @@ import UIKit
 
 final class MyBudiHelpCell: UICollectionViewCell {
 
+    @IBOutlet weak var logoutButton: UIButton!
     override func awakeFromNib() {
         super.awakeFromNib()
     }

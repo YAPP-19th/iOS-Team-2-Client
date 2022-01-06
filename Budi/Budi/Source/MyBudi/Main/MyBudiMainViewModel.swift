@@ -14,9 +14,11 @@ class MyBudiMainViewModel: ViewModel {
     struct Action {
         let fetch = PassthroughSubject<Void, Never>()
         let refresh = PassthroughSubject<Void, Never>()
+        let LoginStatusCheck = PassthroughSubject<Void, Never>()
     }
 
     struct State {
+        let loginStatusData = CurrentValueSubject<LoginUserDetail?, Never>(nil)
     }
     
     let action = Action()
@@ -35,5 +37,39 @@ class MyBudiMainViewModel: ViewModel {
             }.store(in: &cancellables)
 
         action.fetch.send(())
+
+        loginStatusCheck()
+    }
+
+    func loginStatusCheck() {
+        action.LoginStatusCheck
+            .receive(on: DispatchQueue.global())
+            .sink { [weak self] _ in
+                guard let self = self else { return }
+                let loginModel = LoginCheckModel(accessToken: UserDefaults.standard.string(forKey: "accessToken") ?? "")
+                print("저장된 숫자:", UserDefaults.standard.integer(forKey: "memberId"))
+                print("저장된 엑세스 토큰:", UserDefaults.standard.string(forKey: "accessToken"))
+                self.provider
+                    .requestPublisher(.signUpStatusCheck(memberId: UserDefaults.standard.integer(forKey: "memberId"), header: loginModel))
+                    .map(APIResponse<LoginUserDetail>.self)
+                    .map(\.data)
+                    .sink(receiveCompletion: { [weak self] completion in
+                        guard let self = self else { return }
+                        switch completion {
+                        case .failure(let error):
+                            print("일로")
+                            print(error.localizedDescription)
+                        case .finished:
+                            break
+                        }
+                        self.state.loginStatusData.send(nil)
+                    }, receiveValue: { post in
+                        print(post.id)
+                        print(post.nickName)
+                    })
+                    .store(in: &self.cancellables)
+
+            }
+            .store(in: &cancellables)
     }
 }

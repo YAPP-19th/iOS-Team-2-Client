@@ -77,6 +77,9 @@
                 <constraint firstAttribute="trailing" secondItem="WLZ-CM-HOo" secondAttribute="trailing" id="UNc-EJ-a3B"/>
                 <constraint firstAttribute="bottom" secondItem="WLZ-CM-HOo" secondAttribute="bottom" id="r0f-4e-j4p"/>
             </constraints>
+            <connections>
+                <outlet property="logoutButton" destination="bWi-dH-UvD" id="XUb-Bi-Th8"/>
+            </connections>
             <point key="canvasLocation" x="131.15942028985509" y="81.696428571428569"/>
         </collectionViewCell>
     </objects>

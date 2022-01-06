@@ -15,6 +15,8 @@ final class HomeWritingViewController: UIViewController {
     
     private var isStartDate: Bool = true
     
+    private var imageBottomViewController: HomeWritingImageBottomViewController?
+    
     weak var coordinator: HomeCoordinator?
     private let viewModel: HomeWritingViewModel
     private var cancellables = Set<AnyCancellable>()
@@ -30,31 +32,56 @@ final class HomeWritingViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureNavigationBar()
-        configureCollectionView()
         bindViewModel()
         setPublisher()
+        
+        configureImageButtonViewController()
+        configureNavigationBar()
+        configureCollectionView()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         tabBarController?.tabBar.isHidden = true
     }
-    
+
     override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
         tabBarController?.tabBar.isHidden = false
     }
 }
 
 private extension HomeWritingViewController {
+    func configureImageButtonViewController() {
+        imageBottomViewController = {
+            let viewController: HomeWritingImageBottomViewController = HomeWritingImageBottomViewController(nibName: HomeWritingImageBottomViewController.identifier, bundle: nil, viewModel: viewModel)
+            viewController.modalPresentationStyle = .overCurrentContext
+            viewController.delegate = self as HomeWritingImageBottomViewControllerDelegate
+            viewController.coordinator = coordinator
+            return viewController
+        }()
+    }
+    
     func bindViewModel() {
+        viewModel.state.selectedImageUrl
+            .receive(on: DispatchQueue.main)
+            .sink(receiveValue: { [weak self] _ in
+                self?.collectionView.reloadData()
+            }).store(in: &cancellables)
+        
+        viewModel.state.defaultImageUrls
+            .receive(on: DispatchQueue.main)
+            .sink(receiveValue: { [weak self] _ in
+                self?.collectionView.reloadData()
+            }).store(in: &cancellables)
     }
     
     func setPublisher() {
         completeButton.tapPublisher
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
-                guard let self = self else { return }
-                guard let imageUrl = self.viewModel.state.selectedImageUrl.value,
+                guard let self = self,
+                      let imageUrl = self.viewModel.state.selectedImageUrl.value,
                       let title = self.viewModel.state.name.value,
                       let categoryName = self.viewModel.state.part.value,
                       let startDate = self.viewModel.state.startDate.value,
@@ -64,18 +91,25 @@ private extension HomeWritingViewController {
                       !self.viewModel.state.recruitingPositions.value.isEmpty,
                       let description = self.viewModel.state.description.value else { return }
                 
-                let param = PostRequest(imageUrl: imageUrl, title: title, categoryName: categoryName, startDate: startDate, endDate: endDate, onlineInfo: isOnline ? "온라인" : "오프라인", region: region, recruitingPositions: self.viewModel.state.recruitingPositions.value, description: description)
-                let testAccessToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJFeHBpcmVkUGVyaW9kIjoiMzYwMCIsInVzZXJJZCI6ImFhZGEyIiwiaXNzdWVyIjoiU1lKX0lTU1VFIiwibWVtYmVySWQiOjEsImV4cCI6MTY3MDQyMTM3MH0.LkYIbZwO3zrtvDqgxNFe6IxtKovBGgu28t3g_8zS7DY"
+                let recruitingPositions = self.viewModel.state.recruitingPositions.value
                 
-                print(param)
+                let param = PostRequest(imageUrl: imageUrl,
+                                        title: title,
+                                        categoryName: categoryName,
+                                        startDate: startDate.convertStringyyyyMMddTHHmmSS(),
+                                        endDate: endDate.convertStringyyyyMMddTHHmmSS(),
+                                        onlineInfo: isOnline ? "온라인" : "오프라인",
+                                        region: region,
+                                        recruitingPositions: recruitingPositions,
+                                        description: description)
                 
-                self.viewModel.createPost(testAccessToken, param) { result in
+                self.viewModel.createPost(.testAccessToken, param) { result in
                     switch result {
-                    case .success(let response): print(response)
-                    case .failure(let error): print(error.localizedDescription)
+                    case .success(let response): break
+                    case .failure(let error): print("error is \(error.localizedDescription)")
                     }
                 }
-                self.dismiss(animated: false, completion: nil)
+                self.navigationController?.popViewController(animated: true)
             }.store(in: &cancellables)
     }
     
@@ -103,7 +137,6 @@ private extension HomeWritingViewController {
 // MARK: - Delegate
 extension HomeWritingViewController: HomeWritingImageBottomViewControllerDelegate {
     func getImageUrlString(_ urlString: String) {
-        print("urlString is \(urlString)")
         viewModel.state.selectedImageUrl.value = urlString
         collectionView.reloadData()
         isValid()
@@ -112,7 +145,6 @@ extension HomeWritingViewController: HomeWritingImageBottomViewControllerDelegat
 
 extension HomeWritingViewController: HomeWritingNameCellDelegate {
     func changeName(_ name: String) {
-        print("name is \(name)")
         viewModel.state.name.value = name
         isValid()
     }
@@ -120,7 +152,6 @@ extension HomeWritingViewController: HomeWritingNameCellDelegate {
 
 extension HomeWritingViewController: HomeWritingPartBottomViewControllerDelegate {
     func getPart(_ part: String) {
-        print("part is \(part)")
         viewModel.state.part.value = part
         collectionView.reloadData()
         isValid()
@@ -129,15 +160,14 @@ extension HomeWritingViewController: HomeWritingPartBottomViewControllerDelegate
 
 extension HomeWritingViewController: HomeWritingDurationCellDelegate {
     func showDatePickerBottomView(_ isStartDate: Bool) {
-        print(isStartDate ? "isStartDate" : "isEndDate")
         self.isStartDate = isStartDate
-        coordinator?.showDatePickerViewController(self)
+        let limitDate: Date? = isStartDate ? viewModel.state.endDate.value : viewModel.state.startDate.value
+        coordinator?.showDatePickerViewController(self, isStartDate, limitDate)
         isValid()
     }}
 
 extension HomeWritingViewController: DatePickerBottomViewControllerDelegate {
     func getDateFromDatePicker(_ date: Date) {
-        print("date is \(date)")
         if isStartDate {
             viewModel.state.startDate.value = date
         } else {
@@ -150,16 +180,14 @@ extension HomeWritingViewController: DatePickerBottomViewControllerDelegate {
 
 extension HomeWritingViewController: HomeWritingOnlineCellDelegate {
     func changeOnline(_ isOnline: Bool) {
-        print("isOnline is \(isOnline)")
         viewModel.state.isOnline.value = isOnline
         collectionView.reloadData()
         isValid()
     }
 }
 
-extension HomeWritingViewController: LocationSearchViewControllerDelegate {
+extension HomeWritingViewController: HomeLocationSearchViewControllerDelegate {
     func getLocation(_ location: String) {
-        print("location is \(location)")
         viewModel.state.area.value = location
         collectionView.reloadData()
         isValid()
@@ -168,7 +196,6 @@ extension HomeWritingViewController: LocationSearchViewControllerDelegate {
 
 extension HomeWritingViewController: HomeWritingMembersBottomViewControllerDelegate {
     func getRecruitingPositions(_ recruitingPositions: [RecruitingPosition]) {
-        print("recruitingPositions is \(recruitingPositions)")
         viewModel.state.recruitingPositions.value = recruitingPositions
         collectionView.reloadData()
         isValid()
@@ -177,7 +204,6 @@ extension HomeWritingViewController: HomeWritingMembersBottomViewControllerDeleg
 
 extension HomeWritingViewController: HomeWritingDescriptionCellDelegate {
     func changeDescription(_ description: String) {
-        print("description is \(description)")
         viewModel.state.description.value = description
         isValid()
     }
@@ -194,7 +220,7 @@ extension HomeWritingViewController: UICollectionViewDataSource, UICollectionVie
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        HomeWritingCellType.configureCellSize(collectionView, indexPath)
+        HomeWritingCellType.configureCellSize(collectionView, indexPath, viewModel.state.recruitingPositions.value.count)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
@@ -209,13 +235,21 @@ extension HomeWritingViewController: UICollectionViewDataSource, UICollectionVie
         case 0: guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeWritingImageCell.identifier, for: indexPath) as? HomeWritingImageCell else { return cell }
             if let url = viewModel.state.selectedImageUrl.value {
                 cell.configureUI(url)
+            } else {
+                let ramdomNumber = Int(arc4random_uniform(9))
+                let defaultImageUrls = viewModel.state.defaultImageUrls.value
+                if defaultImageUrls.count >= 9 {
+                    let randomUrl = defaultImageUrls[ramdomNumber]
+                    viewModel.state.selectedImageUrl.value = randomUrl
+                    cell.configureUI(randomUrl)
+                }
             }
             cell.imageChangeButton.tapPublisher
                 .receive(on: DispatchQueue.main)
                 .sink { [weak self] _ in
-                    guard let self = self else { return }
-                    self.coordinator?.showWritingImageBottomViewController(self, self.viewModel)
-                }.store(in: &cancellables)
+                    guard let self = self, let imageBottomViewController = self.imageBottomViewController else { return }
+                    self.present(imageBottomViewController, animated: false, completion: nil)
+                }.store(in: &cell.cancellables)
             return cell
             
         case 1: guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeWritingNameCell.identifier, for: indexPath) as? HomeWritingNameCell else { return cell }
@@ -231,7 +265,7 @@ extension HomeWritingViewController: UICollectionViewDataSource, UICollectionVie
                 .sink { [weak self] _ in
                     guard let self = self else { return }
                     self.coordinator?.showWritingPartBottomViewController(self, self.viewModel)
-                }.store(in: &cancellables)
+                }.store(in: &cell.cancellables)
             return cell
             
         case 3: guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeWritingDurationCell.identifier, for: indexPath) as? HomeWritingDurationCell else { return cell }
@@ -251,8 +285,8 @@ extension HomeWritingViewController: UICollectionViewDataSource, UICollectionVie
                 .receive(on: DispatchQueue.main)
                 .sink { [weak self] _ in
                     guard let self = self else { return }
-                    self.coordinator?.showLocationSearchViewController()
-                }.store(in: &cancellables)
+                    self.coordinator?.showLocationSearchViewController(self)
+                }.store(in: &cell.cancellables)
             return cell
             
         case 6: guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeWritingMembersCell.identifier, for: indexPath) as? HomeWritingMembersCell else { return cell }
@@ -262,7 +296,7 @@ extension HomeWritingViewController: UICollectionViewDataSource, UICollectionVie
                 .sink { [weak self] _ in
                     guard let self = self else { return }
                     self.coordinator?.showWritingMembersBottomViewController(self, self.viewModel)
-                }.store(in: &cancellables)
+                }.store(in: &cell.cancellables)
             return cell
             
         case 7: guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeWritingDescriptionCell.identifier, for: indexPath) as? HomeWritingDescriptionCell else { return cell }

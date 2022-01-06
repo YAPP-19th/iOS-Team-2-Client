@@ -13,7 +13,9 @@ final class HomeDetailMemberCell: UICollectionViewCell {
     
     var teamMembers: [TeamMember] = [] {
         didSet {
-            collectionView.reloadData()
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+            }
         }
     }
 
@@ -21,10 +23,6 @@ final class HomeDetailMemberCell: UICollectionViewCell {
         super.awakeFromNib()
         configureCollectionView()
     }
-}
-
-private extension HomeDetailMemberCell {
-
 }
 
 extension HomeDetailMemberCell: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -41,12 +39,12 @@ extension HomeDetailMemberCell: UICollectionViewDataSource, UICollectionViewDele
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeDetailPersonCell.identifier, for: indexPath) as? HomeDetailPersonCell else { return UICollectionViewCell() }
         let teamMember = teamMembers[indexPath.row]
-        cell.updateUI(teamMember.nickName, "\(String(describing: teamMember.profileImageUrl))", teamMember.address)
+        cell.updateUI(teamMember)
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        CGSize(width: collectionView.frame.width, height: 99)
+        CGSize(width: collectionView.frame.width, height: 100)
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {

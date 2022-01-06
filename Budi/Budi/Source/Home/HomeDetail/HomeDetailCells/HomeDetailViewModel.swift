@@ -20,6 +20,7 @@ final class HomeDetailViewModel: ViewModel {
         let post = CurrentValueSubject<Post?, Never>(nil)
         let teamMembers = CurrentValueSubject<[TeamMember], Never>([])
         let recruitingStatuses = CurrentValueSubject<[RecruitingStatus], Never>([])
+        let selectedRecruitingStatus = CurrentValueSubject<RecruitingStatus?, Never>(nil)
     }
 
     let action = Action()
@@ -31,23 +32,35 @@ final class HomeDetailViewModel: ViewModel {
         
         provider.request(.applies(accessToken: accessToken, param: param)) { response in
             switch response {
+            case .success(let response): completion(.success(response))
+            case .failure(let error): completion(.failure(error))
+            }
+        }
+    }
+    
+    func requestLikePost(_ accessToken: String, _ completion: @escaping (Result<Moya.Response, Error>) -> Void) {
+        provider.request(.likePosts(accessToken: accessToken, id: self.state.postId.value)) { response in
+            switch response {
             case .success(let response):
+                self.state.post.value?.isLiked.toggle()
+                if let isLiked = self.state.post.value?.isLiked {
+                    self.state.post.value?.likeCount += (isLiked ? 1 : (-1))
+                }
                 completion(.success(response))
-            case .failure(let error):
-                completion(.failure(error))
+            case .failure(let error): completion(.failure(error))
             }
         }
     }
 
     init(_ postId: Int) {
-        let postId = postId
-        
+        self.state.postId.value = postId
+                
         action.fetch
             .sink(receiveValue: { [weak self] _ in
                 guard let self = self else { return }
 
                 self.provider
-                    .requestPublisher(.post(id: postId))
+                    .requestPublisher(.post(accessToken: .testAccessToken, id: postId))
                     .map(APIResponse<Post>.self)
                     .map(\.data)
                     .sink(receiveCompletion: { _ in

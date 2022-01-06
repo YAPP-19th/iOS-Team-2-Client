@@ -296,7 +296,7 @@ final class SignupViewModel: ViewModel {
             .sink(receiveValue: { [weak self] selectedPosition in
                 guard let self = self else { return }
                 self.provider
-                    .requestPublisher(.detailPositions(postion: selectedPosition))
+                    .requestPublisher(.detailPositions(position: selectedPosition))
                     .map(APIResponse<[String]>.self)
                     .map(\.data)
                     .sink(receiveCompletion: { [weak self] completion in

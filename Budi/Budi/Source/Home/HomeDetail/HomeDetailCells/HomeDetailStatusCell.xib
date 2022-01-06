@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -36,9 +36,9 @@
                                 </constraints>
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="zdF-CV-hx8">
-                                <rect key="frame" x="16" y="73" width="343" height="77"/>
+                                <rect key="frame" x="16" y="70" width="343" height="83"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="gf9-dT-la2">
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="gf9-dT-la2">
                                     <size key="itemSize" width="128" height="128"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -48,11 +48,11 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="ck6-tZ-rB4" firstAttribute="top" secondItem="zdF-CV-hx8" secondAttribute="bottom" constant="23" id="04Q-2P-hQL"/>
                             <constraint firstItem="spu-Ik-WUw" firstAttribute="top" secondItem="TcX-df-qDm" secondAttribute="top" constant="20" id="6eT-g1-f1C"/>
                             <constraint firstAttribute="bottom" secondItem="ck6-tZ-rB4" secondAttribute="bottom" id="7r4-o1-A7L"/>
-                            <constraint firstItem="zdF-CV-hx8" firstAttribute="top" secondItem="spu-Ik-WUw" secondAttribute="bottom" constant="29" id="GGN-gA-KYY"/>
                             <constraint firstItem="zdF-CV-hx8" firstAttribute="leading" secondItem="TcX-df-qDm" secondAttribute="leading" constant="16" id="Px1-Qk-8Y5"/>
+                            <constraint firstItem="ck6-tZ-rB4" firstAttribute="top" secondItem="zdF-CV-hx8" secondAttribute="bottom" constant="20" id="Sub-fr-GB8"/>
+                            <constraint firstItem="zdF-CV-hx8" firstAttribute="top" secondItem="spu-Ik-WUw" secondAttribute="bottom" constant="26" id="SvD-Kt-K0k"/>
                             <constraint firstAttribute="trailing" secondItem="zdF-CV-hx8" secondAttribute="trailing" constant="16" id="gRT-Ln-b6P"/>
                             <constraint firstAttribute="trailing" secondItem="ck6-tZ-rB4" secondAttribute="trailing" id="rao-nx-PCi"/>
                             <constraint firstItem="spu-Ik-WUw" firstAttribute="leading" secondItem="TcX-df-qDm" secondAttribute="leading" constant="16" id="tqz-qL-oSH"/>
@@ -70,7 +70,7 @@
             </constraints>
             <size key="customSize" width="370" height="132"/>
             <connections>
-                <outlet property="collectionView" destination="zdF-CV-hx8" id="wHs-hO-v9W"/>
+                <outlet property="collectionView" destination="zdF-CV-hx8" id="uFx-1V-R6s"/>
             </connections>
             <point key="canvasLocation" x="306.52173913043481" y="67.299107142857139"/>
         </collectionViewCell>

@@ -28,8 +28,10 @@ final class HomeWritingPartBottomViewController: UIViewController {
     private var selectedPart: String?
     private var isPartSelected: Bool = false {
         didSet {
-            completeButton.isEnabled = true
-            completeButton.backgroundColor = .primary
+            DispatchQueue.main.async {
+                self.completeButton.isEnabled = true
+                self.completeButton.backgroundColor = .primary
+            }
         }
     }
     
@@ -55,6 +57,7 @@ final class HomeWritingPartBottomViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         showBottomView()
     }
 }

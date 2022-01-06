@@ -23,6 +23,7 @@ final class RecruitingStatusBottomViewController: UIViewController {
     @IBOutlet private weak var submitView: UIView!
     @IBOutlet private weak var submitButton: UIButton!
     @IBOutlet private weak var heartButton: UIButton!
+    @IBOutlet private weak var heartCountLabel: UILabel!
     
     @IBAction private func backgroundButtonTapped(_ sender: Any) {
         hideBottomView()
@@ -32,8 +33,15 @@ final class RecruitingStatusBottomViewController: UIViewController {
     private var isHeartButtonChecked: Bool = false
     private var selectedRecruitingStatus: RecruitingStatus? = nil {
         didSet {
-            submitButton.isEnabled = (selectedRecruitingStatus != nil)
-            submitButton.backgroundColor = (selectedRecruitingStatus != nil) ? .budiGreen : .budiGray
+            DispatchQueue.main.async {
+                if self.selectedRecruitingStatus != nil {
+                    self.submitButton.isEnabled = true
+                    self.submitButton.backgroundColor = .primary
+                } else {
+                    self.submitButton.isEnabled = false
+                    self.submitButton.backgroundColor = .textDisabled
+                }
+            }
         }
     }
     
@@ -55,15 +63,25 @@ final class RecruitingStatusBottomViewController: UIViewController {
         super.viewDidLoad()
         submitView.layer.addBorderTop()
         configureCollectionView()
+        bindViewModel()
         setPublisher()
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         showBottomView()
     }
 }
 
 private extension RecruitingStatusBottomViewController {
+    func bindViewModel() {
+        viewModel.state.post
+            .receive(on: DispatchQueue.main)
+            .sink(receiveValue: { [weak self] _ in
+                self?.configureHeartButton()
+            }).store(in: &cancellables)
+    }
+    
     func setPublisher() {
         submitButton.tapPublisher
             .receive(on: DispatchQueue.main)
@@ -76,10 +94,15 @@ private extension RecruitingStatusBottomViewController {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
                 guard let self = self else { return }
-                self.isHeartButtonChecked.toggle()
-                self.heartButton.setImage(UIImage(systemName: self.isHeartButtonChecked ? "heart.fill" : "heart"), for: .normal)
-                self.heartButton.tintColor = self.isHeartButtonChecked ? UIColor.budiGreen : UIColor.budiGray
-                self.view.layoutIfNeeded()
+                self.viewModel.requestLikePost(.testAccessToken) { response in
+                    switch response {
+                    case .success:
+                        guard let isLiked = self.viewModel.state.post.value?.isLiked else { return }
+                        self.heartButton.setImage(UIImage(systemName: isLiked ? "heart.fill" : "heart"), for: .normal)
+                        self.heartButton.tintColor = isLiked ? UIColor.primary : UIColor.textDisabled
+                    case .failure(let error): print(error.localizedDescription)
+                    }
+                }
             }.store(in: &cancellables)
         
         closeButton.tapPublisher
@@ -132,6 +155,13 @@ private extension RecruitingStatusBottomViewController {
         }
         animator.startAnimation()
     }
+    
+    func configureHeartButton() {
+        guard let likeCount = viewModel.state.post.value?.likeCount, let isLiked = viewModel.state.post.value?.isLiked else { return }
+        heartCountLabel.text = "\(likeCount)"
+        heartButton.setImage(UIImage(systemName: isLiked ? "heart.fill" : "heart"), for: .normal)
+        heartButton.tintColor = isLiked ? UIColor.primary : UIColor.textDisabled
+    }
 }
 
 // MARK: - CollectionView
@@ -163,14 +193,12 @@ extension RecruitingStatusBottomViewController: UICollectionViewDataSource, UICo
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let cell = collectionView.cellForItem(at: indexPath) as? RecruitingStatusBottomCell else { return }
         let recruitingStatus = viewModel.state.recruitingStatuses.value[indexPath.row]
-
         selectedRecruitingStatus = recruitingStatus
         cell.isChecked = true
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         guard let cell = collectionView.cellForItem(at: indexPath) as? RecruitingStatusBottomCell else { return }
-        
         cell.isChecked = false
     }
 }

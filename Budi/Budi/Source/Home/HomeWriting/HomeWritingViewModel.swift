@@ -18,12 +18,10 @@ final class HomeWritingViewModel: ViewModel {
 
     struct State {
         let defaultImageUrls = CurrentValueSubject<[String], Never>([])
-        let parts = CurrentValueSubject<[String], Never>(["O2O", "공유서비스", "데이팅 서비스", "금융", "여행", "소셜네트워크", "부동산", "게임", "인테리어", "종교", "이커머스", "뷰티/패션", "헬스/스포츠", "교육", "미디어/광고", "의료/제약", "콘텐츠"])
-        
+        let parts = CurrentValueSubject<[String], Never>([])
         let developerPositions = CurrentValueSubject<[String], Never>([])
         let designerPositions = CurrentValueSubject<[String], Never>([])
         let productManagerPositions = CurrentValueSubject<[String], Never>([])
-        let recruitingPositions = CurrentValueSubject<[RecruitingPosition], Never>([])
         
         let selectedImageUrl = CurrentValueSubject<String?, Never>(nil)
         let name = CurrentValueSubject<String?, Never>(nil)
@@ -31,7 +29,7 @@ final class HomeWritingViewModel: ViewModel {
         let startDate = CurrentValueSubject<Date?, Never>(nil)
         let endDate = CurrentValueSubject<Date?, Never>(nil)
         let area = CurrentValueSubject<String?, Never>(nil)
-        let members = CurrentValueSubject<[TeamMember], Never>([])
+        let recruitingPositions = CurrentValueSubject<[RecruitingPosition], Never>([])
         let isOnline = CurrentValueSubject<Bool?, Never>(nil)
         let description = CurrentValueSubject<String?, Never>(nil)
     }
@@ -41,17 +39,24 @@ final class HomeWritingViewModel: ViewModel {
     private var cancellables = Set<AnyCancellable>()
     private let provider = MoyaProvider<BudiTarget>()
     
-    func createPost(_ accessToken: String, _ param: PostRequest, _ completion: @escaping (Result<Moya.Response, Error>) -> Void) {
-        provider.request(.createPost(accessToken: accessToken, param: param)) { response in
-            switch response {
-            case .success(let response):
-                completion(.success(response))
-            case .failure(let error):
-                completion(.failure(error))
+    func createPost(_ accessToken: String, _ param: PostRequest, _ completion: @escaping (Result<Moya.Response, Error>) -> Void) {        
+        provider.request(.createPost(accessToken: accessToken, param: param)) { result in
+            switch result {
+            case .success(let response): completion(.success(response))
+            case .failure(let error): completion(.failure(error))
             }
         }
     }
-    
+
+    func convertImageToURL(_ jpegData: Data, _ completion: @escaping (Result<Moya.Response, Error>) -> Void) {
+        provider.request(.convertImageToURL(jpegData: jpegData)) { result in
+            switch result {
+            case .success(let response): completion(.success(response))
+            case .failure(let error): completion(.failure(error))
+            }
+        }
+    }
+        
     init() {
         action.fetch
             .sink(receiveValue: { [weak self] _ in
@@ -68,7 +73,17 @@ final class HomeWritingViewModel: ViewModel {
                     .store(in: &self.cancellables)
                 
                 self.provider
-                    .requestPublisher(.detailPositions(postion: .developer))
+                    .requestPublisher(.postCategory)
+                    .map(APIResponse<[String]>.self)
+                    .map(\.data)
+                    .sink(receiveCompletion: { _ in
+                    }, receiveValue: { [weak self] postCategory in
+                        self?.state.parts.send(postCategory)
+                    })
+                    .store(in: &self.cancellables)
+                
+                self.provider
+                    .requestPublisher(.detailPositions(position: .developer))
                     .map(APIResponse<[String]>.self)
                     .map(\.data)
                     .sink(receiveCompletion: { _ in
@@ -78,7 +93,7 @@ final class HomeWritingViewModel: ViewModel {
                     .store(in: &self.cancellables)
                 
                 self.provider
-                    .requestPublisher(.detailPositions(postion: .designer))
+                    .requestPublisher(.detailPositions(position: .designer))
                     .map(APIResponse<[String]>.self)
                     .map(\.data)
                     .sink(receiveCompletion: { _ in
@@ -88,7 +103,7 @@ final class HomeWritingViewModel: ViewModel {
                     .store(in: &self.cancellables)
                 
                 self.provider
-                    .requestPublisher(.detailPositions(postion: .productManager))
+                    .requestPublisher(.detailPositions(position: .productManager))
                     .map(APIResponse<[String]>.self)
                     .map(\.data)
                     .sink(receiveCompletion: { _ in

@@ -27,23 +27,44 @@ final class DatePickerBottomViewController: UIViewController {
     private var isDateSelected: Bool = false
     private var date: Date? {
         didSet {
-            if isDateSelected {
-                completeButton.isEnabled = true
-                completeButton.backgroundColor = .primary
+            DispatchQueue.main.async {
+                if self.isDateSelected {
+                    self.completeButton.isEnabled = true
+                    self.completeButton.backgroundColor = .primary
+                }
             }
         }
     }
     
     weak var delegate: DatePickerBottomViewControllerDelegate?
     private var cancellables = Set<AnyCancellable>()
+    var isStartDate: Bool
+    var limitDate: Date?
+    
+    init(nibName: String?, bundle: Bundle?, isStartDate: Bool, limitDate: Date?) {
+        self.isStartDate = isStartDate
+        self.limitDate = limitDate
+        super.init(nibName: nibName, bundle: bundle)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setPublisher()
         datePicker.minimumDate = Date()
+        if let limitDate = limitDate {
+            switch isStartDate {
+            case true: datePicker.maximumDate = limitDate
+            case false: datePicker.minimumDate = limitDate
+            }
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         showBottomView()
     }
 }

@@ -6,11 +6,19 @@
 //
 
 import UIKit
+import Combine
 
 final class HomeWritingImageCell: UICollectionViewCell {
 
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var imageChangeButton: UIButton!
+    
+    var cancellables = Set<AnyCancellable>()
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        cancellables.removeAll()
+    }
         
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol HomeWritingMembersCountBottomCollectionViewCellDelegate: AnyObject {
+    func getRecruitingPosition(_ recruitingPosition: RecruitingPosition)
+}
+
 final class HomeWritingMembersCountBottomCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet private weak var containerView: UIView!
@@ -15,13 +19,20 @@ final class HomeWritingMembersCountBottomCollectionViewCell: UICollectionViewCel
     
     var recruitingPosition: RecruitingPosition? {
         didSet {
-            configureUI()
+            DispatchQueue.main.async {
+                self.configureUI()
+            }
         }
     }
+    
+    weak var delegate: HomeWritingMembersCountBottomCollectionViewCellDelegate?
     
     @IBAction func minusButtonTapped(_ sender: Any) {
         if recruitingPosition?.recruitingNumber ?? 0 > 1 {
             recruitingPosition?.recruitingNumber -= 1
+            if let recruitingPosition = recruitingPosition {
+                delegate?.getRecruitingPosition(recruitingPosition)
+            }
             if let count = recruitingPosition?.recruitingNumber {
                 countLabel.text = String(count)
             }
@@ -29,6 +40,9 @@ final class HomeWritingMembersCountBottomCollectionViewCell: UICollectionViewCel
     }
     @IBAction func plusButtonTapped(_ sender: Any) {
         recruitingPosition?.recruitingNumber += 1
+        if let recruitingPosition = recruitingPosition {
+            delegate?.getRecruitingPosition(recruitingPosition)
+        }
         if let count = recruitingPosition?.recruitingNumber {
             countLabel.text = String(count)
         }
@@ -37,10 +51,6 @@ final class HomeWritingMembersCountBottomCollectionViewCell: UICollectionViewCel
     override func awakeFromNib() {
         super.awakeFromNib()
         containerView.layer.addBorderBottom()
-    }
-    
-    func configureUI(_ part: String) {
-        partLabel.text = part
     }
     
     func configureUI() {

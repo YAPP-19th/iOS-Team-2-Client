@@ -8,6 +8,7 @@
 import UIKit
 import Combine
 import CombineCocoa
+import Moya
 
 protocol HomeWritingImageBottomViewControllerDelegate: AnyObject {
     func getImageUrlString(_ urlString: String)
@@ -124,31 +125,25 @@ extension HomeWritingImageBottomViewController: UIImagePickerControllerDelegate 
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        guard let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else { return }
-        guard let jpegData = image.jpegData(compressionQuality: 0.2) else {
+        guard let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage, let jpegData = image.jpegData(compressionQuality: 0.2) else {
             imagePickerController.dismiss(animated: true, completion: nil)
-            return }
+            return
+        }
         
-        let jpegDataString = String(decoding: jpegData, as: UTF8.self)
-        let param = ConvertImageRequest(imageString: jpegDataString)
-        
-        viewModel.convertImageToURL(param) { [weak self] result in
-            guard let self = self else { return }
+        viewModel.convertImageToURL(jpegData) { result in
             switch result {
             case .success(let response):
                 print("response is \(response)")
+                print("data is \(response.data)")
+                let dataString = String(decoding: response.data, as: UTF8.self)
+                print("dataString is \(dataString)")
                 
-                let json = try? response.mapJSON() as Any
-                print("json is \(String(describing: json))")
-                
-// MARK: - URL 생성완료 후 뷰모델에 저장
-                let selectedImageUrl: String = ""
-                self.viewModel.state.selectedImageUrl.value = selectedImageUrl
-                
-                self.imagePickerController.dismiss(animated: true, completion: nil)
+                // MARK: - URL 생성완료 후 뷰모델에 저장
+                //        let selectedImageUrl: String = ""
+                //        self.viewModel.state.selectedImageUrl.value = selectedImageUrl
+                //        self.imagePickerController.dismiss(animated: true, completion: nil)
             case .failure(let error):
                 print("error is \(error.localizedDescription)")
-                self.imagePickerController.dismiss(animated: true, completion: nil)
             }
         }
     }

@@ -49,16 +49,18 @@ final class HomeWritingViewModel: ViewModel {
             }
         }
     }
-    
-    func convertImageToURL(_ param: ConvertImageRequest, _ completion: @escaping (Result<Moya.Response, Error>) -> Void) {        
-        provider.request(.convertImage(param: param)) { result in
+
+    func convertImageToURL(_ jpegData: Data, _ completion: @escaping (Result<Moya.Response, Error>) -> Void) {
+        let multipartFormData = [MultipartFormData(provider: .data(jpegData), name: "profileImage", fileName: "profileImage.jpeg", mimeType: "image/jpeg")]
+        
+        provider.request(.convertImageToURL(multipartFormData: multipartFormData)) { result in
             switch result {
             case .success(let response): completion(.success(response))
             case .failure(let error): completion(.failure(error))
             }
         }
     }
-    
+        
     init() {
         action.fetch
             .sink(receiveValue: { [weak self] _ in

@@ -80,8 +80,7 @@ private extension HomeWritingViewController {
                 
                 self.viewModel.createPost(.testAccessToken, param) { result in
                     switch result {
-                    case .success(let response):
-                        print("response is \(response)")
+                    case .success(let response): print("response is \(response)")
                     case .failure(let error): print("error is \(error.localizedDescription)")
                     }
                 }

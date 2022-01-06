@@ -21,7 +21,7 @@ enum BudiTarget {
     case checkDuplicateName(name: String)
     case postCategory
     case likePosts(accessToken: String, id: Int)
-    case convertImage(param: ConvertImageRequest)
+    case convertImageToURL(multipartFormData: [MultipartFormData])
 }
 
 extension BudiTarget: TargetType {
@@ -44,7 +44,7 @@ extension BudiTarget: TargetType {
         case .checkDuplicateName: return "/members/checkDuplicateName"
         case .postCategory: return "/infos/postCategory"
         case .likePosts(_, let id): return "/post/\(id)/like-posts"
-        case .convertImage: return "/imageUrls"
+        case .convertImageToURL: return "/imageUrls"
         }
     }
 
@@ -54,7 +54,7 @@ extension BudiTarget: TargetType {
         case .createPost: return .post
         case .applies: return .post
         case .likePosts: return .put
-        case .convertImage: return .post
+        case .convertImageToURL: return .post
         default: return .get
         }
     }
@@ -72,7 +72,7 @@ extension BudiTarget: TargetType {
             return .requestParameters(parameters: ["page": page, "size": size], encoding: URLEncoding.default)
         case .detailPositions(let position):
             return .requestParameters(parameters: ["position": position.jobStringEnglishValue], encoding: URLEncoding.default)
-        case .convertImage(let param): return .requestJSONEncodable(param)
+        case .convertImageToURL(let multipartFormData): return .uploadMultipart(multipartFormData)
         default: return .requestPlain
         }
     }
@@ -81,8 +81,7 @@ extension BudiTarget: TargetType {
         switch self {
         case .createInfo(let accessToken, _), .createPost(let accessToken, _), .applies(let accessToken, _), .post(let accessToken, _), .likePosts(let accessToken, _):
             return ["Content-Type": "application/json", "accessToken": "\(accessToken)"]
-        case .convertImage:
-            return ["Content-type": "multipart/form-data"]
+        case .convertImageToURL: return ["Content-type": "multipart/form-data"]
         default: return ["Content-Type": "application/json"]
         }
     }

@@ -7,6 +7,7 @@ disabled_rules:
     - type_name
     - comment_spacing
     - colon
+    - redundant_optional_initialization
 
 excluded:
   - Pods

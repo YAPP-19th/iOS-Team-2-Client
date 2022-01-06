@@ -20,6 +20,7 @@ final class HomeDetailViewModel: ViewModel {
         let post = CurrentValueSubject<Post?, Never>(nil)
         let teamMembers = CurrentValueSubject<[TeamMember], Never>([])
         let recruitingStatuses = CurrentValueSubject<[RecruitingStatus], Never>([])
+        let selectedRecruitingStatus = CurrentValueSubject<RecruitingStatus?, Never>(nil)
     }
 
     let action = Action()

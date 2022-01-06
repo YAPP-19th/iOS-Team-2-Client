@@ -71,7 +71,6 @@ private extension HomeDetailViewController {
             .sink { [weak self] _ in
                 guard let self = self else { return }
                 self.coordinator?.showRecruitingStatusBottomViewController(self, self.viewModel)
-                self.viewModel.state.post.value?.isAlreadyApplied = true
             }.store(in: &cancellables)
         
         heartButton.tapPublisher
@@ -116,6 +115,10 @@ private extension HomeDetailViewController {
             submitButton.isEnabled = false
             submitButton.setTitle("지원완료", for: .normal)
             submitButton.backgroundColor = .textDisabled
+        } else {
+            submitButton.isEnabled = true
+            submitButton.setTitle("지원하기", for: .normal)
+            submitButton.backgroundColor = .primary
         }
     }
 }
@@ -124,18 +127,17 @@ private extension HomeDetailViewController {
 extension HomeDetailViewController: RecruitingStatusBottomViewControllerDelegate {
     func getSelectedRecruitingStatus(_ selectedRecruitingStatus: RecruitingStatus) {
         let postId = viewModel.state.postId.value
-        
+
         let param = AppliesRequest(postId: postId, recruitingPositionId: selectedRecruitingStatus.recruitingPositionId)
         
         viewModel.requestApplies(.testAccessToken, param) { result in
             switch result {
-            case .success(let response):
-                print("response is \(response)")
+            case .success:
                 self.dismiss(animated: false) {
                     self.coordinator?.showGreetingAlertViewController(self, text: "지원해주셔서 감사합니다 팀 리더에게 반갑게 인사를 해보세요!")
+                    self.viewModel.state.post.value?.isAlreadyApplied = true
                 }
-            case .failure(let error):
-                print(error.localizedDescription)
+            case .failure(let error): print(error.localizedDescription)
             }
         }
     }

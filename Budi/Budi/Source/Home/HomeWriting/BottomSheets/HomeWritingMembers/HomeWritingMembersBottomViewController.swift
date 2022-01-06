@@ -27,8 +27,10 @@ final class HomeWritingMembersBottomViewController: UIViewController {
     private var isBottomViewShown: Bool = false
     private var selectedPosition: Position? = nil {
         didSet {
-            DispatchQueue.main.async {
-                self.showBottomView(190)
+            if oldValue == nil {
+                DispatchQueue.main.async {
+                    self.showBottomView(190)
+                }
             }
         }
     }

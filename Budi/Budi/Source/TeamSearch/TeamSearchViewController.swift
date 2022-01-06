@@ -63,6 +63,7 @@ private extension TeamSearchViewController {
         flowLayout.minimumLineSpacing = 0
         flowLayout.minimumInteritemSpacing = 0
         collectionView.collectionViewLayout = flowLayout
+        collectionView.backgroundColor = .background
         collectionView.refreshControl = UIRefreshControl()
         collectionView.dataSource = self
         collectionView.delegate = self
@@ -80,18 +81,28 @@ extension TeamSearchViewController: UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TeamSearchCell.identifier, for: indexPath) as UICollectionViewCell
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TeamSearchCell.identifier, for: indexPath) as? TeamSearchCell else { return UICollectionViewCell() }
+        cell.updateUI(viewModel.state.sections.value[indexPath.section])
+        cell.headerStackView.gesturePublisher(.tap())
+            .sink { [weak self] _ in
+                let vc = TeamSearchFilterViewController()
+                let imageView = UIImageView()
+                imageView.image = self?.viewModel.state.sections.value[indexPath.section].position.teamSearchCharacter
+                vc.navigationItem.titleView = imageView
+                self?.navigationController?.pushViewController(vc, animated: true)
+            }.store(in: &cell.cancellables)
         return cell
     }
 }
 
-extension TeamSearchViewController: UICollectionViewDelegate {
-
-}
-
 extension TeamSearchViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        CGSize(width: collectionView.bounds.width, height: 468)
+        let ratio = 468.0 / 375.0
+        return CGSize(width: collectionView.bounds.width, height: collectionView.bounds.width * ratio)
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return .init(top: 0, left: 0, bottom: 8, right: 0)
     }
 }
 

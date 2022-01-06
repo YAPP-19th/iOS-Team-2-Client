@@ -9,8 +9,8 @@ import Foundation
 import Moya
 
 // MARK: - DataClass
-struct PostContainer: Decodable {
-    let content: [Post]
+struct PageContainer<T: Decodable>: Decodable {
+    let content: T
     let pageable: PageData
     let totalPages, totalElements: Int
     let last: Bool

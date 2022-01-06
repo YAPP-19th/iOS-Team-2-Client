@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HomeWritingImageBottomCell: UICollectionViewCell {
+final class HomeWritingImageBottomCell: UICollectionViewCell {
     
     @IBOutlet private weak var imageView: UIImageView!
    

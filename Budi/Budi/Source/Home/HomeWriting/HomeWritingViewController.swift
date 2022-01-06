@@ -80,7 +80,7 @@ private extension HomeWritingViewController {
                 
                 self.viewModel.createPost(.testAccessToken, param) { result in
                     switch result {
-                    case .success(let response): print("response is \(response)")
+                    case .success(let response): break
                     case .failure(let error): print("error is \(error.localizedDescription)")
                     }
                 }
@@ -161,7 +161,7 @@ extension HomeWritingViewController: HomeWritingOnlineCellDelegate {
     }
 }
 
-extension HomeWritingViewController: LocationSearchViewControllerDelegate {
+extension HomeWritingViewController: HomeLocationSearchViewControllerDelegate {
     func getLocation(_ location: String) {
         viewModel.state.area.value = location
         collectionView.reloadData()
@@ -171,7 +171,6 @@ extension HomeWritingViewController: LocationSearchViewControllerDelegate {
 
 extension HomeWritingViewController: HomeWritingMembersBottomViewControllerDelegate {
     func getRecruitingPositions(_ recruitingPositions: [RecruitingPosition]) {
-        print("recruitingPositions is \(recruitingPositions)")
         viewModel.state.recruitingPositions.value = recruitingPositions
         collectionView.reloadData()
         isValid()

@@ -19,7 +19,9 @@ final class HomeWritingMembersCountBottomCollectionViewCell: UICollectionViewCel
     
     var recruitingPosition: RecruitingPosition? {
         didSet {
-            configureUI()
+            DispatchQueue.main.async {
+                self.configureUI()
+            }
         }
     }
     

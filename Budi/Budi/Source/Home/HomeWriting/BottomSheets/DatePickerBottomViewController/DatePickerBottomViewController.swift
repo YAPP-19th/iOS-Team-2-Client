@@ -27,9 +27,11 @@ final class DatePickerBottomViewController: UIViewController {
     private var isDateSelected: Bool = false
     private var date: Date? {
         didSet {
-            if isDateSelected {
-                completeButton.isEnabled = true
-                completeButton.backgroundColor = .primary
+            DispatchQueue.main.async {
+                if self.isDateSelected {
+                    self.completeButton.isEnabled = true
+                    self.completeButton.backgroundColor = .primary
+                }
             }
         }
     }
@@ -64,6 +66,11 @@ final class DatePickerBottomViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         showBottomView()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        cancellables.removeAll()
     }
 }
 

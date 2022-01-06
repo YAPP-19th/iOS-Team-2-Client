@@ -28,12 +28,14 @@ final class HomeWritingMembersBottomViewController: UIViewController {
     private var selectedPosition: Position?
     private var selectedParts: [String] = [] {
         didSet {
-            if !selectedParts.isEmpty {
-                completeButton.isEnabled = true
-                completeButton.backgroundColor = .primary
-            } else {
-                completeButton.isEnabled = false
-                completeButton.backgroundColor = .textDisabled
+            DispatchQueue.main.async {
+                if !self.selectedParts.isEmpty {
+                    self.completeButton.isEnabled = true
+                    self.completeButton.backgroundColor = .primary
+                } else {
+                    self.completeButton.isEnabled = false
+                    self.completeButton.backgroundColor = .textDisabled
+                }
             }
         }
     }
@@ -63,6 +65,11 @@ final class HomeWritingMembersBottomViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         showBottomView()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        cancellables.removeAll()
     }
 }
 
@@ -134,7 +141,6 @@ extension HomeWritingMembersBottomViewController: HomeWritingMembersDetailPartBo
 
 extension HomeWritingMembersBottomViewController: HomeWritingMembersCountBottomCellDelegate {
     func getRecruitingPositions(_ recruitingPositions: [RecruitingPosition]) {
-        print("recruitingPositions is \(recruitingPositions)")
         self.recruitingPositions = recruitingPositions
         collectionView.reloadData()
     }

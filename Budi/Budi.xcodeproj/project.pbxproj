@@ -107,6 +107,7 @@
 		5ED53D70277F8DEF002871CD /* LikePosts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED53D6F277F8DEF002871CD /* LikePosts.swift */; };
 		5EF5F3292741590300A5F6E2 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF5F3282741590300A5F6E2 /* LocationManager.swift */; };
 		5EF986CA2786E58600874A40 /* Leader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF986C92786E58600874A40 /* Leader.swift */; };
+		5EF986D82786E9A700874A40 /* HomeLocationSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF986D72786E9A700874A40 /* HomeLocationSearchViewController.swift */; };
 		5EFB0A412733CD7700F39A4D /* TeamSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EFB0A402733CD7700F39A4D /* TeamSearchViewController.swift */; };
 		5EFB0A452733E36800F39A4D /* TeamSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EFB0A432733E36800F39A4D /* TeamSearchCell.swift */; };
 		5EFB0A462733E36800F39A4D /* TeamSearchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EFB0A442733E36800F39A4D /* TeamSearchCell.xib */; };
@@ -306,6 +307,7 @@
 		5ED53D6F277F8DEF002871CD /* LikePosts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikePosts.swift; sourceTree = "<group>"; };
 		5EF5F3282741590300A5F6E2 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		5EF986C92786E58600874A40 /* Leader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Leader.swift; sourceTree = "<group>"; };
+		5EF986D72786E9A700874A40 /* HomeLocationSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeLocationSearchViewController.swift; sourceTree = "<group>"; };
 		5EFB0A402733CD7700F39A4D /* TeamSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamSearchViewController.swift; sourceTree = "<group>"; };
 		5EFB0A432733E36800F39A4D /* TeamSearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamSearchCell.swift; sourceTree = "<group>"; };
 		5EFB0A442733E36800F39A4D /* TeamSearchCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TeamSearchCell.xib; sourceTree = "<group>"; };
@@ -497,6 +499,7 @@
 		5E88636F27674E3F0022397A /* BottomSheets */ = {
 			isa = PBXGroup;
 			children = (
+				5EF986D22786E89F00874A40 /* HomeLocationSearch */,
 				5E820B8C2769F92E004A03E9 /* DatePickerBottomViewController */,
 				5E820B832769EA1B004A03E9 /* HomeWritingImage */,
 				5E820B822769EA04004A03E9 /* HomeWritingPart */,
@@ -646,6 +649,14 @@
 				5EF5F3282741590300A5F6E2 /* LocationManager.swift */,
 			);
 			path = Utilities;
+			sourceTree = "<group>";
+		};
+		5EF986D22786E89F00874A40 /* HomeLocationSearch */ = {
+			isa = PBXGroup;
+			children = (
+				5EF986D72786E9A700874A40 /* HomeLocationSearchViewController.swift */,
+			);
+			path = HomeLocationSearch;
 			sourceTree = "<group>";
 		};
 		5EFB0A422733E34D00F39A4D /* Cells */ = {
@@ -1273,6 +1284,7 @@
 				5EFB0A4F2733FDD100F39A4D /* ChattingDetailViewController.swift in Sources */,
 				5EA453692731412A00943C94 /* HomeCell.swift in Sources */,
 				5EBD9D5F276DB5DC00615319 /* HomeWritingViewController.swift in Sources */,
+				5EF986D82786E9A700874A40 /* HomeLocationSearchViewController.swift in Sources */,
 				5E801F1E2782A74400FFC2D3 /* RecruitingPosition.swift in Sources */,
 				5EFB0A452733E36800F39A4D /* TeamSearchCell.swift in Sources */,
 				5E88637A276771EE0022397A /* HomeWritingPartBottomViewController.swift in Sources */,

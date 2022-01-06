@@ -13,7 +13,9 @@ final class HomeDetailMemberCell: UICollectionViewCell {
     
     var teamMembers: [TeamMember] = [] {
         didSet {
-            collectionView.reloadData()
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+            }
         }
     }
 

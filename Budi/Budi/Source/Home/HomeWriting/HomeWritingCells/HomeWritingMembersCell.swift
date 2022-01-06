@@ -14,7 +14,9 @@ final class HomeWritingMembersCell: UICollectionViewCell {
     
     var recruitingPositions: [RecruitingPosition] = [] {
         didSet {
-            collectionView.reloadData()
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+            }
         }
     }
     

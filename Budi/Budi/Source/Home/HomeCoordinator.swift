@@ -68,12 +68,9 @@ extension HomeCoordinator {
     }
     
     func showLocationSearchViewController(_ vc: UIViewController) {
-        let viewController: LocationSearchViewController = storyboard.instantiateViewController(identifier: LocationSearchViewController.identifier) { coder -> LocationSearchViewController? in
-            let viewModel = SignupViewModel()
-            return LocationSearchViewController(coder: coder, viewModel: viewModel)
-        }
+        let viewController = HomeLocationSearchViewController()
         viewController.navigationItem.title = "위치선택"
-        viewController.delegate = vc as? LocationSearchViewControllerDelegate
+        viewController.delegate = vc as? HomeLocationSearchViewControllerDelegate
         navigationController?.pushViewController(viewController, animated: true)
     }
     

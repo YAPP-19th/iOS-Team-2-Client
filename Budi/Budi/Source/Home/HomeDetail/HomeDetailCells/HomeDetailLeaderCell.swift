@@ -14,13 +14,17 @@ final class HomeDetailLeaderCell: UICollectionViewCell {
 
     var leader: Leader = Leader(leaderId: 0, nickName: "", profileImageUrl: "", address: "", position: .init(position: "", colorCode: 0)) {
         didSet {
-            collectionView.reloadData()
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+            }
         }
     }
     var isTeamMembersEmpty: Bool = true {
         didSet {
             if isTeamMembersEmpty {
-                dividerView.backgroundColor = .white
+                DispatchQueue.main.async {
+                    self.dividerView.backgroundColor = .white
+                }
             }
         }
     }

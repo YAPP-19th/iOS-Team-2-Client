@@ -14,7 +14,13 @@ final class HomeWritingMembersDetailPartBottomCollectionViewCell: UICollectionVi
     
     var isPartSelected: Bool = false {
         didSet {
-            isPartSelected ? configureSelectedUI() : configureDeselectedUI()
+            DispatchQueue.main.async {
+                if self.isPartSelected {
+                    self.configureSelectedUI()
+                } else {
+                    self.configureDeselectedUI()
+                }
+            }
         }
     }
     

@@ -1,25 +1,18 @@
 //
-//  LocationSearchViewController.swift
+//  HomeLocationSearchViewController.swift
 //  Budi
 //
-//  Created by 인병윤 on 2021/11/08.
+//  Created by leeesangheee on 2022/01/06.
 //
 
 import UIKit
-import Combine
-import CombineCocoa
 
-protocol LocationSearchViewControllerDelegate: AnyObject {
+protocol HomeLocationSearchViewControllerDelegate: AnyObject {
     func getLocation(_ location: String)
 }
 
-class LocationSearchViewController: UIViewController {
-    private var correct: [String] = []
-    weak var coordinator: LoginCoordinator?
-    var viewModel: SignupViewModel
-    private var cancellables = Set<AnyCancellable>()
-    weak var delegate: LocationSearchViewControllerDelegate?
-    private let alertView = AlertView()
+final class HomeLocationSearchViewController: UIViewController {
+    
     private let searchBar: UISearchBar = {
         let search = UISearchBar()
         search.placeholder = "도로명으로 검색"
@@ -44,51 +37,13 @@ class LocationSearchViewController: UIViewController {
         button.layer.cornerRadius = 8
         button.layer.masksToBounds = true
         button.tintColor = .white
-
-        button.addTarget(self, action: #selector(locationButtonAction), for: .touchUpInside)
         return button
     }()
-
-    @objc
-    func locationButtonAction() {
-        LocationManager.shared.getAddress { result in
-            switch result {
-            case .success(let address):
-                NotificationCenter.default.post(name: NSNotification.Name("LocationNextActivation"), object: address)
-                self.delegate?.getLocation(address)
-                var changeData = self.viewModel.state.signUpPersonalInfoData.value
-                changeData.location = address
-                self.viewModel.state.signUpPersonalInfoData.send(changeData)
-                self.searchBar.text = address
-                self.nextButton.backgroundColor = UIColor.primary
-                self.nextButton.isEnabled = true
-            case .failure(let error): print(error.localizedDescription)
-            }
-        }
-    }
-
-    @objc
-    func dismissAlert() {
-        UIView.animate(withDuration: 0.3, animations: {
-            BackgroundView.instanceBackground.alpha = 0.0
-            self.alertView.alpha = 0.0
-        }, completion: nil)
-    }
-
-    @objc
-    func projectWriteAtcion() {
-        // 일단 아무것도 하지 않으니 (뷰가 안만들어진듯) dismiss
-        UIView.animate(withDuration: 0.3, animations: {
-            BackgroundView.instanceBackground.alpha = 0.0
-            self.alertView.alpha = 0.0
-        }, completion: nil)
-    }
-
+    
     private let searchTableView: UITableView = {
         let tableView = UITableView()
         tableView.separatorColor = .white
         tableView.separatorInset.left = 0
-
         return tableView
     }()
 
@@ -102,50 +57,58 @@ class LocationSearchViewController: UIViewController {
         return button
     }()
 
-    init?(coder: NSCoder, viewModel: SignupViewModel) {
-        self.viewModel = viewModel
-        super.init(coder: coder)
-    }
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    private var searchedLocations: [String] = []
+    weak var delegate: HomeLocationSearchViewControllerDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        searchBar.delegate = self
         view.backgroundColor = .white
-        nextButton.isEnabled = false
         self.addBackButton()
+        
+        LocationManager.shared.requestWhenInUseAuthorization()
+        
+        searchBar.delegate = self
+        nextButton.isEnabled = false
         configureLayout()
         configureTableView()
-        setPublisher()
-        LocationManager.shared.requestWhenInUseAuthorization()
-    }
-
-    private func setPublisher() {
-        nextButton.tapPublisher
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] _ in
-                guard let self = self else { return }
-                self.navigationController?.popViewController(animated: true)
-            }
-            .store(in: &cancellables)
+        
+        nextButton.addTarget(self, action: #selector(nextButtonTapped), for: .touchUpInside)
+        nowLocationButton.addTarget(self, action: #selector(nowLocationButtonTapped), for: .touchUpInside)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tabBarController?.tabBar.isHidden = true
     }
+}
 
-    private func configureTableView() {
+private extension HomeLocationSearchViewController {
+    @objc
+    func nextButtonTapped() {
+        navigationController?.popViewController(animated: true)
+    }
+    
+    @objc
+    func nowLocationButtonTapped() {
+        LocationManager.shared.getAddress { result in
+            switch result {
+            case .success(let address):
+                self.delegate?.getLocation(address)
+                self.searchBar.text = address
+                self.nextButton.backgroundColor = UIColor.primary
+                self.nextButton.isEnabled = true
+            case .failure(let error): print(error.localizedDescription)
+            }
+        }
+    }
+
+    func configureTableView() {
         searchTableView.register(SearchTableViewCell.self, forCellReuseIdentifier: SearchTableViewCell.cellId)
         searchTableView.delegate = self
         searchTableView.dataSource = self
     }
 
-    private func configureLayout() {
-
+    func configureLayout() {
         let bottomLine = CALayer()
         bottomLine.frame = CGRect(x: 0, y: 40, width: view.bounds.width - 16, height: 1.0)
         bottomLine.backgroundColor = UIColor.init(white: 0, alpha: 0.12).cgColor
@@ -193,45 +156,41 @@ class LocationSearchViewController: UIViewController {
     }
 }
 
-extension LocationSearchViewController: UISearchBarDelegate {
+// MARK: - SearchBar
+extension HomeLocationSearchViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         let filteredLocations = LocationManager.shared.searchAddress(searchText)
         
         if !searchText.isEmpty {
-            if correct != filteredLocations {
-                correct.append(contentsOf: filteredLocations)
+            if searchedLocations != filteredLocations {
+                searchedLocations.append(contentsOf: filteredLocations)
             }
             searchTableView.reloadData()
         } else {
-            correct = []
+            searchedLocations = []
             searchTableView.reloadData()
         }
     }
 }
 
-extension LocationSearchViewController: UITableViewDelegate, UITableViewDataSource {
+// MARK: - TableView
+extension HomeLocationSearchViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        correct.count
+        searchedLocations.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: SearchTableViewCell.cellId, for: indexPath) as? SearchTableViewCell else { return UITableViewCell() }
-        if correct.count > 0 {
-            cell.configureCellLabel(text: correct[indexPath.row])
+        if searchedLocations.count > 0 {
+            cell.configureCellLabel(text: searchedLocations[indexPath.row])
         }
         return cell
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let data = correct[indexPath.row]
+        let data = searchedLocations[indexPath.row]
         nextButton.backgroundColor = UIColor.primary
         nextButton.isEnabled = true
-
-        var changeData = viewModel.state.signUpPersonalInfoData.value
-        changeData.location = correct[indexPath.row]
-        print(changeData)
-        viewModel.state.signUpPersonalInfoData.send(changeData)
-        print(viewModel.state.signUpPersonalInfoData.value)
         self.view.endEditing(true)
         delegate?.getLocation(data)
     }

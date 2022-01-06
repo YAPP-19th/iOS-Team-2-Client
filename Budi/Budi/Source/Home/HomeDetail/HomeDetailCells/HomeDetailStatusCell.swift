@@ -13,7 +13,9 @@ final class HomeDetailStatusCell: UICollectionViewCell {
     
     var recruitingStatuses: [RecruitingStatus] = [] {
         didSet {
-            collectionView.reloadData()
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+            }
         }
     }
     

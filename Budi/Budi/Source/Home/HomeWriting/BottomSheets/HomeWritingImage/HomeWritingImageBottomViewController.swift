@@ -31,8 +31,10 @@ final class HomeWritingImageBottomViewController: UIViewController {
     
     private var selectedIndex: Int? {
         didSet {
-            completeButton.isEnabled = true
-            completeButton.backgroundColor = .primary
+            DispatchQueue.main.async {
+                self.completeButton.isEnabled = true
+                self.completeButton.backgroundColor = .primary
+            }
         }
     }
     
@@ -62,6 +64,11 @@ final class HomeWritingImageBottomViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         showBottomView()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        cancellables.removeAll()
     }
 }
 
@@ -133,11 +140,7 @@ extension HomeWritingImageBottomViewController: UIImagePickerControllerDelegate 
         viewModel.convertImageToURL(jpegData) { result in
             switch result {
             case .success(let response):
-                print("response is \(response)")
-                print("data is \(response.data)")
                 let dataString = String(decoding: response.data, as: UTF8.self)
-                print("dataString is \(dataString)")
-                
                 // MARK: - URL 생성완료 후 뷰모델에 저장
                 //        let selectedImageUrl: String = ""
                 //        self.viewModel.state.selectedImageUrl.value = selectedImageUrl

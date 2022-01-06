@@ -15,7 +15,9 @@ class HomeWritingMembersPartUnitBottomCell: UICollectionViewCell {
     var position: Position? {
         didSet {
             if let position = position {
-                configureUI(position)
+                DispatchQueue.main.async {
+                    self.configureUI(position)
+                }
             }
         }
     }

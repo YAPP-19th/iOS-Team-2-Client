@@ -39,9 +39,7 @@ final class HomeWritingViewModel: ViewModel {
     private var cancellables = Set<AnyCancellable>()
     private let provider = MoyaProvider<BudiTarget>()
     
-    func createPost(_ accessToken: String, _ param: PostRequest, _ completion: @escaping (Result<Moya.Response, Error>) -> Void) {
-        print("param is \(param)")
-        
+    func createPost(_ accessToken: String, _ param: PostRequest, _ completion: @escaping (Result<Moya.Response, Error>) -> Void) {        
         provider.request(.createPost(accessToken: accessToken, param: param)) { result in
             switch result {
             case .success(let response): completion(.success(response))

@@ -16,12 +16,16 @@ final class RecruitingStatusBottomCell: UICollectionViewCell {
 
     var recruitingStatus: RecruitingStatus? {
         didSet {
-            textLabel.text = recruitingStatus?.positions.position
+            DispatchQueue.main.async {
+                self.textLabel.text = self.recruitingStatus?.positions.position
+            }
         }
     }
     var isChecked: Bool = false {
         didSet {
-            configureUI()
+            DispatchQueue.main.async {
+                self.configureUI()
+            }
         }
     }
     

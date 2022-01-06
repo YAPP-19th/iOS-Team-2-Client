@@ -17,7 +17,9 @@ final class HomeWritingMembersCountBottomCell: UICollectionViewCell {
     
     var recruitingPositions: [RecruitingPosition] = [] {
         didSet {
-            collectionView.reloadData()
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+            }
         }
     }
     
@@ -32,7 +34,6 @@ final class HomeWritingMembersCountBottomCell: UICollectionViewCell {
 // MARK: - Delegate
 extension HomeWritingMembersCountBottomCell: HomeWritingMembersCountBottomCollectionViewCellDelegate {
     func getRecruitingPosition(_ recruitingPosition: RecruitingPosition) {
-        print("recruitingPosition is \(recruitingPosition)")
         if let index = recruitingPositions.firstIndex(of: recruitingPosition) {
             recruitingPositions[index] = recruitingPosition
         }

@@ -33,8 +33,15 @@ final class RecruitingStatusBottomViewController: UIViewController {
     private var isHeartButtonChecked: Bool = false
     private var selectedRecruitingStatus: RecruitingStatus? = nil {
         didSet {
-            submitButton.isEnabled = (selectedRecruitingStatus != nil)
-            submitButton.backgroundColor = (selectedRecruitingStatus != nil) ? .primary : .textDisabled
+            DispatchQueue.main.async {
+                if self.selectedRecruitingStatus != nil {
+                    self.submitButton.isEnabled = true
+                    self.submitButton.backgroundColor = .primary
+                } else {
+                    self.submitButton.isEnabled = false
+                    self.submitButton.backgroundColor = .textDisabled
+                }
+            }
         }
     }
     

@@ -30,7 +30,7 @@
                     </connections>
                 </button>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mui-Uq-G4Z">
-                    <rect key="frame" x="16" y="288" width="382" height="330"/>
+                    <rect key="frame" x="16" y="263" width="382" height="380"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="close" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aaH-zr-A6k">
                             <rect key="frame" x="350" y="16" width="16" height="16"/>
@@ -44,8 +44,14 @@
                                 <action selector="cancelButtonTapped:" destination="-1" eventType="touchUpInside" id="fL2-m3-tvG"/>
                             </connections>
                         </button>
-                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="q4E-MN-fqP">
-                            <rect key="frame" x="16" y="36" width="350" height="278"/>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_greetings" translatesAutoresizingMaskIntoConstraints="NO" id="mXh-qB-D7k">
+                            <rect key="frame" x="0.0" y="16" width="382" height="208"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="mXh-qB-D7k" secondAttribute="height" multiplier="1.84:1" id="cln-ys-hOr"/>
+                            </constraints>
+                        </imageView>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="32" translatesAutoresizingMaskIntoConstraints="NO" id="q4E-MN-fqP">
+                            <rect key="frame" x="16" y="236" width="350" height="128"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ii3-gr-0tC">
                                     <rect key="frame" x="0.0" y="0.0" width="350" height="43"/>
@@ -55,14 +61,8 @@
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="mXh-qB-D7k">
-                                    <rect key="frame" x="0.0" y="59" width="350" height="150"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="150" id="LJv-6A-4sn"/>
-                                    </constraints>
-                                </imageView>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cIZ-L1-54o">
-                                    <rect key="frame" x="0.0" y="225" width="350" height="53"/>
+                                    <rect key="frame" x="0.0" y="75" width="350" height="53"/>
                                     <color key="backgroundColor" name="Primary"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="53" id="LZk-0o-UGZ"/>
@@ -85,9 +85,12 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
+                        <constraint firstAttribute="trailing" secondItem="mXh-qB-D7k" secondAttribute="trailing" id="6xd-RF-HS8"/>
+                        <constraint firstItem="mXh-qB-D7k" firstAttribute="leading" secondItem="mui-Uq-G4Z" secondAttribute="leading" id="Djs-2g-BvI"/>
+                        <constraint firstItem="q4E-MN-fqP" firstAttribute="top" secondItem="mXh-qB-D7k" secondAttribute="bottom" constant="12" id="Jxs-Gc-WU9"/>
+                        <constraint firstItem="mXh-qB-D7k" firstAttribute="top" secondItem="mui-Uq-G4Z" secondAttribute="top" constant="16" id="OSx-3O-Rnb"/>
                         <constraint firstItem="aaH-zr-A6k" firstAttribute="top" secondItem="mui-Uq-G4Z" secondAttribute="top" constant="16" id="OVM-Gl-QM6"/>
                         <constraint firstAttribute="bottom" secondItem="q4E-MN-fqP" secondAttribute="bottom" constant="16" id="cNP-UI-FLL"/>
-                        <constraint firstItem="q4E-MN-fqP" firstAttribute="top" secondItem="mui-Uq-G4Z" secondAttribute="top" constant="36" id="dLL-Fd-rKk"/>
                         <constraint firstAttribute="trailing" secondItem="aaH-zr-A6k" secondAttribute="trailing" constant="16" id="loi-IS-gCy"/>
                         <constraint firstItem="q4E-MN-fqP" firstAttribute="leading" secondItem="mui-Uq-G4Z" secondAttribute="leading" constant="16" id="stc-Rr-wZI"/>
                         <constraint firstAttribute="trailing" secondItem="q4E-MN-fqP" secondAttribute="trailing" constant="16" id="z1h-LP-LfH"/>
@@ -114,7 +117,7 @@
         </view>
     </objects>
     <resources>
-        <image name="background" width="199" height="151.5"/>
+        <image name="bg_greetings" width="280" height="154"/>
         <namedColor name="Black">
             <color red="0.11699999868869781" green="0.11699999868869781" blue="0.11699999868869781" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

@@ -133,7 +133,7 @@ extension HomeDetailViewController: RecruitingStatusBottomViewControllerDelegate
             switch result {
             case .success:
                 self.dismiss(animated: false) {
-                    self.coordinator?.showGreetingAlertViewController(self, text: "지원해주셔서 감사합니다 팀 리더에게 반갑게 인사를 해보세요!")
+                    self.coordinator?.showGreetingAlertViewController(self)
                     self.viewModel.state.post.value?.isAlreadyApplied = true
                 }
             case .failure(let error): print(error.localizedDescription)

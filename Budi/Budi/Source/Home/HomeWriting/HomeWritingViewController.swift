@@ -78,7 +78,7 @@ private extension HomeWritingViewController {
                                         recruitingPositions: recruitingPositions,
                                         description: description)
                 
-                self.viewModel.createPost(TEST_ACCESS_TOKEN, param) { result in
+                self.viewModel.createPost(.testAccessToken, param) { result in
                     switch result {
                     case .success(let response):
                         print("response is \(response)")

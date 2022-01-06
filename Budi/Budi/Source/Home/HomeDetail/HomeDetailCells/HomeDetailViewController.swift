@@ -78,7 +78,7 @@ private extension HomeDetailViewController {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
                 guard let self = self else { return }
-                self.viewModel.requestLikePost(TEST_ACCESS_TOKEN) { response in
+                self.viewModel.requestLikePost(.testAccessToken) { response in
                     switch response {
                     case .success:
                         guard let isLiked = self.viewModel.state.post.value?.isLiked else { return }
@@ -127,7 +127,7 @@ extension HomeDetailViewController: RecruitingStatusBottomViewControllerDelegate
         
         let param = AppliesRequest(postId: postId, recruitingPositionId: selectedRecruitingStatus.recruitingPositionId)
         
-        viewModel.requestApplies(TEST_ACCESS_TOKEN, param) { result in
+        viewModel.requestApplies(.testAccessToken, param) { result in
             switch result {
             case .success(let response):
                 print("response is \(response)")

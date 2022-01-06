@@ -116,17 +116,19 @@
                                     <constraint firstAttribute="height" constant="8" id="aB6-eQ-bru"/>
                                 </constraints>
                             </view>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Icon_viewCount" translatesAutoresizingMaskIntoConstraints="NO" id="5rg-bg-ZM7">
-                                <rect key="frame" x="323" y="246.5" width="18" height="18"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ico_person_circle_fill" translatesAutoresizingMaskIntoConstraints="NO" id="5rg-bg-ZM7">
+                                <rect key="frame" x="324" y="246.5" width="18" height="18"/>
+                                <color key="tintColor" name="White"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="18" id="AYv-7I-yWL"/>
                                     <constraint firstAttribute="width" constant="18" id="v0I-fg-DbN"/>
                                 </constraints>
+                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="small"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="OFr-7X-wTy" firstAttribute="leading" secondItem="5rg-bg-ZM7" secondAttribute="trailing" constant="9" id="43U-s9-adU"/>
+                            <constraint firstItem="OFr-7X-wTy" firstAttribute="leading" secondItem="5rg-bg-ZM7" secondAttribute="trailing" constant="8" id="43U-s9-adU"/>
                             <constraint firstAttribute="bottom" secondItem="J9W-Wj-BMg" secondAttribute="bottom" id="CMU-35-7YO"/>
                             <constraint firstItem="9ey-eB-KcI" firstAttribute="height" secondItem="fQu-ie-gdD" secondAttribute="height" multiplier="0.642202" id="CdU-3L-olL"/>
                             <constraint firstItem="9ey-eB-KcI" firstAttribute="leading" secondItem="fQu-ie-gdD" secondAttribute="leading" id="Ctl-ea-VBx"/>
@@ -168,9 +170,9 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="Icon_viewCount" width="18" height="18"/>
         <image name="ico_calendar" width="24" height="24"/>
         <image name="ico_mapPin" width="24" height="24"/>
+        <image name="ico_person_circle_fill" width="18" height="18"/>
         <namedColor name="Black">
             <color red="0.11699999868869781" green="0.11699999868869781" blue="0.11699999868869781" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

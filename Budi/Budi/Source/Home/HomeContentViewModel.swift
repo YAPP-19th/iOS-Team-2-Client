@@ -56,7 +56,7 @@ final class HomeAllContentViewModel: HomeContentViewModel {
                 if nextPage < self.state.pageData.value.pageSize || nextPage == 0 {
                     self.provider
                         .requestPublisher(.posts(page: nextPage))
-                        .map(APIResponse<PostContainer>.self)
+                        .map(APIResponse<PageContainer<[Post]>>.self)
                         .map(\.data)
                         .sink(receiveCompletion: { [weak self] completion in
                             guard case let .failure(error) = completion else { return }
@@ -82,7 +82,7 @@ final class HomeAllContentViewModel: HomeContentViewModel {
                 guard let self = self else { return }
                 self.provider
                     .requestPublisher(.posts())
-                    .map(APIResponse<PostContainer>.self)
+                    .map(APIResponse<PageContainer<[Post]>>.self)
                     .map(\.data)
                     .sink(receiveCompletion: { [weak self] completion in
                         guard case let .failure(error) = completion else { return }
@@ -113,7 +113,7 @@ final class HomeDeveloperContentViewModel: HomeContentViewModel {
                 if nextPage < self.state.pageData.value.pageSize || nextPage == 0 {
                     self.provider
                         .requestPublisher(.filteredPosts(type: .developer, page: nextPage))
-                        .map(APIResponse<PostContainer>.self)
+                        .map(APIResponse<PageContainer<[Post]>>.self)
                         .map(\.data)
                         .sink(receiveCompletion: { [weak self] completion in
                             guard case let .failure(error) = completion else { return }
@@ -139,7 +139,7 @@ final class HomeDeveloperContentViewModel: HomeContentViewModel {
                 guard let self = self else { return }
                 self.provider
                     .requestPublisher(.filteredPosts(type: .developer))
-                    .map(APIResponse<PostContainer>.self)
+                    .map(APIResponse<PageContainer<[Post]>>.self)
                     .map(\.data)
                     .sink(receiveCompletion: { [weak self] completion in
                         guard case let .failure(error) = completion else { return }
@@ -170,7 +170,7 @@ final class HomeDesignerContentViewModel: HomeContentViewModel {
                 if nextPage < self.state.pageData.value.pageSize || nextPage == 0 {
                     self.provider
                         .requestPublisher(.filteredPosts(type: .designer, page: nextPage))
-                        .map(APIResponse<PostContainer>.self)
+                        .map(APIResponse<PageContainer<[Post]>>.self)
                         .map(\.data)
                         .sink(receiveCompletion: { [weak self] completion in
                             guard case let .failure(error) = completion else { return }
@@ -196,7 +196,7 @@ final class HomeDesignerContentViewModel: HomeContentViewModel {
                 guard let self = self else { return }
                 self.provider
                     .requestPublisher(.filteredPosts(type: .designer))
-                    .map(APIResponse<PostContainer>.self)
+                    .map(APIResponse<PageContainer<[Post]>>.self)
                     .map(\.data)
                     .sink(receiveCompletion: { [weak self] completion in
                         guard case let .failure(error) = completion else { return }
@@ -227,7 +227,7 @@ final class HomeProductManagerContentViewModel: HomeContentViewModel {
                 if nextPage < self.state.pageData.value.pageSize || nextPage == 0 {
                     self.provider
                         .requestPublisher(.filteredPosts(type: .productManager, page: nextPage))
-                        .map(APIResponse<PostContainer>.self)
+                        .map(APIResponse<PageContainer<[Post]>>.self)
                         .map(\.data)
                         .sink(receiveCompletion: { [weak self] completion in
                             guard case let .failure(error) = completion else { return }
@@ -253,7 +253,7 @@ final class HomeProductManagerContentViewModel: HomeContentViewModel {
                 guard let self = self else { return }
                 self.provider
                     .requestPublisher(.filteredPosts(type:  .productManager))
-                    .map(APIResponse<PostContainer>.self)
+                    .map(APIResponse<PageContainer<[Post]>>.self)
                     .map(\.data)
                     .sink(receiveCompletion: { [weak self] completion in
                         guard case let .failure(error) = completion else { return }

@@ -9,7 +9,7 @@ import Moya
 
 enum MemberTarget {
     case memberDetails(accessToken: String, id: Int)
-    case memberList(postion: Position)
+    case memberList(postion: Position, page: Int, size: Int)
 }
 
 extension MemberTarget: TargetType {
@@ -20,7 +20,7 @@ extension MemberTarget: TargetType {
     var path: String {
         switch self {
         case .memberDetails(_, let id): return "/members/budiDetails/\(id)"
-        case .memberList(let postion): return "/members/budiLists/\(postion.englishStringValue)"
+        case .memberList(let postion, _, _): return "/members/budiLists/\(postion.englishStringValue)"
         }
     }
 
@@ -29,7 +29,13 @@ extension MemberTarget: TargetType {
     }
 
     var task: Task {
-        return .requestPlain
+        switch self {
+        case .memberDetails(let accessToken, let id):
+            return .requestPlain
+        case .memberList(_, let page, let size):
+            return .requestParameters(parameters: ["page": page, "size": size], encoding: URLEncoding.default)
+        }
+
     }
 
     var headers: [String: String]? {

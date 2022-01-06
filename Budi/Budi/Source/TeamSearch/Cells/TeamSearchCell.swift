@@ -15,7 +15,8 @@ final class TeamSearchCell: UICollectionViewCell {
     @IBOutlet private weak var headerTitleLabel: UILabel!
     @IBOutlet weak var headerStackView: UIStackView!
     var cancellables = Set<AnyCancellable>()
-    
+    var section: TeamSearchViewModelSection?
+
     override func awakeFromNib() {
         super.awakeFromNib()
         configure()
@@ -26,11 +27,12 @@ final class TeamSearchCell: UICollectionViewCell {
         cancellables.removeAll()
     }
 
-    func updateUI(_ position: Position) {
-        headerTitleLabel.text = position.rawValue
-        headerImageView.image = position.teamSearchCharacter
+    func updateUI(_ section: TeamSearchViewModelSection) {
+        self.section = section
+        headerTitleLabel.text = section.position.rawValue
+        headerImageView.image = section.position.teamSearchCharacter
+        collectionView.reloadData()
     }
-
 }
 
 private extension TeamSearchCell {
@@ -52,14 +54,13 @@ extension TeamSearchCell: UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        4
+        return self.section?.items.count ?? 0
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TeamSearchDetailCell.identifier, for: indexPath) as? TeamSearchDetailCell else { return UICollectionViewCell() }
-        cell.postionLabel.superview?.backgroundColor = .init(hexString: "#E7F1FB")
-        cell.postionLabel.textColor = .init(hexString: "#3382E0")
-//        cell.updateUI(viewModel.state.sections.value[indexPath.section].postion)
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TeamSearchDetailCell.identifier, for: indexPath) as? TeamSearchDetailCell,  let member = self.section?.items[indexPath.item] else { return UICollectionViewCell() }
+
+//        cell.updateUI(member)
         return cell
     }
 }

@@ -29,7 +29,7 @@ final class TeamSearchCell: UICollectionViewCell {
 
     func updateUI(_ section: TeamSearchViewModelSection) {
         self.section = section
-        headerTitleLabel.text = section.position.rawValue
+        headerTitleLabel.text = section.position.jobStringValue
         headerImageView.image = section.position.teamSearchCharacter
         collectionView.reloadData()
     }

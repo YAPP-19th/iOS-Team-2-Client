@@ -183,6 +183,10 @@
 		B9684168277853F3002F5D3D /* alertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E24072227522BCE00954BE7 /* alertView.swift */; };
 		B968416B277862ED002F5D3D /* TeamSearchDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9684169277862ED002F5D3D /* TeamSearchDetailCell.swift */; };
 		B968416C277862ED002F5D3D /* TeamSearchDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B968416A277862ED002F5D3D /* TeamSearchDetailCell.xib */; };
+		B96F33BB27859A14000A0B42 /* TeamSearchFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96F33BA27859A14000A0B42 /* TeamSearchFilterViewController.swift */; };
+		B96F33BD27859C6D000A0B42 /* UIView+gesturePublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96F33BC27859C6D000A0B42 /* UIView+gesturePublisher.swift */; };
+		B96F33C42785A217000A0B42 /* TeamSearchPostionFilterHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96F33C22785A217000A0B42 /* TeamSearchPostionFilterHeader.swift */; };
+		B96F33C52785A217000A0B42 /* TeamSearchPostionFilterHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = B96F33C32785A217000A0B42 /* TeamSearchPostionFilterHeader.xib */; };
 		B97DBB9527147D970018C1D2 /* UIViewController+identifer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B97DBB9427147D970018C1D2 /* UIViewController+identifer.swift */; };
 		B98E530A27396B3F00C73374 /* UINavigationController+translucent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98E530927396B3F00C73374 /* UINavigationController+translucent.swift */; };
 		B9BEF8972767978E00C889B4 /* HomeContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9BEF8962767978E00C889B4 /* HomeContentViewController.swift */; };
@@ -191,7 +195,6 @@
 		B9BF787B27004095000BE0EF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B9BF787927004095000BE0EF /* Main.storyboard */; };
 		B9BF787D27004096000BE0EF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B9BF787C27004096000BE0EF /* Assets.xcassets */; };
 		B9BF788027004096000BE0EF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B9BF787E27004096000BE0EF /* LaunchScreen.storyboard */; };
-		B9C1C045276EFF98004F3FB4 /* SearchTeam.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B9C1C044276EFF98004F3FB4 /* SearchTeam.storyboard */; };
 		B9D66EB927146DF900668490 /* TabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9D66EB827146DF900668490 /* TabBarCoordinator.swift */; };
 		B9D66EBD27146E4300668490 /* NavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9D66EBC27146E4300668490 /* NavigationCoordinator.swift */; };
 		B9D66EBF27146F2F00668490 /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9D66EBE27146F2F00668490 /* HomeCoordinator.swift */; };
@@ -382,6 +385,10 @@
 		B9535E14276DD8E2000081CF /* PositionLabelCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PositionLabelCell.xib; sourceTree = "<group>"; };
 		B9684169277862ED002F5D3D /* TeamSearchDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamSearchDetailCell.swift; sourceTree = "<group>"; };
 		B968416A277862ED002F5D3D /* TeamSearchDetailCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TeamSearchDetailCell.xib; sourceTree = "<group>"; };
+		B96F33BA27859A14000A0B42 /* TeamSearchFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamSearchFilterViewController.swift; sourceTree = "<group>"; };
+		B96F33BC27859C6D000A0B42 /* UIView+gesturePublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+gesturePublisher.swift"; sourceTree = "<group>"; };
+		B96F33C22785A217000A0B42 /* TeamSearchPostionFilterHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamSearchPostionFilterHeader.swift; sourceTree = "<group>"; };
+		B96F33C32785A217000A0B42 /* TeamSearchPostionFilterHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TeamSearchPostionFilterHeader.xib; sourceTree = "<group>"; };
 		B97DBB9427147D970018C1D2 /* UIViewController+identifer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+identifer.swift"; sourceTree = "<group>"; };
 		B98E530927396B3F00C73374 /* UINavigationController+translucent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationController+translucent.swift"; sourceTree = "<group>"; };
 		B9BEF8962767978E00C889B4 /* HomeContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeContentViewController.swift; sourceTree = "<group>"; };
@@ -392,7 +399,6 @@
 		B9BF787C27004096000BE0EF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B9BF787F27004096000BE0EF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B9BF788127004096000BE0EF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B9C1C044276EFF98004F3FB4 /* SearchTeam.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SearchTeam.storyboard; sourceTree = "<group>"; };
 		B9D66EB827146DF900668490 /* TabBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarCoordinator.swift; sourceTree = "<group>"; };
 		B9D66EBA27146E1F00668490 /* MainTabBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarCoordinator.swift; sourceTree = "<group>"; };
 		B9D66EBC27146E4300668490 /* NavigationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationCoordinator.swift; sourceTree = "<group>"; };
@@ -672,6 +678,8 @@
 				5EFB0A442733E36800F39A4D /* TeamSearchCell.xib */,
 				B9684169277862ED002F5D3D /* TeamSearchDetailCell.swift */,
 				B968416A277862ED002F5D3D /* TeamSearchDetailCell.xib */,
+				B96F33C22785A217000A0B42 /* TeamSearchPostionFilterHeader.swift */,
+				B96F33C32785A217000A0B42 /* TeamSearchPostionFilterHeader.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -957,7 +965,6 @@
 			children = (
 				B9BF787E27004096000BE0EF /* LaunchScreen.storyboard */,
 				B9BF787927004095000BE0EF /* Main.storyboard */,
-				B9C1C044276EFF98004F3FB4 /* SearchTeam.storyboard */,
 			);
 			path = Storyborads;
 			sourceTree = "<group>";
@@ -979,6 +986,7 @@
 				B9D66EC32714703B00668490 /* TeamSearchCoordinator.swift */,
 				5EFB0A402733CD7700F39A4D /* TeamSearchViewController.swift */,
 				B94D2D9B277DFE2300DD7FDD /* TeamSearchViewModel.swift */,
+				B96F33BA27859A14000A0B42 /* TeamSearchFilterViewController.swift */,
 			);
 			path = TeamSearch;
 			sourceTree = "<group>";
@@ -1018,6 +1026,7 @@
 				5EA575FD274E9C4800DF6974 /* String+baseURL.swift */,
 				5E240720275225CD00954BE7 /* String+date.swift */,
 				5EC0328C27868ED00059BE92 /* String+testAccessToken.swift */,
+				B96F33BC27859C6D000A0B42 /* UIView+gesturePublisher.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1097,6 +1106,7 @@
 				5EB430322758952500283239 /* HomeWritingDurationCell.xib in Resources */,
 				5E820B872769F033004A03E9 /* HomeWritingMembersCountBottomCollectionViewCell.xib in Resources */,
 				B968416C277862ED002F5D3D /* TeamSearchDetailCell.xib in Resources */,
+				B96F33C52785A217000A0B42 /* TeamSearchPostionFilterHeader.xib in Resources */,
 				5E886377276771E00022397A /* HomeWritingImageBottomViewController.xib in Resources */,
 				A8936FC027785B7400BE2C1D /* PortfolioURLTableViewCell.xib in Resources */,
 				5E8863832767AE190022397A /* HomeWritingImageBottomCell.xib in Resources */,
@@ -1114,7 +1124,6 @@
 				5EFB0A532734016600F39A4D /* MyChattingMessageCell.xib in Resources */,
 				5EB4302E2758951600283239 /* HomeWritingPartCell.xib in Resources */,
 				5EFB0A5727340BF100F39A4D /* ChattingMessageCell.xib in Resources */,
-				B9C1C045276EFF98004F3FB4 /* SearchTeam.storyboard in Resources */,
 				5EB430262758909800283239 /* HomeWritingImageCell.xib in Resources */,
 				A81D1075276482F90022D610 /* DefaultHeaderView.xib in Resources */,
 				5E91509B27722213000578D4 /* MyBudiProjectCell.xib in Resources */,
@@ -1276,6 +1285,7 @@
 				A8CD93442736E82300299AB4 /* PositionViewController.swift in Sources */,
 				B9BF787427004094000BE0EF /* AppDelegate.swift in Sources */,
 				A81D105F2764828A0022D610 /* HistoryWriteViewController.swift in Sources */,
+				B96F33BD27859C6D000A0B42 /* UIView+gesturePublisher.swift in Sources */,
 				5EFB0A522734016600F39A4D /* MyChattingMessageCell.swift in Sources */,
 				B968416B277862ED002F5D3D /* TeamSearchDetailCell.swift in Sources */,
 				B97DBB9527147D970018C1D2 /* UIViewController+identifer.swift in Sources */,
@@ -1316,6 +1326,7 @@
 				5E820B94276A36DA004A03E9 /* RecruitingStatus.swift in Sources */,
 				5EB430312758952500283239 /* HomeWritingDurationCell.swift in Sources */,
 				A8A6D9F9273D2D1800C84C52 /* BackButtonExtension.swift in Sources */,
+				B96F33BB27859A14000A0B42 /* TeamSearchFilterViewController.swift in Sources */,
 				A8936FB82772F77600BE2C1D /* NameDuplication.swift in Sources */,
 				5E240721275225CD00954BE7 /* String+date.swift in Sources */,
 				5E820B862769F033004A03E9 /* HomeWritingMembersCountBottomCollectionViewCell.swift in Sources */,
@@ -1333,6 +1344,7 @@
 				A81D1088276485590022D610 /* WorkHistory.swift in Sources */,
 				5EF5F3292741590300A5F6E2 /* LocationManager.swift in Sources */,
 				5E915092277221F5000578D4 /* MyBudiProfileCell.swift in Sources */,
+				B96F33C42785A217000A0B42 /* TeamSearchPostionFilterHeader.swift in Sources */,
 				5E7EFE272732E06F007817C3 /* AlertViewController.swift in Sources */,
 				A84F2675276DE9F200C65DA1 /* SignupPersonalInfo.swift in Sources */,
 				A85C920D276A42210097E444 /* CreateInfo.swift in Sources */,
@@ -1516,8 +1528,8 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Budi/Budi.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = V37X2D6JM3;
 				INFOPLIST_FILE = Budi/Resource/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

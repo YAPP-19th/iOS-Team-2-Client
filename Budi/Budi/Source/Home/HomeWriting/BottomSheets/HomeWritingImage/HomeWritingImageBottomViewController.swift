@@ -65,11 +65,7 @@ final class HomeWritingImageBottomViewController: UIViewController {
         super.viewDidAppear(animated)
         showBottomView()
     }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        cancellables.removeAll()
-    }
+
 }
 
 private extension HomeWritingImageBottomViewController {

@@ -45,7 +45,7 @@ final class HomeDetailMainCell: UICollectionViewCell {
         formatter.dateFormat = "yy.MM.dd"
 
         let startDateString = formatter.string(from: startDate)
-        let endDateString = formatter.string(from: startDate)
+        let endDateString = formatter.string(from: endDate)
         let intervalMonth = Int(endDate.timeIntervalSince(startDate)) / 30 / 86400
 
         return "\(startDateString) - \(endDateString) \(intervalMonth > 0 ? "(\(intervalMonth)개월)" : "")"

@@ -105,9 +105,7 @@ private extension HomeWritingViewController {
                 
                 self.viewModel.createPost(.testAccessToken, param) { result in
                     switch result {
-                    case .success(let response):
-                        // MARK: - 생성 완료창 띄우기
-                        break
+                    case .success(let response): break
                     case .failure(let error): print("error is \(error.localizedDescription)")
                     }
                 }

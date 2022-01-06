@@ -81,11 +81,6 @@ final class HomeWritingMembersBottomViewController: UIViewController {
         super.viewDidAppear(animated)
         showBottomView(190)
     }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        cancellables.removeAll()
-    }
 }
 
 private extension HomeWritingMembersBottomViewController {

@@ -142,16 +142,15 @@ extension HomeWritingImageBottomViewController: UIImagePickerControllerDelegate 
             case .success(let response):
                 print(response)
                 do {
-                    let json = try JSONSerialization.jsonObject(with: response.data, options: []) as? [String: Any]
-                    guard let data = json?["data"] as? [String: Any], let imageUrl = data["imageUrl"] as? String else { return }
+                    guard let json = try JSONSerialization.jsonObject(with: response.data, options: []) as? [String: Any],
+                          let data = json["data"] as? [String: Any],
+                          let imageUrl = data["imageUrl"] as? String else { return }
                     self.viewModel.state.selectedImageUrl.value = imageUrl
                     self.imagePickerController.dismiss(animated: true) {
                         self.dismiss(animated: false, completion: nil)
                     }
-                } catch {
-                }
-            case .failure(let error):
-                print("error is \(error.localizedDescription)")
+                } catch { }
+            case .failure(let error): print("error is \(error.localizedDescription)")
             }
         }
     }

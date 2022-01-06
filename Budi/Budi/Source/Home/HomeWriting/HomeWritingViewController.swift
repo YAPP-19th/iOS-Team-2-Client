@@ -15,6 +15,8 @@ final class HomeWritingViewController: UIViewController {
     
     private var isStartDate: Bool = true
     
+    private var imageBottomViewController: HomeWritingImageBottomViewController?
+    
     weak var coordinator: HomeCoordinator?
     private let viewModel: HomeWritingViewModel
     private var cancellables = Set<AnyCancellable>()
@@ -32,6 +34,8 @@ final class HomeWritingViewController: UIViewController {
         super.viewDidLoad()
         bindViewModel()
         setPublisher()
+        
+        configureImageButtonViewController()
         configureNavigationBar()
         configureCollectionView()
     }
@@ -48,6 +52,16 @@ final class HomeWritingViewController: UIViewController {
 }
 
 private extension HomeWritingViewController {
+    func configureImageButtonViewController() {
+        imageBottomViewController = {
+            let viewController: HomeWritingImageBottomViewController = HomeWritingImageBottomViewController(nibName: HomeWritingImageBottomViewController.identifier, bundle: nil, viewModel: viewModel)
+            viewController.modalPresentationStyle = .overCurrentContext
+            viewController.delegate = self as HomeWritingImageBottomViewControllerDelegate
+            viewController.coordinator = coordinator
+            return viewController
+        }()
+    }
+    
     func bindViewModel() {
         viewModel.state.selectedImageUrl
             .receive(on: DispatchQueue.main)
@@ -91,7 +105,9 @@ private extension HomeWritingViewController {
                 
                 self.viewModel.createPost(.testAccessToken, param) { result in
                     switch result {
-                    case .success(let response): break
+                    case .success(let response):
+                        // MARK: - 생성 완료창 띄우기
+                        break
                     case .failure(let error): print("error is \(error.localizedDescription)")
                     }
                 }
@@ -233,9 +249,9 @@ extension HomeWritingViewController: UICollectionViewDataSource, UICollectionVie
             cell.imageChangeButton.tapPublisher
                 .receive(on: DispatchQueue.main)
                 .sink { [weak self] _ in
-                    guard let self = self else { return }
-                    self.coordinator?.showWritingImageBottomViewController(self, self.viewModel)
-                }.store(in: &cancellables)
+                    guard let self = self, let imageBottomViewController = self.imageBottomViewController else { return }
+                    self.present(imageBottomViewController, animated: false, completion: nil)
+                }.store(in: &cell.cancellables)
             return cell
             
         case 1: guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeWritingNameCell.identifier, for: indexPath) as? HomeWritingNameCell else { return cell }

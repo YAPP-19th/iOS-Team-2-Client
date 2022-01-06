@@ -12,7 +12,7 @@ final class HomeDetailLeaderCell: UICollectionViewCell {
     @IBOutlet private weak var collectionView: UICollectionView!
     @IBOutlet private weak var dividerView: UIView!
 
-    var leader: Leader = Leader(leaderId: 0, nickName: "", profileImageUrl: "", address: "", position: "") {
+    var leader: Leader = Leader(leaderId: 0, nickName: "", profileImageUrl: "", address: "", position: .init(position: "", colorCode: 0)) {
         didSet {
             collectionView.reloadData()
         }

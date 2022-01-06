@@ -21,12 +21,10 @@ final class HomeDetailPersonCell: UICollectionViewCell {
     
     func updateUI(_ leader: Leader) {
         nameLabel.text = leader.nickName.isEmpty ? "Unknown" : leader.nickName
-        jobLabel.text = leader.position.isEmpty ? "Unknown" : leader.position
-        addressLabel.text = leader.address.isEmpty ? "Unknown" : leader.address
-        
-        // MARK: - 서버에 leader.position 정보에 colorCode가 추가되면 수정 및 적용
-        let colorCode = 1
-        characterImageView.image = Position(rawValue: colorCode)?.characterImage
+        jobLabel.text = leader.position.position.isEmpty ? "기타" : leader.position.position
+        addressLabel.text = leader.address.isEmpty ? "서울시 강남구" : leader.address
+
+        characterImageView.image = Position(rawValue: leader.position.colorCode)?.iconImage
         if let url = URL(string: leader.profileImageUrl) {
             profileImageView.kf.setImage(with: url, placeholder: UIImage(named: "person.circle.fill"))
         }
@@ -34,10 +32,10 @@ final class HomeDetailPersonCell: UICollectionViewCell {
     
     func updateUI(_ teamMember: TeamMember) {
         nameLabel.text = teamMember.nickName.isEmpty ? "Unknown" : teamMember.nickName
-        jobLabel.text = teamMember.position.position.isEmpty ? "Unknown" : teamMember.position.position
-        addressLabel.text = teamMember.address.isEmpty ? "Unknown" : teamMember.address
+        jobLabel.text = teamMember.position.position.isEmpty ? "기타" : teamMember.position.position
+        addressLabel.text = teamMember.address.isEmpty ? "서울시 강남구" : teamMember.address
 
-        characterImageView.image = Position(rawValue: teamMember.position.colorCode)?.characterImage
+        characterImageView.image = Position(rawValue: teamMember.position.colorCode)?.iconImage
         if let url = URL(string: teamMember.profileImageUrl) {
             profileImageView.kf.setImage(with: url, placeholder: UIImage(named: "person.circle.fill"))
         }

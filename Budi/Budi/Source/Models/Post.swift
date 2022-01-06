@@ -86,7 +86,7 @@ struct Post: Decodable {
         let modifiedDateString = (try? container.decode(String.self, forKey: .modifiedDateString)) ?? ""
         modifiedDate = modifiedDateString.date() ?? Date(timeIntervalSince1970: 0)
         
-        leader = (try? container.decode(Leader.self, forKey: .leader)) ?? Leader(leaderId: 0, nickName: "", profileImageUrl: "", address: "", position: "")
+        leader = (try? container.decode(Leader.self, forKey: .leader)) ?? Leader(leaderId: 0, nickName: "", profileImageUrl: "", address: "", position: .init(position: "", colorCode: 0))
         isLiked = (try? container.decode(Bool.self, forKey: .isLiked)) ?? false
         likeCount = (try? container.decode(Int.self, forKey: .likeCount)) ?? -1
         isAlreadyApplied = (try? container.decode(Bool.self, forKey: .isAlreadyApplied)) ?? false
@@ -109,22 +109,13 @@ struct Post: Decodable {
         self.onlineInfo = ""
         self.createdDate = Date()
         self.modifiedDate = Date()
-        self.leader = Leader(leaderId: 0, nickName: "", profileImageUrl: "", address: "", position: "")
+        self.leader = Leader(leaderId: 0, nickName: "", profileImageUrl: "", address: "", position: .init(position: "", colorCode: 0))
         self.isLiked = false
         self.likeCount = -1
         self.isAlreadyApplied = false
         self.ownerID = -1
         self.positions = []
     }
-}
-
-// MARK: - Leader
-struct Leader: Codable {
-    let leaderId: Int
-    let nickName: String
-    let profileImageUrl: String
-    let address: String
-    let position: String
 }
 
 struct PositionData: Codable {

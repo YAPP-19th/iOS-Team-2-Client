@@ -16,12 +16,7 @@ struct TeamMember: Codable {
     let nickName: String
     let profileImageUrl: String
     let address: String
-    let position: TeamMemberPosition
-}
-
-struct TeamMemberPosition: Codable {
-    let position: String
-    let colorCode: Int
+    let position: PositionData
 }
 
 struct SearchTeamMember: Codable {

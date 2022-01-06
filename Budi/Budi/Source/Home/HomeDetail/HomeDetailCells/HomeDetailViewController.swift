@@ -99,7 +99,6 @@ private extension HomeDetailViewController {
 
     @objc
     func shareButtonTapped() {
-        print("버디 모집 공유")
     }
     
     func configureHeartButton() {

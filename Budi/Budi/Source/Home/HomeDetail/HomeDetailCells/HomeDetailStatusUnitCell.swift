@@ -22,9 +22,9 @@ final class HomeDetailStatusUnitCell: UICollectionViewCell {
         countLabel.text = recruitingStatus.approvedStatus
         
         switch recruitingStatus.positions.colorCode {
-        case 1: characterImageView.image = UIImage(named: "Developer")
-        case 2: characterImageView.image = UIImage(named: "Planner")
-        case 3: characterImageView.image = UIImage(named: "Designer")
+        case 1: characterImageView.image = UIImage(named: "developer")
+        case 2: characterImageView.image = UIImage(named: "planner")
+        case 3: characterImageView.image = UIImage(named: "designer")
         default: break
         }
     }

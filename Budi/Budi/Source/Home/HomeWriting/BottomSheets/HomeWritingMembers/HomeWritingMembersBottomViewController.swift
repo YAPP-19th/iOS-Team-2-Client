@@ -25,7 +25,13 @@ final class HomeWritingMembersBottomViewController: UIViewController {
     @IBOutlet private weak var bottomViewTopConstraint: NSLayoutConstraint!
     
     private var isBottomViewShown: Bool = false
-    private var selectedPosition: Position?
+    private var selectedPosition: Position? = nil {
+        didSet {
+            DispatchQueue.main.async {
+                self.showBottomView(190)
+            }
+        }
+    }
     private var selectedParts: [String] = [] {
         didSet {
             DispatchQueue.main.async {
@@ -39,7 +45,16 @@ final class HomeWritingMembersBottomViewController: UIViewController {
             }
         }
     }
-    private var recruitingPositions: [RecruitingPosition] = []
+    private var recruitingPositions: [RecruitingPosition] = [] {
+        didSet {
+            guard oldValue.count != self.recruitingPositions.count else { return }
+            let isDecreased: Bool = oldValue.count > self.recruitingPositions.count
+            let constant: CGFloat = (oldValue.count == 0 || self.recruitingPositions.count == 0) ? 78 : 48
+            DispatchQueue.main.async {
+                self.showBottomView((isDecreased ? -1 : 1)*constant)
+            }
+        }
+    }
     
     weak var delegate: HomeWritingMembersBottomViewControllerDelegate?
     weak var coordinator: HomeCoordinator?
@@ -64,7 +79,7 @@ final class HomeWritingMembersBottomViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        showBottomView()
+        showBottomView(190)
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -92,10 +107,10 @@ private extension HomeWritingMembersBottomViewController {
 }
 
 private extension HomeWritingMembersBottomViewController {
-    func showBottomView() {
+    func showBottomView(_ constant: CGFloat) {
         let animator = UIViewPropertyAnimator(duration: 0.25, curve: .linear) { [weak self] in
             guard let self = self else { return }
-            self.bottomViewTopConstraint.constant -= 500
+            self.bottomViewTopConstraint.constant -= constant
             self.view.layoutIfNeeded()
         }
         animator.addCompletion { [weak self] _ in
@@ -107,7 +122,7 @@ private extension HomeWritingMembersBottomViewController {
     func hideBottomView() {
         let animator = UIViewPropertyAnimator(duration: 0.25, curve: .linear) { [weak self] in
             guard let self = self else { return }
-            self.bottomViewTopConstraint.constant += 500
+            self.bottomViewTopConstraint.constant = 0
             self.view.layoutIfNeeded()
         }
         animator.addCompletion { [weak self] _ in
@@ -193,7 +208,7 @@ extension HomeWritingMembersBottomViewController: UICollectionViewDataSource, UI
         switch indexPath.row {
         case 0: size.height = 166
         case 1: size.height = 145
-        case 2: size.height = 200
+        case 2: size.height = 78 + 48*CGFloat(recruitingPositions.count)
         default: break
         }
         

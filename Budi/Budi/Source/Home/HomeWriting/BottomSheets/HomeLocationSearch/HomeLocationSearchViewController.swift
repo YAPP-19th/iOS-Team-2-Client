@@ -1,8 +1,8 @@
 //
-//  HomeLocationSearchViewController.swift
+//  LocationSearchViewController.swift
 //  Budi
 //
-//  Created by leeesangheee on 2022/01/06.
+//  Created by 인병윤 on 2021/11/08.
 //
 
 import UIKit
@@ -66,12 +66,12 @@ final class HomeLocationSearchViewController: UIViewController {
         self.addBackButton()
         
         LocationManager.shared.requestWhenInUseAuthorization()
-        
+
         searchBar.delegate = self
         nextButton.isEnabled = false
         configureLayout()
         configureTableView()
-        
+
         nextButton.addTarget(self, action: #selector(nextButtonTapped), for: .touchUpInside)
         nowLocationButton.addTarget(self, action: #selector(nowLocationButtonTapped), for: .touchUpInside)
     }

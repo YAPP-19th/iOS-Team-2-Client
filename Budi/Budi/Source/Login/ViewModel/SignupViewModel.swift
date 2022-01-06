@@ -397,8 +397,6 @@ final class SignupViewModel: ViewModel {
                         print(post.data.memberId)
                         UserDefaults.standard.set(post.data.memberId, forKey: "memberId")
                         UserDefaults.standard.set(accsessToken, forKey: "accessToken")
-                        print("저장된 숫자:", UserDefaults.standard.integer(forKey: "memberId"))
-                        print("저장된 엑세스 토큰:", UserDefaults.standard.string(forKey: "accessToken") ?? "")
                         self.state.userInfoUploadStatus.send(post.message)
 
                     })

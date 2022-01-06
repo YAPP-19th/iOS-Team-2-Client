@@ -217,9 +217,7 @@ extension HomeWritingViewController: UICollectionViewDataSource, UICollectionVie
                 cell.configureUI(url)
             } else {
                 let ramdomNumber = Int(arc4random_uniform(9))
-                print("ramdomNumber is \(ramdomNumber)")
                 let defaultImageUrls = viewModel.state.defaultImageUrls.value
-                print("defaultImageUrls is \(defaultImageUrls)")
                 if defaultImageUrls.count >= 9 {
                     let randomUrl = defaultImageUrls[ramdomNumber]
                     viewModel.state.selectedImageUrl.value = randomUrl
@@ -268,7 +266,7 @@ extension HomeWritingViewController: UICollectionViewDataSource, UICollectionVie
                 .sink { [weak self] _ in
                     guard let self = self else { return }
                     self.coordinator?.showLocationSearchViewController(self)
-                }.store(in: &cancellables)
+                }.store(in: &cell.cancellables)
             return cell
             
         case 6: guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeWritingMembersCell.identifier, for: indexPath) as? HomeWritingMembersCell else { return cell }

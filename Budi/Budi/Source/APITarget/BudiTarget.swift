@@ -21,7 +21,7 @@ enum BudiTarget {
     case checkDuplicateName(name: String)
     case postCategory
     case likePosts(accessToken: String, id: Int)
-    case convertImageToURL(multipartFormData: [MultipartFormData])
+    case convertImageToURL(jpegData: Data)
 }
 
 extension BudiTarget: TargetType {
@@ -72,7 +72,9 @@ extension BudiTarget: TargetType {
             return .requestParameters(parameters: ["page": page, "size": size], encoding: URLEncoding.default)
         case .detailPositions(let position):
             return .requestParameters(parameters: ["position": position.jobStringEnglishValue], encoding: URLEncoding.default)
-        case .convertImageToURL(let multipartFormData): return .uploadMultipart(multipartFormData)
+        case .convertImageToURL(let jpegData):
+            let multipartFormData = [MultipartFormData(provider: .data(jpegData), name: "image", fileName: "image.jpeg", mimeType: "image/jpeg")]
+            return .uploadMultipart(multipartFormData)
         default: return .requestPlain
         }
     }

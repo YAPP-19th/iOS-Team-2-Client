@@ -6,11 +6,19 @@
 //
 
 import UIKit
+import Combine
 
 final class HomeWritingMembersCell: UICollectionViewCell {
     
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var addButton: UIButton!
+    
+    var cancellables = Set<AnyCancellable>()
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        cancellables.removeAll()
+    }
     
     var recruitingPositions: [RecruitingPosition] = [] {
         didSet {

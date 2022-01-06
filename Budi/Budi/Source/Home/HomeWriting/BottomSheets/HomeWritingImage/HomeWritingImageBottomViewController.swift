@@ -140,11 +140,15 @@ extension HomeWritingImageBottomViewController: UIImagePickerControllerDelegate 
         viewModel.convertImageToURL(jpegData) { result in
             switch result {
             case .success(let response):
+                print(response)
+                
                 let dataString = String(decoding: response.data, as: UTF8.self)
+                print("dataString is \(dataString)")
+
                 // MARK: - URL 생성완료 후 뷰모델에 저장
-                //        let selectedImageUrl: String = ""
-                //        self.viewModel.state.selectedImageUrl.value = selectedImageUrl
-                //        self.imagePickerController.dismiss(animated: true, completion: nil)
+                let selectedImageUrl: String = ""
+                self.viewModel.state.selectedImageUrl.value = selectedImageUrl
+                self.imagePickerController.dismiss(animated: true, completion: nil)
             case .failure(let error):
                 print("error is \(error.localizedDescription)")
             }

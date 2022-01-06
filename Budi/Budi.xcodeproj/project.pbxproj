@@ -108,6 +108,8 @@
 		5EF5F3292741590300A5F6E2 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF5F3282741590300A5F6E2 /* LocationManager.swift */; };
 		5EF986CA2786E58600874A40 /* Leader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF986C92786E58600874A40 /* Leader.swift */; };
 		5EF986D82786E9A700874A40 /* HomeLocationSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF986D72786E9A700874A40 /* HomeLocationSearchViewController.swift */; };
+		5EF986DD2787335E00874A40 /* ErrorAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF986DB2787335E00874A40 /* ErrorAlertViewController.swift */; };
+		5EF986DE2787335E00874A40 /* ErrorAlertViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EF986DC2787335E00874A40 /* ErrorAlertViewController.xib */; };
 		5EFB0A412733CD7700F39A4D /* TeamSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EFB0A402733CD7700F39A4D /* TeamSearchViewController.swift */; };
 		5EFB0A452733E36800F39A4D /* TeamSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EFB0A432733E36800F39A4D /* TeamSearchCell.swift */; };
 		5EFB0A462733E36800F39A4D /* TeamSearchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EFB0A442733E36800F39A4D /* TeamSearchCell.xib */; };
@@ -308,6 +310,8 @@
 		5EF5F3282741590300A5F6E2 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		5EF986C92786E58600874A40 /* Leader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Leader.swift; sourceTree = "<group>"; };
 		5EF986D72786E9A700874A40 /* HomeLocationSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeLocationSearchViewController.swift; sourceTree = "<group>"; };
+		5EF986DB2787335E00874A40 /* ErrorAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorAlertViewController.swift; sourceTree = "<group>"; };
+		5EF986DC2787335E00874A40 /* ErrorAlertViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ErrorAlertViewController.xib; sourceTree = "<group>"; };
 		5EFB0A402733CD7700F39A4D /* TeamSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamSearchViewController.swift; sourceTree = "<group>"; };
 		5EFB0A432733E36800F39A4D /* TeamSearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamSearchCell.swift; sourceTree = "<group>"; };
 		5EFB0A442733E36800F39A4D /* TeamSearchCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TeamSearchCell.xib; sourceTree = "<group>"; };
@@ -429,6 +433,8 @@
 				5E7EFE262732E06F007817C3 /* AlertViewController.xib */,
 				5E25545F2732DF8A00033723 /* GreetingAlertViewController.swift */,
 				5E2554602732DF8A00033723 /* GreetingAlertViewController.xib */,
+				5EF986DB2787335E00874A40 /* ErrorAlertViewController.swift */,
+				5EF986DC2787335E00874A40 /* ErrorAlertViewController.xib */,
 			);
 			path = Alerts;
 			sourceTree = "<group>";
@@ -1099,6 +1105,7 @@
 				5E91508E27721D8B000578D4 /* MyBudiMainViewController.xib in Resources */,
 				5E7CF4CD2770E134007315F1 /* HomeWritingMembersUnitCell.xib in Resources */,
 				5E88637B276771EE0022397A /* HomeWritingPartBottomViewController.xib in Resources */,
+				5EF986DE2787335E00874A40 /* ErrorAlertViewController.xib in Resources */,
 				B9BF788027004096000BE0EF /* LaunchScreen.storyboard in Resources */,
 				5EB4303A2758954A00283239 /* HomeWritingMembersCell.xib in Resources */,
 				5EA4536A2731412A00943C94 /* HomeCell.xib in Resources */,
@@ -1305,6 +1312,7 @@
 				B9BF787627004095000BE0EF /* SceneDelegate.swift in Sources */,
 				5E5517A92768BCC300DC605E /* HomeWritingPartBottomCell.swift in Sources */,
 				5E7CF4C82770B79E007315F1 /* HomeWritingMembersPartUnitBottomCell.swift in Sources */,
+				5EF986DD2787335E00874A40 /* ErrorAlertViewController.swift in Sources */,
 				5E820B94276A36DA004A03E9 /* RecruitingStatus.swift in Sources */,
 				5EB430312758952500283239 /* HomeWritingDurationCell.swift in Sources */,
 				A8A6D9F9273D2D1800C84C52 /* BackButtonExtension.swift in Sources */,

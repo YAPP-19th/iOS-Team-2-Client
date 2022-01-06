@@ -26,13 +26,26 @@ final class MyBudiMainViewController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if UserDefaults.standard.string(forKey: "accessToken") == "" {
+            collectionView.isHidden = true
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let loginSelectViewController = storyboard.instantiateViewController(identifier: "LoginSelectViewController")
+            let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate
+            sceneDelegate?.moveLoginController(loginSelectViewController, animated: true)
+        } else {
+            collectionView.isHidden = false
+        }
+        self.viewModel.action.LoginStatusCheck.send(())
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         configureNavigationBar()
         configureCollectionView()
         setPublisher()
-        self.viewModel.action.LoginStatusCheck.send(())
     }
 
     private func setPublisher() {
@@ -43,7 +56,6 @@ final class MyBudiMainViewController: UIViewController {
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 let loginSelectViewController = storyboard.instantiateViewController(identifier: "LoginSelectViewController")
                 let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate
-
                 sceneDelegate?.moveLoginController(loginSelectViewController, animated: true)
 
             }
@@ -94,7 +106,7 @@ extension MyBudiMainViewController: UICollectionViewDataSource, UICollectionView
             cell.logoutButton.tapPublisher
                 .sink { [weak self] _ in
                     guard let self = self else { return }
-                    UserDefaults.standard.removeObject(forKey: "accessToken")
+                    UserDefaults.standard.set("", forKey: "accessToken")
                 }
                 .store(in: &cancellables)
             return cell

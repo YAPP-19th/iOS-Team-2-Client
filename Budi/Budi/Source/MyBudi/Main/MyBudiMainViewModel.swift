@@ -64,8 +64,9 @@ class MyBudiMainViewModel: ViewModel {
                         }
                         self.state.loginStatusData.send(nil)
                     }, receiveValue: { post in
-                        print(post.id)
-                        print(post.nickName)
+                        print(post)
+                        print("fds",post.id)
+                        print("여깁니다",post.nickName)
                     })
                     .store(in: &self.cancellables)
 

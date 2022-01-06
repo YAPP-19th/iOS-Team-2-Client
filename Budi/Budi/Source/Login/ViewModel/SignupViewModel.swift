@@ -110,10 +110,19 @@ final class SignupViewModel: ViewModel {
             .sink { [weak self] _ in
                 guard let self = self else { return }
                 let loginModel = LoginCheckModel(accessToken: UserDefaults.standard.string(forKey: "accessToken") ?? "")
-                print("저장된 숫자:", UserDefaults.standard.integer(forKey: "memberId"))
+                var memberId = 0
+                // true: Apple
+                // false: Naver
+                if UserDefaults.standard.bool(forKey: "loginSwitch") {
+                    memberId = UserDefaults.standard.integer(forKey: "memberIdApple")
+                } else {
+                    memberId = UserDefaults.standard.integer(forKey: "memberIdNaver")
+                }
+
+                print("저장된 숫자:", memberId)
                 print("저장된 엑세스 토큰:", UserDefaults.standard.string(forKey: "accessToken"))
                 self.provider
-                    .requestPublisher(.signUpStatusCheck(memberId: UserDefaults.standard.integer(forKey: "memberId"), header: loginModel))
+                    .requestPublisher(.signUpStatusCheck(memberId: memberId, header: loginModel))
                     .map(APIResponse<LoginUserDetail>.self)
                     .map(\.data)
                     .sink(receiveCompletion: { [weak self] completion in
@@ -126,8 +135,9 @@ final class SignupViewModel: ViewModel {
                         }
                         self.state.loginStatusData.send(nil)
                     }, receiveValue: { post in
-                        print(post.id)
-                        print(post.nickName)
+                        print("이게 아닌가?",post.id)
+                        print("ㅇㅇㅇ",post.nickName)
+                        print(post)
                     })
                     .store(in: &self.cancellables)
 
@@ -395,7 +405,15 @@ final class SignupViewModel: ViewModel {
                     }, receiveValue: { post in
                         print(post)
                         print(post.data.memberId)
-                        UserDefaults.standard.set(post.data.memberId, forKey: "memberId")
+                        // true: Apple
+                        // false: Naver
+                        if UserDefaults.standard.bool(forKey: "loginSwitch") {
+                            print("애플 로그인 멤버 아이디 저장 성공")
+                            UserDefaults.standard.set(post.data.memberId, forKey: "memberIdApple")
+                        } else {
+                            print("네이버 로그인 멤버 아이디 저장 성공")
+                            UserDefaults.standard.set(post.data.memberId, forKey: "memberIdNaver")
+                        }
                         UserDefaults.standard.set(accsessToken, forKey: "accessToken")
                         self.state.userInfoUploadStatus.send(post.message)
 

@@ -169,9 +169,14 @@ extension LoginSelectViewController: NaverThirdPartyLoginConnectionDelegate {
                 print(error)
             }, receiveValue: { [weak self] posts in
                 guard let self = self else { return }
+                UserDefaults.standard.set(false, forKey: "LoginSwitch")
                 let info = LoginUserInfo(nickname: nil, email: nil, name: nil, id: posts.response.id)
                 DispatchQueue.main.async {
-                    self.coordinator?.showSignupNormalViewController(userLogininfo: info)
+                    if UserDefaults.standard.integer(forKey: "memberIdNaver") == 0 {
+                        self.coordinator?.showSignupNormalViewController(userLogininfo: info)
+                    } else {
+                        self.dismiss(animated: true, completion: nil)
+                    }
                 }
             })
             .store(in: &cancellables)
@@ -197,9 +202,13 @@ extension LoginSelectViewController: ASAuthorizationControllerDelegate {
         let credential = authorization.credential as? ASAuthorizationAppleIDCredential
         guard
               let hashcode = credential?.user else { return }
-        let num = credential.hashValue
+        UserDefaults.standard.set(true, forKey: "LoginSwitch")
         let info = LoginUserInfo(nickname: nil, email: nil, name: nil, id: hashcode)
-        coordinator?.showSignupNormalViewController(userLogininfo: info)
+        if UserDefaults.standard.integer(forKey: "memberIdApple") == 0 {
+            self.coordinator?.showSignupNormalViewController(userLogininfo: info)
+        } else {
+            self.dismiss(animated: true, completion: nil)
+        }
     }
 
     func LoginSelectViewController(controller: ASAuthorizationController, didCompleteWithError error: Error) {

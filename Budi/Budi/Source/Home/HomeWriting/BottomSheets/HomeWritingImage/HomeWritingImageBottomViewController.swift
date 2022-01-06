@@ -141,14 +141,15 @@ extension HomeWritingImageBottomViewController: UIImagePickerControllerDelegate 
             switch result {
             case .success(let response):
                 print(response)
-                
-                let dataString = String(decoding: response.data, as: UTF8.self)
-                print("dataString is \(dataString)")
-
-                // MARK: - URL 생성완료 후 뷰모델에 저장
-                let selectedImageUrl: String = ""
-                self.viewModel.state.selectedImageUrl.value = selectedImageUrl
-                self.imagePickerController.dismiss(animated: true, completion: nil)
+                do {
+                    let json = try JSONSerialization.jsonObject(with: response.data, options: []) as? [String: Any]
+                    guard let data = json?["data"] as? [String: Any], let imageUrl = data["imageUrl"] as? String else { return }
+                    self.viewModel.state.selectedImageUrl.value = imageUrl
+                    self.imagePickerController.dismiss(animated: true) {
+                        self.dismiss(animated: false, completion: nil)
+                    }
+                } catch {
+                }
             case .failure(let error):
                 print("error is \(error.localizedDescription)")
             }

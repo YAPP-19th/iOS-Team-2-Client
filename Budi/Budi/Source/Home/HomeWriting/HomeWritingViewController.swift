@@ -49,6 +49,12 @@ final class HomeWritingViewController: UIViewController {
 
 private extension HomeWritingViewController {
     func bindViewModel() {
+        viewModel.state.selectedImageUrl
+            .receive(on: DispatchQueue.main)
+            .sink(receiveValue: { [weak self] _ in
+                self?.collectionView.reloadData()
+            }).store(in: &cancellables)
+        
         viewModel.state.defaultImageUrls
             .receive(on: DispatchQueue.main)
             .sink(receiveValue: { [weak self] _ in
@@ -245,7 +251,7 @@ extension HomeWritingViewController: UICollectionViewDataSource, UICollectionVie
                 .sink { [weak self] _ in
                     guard let self = self else { return }
                     self.coordinator?.showWritingPartBottomViewController(self, self.viewModel)
-                }.store(in: &cancellables)
+                }.store(in: &cell.cancellables)
             return cell
             
         case 3: guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeWritingDurationCell.identifier, for: indexPath) as? HomeWritingDurationCell else { return cell }
@@ -276,7 +282,7 @@ extension HomeWritingViewController: UICollectionViewDataSource, UICollectionVie
                 .sink { [weak self] _ in
                     guard let self = self else { return }
                     self.coordinator?.showWritingMembersBottomViewController(self, self.viewModel)
-                }.store(in: &cancellables)
+                }.store(in: &cell.cancellables)
             return cell
             
         case 7: guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeWritingDescriptionCell.identifier, for: indexPath) as? HomeWritingDescriptionCell else { return cell }

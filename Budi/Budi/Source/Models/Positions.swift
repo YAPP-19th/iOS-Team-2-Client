@@ -14,9 +14,9 @@ enum Position: Int, CaseIterable {
 
     var stringValue: String {
         switch self {
-        case .developer: return "developer"
-        case .designer: return "designer"
-        case .productManager: return "planner"
+        case .developer: return "개발"
+        case .designer: return "디자인"
+        case .productManager: return "기획"
         }
     }
 

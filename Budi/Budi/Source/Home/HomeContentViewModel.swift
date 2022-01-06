@@ -118,6 +118,7 @@ final class HomeDeveloperContentViewModel: HomeContentViewModel {
                         .sink(receiveCompletion: { [weak self] completion in
                             guard case let .failure(error) = completion else { return }
                             self?.state.posts.send([])
+                            print(String(decoding: error.response!.data, as: UTF8.self))
                             print(error)
                         }, receiveValue: { [weak self] postContainer in
 

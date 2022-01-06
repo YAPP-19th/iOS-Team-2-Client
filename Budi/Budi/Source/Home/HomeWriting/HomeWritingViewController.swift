@@ -30,17 +30,17 @@ final class HomeWritingViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureNavigationBar()
-        configureCollectionView()
         bindViewModel()
         setPublisher()
+        configureNavigationBar()
+        configureCollectionView()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tabBarController?.tabBar.isHidden = true
     }
-    
+
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         tabBarController?.tabBar.isHidden = false
@@ -49,6 +49,11 @@ final class HomeWritingViewController: UIViewController {
 
 private extension HomeWritingViewController {
     func bindViewModel() {
+        viewModel.state.defaultImageUrls
+            .receive(on: DispatchQueue.main)
+            .sink(receiveValue: { [weak self] _ in
+                self?.collectionView.reloadData()
+            }).store(in: &cancellables)
     }
     
     func setPublisher() {
@@ -210,6 +215,16 @@ extension HomeWritingViewController: UICollectionViewDataSource, UICollectionVie
         case 0: guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeWritingImageCell.identifier, for: indexPath) as? HomeWritingImageCell else { return cell }
             if let url = viewModel.state.selectedImageUrl.value {
                 cell.configureUI(url)
+            } else {
+                let ramdomNumber = Int(arc4random_uniform(9))
+                print("ramdomNumber is \(ramdomNumber)")
+                let defaultImageUrls = viewModel.state.defaultImageUrls.value
+                print("defaultImageUrls is \(defaultImageUrls)")
+                if defaultImageUrls.count >= 9 {
+                    let randomUrl = defaultImageUrls[ramdomNumber]
+                    viewModel.state.selectedImageUrl.value = randomUrl
+                    cell.configureUI(randomUrl)
+                }
             }
             cell.imageChangeButton.tapPublisher
                 .receive(on: DispatchQueue.main)

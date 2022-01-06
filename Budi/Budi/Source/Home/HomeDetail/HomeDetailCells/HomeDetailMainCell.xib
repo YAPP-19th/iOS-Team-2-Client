@@ -22,7 +22,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fQu-ie-gdD">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="436"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultBackground" translatesAutoresizingMaskIntoConstraints="NO" id="9ey-eB-KcI">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9ey-eB-KcI">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="280"/>
                                 <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -169,7 +169,6 @@
     </objects>
     <resources>
         <image name="Icon_viewCount" width="18" height="18"/>
-        <image name="defaultBackground" width="343" height="140"/>
         <image name="ico_calendar" width="24" height="24"/>
         <image name="ico_mapPin" width="24" height="24"/>
         <namedColor name="Black">

@@ -119,7 +119,6 @@ class LocationSearchViewController: UIViewController {
         self.addBackButton()
         configureLayout()
         configureTableView()
-        configureAlert()
         setPublisher()
         LocationManager.shared.requestWhenInUseAuthorization()
     }
@@ -137,7 +136,6 @@ class LocationSearchViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         tabBarController?.tabBar.isHidden = true
     }
-
 
     private func configureAlert() {
         alertView.showAlert(title: "버디 위치기반 서비스 이용약관에 동의하시겠습니까?", cancelTitle: "취소", doneTitle: "동의")

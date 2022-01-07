@@ -12,6 +12,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ErrorAlertViewController" customModule="Budi" customModuleProvider="target">
             <connections>
+                <outlet property="cancelButton" destination="eMx-Ks-dEB" id="eck-A2-Wq9"/>
+                <outlet property="imageView" destination="wd7-Qo-8VQ" id="qUR-Yu-LF3"/>
+                <outlet property="messageLabel" destination="ySE-ab-ipP" id="dVS-b6-TSm"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -20,22 +23,50 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4A0-gF-7Hn">
-                    <rect key="frame" x="77" y="274" width="260" height="358"/>
+                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4A0-gF-7Hn">
+                    <rect key="frame" x="48" y="296" width="318" height="314"/>
                     <subviews>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wd7-Qo-8VQ">
-                            <rect key="frame" x="20" y="19" width="240" height="128"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_serious_error" translatesAutoresizingMaskIntoConstraints="NO" id="wd7-Qo-8VQ">
+                            <rect key="frame" x="0.0" y="0.0" width="318" height="204"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="wd7-Qo-8VQ" secondAttribute="height" multiplier="14:9" id="PQQ-d9-Ztj"/>
+                            </constraints>
                         </imageView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="이미 지원한 프로젝트예요!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ySE-ab-ipP">
-                            <rect key="frame" x="20" y="263" width="176" height="21"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="오류가 발생했습니다 잠시 후 다시 시도해주세요" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ySE-ab-ipP">
+                            <rect key="frame" x="16" y="241" width="286" height="41"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="close" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eMx-Ks-dEB">
+                            <rect key="frame" x="286" y="16" width="16" height="16"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="16" id="UHc-uV-GJB"/>
+                                <constraint firstAttribute="width" constant="16" id="wWR-bO-bmX"/>
+                            </constraints>
+                            <color key="tintColor" name="Black"/>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                            <buttonConfiguration key="configuration" style="plain"/>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstItem="wd7-Qo-8VQ" firstAttribute="top" secondItem="4A0-gF-7Hn" secondAttribute="top" id="8sx-xv-DvB"/>
+                        <constraint firstAttribute="trailing" secondItem="ySE-ab-ipP" secondAttribute="trailing" constant="16" id="ESC-hg-m1v"/>
+                        <constraint firstAttribute="trailing" secondItem="wd7-Qo-8VQ" secondAttribute="trailing" id="EtL-in-IIW"/>
+                        <constraint firstItem="ySE-ab-ipP" firstAttribute="top" secondItem="wd7-Qo-8VQ" secondAttribute="bottom" constant="37" id="bkc-tb-3RG"/>
+                        <constraint firstItem="eMx-Ks-dEB" firstAttribute="top" secondItem="4A0-gF-7Hn" secondAttribute="top" constant="16" id="cRJ-cP-CQV"/>
+                        <constraint firstAttribute="trailing" secondItem="eMx-Ks-dEB" secondAttribute="trailing" constant="16" id="icM-b4-HRV"/>
+                        <constraint firstItem="wd7-Qo-8VQ" firstAttribute="leading" secondItem="4A0-gF-7Hn" secondAttribute="leading" id="n8R-c2-7mM"/>
+                        <constraint firstItem="ySE-ab-ipP" firstAttribute="leading" secondItem="4A0-gF-7Hn" secondAttribute="leading" constant="16" id="qNp-gF-OIl"/>
+                        <constraint firstAttribute="bottom" secondItem="ySE-ab-ipP" secondAttribute="bottom" constant="32" id="uiS-dj-KZi"/>
+                        <constraint firstItem="ySE-ab-ipP" firstAttribute="centerX" secondItem="4A0-gF-7Hn" secondAttribute="centerX" id="zwF-Gr-4fM"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="16"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
                 </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
@@ -43,13 +74,16 @@
             <constraints>
                 <constraint firstItem="4A0-gF-7Hn" firstAttribute="centerY" secondItem="fnl-2z-Ty3" secondAttribute="centerY" id="b5j-cS-xeQ"/>
                 <constraint firstItem="4A0-gF-7Hn" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="myJ-Zg-wa3"/>
-                <constraint firstItem="4A0-gF-7Hn" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="230" id="xMV-xy-Rfg"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="4A0-gF-7Hn" secondAttribute="trailing" constant="77" id="zao-sZ-Owz"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="4A0-gF-7Hn" secondAttribute="trailing" constant="48" id="zao-sZ-Owz"/>
             </constraints>
             <point key="canvasLocation" x="131.8840579710145" y="84.375"/>
         </view>
     </objects>
     <resources>
+        <image name="bg_serious_error" width="280" height="179"/>
+        <namedColor name="Black">
+            <color red="0.11699999868869781" green="0.11699999868869781" blue="0.11699999868869781" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="TransparentGray">
             <color red="0.0" green="0.0" blue="0.0" alpha="0.40000000596046448" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

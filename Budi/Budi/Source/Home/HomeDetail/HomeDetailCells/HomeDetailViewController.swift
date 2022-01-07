@@ -69,8 +69,15 @@ private extension HomeDetailViewController {
         submitButton.tapPublisher
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
-                guard let self = self else { return }
-                self.coordinator?.showRecruitingStatusBottomViewController(self, self.viewModel)
+                guard let self = self, let isAlreadyApplied = self.viewModel.state.post.value?.isAlreadyApplied else { return }
+                
+                if isAlreadyApplied {
+                    let errorAlertVC = ErrorAlertViewController(ErrorMessage.isAlreadyApplied)
+                    errorAlertVC.modalPresentationStyle = .overCurrentContext
+                    self.present(errorAlertVC, animated: false, completion: nil)
+                } else {
+                    self.coordinator?.showRecruitingStatusBottomViewController(self, self.viewModel)
+                }
             }.store(in: &cancellables)
         
         heartButton.tapPublisher
@@ -111,11 +118,9 @@ private extension HomeDetailViewController {
     func configureSubmitButton() {
         guard let isAlreadyApplied = viewModel.state.post.value?.isAlreadyApplied else { return }
         if isAlreadyApplied {
-            submitButton.isEnabled = false
             submitButton.setTitle("지원완료", for: .normal)
             submitButton.backgroundColor = .textDisabled
         } else {
-            submitButton.isEnabled = true
             submitButton.setTitle("지원하기", for: .normal)
             submitButton.backgroundColor = .primary
         }

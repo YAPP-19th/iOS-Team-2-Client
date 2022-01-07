@@ -105,6 +105,7 @@
 		5EC2FF00275E504800FF5BB0 /* HomeDetailCellType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC2FEFF275E504800FF5BB0 /* HomeDetailCellType.swift */; };
 		5EC2FF04275E5D8300FF5BB0 /* HomeWritingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC2FF03275E5D8300FF5BB0 /* HomeWritingViewModel.swift */; };
 		5ED53D70277F8DEF002871CD /* LikePosts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED53D6F277F8DEF002871CD /* LikePosts.swift */; };
+		5EE7FB462787E11200D9C39F /* ErrorMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE7FB452787E11200D9C39F /* ErrorMessage.swift */; };
 		5EF5F3292741590300A5F6E2 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF5F3282741590300A5F6E2 /* LocationManager.swift */; };
 		5EF986CA2786E58600874A40 /* Leader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF986C92786E58600874A40 /* Leader.swift */; };
 		5EF986D82786E9A700874A40 /* HomeLocationSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF986D72786E9A700874A40 /* HomeLocationSearchViewController.swift */; };
@@ -316,6 +317,7 @@
 		5EC2FEFF275E504800FF5BB0 /* HomeDetailCellType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailCellType.swift; sourceTree = "<group>"; };
 		5EC2FF03275E5D8300FF5BB0 /* HomeWritingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWritingViewModel.swift; sourceTree = "<group>"; };
 		5ED53D6F277F8DEF002871CD /* LikePosts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikePosts.swift; sourceTree = "<group>"; };
+		5EE7FB452787E11200D9C39F /* ErrorMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorMessage.swift; sourceTree = "<group>"; };
 		5EF5F3282741590300A5F6E2 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		5EF986C92786E58600874A40 /* Leader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Leader.swift; sourceTree = "<group>"; };
 		5EF986D72786E9A700874A40 /* HomeLocationSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeLocationSearchViewController.swift; sourceTree = "<group>"; };
@@ -881,6 +883,7 @@
 				A8936FB72772F77600BE2C1D /* NameDuplication.swift */,
 				A8936FBB2777192500BE2C1D /* UserInfoUploadSuccess.swift */,
 				5ED53D6F277F8DEF002871CD /* LikePosts.swift */,
+				5EE7FB452787E11200D9C39F /* ErrorMessage.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1372,6 +1375,7 @@
 				5E7EFE272732E06F007817C3 /* AlertViewController.swift in Sources */,
 				A84F2675276DE9F200C65DA1 /* SignupPersonalInfo.swift in Sources */,
 				A85C920D276A42210097E444 /* CreateInfo.swift in Sources */,
+				5EE7FB462787E11200D9C39F /* ErrorMessage.swift in Sources */,
 				5EBD9D5D276DB57B00615319 /* HomeDetailViewModel.swift in Sources */,
 				5E91508D27721D8B000578D4 /* MyBudiMainViewController.swift in Sources */,
 				5E58E6B1276B588C00ABBF1C /* AppliesRequest.swift in Sources */,
@@ -1530,13 +1534,13 @@
 				CODE_SIGN_ENTITLEMENTS = Budi/Budi.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = V37X2D6JM3;
+				DEVELOPMENT_TEAM = T53Y7GLJ7K;
 				INFOPLIST_FILE = Budi/Resource/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = kr.dochoi.Budi;
+				PRODUCT_BUNDLE_IDENTIFIER = kr.dochoi.Budi1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -1553,13 +1557,13 @@
 				CODE_SIGN_ENTITLEMENTS = Budi/Budi.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = V37X2D6JM3;
+				DEVELOPMENT_TEAM = T53Y7GLJ7K;
 				INFOPLIST_FILE = Budi/Resource/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = kr.dochoi.Budi;
+				PRODUCT_BUNDLE_IDENTIFIER = kr.dochoi.Budi1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;

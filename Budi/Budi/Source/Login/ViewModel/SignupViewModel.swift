@@ -110,19 +110,9 @@ final class SignupViewModel: ViewModel {
             .sink { [weak self] _ in
                 guard let self = self else { return }
                 let loginModel = LoginCheckModel(accessToken: UserDefaults.standard.string(forKey: "accessToken") ?? "")
-                var memberId = 0
-                // true: Apple
-                // false: Naver
-                if UserDefaults.standard.bool(forKey: "loginSwitch") {
-                    memberId = UserDefaults.standard.integer(forKey: "memberIdApple")
-                } else {
-                    memberId = UserDefaults.standard.integer(forKey: "memberIdNaver")
-                }
 
-                print("저장된 숫자:", memberId)
-                print("저장된 엑세스 토큰:", UserDefaults.standard.string(forKey: "accessToken"))
                 self.provider
-                    .requestPublisher(.signUpStatusCheck(memberId: memberId, header: loginModel))
+                    .requestPublisher(.signUpStatusCheck(memberId: UserDefaults.standard.integer(forKey: "memberId"), header: loginModel))
                     .map(APIResponse<LoginUserDetail>.self)
                     .map(\.data)
                     .sink(receiveCompletion: { [weak self] completion in
@@ -138,6 +128,16 @@ final class SignupViewModel: ViewModel {
                         print("이게 아닌가?",post.id)
                         print("ㅇㅇㅇ",post.nickName)
                         print(post)
+                        if post.nickName == "" {
+                            self.state.loginStatusData.send(nil)
+                        } else {
+                            let user = LoginUserDetail(id: post.id,
+                                                       imageUrl: post.imageUrl,
+                                                       nickName: post.nickName,
+                                                       level: post.level,
+                                                       positions: post.positions)
+                            self.state.loginStatusData.send(user)
+                        }
                     })
                     .store(in: &self.cancellables)
 
@@ -403,19 +403,10 @@ final class SignupViewModel: ViewModel {
                         print(error.localizedDescription)
 
                     }, receiveValue: { post in
-                        print(post)
-                        print(post.data.memberId)
-                        // true: Apple
-                        // false: Naver
-                        if UserDefaults.standard.bool(forKey: "loginSwitch") {
-                            print("애플 로그인 멤버 아이디 저장 성공")
-                            UserDefaults.standard.set(post.data.memberId, forKey: "memberIdApple")
-                        } else {
-                            print("네이버 로그인 멤버 아이디 저장 성공")
-                            UserDefaults.standard.set(post.data.memberId, forKey: "memberIdNaver")
-                        }
+                        UserDefaults.standard.set(post.data.memberId, forKey: "memberId")
                         UserDefaults.standard.set(accsessToken, forKey: "accessToken")
                         self.state.userInfoUploadStatus.send(post.message)
+                        NotificationCenter.default.post(name: Notification.Name("LoginSuccessed"), object: nil)
 
                     })
                     .store(in: &self.cancellables)
@@ -447,7 +438,9 @@ final class SignupViewModel: ViewModel {
 
     // MARK: - Budi 서버에 POST 보내는 viewModel
     func pushServer() {
+        print("여기서 안넘어오는듯")
         guard let id = state.loginUserInfo?.id else { return }
+        print("넘어온 id",id)
         let replaceId = id.replacingOccurrences(of: ".", with: "")
         let loginData = BudiLogin(loginId: "\(replaceId)")
         guard let uploadData = try? JSONEncoder().encode(loginData) else { return }
@@ -470,23 +463,15 @@ final class SignupViewModel: ViewModel {
                 self.state.budiLoginUserData.send(decodeData.data.accessToken)
                 print("로그인 유저 아이디 :", decodeData.data.userId)
                 print("로그인 고유 토큰 :", decodeData.data.accessToken)
+                UserDefaults.standard.set(decodeData.data.memberId, forKey: "memberId")
+                UserDefaults.standard.set(decodeData.data.accessToken, forKey: "accessToken")
+                print("저장된 엑세스 토큰", UserDefaults.standard.string(forKey: "accessToken"))
+                print("저장된 멤버 ID", UserDefaults.standard.integer(forKey: "memberId"))
             } catch {
                 print("Error")
             }
         }
         .resume()
-//        action.fetch
-//            .sink(receiveValue: { [weak self] _ in
-//                guard let self = self else { return }
-//
-//            })
-//            .store(in: &cancellables)
-//
-//        action.refresh
-//            .sink { [weak self] _ in
-//                self?.action.fetch.send(())
-//            }.store(in: &cancellables)
-//
-//        action.fetch.send(())
+
     }
 }

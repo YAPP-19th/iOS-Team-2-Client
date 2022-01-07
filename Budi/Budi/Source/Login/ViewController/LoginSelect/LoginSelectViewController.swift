@@ -163,20 +163,31 @@ extension LoginSelectViewController: NaverThirdPartyLoginConnectionDelegate {
                 return data
             }
             .decode(type: Response.self, decoder: JSONDecoder())
-            .sink(receiveCompletion: { [weak self] completion in
-                guard let self = self else { return }
+            .sink(receiveCompletion: { completion in
                 guard case let .failure(error) = completion else { return }
                 print(error)
             }, receiveValue: { [weak self] posts in
                 guard let self = self else { return }
-                UserDefaults.standard.set(false, forKey: "LoginSwitch")
                 let info = LoginUserInfo(nickname: nil, email: nil, name: nil, id: posts.response.id)
                 DispatchQueue.main.async {
-                    if UserDefaults.standard.integer(forKey: "memberIdNaver") == 0 {
-                        self.coordinator?.showSignupNormalViewController(userLogininfo: info)
-                    } else {
-                        self.dismiss(animated: true, completion: nil)
-                    }
+                    let viewModel = SignupViewModel()
+                    viewModel.state.loginUserInfo = info
+                    viewModel.pushServer()
+                    viewModel.action.LoginStatusCheck.send(())
+                    viewModel.state.loginStatusData
+                        .receive(on: DispatchQueue.main)
+                        .sink { [weak self] data in
+                            guard let self = self else { return }
+                            if data?.nickName == "" {
+                                self.coordinator?.showSignupNormalViewController(userLogininfo: info)
+                            } else if data?.nickName != "" {
+                                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {
+                                    NotificationCenter.default.post(name: Notification.Name("LoginSuccessed"), object: nil)
+                                    self.dismiss(animated: true, completion: nil)
+                                }
+                            }
+                        }
+                        .store(in: &self.cancellables)
                 }
             })
             .store(in: &cancellables)
@@ -202,13 +213,26 @@ extension LoginSelectViewController: ASAuthorizationControllerDelegate {
         let credential = authorization.credential as? ASAuthorizationAppleIDCredential
         guard
               let hashcode = credential?.user else { return }
-        UserDefaults.standard.set(true, forKey: "LoginSwitch")
         let info = LoginUserInfo(nickname: nil, email: nil, name: nil, id: hashcode)
-        if UserDefaults.standard.integer(forKey: "memberIdApple") == 0 {
-            self.coordinator?.showSignupNormalViewController(userLogininfo: info)
-        } else {
-            self.dismiss(animated: true, completion: nil)
-        }
+        let viewModel = SignupViewModel()
+        viewModel.state.loginUserInfo = info
+        viewModel.pushServer()
+        viewModel.action.LoginStatusCheck.send(())
+        viewModel.state.loginStatusData
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] data in
+                guard let self = self else { return }
+                if data?.nickName == "" {
+                    self.coordinator?.showSignupNormalViewController(userLogininfo: info)
+                } else if data?.nickName != "" {
+                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {
+                        NotificationCenter.default.post(name: Notification.Name("LoginSuccessed"), object: nil)
+                        self.dismiss(animated: true, completion: nil)
+                    }
+                }
+            }
+            .store(in: &self.cancellables)
+
     }
 
     func LoginSelectViewController(controller: ASAuthorizationController, didCompleteWithError error: Error) {

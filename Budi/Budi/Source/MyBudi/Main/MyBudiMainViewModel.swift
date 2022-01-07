@@ -38,10 +38,6 @@ class MyBudiMainViewModel: ViewModel {
 
         action.fetch.send(())
 
-        loginStatusCheck()
-    }
-
-    func loginStatusCheck() {
         action.LoginStatusCheck
             .receive(on: DispatchQueue.global())
             .sink { [weak self] _ in
@@ -57,16 +53,20 @@ class MyBudiMainViewModel: ViewModel {
                         guard let self = self else { return }
                         switch completion {
                         case .failure(let error):
-                            print("일로")
                             print(error.localizedDescription)
                         case .finished:
                             break
                         }
-                        self.state.loginStatusData.send(nil)
                     }, receiveValue: { post in
-                        print(post)
-                        print("fds",post.id)
-                        print("여깁니다",post.nickName)
+                        print("일로 안옴ㅁ?",post)
+                        if post.nickName != "" {
+                            let user = LoginUserDetail(id: post.id,
+                                                       imageUrl: post.imageUrl,
+                                                       nickName: post.nickName,
+                                                       level: post.level,
+                                                       positions: post.positions)
+                            self.state.loginStatusData.send(user)
+                        }
                     })
                     .store(in: &self.cancellables)
 

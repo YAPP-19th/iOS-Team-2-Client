@@ -6,10 +6,18 @@
 //
 
 import UIKit
+import Combine
+import CombineCocoa
 
 final class MyBudiHelpCell: UICollectionViewCell {
-
+    var cancellables = Set<AnyCancellable>()
     @IBOutlet weak var logoutButton: UIButton!
+
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        cancellables.removeAll()
+    }
+
     override func awakeFromNib() {
         super.awakeFromNib()
     }

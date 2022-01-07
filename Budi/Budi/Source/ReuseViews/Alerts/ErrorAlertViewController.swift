@@ -49,9 +49,6 @@ final class ErrorAlertViewController: UIViewController {
     
     private func configureUI() {
         messageLabel.text = message.stringValue
-        if message != ErrorMessage.defaultMessage {
-            imageView.image = UIImage(named: "bg_error")
-        }
-        
+        imageView.image = message.backgroundImage
     }
 }

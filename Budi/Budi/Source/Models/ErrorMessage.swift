@@ -5,7 +5,7 @@
 //  Created by leeesangheee on 2022/01/07.
 //
 
-import Foundation
+import UIKit
 
 enum ErrorMessage {
     case defaultMessage
@@ -17,4 +17,12 @@ enum ErrorMessage {
         case .isAlreadyApplied: return "이미 지원한 프로젝트예요!"
         }
     }
+    
+    var backgroundImage: UIImage? {
+        switch self {
+        case .defaultMessage: return UIImage(named: "bg_error")
+        case .isAlreadyApplied: return UIImage(named: "bg_error_isAlreadyApplied")
+        }
+    }
 }
+

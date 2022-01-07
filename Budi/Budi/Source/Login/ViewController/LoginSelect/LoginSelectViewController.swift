@@ -39,7 +39,7 @@ class LoginSelectViewController: UIViewController  {
         button.titleLabel?.font = UIFont.systemFont(ofSize: 16)
         button.setTitle("네이버 계정으로 계속하기", for: .normal)
         button.setBackgroundImage(UIImage(named: "naverLogin"), for: .normal)
-        button.setTitleColor(UIColor(red: 0.13, green: 0.13, blue: 0.13, alpha: 1.00), for: .normal)
+        button.setTitleColor(UIColor.white, for: .normal)
         button.titleLabel?.textAlignment = .center
         button.semanticContentAttribute = .forceLeftToRight
         button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 33, bottom: 0, right: 0)
@@ -103,7 +103,7 @@ class LoginSelectViewController: UIViewController  {
 
         NSLayoutConstraint.activate([
             budiLogoImageView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
-            budiLogoImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 44),
+            budiLogoImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 100),
             budiLogoImageView.widthAnchor.constraint(equalToConstant: 44.2),
             budiLogoImageView.heightAnchor.constraint(equalToConstant: 60)
         ])
@@ -120,7 +120,7 @@ class LoginSelectViewController: UIViewController  {
         naverLoginButton.bottomAnchor.constraint(equalTo: privacyButton.topAnchor, constant: -10).isActive = true
         naverLoginButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 24).isActive = true
         naverLoginButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -24).isActive = true
-        naverLoginButton.heightAnchor.constraint(equalToConstant: 48).isActive = true
+        naverLoginButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
 
         view.addSubview(appleAuthButton)
         appleAuthButton.translatesAutoresizingMaskIntoConstraints = false

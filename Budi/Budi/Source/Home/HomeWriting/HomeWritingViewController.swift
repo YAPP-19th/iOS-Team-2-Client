@@ -8,6 +8,10 @@ import UIKit
 import Combine
 import CombineCocoa
 
+protocol HomeWritingViewControllerDelegate: AnyObject {
+    func collectionViewDidScroll()
+}
+
 final class HomeWritingViewController: UIViewController {
 
     @IBOutlet private weak var collectionView: UICollectionView!
@@ -20,6 +24,8 @@ final class HomeWritingViewController: UIViewController {
     weak var coordinator: HomeCoordinator?
     private let viewModel: HomeWritingViewModel
     private var cancellables = Set<AnyCancellable>()
+    
+    weak var delegate: HomeWritingViewControllerDelegate?
     
     init?(coder: NSCoder, viewModel: HomeWritingViewModel) {
         self.viewModel = viewModel
@@ -215,6 +221,11 @@ extension HomeWritingViewController: UICollectionViewDataSource, UICollectionVie
         HomeWritingCellType.configureCollectionView(self, collectionView)
     }
     
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        // MARK: - 텍스트 편집 해제
+        delegate?.collectionViewDidScroll()
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         HomeWritingCellType.numberOfItemsInSection
     }
@@ -301,6 +312,7 @@ extension HomeWritingViewController: UICollectionViewDataSource, UICollectionVie
             
         case 7: guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeWritingDescriptionCell.identifier, for: indexPath) as? HomeWritingDescriptionCell else { return cell }
             cell.delegate = self
+            self.delegate = cell as HomeWritingViewControllerDelegate
             return cell
             
         default: break

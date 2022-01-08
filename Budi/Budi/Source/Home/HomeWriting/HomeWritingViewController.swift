@@ -9,7 +9,7 @@ import Combine
 import CombineCocoa
 
 protocol HomeWritingViewControllerDelegate: AnyObject {
-    func collectionViewDidScroll()
+    func endEdittingTextView()
 }
 
 final class HomeWritingViewController: UIViewController {
@@ -222,8 +222,7 @@ extension HomeWritingViewController: UICollectionViewDataSource, UICollectionVie
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        // MARK: - 텍스트 편집 해제
-        delegate?.collectionViewDidScroll()
+        delegate?.endEdittingTextView()
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -236,6 +235,10 @@ extension HomeWritingViewController: UICollectionViewDataSource, UICollectionVie
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         HomeWritingCellType.minimumLineSpacingForSection
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        delegate?.endEdittingTextView()
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

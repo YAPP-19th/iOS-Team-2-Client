@@ -106,7 +106,7 @@ private extension HomeWritingMembersBottomViewController {
 private extension HomeWritingMembersBottomViewController {
     func showBottomView(_ constant: CGFloat) {
         let animator = UIViewPropertyAnimator(duration: 0.25, curve: .linear) { [weak self] in
-            guard let self = self else { return }
+            guard let self = self, self.bottomViewTopConstraint.constant > -530 else { return }
             self.bottomViewTopConstraint.constant -= constant
             self.view.layoutIfNeeded()
         }

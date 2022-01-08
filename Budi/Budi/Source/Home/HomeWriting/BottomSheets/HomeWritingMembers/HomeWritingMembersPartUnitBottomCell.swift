@@ -9,8 +9,8 @@ import UIKit
 
 class HomeWritingMembersPartUnitBottomCell: UICollectionViewCell {
 
-    @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var label: UILabel!
+    @IBOutlet private weak var imageView: UIImageView!
+    @IBOutlet private weak var label: UILabel!
     
     var position: Position? {
         didSet {

@@ -8,7 +8,7 @@
 import UIKit
 
 protocol HomeWritingMembersCountBottomCollectionViewCellDelegate: AnyObject {
-    func getRecruitingPosition(_ recruitingPosition: RecruitingPosition)
+    func addRecruitingPosition(_ recruitingPosition: RecruitingPosition)
 }
 
 final class HomeWritingMembersCountBottomCollectionViewCell: UICollectionViewCell {
@@ -30,18 +30,15 @@ final class HomeWritingMembersCountBottomCollectionViewCell: UICollectionViewCel
     @IBAction func minusButtonTapped(_ sender: Any) {
         if recruitingPosition?.recruitingNumber ?? 0 > 1 {
             recruitingPosition?.recruitingNumber -= 1
-            if let recruitingPosition = recruitingPosition {
-                delegate?.getRecruitingPosition(recruitingPosition)
-            }
-            if let count = recruitingPosition?.recruitingNumber {
-                countLabel.text = String(count)
-            }
+            guard let recruitingPosition = recruitingPosition else { return }
+            delegate?.addRecruitingPosition(recruitingPosition)
+            countLabel.text = String(recruitingPosition.recruitingNumber)
         }
     }
     @IBAction func plusButtonTapped(_ sender: Any) {
         recruitingPosition?.recruitingNumber += 1
         if let recruitingPosition = recruitingPosition {
-            delegate?.getRecruitingPosition(recruitingPosition)
+            delegate?.addRecruitingPosition(recruitingPosition)
         }
         if let count = recruitingPosition?.recruitingNumber {
             countLabel.text = String(count)

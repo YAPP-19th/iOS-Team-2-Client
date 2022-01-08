@@ -33,7 +33,7 @@ final class HomeWritingMembersCountBottomCell: UICollectionViewCell {
 
 // MARK: - Delegate
 extension HomeWritingMembersCountBottomCell: HomeWritingMembersCountBottomCollectionViewCellDelegate {
-    func getRecruitingPosition(_ recruitingPosition: RecruitingPosition) {
+    func addRecruitingPosition(_ recruitingPosition: RecruitingPosition) {
         if let index = recruitingPositions.firstIndex(of: recruitingPosition) {
             recruitingPositions[index] = recruitingPosition
         }

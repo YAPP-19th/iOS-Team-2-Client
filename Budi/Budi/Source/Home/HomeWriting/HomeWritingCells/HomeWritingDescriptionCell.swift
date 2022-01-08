@@ -29,7 +29,7 @@ final class HomeWritingDescriptionCell: UICollectionViewCell {
 }
 
 extension HomeWritingDescriptionCell: HomeWritingViewControllerDelegate {
-    func collectionViewDidScroll() {
+    func endEdittingTextView() {
         textView.endEditing(true)
     }
 }

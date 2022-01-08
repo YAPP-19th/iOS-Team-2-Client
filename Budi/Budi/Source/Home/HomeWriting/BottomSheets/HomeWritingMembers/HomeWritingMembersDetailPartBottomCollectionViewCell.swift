@@ -9,8 +9,8 @@ import UIKit
 
 final class HomeWritingMembersDetailPartBottomCollectionViewCell: UICollectionViewCell {
 
-    @IBOutlet weak var containerView: UIView!
-    @IBOutlet weak var label: UILabel!
+    @IBOutlet private weak var containerView: UIView!
+    @IBOutlet private weak var label: UILabel!
     
     var isPartSelected: Bool = false {
         didSet {

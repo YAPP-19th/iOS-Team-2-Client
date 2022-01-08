@@ -8,6 +8,10 @@
 import UIKit
 import Combine
 
+protocol ProjectMembersBottomViewControllerDelegate: AnyObject {
+    func getRecruitingPositions(_ recruitingPositions: [RecruitingPosition])
+}
+
 final class ProjectMembersBottomViewController: UIViewController {
 
     @IBOutlet private weak var backgroundView: UIView!
@@ -28,6 +32,8 @@ final class ProjectMembersBottomViewController: UIViewController {
     
     private var selectedPosition: Position?
     private var recruitingPositions: [RecruitingPosition] = []
+    
+    weak var delegate: ProjectMembersBottomViewControllerDelegate?
 
     init(nibName: String?, bundle: Bundle?, developerPositions: [String], designerPositions: [String], productManagerPositions: [String]) {
         self.developerPositions = developerPositions
@@ -43,10 +49,16 @@ final class ProjectMembersBottomViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         completeButtonContainerView.layer.addBorderTop()
+        bottomView.addCornerRadius(corners: [.topLeft, .topRight], radius: 20)
         
         setPublisher()
         configureCollectionView()
         configureUI()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        delegate?.getRecruitingPositions(recruitingPositions)
     }
 }
 
@@ -70,6 +82,17 @@ private extension ProjectMembersBottomViewController {
     func reloadCollectionViews() {
         positionCollectionView.reloadData()
         detailCollectionView.reloadData()
+        memberCollectionView.reloadData()
+    }
+}
+
+// MARK: - Deleagate
+extension ProjectMembersBottomViewController: ProjectMembersBottomMemberCellDelegate {
+    func editRecruitingPosition(_ recruitingPosition: RecruitingPosition) {
+        print("recruitingPosition is \(recruitingPosition)")
+        
+        guard let index = recruitingPositions.firstIndex(of: recruitingPosition) else { return }
+        recruitingPositions[index] = recruitingPosition
         memberCollectionView.reloadData()
     }
 }
@@ -120,26 +143,31 @@ extension ProjectMembersBottomViewController: UICollectionViewDataSource, UIColl
             
         case detailCollectionView:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProjectMembersBottomDetailCell.identifier, for: indexPath) as? ProjectMembersBottomDetailCell else { return UICollectionViewCell() }
+            var detailPosition = ""
+            
             if let selectedPosition = selectedPosition {
                 switch selectedPosition {
-                case .developer:
-                    cell.configureUI(developerPositions[indexPath.row])
-                case .designer:
-                    cell.configureUI(designerPositions[indexPath.row])
-                case .productManager: cell.configureUI(productManagerPositions[indexPath.row])
+                case .developer: detailPosition = developerPositions[indexPath.row]
+                case .designer: detailPosition = designerPositions[indexPath.row]
+                case .productManager: detailPosition = productManagerPositions[indexPath.row]
                 }
             }
+            let isSelected = recruitingPositions.map { $0.positionName }.contains(detailPosition)
+            
+            cell.configureUI(detailPosition)
+            cell.configureSelectedUI(isSelected)
             return cell
             
         case memberCollectionView:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProjectMembersBottomMemberCell.identifier, for: indexPath) as? ProjectMembersBottomMemberCell else { return UICollectionViewCell() }
+            cell.delegate = self
             cell.configureUI(recruitingPositions[indexPath.row])
             return cell
         default: return UICollectionViewCell()
         }
     }
 
-    // MARK: - SelectItem
+    // MARK: - Select
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         switch collectionView {
         case positionCollectionView:

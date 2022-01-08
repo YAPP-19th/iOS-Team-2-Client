@@ -18,6 +18,7 @@
 		5E45AD182732F78200F0A80C /* RecruitingStatusBottomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E45AD162732F78200F0A80C /* RecruitingStatusBottomCell.xib */; };
 		5E503E7727898D1400F13256 /* ProjectMembersBottomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E503E7527898D1400F13256 /* ProjectMembersBottomViewController.swift */; };
 		5E503E7827898D1400F13256 /* ProjectMembersBottomViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E503E7627898D1400F13256 /* ProjectMembersBottomViewController.xib */; };
+		5E503E832789C86800F13256 /* UIView+addCornerRadius.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E503E822789C86800F13256 /* UIView+addCornerRadius.swift */; };
 		5E5517A92768BCC300DC605E /* HomeWritingPartBottomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5517A72768BCC300DC605E /* HomeWritingPartBottomCell.swift */; };
 		5E5517AA2768BCC300DC605E /* HomeWritingPartBottomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E5517A82768BCC300DC605E /* HomeWritingPartBottomCell.xib */; };
 		5E58E6B1276B588C00ABBF1C /* AppliesRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E58E6B0276B588C00ABBF1C /* AppliesRequest.swift */; };
@@ -222,6 +223,7 @@
 		5E45AD162732F78200F0A80C /* RecruitingStatusBottomCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecruitingStatusBottomCell.xib; sourceTree = "<group>"; };
 		5E503E7527898D1400F13256 /* ProjectMembersBottomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectMembersBottomViewController.swift; sourceTree = "<group>"; };
 		5E503E7627898D1400F13256 /* ProjectMembersBottomViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProjectMembersBottomViewController.xib; sourceTree = "<group>"; };
+		5E503E822789C86800F13256 /* UIView+addCornerRadius.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+addCornerRadius.swift"; sourceTree = "<group>"; };
 		5E5517A72768BCC300DC605E /* HomeWritingPartBottomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWritingPartBottomCell.swift; sourceTree = "<group>"; };
 		5E5517A82768BCC300DC605E /* HomeWritingPartBottomCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeWritingPartBottomCell.xib; sourceTree = "<group>"; };
 		5E58E6B0276B588C00ABBF1C /* AppliesRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppliesRequest.swift; sourceTree = "<group>"; };
@@ -1022,6 +1024,7 @@
 				B97DBB9427147D970018C1D2 /* UIViewController+identifer.swift */,
 				B98E530927396B3F00C73374 /* UINavigationController+translucent.swift */,
 				5EA453AB2731DDA700943C94 /* CALayer+addBorder.swift */,
+				5E503E822789C86800F13256 /* UIView+addCornerRadius.swift */,
 				5E2554372732AD0800033723 /* UIView+IBInspectable.swift */,
 				5E820B732769E41E004A03E9 /* UIButton+IBInspectable.swift */,
 				A8A6D9F8273D2D1800C84C52 /* BackButtonExtension.swift */,
@@ -1293,6 +1296,7 @@
 				5EFB0A522734016600F39A4D /* MyChattingMessageCell.swift in Sources */,
 				B968416B277862ED002F5D3D /* TeamSearchDetailCell.swift in Sources */,
 				B97DBB9527147D970018C1D2 /* UIViewController+identifer.swift in Sources */,
+				5E503E832789C86800F13256 /* UIView+addCornerRadius.swift in Sources */,
 				A8CD0CEE2771CDCA00FFDE64 /* BudiLogin.swift in Sources */,
 				5E2554612732DF8A00033723 /* GreetingAlertViewController.swift in Sources */,
 				5E9150A92772357C000578D4 /* MyBudiEditViewController.swift in Sources */,

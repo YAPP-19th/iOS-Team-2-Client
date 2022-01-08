@@ -57,6 +57,7 @@
             </constraints>
             <size key="customSize" width="52" height="32"/>
             <connections>
+                <outlet property="containerView" destination="Ert-7r-VTE" id="Oty-yj-J8P"/>
                 <outlet property="label" destination="E49-JU-TLA" id="B45-Dz-cyc"/>
             </connections>
             <point key="canvasLocation" x="127.53623188405798" y="61.607142857142854"/>

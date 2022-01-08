@@ -13,84 +13,96 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="ProjectMembersBottomMemberCell" customModule="Budi" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="374" height="40"/>
+            <rect key="frame" x="0.0" y="0.0" width="374" height="48"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="374" height="40"/>
+                <rect key="frame" x="0.0" y="0.0" width="374" height="48"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uef-rQ-fuO">
-                        <rect key="frame" x="0.0" y="0.0" width="374" height="40"/>
+                        <rect key="frame" x="0.0" y="0.0" width="374" height="48"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="iOS 개발자" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sjn-ms-Tto">
-                                <rect key="frame" x="0.0" y="10.5" width="71.5" height="19.5"/>
+                                <rect key="frame" x="0.0" y="14.5" width="71.5" height="19.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ddd-4J-kc1">
-                                <rect key="frame" x="310" y="4" width="32" height="32"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aB5-Ce-oRO">
+                                <rect key="frame" x="274" y="8" width="100" height="32"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J5m-HM-cUK" userLabel="Minus Button">
+                                        <rect key="frame" x="0.0" y="0.0" width="32" height="32"/>
+                                        <color key="backgroundColor" name="Primary_sub"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="32" id="AF1-8B-vqW"/>
+                                            <constraint firstAttribute="width" constant="32" id="Yi3-dO-Xjm"/>
+                                        </constraints>
+                                        <color key="tintColor" name="Primary"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" image="minus" catalog="system"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="4"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="minusButtonTapped:" destination="gTV-IL-0wX" eventType="touchUpInside" id="3J2-jy-x8M"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ddd-4J-kc1">
+                                        <rect key="frame" x="32" y="0.0" width="36" height="32"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="36" id="Wcc-Nr-moD"/>
+                                            <constraint firstAttribute="height" constant="32" id="fZh-Je-cYV"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aIJ-XJ-jfk" userLabel="Plus Button">
+                                        <rect key="frame" x="68" y="0.0" width="32" height="32"/>
+                                        <color key="backgroundColor" name="Primary_sub"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="32" id="A5x-ho-czh"/>
+                                            <constraint firstAttribute="height" constant="32" id="bJa-8n-1r9"/>
+                                        </constraints>
+                                        <color key="tintColor" name="Primary"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" image="plus" catalog="system"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="4"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="plusButtonTapped:" destination="gTV-IL-0wX" eventType="touchUpInside" id="J8s-Bz-oEo"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R7v-YP-pPW">
+                                <rect key="frame" x="0.0" y="47.5" width="374" height="0.5"/>
+                                <color key="backgroundColor" name="Border"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="32" id="Wcc-Nr-moD"/>
-                                    <constraint firstAttribute="height" constant="32" id="fZh-Je-cYV"/>
+                                    <constraint firstAttribute="height" constant="0.5" id="hox-3x-3ps"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aIJ-XJ-jfk" userLabel="Plus Button">
-                                <rect key="frame" x="342" y="4" width="32" height="32"/>
-                                <color key="backgroundColor" name="Primary_sub"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="32" id="A5x-ho-czh"/>
-                                    <constraint firstAttribute="height" constant="32" id="bJa-8n-1r9"/>
-                                </constraints>
-                                <color key="tintColor" name="Primary"/>
-                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" image="plus" catalog="system"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="4"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="plusButtonTapped:" destination="gTV-IL-0wX" eventType="touchUpInside" id="J8s-Bz-oEo"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J5m-HM-cUK" userLabel="Minus Button">
-                                <rect key="frame" x="278" y="4" width="32" height="32"/>
-                                <color key="backgroundColor" name="Primary_sub"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="32" id="AF1-8B-vqW"/>
-                                    <constraint firstAttribute="width" constant="32" id="Yi3-dO-Xjm"/>
-                                </constraints>
-                                <color key="tintColor" name="Primary"/>
-                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" image="minus" catalog="system"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="4"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="minusButtonTapped:" destination="gTV-IL-0wX" eventType="touchUpInside" id="3J2-jy-x8M"/>
-                                </connections>
-                            </button>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="aB5-Ce-oRO" secondAttribute="trailing" id="4YP-0v-oDr"/>
                             <constraint firstItem="Sjn-ms-Tto" firstAttribute="leading" secondItem="Uef-rQ-fuO" secondAttribute="leading" id="6Dg-pS-ujn"/>
                             <constraint firstItem="Sjn-ms-Tto" firstAttribute="centerY" secondItem="Uef-rQ-fuO" secondAttribute="centerY" id="Cmy-Uo-WTT"/>
-                            <constraint firstItem="Ddd-4J-kc1" firstAttribute="centerY" secondItem="Uef-rQ-fuO" secondAttribute="centerY" id="Jfz-1B-AXI"/>
-                            <constraint firstItem="J5m-HM-cUK" firstAttribute="centerY" secondItem="Uef-rQ-fuO" secondAttribute="centerY" id="KTM-72-MjT"/>
-                            <constraint firstItem="aIJ-XJ-jfk" firstAttribute="leading" secondItem="Ddd-4J-kc1" secondAttribute="trailing" id="S81-uR-kaY"/>
-                            <constraint firstItem="Ddd-4J-kc1" firstAttribute="leading" secondItem="J5m-HM-cUK" secondAttribute="trailing" id="WOr-dl-iAV"/>
-                            <constraint firstAttribute="trailing" secondItem="aIJ-XJ-jfk" secondAttribute="trailing" id="cBP-rg-WVw"/>
-                            <constraint firstItem="aIJ-XJ-jfk" firstAttribute="centerY" secondItem="Uef-rQ-fuO" secondAttribute="centerY" id="pDc-4r-U1Y"/>
+                            <constraint firstAttribute="trailing" secondItem="R7v-YP-pPW" secondAttribute="trailing" id="FfS-wT-Yff"/>
+                            <constraint firstItem="aB5-Ce-oRO" firstAttribute="centerY" secondItem="Uef-rQ-fuO" secondAttribute="centerY" id="Xeh-Mx-yZm"/>
+                            <constraint firstAttribute="bottom" secondItem="R7v-YP-pPW" secondAttribute="bottom" id="fHP-G5-KHV"/>
+                            <constraint firstAttribute="height" constant="48" id="qpo-Ds-aya"/>
+                            <constraint firstItem="R7v-YP-pPW" firstAttribute="leading" secondItem="Uef-rQ-fuO" secondAttribute="leading" id="uTK-QK-89e"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                <real key="value" value="4"/>
+                                <real key="value" value="0.0"/>
                             </userDefinedRuntimeAttribute>
                             <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                 <real key="value" value="0.0"/>
@@ -106,17 +118,20 @@
                 <constraint firstItem="Uef-rQ-fuO" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="ao4-Tp-aeg"/>
                 <constraint firstAttribute="trailing" secondItem="Uef-rQ-fuO" secondAttribute="trailing" id="clF-Fr-fbJ"/>
             </constraints>
-            <size key="customSize" width="374" height="40"/>
+            <size key="customSize" width="374" height="48"/>
             <connections>
                 <outlet property="countLabel" destination="Ddd-4J-kc1" id="n4A-VZ-BGo"/>
                 <outlet property="partLabel" destination="Sjn-ms-Tto" id="6YC-ll-Fbs"/>
             </connections>
-            <point key="canvasLocation" x="365.21739130434787" y="63.616071428571423"/>
+            <point key="canvasLocation" x="365.21739130434787" y="66.294642857142861"/>
         </collectionViewCell>
     </objects>
     <resources>
         <image name="minus" catalog="system" width="128" height="24"/>
         <image name="plus" catalog="system" width="128" height="113"/>
+        <namedColor name="Border">
+            <color red="0.87800002098083496" green="0.87800002098083496" blue="0.87800002098083496" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="Primary">
             <color red="0.36899998784065247" green="0.37299999594688416" blue="0.85900002717971802" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

@@ -9,8 +9,9 @@ import UIKit
 
 final class ProjectMembersBottomDetailCell: UICollectionViewCell {
 
+    @IBOutlet private weak var containerView: UIView!
     @IBOutlet private weak var label: UILabel!
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
     }
@@ -21,12 +22,12 @@ final class ProjectMembersBottomDetailCell: UICollectionViewCell {
     
     func configureSelectedUI(_ isSelected: Bool) {
         if isSelected {
-            backgroundColor = .primarySub
-            borderColor = .primary
+            containerView.backgroundColor = .primarySub
+            containerView.borderColor = .primary
             label.textColor = .primary
         } else {
-            backgroundColor = .white
-            borderColor = .border
+            containerView.backgroundColor = .white
+            containerView.borderColor = .border
             label.textColor = .textHigh
         }
     }

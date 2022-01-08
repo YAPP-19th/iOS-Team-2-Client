@@ -46,7 +46,7 @@ class MyBudiMainViewModel: ViewModel {
                 print("저장된 숫자:", UserDefaults.standard.integer(forKey: "memberId"))
                 print("저장된 엑세스 토큰:", UserDefaults.standard.string(forKey: "accessToken"))
                 self.provider
-                    .requestPublisher(.signUpStatusCheck(memberId: UserDefaults.standard.integer(forKey: "memberId"), header: loginModel))
+                    .requestPublisher(.signUpStatusCheck(memberId: UserDefaults.standard.integer(forKey: "memberId")))
                     .map(APIResponse<LoginUserDetail>.self)
                     .map(\.data)
                     .sink(receiveCompletion: { [weak self] completion in

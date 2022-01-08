@@ -112,7 +112,7 @@ final class SignupViewModel: ViewModel {
                 let loginModel = LoginCheckModel(accessToken: UserDefaults.standard.string(forKey: "accessToken") ?? "")
 
                 self.provider
-                    .requestPublisher(.signUpStatusCheck(memberId: UserDefaults.standard.integer(forKey: "memberId"), header: loginModel))
+                    .requestPublisher(.signUpStatusCheck(memberId: UserDefaults.standard.integer(forKey: "memberId")))
                     .map(APIResponse<LoginUserDetail>.self)
                     .map(\.data)
                     .sink(receiveCompletion: { [weak self] completion in

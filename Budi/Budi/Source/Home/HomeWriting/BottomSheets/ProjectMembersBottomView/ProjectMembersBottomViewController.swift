@@ -16,13 +16,16 @@ final class ProjectMembersBottomViewController: UIViewController {
 
     @IBOutlet private weak var backgroundView: UIView!
     @IBOutlet private weak var completeButtonContainerView: UIView!
-
     @IBOutlet private weak var completeButton: UIButton!
-    
     @IBOutlet private weak var bottomView: UIView!
     @IBOutlet private weak var positionCollectionView: UICollectionView!
     @IBOutlet private weak var detailCollectionView: UICollectionView!
     @IBOutlet private weak var memberCollectionView: UICollectionView!
+    
+    @IBOutlet weak var bottomViewTopConstraint: NSLayoutConstraint!
+
+    @IBOutlet private weak var detailCollectionViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var memberCollectionViewHeightConstraint: NSLayoutConstraint!
     
     private var cancellables = Set<AnyCancellable>()
     
@@ -52,13 +55,14 @@ final class ProjectMembersBottomViewController: UIViewController {
         bottomView.addCornerRadius(corners: [.topLeft, .topRight], radius: 20)
         
         setPublisher()
+        setCollectionView()
         configureCollectionView()
-        configureUI()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        delegate?.getRecruitingPositions(recruitingPositions)
+        // MARK: - showBottomView
+        showBottomView(constant: 540)
     }
 }
 
@@ -67,30 +71,53 @@ private extension ProjectMembersBottomViewController {
         backgroundView.gesturePublisher(.tap())
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
-                self?.dismiss(animated: false, completion: nil)
+                guard let self = self else { return }
+                self.delegate?.getRecruitingPositions(self.recruitingPositions)
+                self.hideBottomView()
             }.store(in: &cancellables)
         
         completeButton.tapPublisher
             .receive(on: DispatchQueue.main)
-            .sink { _ in
+            .sink { [weak self] _ in
+                guard let self = self else { return }
+                self.delegate?.getRecruitingPositions(self.recruitingPositions)
+                self.hideBottomView()
             }.store(in: &cancellables)
     }
-    
-    func configureUI() {
+
+    func configureCompleteButton(_ isEnabled: Bool) {
+        completeButton.isEnabled = isEnabled
+        completeButton.backgroundColor = isEnabled ? .primary : .textDisabled
     }
-    
-    func reloadCollectionViews() {
-        positionCollectionView.reloadData()
-        detailCollectionView.reloadData()
-        memberCollectionView.reloadData()
+}
+
+// MARK: - Animation
+private extension ProjectMembersBottomViewController {
+    func showBottomView(constant: CGFloat) {
+        let animator = UIViewPropertyAnimator(duration: 0.25, curve: .linear) { [weak self] in
+            guard let self = self else { return }
+            self.bottomViewTopConstraint.constant = -constant
+            self.view.layoutIfNeeded()
+        }
+        animator.startAnimation()
+    }
+
+    func hideBottomView() {
+        let animator = UIViewPropertyAnimator(duration: 0.25, curve: .linear) { [weak self] in
+            guard let self = self else { return }
+            self.bottomViewTopConstraint.constant = 0
+            self.view.layoutIfNeeded()
+        }
+        animator.addCompletion { [weak self] _ in
+            self?.dismiss(animated: false, completion: nil)
+        }
+        animator.startAnimation()
     }
 }
 
 // MARK: - Deleagate
 extension ProjectMembersBottomViewController: ProjectMembersBottomMemberCellDelegate {
     func editRecruitingPosition(_ recruitingPosition: RecruitingPosition) {
-        print("recruitingPosition is \(recruitingPosition)")
-        
         guard let index = recruitingPositions.firstIndex(of: recruitingPosition) else { return }
         recruitingPositions[index] = recruitingPosition
         memberCollectionView.reloadData()
@@ -99,7 +126,7 @@ extension ProjectMembersBottomViewController: ProjectMembersBottomMemberCellDele
 
 // MARK: - CollectionView
 extension ProjectMembersBottomViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-    private func configureCollectionView() {
+    private func setCollectionView() {
         positionCollectionView.dataSource = self
         positionCollectionView.delegate = self
         detailCollectionView.dataSource = self
@@ -110,6 +137,13 @@ extension ProjectMembersBottomViewController: UICollectionViewDataSource, UIColl
         positionCollectionView.register(.init(nibName: ProjectMembersBottomPositionCell.identifier, bundle: nil), forCellWithReuseIdentifier: ProjectMembersBottomPositionCell.identifier)
         detailCollectionView.register(.init(nibName: ProjectMembersBottomDetailCell.identifier, bundle: nil), forCellWithReuseIdentifier: ProjectMembersBottomDetailCell.identifier)
         memberCollectionView.register(.init(nibName: ProjectMembersBottomMemberCell.identifier, bundle: nil), forCellWithReuseIdentifier: ProjectMembersBottomMemberCell.identifier)
+    }
+    
+    func configureCollectionView() {
+        guard !recruitingPositions.isEmpty else { return }
+        let count = recruitingPositions.count < 4 ? recruitingPositions.count : 3
+        memberCollectionViewHeightConstraint.constant = CGFloat(48*count)
+        // MARK: - showBottomView(constant: 350+CGFloat(48*count)+40)
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -139,6 +173,8 @@ extension ProjectMembersBottomViewController: UICollectionViewDataSource, UIColl
             } else {
                 cell.configureUI(position: position)
             }
+            // MARK: - showBottomView
+//            showBottomView(constant: 350)
             return cell
             
         case detailCollectionView:
@@ -171,7 +207,9 @@ extension ProjectMembersBottomViewController: UICollectionViewDataSource, UIColl
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         switch collectionView {
         case positionCollectionView:
-            self.selectedPosition = Position(rawValue: indexPath.row+1)
+            guard let newSelectedPosition = Position(rawValue: indexPath.row+1),
+                    newSelectedPosition != self.selectedPosition else { return }
+            self.selectedPosition = newSelectedPosition
             self.positionCollectionView.reloadData()
             self.detailCollectionView.reloadData()
             
@@ -194,10 +232,11 @@ extension ProjectMembersBottomViewController: UICollectionViewDataSource, UIColl
             } else {
                 recruitingPositions.append(recruitingPosition)
             }
-            print("recruitingPositions is \(recruitingPositions)")
             self.detailCollectionView.reloadData()
             self.memberCollectionView.reloadData()
-
+            self.configureCompleteButton(!recruitingPositions.isEmpty)
+            self.configureCollectionView()
+            
         case memberCollectionView: break
         default: break
         }

@@ -200,6 +200,14 @@ extension HomeWritingViewController: HomeLocationSearchViewControllerDelegate {
     }
 }
 
+extension HomeWritingViewController: ProjectMembersBottomViewControllerDelegate {
+    func getRecruitingPositions(_ recruitingPositions: [RecruitingPosition]) {
+        viewModel.state.recruitingPositions.value = recruitingPositions
+        collectionView.reloadData()
+        isValid()
+    }
+}
+
 extension HomeWritingViewController: HomeWritingDescriptionCellDelegate {
     func changeDescription(_ description: String) {
         viewModel.state.description.value = description

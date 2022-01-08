@@ -20,7 +20,7 @@ final class TeamSearchFilterViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .clear
+        view.backgroundColor = .budiWhite
         view.addSubview(collectionView)
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -72,7 +72,6 @@ extension TeamSearchFilterViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return .init(top: 0, left: 16, bottom: 8, right: 16)
     }
-
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         return .init(width: collectionView.bounds.width, height: 154)

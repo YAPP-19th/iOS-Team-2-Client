@@ -97,4 +97,26 @@ enum Position: Int, CaseIterable {
             return 3
         }
     }
+
+    var labelBackgroundColor: UIColor {
+        switch self {
+        case .developer:
+            return .init(hexString: "#E7F1FB") ?? .budiWhite
+        case .productManager:
+            return .init(hexString: "#E8F8F5") ?? .budiWhite
+        case .designer:
+            return .init(hexString: "#FEEDED") ?? .budiWhite
+        }
+    }
+
+    var labelTextColor: UIColor {
+        switch self {
+        case .developer:
+            return .init(hexString: "#3382E0") ?? .label
+        case .productManager:
+            return .init(hexString: "#40C1A2") ?? .label
+        case .designer:
+            return .init(hexString: "#E96262") ?? .label
+        }
+    }
 }

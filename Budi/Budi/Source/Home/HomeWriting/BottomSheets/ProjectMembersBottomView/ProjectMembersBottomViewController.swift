@@ -89,10 +89,15 @@ private extension ProjectMembersBottomViewController {
         completeButton.isEnabled = isEnabled
         completeButton.backgroundColor = isEnabled ? .primary : .textDisabled
     }
-}
+    
+    private func trimDetailPositionName(_ detailPosition: String, _ part: String) -> String {
+        var trimmedName = detailPosition
+        trimmedName = trimmedName.replacingOccurrences(of: "개발", with: "").trimmingCharacters(in: .whitespaces)
+        trimmedName = trimmedName.trimmingCharacters(in: .whitespaces)
+        return trimmedName
+    }
 
-// MARK: - Animation
-private extension ProjectMembersBottomViewController {
+    // MARK: - Animation
     func showBottomView(constant: CGFloat) {
         let animator = UIViewPropertyAnimator(duration: 0.25, curve: .linear) { [weak self] in
             guard let self = self else { return }
@@ -133,6 +138,11 @@ extension ProjectMembersBottomViewController: UICollectionViewDataSource, UIColl
         detailCollectionView.delegate = self
         memberCollectionView.dataSource = self
         memberCollectionView.delegate = self
+        
+        detailCollectionView.collectionViewLayout = CollectionViewLeftAlignFlowLayout()
+        if let flowLayout = detailCollectionView?.collectionViewLayout as? UICollectionViewFlowLayout {
+            flowLayout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
+        }
 
         positionCollectionView.register(.init(nibName: ProjectMembersBottomPositionCell.identifier, bundle: nil), forCellWithReuseIdentifier: ProjectMembersBottomPositionCell.identifier)
         detailCollectionView.register(.init(nibName: ProjectMembersBottomDetailCell.identifier, bundle: nil), forCellWithReuseIdentifier: ProjectMembersBottomDetailCell.identifier)
@@ -180,17 +190,24 @@ extension ProjectMembersBottomViewController: UICollectionViewDataSource, UIColl
         case detailCollectionView:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProjectMembersBottomDetailCell.identifier, for: indexPath) as? ProjectMembersBottomDetailCell else { return UICollectionViewCell() }
             var detailPosition = ""
+            var trimmedPosition = ""
             
             if let selectedPosition = selectedPosition {
                 switch selectedPosition {
-                case .developer: detailPosition = developerPositions[indexPath.row]
-                case .designer: detailPosition = designerPositions[indexPath.row]
-                case .productManager: detailPosition = productManagerPositions[indexPath.row]
+                case .developer:
+                    detailPosition = developerPositions[indexPath.row]
+                    trimmedPosition = trimDetailPositionName(detailPosition, "개발")
+                case .designer:
+                    detailPosition = designerPositions[indexPath.row]
+                    trimmedPosition = trimDetailPositionName(detailPosition, "디자인")
+                case .productManager:
+                    detailPosition = productManagerPositions[indexPath.row]
+                    trimmedPosition = trimDetailPositionName(detailPosition, "디자인")
                 }
             }
             let isSelected = recruitingPositions.map { $0.positionName }.contains(detailPosition)
             
-            cell.configureUI(detailPosition)
+            cell.configureUI(trimmedPosition)
             cell.configureSelectedUI(isSelected)
             return cell
             
@@ -244,19 +261,32 @@ extension ProjectMembersBottomViewController: UICollectionViewDataSource, UIColl
     
     // MARK: - Size, Spacing
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        var size = CGSize(width: 100, height: 100)
-
         switch collectionView {
-        case positionCollectionView:
-            size = CGSize(width: 74, height: collectionView.bounds.height)
+        case positionCollectionView: return CGSize(width: 74, height: collectionView.bounds.height)
         case detailCollectionView:
-            size = CGSize(width: (collectionView.bounds.width-8*3)/4, height: 32)
-        case memberCollectionView:
-            size = CGSize(width: collectionView.bounds.width, height: 48)
+            var detailPosition = ""
+            switch selectedPosition {
+            case .developer: detailPosition = trimDetailPositionName(developerPositions[indexPath.row], "개발")
+            case .designer: detailPosition = trimDetailPositionName(designerPositions[indexPath.row], "디자인")
+            case .productManager: detailPosition = trimDetailPositionName(productManagerPositions[indexPath.row], "기획")
+            default: break
+            }
+            return calculateDetailCellSize(for: indexPath, detailPosition)
+        case memberCollectionView: return CGSize(width: collectionView.bounds.width, height: 48)
         default: break
         }
+        return .zero
+    }
+    
+    private func calculateDetailCellSize(for indexPath: IndexPath, _ detailPosition: String) -> CGSize {
+        guard let dummyCell = Bundle.main.loadNibNamed(ProjectMembersBottomDetailCell.identifier, owner: self, options: nil)?.first as? ProjectMembersBottomDetailCell else { return .zero }
         
-        return size
+        dummyCell.configureUI(detailPosition)
+        dummyCell.setNeedsLayout()
+        dummyCell.layoutIfNeeded()
+        
+        let estimatedSize = dummyCell.systemLayoutSizeFitting(CGSize(width: 50, height: 32))
+        return estimatedSize
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
@@ -275,5 +305,28 @@ extension ProjectMembersBottomViewController: UICollectionViewDataSource, UIColl
         case memberCollectionView: return 0
         default: return 0
         }
+    }
+}
+
+// https://daddycoding.com/2020/04/29/left-align-collectionview-cell/
+class CollectionViewLeftAlignFlowLayout: UICollectionViewFlowLayout {
+    let cellSpacing: CGFloat = 10
+ 
+    override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
+        self.minimumLineSpacing = 10.0
+        self.sectionInset = UIEdgeInsets(top: 12.0, left: 16.0, bottom: 0.0, right: 16.0)
+        let attributes = super.layoutAttributesForElements(in: rect)
+ 
+        var leftMargin = sectionInset.left
+        var maxY: CGFloat = -1.0
+        attributes?.forEach { layoutAttribute in
+            if layoutAttribute.frame.origin.y >= maxY {
+                leftMargin = sectionInset.left
+            }
+            layoutAttribute.frame.origin.x = leftMargin
+            leftMargin += layoutAttribute.frame.width + cellSpacing
+            maxY = max(layoutAttribute.frame.maxY, maxY)
+        }
+        return attributes
     }
 }

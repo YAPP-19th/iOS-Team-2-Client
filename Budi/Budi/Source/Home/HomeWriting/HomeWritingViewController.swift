@@ -25,7 +25,8 @@ final class HomeWritingViewController: UIViewController {
     private let viewModel: HomeWritingViewModel
     private var cancellables = Set<AnyCancellable>()
     
-    weak var delegate: HomeWritingViewControllerDelegate?
+    weak var descriptionCelldelegate: HomeWritingViewControllerDelegate?
+    weak var nameCellDelegate: HomeWritingViewControllerDelegate?
     
     init?(coder: NSCoder, viewModel: HomeWritingViewModel) {
         self.viewModel = viewModel
@@ -222,7 +223,8 @@ extension HomeWritingViewController: UICollectionViewDataSource, UICollectionVie
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        delegate?.endEdittingTextView()
+        descriptionCelldelegate?.endEdittingTextView()
+        nameCellDelegate?.endEdittingTextView()
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -238,7 +240,8 @@ extension HomeWritingViewController: UICollectionViewDataSource, UICollectionVie
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        delegate?.endEdittingTextView()
+        descriptionCelldelegate?.endEdittingTextView()
+        nameCellDelegate?.endEdittingTextView()
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -268,6 +271,7 @@ extension HomeWritingViewController: UICollectionViewDataSource, UICollectionVie
             
         case 1: guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeWritingNameCell.identifier, for: indexPath) as? HomeWritingNameCell else { return cell }
             cell.delegate = self
+            self.nameCellDelegate = cell as HomeWritingViewControllerDelegate
             return cell
             
         case 2: guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeWritingPartCell.identifier, for: indexPath) as? HomeWritingPartCell else { return cell }
@@ -315,7 +319,7 @@ extension HomeWritingViewController: UICollectionViewDataSource, UICollectionVie
             
         case 7: guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeWritingDescriptionCell.identifier, for: indexPath) as? HomeWritingDescriptionCell else { return cell }
             cell.delegate = self
-            self.delegate = cell as HomeWritingViewControllerDelegate
+            self.descriptionCelldelegate = cell as HomeWritingViewControllerDelegate
             return cell
             
         default: break

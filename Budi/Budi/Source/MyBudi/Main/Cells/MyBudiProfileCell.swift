@@ -16,8 +16,6 @@ final class MyBudiProfileCell: UICollectionViewCell {
     @IBOutlet weak var userPositionLabel: UILabel!
     @IBOutlet weak var userDescriptionLabel: UILabel!
     
-    var cancellables = Set<AnyCancellable>()
-    
     override func prepareForReuse() {
         super.prepareForReuse()
         cancellables.removeAll()
@@ -25,11 +23,6 @@ final class MyBudiProfileCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-    }
-
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        cancellables.removeAll()
     }
 
     func setUserData(nickName: String, position: String, description: String) {

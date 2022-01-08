@@ -882,7 +882,6 @@
 				A8CD0CEF2771CE3A00FFDE64 /* BudiLoginResponse.swift */,
 				A8936FB72772F77600BE2C1D /* NameDuplication.swift */,
 				A8936FBB2777192500BE2C1D /* UserInfoUploadSuccess.swift */,
-				5E7CF4BE27708D50007315F1 /* RecruitingPosition.swift */,
 				A8C8DA342786E76C00FFF2D0 /* LoginUserDetail.swift */,
 				5ED53D6F277F8DEF002871CD /* LikePosts.swift */,
 			);

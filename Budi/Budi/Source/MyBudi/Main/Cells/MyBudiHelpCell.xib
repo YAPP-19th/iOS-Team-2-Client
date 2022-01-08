@@ -7,6 +7,7 @@
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -22,45 +23,37 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WLZ-CM-HOo">
                         <rect key="frame" x="0.0" y="0.0" width="343" height="198"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="9vV-gY-RJT">
-                                <rect key="frame" x="16" y="0.0" width="327" height="198"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t2R-Og-PDn">
+                                <rect key="frame" x="0.0" y="0.0" width="343" height="198"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wU6-Ln-Wjd">
-                                        <rect key="frame" x="0.0" y="0.0" width="327" height="66"/>
-                                        <color key="tintColor" name="Text_medium"/>
-                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" title="  개인정보 및 데이터">
-                                            <color key="titleColor" name="Text_medium"/>
-                                            <imageReference key="image" image="eyes" catalog="system" symbolScale="large"/>
-                                        </state>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1wW-nq-g23">
-                                        <rect key="frame" x="0.0" y="66" width="327" height="66"/>
-                                        <color key="tintColor" name="Text_medium"/>
-                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" title="  설정">
-                                            <color key="titleColor" name="Text_medium"/>
-                                            <imageReference key="image" image="gearshape.fill" catalog="system" symbolScale="large"/>
-                                        </state>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bWi-dH-UvD">
-                                        <rect key="frame" x="0.0" y="132" width="327" height="66"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bWi-dH-UvD">
+                                        <rect key="frame" x="133.5" y="156" width="76" height="34"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="34" id="Dpb-hC-kFW"/>
+                                            <constraint firstAttribute="width" constant="76" id="bHF-2e-6BF"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <color key="tintColor" name="Text_medium"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" title="  로그아웃">
                                             <color key="titleColor" name="Text_medium"/>
-                                            <imageReference key="image" image="arrowshape.turn.up.right.circle.fill" catalog="system" symbolScale="large"/>
+                                            <imageReference key="image" image="arrowshape.turn.up.right.circle.fill" catalog="system" symbolScale="medium"/>
                                         </state>
                                     </button>
                                 </subviews>
-                            </stackView>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="bWi-dH-UvD" secondAttribute="bottom" constant="8" id="9uR-ra-sCE"/>
+                                    <constraint firstItem="bWi-dH-UvD" firstAttribute="centerX" secondItem="t2R-Og-PDn" secondAttribute="centerX" id="Crg-a4-MeJ"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" name="Background"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="9vV-gY-RJT" secondAttribute="bottom" id="0wO-8a-319"/>
-                            <constraint firstAttribute="trailing" secondItem="9vV-gY-RJT" secondAttribute="trailing" id="GAa-Yn-ct3"/>
-                            <constraint firstItem="9vV-gY-RJT" firstAttribute="leading" secondItem="WLZ-CM-HOo" secondAttribute="leading" constant="16" id="O0h-LW-wbc"/>
-                            <constraint firstItem="9vV-gY-RJT" firstAttribute="top" secondItem="WLZ-CM-HOo" secondAttribute="top" id="lBi-Da-fzi"/>
+                            <constraint firstItem="t2R-Og-PDn" firstAttribute="top" secondItem="WLZ-CM-HOo" secondAttribute="top" id="D8U-3p-4wo"/>
+                            <constraint firstAttribute="bottom" secondItem="t2R-Og-PDn" secondAttribute="bottom" id="r5U-PO-ywh"/>
+                            <constraint firstAttribute="trailing" secondItem="t2R-Og-PDn" secondAttribute="trailing" id="vCl-Vk-8Mq"/>
+                            <constraint firstItem="t2R-Og-PDn" firstAttribute="leading" secondItem="WLZ-CM-HOo" secondAttribute="leading" id="vYi-cQ-hBU"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -85,13 +78,14 @@
     </objects>
     <resources>
         <image name="arrowshape.turn.up.right.circle.fill" catalog="system" width="128" height="121"/>
-        <image name="eyes" catalog="system" width="128" height="99"/>
-        <image name="gearshape.fill" catalog="system" width="128" height="121"/>
         <namedColor name="Background">
             <color red="0.94499999284744263" green="0.94499999284744263" blue="0.94499999284744263" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Text_medium">
             <color red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

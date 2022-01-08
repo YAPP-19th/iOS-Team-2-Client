@@ -9,13 +9,13 @@ import Foundation
 struct CreateInfo: Codable {
     let basePosition: Int
     let careerList: [CareerList]
-    let createInfoDescription, memberAddress, nickName: String
+    let description, memberAddress, nickName: String
     let portfolioLink, positionList: [String]
     let projectList: [TList]
 
     enum CodingKeys: String, CodingKey {
         case basePosition, careerList
-        case createInfoDescription
+        case description
         case memberAddress, nickName, portfolioLink, positionList, projectList
     }
 }
@@ -23,7 +23,6 @@ struct CreateInfo: Codable {
 // MARK: - CareerList
 struct CareerList: Codable {
     let companyName, careerListDescription, endDate: String
-    let memberID: Int
     let nowWorks: Bool
     let startDate, teamName: String
     let workRequestList: [TList]
@@ -31,18 +30,16 @@ struct CareerList: Codable {
     enum CodingKeys: String, CodingKey {
         case companyName
         case careerListDescription
-        case endDate
-        case memberID
-        case nowWorks, startDate, teamName, workRequestList
+        case endDate, nowWorks, startDate, teamName, workRequestList
     }
 }
 
 // MARK: - TList
 struct TList: Codable {
-    let tListDescription, endDate, name, startDate: String
+    let description, endDate, name, startDate: String
 
     enum CodingKeys: String, CodingKey {
-        case tListDescription
+        case description
         case endDate, name, startDate
     }
 }

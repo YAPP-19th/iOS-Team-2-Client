@@ -148,6 +148,7 @@
 		A8A6D9F9273D2D1800C84C52 /* BackButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A6D9F8273D2D1800C84C52 /* BackButtonExtension.swift */; };
 		A8AB51DE2769D3EC003D151C /* LeftAlignedCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8AB51DD2769D3EB003D151C /* LeftAlignedCollectionViewFlowLayout.swift */; };
 		A8AB51E8276A0416003D151C /* ModalControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8AB51E7276A0416003D151C /* ModalControl.swift */; };
+		A8C8DA352786E76C00FFF2D0 /* LoginUserDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C8DA342786E76C00FFF2D0 /* LoginUserDetail.swift */; };
 		A8CA17EB273EC267002CA2B9 /* UIResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CA17EA273EC267002CA2B9 /* UIResponder.swift */; };
 		A8CD0CEE2771CDCA00FFDE64 /* BudiLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CD0CED2771CDCA00FFDE64 /* BudiLogin.swift */; };
 		A8CD0CF02771CE3A00FFDE64 /* BudiLoginResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CD0CEF2771CE3A00FFDE64 /* BudiLoginResponse.swift */; };
@@ -363,6 +364,7 @@
 		A8AB51E7276A0416003D151C /* ModalControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalControl.swift; sourceTree = "<group>"; };
 		A8B6AD27277EC7100041945A /* Budi.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Budi.entitlements; sourceTree = "<group>"; };
 		A8C7AB88274E0E6C00B6E0E7 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
+		A8C8DA342786E76C00FFF2D0 /* LoginUserDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUserDetail.swift; sourceTree = "<group>"; };
 		A8CA17EA273EC267002CA2B9 /* UIResponder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIResponder.swift; sourceTree = "<group>"; };
 		A8CD0CED2771CDCA00FFDE64 /* BudiLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudiLogin.swift; sourceTree = "<group>"; };
 		A8CD0CEF2771CE3A00FFDE64 /* BudiLoginResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudiLoginResponse.swift; sourceTree = "<group>"; };
@@ -880,6 +882,8 @@
 				A8CD0CEF2771CE3A00FFDE64 /* BudiLoginResponse.swift */,
 				A8936FB72772F77600BE2C1D /* NameDuplication.swift */,
 				A8936FBB2777192500BE2C1D /* UserInfoUploadSuccess.swift */,
+				5E7CF4BE27708D50007315F1 /* RecruitingPosition.swift */,
+				A8C8DA342786E76C00FFF2D0 /* LoginUserDetail.swift */,
 				5ED53D6F277F8DEF002871CD /* LikePosts.swift */,
 			);
 			path = Models;
@@ -1243,6 +1247,7 @@
 				B9684163277853DC002F5D3D /* HistoryManagementViewController.swift in Sources */,
 				A8936FBF27785B7400BE2C1D /* PortfolioURLTableViewCell.swift in Sources */,
 				B9684162277853D8002F5D3D /* RecruitingStatusBottomCell.swift in Sources */,
+				A8C8DA352786E76C00FFF2D0 /* LoginUserDetail.swift in Sources */,
 				B9684161277853D0002F5D3D /* RecruitingStatusBottomViewController.swift in Sources */,
 				B9684160277853C8002F5D3D /* MainTabBarCoordinator.swift in Sources */,
 				B968415F277853BC002F5D3D /* ProjectHistory.swift in Sources */,
@@ -1530,13 +1535,13 @@
 				CODE_SIGN_ENTITLEMENTS = Budi/Budi.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = V37X2D6JM3;
+				DEVELOPMENT_TEAM = ZMXTCSPNUZ;
 				INFOPLIST_FILE = Budi/Resource/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = kr.dochoi.Budi;
+				PRODUCT_BUNDLE_IDENTIFIER = kr.dochoi.Budi2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -1553,13 +1558,13 @@
 				CODE_SIGN_ENTITLEMENTS = Budi/Budi.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = V37X2D6JM3;
+				DEVELOPMENT_TEAM = ZMXTCSPNUZ;
 				INFOPLIST_FILE = Budi/Resource/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = kr.dochoi.Budi;
+				PRODUCT_BUNDLE_IDENTIFIER = kr.dochoi.Budi2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;

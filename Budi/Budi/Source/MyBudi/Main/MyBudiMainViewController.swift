@@ -13,6 +13,7 @@ final class MyBudiMainViewController: UIViewController {
     
     @IBOutlet private weak var collectionView: UICollectionView!
     
+    @IBOutlet weak var loginButton: UIButton!
     weak var coordinator: MyBudiCoordinator?
     private let viewModel: MyBudiMainViewModel
     private var cancellables = Set<AnyCancellable>()
@@ -25,11 +26,66 @@ final class MyBudiMainViewController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        loginStatusCheck()
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         configureNavigationBar()
         configureCollectionView()
+        setPublisher()
+        self.viewModel.action.LoginStatusCheck.send(())
+        bindViewModel()
+    }
+
+    func loginStatusCheck() {
+        if UserDefaults.standard.string(forKey: "accessToken") == "" {
+            collectionView.isHidden = true
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let loginSelectViewController = storyboard.instantiateViewController(identifier: "LoginSelectViewController")
+            let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate
+            sceneDelegate?.moveLoginController(loginSelectViewController, animated: true)
+        } else {
+            collectionView.isHidden = false
+        }
+    }
+
+    private func bindViewModel() {
+        viewModel.state.loginStatusData
+            .receive(on: DispatchQueue.main)
+            .sink { data in
+                self.collectionView.isHidden = false
+                self.collectionView.reloadData()
+            }
+            .store(in: &cancellables)
+    }
+
+    private func setPublisher() {
+
+        NotificationCenter.default.publisher(for: Notification.Name("LoginSuccessed"), object: nil)
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in
+                guard let self = self else { return }
+                print("로그인 성공")
+                
+                self.viewModel.action.LoginStatusCheck.send(())
+            }
+            .store(in: &cancellables)
+
+        loginButton.tapPublisher
+            .sink { [weak self] _ in
+                guard let self = self else { return }
+                UserDefaults.standard.set(true, forKey: "isSwitch")
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let loginSelectViewController = storyboard.instantiateViewController(identifier: "LoginSelectViewController")
+                let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate
+                sceneDelegate?.moveLoginController(loginSelectViewController, animated: true)
+
+            }
+            .store(in: &cancellables)
     }
 }
 
@@ -57,12 +113,15 @@ extension MyBudiMainViewController: UICollectionViewDataSource, UICollectionView
         switch indexPath.row {
             
         case 0: guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MyBudiProfileCell.identifier, for: indexPath) as? MyBudiProfileCell else { return defaultCell }
+            let data = viewModel.state.loginStatusData.value
+            cell.setUserData(nickName: data?.nickName ?? "로딩중", position: data?.positions[0] ?? "로딩중", description: "임시소개글")
+
             cell.editButton.tapPublisher
                 .receive(on: DispatchQueue.main)
                 .sink { [weak self] _ in
                     guard let self = self else { return }
                     self.coordinator?.showEditViewController()
-                }.store(in: &cancellables)
+                }.store(in: &cell.cancellables)
             return cell
             
         case 1: guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MyBudiLevelCell.identifier, for: indexPath) as? MyBudiLevelCell else { return defaultCell }
@@ -72,6 +131,16 @@ extension MyBudiMainViewController: UICollectionViewDataSource, UICollectionView
             return cell
             
         case 3: guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MyBudiHelpCell.identifier, for: indexPath) as? MyBudiHelpCell else { return defaultCell }
+
+            cell.logoutButton.tapPublisher
+                .sink { _ in
+                    UserDefaults.standard.set("", forKey: "accessToken")
+                    UserDefaults.standard.set(0, forKey: "memberId")
+                    print("화면 가려졋!")
+                    self.collectionView.isHidden = true
+                    self.view.reloadInputViews()
+                }
+                .store(in: &cell.cancellables)
             return cell
             
         default: break

@@ -31,7 +31,7 @@ final class SignupViewModel: ViewModel {
         let cellSelectIndex = PassthroughSubject<[Int], Never>()
         let loadEditData = PassthroughSubject<Void, Never>()
         let deleteSignupInfoData = PassthroughSubject<Void, Never>()
-
+        let LoginStatusCheck = PassthroughSubject<Void, Never>()
     }
 
     struct State {
@@ -80,8 +80,9 @@ final class SignupViewModel: ViewModel {
         let signUpPersonalInfoData = CurrentValueSubject<PersonalInfo, Never>(PersonalInfo(nickName: "", location: "", description: ""))
 
         let userInfoUploadStatus = CurrentValueSubject<String?, Never>(nil)
-    }
 
+        let loginStatusData = CurrentValueSubject<LoginUserDetail?, Never>(nil)
+    }
 
     let action = Action()
     var state = State()
@@ -100,6 +101,48 @@ final class SignupViewModel: ViewModel {
         setSignupModel()
         signUpcellCRUD()
         postitionFunction()
+        loginStatusCheck()
+    }
+
+    func loginStatusCheck() {
+        action.LoginStatusCheck
+            .receive(on: DispatchQueue.global())
+            .sink { [weak self] _ in
+                guard let self = self else { return }
+                let loginModel = LoginCheckModel(accessToken: UserDefaults.standard.string(forKey: "accessToken") ?? "")
+
+                self.provider
+                    .requestPublisher(.signUpStatusCheck(memberId: UserDefaults.standard.integer(forKey: "memberId")))
+                    .map(APIResponse<LoginUserDetail>.self)
+                    .map(\.data)
+                    .sink(receiveCompletion: { [weak self] completion in
+                        guard let self = self else { return }
+                        switch completion {
+                        case .failure(let error):
+                            print(error.localizedDescription)
+                        case .finished:
+                            break
+                        }
+                        self.state.loginStatusData.send(nil)
+                    }, receiveValue: { post in
+                        print("이게 아닌가?",post.id)
+                        print("ㅇㅇㅇ",post.nickName)
+                        print(post)
+                        if post.nickName == "" {
+                            self.state.loginStatusData.send(nil)
+                        } else {
+                            let user = LoginUserDetail(id: post.id,
+                                                       imageUrl: post.imageUrl,
+                                                       nickName: post.nickName,
+                                                       level: post.level,
+                                                       positions: post.positions)
+                            self.state.loginStatusData.send(user)
+                        }
+                    })
+                    .store(in: &self.cancellables)
+
+            }
+            .store(in: &cancellables)
     }
 
     func postitionFunction() {
@@ -325,11 +368,13 @@ final class SignupViewModel: ViewModel {
                 var uploadPortfolioList: [String] = []
                 // 프로젝트 리스트 변환
                 for project in projectList {
-                    let tmp = TList(tListDescription: project.description,
+                    let tmp = TList(description: project.description,
                                     endDate: project.endDate,
                                     name: project.name,
                                     startDate: project.startDate)
-                    uploadProjectList.append(tmp)
+                    if !tmp.name.isEmpty {
+                        uploadProjectList.append(tmp)
+                    }
                 }
 
                 // 포트폴리오 리스트 변환
@@ -340,7 +385,7 @@ final class SignupViewModel: ViewModel {
                 let param = CreateInfo(
                     basePosition: self.state.selectedPosition.value.integerValue,
                     careerList: uploadCareerList,
-                    createInfoDescription: self.state.signUpPersonalInfoData.value.description,
+                    description: self.state.signUpPersonalInfoData.value.description,
                     memberAddress: self.state.signUpPersonalInfoData.value.location,
                     nickName: self.state.signUpPersonalInfoData.value.nickName,
                     portfolioLink: uploadPortfolioList,
@@ -348,7 +393,8 @@ final class SignupViewModel: ViewModel {
                     projectList: uploadProjectList
                 )
                 print("파라미터 ", param)
-                self.provider.requestPublisher(.createInfo(acessToken: accsessToken ?? "43d", param: param))
+                guard let accsessToken = accsessToken else { return }
+                self.provider.requestPublisher(.createInfo(acessToken: accsessToken, param: param))
                     .map(UserInfoUploadSuccess.self)
                     .sink(receiveCompletion: { [weak self] completion in
                         guard let self = self else { return }
@@ -357,8 +403,10 @@ final class SignupViewModel: ViewModel {
                         print(error.localizedDescription)
 
                     }, receiveValue: { post in
-                        print(post)
+                        UserDefaults.standard.set(post.data.memberId, forKey: "memberId")
+                        UserDefaults.standard.set(accsessToken, forKey: "accessToken")
                         self.state.userInfoUploadStatus.send(post.message)
+                        NotificationCenter.default.post(name: Notification.Name("LoginSuccessed"), object: nil)
 
                     })
                     .store(in: &self.cancellables)
@@ -390,7 +438,9 @@ final class SignupViewModel: ViewModel {
 
     // MARK: - Budi 서버에 POST 보내는 viewModel
     func pushServer() {
+        print("여기서 안넘어오는듯")
         guard let id = state.loginUserInfo?.id else { return }
+        print("넘어온 id",id)
         let replaceId = id.replacingOccurrences(of: ".", with: "")
         let loginData = BudiLogin(loginId: "\(replaceId)")
         guard let uploadData = try? JSONEncoder().encode(loginData) else { return }
@@ -410,26 +460,18 @@ final class SignupViewModel: ViewModel {
                 // 서버에 로그인 시도 하고 받은 데이터
                 let decodeData = try JSONDecoder().decode(APIResponse<BudiLoginResponse>.self, from: data)
 
-                self.state.budiLoginUserData.send(decodeData.data.userId)
+                self.state.budiLoginUserData.send(decodeData.data.accessToken)
                 print("로그인 유저 아이디 :", decodeData.data.userId)
                 print("로그인 고유 토큰 :", decodeData.data.accessToken)
+                UserDefaults.standard.set(decodeData.data.memberId, forKey: "memberId")
+                UserDefaults.standard.set(decodeData.data.accessToken, forKey: "accessToken")
+                print("저장된 엑세스 토큰", UserDefaults.standard.string(forKey: "accessToken"))
+                print("저장된 멤버 ID", UserDefaults.standard.integer(forKey: "memberId"))
             } catch {
                 print("Error")
             }
         }
         .resume()
-//        action.fetch
-//            .sink(receiveValue: { [weak self] _ in
-//                guard let self = self else { return }
-//
-//            })
-//            .store(in: &cancellables)
-//
-//        action.refresh
-//            .sink { [weak self] _ in
-//                self?.action.fetch.send(())
-//            }.store(in: &cancellables)
-//
-//        action.fetch.send(())
+
     }
 }

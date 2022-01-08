@@ -84,6 +84,7 @@
             <connections>
                 <outlet property="collectionView" destination="Wjw-ay-R5G" id="e05-t5-op3"/>
                 <outlet property="headerImageView" destination="NRR-qi-9L3" id="JL4-gV-v8i"/>
+                <outlet property="headerStackView" destination="B9Z-jb-7xe" id="r0e-0t-n4J"/>
                 <outlet property="headerTitleLabel" destination="mw3-cN-wxd" id="n1h-OG-25W"/>
             </connections>
             <point key="canvasLocation" x="367.39130434782612" y="199.55357142857142"/>

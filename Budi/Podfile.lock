@@ -338,7 +338,7 @@ PODS:
     - abseil/base/base_internal
     - abseil/base/config
     - abseil/meta/type_traits
-  - Alamofire (5.4.4)
+  - Alamofire (5.5.0)
   - BoringSSL-GRPC (0.0.7):
     - BoringSSL-GRPC/Implementation (= 0.0.7)
     - BoringSSL-GRPC/Interface (= 0.0.7)
@@ -359,6 +359,9 @@ PODS:
   - Firebase/Firestore (8.10.0):
     - Firebase/CoreOnly
     - FirebaseFirestore (~> 8.10.0)
+  - Firebase/Messaging (8.10.0):
+    - Firebase/CoreOnly
+    - FirebaseMessaging (~> 8.10.0)
   - FirebaseAnalytics (8.10.0):
     - FirebaseAnalytics/AdIdSupport (= 8.10.0)
     - FirebaseCore (~> 8.0)
@@ -409,6 +412,15 @@ PODS:
     - GoogleUtilities/Environment (~> 7.6)
     - GoogleUtilities/UserDefaults (~> 7.6)
     - PromisesObjC (< 3.0, >= 1.2)
+  - FirebaseMessaging (8.10.0):
+    - FirebaseCore (~> 8.0)
+    - FirebaseInstallations (~> 8.0)
+    - GoogleDataTransport (~> 9.1)
+    - GoogleUtilities/AppDelegateSwizzler (~> 7.6)
+    - GoogleUtilities/Environment (~> 7.6)
+    - GoogleUtilities/Reachability (~> 7.6)
+    - GoogleUtilities/UserDefaults (~> 7.6)
+    - nanopb (~> 2.30908.0)
   - GoogleAppMeasurement (8.10.0):
     - GoogleAppMeasurement/AdIdSupport (= 8.10.0)
     - GoogleUtilities/AppDelegateSwizzler (~> 7.6)
@@ -477,7 +489,7 @@ PODS:
     - gRPC-Core/Interface (= 1.28.2)
   - gRPC-Core/Interface (1.28.2)
   - GTMSessionFetcher/Core (1.7.0)
-  - Kingfisher (7.1.1)
+  - Kingfisher (7.1.2)
   - leveldb-library (1.22.1)
   - Moya/Combine (15.0.0):
     - Moya/Core
@@ -490,13 +502,14 @@ PODS:
   - nanopb/encode (2.30908.0)
   - naveridlogin-sdk-ios (4.1.3)
   - PromisesObjC (2.0.0)
-  - SwiftLint (0.43.1)
+  - SwiftLint (0.45.1)
 
 DEPENDENCIES:
   - CombineCocoa
   - Firebase/Analytics
   - Firebase/Auth
   - Firebase/Firestore
+  - Firebase/Messaging
   - Kingfisher (~> 7.0)
   - Moya/Combine (~> 15.0)
   - naveridlogin-sdk-ios
@@ -515,6 +528,7 @@ SPEC REPOS:
     - FirebaseCoreDiagnostics
     - FirebaseFirestore
     - FirebaseInstallations
+    - FirebaseMessaging
     - GoogleAppMeasurement
     - GoogleDataTransport
     - GoogleUtilities
@@ -531,7 +545,7 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   abseil: 6c8eb7892aefa08d929b39f9bb108e5367e3228f
-  Alamofire: f3b09a368f1582ab751b3fff5460276e0d2cf5c9
+  Alamofire: 1c4fb5369c3fe93d2857c780d8bbe09f06f97e7c
   BoringSSL-GRPC: 8edf627ee524575e2f8d19d56f068b448eea3879
   CombineCocoa: 68a050228ce7c53c1c5ac2c57cccf92a7f5c5085
   Firebase: 44213362f1dcc52555b935dc925ed35ac55f1b20
@@ -541,20 +555,21 @@ SPEC CHECKSUMS:
   FirebaseCoreDiagnostics: 56fb7216d87e0e6ec2feddefa9d8a392fe8b2c18
   FirebaseFirestore: 0e7321a508cc9de54316ec45400caba6b5719beb
   FirebaseInstallations: 830327b45345ffc859eaa9c17bcd5ae893fd5425
+  FirebaseMessaging: b0aeba17332ee1ee610662b4d1e02a86db82f08f
   GoogleAppMeasurement: a3311dbcf3ea651e5a070fe8559b57c174ada081
   GoogleDataTransport: 629c20a4d363167143f30ea78320d5a7eb8bd940
   GoogleUtilities: 684ee790a24f73ebb2d1d966e9711c203f2a4237
   "gRPC-C++": 13d8ccef97d5c3c441b7e3c529ef28ebee86fad2
   gRPC-Core: 4afa11bfbedf7cdecd04de535a9e046893404ed5
   GTMSessionFetcher: 43748f93435c2aa068b1cbe39655aaf600652e91
-  Kingfisher: f738f9c4a3415823b8e2985d10aa2d6a9f37bc4d
+  Kingfisher: 44ed6a8504763f27bab46163adfac83f5deb240c
   leveldb-library: 50c7b45cbd7bf543c81a468fe557a16ae3db8729
   Moya: 138f0573e53411fb3dc17016add0b748dfbd78ee
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
   naveridlogin-sdk-ios: b9d7c20677981177ed994ecb1c8c2b49f223277d
   PromisesObjC: 68159ce6952d93e17b2dfe273b8c40907db5ba58
-  SwiftLint: 99f82d07b837b942dd563c668de129a03fc3fb52
+  SwiftLint: 06ac37e4d38c7068e0935bb30cda95f093bec761
 
-PODFILE CHECKSUM: 5322884200d7bba5b8eb970be262fb9d7773f03c
+PODFILE CHECKSUM: 21730c94abf4f513e468c32a73fd57dfc9841192
 
 COCOAPODS: 1.11.2

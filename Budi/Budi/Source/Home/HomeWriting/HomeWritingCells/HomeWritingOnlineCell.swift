@@ -6,8 +6,6 @@
 //
 
 import UIKit
-import Combine
-import CombineCocoa
 
 protocol HomeWritingOnlineCellDelegate: AnyObject {
     func changeOnline(_ isOnline: Bool)
@@ -23,39 +21,26 @@ final class HomeWritingOnlineCell: UICollectionViewCell {
     @IBOutlet private weak var onlineContainerButton: UIButton!
     @IBOutlet private weak var offlineContainerButton: UIButton!
     
+    @IBAction private func onlineContainerButtonTapped(_ sender: Any) {
+        delegate?.changeOnline(true)
+        isOnlineChecked = true
+        configureUI()
+    }
+    @IBAction private func offlineContainerButtonTapped(_ sender: Any) {
+        delegate?.changeOnline(false)
+        isOnlineChecked = false
+        configureUI()
+    }
+    
     var isOnlineChecked: Bool = true
     
     weak var delegate: HomeWritingOnlineCellDelegate?
-    private var cancellables = Set<AnyCancellable>()
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        setPublisher()
-    }
-}
-
-private extension HomeWritingOnlineCell {
-    func setPublisher() {
-        onlineContainerButton.tapPublisher
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] _ in
-                guard let self = self else { return }
-                self.delegate?.changeOnline(true)
-                self.isOnlineChecked = true
-                self.configureUI()
-            }.store(in: &cancellables)
-        
-        offlineContainerButton.tapPublisher
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] _ in
-                guard let self = self else { return }
-                self.delegate?.changeOnline(false)
-                self.isOnlineChecked = false
-                self.configureUI()
-            }.store(in: &cancellables)
     }
     
-    func configureUI() {
+    private func configureUI() {
         onlineCircleContainerView.borderColor = isOnlineChecked ? .border : .border
         onlineCircleView.backgroundColor = isOnlineChecked ? .primary : .white
         

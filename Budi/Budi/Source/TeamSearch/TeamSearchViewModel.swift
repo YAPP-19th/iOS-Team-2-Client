@@ -9,7 +9,7 @@ import Combine
 import Moya
 
 struct TeamSearchViewModelSection {
-    let postion: Position
+    let position: Position
     let items: [SearchTeamMember]
 }
 
@@ -34,24 +34,24 @@ final class TeamSearchViewModel: ViewModel {
         action.fetch
             .sink(receiveValue: { [weak self] _ in
                 guard let self = self else { return }
-//                self.state.sections.send([.init(postion: .developer, items: [.init(id: 123, imgURL: "", nickName: "", address: "", introduce: "", position: ["asdf"], likeCount: 0)])])
                 Publishers.CombineLatest3(self.provider
-                                            .requestPublisher(.memberList(postion: .developer))
-                                            .map(APIResponse<[SearchTeamMember]>.self)
-                                            .map(\.data), self.provider
-                                            .requestPublisher(.memberList(postion: .designer))
-                                            .map(APIResponse<[SearchTeamMember]>.self)
-                                            .map(\.data), self.provider
-                                            .requestPublisher(.memberList(postion: .productManager))
-                                            .map(APIResponse<[SearchTeamMember]>.self)
-                                            .map(\.data))
+                                            .requestPublisher(.memberList(postion: .developer, page: 0, size: 4))
+                                            .map(APIResponse<PageContainer<[SearchTeamMember]>>.self)
+                                            .map(\.data.content), self.provider
+                                            .requestPublisher(.memberList(postion: .designer, page: 0, size: 4))
+                                            .map(APIResponse<PageContainer<[SearchTeamMember]>>.self)
+                                            .map(\.data.content), self.provider
+                                            .requestPublisher(.memberList(postion: .productManager, page: 0, size: 4))
+                                            .map(APIResponse<PageContainer<[SearchTeamMember]>>.self)
+                                            .map(\.data.content))
+                
                     .sink(receiveCompletion: { [weak self] completion in
                         guard case let .failure(error) = completion else { return }
                         self?.state.sections.send([])
                         print(error)
                     }, receiveValue: { [weak self] (developerMembers, designerMembers, productMembers) in
                         guard let self = self else { return }
-                        self.state.sections.send([.init(postion: .developer, items: developerMembers), .init(postion: .designer, items: designerMembers), .init(postion: .productManager, items: productMembers)])
+                        self.state.sections.send([.init(position: .developer, items: developerMembers), .init(position: .designer, items: designerMembers), .init(position: .productManager, items: productMembers)])
                     }).store(in: &self.cancellables)
 
             })

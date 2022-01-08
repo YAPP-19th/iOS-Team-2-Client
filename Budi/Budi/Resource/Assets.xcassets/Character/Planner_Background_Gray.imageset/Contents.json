@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "ic80job_planner_grey.png",
+      "filename" : "ic80job_planner_disabled.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "ic80job_planner_grey (1).png",
+      "filename" : "ic80job_planner_disabled (1).png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "ic80job_planner_grey (2).png",
+      "filename" : "ic80job_planner_disabled (2).png",
       "idiom" : "universal",
       "scale" : "3x"
     }

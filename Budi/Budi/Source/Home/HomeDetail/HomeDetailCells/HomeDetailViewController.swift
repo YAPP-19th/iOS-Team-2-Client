@@ -19,8 +19,6 @@ final class HomeDetailViewController: UIViewController {
     @IBOutlet private weak var heartCountLabel: UILabel!
     @IBOutlet private weak var submitButton: UIButton!
 
-    private var isHeartButtonChecked: Bool = false
-
     weak var coordinator: HomeCoordinator?
     private let viewModel: HomeDetailViewModel
     private var cancellables = Set<AnyCancellable>()
@@ -60,28 +58,34 @@ private extension HomeDetailViewController {
     func bindViewModel() {
         viewModel.state.post
             .receive(on: DispatchQueue.main)
-            .sink(receiveCompletion: { [weak self] _ in
+            .sink(receiveValue: { [weak self] _ in
+                self?.configureHeartButton()
+                self?.configureSubmitButton()
                 self?.mainCollectionView.reloadData()
-            }, receiveValue: { _ in
-                self.mainCollectionView.reloadData()
             }).store(in: &cancellables)
     }
     
     func setPublisher() {
-        heartButton.tapPublisher
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] _ in
-                guard let self = self else { return }
-                self.isHeartButtonChecked.toggle()
-                self.heartButton.setImage(UIImage(systemName: self.isHeartButtonChecked ? "heart.fill" : "heart"), for: .normal)
-                self.heartButton.tintColor = self.isHeartButtonChecked ? UIColor.budiGreen : UIColor.budiGray
-            }.store(in: &cancellables)
-
         submitButton.tapPublisher
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
                 guard let self = self else { return }
                 self.coordinator?.showRecruitingStatusBottomViewController(self, self.viewModel)
+            }.store(in: &cancellables)
+        
+        heartButton.tapPublisher
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in
+                guard let self = self else { return }
+                self.viewModel.requestLikePost(.testAccessToken) { response in
+                    switch response {
+                    case .success:
+                        guard let isLiked = self.viewModel.state.post.value?.isLiked else { return }
+                        self.heartButton.setImage(UIImage(systemName: isLiked ? "heart.fill" : "heart"), for: .normal)
+                        self.heartButton.tintColor = isLiked ? UIColor.primary : UIColor.textDisabled
+                    case .failure(let error): print(error.localizedDescription)
+                    }
+                }
             }.store(in: &cancellables)
     }
 }
@@ -95,7 +99,26 @@ private extension HomeDetailViewController {
 
     @objc
     func shareButtonTapped() {
-        print("버디 모집 공유")
+    }
+    
+    func configureHeartButton() {
+        guard let likeCount = viewModel.state.post.value?.likeCount, let isLiked = viewModel.state.post.value?.isLiked else { return }
+        heartCountLabel.text = "\(likeCount)"
+        heartButton.setImage(UIImage(systemName: isLiked ? "heart.fill" : "heart"), for: .normal)
+        heartButton.tintColor = isLiked ? UIColor.primary : UIColor.textDisabled
+    }
+    
+    func configureSubmitButton() {
+        guard let isAlreadyApplied = viewModel.state.post.value?.isAlreadyApplied else { return }
+        if isAlreadyApplied {
+            submitButton.isEnabled = false
+            submitButton.setTitle("지원완료", for: .normal)
+            submitButton.backgroundColor = .textDisabled
+        } else {
+            submitButton.isEnabled = true
+            submitButton.setTitle("지원하기", for: .normal)
+            submitButton.backgroundColor = .primary
+        }
     }
 }
 
@@ -103,19 +126,17 @@ private extension HomeDetailViewController {
 extension HomeDetailViewController: RecruitingStatusBottomViewControllerDelegate {
     func getSelectedRecruitingStatus(_ selectedRecruitingStatus: RecruitingStatus) {
         let postId = viewModel.state.postId.value
-        let testAccessToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJFeHBpcmVkUGVyaW9kIjoiMzYwMCIsInVzZXJJZCI6ImFhZGEyIiwiaXNzdWVyIjoiU1lKX0lTU1VFIiwibWVtYmVySWQiOjEsImV4cCI6MTY3MDQyMTM3MH0.LkYIbZwO3zrtvDqgxNFe6IxtKovBGgu28t3g_8zS7DY"
-        
+
         let param = AppliesRequest(postId: postId, recruitingPositionId: selectedRecruitingStatus.recruitingPositionId)
         
-        viewModel.requestApplies(testAccessToken, param) { result in
+        viewModel.requestApplies(.testAccessToken, param) { result in
             switch result {
-            case .success(let response):
-                print("response is \(response)")
+            case .success:
                 self.dismiss(animated: false) {
                     self.coordinator?.showGreetingAlertViewController(self)
+                    self.viewModel.state.post.value?.isAlreadyApplied = true
                 }
-            case .failure(let error):
-                print(error.localizedDescription)
+            case .failure(let error): print(error.localizedDescription)
             }
         }
     }

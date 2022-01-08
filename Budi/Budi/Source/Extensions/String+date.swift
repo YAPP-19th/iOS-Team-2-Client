@@ -21,6 +21,12 @@ extension String {
 }
 
 extension Date {
+    
+    func convertStringyyyyMMddTHHmmSS() -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+        return formatter.string(from: self)
+    }
 
     func convertStringyyyyMMdd() -> String {
         let formatter = DateFormatter()

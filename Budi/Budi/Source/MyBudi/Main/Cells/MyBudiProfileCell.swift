@@ -15,6 +15,14 @@ final class MyBudiProfileCell: UICollectionViewCell {
     @IBOutlet weak var userNickNameLabel: UILabel!
     @IBOutlet weak var userPositionLabel: UILabel!
     @IBOutlet weak var userDescriptionLabel: UILabel!
+    
+    var cancellables = Set<AnyCancellable>()
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        cancellables.removeAll()
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     }

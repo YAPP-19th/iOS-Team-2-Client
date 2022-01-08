@@ -9,7 +9,9 @@ import UIKit
 
 final class GreetingAlertViewController: UIViewController {
 
-    @IBOutlet private weak var handEmojiLabel: UILabel!
+    @IBOutlet private weak var textLabel: UILabel!
+    @IBOutlet private weak var button: UIButton!
+    
     @IBAction private func cancelButtonTapped(_ sender: Any) {
         dismiss(animated: false, completion: nil)
     }
@@ -21,10 +23,5 @@ final class GreetingAlertViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureUI()
-    }
-    
-    private func configureUI() {
-        handEmojiLabel.transform = CGAffineTransform(rotationAngle: -(CGFloat.pi / 180 * 12))
     }
 }

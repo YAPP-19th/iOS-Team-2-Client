@@ -6,15 +6,25 @@
 //
 
 import UIKit
+import Combine
 
 final class HomeWritingMembersCell: UICollectionViewCell {
     
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var addButton: UIButton!
     
+    var cancellables = Set<AnyCancellable>()
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        cancellables.removeAll()
+    }
+    
     var recruitingPositions: [RecruitingPosition] = [] {
         didSet {
-            collectionView.reloadData()
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+            }
         }
     }
     
@@ -38,7 +48,8 @@ extension HomeWritingMembersCell: UICollectionViewDataSource, UICollectionViewDe
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeWritingMembersUnitCell.identifier, for: indexPath) as? HomeWritingMembersUnitCell else { return UICollectionViewCell() }
-        cell.configureUI(recruitingPositions[indexPath.row])
+        // MARK: - colorCode 받아 적용
+        cell.configureUI(position: recruitingPositions[indexPath.row], colorCode: 1)
         return cell
     }
 

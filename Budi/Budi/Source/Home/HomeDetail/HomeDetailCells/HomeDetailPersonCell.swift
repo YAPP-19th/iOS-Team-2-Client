@@ -12,21 +12,31 @@ final class HomeDetailPersonCell: UICollectionViewCell {
     @IBOutlet private weak var profileImageView: UIImageView!
     @IBOutlet private weak var nameLabel: UILabel!
     @IBOutlet private weak var jobLabel: UILabel!
-    @IBOutlet private weak var levelLabel: UILabel!
     @IBOutlet private weak var addressLabel: UILabel!
+    @IBOutlet private weak var characterImageView: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
     }
     
-    func updateUI(_ name: String?, _ imageUrl: String?, _ address: String?) {
-        if let name = name {
-            nameLabel.text = name
+    func updateUI(_ leader: Leader) {
+        nameLabel.text = leader.nickName.isEmpty ? "Unknown" : leader.nickName
+        jobLabel.text = leader.position.position.isEmpty ? "기타" : leader.position.position
+        addressLabel.text = leader.address.isEmpty ? "서울시 강남구" : leader.address
+
+        characterImageView.image = Position(rawValue: leader.position.colorCode)?.iconImage
+        if let url = URL(string: leader.profileImageUrl) {
+            profileImageView.kf.setImage(with: url, placeholder: UIImage(named: "person.circle.fill"))
         }
-        if let address = address {
-            addressLabel.text = address
-        }
-        if let imageUrl = imageUrl, let url = URL(string: imageUrl) {
+    }
+    
+    func updateUI(_ teamMember: TeamMember) {
+        nameLabel.text = teamMember.nickName.isEmpty ? "Unknown" : teamMember.nickName
+        jobLabel.text = teamMember.position.position.isEmpty ? "기타" : teamMember.position.position
+        addressLabel.text = teamMember.address.isEmpty ? "서울시 강남구" : teamMember.address
+
+        characterImageView.image = Position(rawValue: teamMember.position.colorCode)?.iconImage
+        if let url = URL(string: teamMember.profileImageUrl) {
             profileImageView.kf.setImage(with: url, placeholder: UIImage(named: "person.circle.fill"))
         }
     }

@@ -44,14 +44,6 @@ extension HomeCoordinator {
         navigationController?.pushViewController(viewController, animated: true)
     }
     
-    func showWritingImageBottomViewController(_ vc: UIViewController, _ viewModel: HomeWritingViewModel) {
-        let viewController: HomeWritingImageBottomViewController = HomeWritingImageBottomViewController(nibName: HomeWritingImageBottomViewController.identifier, bundle: nil, viewModel: viewModel)
-        viewController.modalPresentationStyle = .overCurrentContext
-        viewController.coordinator = self
-        viewController.delegate = vc as? HomeWritingImageBottomViewControllerDelegate
-        vc.present(viewController, animated: false, completion: nil)
-    }
-    
     func showWritingPartBottomViewController(_ vc: UIViewController, _ viewModel: HomeWritingViewModel) {
         let viewController: HomeWritingPartBottomViewController = HomeWritingPartBottomViewController(nibName: HomeWritingPartBottomViewController.identifier, bundle: nil, viewModel: viewModel)
         viewController.modalPresentationStyle = .overCurrentContext
@@ -60,20 +52,17 @@ extension HomeCoordinator {
         vc.present(viewController, animated: false, completion: nil)
     }
     
-    func showDatePickerViewController(_ vc: UIViewController, _ minimumDate: Date? = nil) {
-        let viewController: DatePickerBottomViewController = DatePickerBottomViewController(nibName: DatePickerBottomViewController.identifier, bundle: nil)
+    func showDatePickerViewController(_ vc: UIViewController, _ isStartDate: Bool, _ limitDate: Date?) {
+        let viewController: DatePickerBottomViewController = DatePickerBottomViewController(nibName: DatePickerBottomViewController.identifier, bundle: nil, isStartDate: isStartDate, limitDate: limitDate)
         viewController.modalPresentationStyle = .overCurrentContext
         viewController.delegate = vc as? DatePickerBottomViewControllerDelegate
         vc.present(viewController, animated: false, completion: nil)
     }
     
-    func showLocationSearchViewController() {
-        let viewController: LocationSearchViewController = storyboard.instantiateViewController(identifier: LocationSearchViewController.identifier) { coder -> LocationSearchViewController? in
-            let viewModel = SignupViewModel()
-            return LocationSearchViewController(coder: coder, viewModel: viewModel)
-        }
+    func showLocationSearchViewController(_ vc: UIViewController) {
+        let viewController = HomeLocationSearchViewController()
         viewController.navigationItem.title = "위치선택"
-        //viewController.coordinator = self
+        viewController.delegate = vc as? HomeLocationSearchViewControllerDelegate
         navigationController?.pushViewController(viewController, animated: true)
     }
     

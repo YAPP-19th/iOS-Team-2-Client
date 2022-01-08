@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -18,6 +18,7 @@
                 <outlet property="closeButton" destination="Q3E-PJ-zoC" id="rnb-vJ-l22"/>
                 <outlet property="collectionView" destination="fPm-5x-hnN" id="hYN-SH-9ss"/>
                 <outlet property="heartButton" destination="vqy-OV-iC3" id="Kom-fD-7qc"/>
+                <outlet property="heartCountLabel" destination="lc8-7W-aOf" id="7pK-NS-9nb"/>
                 <outlet property="submitButton" destination="trt-dp-HDq" id="pFy-6l-Je6"/>
                 <outlet property="submitView" destination="R6q-jd-m7o" id="2zO-QB-ULA"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -102,7 +103,7 @@
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="trt-dp-HDq">
                             <rect key="frame" x="80" y="8" width="318" height="48"/>
-                            <color key="backgroundColor" name="Gray"/>
+                            <color key="backgroundColor" name="Text_disabled"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="48" id="0yZ-u0-d2i"/>
                             </constraints>
@@ -119,10 +120,10 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qTx-uq-Uis">
                             <rect key="frame" x="16" y="8" width="48" height="48"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="512" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lc8-7W-aOf">
-                                    <rect key="frame" x="14.5" y="34" width="19" height="14"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lc8-7W-aOf">
+                                    <rect key="frame" x="20.5" y="34" width="7" height="14"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                    <color key="textColor" name="Gray"/>
+                                    <color key="textColor" name="Text_disabled"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vqy-OV-iC3">
@@ -131,7 +132,7 @@
                                         <constraint firstAttribute="width" constant="32" id="WCz-Ej-ARh"/>
                                         <constraint firstAttribute="height" constant="32" id="bUS-jy-fUI"/>
                                     </constraints>
-                                    <color key="tintColor" name="Gray"/>
+                                    <color key="tintColor" name="Text_disabled"/>
                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                     <state key="normal">
                                         <imageReference key="image" image="heart" catalog="system" symbolScale="default"/>
@@ -183,8 +184,8 @@
         <namedColor name="Black">
             <color red="0.11699999868869781" green="0.11699999868869781" blue="0.11699999868869781" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <namedColor name="Gray">
-            <color red="0.5559999942779541" green="0.5559999942779541" blue="0.5559999942779541" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <namedColor name="Text_disabled">
+            <color red="0.61960784313725492" green="0.61960784313725492" blue="0.61960784313725492" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="TransparentDarkGray">
             <color red="0.0" green="0.0" blue="0.0" alpha="0.60000002384185791" colorSpace="custom" customColorSpace="sRGB"/>

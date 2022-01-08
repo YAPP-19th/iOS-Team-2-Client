@@ -8,6 +8,7 @@
 import UIKit
 import NaverThirdPartyLogin
 import Firebase
+import FirebaseMessaging
 
 //swiftlint:disable
 @main
@@ -31,6 +32,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // 애플리케이션 이름
         instance?.appName = kServiceAppName
         FirebaseApp.configure()
+        Messaging.messaging().delegate = self
+        UNUserNotificationCenter.current().delegate = self
+        UNUserNotificationCenter.current().requestAuthorization(
+            options: [.alert, .badge, .sound],
+            completionHandler: { _, _ in }
+        )
+        application.registerForRemoteNotifications()
         return true
     }
 
@@ -46,5 +54,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
         NaverThirdPartyLoginConnection.getSharedInstance()?.application(app, open: url, options: options)
         return true
+    }
+
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        Messaging.messaging().apnsToken = deviceToken
+    }
+}
+
+extension AppDelegate: UNUserNotificationCenterDelegate {
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        let userInfo = response.notification.request.content.userInfo
+    }
+
+    func userNotificationCenter(
+        _ center: UNUserNotificationCenter,
+        willPresent notification: UNNotification,
+        withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void
+    ) {
+
+        completionHandler([.banner, .sound])
+
+    }
+}
+
+extension AppDelegate: MessagingDelegate {
+    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
+
     }
 }

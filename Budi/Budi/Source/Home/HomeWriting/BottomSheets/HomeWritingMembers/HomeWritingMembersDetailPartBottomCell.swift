@@ -17,14 +17,18 @@ final class HomeWritingMembersDetailPartBottomCell: UICollectionViewCell {
     
     var partStrings: [String] = [] {
         didSet {
-            collectionView.reloadData()
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+            }
         }
     }
     
     var selectedPartStrings: [String] = [] {
         didSet {
             delegate?.getSelectedParts(selectedPartStrings)
-            collectionView.reloadData()
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+            }
         }
     }
     

@@ -11,14 +11,14 @@ struct PostRequest: Codable {
     let imageUrl: String
     let title: String
     let categoryName: String
-    let startDate: Date
-    let endDate: Date
+    let startDate: String
+    let endDate: String
     let onlineInfo: String
     let region: String
     let recruitingPositions: [RecruitingPosition]
     let description: String
     
-    init(imageUrl: String, title: String, categoryName: String, startDate: Date, endDate: Date, onlineInfo: String, region: String, recruitingPositions: [RecruitingPosition], description: String) {
+    init(imageUrl: String, title: String, categoryName: String, startDate: String, endDate: String, onlineInfo: String, region: String, recruitingPositions: [RecruitingPosition], description: String) {
         self.imageUrl = imageUrl
         self.title = title
         self.categoryName = categoryName

@@ -6,11 +6,19 @@
 //
 
 import UIKit
+import Combine
 
 final class HomeWritingAreaCell: UICollectionViewCell {
     
     @IBOutlet private weak var areaTextField: UITextField!
     @IBOutlet weak var selectButton: UIButton!
+    
+    var cancellables = Set<AnyCancellable>()
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        cancellables.removeAll()
+    }
 
     override func awakeFromNib() {
         super.awakeFromNib()

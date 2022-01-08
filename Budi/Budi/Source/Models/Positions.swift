@@ -7,16 +7,16 @@
 
 import UIKit
 
-enum Position: String, CaseIterable {
-    case developer = "개발자"
-    case designer = "디자이너"
-    case productManager = "기획자"
+enum Position: Int, CaseIterable {
+    case developer = 1
+    case designer
+    case productManager
 
     var stringValue: String {
         switch self {
-        case .developer: return "developer"
-        case .designer: return "designer"
-        case .productManager: return "planner"
+        case .developer: return "개발"
+        case .designer: return "디자인"
+        case .productManager: return "기획"
         }
     }
 
@@ -28,27 +28,51 @@ enum Position: String, CaseIterable {
         }
     }
     
+    var jobStringEnglishValue: String {
+        switch self {
+        case .developer: return "developer"
+        case .designer: return "designer"
+        case .productManager: return "planner"
+        }
+    }
+    
+    var jobStringValue: String {
+        switch self {
+        case .developer: return "개발자"
+        case .designer: return "디자이너"
+        case .productManager: return "기획자"
+        }
+    }
+    
     var characterImage: UIImage? {
         switch self {
-        case .developer: return UIImage(named: "Developer")
-        case .designer: return UIImage(named: "Designer")
-        case .productManager: return UIImage(named: "Planner")
+        case .developer: return UIImage(named: "developer")
+        case .designer: return UIImage(named: "designer")
+        case .productManager: return UIImage(named: "planner")
         }
     }
     
     var characterBackgroundImage: UIImage? {
         switch self {
-        case .developer: return UIImage(named: "Developer_Background")
-        case .designer: return UIImage(named: "Designer_Background")
-        case .productManager: return UIImage(named: "Planner_Background")
+        case .developer: return UIImage(named: "developer_background")
+        case .designer: return UIImage(named: "designer_background")
+        case .productManager: return UIImage(named: "planner_background")
         }
     }
     
     var characterBackgroundGrayImage: UIImage? {
         switch self {
-        case .developer: return UIImage(named: "Developer_Background_Gray")
-        case .designer: return UIImage(named: "Designer_Background_Gray")
-        case .productManager: return UIImage(named: "Planner_Background_Gray")
+        case .developer: return UIImage(named: "developer_background_gray")
+        case .designer: return UIImage(named: "designer_background_gray")
+        case .productManager: return UIImage(named: "planner_background_gray")
+        }
+    }
+    
+    var iconImage: UIImage? {
+        switch self {
+        case .developer: return UIImage(named: "ico_dev_lv1")
+        case .designer: return UIImage(named: "ico_design_lv1")
+        case .productManager: return UIImage(named: "ico_plan_lv1")
         }
     }
 

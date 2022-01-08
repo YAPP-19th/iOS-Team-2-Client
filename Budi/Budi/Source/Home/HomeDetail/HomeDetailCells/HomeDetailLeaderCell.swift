@@ -10,9 +10,22 @@ import UIKit
 final class HomeDetailLeaderCell: UICollectionViewCell {
 
     @IBOutlet private weak var collectionView: UICollectionView!
-    var leader: Leader = Leader(leaderId: 0, nickName: "", profileImageUrl: "", address: "") {
+    @IBOutlet private weak var dividerView: UIView!
+
+    var leader: Leader = Leader(leaderId: 0, nickName: "", profileImageUrl: "", address: "", position: .init(position: "", colorCode: 0)) {
         didSet {
-            collectionView.reloadData()
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+            }
+        }
+    }
+    var isTeamMembersEmpty: Bool = true {
+        didSet {
+            if isTeamMembersEmpty {
+                DispatchQueue.main.async {
+                    self.dividerView.backgroundColor = .white
+                }
+            }
         }
     }
 
@@ -20,9 +33,6 @@ final class HomeDetailLeaderCell: UICollectionViewCell {
         super.awakeFromNib()
         configureCollectionView()
     }
-}
-
-private extension HomeDetailLeaderCell {
 }
 
 extension HomeDetailLeaderCell: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -38,11 +48,11 @@ extension HomeDetailLeaderCell: UICollectionViewDataSource, UICollectionViewDele
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeDetailPersonCell.identifier, for: indexPath) as? HomeDetailPersonCell else { return UICollectionViewCell() }
-        cell.updateUI(leader.nickName, leader.profileImageUrl, leader.address)
+        cell.updateUI(leader)
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        CGSize(width: collectionView.frame.width, height: 80)
+        CGSize(width: collectionView.frame.width, height: 100)
     }
 }

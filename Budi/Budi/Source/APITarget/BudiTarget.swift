@@ -11,8 +11,8 @@ enum BudiTarget {
     case posts(page: Int = 0, size: Int = 10)
     case filteredPosts(type: Position, page: Int = 0, size: Int = 10)
     case createPost(accessToken: String, param: PostRequest)
-    case post(id: Int)
-    case detailPositions(postion: Position)
+    case post(accessToken: String, id: Int)
+    case detailPositions(position: Position)
     case createInfo(acessToken: String, param: CreateInfo)
     case teamMembers(id: Int)
     case recruitingStatuses(id: Int)
@@ -20,6 +20,9 @@ enum BudiTarget {
     case signUpStatusCheck(memberId: Int)
     case applies(accessToken: String, param: AppliesRequest)
     case checkDuplicateName(name: String)
+    case postCategory
+    case likePosts(accessToken: String, id: Int)
+    case convertImageToURL(jpegData: Data)
 }
 
 extension BudiTarget: TargetType {
@@ -35,12 +38,15 @@ extension BudiTarget: TargetType {
         case .createInfo: return "/members/infos"
         case .filteredPosts(let type, _, _): return "/posts/positions/\(type.stringValue)"
         case .createPost: return "/posts"
-        case .post(let id): return "/posts/\(id)"
+        case .post(_, let id): return "/posts/\(id)"
         case .teamMembers(let id): return "/posts/\(id)/members"
         case .recruitingStatuses(let id): return "/posts/\(id)/recruitingStatus"
         case .postDefaultImageUrls: return "/infos/postDefaultImageUrls"
         case .applies: return "/applies"
         case .checkDuplicateName: return "/members/checkDuplicateName"
+        case .postCategory: return "/infos/postCategory"
+        case .likePosts(_, let id): return "/post/\(id)/like-posts"
+        case .convertImageToURL: return "/imageUrls"
         }
     }
 
@@ -49,6 +55,8 @@ extension BudiTarget: TargetType {
         case .createInfo: return .post
         case .createPost: return .post
         case .applies: return .post
+        case .likePosts: return .put
+        case .convertImageToURL: return .post
         default: return .get
         }
     }
@@ -66,17 +74,19 @@ extension BudiTarget: TargetType {
         case .filteredPosts(_, let page, let size):
             return .requestParameters(parameters: ["page": page, "size": size], encoding: URLEncoding.default)
         case .detailPositions(let position):
-            return .requestParameters(parameters: ["position": position.stringValue], encoding: URLEncoding.default)
+            return .requestParameters(parameters: ["position": position.jobStringEnglishValue], encoding: URLEncoding.default)
+        case .convertImageToURL(let jpegData):
+            let multipartFormData = [MultipartFormData(provider: .data(jpegData), name: "image", fileName: "image.jpeg", mimeType: "image/jpeg")]
+            return .uploadMultipart(multipartFormData)
         default: return .requestPlain
         }
     }
 
     var headers: [String: String]? {
         switch self {
-        case .createInfo(let accessToken, _):
-            return ["accessToken": accessToken, "Content-Type": "application/json"]
-        case .createPost(let accessToken, _), .applies(let accessToken, _):
+        case .createInfo(let accessToken, _), .createPost(let accessToken, _), .applies(let accessToken, _), .post(let accessToken, _), .likePosts(let accessToken, _):
             return ["Content-Type": "application/json", "accessToken": "\(accessToken)"]
+        case .convertImageToURL: return ["Content-type": "multipart/form-data"]
         default: return ["Content-Type": "application/json"]
         }
     }

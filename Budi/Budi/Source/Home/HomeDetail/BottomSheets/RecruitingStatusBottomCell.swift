@@ -16,12 +16,16 @@ final class RecruitingStatusBottomCell: UICollectionViewCell {
 
     var recruitingStatus: RecruitingStatus? {
         didSet {
-            textLabel.text = recruitingStatus?.positionName
+            DispatchQueue.main.async {
+                self.textLabel.text = self.recruitingStatus?.positions.position
+            }
         }
     }
     var isChecked: Bool = false {
         didSet {
-            configureUI()
+            DispatchQueue.main.async {
+                self.configureUI()
+            }
         }
     }
     
@@ -30,8 +34,8 @@ final class RecruitingStatusBottomCell: UICollectionViewCell {
     }
     
     private func configureUI() {
-        containerView.borderColor = isChecked ? .budiGreen : .budiLightGray
-        circleContainerView.borderColor = isChecked ? .budiLightGreen : .budiLightGray
-        circleView.backgroundColor = isChecked ? .budiGreen : .white
+        containerView.borderColor = isChecked ? .primary : .border
+        circleContainerView.borderColor = isChecked ? .primarySub : .border
+        circleView.backgroundColor = isChecked ? .primary : .white
     }
 }

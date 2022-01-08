@@ -8,6 +8,7 @@
 import UIKit
 import Combine
 import CombineCocoa
+import Moya
 
 protocol HomeWritingImageBottomViewControllerDelegate: AnyObject {
     func getImageUrlString(_ urlString: String)
@@ -30,11 +31,14 @@ final class HomeWritingImageBottomViewController: UIViewController {
     
     private var selectedIndex: Int? {
         didSet {
-            completeButton.isEnabled = true
-            completeButton.backgroundColor = .primary
+            DispatchQueue.main.async {
+                self.completeButton.isEnabled = true
+                self.completeButton.backgroundColor = .primary
+            }
         }
     }
     
+    private let imagePickerController = UIImagePickerController()
     weak var delegate: HomeWritingImageBottomViewControllerDelegate?
     weak var coordinator: HomeCoordinator?
     private let viewModel: HomeWritingViewModel
@@ -53,12 +57,15 @@ final class HomeWritingImageBottomViewController: UIViewController {
         super.viewDidLoad()
         completeView.layer.addBorderTop()
         configureCollectionView()
+        configureImagePickerController()
         setPublisher()
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         showBottomView()
     }
+
 }
 
 private extension HomeWritingImageBottomViewController {
@@ -71,8 +78,9 @@ private extension HomeWritingImageBottomViewController {
         
         myAlbumButton.tapPublisher
             .receive(on: DispatchQueue.main)
-            .sink { _ in
-                print("내 앨범에서 추가")
+            .sink { [weak self] in
+                guard let self = self else { return }
+                self.present(self.imagePickerController, animated: true, completion: nil)
             }.store(in: &cancellables)
         
         completeButton.tapPublisher
@@ -110,6 +118,37 @@ private extension HomeWritingImageBottomViewController {
             self?.isBottomViewShown = false
         }
         animator.startAnimation()
+    }
+}
+
+// MARK: - ImagePickerController
+extension HomeWritingImageBottomViewController: UIImagePickerControllerDelegate & UINavigationControllerDelegate {
+    private func configureImagePickerController() {
+        imagePickerController.delegate = self
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        guard let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage, let jpegData = image.jpegData(compressionQuality: 0.2) else {
+            imagePickerController.dismiss(animated: true, completion: nil)
+            return
+        }
+        
+        viewModel.convertImageToURL(jpegData) { result in
+            switch result {
+            case .success(let response):
+                print(response)
+                do {
+                    guard let json = try JSONSerialization.jsonObject(with: response.data, options: []) as? [String: Any],
+                          let data = json["data"] as? [String: Any],
+                          let imageUrl = data["imageUrl"] as? String else { return }
+                    self.viewModel.state.selectedImageUrl.value = imageUrl
+                    self.imagePickerController.dismiss(animated: true) {
+                        self.dismiss(animated: false, completion: nil)
+                    }
+                } catch { }
+            case .failure(let error): print("error is \(error.localizedDescription)")
+            }
+        }
     }
 }
 

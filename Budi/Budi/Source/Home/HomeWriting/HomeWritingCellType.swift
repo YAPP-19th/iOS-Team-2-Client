@@ -45,8 +45,8 @@ enum HomeWritingCellType: Int, CaseIterable {
         case .part: return 117
         case .duration: return 109
         case .online: return 117
-        case .area: return 173 // 117 -> 173
-        case .members: return 286
+        case .area: return 173 
+        case .members: return 120
         case .description: return 387
         }
     }
@@ -61,9 +61,13 @@ enum HomeWritingCellType: Int, CaseIterable {
         collectionView.contentInset.bottom = 95
     }
     
-    static func configureCellSize(_ collectionView: UICollectionView, _ indexPath: IndexPath) -> CGSize {
+    static func configureCellSize(_ collectionView: UICollectionView, _ indexPath: IndexPath, _ membersCount: Int) -> CGSize {
         let cellType = HomeWritingCellType(rawValue: indexPath.row)
-        let size = CGSize(width: collectionView.frame.width, height: cellType?.height ?? 0)
+        var size = CGSize(width: collectionView.frame.width, height: cellType?.height ?? 0)
+        
+        if cellType == .members {
+            size.height = CGFloat(120 + (48 + 8)*membersCount)
+        }
         
         return size
     }

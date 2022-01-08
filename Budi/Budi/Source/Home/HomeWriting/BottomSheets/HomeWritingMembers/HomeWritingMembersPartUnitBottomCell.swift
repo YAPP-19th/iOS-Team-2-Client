@@ -15,7 +15,9 @@ class HomeWritingMembersPartUnitBottomCell: UICollectionViewCell {
     var position: Position? {
         didSet {
             if let position = position {
-                configureUI(position)
+                DispatchQueue.main.async {
+                    self.configureUI(position)
+                }
             }
         }
     }
@@ -25,7 +27,7 @@ class HomeWritingMembersPartUnitBottomCell: UICollectionViewCell {
     }
 
     func configureUI(_ position: Position) {
-        label.text = position.rawValue
+        label.text = position.jobStringValue
         if let image = position.characterBackgroundGrayImage {
             imageView.image = image
         }

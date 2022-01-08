@@ -58,6 +58,7 @@ private extension HomeContainerViewController {
 
         contentScrollView.didScrollPublisher
             .throttle(for: 0.05, scheduler: DispatchQueue.main, latest: true)
+            .receive(on: DispatchQueue.main)
             .sink(receiveValue: { [weak self] _ in
                 guard let self = self else { return }
 

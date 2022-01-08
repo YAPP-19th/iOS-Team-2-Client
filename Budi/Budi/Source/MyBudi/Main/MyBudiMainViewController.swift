@@ -109,13 +109,13 @@ extension MyBudiMainViewController: UICollectionViewDataSource, UICollectionView
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let defaultCell = UICollectionViewCell()
-        
-        switch indexPath.row {
-            
-        case 0: guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MyBudiProfileCell.identifier, for: indexPath) as? MyBudiProfileCell else { return defaultCell }
-            let data = viewModel.state.loginStatusData.value
-            cell.setUserData(nickName: data?.nickName ?? "로딩중", position: data?.positions[0] ?? "로딩중", description: "임시소개글")
+        let data = viewModel.state.loginStatusData.value
 
+        switch indexPath.row {
+
+        case 0: guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MyBudiProfileCell.identifier, for: indexPath) as? MyBudiProfileCell else { return defaultCell }
+
+            cell.setUserData(nickName: data?.nickName ?? "로딩중", position: data?.positions[0] ?? "로딩중", description: "임시소개글")
             cell.editButton.tapPublisher
                 .receive(on: DispatchQueue.main)
                 .sink { [weak self] _ in
@@ -128,6 +128,8 @@ extension MyBudiMainViewController: UICollectionViewDataSource, UICollectionView
             return cell
             
         case 2: guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MyBudiProjectCell.identifier, for: indexPath) as? MyBudiProjectCell else { return defaultCell }
+            cell.setProjectLabels(nowProject: data?.projectList.count ?? 0, recruit: 0, liked: 0)
+
             return cell
             
         case 3: guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MyBudiHelpCell.identifier, for: indexPath) as? MyBudiHelpCell else { return defaultCell }

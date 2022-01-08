@@ -13,9 +13,20 @@ struct LoginUserDetail: Codable {
     let nickName: String
     let level: String
     let positions: [String]
+    let likeCount: Int
+    let projectList: [ProjectList]
+    let portfolioList: [String]
+    let isLikedFromCurrentMember: Bool
 }
-
 
 struct LoginCheckModel: Codable {
     let accessToken: String
+}
+
+struct ProjectList: Codable {
+    let projectId: Int
+    let name: String
+    let startDate: String
+    let endDate: String
+    let description: String
 }

@@ -132,6 +132,11 @@
                 <constraint firstItem="MiZ-DC-K3o" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="swH-vD-I9S"/>
                 <constraint firstItem="MiZ-DC-K3o" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="swn-nY-SdZ"/>
             </constraints>
+            <connections>
+                <outlet property="likedLabel" destination="h1u-jd-NPc" id="ibp-OR-VFh"/>
+                <outlet property="participatingProjectLabel" destination="GEl-bM-gj3" id="4PT-YG-0Ae"/>
+                <outlet property="recruitmentProjectLabel" destination="I2I-WA-7BL" id="0tq-l0-HWO"/>
+            </connections>
             <point key="canvasLocation" x="131.8840579710145" y="81.361607142857139"/>
         </collectionViewCell>
     </objects>

@@ -135,7 +135,12 @@ final class SignupViewModel: ViewModel {
                                                        imageUrl: post.imageUrl,
                                                        nickName: post.nickName,
                                                        level: post.level,
-                                                       positions: post.positions)
+                                                       positions: post.positions,
+                                                       likeCount: post.likeCount,
+                                                       projectList: post.projectList,
+                                                       portfolioList: post.portfolioList,
+                                                       isLikedFromCurrentMember: post.isLikedFromCurrentMember
+                            )
                             self.state.loginStatusData.send(user)
                         }
                     })

@@ -43,8 +43,6 @@ class MyBudiMainViewModel: ViewModel {
             .sink { [weak self] _ in
                 guard let self = self else { return }
                 let loginModel = LoginCheckModel(accessToken: UserDefaults.standard.string(forKey: "accessToken") ?? "")
-                print("저장된 숫자:", UserDefaults.standard.integer(forKey: "memberId"))
-                print("저장된 엑세스 토큰:", UserDefaults.standard.string(forKey: "accessToken"))
                 self.provider
                     .requestPublisher(.signUpStatusCheck(memberId: UserDefaults.standard.integer(forKey: "memberId")))
                     .map(APIResponse<LoginUserDetail>.self)
@@ -64,7 +62,11 @@ class MyBudiMainViewModel: ViewModel {
                                                        imageUrl: post.imageUrl,
                                                        nickName: post.nickName,
                                                        level: post.level,
-                                                       positions: post.positions)
+                                                       positions: post.positions,
+                                                       likeCount: post.likeCount,
+                                                       projectList: post.projectList,
+                                                       portfolioList: post.portfolioList,
+                                                       isLikedFromCurrentMember: post.isLikedFromCurrentMember)
                             self.state.loginStatusData.send(user)
                         }
                     })

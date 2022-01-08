@@ -23,9 +23,6 @@ final class ProjectMembersBottomViewController: UIViewController {
     @IBOutlet private weak var memberCollectionView: UICollectionView!
     
     @IBOutlet weak var bottomViewTopConstraint: NSLayoutConstraint!
-
-    @IBOutlet private weak var detailCollectionViewHeightConstraint: NSLayoutConstraint!
-    @IBOutlet private weak var memberCollectionViewHeightConstraint: NSLayoutConstraint!
     
     private var cancellables = Set<AnyCancellable>()
     
@@ -56,13 +53,11 @@ final class ProjectMembersBottomViewController: UIViewController {
         
         setPublisher()
         setCollectionView()
-        configureCollectionView()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        // MARK: - showBottomView
-        showBottomView(constant: 540)
+        showBottomView(constant: 200)
     }
 }
 
@@ -89,15 +84,7 @@ private extension ProjectMembersBottomViewController {
         completeButton.isEnabled = isEnabled
         completeButton.backgroundColor = isEnabled ? .primary : .textDisabled
     }
-    
-    private func trimDetailPositionName(_ detailPosition: String, _ part: String) -> String {
-        var trimmedName = detailPosition
-        trimmedName = trimmedName.replacingOccurrences(of: "개발", with: "").trimmingCharacters(in: .whitespaces)
-        trimmedName = trimmedName.trimmingCharacters(in: .whitespaces)
-        return trimmedName
-    }
 
-    // MARK: - Animation
     func showBottomView(constant: CGFloat) {
         let animator = UIViewPropertyAnimator(duration: 0.25, curve: .linear) { [weak self] in
             guard let self = self else { return }
@@ -117,6 +104,13 @@ private extension ProjectMembersBottomViewController {
             self?.dismiss(animated: false, completion: nil)
         }
         animator.startAnimation()
+    }
+    
+    private func trimDetailPositionName(_ detailPosition: String, _ part: String) -> String {
+        var trimmedName = detailPosition
+        trimmedName = trimmedName.replacingOccurrences(of: part, with: "").trimmingCharacters(in: .whitespaces)
+        trimmedName = trimmedName.trimmingCharacters(in: .whitespaces)
+        return trimmedName
     }
 }
 
@@ -148,13 +142,6 @@ extension ProjectMembersBottomViewController: UICollectionViewDataSource, UIColl
         detailCollectionView.register(.init(nibName: ProjectMembersBottomDetailCell.identifier, bundle: nil), forCellWithReuseIdentifier: ProjectMembersBottomDetailCell.identifier)
         memberCollectionView.register(.init(nibName: ProjectMembersBottomMemberCell.identifier, bundle: nil), forCellWithReuseIdentifier: ProjectMembersBottomMemberCell.identifier)
     }
-    
-    func configureCollectionView() {
-        guard !recruitingPositions.isEmpty else { return }
-        let count = recruitingPositions.count < 4 ? recruitingPositions.count : 3
-        memberCollectionViewHeightConstraint.constant = CGFloat(48*count)
-        // MARK: - showBottomView(constant: 350+CGFloat(48*count)+40)
-    }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch collectionView {
@@ -183,8 +170,6 @@ extension ProjectMembersBottomViewController: UICollectionViewDataSource, UIColl
             } else {
                 cell.configureUI(position: position)
             }
-            // MARK: - showBottomView
-//            showBottomView(constant: 350)
             return cell
             
         case detailCollectionView:
@@ -224,6 +209,9 @@ extension ProjectMembersBottomViewController: UICollectionViewDataSource, UIColl
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         switch collectionView {
         case positionCollectionView:
+            if selectedPosition == nil {
+                showBottomView(constant: 350)
+            }
             guard let newSelectedPosition = Position(rawValue: indexPath.row+1),
                     newSelectedPosition != self.selectedPosition else { return }
             self.selectedPosition = newSelectedPosition
@@ -249,10 +237,13 @@ extension ProjectMembersBottomViewController: UICollectionViewDataSource, UIColl
             } else {
                 recruitingPositions.append(recruitingPosition)
             }
+            self.configureCompleteButton(!recruitingPositions.isEmpty)
+
+            let count = recruitingPositions.count < 4 ? recruitingPositions.count : 3
+            self.showBottomView(constant: 350+CGFloat(48*count)+40)
+            
             self.detailCollectionView.reloadData()
             self.memberCollectionView.reloadData()
-            self.configureCompleteButton(!recruitingPositions.isEmpty)
-            self.configureCollectionView()
             
         case memberCollectionView: break
         default: break

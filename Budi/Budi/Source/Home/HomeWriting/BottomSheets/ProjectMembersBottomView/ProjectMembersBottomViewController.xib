@@ -18,9 +18,7 @@
                 <outlet property="completeButton" destination="SPB-dI-Sfw" id="X7G-cS-5f7"/>
                 <outlet property="completeButtonContainerView" destination="wmk-E1-VZx" id="Yjj-eD-U20"/>
                 <outlet property="detailCollectionView" destination="KfV-84-jYp" id="iMh-tm-VFh"/>
-                <outlet property="detailCollectionViewHeightConstraint" destination="EIc-BW-dnf" id="rSY-wr-e1F"/>
                 <outlet property="memberCollectionView" destination="FhD-L7-yxT" id="p5c-z5-7FI"/>
-                <outlet property="memberCollectionViewHeightConstraint" destination="qzH-79-OkV" id="CZc-Oo-o8U"/>
                 <outlet property="positionCollectionView" destination="0fl-AD-OPY" id="4VJ-oe-LIa"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -38,7 +36,7 @@
                     <rect key="frame" x="0.0" y="801" width="414" height="700"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="32" translatesAutoresizingMaskIntoConstraints="NO" id="iF6-wE-1xj">
-                            <rect key="frame" x="16" y="32" width="382" height="449"/>
+                            <rect key="frame" x="16" y="32" width="382" height="503"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="3gY-MO-oQf" userLabel="직무 Stack View">
                                     <rect key="frame" x="0.0" y="0.0" width="382" height="135"/>
@@ -101,7 +99,7 @@
                                     </subviews>
                                 </stackView>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="k3J-0r-Jjn" userLabel="인원수 Stack View">
-                                    <rect key="frame" x="0.0" y="324" width="382" height="125"/>
+                                    <rect key="frame" x="0.0" y="324" width="382" height="179"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="인원수" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eh2-EY-rD3">
                                             <rect key="frame" x="0.0" y="0.0" width="382" height="17"/>
@@ -110,10 +108,10 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="FhD-L7-yxT">
-                                            <rect key="frame" x="0.0" y="35" width="382" height="90"/>
+                                            <rect key="frame" x="0.0" y="35" width="382" height="144"/>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="90" id="qzH-79-OkV"/>
+                                                <constraint firstAttribute="height" constant="144" id="EGB-0a-zI2"/>
                                             </constraints>
                                             <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="RdK-K1-MAn">
                                                 <size key="itemSize" width="128" height="128"/>

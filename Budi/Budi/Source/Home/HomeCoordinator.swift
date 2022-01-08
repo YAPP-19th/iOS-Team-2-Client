@@ -66,11 +66,9 @@ extension HomeCoordinator {
         navigationController?.pushViewController(viewController, animated: true)
     }
     
-    func showWritingMembersBottomViewController(_ vc: UIViewController, _ viewModel: HomeWritingViewModel) {
-        let viewController: HomeWritingMembersBottomViewController = HomeWritingMembersBottomViewController(nibName: HomeWritingMembersBottomViewController.identifier, bundle: nil, viewModel: viewModel)
+    func showProjectMembersBottomViewController(_ vc: UIViewController, _ viewModel: HomeWritingViewModel) {
+        let viewController: ProjectMembersBottomViewController = ProjectMembersBottomViewController(nibName: ProjectMembersBottomViewController.identifier, bundle: nil, developerPositions: viewModel.state.developerPositions.value, designerPositions: viewModel.state.designerPositions.value, productManagerPositions: viewModel.state.productManagerPositions.value)
         viewController.modalPresentationStyle = .overCurrentContext
-        viewController.coordinator = self
-        viewController.delegate = vc as? HomeWritingMembersBottomViewControllerDelegate
         vc.present(viewController, animated: false, completion: nil)
     }
 }

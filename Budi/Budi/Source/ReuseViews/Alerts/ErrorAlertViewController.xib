@@ -70,7 +70,7 @@
                 </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <color key="backgroundColor" name="TransparentGray"/>
+            <color key="backgroundColor" name="TransparentDarkGray"/>
             <constraints>
                 <constraint firstItem="4A0-gF-7Hn" firstAttribute="centerY" secondItem="fnl-2z-Ty3" secondAttribute="centerY" id="b5j-cS-xeQ"/>
                 <constraint firstItem="4A0-gF-7Hn" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="myJ-Zg-wa3"/>
@@ -84,8 +84,8 @@
         <namedColor name="Black">
             <color red="0.11699999868869781" green="0.11699999868869781" blue="0.11699999868869781" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <namedColor name="TransparentGray">
-            <color red="0.0" green="0.0" blue="0.0" alpha="0.40000000596046448" colorSpace="custom" customColorSpace="sRGB"/>
+        <namedColor name="TransparentDarkGray">
+            <color red="0.0" green="0.0" blue="0.0" alpha="0.60000002384185791" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

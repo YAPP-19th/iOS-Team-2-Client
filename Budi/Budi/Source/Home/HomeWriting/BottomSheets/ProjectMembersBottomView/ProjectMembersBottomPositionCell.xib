@@ -12,7 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="HomeWritingMembersPartUnitBottomCell" customModule="Budi" customModuleProvider="target">
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="ProjectMembersBottomPositionCell" customModule="Budi" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="80" height="103"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -22,7 +22,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jHZ-wa-Vxq">
                         <rect key="frame" x="0.0" y="0.0" width="80" height="103"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Developer_Background" translatesAutoresizingMaskIntoConstraints="NO" id="0Rh-xw-30k">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="developer_background_gray" translatesAutoresizingMaskIntoConstraints="NO" id="0Rh-xw-30k">
                                 <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="0Rh-xw-30k" secondAttribute="height" multiplier="1:1" id="aM8-gP-dL1"/>
@@ -37,11 +37,11 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="0Rh-xw-30k" firstAttribute="top" secondItem="jHZ-wa-Vxq" secondAttribute="top" id="7R7-bo-hkX"/>
-                            <constraint firstItem="0Rh-xw-30k" firstAttribute="leading" secondItem="jHZ-wa-Vxq" secondAttribute="leading" id="DMK-HL-PiG"/>
                             <constraint firstItem="ecW-OU-ha6" firstAttribute="centerX" secondItem="jHZ-wa-Vxq" secondAttribute="centerX" id="G8V-Yr-6XF"/>
+                            <constraint firstAttribute="trailing" secondItem="0Rh-xw-30k" secondAttribute="trailing" id="KXt-tL-rl0"/>
                             <constraint firstAttribute="bottom" secondItem="ecW-OU-ha6" secondAttribute="bottom" id="Rz7-Ne-ri6"/>
-                            <constraint firstAttribute="trailing" secondItem="0Rh-xw-30k" secondAttribute="trailing" id="auE-Gj-7Yj"/>
+                            <constraint firstItem="0Rh-xw-30k" firstAttribute="leading" secondItem="jHZ-wa-Vxq" secondAttribute="leading" id="iDz-iY-c8M"/>
+                            <constraint firstItem="0Rh-xw-30k" firstAttribute="top" secondItem="jHZ-wa-Vxq" secondAttribute="top" id="j6m-av-0nh"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -62,7 +62,7 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="Developer_Background" width="80" height="80"/>
+        <image name="developer_background_gray" width="80" height="80"/>
         <namedColor name="Text_disabled">
             <color red="0.61960784313725492" green="0.61960784313725492" blue="0.61960784313725492" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

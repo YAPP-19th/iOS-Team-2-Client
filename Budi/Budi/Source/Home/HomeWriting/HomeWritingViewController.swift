@@ -200,14 +200,6 @@ extension HomeWritingViewController: HomeLocationSearchViewControllerDelegate {
     }
 }
 
-extension HomeWritingViewController: HomeWritingMembersBottomViewControllerDelegate {
-    func getRecruitingPositions(_ recruitingPositions: [RecruitingPosition]) {
-        viewModel.state.recruitingPositions.value = recruitingPositions
-        collectionView.reloadData()
-        isValid()
-    }
-}
-
 extension HomeWritingViewController: HomeWritingDescriptionCellDelegate {
     func changeDescription(_ description: String) {
         viewModel.state.description.value = description
@@ -309,7 +301,7 @@ extension HomeWritingViewController: UICollectionViewDataSource, UICollectionVie
                 .receive(on: DispatchQueue.main)
                 .sink { [weak self] _ in
                     guard let self = self else { return }
-                    self.coordinator?.showWritingMembersBottomViewController(self, self.viewModel)
+                    self.coordinator?.showProjectMembersBottomViewController(self, self.viewModel)
                 }.store(in: &cell.cancellables)
             return cell
             

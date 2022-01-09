@@ -125,6 +125,9 @@ extension MyBudiMainViewController: UICollectionViewDataSource, UICollectionView
             return cell
             
         case 1: guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MyBudiLevelCell.identifier, for: indexPath) as? MyBudiLevelCell else { return defaultCell }
+
+            cell.setLevel(level: data?.level ?? "")
+
             return cell
             
         case 2: guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MyBudiProjectCell.identifier, for: indexPath) as? MyBudiProjectCell else { return defaultCell }

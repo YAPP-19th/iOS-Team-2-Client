@@ -36,44 +36,47 @@
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="PKz-iB-1yR">
                                 <rect key="frame" x="16" y="84.5" width="311" height="14.5"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="찌랭이" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ryh-HN-PSK">
-                                        <rect key="frame" x="0.0" y="0.0" width="31.5" height="14.5"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lv1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ryh-HN-PSK">
+                                        <rect key="frame" x="0.0" y="0.0" width="18.5" height="14.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <color key="textColor" name="Text_medium"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="물랭이" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ptL-dY-zqC">
-                                        <rect key="frame" x="93" y="0.0" width="31.5" height="14.5"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lv2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ptL-dY-zqC">
+                                        <rect key="frame" x="96" y="0.0" width="20" height="14.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <color key="textColor" name="Text_medium"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="말랭이" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vzZ-cR-SKc">
-                                        <rect key="frame" x="186.5" y="0.0" width="31.5" height="14.5"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lv3" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vzZ-cR-SKc">
+                                        <rect key="frame" x="193" y="0.0" width="20.5" height="14.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <color key="textColor" name="Text_medium"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="숨힘찐" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fEE-0v-pI6">
-                                        <rect key="frame" x="279.5" y="0.0" width="31.5" height="14.5"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lv4" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fEE-0v-pI6">
+                                        <rect key="frame" x="291" y="0.0" width="20" height="14.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <color key="textColor" name="Text_medium"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
                             </stackView>
-                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="aNY-Xk-A59" customClass="CustomSlider" customModule="Budi" customModuleProvider="target">
-                                <rect key="frame" x="14" y="46" width="315" height="17"/>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.66000000000000003" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="aNY-Xk-A59" customClass="CustomSlider" customModule="Budi" customModuleProvider="target">
+                                <rect key="frame" x="14" y="55.5" width="315" height="10"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="311" id="pjP-dm-0OQ"/>
-                                    <constraint firstAttribute="height" constant="16" id="xKB-3d-BH2"/>
+                                    <constraint firstAttribute="height" constant="9" id="xKB-3d-BH2"/>
                                 </constraints>
                                 <color key="minimumTrackTintColor" red="0.26274509800000001" green="0.2666666667" blue="0.74901960779999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <color key="maximumTrackTintColor" name="Primary_sub"/>
                                 <color key="thumbTintColor" red="0.26274509800000001" green="0.2666666667" blue="0.74901960779999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="trackWidth">
-                                        <real key="value" value="12"/>
+                                        <real key="value" value="9"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="35"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </slider>
@@ -85,8 +88,7 @@
                             <constraint firstItem="PKz-iB-1yR" firstAttribute="leading" secondItem="pOT-y8-Dau" secondAttribute="leading" constant="16" id="A1b-VE-5hG"/>
                             <constraint firstItem="luq-nw-0vp" firstAttribute="centerY" secondItem="yAp-aQ-qrl" secondAttribute="centerY" id="DuG-cf-XaU"/>
                             <constraint firstAttribute="bottom" secondItem="PKz-iB-1yR" secondAttribute="bottom" constant="9" id="VAH-Ra-7fI"/>
-                            <constraint firstItem="aNY-Xk-A59" firstAttribute="centerY" secondItem="pOT-y8-Dau" secondAttribute="centerY" id="bML-ln-CD0"/>
-                            <constraint firstItem="aNY-Xk-A59" firstAttribute="top" secondItem="luq-nw-0vp" secondAttribute="bottom" constant="10.5" id="fPT-D0-57Q"/>
+                            <constraint firstItem="aNY-Xk-A59" firstAttribute="top" secondItem="luq-nw-0vp" secondAttribute="bottom" constant="20" id="YVq-ej-wxu"/>
                             <constraint firstAttribute="trailing" secondItem="luq-nw-0vp" secondAttribute="trailing" constant="16" id="paJ-vw-6J6"/>
                             <constraint firstItem="yAp-aQ-qrl" firstAttribute="leading" secondItem="pOT-y8-Dau" secondAttribute="leading" constant="16" id="rEr-9I-mTL"/>
                         </constraints>

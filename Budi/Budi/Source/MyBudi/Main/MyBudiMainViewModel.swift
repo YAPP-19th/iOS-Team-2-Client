@@ -42,13 +42,11 @@ class MyBudiMainViewModel: ViewModel {
             .receive(on: DispatchQueue.global())
             .sink { [weak self] _ in
                 guard let self = self else { return }
-                let loginModel = LoginCheckModel(accessToken: UserDefaults.standard.string(forKey: "accessToken") ?? "")
                 self.provider
                     .requestPublisher(.signUpStatusCheck(memberId: UserDefaults.standard.integer(forKey: "memberId")))
                     .map(APIResponse<LoginUserDetail>.self)
                     .map(\.data)
                     .sink(receiveCompletion: { [weak self] completion in
-                        guard let self = self else { return }
                         switch completion {
                         case .failure(let error):
                             print(error.localizedDescription)
@@ -56,7 +54,6 @@ class MyBudiMainViewModel: ViewModel {
                             break
                         }
                     }, receiveValue: { post in
-                        print("일로 안옴ㅁ?",post)
                         if post.nickName != "" {
                             let user = LoginUserDetail(id: post.id,
                                                        imageUrl: post.imageUrl,

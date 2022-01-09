@@ -27,12 +27,9 @@ final class MyBudiMainViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
-    override func viewWillDisappear(_ animated: Bool) {
-        tabBarController?.tabBar.isHidden = true
-    }
-
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        self.viewModel.action.loadProjectStatus.send(())
         tabBarController?.tabBar.isHidden = false
         loginStatusCheck()
     }
@@ -43,6 +40,7 @@ final class MyBudiMainViewController: UIViewController {
         configureCollectionView()
         setPublisher()
         self.viewModel.action.LoginStatusCheck.send(())
+
         bindViewModel()
     }
 
@@ -63,6 +61,14 @@ final class MyBudiMainViewController: UIViewController {
             .receive(on: DispatchQueue.main)
             .sink { data in
                 self.collectionView.isHidden = false
+                self.collectionView.reloadData()
+            }
+            .store(in: &cancellables)
+
+        viewModel.state.likedData
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] data in
+                guard let self = self else { return }
                 self.collectionView.reloadData()
             }
             .store(in: &cancellables)
@@ -114,13 +120,13 @@ extension MyBudiMainViewController: UICollectionViewDataSource, UICollectionView
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let defaultCell = UICollectionViewCell()
-        let data = viewModel.state.loginStatusData.value
-
+        let loginData = viewModel.state.loginStatusData.value
+        let projectData = viewModel.state.likedData.value
         switch indexPath.row {
 
         case 0: guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MyBudiProfileCell.identifier, for: indexPath) as? MyBudiProfileCell else { return defaultCell }
 
-            cell.setUserData(nickName: data?.nickName ?? "로딩중", position: data?.positions[0] ?? "로딩중", description: data?.description ?? "임시소개글")
+            cell.setUserData(nickName: loginData?.nickName ?? "로딩중", position: loginData?.positions[0] ?? "로딩중", description: loginData?.description ?? "임시소개글")
             cell.editButton.tapPublisher
                 .receive(on: DispatchQueue.main)
                 .sink { [weak self] _ in
@@ -131,12 +137,13 @@ extension MyBudiMainViewController: UICollectionViewDataSource, UICollectionView
             
         case 1: guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MyBudiLevelCell.identifier, for: indexPath) as? MyBudiLevelCell else { return defaultCell }
 
-            cell.setLevel(level: data?.level ?? "")
+            cell.setLevel(level: loginData?.level ?? "")
 
             return cell
             
         case 2: guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MyBudiProjectCell.identifier, for: indexPath) as? MyBudiProjectCell else { return defaultCell }
-            cell.setProjectLabels(nowProject: data?.projectList.count ?? 0, recruit: 0, liked: 0)
+
+            cell.setProjectLabels(nowProject: loginData?.projectList.count ?? 0, recruit: 0, liked: projectData?.totalElements ?? 0)
 
             return cell
             

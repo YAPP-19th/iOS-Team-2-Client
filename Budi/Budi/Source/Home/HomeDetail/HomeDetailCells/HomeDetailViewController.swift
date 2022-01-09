@@ -77,7 +77,8 @@ private extension HomeDetailViewController {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
                 guard let self = self else { return }
-                self.viewModel.requestLikePost(.testAccessToken) { response in
+                print(UserDefaults.standard.string(forKey: "accessToken") ?? "")
+                self.viewModel.requestLikePost(UserDefaults.standard.string(forKey: "accessToken") ?? "") { response in
                     switch response {
                     case .success:
                         guard let isLiked = self.viewModel.state.post.value?.isLiked else { return }
@@ -129,7 +130,7 @@ extension HomeDetailViewController: RecruitingStatusBottomViewControllerDelegate
 
         let param = AppliesRequest(postId: postId, recruitingPositionId: selectedRecruitingStatus.recruitingPositionId)
         
-        viewModel.requestApplies(.testAccessToken, param) { result in
+        viewModel.requestApplies(UserDefaults.standard.string(forKey: "accessToken") ?? "", param) { result in
             switch result {
             case .success:
                 self.dismiss(animated: false) {

@@ -168,6 +168,7 @@
 		A8CD936127384C4900299AB4 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CD936027384C4900299AB4 /* SearchTableViewCell.swift */; };
 		A8CE117A278AABCC008AFEBC /* CircleProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CE1179278AABCC008AFEBC /* CircleProgress.swift */; };
 		A8CE117C278AB628008AFEBC /* MyBudiLevelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CE117B278AB628008AFEBC /* MyBudiLevelViewController.swift */; };
+		A8CE117E278AC682008AFEBC /* MyLikePost.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CE117D278AC682008AFEBC /* MyLikePost.swift */; };
 		B92D54F9274C02EB00D0E851 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = B92D54F8274C02EB00D0E851 /* .swiftlint.yml */; };
 		B92D5505274C03AB00D0E851 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92D5504274C03AA00D0E851 /* Post.swift */; };
 		B94D2D9A277DE9E700DD7FDD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B94D2D99277DE9E700DD7FDD /* GoogleService-Info.plist */; };
@@ -387,6 +388,7 @@
 		A8CD936027384C4900299AB4 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
 		A8CE1179278AABCC008AFEBC /* CircleProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleProgress.swift; sourceTree = "<group>"; };
 		A8CE117B278AB628008AFEBC /* MyBudiLevelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyBudiLevelViewController.swift; sourceTree = "<group>"; };
+		A8CE117D278AC682008AFEBC /* MyLikePost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLikePost.swift; sourceTree = "<group>"; };
 		B92D54F8274C02EB00D0E851 /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		B92D54FE274C037E00D0E851 /* String+date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+date.swift"; sourceTree = "<group>"; };
 		B92D5501274C039C00D0E851 /* HomeContentViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeContentViewModel.swift; sourceTree = "<group>"; };
@@ -899,6 +901,7 @@
 				A8936FBB2777192500BE2C1D /* UserInfoUploadSuccess.swift */,
 				A8C8DA342786E76C00FFF2D0 /* LoginUserDetail.swift */,
 				5ED53D6F277F8DEF002871CD /* LikePosts.swift */,
+				A8CE117D278AC682008AFEBC /* MyLikePost.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1376,6 +1379,7 @@
 				A8A6D9F9273D2D1800C84C52 /* BackButtonExtension.swift in Sources */,
 				B96F33BB27859A14000A0B42 /* TeamSearchFilterViewController.swift in Sources */,
 				A8936FB82772F77600BE2C1D /* NameDuplication.swift in Sources */,
+				A8CE117E278AC682008AFEBC /* MyLikePost.swift in Sources */,
 				5E240721275225CD00954BE7 /* String+date.swift in Sources */,
 				5E820B862769F033004A03E9 /* HomeWritingMembersCountBottomCollectionViewCell.swift in Sources */,
 				A8CD935C27383CB300299AB4 /* LocationSearchViewController.swift in Sources */,

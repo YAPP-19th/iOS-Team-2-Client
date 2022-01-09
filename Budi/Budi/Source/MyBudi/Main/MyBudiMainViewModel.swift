@@ -15,10 +15,12 @@ class MyBudiMainViewModel: ViewModel {
         let fetch = PassthroughSubject<Void, Never>()
         let refresh = PassthroughSubject<Void, Never>()
         let LoginStatusCheck = PassthroughSubject<Void, Never>()
+        let loadProjectStatus = PassthroughSubject<Void, Never>()
     }
 
     struct State {
         let loginStatusData = CurrentValueSubject<LoginUserDetail?, Never>(nil)
+        let likedData = CurrentValueSubject<MyLikePost?, Never>(nil)
     }
     
     let action = Action()
@@ -46,7 +48,7 @@ class MyBudiMainViewModel: ViewModel {
                     .requestPublisher(.signUpStatusCheck(memberId: UserDefaults.standard.integer(forKey: "memberId")))
                     .map(APIResponse<LoginUserDetail>.self)
                     .map(\.data)
-                    .sink(receiveCompletion: { [weak self] completion in
+                    .sink(receiveCompletion: { completion in
                         switch completion {
                         case .failure(let error):
                             print(error.localizedDescription)
@@ -55,22 +57,35 @@ class MyBudiMainViewModel: ViewModel {
                         }
                     }, receiveValue: { post in
                         if post.nickName != "" {
-                            print(post)
-                            let user = LoginUserDetail(id: post.id,
-                                                       imageUrl: post.imageUrl,
-                                                       nickName: post.nickName,
-                                                       description: post.description,
-                                                       level: post.level,
-                                                       positions: post.positions,
-                                                       likeCount: post.likeCount,
-                                                       projectList: post.projectList,
-                                                       portfolioList: post.portfolioList,
-                                                       isLikedFromCurrentMember: post.isLikedFromCurrentMember)
-                            self.state.loginStatusData.send(user)
+                            self.state.loginStatusData.send(post)
+                        } else {
+                            self.state.loginStatusData.send(nil)
                         }
                     })
                     .store(in: &self.cancellables)
 
+            }
+            .store(in: &cancellables)
+
+        action.loadProjectStatus
+            .receive(on: DispatchQueue.global())
+            .sink { [weak self] _ in
+                guard let self = self else { return }
+                self.provider
+                    .requestPublisher(.myLikePosts(accessToken: UserDefaults.standard.string(forKey: "accessToken") ?? ""))
+                    .map(APIResponse<MyLikePost>.self)
+                    .map(\.data)
+                    .sink(receiveCompletion: { completion in
+                        switch completion {
+                        case .failure(let error):
+                            print(error.localizedDescription)
+                        case .finished:
+                            break
+                        }
+                    }, receiveValue: { post in
+                        self.state.likedData.send(post)
+                    })
+                    .store(in: &self.cancellables)
             }
             .store(in: &cancellables)
     }

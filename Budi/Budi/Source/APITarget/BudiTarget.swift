@@ -22,6 +22,7 @@ enum BudiTarget {
     case checkDuplicateName(name: String)
     case postCategory
     case likePosts(accessToken: String, id: Int)
+    case myLikePosts(accessToken: String)
     case convertImageToURL(jpegData: Data)
 }
 
@@ -46,6 +47,7 @@ extension BudiTarget: TargetType {
         case .checkDuplicateName: return "/members/checkDuplicateName"
         case .postCategory: return "/infos/postCategory"
         case .likePosts(_, let id): return "/post/\(id)/like-posts"
+        case .myLikePosts(_): return "/post/like-posts"
         case .convertImageToURL: return "/imageUrls"
         }
     }
@@ -84,7 +86,7 @@ extension BudiTarget: TargetType {
 
     var headers: [String: String]? {
         switch self {
-        case .createInfo(let accessToken, _), .createPost(let accessToken, _), .applies(let accessToken, _), .post(let accessToken, _), .likePosts(let accessToken, _):
+        case .createInfo(let accessToken, _), .createPost(let accessToken, _), .applies(let accessToken, _), .post(let accessToken, _), .likePosts(let accessToken, _), .myLikePosts(let accessToken):
             return ["Content-Type": "application/json", "accessToken": "\(accessToken)"]
         case .convertImageToURL: return ["Content-type": "multipart/form-data"]
         default: return ["Content-Type": "application/json"]

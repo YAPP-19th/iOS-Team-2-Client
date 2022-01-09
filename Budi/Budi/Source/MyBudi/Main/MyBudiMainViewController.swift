@@ -27,10 +27,14 @@ final class MyBudiMainViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        tabBarController?.tabBar.isHidden = false
+    }
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.viewModel.action.loadProjectStatus.send(())
-        tabBarController?.tabBar.isHidden = false
         loginStatusCheck()
     }
 
@@ -80,16 +84,14 @@ final class MyBudiMainViewController: UIViewController {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
                 guard let self = self else { return }
-                print("로그인 성공")
-                
                 self.viewModel.action.LoginStatusCheck.send(())
+                self.viewModel.action.loadProjectStatus.send(())
             }
             .store(in: &cancellables)
 
         loginButton.tapPublisher
             .sink { [weak self] _ in
                 guard let self = self else { return }
-                UserDefaults.standard.set(true, forKey: "isSwitch")
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 let loginSelectViewController = storyboard.instantiateViewController(identifier: "LoginSelectViewController")
                 let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate

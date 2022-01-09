@@ -17,26 +17,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         /* 원래 코드 */
-        UserDefaults.standard.set(false, forKey: "isSwitch")
-        if UserDefaults.standard.bool(forKey: "isSwitch") {
-            let navigationController = UINavigationController()
-            guard let windowScene = scene as? UIWindowScene else { return }
+        let tabBarController = UITabBarController()
+        guard let windowScene = scene as? UIWindowScene else { return }
 
-            window = UIWindow(windowScene: windowScene)
-            loginCoordinator = LoginCoordinator(navigationController: navigationController)
-            loginCoordinator?.start()
-            window?.rootViewController = navigationController
-            window?.makeKeyAndVisible()
-        } else {
-            let tabBarController = UITabBarController()
-            guard let windowScene = scene as? UIWindowScene else { return }
-
-            window = UIWindow(windowScene: windowScene)
-            coordinator = MainTabBarCoordinator(tabBarController: tabBarController)
-            coordinator?.start()
-            window?.rootViewController = tabBarController
-            window?.makeKeyAndVisible()
-        }
+        window = UIWindow(windowScene: windowScene)
+        coordinator = MainTabBarCoordinator(tabBarController: tabBarController)
+        coordinator?.start()
+        window?.rootViewController = tabBarController
+        window?.makeKeyAndVisible()
     }
     
 

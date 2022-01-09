@@ -15,6 +15,7 @@ class HistoryManagementViewController: UIViewController {
 
     private var cancellables = Set<AnyCancellable>()
 
+    @IBOutlet weak var blackBackground: UIView!
     @IBOutlet weak var doneButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var progressView: ProgressView!
@@ -34,6 +35,7 @@ class HistoryManagementViewController: UIViewController {
         self.addBackButton()
         configureLayout()
         bindViewModel()
+        blackBackground.alpha = 0.0
         buttonPublisher()
     }
 
@@ -83,13 +85,13 @@ class HistoryManagementViewController: UIViewController {
 
     func modalViewBackgoundOn() {
         UIView.animate(withDuration: 0.4, delay: 0, options: .curveEaseOut, animations: {
-            self.view.alpha = 0.5
+            self.blackBackground.alpha = 0.5
         })
     }
 
     func modalViewBackgoundOff() {
         UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: {
-            self.view.alpha = 1.0
+            self.blackBackground.alpha = 0.0
         })
     }
 

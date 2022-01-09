@@ -1323,20 +1323,30 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JCg-Uo-uva">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
+                                <color key="backgroundColor" systemColor="labelColor"/>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="mjC-gJ-WbZ"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="mjC-gJ-WbZ" firstAttribute="trailing" secondItem="UQT-hi-sm0" secondAttribute="trailing" id="6Ix-ZN-88W"/>
+                            <constraint firstItem="JCg-Uo-uva" firstAttribute="trailing" secondItem="mjC-gJ-WbZ" secondAttribute="trailing" id="9zd-y0-iu0"/>
                             <constraint firstItem="UQT-hi-sm0" firstAttribute="leading" secondItem="mjC-gJ-WbZ" secondAttribute="leading" id="Hnx-JG-mAI"/>
                             <constraint firstItem="ieu-6n-wXB" firstAttribute="leading" secondItem="mjC-gJ-WbZ" secondAttribute="leading" id="NhC-DU-WYY"/>
+                            <constraint firstItem="UQT-hi-sm0" firstAttribute="top" secondItem="JCg-Uo-uva" secondAttribute="bottom" id="anF-mJ-zhW"/>
                             <constraint firstItem="mjC-gJ-WbZ" firstAttribute="trailing" secondItem="ieu-6n-wXB" secondAttribute="trailing" id="bI6-bq-tqI"/>
                             <constraint firstAttribute="bottom" secondItem="UQT-hi-sm0" secondAttribute="bottom" id="jAq-vy-VY4"/>
                             <constraint firstItem="UQT-hi-sm0" firstAttribute="top" secondItem="ieu-6n-wXB" secondAttribute="bottom" id="nAe-L1-COq"/>
                             <constraint firstItem="ieu-6n-wXB" firstAttribute="top" secondItem="mjC-gJ-WbZ" secondAttribute="top" id="rb2-g5-xAU"/>
+                            <constraint firstItem="JCg-Uo-uva" firstAttribute="top" secondItem="95R-Rz-fKc" secondAttribute="top" id="ui7-Q6-wQs"/>
+                            <constraint firstItem="JCg-Uo-uva" firstAttribute="top" secondItem="95R-Rz-fKc" secondAttribute="top" id="wai-lu-zDa"/>
+                            <constraint firstItem="JCg-Uo-uva" firstAttribute="leading" secondItem="mjC-gJ-WbZ" secondAttribute="leading" id="ydT-L0-GQl"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="blackBackground" destination="JCg-Uo-uva" id="Skh-Jx-pnb"/>
                         <outlet property="doneButton" destination="UQT-hi-sm0" id="pJi-gW-J0W"/>
                         <outlet property="progressView" destination="9jS-bu-R6a" id="aXO-a8-ewz"/>
                         <outlet property="tableView" destination="ieu-6n-wXB" id="kXZ-6F-M48"/>
@@ -1820,6 +1830,9 @@
         <namedColor name="Text_disabled">
             <color red="0.61960784313725492" green="0.61960784313725492" blue="0.61960784313725492" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

@@ -39,42 +39,10 @@ class HistoryWriteViewController: UIViewController {
     private let panGesture = UIPanGestureRecognizer()
     private var currentKeyboard: CGFloat = 0.0
     private var viewTranslation = CGPoint(x: 0, y: 0)
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
         self.view.endEditing(true)
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        keyboardAction()
-        viewModel.state.reUseModalView
-            .receive(on: DispatchQueue.main)
-            .sink { data in
-                switch data {
-                case .career:
-                    self.historyNoSwitchView.isHidden = true
-                    self.historySwitchView.isHidden = false
-                    self.changeTextFieldTexts(modal: .career)
-                case .project:
-                    self.historyNoSwitchView.isHidden = false
-                    self.historySwitchView.isHidden = true
-                    self.changeTextFieldTexts(modal: .project)
-                case .portfolio:
-                    break
-                case .none:
-                    break
-                }
-            }
-            .store(in: &cancellables)
-    }
-
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        keyboardAction()
-    }
-
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
     }
 
     init?(coder: NSCoder, viewModel: SignupViewModel) {
@@ -94,6 +62,7 @@ class HistoryWriteViewController: UIViewController {
         configureLayout()
         setButtonAction()
         dismissAction()
+        keyboardAction()
     }
 
     private func bindViewModel() {
@@ -101,9 +70,6 @@ class HistoryWriteViewController: UIViewController {
             .receive(on: DispatchQueue.main)
             .sink { data in
                 guard let data = data else { return }
-                print("이름", data.mainName)
-                print("일한 날짜", data.startDate, data.endDate)
-                print("직책", data.description)
                 self.saveButton.isEnabled = data.mainName.count >= 1 && data.description.count >= 1 && data.startDate.count >= 1 && data.endDate.count >= 1 ? true : false
                 self.saveButton.backgroundColor = data.mainName.count >= 1 && data.description.count >= 1 && data.startDate.count >= 1 && data.endDate.count >= 1 ? UIColor.primary : UIColor.textDisabled
                 self.saveButton.setTitleColor(UIColor.white, for: .normal)
@@ -142,6 +108,26 @@ class HistoryWriteViewController: UIViewController {
                 data.porflioLink = editData.portfolioLink
                 data.nowWorks = editData.nowWork
                 self.viewModel.state.writedInfoData.send(data)
+            }
+            .store(in: &cancellables)
+
+        viewModel.state.reUseModalView
+            .receive(on: DispatchQueue.main)
+            .sink { data in
+                switch data {
+                case .career:
+                    self.historyNoSwitchView.isHidden = true
+                    self.historySwitchView.isHidden = false
+                    self.changeTextFieldTexts(modal: .career)
+                case .project:
+                    self.historyNoSwitchView.isHidden = false
+                    self.historySwitchView.isHidden = true
+                    self.changeTextFieldTexts(modal: .project)
+                case .portfolio:
+                    break
+                case .none:
+                    break
+                }
             }
             .store(in: &cancellables)
     }

@@ -37,8 +37,8 @@ class MyBudiProjectDetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        //setPublisher()
-        //setView()
+        setPublisher()
+        setView()
     }
 
 }
@@ -86,6 +86,7 @@ private extension MyBudiProjectDetailViewController {
             button.titleLabel?.numberOfLines = 1
             button.titleLabel?.adjustsFontSizeToFitWidth = true
             button.titleLabel?.lineBreakMode = .byClipping
+            button.setTitleColor(UIColor.black, for: .normal)
             button.titleLabel?.font = .systemFont(ofSize: 17, weight: .bold)
 
             button.tapPublisher

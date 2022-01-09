@@ -1771,7 +1771,9 @@
                     </view>
                     <connections>
                         <outlet property="contentScrollView" destination="MSu-BL-vfY" id="WaU-Ab-hZC"/>
-                        <outlet property="contentStackView" destination="fh2-Pi-nQL" id="wwb-TN-Sol"/>
+                        <outlet property="contentStackView" destination="qid-nq-AT5" id="NoM-V8-bu8"/>
+                        <outlet property="indicatorViewLeadingConstraint" destination="HlV-Lx-pPt" id="8Ln-Ug-ztM"/>
+                        <outlet property="indicatorViewWidthConstraint" destination="mD6-wF-HZF" id="zAQ-9g-VKa"/>
                         <outlet property="selectIndicatorView" destination="TpL-v7-9o5" id="7tG-kO-y6K"/>
                         <outlet property="titleButtonStackView" destination="6Ty-tF-lEy" id="qIg-7Y-xm9"/>
                     </connections>

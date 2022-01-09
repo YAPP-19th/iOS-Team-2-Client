@@ -24,7 +24,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eaf-YK-WDd">
                                 <rect key="frame" x="113" y="0.0" width="250" height="100"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="안녕하세요. 시간 괜찮으시면 몇 가지 여쭤봐도 될까요?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kMi-Wu-l74">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="안녕하세요. 시간 괜찮으시면 몇 가지 여쭤봐도 될까요?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kMi-Wu-l74">
                                         <rect key="frame" x="8" y="8" width="234" height="84"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -70,6 +70,10 @@
                 <constraint firstItem="ok1-Qd-bf4" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="t1i-Y2-ctv"/>
             </constraints>
             <size key="customSize" width="375" height="100"/>
+            <connections>
+                <outlet property="messageLabel" destination="kMi-Wu-l74" id="ftL-F0-zwN"/>
+                <outlet property="timeLabel" destination="jT0-eL-zZg" id="2ct-DL-rVh"/>
+            </connections>
             <point key="canvasLocation" x="367.39130434782612" y="117.1875"/>
         </collectionViewCell>
     </objects>

@@ -6,23 +6,44 @@
 //
 
 import UIKit
+import Moya
 import Combine
+import CombineCocoa
+import Firebase
 
 final class ChattingDetailViewController: UIViewController {
 
-    @IBOutlet private weak var collecitonView: UICollectionView!
+    @IBOutlet private weak var collectionView: UICollectionView!
     @IBOutlet private weak var bottomView: UIView!
     @IBOutlet private weak var bottomViewBottomConstraint: NSLayoutConstraint!
     @IBOutlet private weak var textFieldContainerView: UIView!
     @IBOutlet private weak var textField: UITextField!
     @IBOutlet private weak var sendButton: UIButton!
 
-    private var textMessage: String = ""
+    private var textFieldText: String = ""
     private var keyboardHeight: CGFloat?
     private var isKeyboardShown: Bool = false
     
     weak var coordinator: ChattingCoordinator?
+    private let viewModel: ChattingViewModel
     private var cancellables = Set<AnyCancellable>()
+    
+    let userId: String = "userId"
+    let toId: String = "toId"
+    
+    init(viewModel: ChattingViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    init?(coder: NSCoder, viewModel: ChattingViewModel) {
+        self.viewModel = viewModel
+        super.init(coder: coder)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("This viewController must be init with viewModel")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,6 +55,8 @@ final class ChattingDetailViewController: UIViewController {
         bindViewModel()
         setPublisher()
         configureCollectionView()
+        
+        firebaseTestLogin()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -42,7 +65,17 @@ final class ChattingDetailViewController: UIViewController {
 }
 
 private extension ChattingDetailViewController {
+    func firebaseTestLogin() {
+  
+    }
+    
     func bindViewModel() {
+        viewModel.state.chatMessages
+            .receive(on: DispatchQueue.main)
+            .sink(receiveValue: { [weak self] _ in
+                guard let self = self else { return }
+                self.collectionView.reloadData()
+            }).store(in: &cancellables)
     }
     
     func setPublisher() {
@@ -50,6 +83,12 @@ private extension ChattingDetailViewController {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
                 self?.sendMessage()
+            }.store(in: &cancellables)
+        
+        collectionView.gesturePublisher(.tap())
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in
+                self?.hideTextField()
             }.store(in: &cancellables)
         
         textFieldContainerView.gesturePublisher(.tap())
@@ -78,15 +117,24 @@ private extension ChattingDetailViewController {
 // MARK: - TextField
 extension ChattingDetailViewController: UITextFieldDelegate {
     private func sendMessage() {
-        print("textMessage is \(self.textMessage)")
-        self.textMessage = ""
+        guard !textFieldText.isEmpty else { return }
+        let newMessage = ChatMessage(id: NSUUID().uuidString, time: nowDateString(), fromId: userId, toId: toId, text: textFieldText)
+        
+        viewModel.state.chatMessages.value.append(newMessage)
+        self.textFieldText = ""
         self.textField.text = ""
+    }
+    
+    private func nowDateString() -> String {
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "ko")
+        formatter.dateFormat = "a: hh:mm"
+        return formatter.string(from: Date())
     }
     
     private func configureTextField() {
         textField.delegate = self
-        textField.addTarget(self, action: #selector(textFieldDidChange(
-            _:)), for: .editingChanged)
+        textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
     }
     
     private func showTextField() {
@@ -115,7 +163,7 @@ extension ChattingDetailViewController: UITextFieldDelegate {
     
     @objc func textFieldDidChange(_ textField: UITextField) {
         if let text = textField.text {
-            textMessage = text
+            textFieldText = text
         }
     }
     
@@ -153,14 +201,14 @@ extension ChattingDetailViewController: UITextFieldDelegate {
 // MARK: - CollectionView
 extension ChattingDetailViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     private func configureCollectionView() {
-        collecitonView.dataSource = self
-        collecitonView.delegate = self
-        collecitonView.register(.init(nibName: ChattingMessageCell.identifier, bundle: nil), forCellWithReuseIdentifier: ChattingMessageCell.identifier)
-        collecitonView.register(.init(nibName: ChattingProjectRequestCell.identifier, bundle: nil), forCellWithReuseIdentifier: ChattingProjectRequestCell.identifier)
-        collecitonView.register(.init(nibName: MyChattingMessageCell.identifier, bundle: nil), forCellWithReuseIdentifier: MyChattingMessageCell.identifier)
-        collecitonView.register(.init(nibName: ChattingTimeCell.identifier, bundle: nil), forCellWithReuseIdentifier: ChattingTimeCell.identifier)
-        collecitonView.alwaysBounceVertical = true
-        collecitonView.backgroundColor = .systemGroupedBackground
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        let cellClasses = [ChattingMessageCell.self, MyChattingMessageCell.self]
+        cellClasses.forEach {
+            collectionView.register(.init(nibName: $0.identifier, bundle: nil), forCellWithReuseIdentifier: $0.identifier)
+        }
+        collectionView.alwaysBounceVertical = true
+        collectionView.backgroundColor = .border
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -168,39 +216,30 @@ extension ChattingDetailViewController: UICollectionViewDelegateFlowLayout, UICo
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        6
+        viewModel.state.chatMessages.value.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        switch indexPath.row {
-        case 0:
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ChattingTimeCell.identifier, for: indexPath) as? ChattingTimeCell else { break }
-            return cell
-        case 1:
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ChattingProjectRequestCell.identifier, for: indexPath) as? ChattingProjectRequestCell else { break }
-            return cell
-        default: break
-        }
+        let message = viewModel.state.chatMessages.value[indexPath.row]
         
-        if indexPath.row % 2 == 0 {
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ChattingMessageCell.identifier, for: indexPath) as? ChattingMessageCell else { return UICollectionViewCell() }
+        let isFromCurrentUser = (message.fromId == userId)
+        
+        if isFromCurrentUser {
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MyChattingMessageCell.identifier, for: indexPath) as? MyChattingMessageCell else { return UICollectionViewCell() }
+            cell.configureUI(message)
             return cell
         } else {
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MyChattingMessageCell.identifier, for: indexPath) as? MyChattingMessageCell else { return UICollectionViewCell() }
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ChattingMessageCell.identifier, for: indexPath) as? ChattingMessageCell else { return UICollectionViewCell() }
+            cell.configureUI(message)
             return cell
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        switch indexPath.row {
-        case 0: return CGSize(width: collectionView.frame.width, height: 40)
-        case 1: return CGSize(width: collectionView.frame.width, height: 240)
-        default: break
-        }
-        return CGSize(width: collectionView.frame.width, height: 100)
+        CGSize(width: collectionView.frame.width, height: 100)
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        24
+        12
     }
 }

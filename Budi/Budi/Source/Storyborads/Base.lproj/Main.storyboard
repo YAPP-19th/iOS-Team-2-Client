@@ -648,7 +648,7 @@
                     <connections>
                         <outlet property="bottomView" destination="uqe-md-eIF" id="3zv-h0-7RL"/>
                         <outlet property="bottomViewBottomConstraint" destination="epX-sH-jFp" id="ppL-mk-TeT"/>
-                        <outlet property="collecitonView" destination="PzR-cU-qYT" id="kce-E3-JCr"/>
+                        <outlet property="collectionView" destination="PzR-cU-qYT" id="BBY-M8-WoB"/>
                         <outlet property="sendButton" destination="uOX-Cu-dQR" id="YBk-hl-isd"/>
                         <outlet property="textField" destination="5U3-hL-v5V" id="aUq-p6-hCz"/>
                         <outlet property="textFieldContainerView" destination="2N4-9F-nvF" id="rNg-ez-dOc"/>

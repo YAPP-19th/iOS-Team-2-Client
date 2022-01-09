@@ -16,6 +16,8 @@
 		5E2554622732DF8A00033723 /* GreetingAlertViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E2554602732DF8A00033723 /* GreetingAlertViewController.xib */; };
 		5E43FB3D278A95EF0073574F /* ChattingProjectRequestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E43FB3B278A95EF0073574F /* ChattingProjectRequestCell.swift */; };
 		5E43FB3E278A95EF0073574F /* ChattingProjectRequestCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E43FB3C278A95EF0073574F /* ChattingProjectRequestCell.xib */; };
+		5E43FB40278B22F00073574F /* ChatModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E43FB3F278B22F00073574F /* ChatModels.swift */; };
+		5E43FB42278B23600073574F /* ChattingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E43FB41278B23600073574F /* ChattingViewModel.swift */; };
 		5E45AD142732F47800F0A80C /* RecruitingStatusBottomViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E45AD122732F47800F0A80C /* RecruitingStatusBottomViewController.xib */; };
 		5E45AD182732F78200F0A80C /* RecruitingStatusBottomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E45AD162732F78200F0A80C /* RecruitingStatusBottomCell.xib */; };
 		5E503E7727898D1400F13256 /* ProjectMembersBottomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E503E7527898D1400F13256 /* ProjectMembersBottomViewController.swift */; };
@@ -221,6 +223,8 @@
 		5E2554602732DF8A00033723 /* GreetingAlertViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GreetingAlertViewController.xib; sourceTree = "<group>"; };
 		5E43FB3B278A95EF0073574F /* ChattingProjectRequestCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingProjectRequestCell.swift; sourceTree = "<group>"; };
 		5E43FB3C278A95EF0073574F /* ChattingProjectRequestCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChattingProjectRequestCell.xib; sourceTree = "<group>"; };
+		5E43FB3F278B22F00073574F /* ChatModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatModels.swift; sourceTree = "<group>"; };
+		5E43FB41278B23600073574F /* ChattingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingViewModel.swift; sourceTree = "<group>"; };
 		5E45AD112732F47800F0A80C /* RecruitingStatusBottomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecruitingStatusBottomViewController.swift; sourceTree = "<group>"; };
 		5E45AD122732F47800F0A80C /* RecruitingStatusBottomViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecruitingStatusBottomViewController.xib; sourceTree = "<group>"; };
 		5E45AD152732F78200F0A80C /* RecruitingStatusBottomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecruitingStatusBottomCell.swift; sourceTree = "<group>"; };
@@ -1006,7 +1010,9 @@
 			isa = PBXGroup;
 			children = (
 				5EFB0A472733EA8D00F39A4D /* Cells */,
+				5E43FB3F278B22F00073574F /* ChatModels.swift */,
 				B9D66EC52714706700668490 /* ChattingCoordinator.swift */,
+				5E43FB41278B23600073574F /* ChattingViewModel.swift */,
 				5EFB0A4C2733EABF00F39A4D /* ChattingViewController.swift */,
 				5EFB0A4E2733FDD100F39A4D /* ChattingDetailViewController.swift */,
 			);
@@ -1276,6 +1282,7 @@
 				5E886376276771E00022397A /* HomeWritingImageBottomViewController.swift in Sources */,
 				5EA453A02731778000943C94 /* HomeDetailMainCell.swift in Sources */,
 				A8AB51DE2769D3EC003D151C /* LeftAlignedCollectionViewFlowLayout.swift in Sources */,
+				5E43FB42278B23600073574F /* ChattingViewModel.swift in Sources */,
 				B97A86312786D7C20016CF23 /* TeamSearchEvaluationCell.swift in Sources */,
 				5E91509A27722213000578D4 /* MyBudiProjectCell.swift in Sources */,
 				5ED53D70277F8DEF002871CD /* LikePosts.swift in Sources */,
@@ -1321,6 +1328,7 @@
 				5E801F1E2782A74400FFC2D3 /* RecruitingPosition.swift in Sources */,
 				5EFB0A452733E36800F39A4D /* TeamSearchCell.swift in Sources */,
 				5E88637A276771EE0022397A /* HomeWritingPartBottomViewController.swift in Sources */,
+				5E43FB40278B22F00073574F /* ChatModels.swift in Sources */,
 				B9D66EC82714707000668490 /* MyBudiCoordinator.swift in Sources */,
 				5E820B92276A3699004A03E9 /* TeamMember.swift in Sources */,
 				5EFB0A4A2733EAA300F39A4D /* ChattingCell.swift in Sources */,

@@ -8,6 +8,7 @@
 import Combine
 import Foundation
 import Moya
+import Firebase
 
 final class ChattingViewModel: ViewModel {
     
@@ -25,22 +26,21 @@ final class ChattingViewModel: ViewModel {
     private var cancellables = Set<AnyCancellable>()
     private let provider = MoyaProvider<BudiTarget>()
     
+    func fetchData() {
+        let currentUser = ChatManager.shared.testCurrentUser
+        let otherUser = ChatManager.shared.testOtherUser
+        
+        let newMessage = ChatMessage(id: NSUUID().uuidString, time: Date().convertStringahhmm(), text: "새로운 메세지", fromUser: currentUser, toUser: otherUser)
+        
+        ChatManager.shared.registerMessage(newMessage)
+        ChatManager.shared.fetchMessages(currentUser.id)
+    }
     
     init() {
+        fetchData()
+        
         action.fetch
-            .sink(receiveValue: { [weak self] _ in
-//                guard let self = self else { return }
-//
-//                self.provider
-//                    .requestPublisher(.post(accessToken: .testAccessToken, id: postId))
-//                    .map(APIResponse<Post>.self)
-//                    .map(\.data)
-//                    .sink(receiveCompletion: { _ in
-//                    }, receiveValue: { [weak self] post in
-//                        self?.state.post.send(post)
-//                    })
-//                    .store(in: &self.cancellables)
-                
+            .sink(receiveValue: { _ in
             }).store(in: &cancellables)
 
         action.refresh

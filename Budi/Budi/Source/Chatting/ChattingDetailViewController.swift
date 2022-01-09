@@ -118,18 +118,10 @@ private extension ChattingDetailViewController {
 extension ChattingDetailViewController: UITextFieldDelegate {
     private func sendMessage() {
         guard !textFieldText.isEmpty else { return }
-        let newMessage = ChatMessage(id: NSUUID().uuidString, time: nowDateString(), fromId: userId, toId: toId, text: textFieldText)
-        
-        viewModel.state.chatMessages.value.append(newMessage)
+//        let newMessage = ChatMessage()
+//        viewModel.state.chatMessages.value.append(newMessage)
         self.textFieldText = ""
         self.textField.text = ""
-    }
-    
-    private func nowDateString() -> String {
-        let formatter = DateFormatter()
-        formatter.locale = Locale(identifier: "ko")
-        formatter.dateFormat = "a: hh:mm"
-        return formatter.string(from: Date())
     }
     
     private func configureTextField() {
@@ -222,7 +214,7 @@ extension ChattingDetailViewController: UICollectionViewDelegateFlowLayout, UICo
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let message = viewModel.state.chatMessages.value[indexPath.row]
         
-        let isFromCurrentUser = (message.fromId == userId)
+        let isFromCurrentUser = (message.fromUser.id == userId)
         
         if isFromCurrentUser {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MyChattingMessageCell.identifier, for: indexPath) as? MyChattingMessageCell else { return UICollectionViewCell() }

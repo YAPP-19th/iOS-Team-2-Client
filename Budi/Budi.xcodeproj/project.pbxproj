@@ -18,6 +18,8 @@
 		5E43FB3E278A95EF0073574F /* ChattingProjectRequestCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E43FB3C278A95EF0073574F /* ChattingProjectRequestCell.xib */; };
 		5E43FB40278B22F00073574F /* ChatModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E43FB3F278B22F00073574F /* ChatModels.swift */; };
 		5E43FB42278B23600073574F /* ChattingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E43FB41278B23600073574F /* ChattingViewModel.swift */; };
+		5E43FB44278B499E0073574F /* ChatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E43FB43278B499E0073574F /* ChatManager.swift */; };
+		5E43FB46278B5C910073574F /* Ecodable+convert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E43FB45278B5C910073574F /* Ecodable+convert.swift */; };
 		5E45AD142732F47800F0A80C /* RecruitingStatusBottomViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E45AD122732F47800F0A80C /* RecruitingStatusBottomViewController.xib */; };
 		5E45AD182732F78200F0A80C /* RecruitingStatusBottomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E45AD162732F78200F0A80C /* RecruitingStatusBottomCell.xib */; };
 		5E503E7727898D1400F13256 /* ProjectMembersBottomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E503E7527898D1400F13256 /* ProjectMembersBottomViewController.swift */; };
@@ -225,6 +227,8 @@
 		5E43FB3C278A95EF0073574F /* ChattingProjectRequestCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChattingProjectRequestCell.xib; sourceTree = "<group>"; };
 		5E43FB3F278B22F00073574F /* ChatModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatModels.swift; sourceTree = "<group>"; };
 		5E43FB41278B23600073574F /* ChattingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingViewModel.swift; sourceTree = "<group>"; };
+		5E43FB43278B499E0073574F /* ChatManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatManager.swift; sourceTree = "<group>"; };
+		5E43FB45278B5C910073574F /* Ecodable+convert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ecodable+convert.swift"; sourceTree = "<group>"; };
 		5E45AD112732F47800F0A80C /* RecruitingStatusBottomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecruitingStatusBottomViewController.swift; sourceTree = "<group>"; };
 		5E45AD122732F47800F0A80C /* RecruitingStatusBottomViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecruitingStatusBottomViewController.xib; sourceTree = "<group>"; };
 		5E45AD152732F78200F0A80C /* RecruitingStatusBottomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecruitingStatusBottomCell.swift; sourceTree = "<group>"; };
@@ -1010,8 +1014,9 @@
 			isa = PBXGroup;
 			children = (
 				5EFB0A472733EA8D00F39A4D /* Cells */,
-				5E43FB3F278B22F00073574F /* ChatModels.swift */,
 				B9D66EC52714706700668490 /* ChattingCoordinator.swift */,
+				5E43FB43278B499E0073574F /* ChatManager.swift */,
+				5E43FB3F278B22F00073574F /* ChatModels.swift */,
 				5E43FB41278B23600073574F /* ChattingViewModel.swift */,
 				5EFB0A4C2733EABF00F39A4D /* ChattingViewController.swift */,
 				5EFB0A4E2733FDD100F39A4D /* ChattingDetailViewController.swift */,
@@ -1045,6 +1050,7 @@
 				5E240720275225CD00954BE7 /* String+date.swift */,
 				5EC0328C27868ED00059BE92 /* String+testAccessToken.swift */,
 				B96F33BC27859C6D000A0B42 /* UIView+gesturePublisher.swift */,
+				5E43FB45278B5C910073574F /* Ecodable+convert.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1254,6 +1260,7 @@
 				A8CD93402736ABD300299AB4 /* LocationSelectView.swift in Sources */,
 				A84F266F276B7CD600C65DA1 /* SignupHistorySectionModel.swift in Sources */,
 				A82E49DD273111C50068218A /* LoginSelectViewController.swift in Sources */,
+				5E43FB46278B5C910073574F /* Ecodable+convert.swift in Sources */,
 				A8CD93472737B9AB00299AB4 /* NormalPositionView.swift in Sources */,
 				5EB430252758909800283239 /* HomeWritingImageCell.swift in Sources */,
 				B97A86352786D7D90016CF23 /* TeamSearchReviewCell.swift in Sources */,
@@ -1311,6 +1318,7 @@
 				5EFB0A522734016600F39A4D /* MyChattingMessageCell.swift in Sources */,
 				B968416B277862ED002F5D3D /* TeamSearchDetailCell.swift in Sources */,
 				B97DBB9527147D970018C1D2 /* UIViewController+identifer.swift in Sources */,
+				5E43FB44278B499E0073574F /* ChatManager.swift in Sources */,
 				5E503E832789C86800F13256 /* UIView+addCornerRadius.swift in Sources */,
 				A8CD0CEE2771CDCA00FFDE64 /* BudiLogin.swift in Sources */,
 				5E2554612732DF8A00033723 /* GreetingAlertViewController.swift in Sources */,

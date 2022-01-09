@@ -24,7 +24,7 @@ final class MyBudiLevelCell: UICollectionViewCell {
     }
 
     private func configureLayout() {
-        let thumbImage = UIImage(named: "Dev_Lv2")
+        let thumbImage = UIImage(named: "Slider_Dev_Lv2")
         levelSlider.setThumbImage(thumbImage, for: .normal)
         levelSlider.setThumbImage(thumbImage, for: .selected)
         levelSlider.cornerRadius = 8

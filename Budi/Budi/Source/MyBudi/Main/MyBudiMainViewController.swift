@@ -27,8 +27,13 @@ final class MyBudiMainViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
+    override func viewWillDisappear(_ animated: Bool) {
+        tabBarController?.tabBar.isHidden = true
+    }
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        tabBarController?.tabBar.isHidden = false
         loginStatusCheck()
     }
 
@@ -152,6 +157,12 @@ extension MyBudiMainViewController: UICollectionViewDataSource, UICollectionView
         }
         
         return defaultCell
+    }
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if indexPath.row == 1 {
+            coordinator?.showLevelViewController(viewModel: self.viewModel)
+        }
     }
 }
 

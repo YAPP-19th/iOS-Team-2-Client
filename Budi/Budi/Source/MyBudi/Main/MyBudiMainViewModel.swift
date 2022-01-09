@@ -55,6 +55,7 @@ class MyBudiMainViewModel: ViewModel {
                         }
                     }, receiveValue: { post in
                         if post.nickName != "" {
+                            print(post)
                             let user = LoginUserDetail(id: post.id,
                                                        imageUrl: post.imageUrl,
                                                        nickName: post.nickName,

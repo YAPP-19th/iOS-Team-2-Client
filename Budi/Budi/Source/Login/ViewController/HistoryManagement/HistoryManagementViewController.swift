@@ -43,6 +43,7 @@ class HistoryManagementViewController: UIViewController {
             .sink { [weak self] in
                 guard let self = self else { return }
                 self.viewModel.action.postCreateInfo.send(())
+                self.navigationController?.dismiss(animated: true, completion: nil)
             }
             .store(in: &cancellables)
     }

@@ -60,7 +60,7 @@ final class HomeDetailViewModel: ViewModel {
                 guard let self = self else { return }
 
                 self.provider
-                    .requestPublisher(.post(accessToken: .testAccessToken, id: postId))
+                    .requestPublisher(.post(accessToken: UserDefaults.standard.string(forKey: "accessToken") ?? "", id: postId))
                     .map(APIResponse<Post>.self)
                     .map(\.data)
                     .sink(receiveCompletion: { _ in

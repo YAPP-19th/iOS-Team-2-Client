@@ -8,6 +8,7 @@
 import Foundation
 
 struct BudiLoginResponse: Codable {
+    let memberId: Int
     let userId: String
     let accessToken: String
 }

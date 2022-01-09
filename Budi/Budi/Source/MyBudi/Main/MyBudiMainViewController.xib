@@ -12,6 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MyBudiMainViewController" customModule="Budi" customModuleProvider="target">
             <connections>
                 <outlet property="collectionView" destination="ogD-6a-m48" id="35N-Bz-eF3"/>
+                <outlet property="loginButton" destination="Aof-CS-hjd" id="OsJ-By-iXP"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -20,6 +21,60 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J5x-Lp-OtD">
+                    <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ruf-dN-V1R">
+                            <rect key="frame" x="26" y="322" width="362" height="35"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="35" id="sOx-t4-Vj9"/>
+                                <constraint firstAttribute="width" constant="362" id="x4A-fj-erf"/>
+                            </constraints>
+                            <attributedString key="attributedText">
+                                <fragment content="로그인 하고">
+                                    <attributes>
+                                        <color key="NSBackgroundColor" red="0.26274509800000001" green="0.2666666667" blue="0.74901960779999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <font key="NSFont" size="24" name="AppleSDGothicNeo-SemiBold"/>
+                                        <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                    </attributes>
+                                </fragment>
+                                <fragment content=" ">
+                                    <attributes>
+                                        <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                        <font key="NSFont" metaFont="system" size="17"/>
+                                        <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                    </attributes>
+                                </fragment>
+                                <fragment content="더 다양한 기능을 즐겨보세요!">
+                                    <attributes>
+                                        <color key="NSColor" red="0.118523322" green="0.118523322" blue="0.118523322" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <font key="NSFont" size="17" name="AppleSDGothicNeo-SemiBold"/>
+                                        <font key="NSOriginalFont" size="17" name="AppleSDGothicNeo-SemiBold"/>
+                                        <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                    </attributes>
+                                </fragment>
+                            </attributedString>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Aof-CS-hjd">
+                            <rect key="frame" x="166" y="394" width="80" height="31"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="80" id="5sX-e7-B4n"/>
+                                <constraint firstAttribute="height" constant="31" id="zvt-MO-pC9"/>
+                            </constraints>
+                            <state key="normal" title="Button"/>
+                            <buttonConfiguration key="configuration" style="plain" title="로그인"/>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstItem="Ruf-dN-V1R" firstAttribute="top" secondItem="J5x-Lp-OtD" secondAttribute="top" constant="322" id="BDI-Kx-XOk"/>
+                        <constraint firstItem="Ruf-dN-V1R" firstAttribute="centerX" secondItem="J5x-Lp-OtD" secondAttribute="centerX" id="GZW-zJ-ZDT"/>
+                        <constraint firstItem="Aof-CS-hjd" firstAttribute="top" secondItem="Ruf-dN-V1R" secondAttribute="bottom" constant="37" id="QJv-0N-ayC"/>
+                        <constraint firstItem="Aof-CS-hjd" firstAttribute="leading" secondItem="J5x-Lp-OtD" secondAttribute="leading" constant="166" id="wgR-7M-Uk9"/>
+                    </constraints>
+                </view>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="ogD-6a-m48">
                     <rect key="frame" x="16" y="44" width="382" height="818"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -36,8 +91,12 @@
             <constraints>
                 <constraint firstItem="ogD-6a-m48" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="1hi-FH-CRy"/>
                 <constraint firstItem="ogD-6a-m48" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="2hb-8e-SFA"/>
+                <constraint firstItem="J5x-Lp-OtD" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="55j-dw-mzw"/>
+                <constraint firstItem="J5x-Lp-OtD" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="DV5-fh-mdB"/>
                 <constraint firstItem="ogD-6a-m48" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="LPM-bH-ZYe"/>
+                <constraint firstItem="J5x-Lp-OtD" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="Z5R-3k-p3Y"/>
                 <constraint firstItem="ogD-6a-m48" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" constant="-16" id="hSq-9H-c9B"/>
+                <constraint firstItem="J5x-Lp-OtD" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="tma-bi-Dik"/>
             </constraints>
             <point key="canvasLocation" x="131.8840579710145" y="69.642857142857139"/>
         </view>

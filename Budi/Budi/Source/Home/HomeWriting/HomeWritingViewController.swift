@@ -103,7 +103,7 @@ private extension HomeWritingViewController {
                                         recruitingPositions: recruitingPositions,
                                         description: description)
                 
-                self.viewModel.createPost(.testAccessToken, param) { result in
+                self.viewModel.createPost(UserDefaults.standard.string(forKey: "accessToken") ?? "", param) { result in
                     switch result {
                     case .success(let response): break
                     case .failure(let error): print("error is \(error.localizedDescription)")

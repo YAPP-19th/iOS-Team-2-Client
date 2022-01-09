@@ -14,6 +14,8 @@
 		5E2554382732AD0800033723 /* UIView+IBInspectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2554372732AD0800033723 /* UIView+IBInspectable.swift */; };
 		5E2554612732DF8A00033723 /* GreetingAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E25545F2732DF8A00033723 /* GreetingAlertViewController.swift */; };
 		5E2554622732DF8A00033723 /* GreetingAlertViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E2554602732DF8A00033723 /* GreetingAlertViewController.xib */; };
+		5E43FB3D278A95EF0073574F /* ChattingProjectRequestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E43FB3B278A95EF0073574F /* ChattingProjectRequestCell.swift */; };
+		5E43FB3E278A95EF0073574F /* ChattingProjectRequestCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E43FB3C278A95EF0073574F /* ChattingProjectRequestCell.xib */; };
 		5E45AD142732F47800F0A80C /* RecruitingStatusBottomViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E45AD122732F47800F0A80C /* RecruitingStatusBottomViewController.xib */; };
 		5E45AD182732F78200F0A80C /* RecruitingStatusBottomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E45AD162732F78200F0A80C /* RecruitingStatusBottomCell.xib */; };
 		5E503E7727898D1400F13256 /* ProjectMembersBottomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E503E7527898D1400F13256 /* ProjectMembersBottomViewController.swift */; };
@@ -217,6 +219,8 @@
 		5E2554372732AD0800033723 /* UIView+IBInspectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+IBInspectable.swift"; sourceTree = "<group>"; };
 		5E25545F2732DF8A00033723 /* GreetingAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GreetingAlertViewController.swift; sourceTree = "<group>"; };
 		5E2554602732DF8A00033723 /* GreetingAlertViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GreetingAlertViewController.xib; sourceTree = "<group>"; };
+		5E43FB3B278A95EF0073574F /* ChattingProjectRequestCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingProjectRequestCell.swift; sourceTree = "<group>"; };
+		5E43FB3C278A95EF0073574F /* ChattingProjectRequestCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChattingProjectRequestCell.xib; sourceTree = "<group>"; };
 		5E45AD112732F47800F0A80C /* RecruitingStatusBottomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecruitingStatusBottomViewController.swift; sourceTree = "<group>"; };
 		5E45AD122732F47800F0A80C /* RecruitingStatusBottomViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecruitingStatusBottomViewController.xib; sourceTree = "<group>"; };
 		5E45AD152732F78200F0A80C /* RecruitingStatusBottomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecruitingStatusBottomCell.swift; sourceTree = "<group>"; };
@@ -693,6 +697,8 @@
 			children = (
 				5EFB0A482733EAA300F39A4D /* ChattingCell.swift */,
 				5EFB0A492733EAA300F39A4D /* ChattingCell.xib */,
+				5E43FB3B278A95EF0073574F /* ChattingProjectRequestCell.swift */,
+				5E43FB3C278A95EF0073574F /* ChattingProjectRequestCell.xib */,
 				5EFB0A5427340BF100F39A4D /* ChattingMessageCell.swift */,
 				5EFB0A5527340BF100F39A4D /* ChattingMessageCell.xib */,
 				5EFB0A502734016600F39A4D /* MyChattingMessageCell.swift */,
@@ -1098,6 +1104,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B92D54F9274C02EB00D0E851 /* .swiftlint.yml in Resources */,
+				5E43FB3E278A95EF0073574F /* ChattingProjectRequestCell.xib in Resources */,
 				5E820B8B2769F04A004A03E9 /* ProjectMembersBottomDetailCell.xib in Resources */,
 				5E2554622732DF8A00033723 /* GreetingAlertViewController.xib in Resources */,
 				5E45AD142732F47800F0A80C /* RecruitingStatusBottomViewController.xib in Resources */,
@@ -1225,6 +1232,7 @@
 				B9684167277853EF002F5D3D /* HomeContentViewModel.swift in Sources */,
 				B9684166277853E7002F5D3D /* HomeContainerViewController.swift in Sources */,
 				B9684165277853E3002F5D3D /* HomeDetailViewController.swift in Sources */,
+				5E43FB3D278A95EF0073574F /* ChattingProjectRequestCell.swift in Sources */,
 				B9684163277853DC002F5D3D /* HistoryManagementViewController.swift in Sources */,
 				A8936FBF27785B7400BE2C1D /* PortfolioURLTableViewCell.swift in Sources */,
 				B9684162277853D8002F5D3D /* RecruitingStatusBottomCell.swift in Sources */,

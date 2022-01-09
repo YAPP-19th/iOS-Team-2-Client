@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ChattingViewController: UIViewController {
+final class ChattingViewController: UIViewController {
 
     @IBOutlet weak var collecitonView: UICollectionView!
     weak var coordinator: ChattingCoordinator?

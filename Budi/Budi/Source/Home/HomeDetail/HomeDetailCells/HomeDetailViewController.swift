@@ -100,7 +100,7 @@ private extension HomeDetailViewController {
 private extension HomeDetailViewController {
     func configureNavigationBar() {
         let shareButton = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareButtonTapped))
-        navigationItem.rightBarButtonItem = shareButton
+//        navigationItem.rightBarButtonItem = shareButton
         navigationController?.navigationBar.tintColor = .systemGray
     }
 

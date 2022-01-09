@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -588,53 +588,48 @@
                                 <rect key="frame" x="0.0" y="813" width="414" height="83"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uOX-Cu-dQR">
-                                        <rect key="frame" x="369" y="18" width="24" height="24"/>
+                                        <rect key="frame" x="370" y="17.5" width="24" height="24"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="24" id="6mw-cj-RAy"/>
                                             <constraint firstAttribute="height" constant="24" id="7t9-mi-p3C"/>
                                         </constraints>
-                                        <color key="tintColor" name="Gray"/>
+                                        <color key="tintColor" name="Text_disabled"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" image="paperplane.fill" catalog="system"/>
-                                        <connections>
-                                            <action selector="sendButtonTapped:" destination="9Vs-Js-pPs" eventType="touchUpInside" id="auP-ht-2vl"/>
-                                        </connections>
+                                        <state key="normal" image="ico_paperplane"/>
                                     </button>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="메세지를 입력하세요" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5U3-hL-v5V">
-                                        <rect key="frame" x="16" y="8" width="339" height="44"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="44" id="ced-ny-h5w"/>
-                                        </constraints>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="메세지를 입력하세요" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5U3-hL-v5V">
+                                        <rect key="frame" x="28" y="8" width="316" height="43"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
-                                        <connections>
-                                            <action selector="textFieldTapped:" destination="9Vs-Js-pPs" eventType="editingDidEnd" id="9JQ-gz-bEs"/>
-                                        </connections>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Zd-jY-Msf">
-                                        <rect key="frame" x="328" y="18" width="24" height="24"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="24" id="h7w-nt-smc"/>
-                                            <constraint firstAttribute="height" constant="24" id="tJx-AK-9wh"/>
-                                        </constraints>
-                                        <color key="tintColor" name="Gray"/>
-                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" image="face.smiling.fill" catalog="system"/>
-                                        <connections>
-                                            <action selector="smileButtonTapped:" destination="9Vs-Js-pPs" eventType="touchUpInside" id="9eW-SU-xIF"/>
-                                        </connections>
-                                    </button>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2N4-9F-nvF">
+                                        <rect key="frame" x="16" y="8" width="340" height="43"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" name="Border"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="22"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="0.5"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="5U3-hL-v5V" firstAttribute="leading" secondItem="uqe-md-eIF" secondAttribute="leading" constant="16" id="BIO-pm-HZX"/>
-                                    <constraint firstItem="1Zd-jY-Msf" firstAttribute="centerY" secondItem="5U3-hL-v5V" secondAttribute="centerY" id="DPd-Yq-hD4"/>
-                                    <constraint firstItem="uOX-Cu-dQR" firstAttribute="leading" secondItem="5U3-hL-v5V" secondAttribute="trailing" constant="14" id="GTL-eJ-tHE"/>
+                                    <constraint firstItem="5U3-hL-v5V" firstAttribute="leading" secondItem="2N4-9F-nvF" secondAttribute="leading" constant="12" id="IIM-Rd-I4g"/>
+                                    <constraint firstAttribute="bottom" secondItem="2N4-9F-nvF" secondAttribute="bottom" constant="32" id="Vmo-LC-1mg"/>
+                                    <constraint firstItem="5U3-hL-v5V" firstAttribute="bottom" secondItem="2N4-9F-nvF" secondAttribute="bottom" id="aMh-ds-FDZ"/>
+                                    <constraint firstItem="2N4-9F-nvF" firstAttribute="top" secondItem="uqe-md-eIF" secondAttribute="top" constant="8" id="bJ8-Ik-xha"/>
+                                    <constraint firstItem="uOX-Cu-dQR" firstAttribute="leading" secondItem="2N4-9F-nvF" secondAttribute="trailing" constant="14" id="cAS-G9-GeJ"/>
+                                    <constraint firstItem="uOX-Cu-dQR" firstAttribute="centerY" secondItem="2N4-9F-nvF" secondAttribute="centerY" id="jJy-gt-XXF"/>
+                                    <constraint firstItem="5U3-hL-v5V" firstAttribute="top" secondItem="2N4-9F-nvF" secondAttribute="top" id="kgc-pg-Cx8"/>
+                                    <constraint firstItem="2N4-9F-nvF" firstAttribute="leading" secondItem="uqe-md-eIF" secondAttribute="leading" constant="16" id="l6W-P2-W1h"/>
                                     <constraint firstAttribute="height" constant="83" id="qcE-N1-bMG"/>
-                                    <constraint firstAttribute="trailing" secondItem="uOX-Cu-dQR" secondAttribute="trailing" constant="21" id="smv-G4-YFA"/>
-                                    <constraint firstItem="uOX-Cu-dQR" firstAttribute="centerY" secondItem="5U3-hL-v5V" secondAttribute="centerY" id="tYE-Qb-KhK"/>
-                                    <constraint firstItem="uOX-Cu-dQR" firstAttribute="leading" secondItem="1Zd-jY-Msf" secondAttribute="trailing" constant="17" id="uxo-X6-3D5"/>
-                                    <constraint firstItem="5U3-hL-v5V" firstAttribute="top" secondItem="uqe-md-eIF" secondAttribute="top" constant="8" id="zsF-PY-j38"/>
+                                    <constraint firstAttribute="trailing" secondItem="uOX-Cu-dQR" secondAttribute="trailing" constant="20" id="smv-G4-YFA"/>
+                                    <constraint firstItem="5U3-hL-v5V" firstAttribute="trailing" secondItem="2N4-9F-nvF" secondAttribute="trailing" constant="-12" id="uJa-9x-uVx"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -652,8 +647,11 @@
                     </view>
                     <connections>
                         <outlet property="bottomView" destination="uqe-md-eIF" id="3zv-h0-7RL"/>
+                        <outlet property="bottomViewBottomConstraint" destination="epX-sH-jFp" id="ppL-mk-TeT"/>
                         <outlet property="collecitonView" destination="PzR-cU-qYT" id="kce-E3-JCr"/>
+                        <outlet property="sendButton" destination="uOX-Cu-dQR" id="YBk-hl-isd"/>
                         <outlet property="textField" destination="5U3-hL-v5V" id="aUq-p6-hCz"/>
+                        <outlet property="textFieldContainerView" destination="2N4-9F-nvF" id="rNg-ez-dOc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EQy-at-vuN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1327,11 +1325,13 @@
         <image name="checkmark.circle" catalog="system" width="128" height="121"/>
         <image name="checkmark.circle.fill" catalog="system" width="128" height="121"/>
         <image name="ellipsis" catalog="system" width="128" height="37"/>
-        <image name="face.smiling.fill" catalog="system" width="128" height="121"/>
         <image name="heart" catalog="system" width="128" height="109"/>
+        <image name="ico_paperplane" width="21" height="18"/>
         <image name="locationAddButton" width="24" height="24"/>
-        <image name="paperplane.fill" catalog="system" width="128" height="118"/>
         <image name="plus.circle.fill" catalog="system" width="128" height="121"/>
+        <namedColor name="Border">
+            <color red="0.87800002098083496" green="0.87800002098083496" blue="0.87800002098083496" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="DarkGray">
             <color red="0.36000001430511475" green="0.36000001430511475" blue="0.36000001430511475" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

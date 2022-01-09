@@ -21,6 +21,7 @@ class MyBudiMainViewModel: ViewModel {
     struct State {
         let loginStatusData = CurrentValueSubject<LoginUserDetail?, Never>(nil)
         let likedData = CurrentValueSubject<MyLikePost?, Never>(nil)
+        let projectData = CurrentValueSubject<MyBudiProject?, Never>(nil)
     }
     
     let action = Action()
@@ -84,6 +85,22 @@ class MyBudiMainViewModel: ViewModel {
                         }
                     }, receiveValue: { post in
                         self.state.likedData.send(post)
+                    })
+                    .store(in: &self.cancellables)
+
+                self.provider
+                    .requestPublisher(.getMyBudiProject(accessToken: UserDefaults.standard.string(forKey: "accessToken") ?? ""))
+                    .map(APIResponse<MyBudiProject>.self)
+                    .map(\.data)
+                    .sink(receiveCompletion: { completion in
+                        switch completion {
+                        case .failure(let error):
+                            print(error.localizedDescription)
+                        case .finished:
+                            break
+                        }
+                    }, receiveValue: { post in
+                        self.state.projectData.send(post)
                     })
                     .store(in: &self.cancellables)
             }

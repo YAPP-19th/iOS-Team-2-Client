@@ -121,7 +121,8 @@ extension MyBudiMainViewController: UICollectionViewDataSource, UICollectionView
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let defaultCell = UICollectionViewCell()
         let loginData = viewModel.state.loginStatusData.value
-        let projectData = viewModel.state.likedData.value
+        let likedData = viewModel.state.likedData.value
+        let projectData = viewModel.state.projectData.value
         switch indexPath.row {
 
         case 0: guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MyBudiProfileCell.identifier, for: indexPath) as? MyBudiProfileCell else { return defaultCell }
@@ -143,7 +144,7 @@ extension MyBudiMainViewController: UICollectionViewDataSource, UICollectionView
             
         case 2: guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MyBudiProjectCell.identifier, for: indexPath) as? MyBudiProjectCell else { return defaultCell }
 
-            cell.setProjectLabels(nowProject: loginData?.projectList.count ?? 0, recruit: 0, liked: projectData?.totalElements ?? 0)
+            cell.setProjectLabels(nowProject: projectData?.participatedPosts.count ?? 0, recruit: projectData?.recruitedPosts.count ?? 0, liked: likedData?.totalElements ?? 0)
 
             return cell
             

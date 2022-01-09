@@ -23,6 +23,7 @@ enum BudiTarget {
     case postCategory
     case likePosts(accessToken: String, id: Int)
     case myLikePosts(accessToken: String)
+    case getMyBudiProject(accessToken: String)
     case convertImageToURL(jpegData: Data)
 }
 
@@ -33,6 +34,7 @@ extension BudiTarget: TargetType {
 
     var path: String {
         switch self {
+        case .getMyBudiProject(_): return "/post/me"
         case .signUpStatusCheck(let memberId): return "/members/budiDetails/\(memberId)"
         case .posts: return "/posts"
         case .detailPositions: return "/infos/positions"
@@ -86,7 +88,7 @@ extension BudiTarget: TargetType {
 
     var headers: [String: String]? {
         switch self {
-        case .createInfo(let accessToken, _), .createPost(let accessToken, _), .applies(let accessToken, _), .post(let accessToken, _), .likePosts(let accessToken, _), .myLikePosts(let accessToken):
+        case .createInfo(let accessToken, _), .createPost(let accessToken, _), .applies(let accessToken, _), .post(let accessToken, _), .likePosts(let accessToken, _), .myLikePosts(let accessToken), .getMyBudiProject(let accessToken):
             return ["Content-Type": "application/json", "accessToken": "\(accessToken)"]
         case .convertImageToURL: return ["Content-type": "multipart/form-data"]
         default: return ["Content-Type": "application/json"]

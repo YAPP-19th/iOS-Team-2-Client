@@ -60,7 +60,6 @@ final class HomeDetailViewModel: ViewModel {
             .sink(receiveValue: { [weak self] _ in
                 guard let self = self else { return }
                 guard var accessToken = UserDefaults.standard.string(forKey: "accessToken") else { return }
-                print(accessToken)
                 if accessToken == "" { accessToken = .testAccessToken }
                  self.provider
                     .requestPublisher(.post(accessToken: accessToken, id: postId))

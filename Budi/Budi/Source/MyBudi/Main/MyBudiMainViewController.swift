@@ -27,11 +27,14 @@ final class MyBudiMainViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        tabBarController?.tabBar.isHidden = false
+    }
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        print("일루는 와?")
         self.viewModel.action.loadProjectStatus.send(())
-        tabBarController?.tabBar.isHidden = false
         loginStatusCheck()
     }
 
@@ -40,7 +43,6 @@ final class MyBudiMainViewController: UIViewController {
         configureNavigationBar()
         configureCollectionView()
         setPublisher()
-        print("여기냐?")
         self.viewModel.action.LoginStatusCheck.send(())
 
         bindViewModel()
@@ -82,9 +84,8 @@ final class MyBudiMainViewController: UIViewController {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
                 guard let self = self else { return }
-                print("로그인 성공")
-                
                 self.viewModel.action.LoginStatusCheck.send(())
+                self.viewModel.action.loadProjectStatus.send(())
             }
             .store(in: &cancellables)
 

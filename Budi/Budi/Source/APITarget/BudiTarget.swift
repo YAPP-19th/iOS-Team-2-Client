@@ -34,7 +34,7 @@ extension BudiTarget: TargetType {
 
     var path: String {
         switch self {
-        case .getMyBudiProject(_): return "/post/me"
+        case .getMyBudiProject(_): return "/posts/me"
         case .signUpStatusCheck(let memberId): return "/members/budiDetails/\(memberId)"
         case .posts: return "/posts"
         case .detailPositions: return "/infos/positions"

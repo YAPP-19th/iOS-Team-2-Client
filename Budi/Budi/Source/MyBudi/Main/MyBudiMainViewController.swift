@@ -158,7 +158,6 @@ extension MyBudiMainViewController: UICollectionViewDataSource, UICollectionView
                 .sink { _ in
                     UserDefaults.standard.set("", forKey: "accessToken")
                     UserDefaults.standard.set(0, forKey: "memberId")
-                    print("화면 가려졋!")
                     self.collectionView.isHidden = true
                     self.view.reloadInputViews()
                 }
@@ -174,6 +173,8 @@ extension MyBudiMainViewController: UICollectionViewDataSource, UICollectionView
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if indexPath.row == 1 {
             coordinator?.showLevelViewController(viewModel: self.viewModel)
+        } else if indexPath.row == 2 {
+            coordinator?.showProjectDetailVeiwController(viewModel: self.viewModel)
         }
     }
 }

@@ -1702,6 +1702,84 @@
             </objects>
             <point key="canvasLocation" x="5031.884057971015" y="0.6696428571428571"/>
         </scene>
+        <!--My Budi Project Detail View Controller-->
+        <scene sceneID="Efy-IO-JXW">
+            <objects>
+                <viewController storyboardIdentifier="MyBudiProjectDetailViewController" id="QAq-rr-1ko" customClass="MyBudiProjectDetailViewController" customModule="Budi" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="enT-hG-0Z5">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MSu-BL-vfY">
+                                <rect key="frame" x="0.0" y="92" width="414" height="770"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="414" placeholderIntrinsicHeight="770" translatesAutoresizingMaskIntoConstraints="NO" id="qid-nq-AT5">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="770"/>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="qid-nq-AT5" firstAttribute="height" secondItem="yvb-27-NRj" secondAttribute="height" id="088-qb-HFZ"/>
+                                    <constraint firstItem="qid-nq-AT5" firstAttribute="leading" secondItem="yvb-27-NRj" secondAttribute="leading" id="AB4-dY-AMF"/>
+                                    <constraint firstItem="qid-nq-AT5" firstAttribute="trailing" secondItem="yHg-qK-n2L" secondAttribute="trailing" id="Wcb-a7-09A"/>
+                                    <constraint firstItem="qid-nq-AT5" firstAttribute="trailing" secondItem="yHg-qK-n2L" secondAttribute="trailing" id="cmC-La-4XH"/>
+                                    <constraint firstItem="yHg-qK-n2L" firstAttribute="leading" secondItem="qid-nq-AT5" secondAttribute="leading" id="eqj-6l-dZP"/>
+                                    <constraint firstItem="qid-nq-AT5" firstAttribute="bottom" secondItem="yHg-qK-n2L" secondAttribute="bottom" id="fOZ-2g-K10"/>
+                                    <constraint firstItem="qid-nq-AT5" firstAttribute="bottom" secondItem="yHg-qK-n2L" secondAttribute="bottom" id="hvV-Uu-Znj"/>
+                                    <constraint firstItem="qid-nq-AT5" firstAttribute="top" secondItem="yHg-qK-n2L" secondAttribute="top" id="o3R-Cf-3wg"/>
+                                    <constraint firstItem="yHg-qK-n2L" firstAttribute="top" secondItem="qid-nq-AT5" secondAttribute="top" id="z88-Ka-4Vt"/>
+                                </constraints>
+                                <viewLayoutGuide key="contentLayoutGuide" id="yHg-qK-n2L"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="yvb-27-NRj"/>
+                            </scrollView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2xD-6S-GEh">
+                                <rect key="frame" x="0.0" y="44" width="414" height="48"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TpL-v7-9o5" userLabel="selectIndicatorView">
+                                        <rect key="frame" x="0.0" y="45" width="75" height="3"/>
+                                        <color key="backgroundColor" red="0.45595830679999999" green="0.77063757180000003" blue="0.59997886420000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="3" id="fh2-Pi-nQL"/>
+                                            <constraint firstAttribute="width" constant="75" id="mD6-wF-HZF"/>
+                                        </constraints>
+                                    </view>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="6Ty-tF-lEy">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="48"/>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="6Ty-tF-lEy" secondAttribute="bottom" id="8i0-5t-KC6"/>
+                                    <constraint firstAttribute="height" constant="48" id="GVi-ue-1f4"/>
+                                    <constraint firstItem="TpL-v7-9o5" firstAttribute="leading" secondItem="2xD-6S-GEh" secondAttribute="leading" id="HlV-Lx-pPt"/>
+                                    <constraint firstAttribute="bottom" secondItem="TpL-v7-9o5" secondAttribute="bottom" id="I1j-Nc-4WQ"/>
+                                    <constraint firstItem="6Ty-tF-lEy" firstAttribute="leading" secondItem="2xD-6S-GEh" secondAttribute="leading" id="JTz-jB-ieG"/>
+                                    <constraint firstItem="6Ty-tF-lEy" firstAttribute="top" secondItem="2xD-6S-GEh" secondAttribute="top" id="Yt2-4V-T0G"/>
+                                    <constraint firstAttribute="trailing" secondItem="6Ty-tF-lEy" secondAttribute="trailing" id="zoh-HR-aNl"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vlF-YF-N89"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="2xD-6S-GEh" firstAttribute="top" secondItem="vlF-YF-N89" secondAttribute="top" id="9G5-7t-6d4"/>
+                            <constraint firstItem="MSu-BL-vfY" firstAttribute="leading" secondItem="2xD-6S-GEh" secondAttribute="leading" id="9ug-nR-nWi"/>
+                            <constraint firstItem="2xD-6S-GEh" firstAttribute="trailing" secondItem="vlF-YF-N89" secondAttribute="trailing" id="A1d-6e-98U"/>
+                            <constraint firstItem="MSu-BL-vfY" firstAttribute="top" secondItem="2xD-6S-GEh" secondAttribute="bottom" id="En4-9a-05b"/>
+                            <constraint firstItem="2xD-6S-GEh" firstAttribute="leading" secondItem="vlF-YF-N89" secondAttribute="leading" id="b4m-QX-7yn"/>
+                            <constraint firstItem="MSu-BL-vfY" firstAttribute="trailing" secondItem="2xD-6S-GEh" secondAttribute="trailing" id="ovA-oC-Fgv"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="contentScrollView" destination="MSu-BL-vfY" id="WaU-Ab-hZC"/>
+                        <outlet property="contentStackView" destination="fh2-Pi-nQL" id="wwb-TN-Sol"/>
+                        <outlet property="selectIndicatorView" destination="TpL-v7-9o5" id="7tG-kO-y6K"/>
+                        <outlet property="titleButtonStackView" destination="6Ty-tF-lEy" id="qIg-7Y-xm9"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1aw-mI-l1O" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="135" y="2054"/>
+        </scene>
     </scenes>
     <resources>
         <image name="BUDI" width="50" height="16.5"/>

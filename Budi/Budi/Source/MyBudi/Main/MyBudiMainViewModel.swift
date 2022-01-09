@@ -10,7 +10,7 @@ import Foundation
 import Moya
 
 class MyBudiMainViewModel: ViewModel {
-    
+
     struct Action {
         let fetch = PassthroughSubject<Void, Never>()
         let refresh = PassthroughSubject<Void, Never>()
@@ -22,13 +22,15 @@ class MyBudiMainViewModel: ViewModel {
         let loginStatusData = CurrentValueSubject<LoginUserDetail?, Never>(nil)
         let likedData = CurrentValueSubject<MyLikePost?, Never>(nil)
         let projectData = CurrentValueSubject<MyBudiProject?, Never>(nil)
+        let pageData = CurrentValueSubject<PageData, Never>(PageData())
     }
-    
+
     let action = Action()
     let state = State()
+    var title: String { "" }
     private var cancellables = Set<AnyCancellable>()
     private let provider = MoyaProvider<BudiTarget>()
-    
+
     init() {
         action.fetch
             .sink(receiveValue: { _ in
@@ -105,5 +107,41 @@ class MyBudiMainViewModel: ViewModel {
                     .store(in: &self.cancellables)
             }
             .store(in: &cancellables)
+    }
+}
+
+final class AppliedProjectViewModel: MyBudiMainViewModel {
+
+    override var title: String { "지원한" }
+    private let provider = MoyaProvider<BudiTarget>()
+    private var cancellables = Set<AnyCancellable>()
+
+    override init() {
+        super.init()
+
+    }
+}
+
+final class ParticipatedProjectViewModel: MyBudiMainViewModel {
+
+    override var title: String { "참여중" }
+    private let provider = MoyaProvider<BudiTarget>()
+    private var cancellables = Set<AnyCancellable>()
+
+    override init() {
+        super.init()
+
+    }
+}
+
+final class DoneProjectViewModel: MyBudiMainViewModel {
+
+    override var title: String { "완료" }
+    private let provider = MoyaProvider<BudiTarget>()
+    private var cancellables = Set<AnyCancellable>()
+
+    override init() {
+        super.init()
+
     }
 }

@@ -33,10 +33,23 @@ extension MyBudiCoordinator {
     }
 
     func showLevelViewController(viewModel: MyBudiMainViewModel) {
-        let viewController: MyBudiLevelViewController = storyboard.instantiateViewController(identifier: MyBudiLevelViewController.identifier) { [weak self] coder -> MyBudiLevelViewController? in
+        let viewController: MyBudiLevelViewController = storyboard.instantiateViewController(identifier: MyBudiLevelViewController.identifier) { coder -> MyBudiLevelViewController? in
             return MyBudiLevelViewController(coder: coder, viewModel: viewModel)
         }
         viewController.navigationItem.title = "버디 레벨"
+        viewController.coordinator = self
+        navigationController?.pushViewController(viewController, animated: true)
+    }
+
+    func showProjectDetailVeiwController(viewModel: MyBudiMainViewModel) {
+        let viewController: MyBudiProjectDetailViewController = storyboard.instantiateViewController(
+            identifier: MyBudiProjectDetailViewController.identifier) { coder -> MyBudiProjectDetailViewController? in
+                let appliedVC = MyBudiContentViewController(viewModel: viewModel)
+                let participatedVC = MyBudiContentViewController(viewModel: viewModel)
+                let doneVC = MyBudiContentViewController(viewModel: viewModel)
+
+                return MyBudiProjectDetailViewController(coder: coder, contentViewControllers: [appliedVC, participatedVC, doneVC])
+            }
         viewController.coordinator = self
         navigationController?.pushViewController(viewController, animated: true)
     }

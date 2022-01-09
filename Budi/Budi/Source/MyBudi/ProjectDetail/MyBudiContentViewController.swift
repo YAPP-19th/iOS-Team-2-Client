@@ -18,8 +18,8 @@ class MyBudiContentViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         view.backgroundColor = .clear
+        configureCollectionView()
     }
 
     init(viewModel: MyBudiMainViewModel) {
@@ -77,6 +77,11 @@ extension MyBudiContentViewController: UICollectionViewDataSource {
         return cell
     }
 
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if self.collectionView.contentOffset.y > self.collectionView.contentSize.height - (self.collectionView.bounds.height + 100) {
+            
+        }
+    }
 }
 
 extension MyBudiContentViewController: UICollectionViewDelegateFlowLayout {

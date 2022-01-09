@@ -23,6 +23,11 @@ class MyBudiProjectDetailViewController: UIViewController {
     @IBOutlet weak var indicatorViewWidthConstraint: NSLayoutConstraint!
     @IBOutlet weak var indicatorViewLeadingConstraint: NSLayoutConstraint!
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tabBarController?.tabBar.isHidden = true
+    }
+
     init?(coder: NSCoder, contentViewControllers: [MyBudiContentViewController]) {
         self.contentViewControllers = contentViewControllers
         if contentViewControllers.isEmpty {

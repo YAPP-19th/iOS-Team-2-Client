@@ -11,6 +11,7 @@ struct LoginUserDetail: Codable {
     let id: Int
     let imageUrl: String?
     let nickName: String
+    let description: String
     let level: String
     let positions: [String]
     let likeCount: Int

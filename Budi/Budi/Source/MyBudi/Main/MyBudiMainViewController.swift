@@ -120,7 +120,7 @@ extension MyBudiMainViewController: UICollectionViewDataSource, UICollectionView
 
         case 0: guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MyBudiProfileCell.identifier, for: indexPath) as? MyBudiProfileCell else { return defaultCell }
 
-            cell.setUserData(nickName: data?.nickName ?? "로딩중", position: data?.positions[0] ?? "로딩중", description: "임시소개글")
+            cell.setUserData(nickName: data?.nickName ?? "로딩중", position: data?.positions[0] ?? "로딩중", description: data?.description ?? "임시소개글")
             cell.editButton.tapPublisher
                 .receive(on: DispatchQueue.main)
                 .sink { [weak self] _ in

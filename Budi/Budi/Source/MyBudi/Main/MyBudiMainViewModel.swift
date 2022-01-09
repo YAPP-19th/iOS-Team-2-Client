@@ -59,6 +59,7 @@ class MyBudiMainViewModel: ViewModel {
                             let user = LoginUserDetail(id: post.id,
                                                        imageUrl: post.imageUrl,
                                                        nickName: post.nickName,
+                                                       description: post.description,
                                                        level: post.level,
                                                        positions: post.positions,
                                                        likeCount: post.likeCount,

@@ -29,6 +29,7 @@ final class MyBudiMainViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        print("일루는 와?")
         self.viewModel.action.loadProjectStatus.send(())
         tabBarController?.tabBar.isHidden = false
         loginStatusCheck()
@@ -39,6 +40,7 @@ final class MyBudiMainViewController: UIViewController {
         configureNavigationBar()
         configureCollectionView()
         setPublisher()
+        print("여기냐?")
         self.viewModel.action.LoginStatusCheck.send(())
 
         bindViewModel()
@@ -89,7 +91,6 @@ final class MyBudiMainViewController: UIViewController {
         loginButton.tapPublisher
             .sink { [weak self] _ in
                 guard let self = self else { return }
-                UserDefaults.standard.set(true, forKey: "isSwitch")
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 let loginSelectViewController = storyboard.instantiateViewController(identifier: "LoginSelectViewController")
                 let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate

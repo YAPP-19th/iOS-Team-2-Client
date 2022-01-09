@@ -21,6 +21,7 @@ final class HomeDetailViewModel: ViewModel {
         let teamMembers = CurrentValueSubject<[TeamMember], Never>([])
         let recruitingStatuses = CurrentValueSubject<[RecruitingStatus], Never>([])
         let selectedRecruitingStatus = CurrentValueSubject<RecruitingStatus?, Never>(nil)
+        let accessToken = CurrentValueSubject<String, Never>("")
     }
 
     let action = Action()
@@ -54,13 +55,15 @@ final class HomeDetailViewModel: ViewModel {
 
     init(_ postId: Int) {
         self.state.postId.value = postId
-                
+
         action.fetch
             .sink(receiveValue: { [weak self] _ in
                 guard let self = self else { return }
-
-                self.provider
-                    .requestPublisher(.post(accessToken: UserDefaults.standard.string(forKey: "accessToken") ?? "", id: postId))
+                guard var accessToken = UserDefaults.standard.string(forKey: "accessToken") else { return }
+                print(accessToken)
+                if accessToken == "" { accessToken = .testAccessToken }
+                 self.provider
+                    .requestPublisher(.post(accessToken: accessToken, id: postId))
                     .map(APIResponse<Post>.self)
                     .map(\.data)
                     .sink(receiveCompletion: { _ in

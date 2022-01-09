@@ -109,8 +109,6 @@ final class SignupViewModel: ViewModel {
             .receive(on: DispatchQueue.global())
             .sink { [weak self] _ in
                 guard let self = self else { return }
-                let loginModel = LoginCheckModel(accessToken: UserDefaults.standard.string(forKey: "accessToken") ?? "")
-
                 self.provider
                     .requestPublisher(.signUpStatusCheck(memberId: UserDefaults.standard.integer(forKey: "memberId")))
                     .map(APIResponse<LoginUserDetail>.self)
@@ -123,27 +121,8 @@ final class SignupViewModel: ViewModel {
                         case .finished:
                             break
                         }
-                        self.state.loginStatusData.send(nil)
                     }, receiveValue: { post in
-                        print("이게 아닌가?",post.id)
-                        print("ㅇㅇㅇ",post.nickName)
-                        print(post)
-                        if post.nickName == "" {
-                            self.state.loginStatusData.send(nil)
-                        } else {
-                            let user = LoginUserDetail(id: post.id,
-                                                       imageUrl: post.imageUrl,
-                                                       nickName: post.nickName,
-                                                       description: post.description,
-                                                       level: post.level,
-                                                       positions: post.positions,
-                                                       likeCount: post.likeCount,
-                                                       projectList: post.projectList,
-                                                       portfolioList: post.portfolioList,
-                                                       isLikedFromCurrentMember: post.isLikedFromCurrentMember
-                            )
-                            self.state.loginStatusData.send(user)
-                        }
+                        self.state.loginStatusData.send(post)
                     })
                     .store(in: &self.cancellables)
 
@@ -395,7 +374,7 @@ final class SignupViewModel: ViewModel {
                     memberAddress: self.state.signUpPersonalInfoData.value.location,
                     nickName: self.state.signUpPersonalInfoData.value.nickName,
                     portfolioLink: uploadPortfolioList,
-                    positionList: self.state.selectPositionData.value ?? [],
+                    positionList: self.state.positionSelectData.value,
                     projectList: uploadProjectList
                 )
                 print("파라미터 ", param)
@@ -409,6 +388,7 @@ final class SignupViewModel: ViewModel {
                         print(error.localizedDescription)
 
                     }, receiveValue: { post in
+                        print("업로드 완료")
                         UserDefaults.standard.set(post.data.memberId, forKey: "memberId")
                         UserDefaults.standard.set(accsessToken, forKey: "accessToken")
                         self.state.userInfoUploadStatus.send(post.message)
@@ -469,6 +449,7 @@ final class SignupViewModel: ViewModel {
                 self.state.budiLoginUserData.send(decodeData.data.accessToken)
                 print("로그인 유저 아이디 :", decodeData.data.userId)
                 print("로그인 고유 토큰 :", decodeData.data.accessToken)
+                print(decodeData.data.accessToken)
                 UserDefaults.standard.set(decodeData.data.memberId, forKey: "memberId")
                 UserDefaults.standard.set(decodeData.data.accessToken, forKey: "accessToken")
                 print("저장된 엑세스 토큰", UserDefaults.standard.string(forKey: "accessToken"))

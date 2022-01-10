@@ -17,8 +17,24 @@ class MyBudiEditViewModel: ViewModel {
     }
 
     struct State {
+        let mySectionData = CurrentValueSubject<[HistorySectionModel], Never>(
+            [
+                HistorySectionModel.init(
+                    type: .project,
+                    sectionTitle: ModalControl.project.stringValue ,
+                    items: [
+                        Item(itemInfo: ItemInfo(isInclude: false, buttonTitle: "프로젝트 이력을 추가해보세요"),
+                             description: "", endDate: "", name: "", nowWork: false, startDate: "", portfolioLink: "")]),
+
+                HistorySectionModel.init(
+                    type: .portfolio,
+                    sectionTitle: ModalControl.portfolio.stringValue ,
+                    items: [
+                        Item(itemInfo: ItemInfo(isInclude: false, buttonTitle: "포트폴리오를 추가해보세요"),
+                             description: "", endDate: "", name: "", nowWork: false, startDate: "", portfolioLink: "")])
+            ])
     }
-    
+
     let action = Action()
     let state = State()
     private var cancellables = Set<AnyCancellable>()

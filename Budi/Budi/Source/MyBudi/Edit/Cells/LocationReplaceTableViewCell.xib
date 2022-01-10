@@ -24,7 +24,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="활동지역" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jCU-Fb-r7H">
-                        <rect key="frame" x="8" y="16" width="48.5" height="17"/>
+                        <rect key="frame" x="16" y="16" width="48.5" height="17"/>
                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -70,7 +70,7 @@
                     <constraint firstItem="gry-dR-8wz" firstAttribute="top" secondItem="yEt-5g-y2m" secondAttribute="bottom" constant="8" id="ge0-Bm-Eak"/>
                     <constraint firstItem="FxT-Va-Dqg" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="hPj-m5-whX"/>
                     <constraint firstItem="yEt-5g-y2m" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="l7F-BD-O8b"/>
-                    <constraint firstItem="jCU-Fb-r7H" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="ss3-Jx-1nx"/>
+                    <constraint firstItem="jCU-Fb-r7H" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="ss3-Jx-1nx"/>
                     <constraint firstItem="yEt-5g-y2m" firstAttribute="top" secondItem="jCU-Fb-r7H" secondAttribute="bottom" constant="16" id="uGh-N8-Ha7"/>
                 </constraints>
             </tableViewCellContentView>

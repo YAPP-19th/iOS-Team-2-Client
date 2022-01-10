@@ -26,11 +26,11 @@
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                     <view key="tableHeaderView" contentMode="scaleToFill" id="bT9-zq-9ho">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="228"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="178"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WlS-E2-VhN">
-                                <rect key="frame" x="19.5" y="8" width="375" height="200"/>
+                                <rect key="frame" x="19.5" y="8" width="375" height="150"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eTX-aD-ITv">
                                         <rect key="frame" x="145" y="20" width="84" height="84"/>
@@ -61,7 +61,7 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="375" id="3Cq-Ao-WhP"/>
-                                    <constraint firstAttribute="height" constant="200" id="LnQ-DV-YZY"/>
+                                    <constraint firstAttribute="height" constant="150" id="LnQ-DV-YZY"/>
                                     <constraint firstItem="eTX-aD-ITv" firstAttribute="leading" secondItem="WlS-E2-VhN" secondAttribute="leading" constant="145" id="ZOd-v2-F1O"/>
                                     <constraint firstItem="eTX-aD-ITv" firstAttribute="top" secondItem="WlS-E2-VhN" secondAttribute="top" constant="20" id="ZTT-bH-Yfy"/>
                                     <constraint firstItem="KXH-7h-0vc" firstAttribute="top" secondItem="eTX-aD-ITv" secondAttribute="bottom" constant="12" id="dZN-Sx-ruA"/>

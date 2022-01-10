@@ -9,8 +9,9 @@ import UIKit
 
 class NormalTextFieldTableViewCell: UITableViewCell {
 
-    static let cellId = "NormalTableViewCell"
+    static let cellId = "NormalTextFieldTableViewCell"
 
+    @IBOutlet weak var normalTitleLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -21,5 +22,8 @@ class NormalTextFieldTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-    
+
+    func configureLabel(text: String) {
+        normalTitleLabel.text = text
+    }
 }

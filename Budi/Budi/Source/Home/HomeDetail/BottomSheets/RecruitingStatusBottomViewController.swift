@@ -124,12 +124,15 @@ private extension RecruitingStatusBottomViewController {
     
     func showBottomView() {
         let cellHeight: CGFloat = 64
-        let cellCount: Int = self.viewModel.state.recruitingStatuses.value.count
+        var cellCount: Int = self.viewModel.state.recruitingStatuses.value.count
+        if cellCount > 4 {
+            cellCount = 4
+        }
         
         let animator = UIViewPropertyAnimator(duration: 0.25, curve: .linear) { [weak self] in
             guard let self = self else { return }
             self.view.alpha = 1
-            self.bottomViewTopConstraint.constant -= (self.bottomView.bounds.height - cellHeight * CGFloat((4 - cellCount)))
+            self.bottomViewTopConstraint.constant -= (self.bottomView.bounds.height - cellHeight * CGFloat((4-cellCount)))
             self.view.layoutIfNeeded()
         }
         animator.addCompletion { [weak self] _ in
@@ -139,13 +142,10 @@ private extension RecruitingStatusBottomViewController {
     }
     
     func hideBottomView() {
-        let cellHeight: CGFloat = 64
-        let cellCount: Int = self.viewModel.state.recruitingStatuses.value.count
-        
         let animator = UIViewPropertyAnimator(duration: 0.25, curve: .linear) { [weak self] in
             guard let self = self else { return }
             self.view.alpha = 0
-            self.bottomViewTopConstraint.constant += (self.bottomView.bounds.height - cellHeight * CGFloat((4 - cellCount)))
+            self.bottomViewTopConstraint.constant = 0
             self.view.layoutIfNeeded()
         }
         animator.addCompletion { [weak self] _ in

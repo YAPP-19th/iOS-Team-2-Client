@@ -27,6 +27,12 @@ final class HomeWritingNameCell: UICollectionViewCell {
     }
 }
 
+extension HomeWritingNameCell: HomeWritingViewControllerDelegate {
+    func endEdittingTextView() {
+        textField.endEditing(true)
+    }
+}
+
 extension HomeWritingNameCell: UITextFieldDelegate {
     private func configureTextField() {
         textField.delegate = self

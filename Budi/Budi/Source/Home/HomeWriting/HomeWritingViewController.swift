@@ -8,6 +8,10 @@ import UIKit
 import Combine
 import CombineCocoa
 
+protocol HomeWritingViewControllerDelegate: AnyObject {
+    func endEdittingTextView()
+}
+
 final class HomeWritingViewController: UIViewController {
 
     @IBOutlet private weak var collectionView: UICollectionView!
@@ -20,6 +24,9 @@ final class HomeWritingViewController: UIViewController {
     weak var coordinator: HomeCoordinator?
     private let viewModel: HomeWritingViewModel
     private var cancellables = Set<AnyCancellable>()
+    
+    weak var descriptionCelldelegate: HomeWritingViewControllerDelegate?
+    weak var nameCellDelegate: HomeWritingViewControllerDelegate?
     
     init?(coder: NSCoder, viewModel: HomeWritingViewModel) {
         self.viewModel = viewModel
@@ -194,7 +201,7 @@ extension HomeWritingViewController: HomeLocationSearchViewControllerDelegate {
     }
 }
 
-extension HomeWritingViewController: HomeWritingMembersBottomViewControllerDelegate {
+extension HomeWritingViewController: ProjectMembersBottomViewControllerDelegate {
     func getRecruitingPositions(_ recruitingPositions: [RecruitingPosition]) {
         viewModel.state.recruitingPositions.value = recruitingPositions
         collectionView.reloadData()
@@ -215,6 +222,11 @@ extension HomeWritingViewController: UICollectionViewDataSource, UICollectionVie
         HomeWritingCellType.configureCollectionView(self, collectionView)
     }
     
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        descriptionCelldelegate?.endEdittingTextView()
+        nameCellDelegate?.endEdittingTextView()
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         HomeWritingCellType.numberOfItemsInSection
     }
@@ -225,6 +237,11 @@ extension HomeWritingViewController: UICollectionViewDataSource, UICollectionVie
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         HomeWritingCellType.minimumLineSpacingForSection
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        descriptionCelldelegate?.endEdittingTextView()
+        nameCellDelegate?.endEdittingTextView()
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -254,6 +271,7 @@ extension HomeWritingViewController: UICollectionViewDataSource, UICollectionVie
             
         case 1: guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeWritingNameCell.identifier, for: indexPath) as? HomeWritingNameCell else { return cell }
             cell.delegate = self
+            self.nameCellDelegate = cell as HomeWritingViewControllerDelegate
             return cell
             
         case 2: guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeWritingPartCell.identifier, for: indexPath) as? HomeWritingPartCell else { return cell }
@@ -295,12 +313,13 @@ extension HomeWritingViewController: UICollectionViewDataSource, UICollectionVie
                 .receive(on: DispatchQueue.main)
                 .sink { [weak self] _ in
                     guard let self = self else { return }
-                    self.coordinator?.showWritingMembersBottomViewController(self, self.viewModel)
+                    self.coordinator?.showProjectMembersBottomViewController(self, self.viewModel)
                 }.store(in: &cell.cancellables)
             return cell
             
         case 7: guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeWritingDescriptionCell.identifier, for: indexPath) as? HomeWritingDescriptionCell else { return cell }
             cell.delegate = self
+            self.descriptionCelldelegate = cell as HomeWritingViewControllerDelegate
             return cell
             
         default: break

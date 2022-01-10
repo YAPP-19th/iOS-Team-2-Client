@@ -23,7 +23,6 @@ final class DatePickerBottomViewController: UIViewController {
     @IBOutlet private weak var bottomView: UIView!
     @IBOutlet private weak var bottomViewTopConstraint: NSLayoutConstraint!
     
-    private var isBottomViewShown: Bool = false
     private var isDateSelected: Bool = false
     private var date: Date? {
         didSet {
@@ -100,9 +99,6 @@ private extension DatePickerBottomViewController {
             self.bottomViewTopConstraint.constant -= self.bottomView.bounds.height - 95
             self.view.layoutIfNeeded()
         }
-        animator.addCompletion { [weak self] _ in
-            self?.isBottomViewShown = true
-        }
         animator.startAnimation()
     }
     
@@ -114,7 +110,6 @@ private extension DatePickerBottomViewController {
         }
         animator.addCompletion { [weak self] _ in
             self?.dismiss(animated: false, completion: nil)
-            self?.isBottomViewShown = false
         }
         animator.startAnimation()
     }

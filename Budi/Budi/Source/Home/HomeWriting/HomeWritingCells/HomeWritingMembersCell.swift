@@ -49,7 +49,19 @@ extension HomeWritingMembersCell: UICollectionViewDataSource, UICollectionViewDe
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeWritingMembersUnitCell.identifier, for: indexPath) as? HomeWritingMembersUnitCell else { return UICollectionViewCell() }
         // MARK: - colorCode 받아 적용
-        cell.configureUI(position: recruitingPositions[indexPath.row], colorCode: 1)
+        let position = recruitingPositions[indexPath.row]
+        let positionName = position.positionName
+
+        var colorCode = Position.productManager.rawValue
+        if positionName.contains("개발") {
+            colorCode = Position.developer.rawValue
+        } else if positionName.contains("디자인") {
+            colorCode = Position.designer.rawValue
+        } else if positionName.contains("기획") {
+            colorCode = Position.productManager.rawValue
+        }
+                    
+        cell.configureUI(position: position, colorCode: colorCode)
         return cell
     }
 

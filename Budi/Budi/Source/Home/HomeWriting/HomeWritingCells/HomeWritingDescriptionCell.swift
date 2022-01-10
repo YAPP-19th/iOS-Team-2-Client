@@ -28,6 +28,12 @@ final class HomeWritingDescriptionCell: UICollectionViewCell {
     }
 }
 
+extension HomeWritingDescriptionCell: HomeWritingViewControllerDelegate {
+    func endEdittingTextView() {
+        textView.endEditing(true)
+    }
+}
+
 extension HomeWritingDescriptionCell: UITextViewDelegate {
     private func configureTextView() {
         textView.delegate = self

@@ -8,16 +8,16 @@
 import UIKit
 
 extension CALayer {
-    func addBorderTop(color: UIColor = UIColor(named: "LightGray") ?? .systemGroupedBackground, borderWidth: CGFloat = 0.5) {
+    func addBorderTop(color: UIColor = UIColor.border, borderWidth: CGFloat = 0.5) {
         let border = CALayer()
-        border.frame = CGRect.init(x: 0, y: 0, width: frame.width, height: borderWidth)
+        border.frame = CGRect.init(x: 0, y: 0, width: bounds.width, height: borderWidth)
         border.backgroundColor = color.cgColor
         addSublayer(border)
     }
     
-    func addBorderBottom(color: UIColor = UIColor(named: "LightGray") ?? .systemGroupedBackground, borderWidth: CGFloat = 0.5) {
+    func addBorderBottom(color: UIColor = UIColor.border, borderWidth: CGFloat = 0.5) {
         let border = CALayer()
-        border.frame = CGRect.init(x: 0, y: frame.height-0.5, width: frame.width, height: borderWidth)
+        border.frame = CGRect.init(x: 0, y: frame.height-0.5, width: bounds.width, height: borderWidth)
         border.backgroundColor = color.cgColor
         addSublayer(border)
     }

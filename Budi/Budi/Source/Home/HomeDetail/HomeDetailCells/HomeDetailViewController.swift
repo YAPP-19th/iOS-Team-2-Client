@@ -79,7 +79,7 @@ private extension HomeDetailViewController {
                     sceneDelegate?.moveLoginController(loginSelectViewController, animated: true)
                 }
                 
-                guard let self = self, let isAlreadyApplied = self.viewModel.state.post.value?.isAlreadyApplied else { return }
+                guard let isAlreadyApplied = self.viewModel.state.post.value?.isAlreadyApplied else { return }
                 
                 if isAlreadyApplied {
                     let errorAlertVC = ErrorAlertViewController(ErrorMessage.isAlreadyApplied)

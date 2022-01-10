@@ -52,9 +52,7 @@ final class ChatManager {
             if let error = error { print("error: \(error.localizedDescription)") }
 
             guard let data = snapshot?.data() else { return }
-            print("messages data: \(data)")
-            
-            print("type: \(type(of: message))")
+
         }
         
         return messages

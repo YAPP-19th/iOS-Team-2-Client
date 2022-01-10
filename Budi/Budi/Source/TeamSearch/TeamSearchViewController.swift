@@ -82,12 +82,13 @@ extension TeamSearchViewController: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TeamSearchCell.identifier, for: indexPath) as? TeamSearchCell else { return UICollectionViewCell() }
-        cell.updateUI(viewModel.state.sections.value[indexPath.section])
+        let item = viewModel.state.sections.value[indexPath.section]
+        cell.updateUI(item)
         cell.headerStackView.gesturePublisher(.tap())
             .sink { [weak self] _ in
-                let vc = TeamSearchFilterViewController()
+                let vc = TeamSearchFilterViewController(viewModel: .init(position: item.position))
                 let imageView = UIImageView()
-                imageView.image = self?.viewModel.state.sections.value[indexPath.section].position.teamSearchCharacter
+                imageView.image = item.position.teamSearchCharacter
                 vc.navigationItem.titleView = imageView
                 self?.navigationController?.pushViewController(vc, animated: true)
             }.store(in: &cell.cancellables)

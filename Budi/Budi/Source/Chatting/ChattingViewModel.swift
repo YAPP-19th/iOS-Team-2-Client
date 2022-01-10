@@ -55,12 +55,12 @@ private extension ChattingViewModel {
             self?.state.recipient.value = user
         }
     }
-    
+
     func fetchAllMessages() {
         let userA = manager.userA
         let userB = manager.userB
         guard let uidA = userA.id, let uidB = userB.id else { return }
-        
+
         manager.fetchMessages(uidA, uidB) { [weak self] messages in
             self?.state.messages.value = messages
         }
@@ -69,21 +69,21 @@ private extension ChattingViewModel {
             self?.state.recentMessages.value = messages
         }
     }
-    
+
     func registerUserInfo() {
         let userA = manager.userA
         let userB = manager.userB
         manager.registerUserInfo(userA)
         manager.registerUserInfo(userB)
     }
-    
+
     func registerMessage() {
         let userA = manager.userA
         let userB = manager.userB
         guard let uidA = userA.id, let uidB = userB.id else { return }
-        
+
         let message = ChatMessage(text: "테스트 메세지입니다", fromUserId: uidA, toUserId: uidB)
-  
+
         manager.registerMessage(message)
     }
 }
@@ -94,7 +94,7 @@ private extension ChattingViewModel {
         manager.createUserWithEmail("A@gmail.com", "123456")
         manager.createUserWithEmail("B@gmail.com", "123456")
     }
-    
+
     func loginWithEmail() {
         manager.loginWithEmail("A@gmail.com", "123456")
     }

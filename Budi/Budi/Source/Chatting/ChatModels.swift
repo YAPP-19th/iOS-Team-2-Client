@@ -27,6 +27,7 @@ struct ChatMessage: Identifiable, Codable {
     let text: String
     let fromUserId: String
     let toUserId: String
+
     
 //    이후 프로젝트 수락하기 관련 프로퍼티 추가
 //    let isInvitation: Bool

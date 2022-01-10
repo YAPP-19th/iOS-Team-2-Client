@@ -37,7 +37,7 @@ final class ChatManager {
                          profileImageUrl: "https://budi.s3.ap-northeast-2.amazonaws.com/post_image/default/dating.jpg")
 }
 
-// MARK: - Register Data
+// MARK: - Register
 // 메세지: messages/현재유저id/상대유저id/
 // 최신메세지: messages/현재유저id/recent-messages/상대유저id
 // 유저정보: users/user.id/
@@ -64,7 +64,7 @@ extension ChatManager {
     }
 }
 
-// MARK: - Fetch Data
+// MARK: - Fetch
 extension ChatManager {
     func fetchUser(_ uid: String, _ completion: @escaping (ChatUser) -> Void) {
         FirebaseCollection.users.ref.document(uid).getDocument { snapshot, error in
@@ -91,8 +91,8 @@ extension ChatManager {
             if let error = error { print("error: \(error.localizedDescription)") }
   
             guard let documents = snapshot?.documents else { return }
-            let messages = documents.compactMap { try? $0.data(as: ChatMessage.self) }
-            completion(messages)
+            let recentMessages = documents.compactMap { try? $0.data(as: ChatMessage.self) }
+            completion(recentMessages)
         }
     }
 }

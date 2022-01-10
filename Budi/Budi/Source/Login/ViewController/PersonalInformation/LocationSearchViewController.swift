@@ -137,7 +137,7 @@ class LocationSearchViewController: UIViewController {
         super.viewWillAppear(animated)
         tabBarController?.tabBar.isHidden = true
     }
-
+  
     private func configureTableView() {
         searchTableView.register(SearchTableViewCell.self, forCellReuseIdentifier: SearchTableViewCell.cellId)
         searchTableView.delegate = self

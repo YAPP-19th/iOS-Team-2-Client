@@ -15,5 +15,5 @@ struct LoginUserInfo: Decodable {
     let nickname: String?
     let email: String?
     let name: String?
-    let id: String
+    var id: String
 }

@@ -14,7 +14,5 @@ final class PositionLabelCell: UICollectionViewCell {
         super.awakeFromNib()
         layer.cornerRadius = 25 / 2
         backgroundColor = .systemBlue
-        // Initialization code
     }
-
 }

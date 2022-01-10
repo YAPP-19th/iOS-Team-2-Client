@@ -58,9 +58,9 @@ extension TeamSearchCell: UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TeamSearchDetailCell.identifier, for: indexPath) as? TeamSearchDetailCell,  let member = self.section?.items[indexPath.item] else { return UICollectionViewCell() }
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TeamSearchDetailCell.identifier, for: indexPath) as? TeamSearchDetailCell, let member = self.section?.items[indexPath.item] else { return UICollectionViewCell() }
 
-//        cell.updateUI(member)
+        cell.updateUI(member, position: section?.position)
         return cell
     }
 }

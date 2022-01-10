@@ -19,10 +19,6 @@ class PersonalInformationViewController: UIViewController {
         scrollView.updateContentView()
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-
     private let introduceView = IntroduceView()
     private let locationSelectView = LocationSelectView()
     private let nickNameView = NickNameView()

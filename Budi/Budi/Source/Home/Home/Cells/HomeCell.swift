@@ -43,19 +43,9 @@ extension HomeCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PositionLabelCell.identifier, for: indexPath) as? PositionLabelCell else { return UICollectionViewCell() }
         if let post = post {
-            switch post.positions[indexPath.item].colorCode {
-            case 1:
-                cell.backgroundColor = .init(hexString: "#E7F1FB")
-                cell.label.textColor = .init(hexString: "#3382E0")
-            case 2:
-                cell.backgroundColor = .init(hexString: "#E8F8F5")
-                cell.label.textColor = .init(hexString: "#40C1A2")
-            case 3:
-                cell.backgroundColor = .init(hexString: "#FEEDED")
-                cell.label.textColor = .init(hexString: "#E96262")
-            default:
-                break
-            }
+
+            cell.backgroundColor = Position(rawValue: post.positions[indexPath.item].colorCode)?.labelBackgroundColor
+            cell.label.textColor = Position(rawValue: post.positions[indexPath.item].colorCode)?.labelTextColor
             cell.label.text = post.positions[indexPath.item].position
         }
 

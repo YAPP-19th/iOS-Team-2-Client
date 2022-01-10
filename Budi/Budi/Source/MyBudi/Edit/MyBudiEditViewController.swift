@@ -31,6 +31,8 @@ final class MyBudiEditViewController: UIViewController {
         configureTableView()
         print(viewModel.state.mySectionData.value)
         print(viewModel.state.mySectionData.value[1].items.count)
+        print("유저 정보", viewModel.state.loginUserData.value)
+        print(UserDefaults.standard.string(forKey: "accessToken"))
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -133,16 +135,19 @@ extension MyBudiEditViewController: UITableViewDelegate, UITableViewDataSource {
 
                 if indexPath.row == 0 {
                     cell.configureLabel(text: "닉네임")
+                    cell.configureText(text: self.viewModel.state.loginUserData.value?.nickName ?? "")
                 } else {
                     cell.configureLabel(text: "한줄소개")
+                    cell.configureText(text: self.viewModel.state.loginUserData.value?.description ?? "")
                 }
                 return cell
             } else if indexPath.row == 1 {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: LocationReplaceTableViewCell.cellId, for: indexPath) as? LocationReplaceTableViewCell else { return UITableViewCell() }
-
+                cell.configureLocation(location: "충남 당진시")
                 return cell
             } else {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: PositionTableViewCell.cellId, for: indexPath) as? PositionTableViewCell else { return UITableViewCell() }
+                cell.configurePosition(position: viewModel.state.loginUserData.value?.positions ?? [])
                 return cell
             }
         } else if indexPath.section == 1 {
@@ -152,7 +157,7 @@ extension MyBudiEditViewController: UITableViewDelegate, UITableViewDataSource {
         } else {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: PortfolioURLTableViewCell.cellId, for: indexPath) as? PortfolioURLTableViewCell else { return UITableViewCell() }
 
-            cell.configureButtonLable(text: viewModel.state.mySectionData.value[indexPath.section-1].items[indexPath.row].itemInfo.buttonTitle)
+            cell.configureButtonLabel(text: viewModel.state.mySectionData.value[indexPath.section-1].items[indexPath.row].itemInfo.buttonTitle)
             return cell
         }
 

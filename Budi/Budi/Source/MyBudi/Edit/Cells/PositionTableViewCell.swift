@@ -11,6 +11,7 @@ class PositionTableViewCell: UITableViewCell {
 
     static let cellId = "PositionTableViewCell"
 
+    @IBOutlet weak var positionTextField: UITextField!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -21,5 +22,14 @@ class PositionTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-    
+
+
+    func configurePosition(position: [String]) {
+        var positionText = ""
+        for position in position {
+            positionText += "#\(position) "
+        }
+        positionTextField.text = positionText
+    }
 }
+

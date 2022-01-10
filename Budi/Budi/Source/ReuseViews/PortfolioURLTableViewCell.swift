@@ -50,7 +50,7 @@ class PortfolioURLTableViewCell: UITableViewCell {
         portfolioUrlLabel.text = url
     }
 
-    func configureButtonLable(text: String) {
+    func configureButtonLabel(text: String) {
         addButton.setTitle(text, for: .normal)
     }
 }

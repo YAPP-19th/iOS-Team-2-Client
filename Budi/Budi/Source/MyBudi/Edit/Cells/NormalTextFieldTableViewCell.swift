@@ -11,6 +11,7 @@ class NormalTextFieldTableViewCell: UITableViewCell {
 
     static let cellId = "NormalTextFieldTableViewCell"
 
+    @IBOutlet weak var normalTextField: UITextField!
     @IBOutlet weak var normalTitleLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -21,6 +22,10 @@ class NormalTextFieldTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+
+    func configureText(text: String) {
+        normalTextField.text = text
     }
 
     func configureLabel(text: String) {

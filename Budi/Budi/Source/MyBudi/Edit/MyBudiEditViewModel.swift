@@ -17,6 +17,7 @@ class MyBudiEditViewModel: ViewModel {
     }
 
     struct State {
+        let loginUserData = CurrentValueSubject<LoginUserDetail?, Never>(nil)
         let mySectionData = CurrentValueSubject<[HistorySectionModel], Never>(
             [
                 HistorySectionModel.init(

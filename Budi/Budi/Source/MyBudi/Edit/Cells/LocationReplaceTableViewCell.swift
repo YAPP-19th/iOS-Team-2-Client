@@ -23,5 +23,9 @@ class LocationReplaceTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-    
+
+    func configureLocation(location: String) {
+        locationTextField.text = location
+    }
+
 }

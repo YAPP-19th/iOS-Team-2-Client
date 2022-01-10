@@ -57,6 +57,13 @@ extension Date {
             return "방금 전"
         }
     }
+    
+    func convertStringahhmm() -> String {
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "ko")
+        formatter.dateFormat = "a: hh:mm"
+        return formatter.string(from: self)
+    }
 
     func fullDistance(from date: Date, resultIn component: Calendar.Component, calendar: Calendar = .current) -> Int? {
         calendar.dateComponents([component], from: self, to: date).value(for: component)

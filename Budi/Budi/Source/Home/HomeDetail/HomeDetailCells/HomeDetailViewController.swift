@@ -71,14 +71,20 @@ private extension HomeDetailViewController {
         submitButton.tapPublisher
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
-                guard let self = self else { return }
+                guard let self = self, let isAlreadyApplied = self.viewModel.state.post.value?.isAlreadyApplied else { return }
                 if UserDefaults.standard.string(forKey: "accessToken") == "" {
                     let storyboard = UIStoryboard(name: "Main", bundle: nil)
                     let loginSelectViewController = storyboard.instantiateViewController(identifier: "LoginSelectViewController")
                     let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate
                     sceneDelegate?.moveLoginController(loginSelectViewController, animated: true)
                 } else {
-                    self.coordinator?.showRecruitingStatusBottomViewController(self, self.viewModel)
+                    if isAlreadyApplied {
+                        let errorAlertVC = ErrorAlertViewController(ErrorMessage.isAlreadyApplied)
+                        errorAlertVC.modalPresentationStyle = .overCurrentContext
+                        self.present(errorAlertVC, animated: false, completion: nil)
+                    } else {
+                        self.coordinator?.showRecruitingStatusBottomViewController(self, self.viewModel)
+                    }
                 }
             }.store(in: &cancellables)
         
@@ -117,8 +123,8 @@ private extension HomeDetailViewController {
 
 private extension HomeDetailViewController {
     func configureNavigationBar() {
-        let shareButton = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareButtonTapped))
-        navigationItem.rightBarButtonItem = shareButton
+//        let shareButton = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareButtonTapped))
+//        navigationItem.rightBarButtonItem = shareButton
         navigationController?.navigationBar.tintColor = .systemGray
     }
 
@@ -136,11 +142,9 @@ private extension HomeDetailViewController {
     func configureSubmitButton() {
         guard let isAlreadyApplied = viewModel.state.post.value?.isAlreadyApplied else { return }
         if isAlreadyApplied {
-            submitButton.isEnabled = false
             submitButton.setTitle("지원완료", for: .normal)
             submitButton.backgroundColor = .textDisabled
         } else {
-            submitButton.isEnabled = true
             submitButton.setTitle("지원하기", for: .normal)
             submitButton.backgroundColor = .primary
         }

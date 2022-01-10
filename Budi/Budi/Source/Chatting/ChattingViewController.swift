@@ -43,7 +43,7 @@ final class ChattingViewController: UIViewController {
 
 private extension ChattingViewController {
     func bindViewModel() {
-        viewModel.state.chatMessages
+        viewModel.state.recentMessages
             .receive(on: DispatchQueue.main)
             .sink(receiveValue: { _ in
             }).store(in: &cancellables)

@@ -27,61 +27,26 @@ final class ChatManager {
         }
     }
     
-    // MARK: - TestUser -> 수정됨
-    let testCurrentUser = ChatUser(id: "P8ZxC4xsOceXpaZG6fA1xEG9YDP2",
-                                   username: "현재 유저",
+    let userA = ChatUser(id: "Yio3PM96OuRZtdhCcNJILzIQwbi1",
+                                   username: "유저A",
                                    position: "개발자",
                                    profileImageUrl: "https://budi.s3.ap-northeast-2.amazonaws.com/post_image/default/education.jpg")
-    let testOtherUser = ChatUser(id: "9AZkIT5MloajqzmubMo7aZ5Z3kj1",
-                                 username: "받는 사람",
+    let userB = ChatUser(id: "3vUIvRoNGjVmBeX1Xr6DEawKf4U2",
+                                 username: "유저B",
                                  position: "디자이너",
                                  profileImageUrl: "https://budi.s3.ap-northeast-2.amazonaws.com/post_image/default/dating.jpg")
-    
-    // MARK: - Fetch
-    func fetchUser(_ uid: String) {
-        FirebaseCollection.users.ref.document(uid).getDocument { snapshot, error in
-            if let error = error { print("error: \(error.localizedDescription)") }
+}
 
-            guard let data = snapshot?.data() else { return }
-            print("user: \(data)")
-        }
-    }
-    
-    func fetchMessages(_ fromUid: String, _ toUid: String) -> [ChatMessage] {
-        let messages: [ChatMessage] = []
-
-        FirebaseCollection.messages.ref.document(fromUid).collection(toUid).getDocuments { snapshot, error in
-            if let error = error { print("error: \(error.localizedDescription)") }
-            
-            guard let documents = snapshot?.documents else { return }
-//            let messages = documents.compactMap { (document) -> ChatMessage? in
-//                return try? document.data(as: ChatMessage.self)
-//            }
-            
-            print("messages: \(documents)")
-        }
-        
-        return messages
-    }
-    
-    func fetchRecentMessages(_ uid: String) -> [ChatMessage] {
-        let recentMessages: [ChatMessage] = []
-        
-        FirebaseCollection.recentMessages(uid: uid).ref.getDocuments { snapshot, error in
-            if let error = error { print("error: \(error.localizedDescription)") }
-            
-            guard let documents = snapshot?.documents else { return }
-            print("recent-messages: \(documents)")
-        }
-        
-        return recentMessages
-    }
-    
-    // MARK: - Register
-    // 메세지: messages/현재유저id/상대유저id/
-    // 최신메세지: messages/현재유저id/recent-messages/상대유저id
+// MARK: - Register Data
+// 메세지: messages/현재유저id/상대유저id/
+// 최신메세지: messages/현재유저id/recent-messages/상대유저id
+// 유저정보: users/user.id/
+extension ChatManager {
     func registerMessage(_ message: ChatMessage) {
-        guard let messageData = message.convertToDictionary else { return }
+        let messageData: [String: Any] = ["timestamp": Timestamp(date: Date()),
+                                          "text": message.text,
+                                          "fromUserId": message.fromUserId,
+                                          "toUserId": message.toUserId]
         
         FirebaseCollection.messages.ref.document(message.fromUserId).collection(message.toUserId).document().setData(messageData)
         FirebaseCollection.messages.ref.document(message.toUserId).collection(message.fromUserId).document().setData(messageData)
@@ -89,22 +54,70 @@ final class ChatManager {
         FirebaseCollection.recentMessages(uid: message.fromUserId).ref.document(message.fromUserId).setData(messageData)
     }
     
-    // 유저정보: users/user.id/
     func registerUserInfo(_ user: ChatUser) {
-//        guard let userData = user.convertToDictionary else { return }
-//     
-//        FirebaseCollection.users.ref.document(user.id).setData(userData) { _ in
-//            print("registered user")
-//        }
+        guard user.id != nil, let uid = user.id, let userData = user.convertToDictionary else { return }
+     
+        FirebaseCollection.users.ref.document(uid).setData(userData) { _ in
+            print("registered user")
+        }
+    }
+}
+
+// MARK: - Fetch Data
+extension ChatManager {
+    func fetchUser(_ uid: String) {
+        FirebaseCollection.users.ref.document(uid).getDocument { snapshot, error in
+            if let error = error { print("error: \(error.localizedDescription)") }
+            guard let data = snapshot?.data() else { return }
+            print("user: \(data)")
+        }
     }
     
-    func createUserWithEmail(_ email: String, _ password: String) {
-        Auth.auth().createUser(withEmail: email, password: password) { result, error in
+    func fetchMessages(_ fromUid: String, _ toUid: String, _ completion: @escaping ([ChatMessage]) -> Void) {
+        FirebaseCollection.messages.ref.document(fromUid).collection(toUid).getDocuments { snapshot, error in
             if let error = error { print("error: \(error.localizedDescription)") }
-                                         
+            
+            guard let documents = snapshot?.documents else { return }
+            let messages = documents.compactMap { try? $0.data(as: ChatMessage.self) }
+            completion(messages)
+        }
+    }
+    
+    // 비탈출 클로저로 반환
+    func fetchRecentMessages(_ uid: String, _ completion: @escaping ([ChatMessage]) -> Void) {
+        FirebaseCollection.recentMessages(uid: uid).ref.getDocuments { snapshot, error in
+            if let error = error { print("error: \(error.localizedDescription)") }
+  
+            guard let documents = snapshot?.documents else { return }
+            let messages = documents.compactMap { try? $0.data(as: ChatMessage.self) }
+            completion(messages)
+        }
+    }
+}
+
+// MARK: - Authentication
+extension ChatManager {
+    func loginWithEmail(_ email: String, _ password: String) {
+        Auth.auth().signIn(withEmail: email, password: password) { result, error in
+            if let error = error { print("error: \(error.localizedDescription)") }
             guard let user = result?.user else { return }
             print("user: \(user)")
         }
     }
     
+    func signOut() {
+        do {
+            try Auth.auth().signOut()
+        } catch let signOutError as NSError {
+            print("error: \(signOutError.localizedDescription)")
+        }
+    }
+    
+    func createUserWithEmail(_ email: String, _ password: String) {
+        Auth.auth().createUser(withEmail: email, password: password) { result, error in
+            if let error = error { print("error: \(error.localizedDescription)") }
+            guard let user = result?.user else { return }
+            print("user: \(user)")
+        }
+    }
 }

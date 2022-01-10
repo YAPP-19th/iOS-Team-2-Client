@@ -70,7 +70,7 @@ private extension ChattingDetailViewController {
     }
     
     func bindViewModel() {
-        viewModel.state.chatMessages
+        viewModel.state.messages
             .receive(on: DispatchQueue.main)
             .sink(receiveValue: { [weak self] _ in
                 guard let self = self else { return }
@@ -208,11 +208,11 @@ extension ChattingDetailViewController: UICollectionViewDelegateFlowLayout, UICo
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        viewModel.state.chatMessages.value.count
+        viewModel.state.messages.value.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let message = viewModel.state.chatMessages.value[indexPath.row]
+        let message = viewModel.state.messages.value[indexPath.row]
         
         let isFromCurrentUser = (message.fromUserId == userId)
         

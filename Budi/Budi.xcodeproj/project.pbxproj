@@ -174,6 +174,12 @@
 		A8CE1193278B1F82008AFEBC /* MyBudiProjectDetailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CE1190278B1F82008AFEBC /* MyBudiProjectDetailCollectionViewCell.swift */; };
 		A8CE1194278B1F82008AFEBC /* MyBudiProjectDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CE1191278B1F82008AFEBC /* MyBudiProjectDetailViewController.swift */; };
 		A8CE1196278B1F91008AFEBC /* MyBudiContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CE1195278B1F90008AFEBC /* MyBudiContentViewController.swift */; };
+		A8E03CCF278C68A40074DE4B /* NormalTextFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E03CCD278C68A40074DE4B /* NormalTextFieldTableViewCell.swift */; };
+		A8E03CD0278C68A40074DE4B /* NormalTextFieldTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A8E03CCE278C68A40074DE4B /* NormalTextFieldTableViewCell.xib */; };
+		A8E03CD3278C693C0074DE4B /* LocationReplaceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E03CD1278C693C0074DE4B /* LocationReplaceTableViewCell.swift */; };
+		A8E03CD4278C693C0074DE4B /* LocationReplaceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A8E03CD2278C693C0074DE4B /* LocationReplaceTableViewCell.xib */; };
+		A8E03CD7278C6B030074DE4B /* PositionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E03CD5278C6B030074DE4B /* PositionTableViewCell.swift */; };
+		A8E03CD8278C6B030074DE4B /* PositionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A8E03CD6278C6B030074DE4B /* PositionTableViewCell.xib */; };
 		B92D54F9274C02EB00D0E851 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = B92D54F8274C02EB00D0E851 /* .swiftlint.yml */; };
 		B92D5505274C03AB00D0E851 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92D5504274C03AA00D0E851 /* Post.swift */; };
 		B94D2D9A277DE9E700DD7FDD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B94D2D99277DE9E700DD7FDD /* GoogleService-Info.plist */; };
@@ -400,6 +406,12 @@
 		A8CE1190278B1F82008AFEBC /* MyBudiProjectDetailCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyBudiProjectDetailCollectionViewCell.swift; sourceTree = "<group>"; };
 		A8CE1191278B1F82008AFEBC /* MyBudiProjectDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyBudiProjectDetailViewController.swift; sourceTree = "<group>"; };
 		A8CE1195278B1F90008AFEBC /* MyBudiContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyBudiContentViewController.swift; sourceTree = "<group>"; };
+		A8E03CCD278C68A40074DE4B /* NormalTextFieldTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NormalTextFieldTableViewCell.swift; sourceTree = "<group>"; };
+		A8E03CCE278C68A40074DE4B /* NormalTextFieldTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NormalTextFieldTableViewCell.xib; sourceTree = "<group>"; };
+		A8E03CD1278C693C0074DE4B /* LocationReplaceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationReplaceTableViewCell.swift; sourceTree = "<group>"; };
+		A8E03CD2278C693C0074DE4B /* LocationReplaceTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LocationReplaceTableViewCell.xib; sourceTree = "<group>"; };
+		A8E03CD5278C6B030074DE4B /* PositionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositionTableViewCell.swift; sourceTree = "<group>"; };
+		A8E03CD6278C6B030074DE4B /* PositionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PositionTableViewCell.xib; sourceTree = "<group>"; };
 		B92D54F8274C02EB00D0E851 /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		B92D54FE274C037E00D0E851 /* String+date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+date.swift"; sourceTree = "<group>"; };
 		B92D5501274C039C00D0E851 /* HomeContentViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeContentViewModel.swift; sourceTree = "<group>"; };
@@ -596,6 +608,12 @@
 		5E9150A42772355B000578D4 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				A8E03CCD278C68A40074DE4B /* NormalTextFieldTableViewCell.swift */,
+				A8E03CCE278C68A40074DE4B /* NormalTextFieldTableViewCell.xib */,
+				A8E03CD1278C693C0074DE4B /* LocationReplaceTableViewCell.swift */,
+				A8E03CD2278C693C0074DE4B /* LocationReplaceTableViewCell.xib */,
+				A8E03CD5278C6B030074DE4B /* PositionTableViewCell.swift */,
+				A8E03CD6278C6B030074DE4B /* PositionTableViewCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -1166,6 +1184,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A8E03CD0278C68A40074DE4B /* NormalTextFieldTableViewCell.xib in Resources */,
 				B92D54F9274C02EB00D0E851 /* .swiftlint.yml in Resources */,
 				5E820B8B2769F04A004A03E9 /* HomeWritingMembersDetailPartBottomCollectionViewCell.xib in Resources */,
 				5E2554622732DF8A00033723 /* GreetingAlertViewController.xib in Resources */,
@@ -1207,6 +1226,7 @@
 				5E91509B27722213000578D4 /* MyBudiProjectCell.xib in Resources */,
 				5E2554362732770B00033723 /* HomeDetailPersonCell.xib in Resources */,
 				5E820B902769F963004A03E9 /* DatePickerBottomViewController.xib in Resources */,
+				A8E03CD8278C6B030074DE4B /* PositionTableViewCell.xib in Resources */,
 				5EFB0A462733E36800F39A4D /* TeamSearchCell.xib in Resources */,
 				5EC2FEFA275E191F00FF5BB0 /* HomeDetailStatusUnitCell.xib in Resources */,
 				5E820B782769E9CA004A03E9 /* HomeWritingMembersPartBottomCell.xib in Resources */,
@@ -1225,6 +1245,7 @@
 				5E7CF4C92770B79E007315F1 /* HomeWritingMembersPartUnitBottomCell.xib in Resources */,
 				5E820B7C2769E9D7004A03E9 /* HomeWritingMembersDetailPartBottomCell.xib in Resources */,
 				5E5517AA2768BCC300DC605E /* HomeWritingPartBottomCell.xib in Resources */,
+				A8E03CD4278C693C0074DE4B /* LocationReplaceTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1308,6 +1329,7 @@
 				5E9150A62772356A000578D4 /* MyBudiEditCellType.swift in Sources */,
 				5E88636E2767450A0022397A /* HomeWritingCellType.swift in Sources */,
 				5E820B7B2769E9D7004A03E9 /* HomeWritingMembersDetailPartBottomCell.swift in Sources */,
+				A8E03CD3278C693C0074DE4B /* LocationReplaceTableViewCell.swift in Sources */,
 				5E8863822767AE190022397A /* HomeWritingImageBottomCell.swift in Sources */,
 				5EF986CA2786E58600874A40 /* Leader.swift in Sources */,
 				A8CE1196278B1F91008AFEBC /* MyBudiContentViewController.swift in Sources */,
@@ -1328,6 +1350,7 @@
 				B97A862D2786D6DB0016CF23 /* TeamSearchProfileCell.swift in Sources */,
 				A8CD936127384C4900299AB4 /* SearchTableViewCell.swift in Sources */,
 				A85C920B276A35270097E444 /* PortfolioViewController.swift in Sources */,
+				A8E03CCF278C68A40074DE4B /* NormalTextFieldTableViewCell.swift in Sources */,
 				B94D2D9C277DFE2300DD7FDD /* TeamSearchViewModel.swift in Sources */,
 				B92D5505274C03AB00D0E851 /* Post.swift in Sources */,
 				5EB4302D2758951600283239 /* HomeWritingPartCell.swift in Sources */,
@@ -1443,6 +1466,7 @@
 				5EBD9D5D276DB57B00615319 /* HomeDetailViewModel.swift in Sources */,
 				5E91508D27721D8B000578D4 /* MyBudiMainViewController.swift in Sources */,
 				5E58E6B1276B588C00ABBF1C /* AppliesRequest.swift in Sources */,
+				A8E03CD7278C6B030074DE4B /* PositionTableViewCell.swift in Sources */,
 				5EB430452758959600283239 /* HomeWritingDescriptionCell.swift in Sources */,
 				A81D1061276482950022D610 /* DefaultTableViewCell.swift in Sources */,
 				5E91509627722206000578D4 /* MyBudiLevelCell.swift in Sources */,

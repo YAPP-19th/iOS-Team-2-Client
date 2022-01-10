@@ -6,12 +6,20 @@
 //
 
 import UIKit
+import Combine
 
 class PositionTableViewCell: UITableViewCell {
 
     static let cellId = "PositionTableViewCell"
+    var cancellables = Set<AnyCancellable>()
 
     @IBOutlet weak var positionTextField: UITextField!
+
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        cancellables.removeAll()
+    }
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

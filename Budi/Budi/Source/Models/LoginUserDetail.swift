@@ -9,14 +9,14 @@ import Foundation
 
 struct LoginUserDetail: Codable {
     let id: Int
-    let imageUrl: String?
-    let nickName: String
-    let description: String
+    var imageUrl: String?
+    var nickName: String
+    var description: String
     let level: String
-    let positions: [String]
+    var positions: [String]
     let likeCount: Int
-    let projectList: [ProjectList]
-    let portfolioList: [String]
+    var projectList: [ProjectList]
+    var portfolioList: [String]
     let isLikedFromCurrentMember: Bool
 }
 
@@ -26,8 +26,8 @@ struct LoginCheckModel: Codable {
 
 struct ProjectList: Codable {
     let projectId: Int
-    let name: String
-    let startDate: String
-    let endDate: String
-    let description: String
+    var name: String
+    var startDate: String
+    var endDate: String
+    var description: String
 }

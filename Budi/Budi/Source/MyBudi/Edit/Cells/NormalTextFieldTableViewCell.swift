@@ -6,13 +6,20 @@
 //
 
 import UIKit
+import Combine
 
 class NormalTextFieldTableViewCell: UITableViewCell {
 
     static let cellId = "NormalTextFieldTableViewCell"
-
+    var cancellables = Set<AnyCancellable>()
     @IBOutlet weak var normalTextField: UITextField!
     @IBOutlet weak var normalTitleLabel: UILabel!
+
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        cancellables.removeAll()
+    }
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

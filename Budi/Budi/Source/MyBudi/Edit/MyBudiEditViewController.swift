@@ -136,14 +136,39 @@ extension MyBudiEditViewController: UITableViewDelegate, UITableViewDataSource {
                 if indexPath.row == 0 {
                     cell.configureLabel(text: "닉네임")
                     cell.configureText(text: self.viewModel.state.loginUserData.value?.nickName ?? "")
+
+                    cell.normalTextField.textPublisher
+                        .receive(on: DispatchQueue.main)
+                        .sink { [weak self] text in
+                            guard let self = self else { return }
+                            var changeData = self.viewModel.state.loginUserData.value
+                            changeData?.nickName = text ?? ""
+                            self.viewModel.state.loginUserData.send(changeData)
+                            print(self.viewModel.state.loginUserData.value?.nickName ?? "")
+                        }
+                        .store(in: &cell.cancellables)
                 } else {
                     cell.configureLabel(text: "한줄소개")
                     cell.configureText(text: self.viewModel.state.loginUserData.value?.description ?? "")
+
+                    cell.normalTextField.textPublisher
+                        .receive(on: DispatchQueue.main)
+                        .sink { [weak self] text in
+                            guard let self = self else { return }
+                            var changeData = self.viewModel.state.loginUserData.value
+                            changeData?.description = text ?? ""
+                            self.viewModel.state.loginUserData.send(changeData)
+                            print(self.viewModel.state.loginUserData.value?.description ?? "")
+                        }
+                        .store(in: &cell.cancellables)
                 }
+
                 return cell
             } else if indexPath.row == 1 {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: LocationReplaceTableViewCell.cellId, for: indexPath) as? LocationReplaceTableViewCell else { return UITableViewCell() }
                 cell.configureLocation(location: "충남 당진시")
+
+
                 return cell
             } else {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: PositionTableViewCell.cellId, for: indexPath) as? PositionTableViewCell else { return UITableViewCell() }

@@ -6,13 +6,21 @@
 //
 
 import UIKit
+import Combine
 
 class LocationReplaceTableViewCell: UITableViewCell {
 
     static let cellId = "LocationReplaceTableViewCell"
+    var cancellables = Set<AnyCancellable>()
 
     @IBOutlet weak var locationTextField: UITextField!
     @IBOutlet weak var replaceLocationButton: UIButton!
+
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        cancellables.removeAll()
+    }
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

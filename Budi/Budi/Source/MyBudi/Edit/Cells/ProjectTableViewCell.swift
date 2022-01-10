@@ -6,13 +6,21 @@
 //
 
 import UIKit
+import Combine
 
 class ProjectTableViewCell: UITableViewCell {
 
+    var cancellables = Set<AnyCancellable>()
     static let cellId = "ProjectTableViewCell"
 
     @IBOutlet weak var selectView: UIView!
     @IBOutlet weak var addButton: UIButton!
+
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        cancellables.removeAll()
+    }
+
     override func awakeFromNib() {
         super.awakeFromNib()
         selectView.isHidden = true

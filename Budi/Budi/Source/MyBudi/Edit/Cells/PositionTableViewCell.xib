@@ -36,6 +36,14 @@
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <textInputTraits key="textInputTraits"/>
                     </textField>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l0g-v4-DR7">
+                        <rect key="frame" x="16" y="50" width="343" height="53"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="53" id="1K9-6B-Oqy"/>
+                            <constraint firstAttribute="width" constant="343" id="Car-zd-AE9"/>
+                        </constraints>
+                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="7n8-UR-kYi" secondAttribute="trailing" id="0wU-9p-a4w"/>
@@ -44,13 +52,18 @@
                     <constraint firstItem="Aou-ZQ-PdT" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="4DH-Ms-exd"/>
                     <constraint firstAttribute="bottom" secondItem="7n8-UR-kYi" secondAttribute="bottom" id="E7e-Zg-z1L"/>
                     <constraint firstItem="Aou-ZQ-PdT" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" id="N1X-70-QSk"/>
+                    <constraint firstItem="l0g-v4-DR7" firstAttribute="top" secondItem="Aou-ZQ-PdT" secondAttribute="bottom" constant="13" id="Ubz-zF-UA5"/>
+                    <constraint firstItem="l0g-v4-DR7" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="YmZ-lJ-IEF"/>
+                    <constraint firstAttribute="bottom" secondItem="l0g-v4-DR7" secondAttribute="bottom" constant="6" id="eAs-gk-l4M"/>
                     <constraint firstAttribute="bottom" secondItem="QZj-ka-GdP" secondAttribute="bottom" constant="11" id="eYn-xC-uqe"/>
                     <constraint firstItem="7n8-UR-kYi" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="oC1-45-vFC"/>
+                    <constraint firstAttribute="trailing" secondItem="l0g-v4-DR7" secondAttribute="trailing" constant="16" id="pb6-Sl-aEb"/>
                     <constraint firstItem="7n8-UR-kYi" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="rPb-Kk-OWM"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="positionEditButton" destination="l0g-v4-DR7" id="8Te-Qu-jGB"/>
                 <outlet property="positionTextField" destination="QZj-ka-GdP" id="8TT-w4-iE1"/>
             </connections>
             <point key="canvasLocation" x="141.30434782608697" y="82.03125"/>

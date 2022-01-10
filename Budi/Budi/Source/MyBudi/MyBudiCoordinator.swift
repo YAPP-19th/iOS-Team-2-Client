@@ -62,4 +62,11 @@ extension MyBudiCoordinator {
         viewController.delegate = vc as? HomeLocationSearchViewControllerDelegate
         navigationController?.pushViewController(viewController, animated: true)
     }
+
+    func showProjectMembersBottomViewController(_ vc: UIViewController, _ viewModel: MyBudiEditViewModel) {
+        let viewController: ProjectMembersBottomViewController = ProjectMembersBottomViewController(nibName: ProjectMembersBottomViewController.identifier, bundle: nil, developerPositions: viewModel.state.developerPositions.value, designerPositions: viewModel.state.designerPositions.value, productManagerPositions: viewModel.state.productManagerPositions.value, viewSwitch: .myBudi)
+        viewController.delegate = vc as? ProjectMembersBottomViewControllerDelegate
+        viewController.modalPresentationStyle = .overCurrentContext
+        vc.present(viewController, animated: false, completion: nil)
+    }
 }

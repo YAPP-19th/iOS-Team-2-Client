@@ -186,6 +186,7 @@
 		A8E03CDC278C79870074DE4B /* ProjectTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A8E03CDA278C79870074DE4B /* ProjectTableViewCell.xib */; };
 		A8E03CDE278C7C3E0074DE4B /* MyBudiEditHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E03CDD278C7C3E0074DE4B /* MyBudiEditHeaderView.swift */; };
 		A8E03CE0278C7C680074DE4B /* MyBudiEditHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A8E03CDF278C7C680074DE4B /* MyBudiEditHeaderView.xib */; };
+		A8E03CE2278C98E40074DE4B /* PositionSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E03CE1278C98E40074DE4B /* PositionSwitch.swift */; };
 		B92D54F9274C02EB00D0E851 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = B92D54F8274C02EB00D0E851 /* .swiftlint.yml */; };
 		B92D5505274C03AB00D0E851 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92D5504274C03AA00D0E851 /* Post.swift */; };
 		B94D2D9A277DE9E700DD7FDD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B94D2D99277DE9E700DD7FDD /* GoogleService-Info.plist */; };
@@ -424,6 +425,7 @@
 		A8E03CDA278C79870074DE4B /* ProjectTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProjectTableViewCell.xib; sourceTree = "<group>"; };
 		A8E03CDD278C7C3E0074DE4B /* MyBudiEditHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyBudiEditHeaderView.swift; sourceTree = "<group>"; };
 		A8E03CDF278C7C680074DE4B /* MyBudiEditHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyBudiEditHeaderView.xib; sourceTree = "<group>"; };
+		A8E03CE1278C98E40074DE4B /* PositionSwitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositionSwitch.swift; sourceTree = "<group>"; };
 		B92D54F8274C02EB00D0E851 /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		B92D54FE274C037E00D0E851 /* String+date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+date.swift"; sourceTree = "<group>"; };
 		B92D5501274C039C00D0E851 /* HomeContentViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeContentViewModel.swift; sourceTree = "<group>"; };
@@ -965,6 +967,7 @@
 				A8CE117D278AC682008AFEBC /* MyLikePost.swift */,
 				A8CE117F278ACD88008AFEBC /* MyBudiProject.swift */,
 				5EE7FB452787E11200D9C39F /* ErrorMessage.swift */,
+				A8E03CE1278C98E40074DE4B /* PositionSwitch.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1415,6 +1418,7 @@
 				B9BF787427004094000BE0EF /* AppDelegate.swift in Sources */,
 				A81D105F2764828A0022D610 /* HistoryWriteViewController.swift in Sources */,
 				5E503E7727898D1400F13256 /* ProjectMembersBottomViewController.swift in Sources */,
+				A8E03CE2278C98E40074DE4B /* PositionSwitch.swift in Sources */,
 				B96F33BD27859C6D000A0B42 /* UIView+gesturePublisher.swift in Sources */,
 				5EFB0A522734016600F39A4D /* MyChattingMessageCell.swift in Sources */,
 				B968416B277862ED002F5D3D /* TeamSearchDetailCell.swift in Sources */,

@@ -180,6 +180,14 @@ extension MyBudiEditViewController: UITableViewDelegate, UITableViewDataSource {
             } else {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: PositionTableViewCell.cellId, for: indexPath) as? PositionTableViewCell else { return UITableViewCell() }
                 cell.configurePosition(position: viewModel.state.loginUserData.value?.positions ?? [])
+
+                cell.positionEditButton.tapPublisher
+                    .receive(on: DispatchQueue.main)
+                    .sink { [weak self] _ in
+                        guard let self = self else { return }
+                        self.coordinator?.showProjectMembersBottomViewController(self, self.viewModel)
+                    }
+                    .store(in: &cell.cancellables)
                 return cell
             }
         } else if indexPath.section == 1 {
@@ -203,6 +211,17 @@ extension MyBudiEditViewController: HomeLocationSearchViewControllerDelegate {
         let changeData = viewModel.state.loginUserData.value
         self.location = location
         print(location, "왜 안바뀜")
+        tableView.reloadData()
+    }
+
+}
+
+extension MyBudiEditViewController: ProjectMembersBottomViewControllerDelegate {
+    func getRecruitingPositions(_ recruitingPositions: [RecruitingPosition]) {
+        var changeData = viewModel.state.loginUserData.value
+        let position = recruitingPositions.map { $0.positionName }
+        changeData?.positions = position
+        viewModel.state.loginUserData.send(changeData)
         tableView.reloadData()
     }
 

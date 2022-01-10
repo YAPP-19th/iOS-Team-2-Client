@@ -15,6 +15,7 @@ class PositionTableViewCell: UITableViewCell {
 
     @IBOutlet weak var positionTextField: UITextField!
 
+    @IBOutlet weak var positionEditButton: UIButton!
     override func prepareForReuse() {
         super.prepareForReuse()
         cancellables.removeAll()
@@ -30,7 +31,6 @@ class PositionTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-
 
     func configurePosition(position: [String]) {
         var positionText = ""

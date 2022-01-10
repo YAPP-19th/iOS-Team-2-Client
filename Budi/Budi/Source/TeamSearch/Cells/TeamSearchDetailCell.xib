@@ -90,6 +90,7 @@
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="cxI-L5-cP5" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="20" id="1pQ-t4-SWs"/>
                 <constraint firstAttribute="trailing" secondItem="IvO-hy-yCQ" secondAttribute="trailing" constant="12" id="5E1-Vg-ctE"/>
@@ -109,7 +110,7 @@
                 <outlet property="profileImageView" destination="BKS-Uu-xcD" id="pba-pB-gwP"/>
                 <outlet property="userNameLabel" destination="aXY-Sp-qCO" id="rBH-nF-zfg"/>
             </connections>
-            <point key="canvasLocation" x="86.231884057971016" y="82.366071428571431"/>
+            <point key="canvasLocation" x="84.782608695652186" y="82.366071428571431"/>
         </collectionViewCell>
     </objects>
     <resources>

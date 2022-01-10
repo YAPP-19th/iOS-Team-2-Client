@@ -23,11 +23,8 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="AH5-a7-EdX">
-                    <rect key="frame" x="17" y="62" width="393" height="72"/>
+                    <rect key="frame" x="17" y="62" width="393" height="79"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="72" id="hPF-AV-0j7"/>
-                    </constraints>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="bOD-Az-fWZ">
                         <size key="itemSize" width="128" height="128"/>
                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -36,7 +33,9 @@
                     </collectionViewFlowLayout>
                 </collectionView>
             </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
+                <constraint firstAttribute="bottom" secondItem="AH5-a7-EdX" secondAttribute="bottom" id="Tfk-7h-0Qs"/>
                 <constraint firstAttribute="trailing" secondItem="AH5-a7-EdX" secondAttribute="trailing" id="TiH-MB-0IX"/>
                 <constraint firstItem="c3K-ph-zLg" firstAttribute="top" secondItem="U6b-Vx-4bR" secondAttribute="top" constant="20" id="eHQ-W8-jaO"/>
                 <constraint firstItem="AH5-a7-EdX" firstAttribute="top" secondItem="c3K-ph-zLg" secondAttribute="bottom" constant="20" id="err-rW-2Ld"/>

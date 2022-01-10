@@ -64,12 +64,13 @@ final class TeamSearchFilterViewController: UIViewController {
 
         collectionView.refreshControl = UIRefreshControl()
         collectionView.delegate = self
+        collectionView.backgroundColor = .white
         collectionView.dataSource = self
         collectionView.register(.init(nibName: TeamSearchPostionFilterHeader.identifier, bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: TeamSearchPostionFilterHeader.identifier)
         collectionView.register(.init(nibName: TeamSearchDetailCell.identifier, bundle: nil), forCellWithReuseIdentifier: TeamSearchDetailCell.identifier)
         NSLayoutConstraint.activate([
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            collectionView.topAnchor.constraint(equalTo: view.topAnchor),
+            collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
@@ -100,6 +101,10 @@ extension TeamSearchFilterViewController: UICollectionViewDataSource {
         cell.postionLabel.textColor = viewModel.position.labelTextColor
         return cell
     }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return .init(top: 8, left: 16, bottom: 8, right: 16)
+    }
 }
 
 extension TeamSearchFilterViewController: UICollectionViewDelegateFlowLayout {
@@ -107,10 +112,6 @@ extension TeamSearchFilterViewController: UICollectionViewDelegateFlowLayout {
         let width = (collectionView.bounds.width.nextDown - 40) / 2
         let height = width * (178.0 / 167.5)
         return CGSize(width: width, height: height)
-    }
-
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return .init(top: 0, left: 16, bottom: 8, right: 16)
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {

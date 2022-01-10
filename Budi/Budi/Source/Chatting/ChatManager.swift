@@ -54,7 +54,6 @@ final class ChatManager {
             guard let data = snapshot?.data() else { return }
             print("messages data: \(data)")
             
-            print("type: \(type(of: message))")
         }
         
         return messages

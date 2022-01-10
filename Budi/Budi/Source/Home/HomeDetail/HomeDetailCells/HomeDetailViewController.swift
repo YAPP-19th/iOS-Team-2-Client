@@ -71,22 +71,21 @@ private extension HomeDetailViewController {
         submitButton.tapPublisher
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
-                guard let self = self else { return }
+                guard let self = self, let isAlreadyApplied = self.viewModel.state.post.value?.isAlreadyApplied else { return }
+
                 if UserDefaults.standard.string(forKey: "accessToken") == "" {
                     let storyboard = UIStoryboard(name: "Main", bundle: nil)
                     let loginSelectViewController = storyboard.instantiateViewController(identifier: "LoginSelectViewController")
                     let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate
                     sceneDelegate?.moveLoginController(loginSelectViewController, animated: true)
-                }
-                
-                guard let self = self, let isAlreadyApplied = self.viewModel.state.post.value?.isAlreadyApplied else { return }
-                
-                if isAlreadyApplied {
-                    let errorAlertVC = ErrorAlertViewController(ErrorMessage.isAlreadyApplied)
-                    errorAlertVC.modalPresentationStyle = .overCurrentContext
-                    self.present(errorAlertVC, animated: false, completion: nil)
                 } else {
-                    self.coordinator?.showRecruitingStatusBottomViewController(self, self.viewModel)
+                    if isAlreadyApplied {
+                        let errorAlertVC = ErrorAlertViewController(ErrorMessage.isAlreadyApplied)
+                        errorAlertVC.modalPresentationStyle = .overCurrentContext
+                        self.present(errorAlertVC, animated: false, completion: nil)
+                    } else {
+                        self.coordinator?.showRecruitingStatusBottomViewController(self, self.viewModel)
+                    }
                 }
             }.store(in: &cancellables)
         

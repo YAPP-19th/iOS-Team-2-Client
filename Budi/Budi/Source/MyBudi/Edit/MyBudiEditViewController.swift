@@ -15,7 +15,7 @@ final class MyBudiEditViewController: UIViewController {
     weak var coordinator: MyBudiCoordinator?
     var viewModel: MyBudiEditViewModel
     private var cancellables = Set<AnyCancellable>()
-    
+    var location: String = "충남 당진시"
     init(nibName: String?, bundle: Bundle?, viewModel: MyBudiEditViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nibName, bundle: bundle)
@@ -166,8 +166,15 @@ extension MyBudiEditViewController: UITableViewDelegate, UITableViewDataSource {
                 return cell
             } else if indexPath.row == 1 {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: LocationReplaceTableViewCell.cellId, for: indexPath) as? LocationReplaceTableViewCell else { return UITableViewCell() }
-                cell.configureLocation(location: "충남 당진시")
+                cell.configureLocation(location: location)
 
+                cell.replaceLocationButton.tapPublisher
+                    .receive(on: DispatchQueue.main)
+                    .sink { [weak self] _ in
+                        guard let self = self else { return }
+                        self.coordinator?.showLocationSearchViewController(self)
+                    }
+                    .store(in: &cell.cancellables)
 
                 return cell
             } else {
@@ -186,6 +193,17 @@ extension MyBudiEditViewController: UITableViewDelegate, UITableViewDataSource {
             return cell
         }
 
+    }
+
+}
+
+extension MyBudiEditViewController: HomeLocationSearchViewControllerDelegate {
+    func getLocation(_ location: String) {
+        // 아직 API에서 지역을 뽑아와주지 않아서 일단 대기
+        let changeData = viewModel.state.loginUserData.value
+        self.location = location
+        print(location, "왜 안바뀜")
+        tableView.reloadData()
     }
 
 }

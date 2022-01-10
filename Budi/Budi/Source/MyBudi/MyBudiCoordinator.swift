@@ -55,4 +55,11 @@ extension MyBudiCoordinator {
         viewController.coordinator = self
         navigationController?.pushViewController(viewController, animated: true)
     }
+
+    func showLocationSearchViewController(_ vc: UIViewController) {
+        let viewController = HomeLocationSearchViewController()
+        viewController.navigationItem.title = "위치선택"
+        viewController.delegate = vc as? HomeLocationSearchViewControllerDelegate
+        navigationController?.pushViewController(viewController, animated: true)
+    }
 }

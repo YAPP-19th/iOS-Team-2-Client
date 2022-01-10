@@ -72,7 +72,6 @@ private extension HomeDetailViewController {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
                 guard let self = self, let isAlreadyApplied = self.viewModel.state.post.value?.isAlreadyApplied else { return }
-
                 if UserDefaults.standard.string(forKey: "accessToken") == "" {
                     let storyboard = UIStoryboard(name: "Main", bundle: nil)
                     let loginSelectViewController = storyboard.instantiateViewController(identifier: "LoginSelectViewController")

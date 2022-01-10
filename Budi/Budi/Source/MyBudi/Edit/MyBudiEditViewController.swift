@@ -11,6 +11,7 @@ import CombineCocoa
 
 final class MyBudiEditViewController: UIViewController {
      
+    @IBOutlet weak var tableView: UITableView!
     weak var coordinator: MyBudiCoordinator?
     private let viewModel: MyBudiEditViewModel
     private var cancellables = Set<AnyCancellable>()
@@ -27,7 +28,7 @@ final class MyBudiEditViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureNavigationBar()
-        configureCollectionView()
+        configureTableView()()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -41,8 +42,17 @@ final class MyBudiEditViewController: UIViewController {
 
 // MARK: - CollectionView
 extension MyBudiEditViewController {
-    private func configureCollectionView() {
-        
+    private func configureTableView() {
+        tableView.delegate = self
+        tableView.dataSource = self
+        let nib = UINib(nibName: DefaultHeaderView.cellId, bundle: nil)
+        let normal = UINib(nibName: NormalTextFieldTableViewCell.cellId, bundle: nil)
+        let location = UINib(nibName: LocationReplaceTableViewCell.cellId, bundle: nil)
+        let position = UINib(nibName: PositionTableViewCell.cellId, bundle: nil)
+        tableView.register(nib, forHeaderFooterViewReuseIdentifier: DefaultHeaderView.cellId)
+        tableView.register(normal, forCellReuseIdentifier: NormalTextFieldTableViewCell.cellId)
+        tableView.register(<#T##nib: UINib?##UINib?#>, forCellReuseIdentifier: <#T##String#>)
+        tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
     }
 }
 

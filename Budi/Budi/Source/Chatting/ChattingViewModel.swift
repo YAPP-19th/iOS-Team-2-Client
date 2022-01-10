@@ -30,10 +30,16 @@ final class ChattingViewModel: ViewModel {
         let currentUser = ChatManager.shared.testCurrentUser
         let otherUser = ChatManager.shared.testOtherUser
         
-        let newMessage = ChatMessage(id: NSUUID().uuidString, time: Date().convertStringahhmm(), text: "새로운 메세지", fromUser: currentUser, toUser: otherUser)
+        // MARK: - TestMessage
+        let testMessage = ChatMessage(id: NSUUID().uuidString, time: Date().convertStringahhmm(), text: "테스트 메세지", fromUserId: currentUser.id, toUserId: otherUser.id)
+                
+        ChatManager.shared.registerMessage(testMessage)
         
-        ChatManager.shared.registerMessage(newMessage)
-        ChatManager.shared.fetchMessages(currentUser.id)
+        let messages = ChatManager.shared.fetchMessages(currentUser.id, otherUser.id)
+        print("messages data: \(messages)")
+        
+        let recentMessages = ChatManager.shared.fetchRecentMessages(currentUser.id)
+        print("recent-messages data: \(recentMessages)")
     }
     
     init() {

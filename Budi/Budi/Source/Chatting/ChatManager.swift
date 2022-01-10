@@ -5,9 +5,7 @@
 //  Created by leeesangheee on 2022/01/10.
 //
 
-import Foundation
 import Firebase
-import FirebaseFirestore
 
 final class ChatManager {
     
@@ -29,16 +27,16 @@ final class ChatManager {
         }
     }
     
-    // MARK: - TestUser
+    // MARK: - TestUser -> 수정됨
     let testCurrentUser = ChatUser(id: "P8ZxC4xsOceXpaZG6fA1xEG9YDP2",
                                    username: "현재 유저",
                                    position: "개발자",
                                    profileImageUrl: "https://budi.s3.ap-northeast-2.amazonaws.com/post_image/default/education.jpg")
     let testOtherUser = ChatUser(id: "9AZkIT5MloajqzmubMo7aZ5Z3kj1",
-                                 username: "보내는 사람",
-                                 position: "개발자",
+                                 username: "받는 사람",
+                                 position: "디자이너",
                                  profileImageUrl: "https://budi.s3.ap-northeast-2.amazonaws.com/post_image/default/dating.jpg")
-       
+    
     // MARK: - Fetch
     func fetchUser(_ uid: String) {
         FirebaseCollection.users.ref.document(uid).getDocument { snapshot, error in
@@ -93,11 +91,11 @@ final class ChatManager {
     
     // 유저정보: users/user.id/
     func registerUserInfo(_ user: ChatUser) {
-        guard let userData = user.convertToDictionary else { return }
-     
-        FirebaseCollection.users.ref.document(user.id).setData(userData) { _ in
-            print("registered user")
-        }
+//        guard let userData = user.convertToDictionary else { return }
+//     
+//        FirebaseCollection.users.ref.document(user.id).setData(userData) { _ in
+//            print("registered user")
+//        }
     }
     
     func createUserWithEmail(_ email: String, _ password: String) {

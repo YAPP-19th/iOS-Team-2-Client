@@ -18,6 +18,6 @@ class MyChattingMessageCell: UICollectionViewCell {
 
     func configureUI(_ message: ChatMessage) {
         messageLabel.text = message.text
-        timeLabel.text = message.time
+//        timeLabel.text = message.time
     }
 }

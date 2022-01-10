@@ -27,19 +27,19 @@ final class ChattingViewModel: ViewModel {
     private let provider = MoyaProvider<BudiTarget>()
     
     func fetchData() {
-        let currentUser = ChatManager.shared.testCurrentUser
-        let otherUser = ChatManager.shared.testOtherUser
-        
+//        let currentUser = ChatManager.shared.testCurrentUser
+//        let otherUser = ChatManager.shared.testOtherUser
+//
         // MARK: - TestMessage
-        let testMessage = ChatMessage(id: NSUUID().uuidString, time: Date().convertStringahhmm(), text: "테스트 메세지", fromUserId: currentUser.id, toUserId: otherUser.id)
-                
-        ChatManager.shared.registerMessage(testMessage)
-        
-        let messages = ChatManager.shared.fetchMessages(currentUser.id, otherUser.id)
-        print("messages data: \(messages)")
-        
-        let recentMessages = ChatManager.shared.fetchRecentMessages(currentUser.id)
-        print("recent-messages data: \(recentMessages)")
+//        let testMessage = ChatMessage(id: NSUUID().uuidString, time: Date().convertStringahhmm(), text: "테스트 메세지", fromUserId: currentUser.id, toUserId: otherUser.id)
+//
+//        ChatManager.shared.registerMessage(testMessage)
+//
+//        let messages = ChatManager.shared.fetchMessages(currentUser.id, otherUser.id)
+//        print("messages data: \(messages)")
+//
+//        let recentMessages = ChatManager.shared.fetchRecentMessages(currentUser.id)
+//        print("recent-messages data: \(recentMessages)")
     }
     
     init() {

@@ -82,8 +82,10 @@ extension MyBudiEditViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
             return 4
+        } else if section == 1 {
+            return viewModel.state.loginUserData.value?.projectList.count ?? 1
         } else {
-            return viewModel.state.mySectionData.value[section-1].items.count
+            return viewModel.state.loginUserData.value?.portfolioList.count ?? 1
         }
     }
 
@@ -97,7 +99,7 @@ extension MyBudiEditViewController: UITableViewDelegate, UITableViewDataSource {
         } else if indexPath.section == 1 {
             return 100
         } else {
-            return 65
+            return 55
         }
     }
 
@@ -192,12 +194,20 @@ extension MyBudiEditViewController: UITableViewDelegate, UITableViewDataSource {
             }
         } else if indexPath.section == 1 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: ProjectTableViewCell.cellId, for: indexPath) as? ProjectTableViewCell else { return UITableViewCell() }
-            cell.configureButtonTitle(text: viewModel.state.mySectionData.value[indexPath.section-1].items[indexPath.row].itemInfo.buttonTitle)
+            cell.configureButtonTitle(text: "프로젝트를 추가해 보세요")
+
+            let data = viewModel.state.loginUserData.value?.projectList[indexPath.row]
+            if let data = data {
+                cell.configureLabel(main: data.name, date: data.startDate + " ~ " + data.endDate, sub: data.description)
+            }
             return cell
         } else {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: PortfolioURLTableViewCell.cellId, for: indexPath) as? PortfolioURLTableViewCell else { return UITableViewCell() }
-
-            cell.configureButtonLabel(text: viewModel.state.mySectionData.value[indexPath.section-1].items[indexPath.row].itemInfo.buttonTitle)
+            let data = viewModel.state.loginUserData.value?.portfolioList[indexPath.row]
+            if let data = data {
+                cell.configureParsing(url: data)
+            }
+            cell.configureButtonLabel(text: "포트폴리오를 추가해 보세요")
             return cell
         }
 

@@ -34,6 +34,7 @@ class PortfolioURLTableViewCell: UITableViewCell {
     }
 
     func configureParsing(url: String) {
+        portfolioView.isHidden = false
         let sep = url.split(separator: "/")
         if sep[0] == "https:" {
             switch sep[1] {

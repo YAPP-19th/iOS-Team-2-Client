@@ -105,6 +105,10 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="addButton" destination="LU2-lZ-Zhf" id="YTj-77-qa5"/>
+                <outlet property="moreButton" destination="j72-4y-8O2" id="hPx-zS-DA7"/>
+                <outlet property="selectDayLabel" destination="7V2-sU-Hkz" id="29v-KP-qnh"/>
+                <outlet property="selectMainTitleLabel" destination="ara-Ev-SOe" id="9j2-Y4-rSU"/>
+                <outlet property="selectTeamLabel" destination="JNy-DO-6uM" id="G0t-iF-Uiw"/>
                 <outlet property="selectView" destination="fbB-0h-3yD" id="xWl-fZ-s9e"/>
             </connections>
             <point key="canvasLocation" x="131.8840579710145" y="79.6875"/>

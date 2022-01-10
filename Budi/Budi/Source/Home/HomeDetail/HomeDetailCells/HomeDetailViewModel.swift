@@ -39,7 +39,7 @@ final class HomeDetailViewModel: ViewModel {
             }
         }
     }
-    
+
     func requestLikePost(_ accessToken: String, _ completion: @escaping (Result<Moya.Response, Error>) -> Void) {
         provider.request(.likePosts(accessToken: accessToken, id: self.state.postId.value)) { response in
             switch response {
@@ -61,7 +61,7 @@ final class HomeDetailViewModel: ViewModel {
             .sink(receiveValue: { [weak self] _ in
                 guard let self = self else { return }
                 guard var accessToken = UserDefaults.standard.string(forKey: "accessToken") else { return }
-                if accessToken == "" { accessToken = .testAccessToken }
+//                if accessToken == "" { accessToken = .testAccessToken }
                  self.provider
                     .requestPublisher(.post(accessToken: accessToken, id: postId))
                     .map(APIResponse<Post>.self)

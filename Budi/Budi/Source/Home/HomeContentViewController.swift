@@ -98,7 +98,15 @@ extension HomeContentViewController: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let post = viewModel.state.posts.value[indexPath.item]
-        coordinator?.showDetail(post.postID)
+
+        if UserDefaults.standard.string(forKey: "accessToken")?.isEmpty ?? false {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let loginSelectViewController = storyboard.instantiateViewController(identifier: "LoginSelectViewController")
+            let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate
+            sceneDelegate?.moveLoginController(loginSelectViewController, animated: true)
+        } else {
+            coordinator?.showDetail(post.postID)
+        }
     }
 }
 

@@ -23,5 +23,5 @@ pod 'Firebase/Analytics'
 pod 'Firebase/Auth'
 pod 'Firebase/Firestore'
 pod 'Firebase/Messaging'
-pod 'FirebaseFirestoreSwift', '~> 7.0-beta'
+pod 'FirebaseFirestore', '~> 8.10.0'
 end

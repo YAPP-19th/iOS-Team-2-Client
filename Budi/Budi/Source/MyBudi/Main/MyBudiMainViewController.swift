@@ -51,10 +51,6 @@ final class MyBudiMainViewController: UIViewController {
     func loginStatusCheck() {
         if UserDefaults.standard.string(forKey: "accessToken") == "" {
             collectionView.isHidden = true
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let loginSelectViewController = storyboard.instantiateViewController(identifier: "LoginSelectViewController")
-            let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate
-            sceneDelegate?.moveLoginController(loginSelectViewController, animated: true)
         } else {
             collectionView.isHidden = false
         }
@@ -63,9 +59,15 @@ final class MyBudiMainViewController: UIViewController {
     private func bindViewModel() {
         viewModel.state.loginStatusData
             .receive(on: DispatchQueue.main)
-            .sink { data in
-                self.collectionView.isHidden = false
-                self.collectionView.reloadData()
+            .sink { [weak self] data in
+                guard let self = self else { return }
+                if UserDefaults.standard.string(forKey: "accessToken") == "" {
+                    self.collectionView.isHidden = true
+                } else {
+                    self.collectionView.isHidden = false
+                    self.collectionView.reloadData()
+                }
+
             }
             .store(in: &cancellables)
 
@@ -91,7 +93,6 @@ final class MyBudiMainViewController: UIViewController {
 
         loginButton.tapPublisher
             .sink { [weak self] _ in
-                guard let self = self else { return }
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 let loginSelectViewController = storyboard.instantiateViewController(identifier: "LoginSelectViewController")
                 let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate

@@ -1,5 +1,5 @@
 //
-//  ChatMessage.swift
+//  ChatModels.swift
 //  Budi
 //
 //  Created by leeesangheee on 2022/01/09.
@@ -23,7 +23,7 @@ struct ChatUser: Identifiable, Codable {
 
 struct ChatMessage: Identifiable, Codable {
     @DocumentID var id: String? = UUID().uuidString
-    let timestamp: Timestamp
+    let timestamp: Timestamp = Timestamp(date: Date())
     let text: String
     let fromUserId: String
     let toUserId: String

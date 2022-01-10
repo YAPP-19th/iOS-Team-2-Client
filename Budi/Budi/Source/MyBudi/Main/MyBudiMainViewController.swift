@@ -27,8 +27,8 @@ final class MyBudiMainViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         tabBarController?.tabBar.isHidden = false
     }
 

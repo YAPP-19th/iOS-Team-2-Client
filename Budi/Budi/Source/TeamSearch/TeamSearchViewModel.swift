@@ -10,7 +10,7 @@ import Moya
 
 struct TeamSearchViewModelSection {
     let position: Position
-    let items: [SearchTeamMember]
+    var items: [SearchTeamMember]
 }
 
 final class TeamSearchViewModel: ViewModel {

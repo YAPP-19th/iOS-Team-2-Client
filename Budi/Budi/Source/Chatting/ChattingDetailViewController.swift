@@ -213,7 +213,7 @@ extension ChattingDetailViewController: UICollectionViewDelegateFlowLayout, UICo
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let message = viewModel.state.chatMessages.value[indexPath.row]
-        
+     
         let isFromCurrentUser = (message.fromUserId == userId)
         
         if isFromCurrentUser {

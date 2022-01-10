@@ -11,4 +11,9 @@ struct UserInfoUploadSuccess: Codable {
     let statusCode: Int
     let message: String
     let serverDateTime: String
+    let data: SignUpSuccess
+}
+
+struct SignUpSuccess: Codable {
+    let memberId: Int
 }

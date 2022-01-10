@@ -29,7 +29,7 @@ final class ChattingViewModel: ViewModel {
     func fetchData() {
         let currentUser = ChatManager.shared.testCurrentUser
         let otherUser = ChatManager.shared.testOtherUser
-        
+
         // MARK: - TestMessage
         let testMessage = ChatMessage(id: NSUUID().uuidString, time: Date().convertStringahhmm(), text: "테스트 메세지", fromUserId: currentUser.id, toUserId: otherUser.id)
                 

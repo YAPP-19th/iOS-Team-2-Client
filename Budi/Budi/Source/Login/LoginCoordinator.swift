@@ -22,6 +22,14 @@ final class LoginCoordinator: NavigationCoordinator {
         navigationController?.pushViewController(viewController, animated: true)
     }
 
+    func present() {
+        let viewController: LoginSelectViewController = storyboard.instantiateViewController(
+            identifier: LoginSelectViewController.identifier)
+        viewController.coordinator = self
+        navigationController?.present(viewController, animated: true, completion: nil)
+
+    }
+
 }
 
 extension LoginCoordinator {

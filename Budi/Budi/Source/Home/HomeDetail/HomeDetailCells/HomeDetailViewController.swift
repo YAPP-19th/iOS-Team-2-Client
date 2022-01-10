@@ -59,8 +59,10 @@ private extension HomeDetailViewController {
         viewModel.state.post
             .receive(on: DispatchQueue.main)
             .sink(receiveValue: { [weak self] _ in
-                self?.configureHeartButton()
-                self?.configureSubmitButton()
+                if UserDefaults.standard.string(forKey: "accessToken") != "" {
+                    self?.configureHeartButton()
+                    self?.configureSubmitButton()
+                }
                 self?.mainCollectionView.reloadData()
             }).store(in: &cancellables)
     }
@@ -69,6 +71,14 @@ private extension HomeDetailViewController {
         submitButton.tapPublisher
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
+                guard let self = self else { return }
+                if UserDefaults.standard.string(forKey: "accessToken") == "" {
+                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                    let loginSelectViewController = storyboard.instantiateViewController(identifier: "LoginSelectViewController")
+                    let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate
+                    sceneDelegate?.moveLoginController(loginSelectViewController, animated: true)
+                }
+                
                 guard let self = self, let isAlreadyApplied = self.viewModel.state.post.value?.isAlreadyApplied else { return }
                 
                 if isAlreadyApplied {
@@ -84,16 +94,32 @@ private extension HomeDetailViewController {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
                 guard let self = self else { return }
-                self.viewModel.requestLikePost(.testAccessToken) { response in
-                    switch response {
-                    case .success:
-                        guard let isLiked = self.viewModel.state.post.value?.isLiked else { return }
-                        self.heartButton.setImage(UIImage(systemName: isLiked ? "heart.fill" : "heart"), for: .normal)
-                        self.heartButton.tintColor = isLiked ? UIColor.primary : UIColor.textDisabled
-                    case .failure(let error): print(error.localizedDescription)
+                if UserDefaults.standard.string(forKey: "accessToken") == "" {
+                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                    let loginSelectViewController = storyboard.instantiateViewController(identifier: "LoginSelectViewController")
+                    let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate
+                    sceneDelegate?.moveLoginController(loginSelectViewController, animated: true)
+                } else {
+                    self.viewModel.requestLikePost(UserDefaults.standard.string(forKey: "accessToken") ?? "") { response in
+                        switch response {
+                        case .success:
+                            guard let isLiked = self.viewModel.state.post.value?.isLiked else { return }
+                            self.heartButton.setImage(UIImage(systemName: isLiked ? "heart.fill" : "heart"), for: .normal)
+                            self.heartButton.tintColor = isLiked ? UIColor.primary : UIColor.textDisabled
+                        case .failure(let error): print(error.localizedDescription)
+                        }
                     }
                 }
             }.store(in: &cancellables)
+
+        NotificationCenter.default.publisher(for: Notification.Name("LoginSuccessed"), object: nil)
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in
+                guard let self = self else { return }
+                self.viewModel.action.refresh.send(())
+            }
+            .store(in: &cancellables)
+
     }
 }
 
@@ -134,7 +160,7 @@ extension HomeDetailViewController: RecruitingStatusBottomViewControllerDelegate
 
         let param = AppliesRequest(postId: postId, recruitingPositionId: selectedRecruitingStatus.recruitingPositionId)
         
-        viewModel.requestApplies(.testAccessToken, param) { result in
+        viewModel.requestApplies(UserDefaults.standard.string(forKey: "accessToken") ?? "", param) { result in
             switch result {
             case .success:
                 self.dismiss(animated: false) {

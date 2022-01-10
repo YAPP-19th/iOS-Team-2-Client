@@ -114,6 +114,9 @@
             </constraints>
             <connections>
                 <outlet property="editButton" destination="Hid-N9-hde" id="y31-sf-K3K"/>
+                <outlet property="userDescriptionLabel" destination="eBb-sA-5I4" id="4Pc-vl-4IK"/>
+                <outlet property="userNickNameLabel" destination="nnc-NV-sUz" id="ylT-QK-Zoe"/>
+                <outlet property="userPositionLabel" destination="s0J-gq-0iG" id="2dp-ol-PBW"/>
             </connections>
             <point key="canvasLocation" x="131.8840579710145" y="81.696428571428569"/>
         </collectionViewCell>

@@ -53,7 +53,14 @@ private extension HomeContainerViewController {
         teamAddButton.tapPublisher
             .receive(on: DispatchQueue.main)
             .sink { [weak self] in
-                self?.coordinator?.showWriting()
+                if UserDefaults.standard.string(forKey: "accessToken") == "" {
+                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                    let loginSelectViewController = storyboard.instantiateViewController(identifier: "LoginSelectViewController")
+                    let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate
+                    sceneDelegate?.moveLoginController(loginSelectViewController, animated: true)
+                } else {
+                    self?.coordinator?.showWriting()
+                }
             }.store(in: &cancellables)
 
         contentScrollView.didScrollPublisher

@@ -94,7 +94,7 @@ private extension RecruitingStatusBottomViewController {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
                 guard let self = self else { return }
-                self.viewModel.requestLikePost(.testAccessToken) { response in
+                self.viewModel.requestLikePost(UserDefaults.standard.string(forKey: "accessToken") ?? "") { response in
                     switch response {
                     case .success:
                         guard let isLiked = self.viewModel.state.post.value?.isLiked else { return }

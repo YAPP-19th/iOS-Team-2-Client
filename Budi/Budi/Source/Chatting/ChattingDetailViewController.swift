@@ -213,8 +213,8 @@ extension ChattingDetailViewController: UICollectionViewDelegateFlowLayout, UICo
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let message = viewModel.state.chatMessages.value[indexPath.row]
-        
-        let isFromCurrentUser = (message.fromUser.id == userId)
+     
+        let isFromCurrentUser = (message.fromUserId == userId)
         
         if isFromCurrentUser {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MyChattingMessageCell.identifier, for: indexPath) as? MyChattingMessageCell else { return UICollectionViewCell() }

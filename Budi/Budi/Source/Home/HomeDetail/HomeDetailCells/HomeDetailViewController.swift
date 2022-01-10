@@ -71,7 +71,8 @@ private extension HomeDetailViewController {
         submitButton.tapPublisher
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
-                guard let self = self else { return }
+                guard let self = self, let isAlreadyApplied = self.viewModel.state.post.value?.isAlreadyApplied else { return }
+                
                 if UserDefaults.standard.string(forKey: "accessToken") == "" {
                     let storyboard = UIStoryboard(name: "Main", bundle: nil)
                     let loginSelectViewController = storyboard.instantiateViewController(identifier: "LoginSelectViewController")
@@ -126,8 +127,8 @@ private extension HomeDetailViewController {
 
 private extension HomeDetailViewController {
     func configureNavigationBar() {
-        //        let shareButton = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareButtonTapped))
-        //        navigationItem.rightBarButtonItem = shareButton
+//        let shareButton = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareButtonTapped))
+//        navigationItem.rightBarButtonItem = shareButton
         navigationController?.navigationBar.tintColor = .systemGray
     }
 

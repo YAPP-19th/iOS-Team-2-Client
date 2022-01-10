@@ -22,7 +22,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VGC-NH-Q56">
                         <rect key="frame" x="0.0" y="0.0" width="343" height="48"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Developer" translatesAutoresizingMaskIntoConstraints="NO" id="anW-x5-x76">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="developer" translatesAutoresizingMaskIntoConstraints="NO" id="anW-x5-x76">
                                 <rect key="frame" x="12" y="9" width="30" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="lY0-Ab-Yyj"/>
@@ -90,7 +90,7 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="Developer" width="40" height="40"/>
+        <image name="developer" width="40" height="40"/>
         <namedColor name="Border">
             <color red="0.87800002098083496" green="0.87800002098083496" blue="0.87800002098083496" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

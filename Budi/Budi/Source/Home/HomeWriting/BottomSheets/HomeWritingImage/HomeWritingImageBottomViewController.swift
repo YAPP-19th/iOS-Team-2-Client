@@ -94,6 +94,7 @@ private extension HomeWritingImageBottomViewController {
     }
 }
 
+// MARK: - Animation
 private extension HomeWritingImageBottomViewController {
     func showBottomView() {
         let animator = UIViewPropertyAnimator(duration: 0.25, curve: .linear) { [weak self] in

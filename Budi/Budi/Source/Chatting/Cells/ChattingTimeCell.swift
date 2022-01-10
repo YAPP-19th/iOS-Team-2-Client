@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ChattingTimeCell: UICollectionViewCell {
+final class ChattingTimeCell: UICollectionViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()

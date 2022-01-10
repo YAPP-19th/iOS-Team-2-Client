@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -12,18 +12,18 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="HomeWritingMembersDetailPartBottomCollectionViewCell" customModule="Budi" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="52" height="32"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="ProjectMembersBottomDetailCell" customModule="Budi" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="81" height="32"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="52" height="32"/>
+                <rect key="frame" x="0.0" y="0.0" width="81" height="32"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ert-7r-VTE">
-                        <rect key="frame" x="0.0" y="0.0" width="52" height="32"/>
+                        <rect key="frame" x="0.0" y="0.0" width="81" height="32"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E49-JU-TLA">
-                                <rect key="frame" x="7.5" y="7.5" width="37" height="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E49-JU-TLA">
+                                <rect key="frame" x="16" y="7.5" width="49" height="17"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
                                 <color key="textColor" name="DarkGray"/>
                                 <nil key="highlightedColor"/>
@@ -32,6 +32,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="E49-JU-TLA" firstAttribute="centerY" secondItem="Ert-7r-VTE" secondAttribute="centerY" id="1If-DI-zaJ"/>
+                            <constraint firstItem="E49-JU-TLA" firstAttribute="leading" secondItem="Ert-7r-VTE" secondAttribute="leading" constant="16" id="StF-x6-X3W"/>
                             <constraint firstItem="E49-JU-TLA" firstAttribute="centerX" secondItem="Ert-7r-VTE" secondAttribute="centerX" id="wEQ-UE-9ue"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
@@ -55,12 +56,12 @@
                 <constraint firstItem="Ert-7r-VTE" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="Xfu-aU-B6q"/>
                 <constraint firstItem="Ert-7r-VTE" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="bPv-UF-MvY"/>
             </constraints>
-            <size key="customSize" width="52" height="32"/>
+            <size key="customSize" width="81" height="32"/>
             <connections>
-                <outlet property="containerView" destination="Ert-7r-VTE" id="KFZ-Ea-AG8"/>
+                <outlet property="containerView" destination="Ert-7r-VTE" id="Oty-yj-J8P"/>
                 <outlet property="label" destination="E49-JU-TLA" id="B45-Dz-cyc"/>
             </connections>
-            <point key="canvasLocation" x="127.53623188405798" y="61.607142857142854"/>
+            <point key="canvasLocation" x="147.10144927536234" y="61.607142857142854"/>
         </collectionViewCell>
     </objects>
     <resources>

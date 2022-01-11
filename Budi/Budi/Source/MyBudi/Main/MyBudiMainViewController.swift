@@ -137,7 +137,7 @@ extension MyBudiMainViewController: UICollectionViewDataSource, UICollectionView
                 .receive(on: DispatchQueue.main)
                 .sink { [weak self] _ in
                     guard let self = self else { return }
-                    self.coordinator?.showEditViewController()
+                    self.coordinator?.showEditViewController(userData: self.viewModel.state.loginStatusData.value ?? nil)
                 }.store(in: &cell.cancellables)
             return cell
             

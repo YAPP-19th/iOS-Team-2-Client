@@ -109,7 +109,6 @@ class PersonalInformationViewController: UIViewController {
         viewModel.state.signUpPersonalInfoData
             .receive(on: DispatchQueue.main)
             .sink { [weak self] data in
-                print(data)
                 guard let self = self else { return }
                 if !data.location.isEmpty {
                     self.locationSelectView.locationSelected(data.location)

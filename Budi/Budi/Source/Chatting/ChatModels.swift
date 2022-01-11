@@ -14,21 +14,15 @@ struct ChatUser: Codable {
     let username: String
     let position: String
     let profileImageUrl: String
-    
-    enum CodingKeys: String, CodingKey {
-        case id
-        case username
-        case position
-        case profileImageUrl
-    }
 }
 
 struct ChatMessage: Codable {
     let id: String
     let time: String
     let text: String
-    let fromUser: ChatUser
-    let toUser: ChatUser
+    let fromUserId: String
+    let toUserId: String
+
     
     // 프로젝트 수락하기 관련 정보 추가
 //    let isInvitation: Bool

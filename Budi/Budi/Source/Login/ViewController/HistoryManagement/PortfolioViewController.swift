@@ -66,8 +66,6 @@ class PortfolioViewController: UIViewController {
             .sink { [weak self] text in
                 guard let text = text else { return }
                 guard var data = self?.viewModel.state.writedInfoData.value else { return }
-                print(data.porflioLink)
-                print(data.mainName)
                 data.porflioLink = text
                 print(data.porflioLink)
                 self?.viewModel.state.writedInfoData.send(data)
@@ -178,7 +176,6 @@ class PortfolioViewController: UIViewController {
         panGesture.panPublisher
             .receive(on: DispatchQueue.main)
             .sink { sender in
-                print(self.viewTranslation.y)
                 switch sender.state {
                 case .changed:
                     self.viewTranslation = sender.translation(in: self.modalView)
@@ -192,7 +189,7 @@ class PortfolioViewController: UIViewController {
                         })
                     }
                 case .ended:
-                    print("ended")
+                    break
                 default:
                     if self.viewTranslation.y < 100 {
                         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: .curveEaseOut, animations: {

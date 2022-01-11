@@ -7,6 +7,7 @@
 
 import Foundation
 import Firebase
+import FirebaseFirestore
 
 final class ChatManager {
     
@@ -14,14 +15,16 @@ final class ChatManager {
     
     private init() {}
     
-    enum FirebaseCollection: String {
+    enum FirebaseCollection {
         case users
         case messages
+        case recentMessages(uid: String)
 
         var ref: CollectionReference {
             switch self {
-            case .users: return Firestore.firestore().collection(self.rawValue)
-            case .messages: return Firestore.firestore().collection(self.rawValue)
+            case .users: return Firestore.firestore().collection("users")
+            case .messages: return Firestore.firestore().collection("messages")
+            case .recentMessages(let uid): return Firestore.firestore().collection("messages").document(uid).collection("recent-messages")
             }
         }
     }
@@ -35,37 +38,58 @@ final class ChatManager {
                                  username: "보내는 사람",
                                  position: "개발자",
                                  profileImageUrl: "https://budi.s3.ap-northeast-2.amazonaws.com/post_image/default/dating.jpg")
-        
+       
+    // MARK: - Fetch
     func fetchUser(_ uid: String) {
         FirebaseCollection.users.ref.document(uid).getDocument { snapshot, error in
             if let error = error { print("error: \(error.localizedDescription)") }
 
             guard let data = snapshot?.data() else { return }
-            print("user data: \(data)")
+            print("user: \(data)")
         }
     }
     
-    func fetchMessages(_ uid: String) -> [ChatMessage] {
+    func fetchMessages(_ fromUid: String, _ toUid: String) -> [ChatMessage] {
         let messages: [ChatMessage] = []
-        
-        FirebaseCollection.messages.ref.document(uid).getDocument { snapshot, error in
-            if let error = error { print("error: \(error.localizedDescription)") }
 
-            guard let data = snapshot?.data() else { return }
-            print("messages data: \(data)")
+        FirebaseCollection.messages.ref.document(fromUid).collection(toUid).getDocuments { snapshot, error in
+            if let error = error { print("error: \(error.localizedDescription)") }
             
+            guard let documents = snapshot?.documents else { return }
+//            let messages = documents.compactMap { (document) -> ChatMessage? in
+//                return try? document.data(as: ChatMessage.self)
+//            }
         }
         
         return messages
     }
     
+    func fetchRecentMessages(_ uid: String) -> [ChatMessage] {
+        let recentMessages: [ChatMessage] = []
+        
+        FirebaseCollection.recentMessages(uid: uid).ref.getDocuments { snapshot, error in
+            if let error = error { print("error: \(error.localizedDescription)") }
+            
+            guard let documents = snapshot?.documents else { return }
+            print("recent-messages: \(documents)")
+        }
+        
+        return recentMessages
+    }
+    
+    // MARK: - Register
+    // 메세지: messages/현재유저id/상대유저id/
+    // 최신메세지: messages/현재유저id/recent-messages/상대유저id
     func registerMessage(_ message: ChatMessage) {
         guard let messageData = message.convertToDictionary else { return }
         
-        FirebaseCollection.messages.ref.document(message.fromUser.id).collection(message.toUser.id).document().setData(messageData)
-        FirebaseCollection.messages.ref.document(message.toUser.id).collection(message.fromUser.id).document().setData(messageData)
+        FirebaseCollection.messages.ref.document(message.fromUserId).collection(message.toUserId).document().setData(messageData)
+        FirebaseCollection.messages.ref.document(message.toUserId).collection(message.fromUserId).document().setData(messageData)
+        
+        FirebaseCollection.recentMessages(uid: message.fromUserId).ref.document(message.fromUserId).setData(messageData)
     }
     
+    // 유저정보: users/user.id/
     func registerUserInfo(_ user: ChatUser) {
         guard let userData = user.convertToDictionary else { return }
      

@@ -98,7 +98,6 @@ class HistoryManagementViewController: UIViewController {
     }
 
     func reloadCells(section: Int) {
-        print(section)
         tableView.reloadSections(IndexSet(section...section), with: .none)
     }
 
@@ -121,9 +120,7 @@ class HistoryManagementViewController: UIViewController {
             self.viewModel.action.deleteSignupInfoData.send(())
         })
 
-        let cancel = UIAlertAction(title: "완료", style: .cancel, handler: { _ in
-            print(section, index)
-        })
+        let cancel = UIAlertAction(title: "완료", style: .cancel)
 
         actionSheet.addAction(edit)
         actionSheet.addAction(delete)
@@ -157,7 +154,6 @@ extension HistoryManagementViewController: UITableViewDelegate, UITableViewDataS
             .sink { [weak self] _ in
                 guard let select = self?.viewModel.state.sectionData.value[section].type else { return }
                 self?.viewModel.action.appendSectionData.send(select)
-                print(select)
                 self?.section = section
             }
             .store(in: &header.cancellables)

@@ -231,12 +231,11 @@
 		B9D66EC42714703B00668490 /* TeamSearchCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9D66EC32714703B00668490 /* TeamSearchCoordinator.swift */; };
 		B9D66EC62714706700668490 /* ChattingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9D66EC52714706700668490 /* ChattingCoordinator.swift */; };
 		B9D66EC82714707000668490 /* MyBudiCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9D66EC72714707000668490 /* MyBudiCoordinator.swift */; };
-		FD578F1D03F3385C8B7F62AA /* Pods_Budi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BB91E1E1D24F6BCA931C5F6 /* Pods_Budi.framework */; };
+		BE1BFB467D2ED1A7125C98FE /* Pods_Budi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28404891811DD25D41C22ABF /* Pods_Budi.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		431890E70909CACD17283C45 /* Pods-Budi.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Budi.release.xcconfig"; path = "Target Support Files/Pods-Budi/Pods-Budi.release.xcconfig"; sourceTree = "<group>"; };
-		5BB91E1E1D24F6BCA931C5F6 /* Pods_Budi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Budi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		28404891811DD25D41C22ABF /* Pods_Budi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Budi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E24071C275225A600954BE7 /* BudiTarget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BudiTarget.swift; sourceTree = "<group>"; };
 		5E240720275225CD00954BE7 /* String+date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+date.swift"; sourceTree = "<group>"; };
 		5E24072227522BCE00954BE7 /* alertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = alertView.swift; sourceTree = "<group>"; };
@@ -360,6 +359,7 @@
 		5EFB0A5527340BF100F39A4D /* ChattingMessageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChattingMessageCell.xib; sourceTree = "<group>"; };
 		5EFB0A5827341C1100F39A4D /* ChattingTimeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingTimeCell.swift; sourceTree = "<group>"; };
 		5EFB0A5927341C1100F39A4D /* ChattingTimeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChattingTimeCell.xib; sourceTree = "<group>"; };
+		9EB71E235D2689FB858EFCB3 /* Pods-Budi.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Budi.release.xcconfig"; path = "Target Support Files/Pods-Budi/Pods-Budi.release.xcconfig"; sourceTree = "<group>"; };
 		A81D105C276482590022D610 /* HistoryManagementViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryManagementViewController.swift; sourceTree = "<group>"; };
 		A81D105E2764828A0022D610 /* HistoryWriteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryWriteViewController.swift; sourceTree = "<group>"; };
 		A81D1060276482950022D610 /* DefaultTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultTableViewCell.swift; sourceTree = "<group>"; };
@@ -467,7 +467,7 @@
 		B9D66EC52714706700668490 /* ChattingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingCoordinator.swift; sourceTree = "<group>"; };
 		B9D66EC72714707000668490 /* MyBudiCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyBudiCoordinator.swift; sourceTree = "<group>"; };
 		B9D66ECB2714716400668490 /* HomeContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeContainerViewController.swift; sourceTree = "<group>"; };
-		CA7AE22DFC110BC7A1889E1A /* Pods-Budi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Budi.debug.xcconfig"; path = "Target Support Files/Pods-Budi/Pods-Budi.debug.xcconfig"; sourceTree = "<group>"; };
+		DFADA0C5B77CB0D65F495026 /* Pods-Budi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Budi.debug.xcconfig"; path = "Target Support Files/Pods-Budi/Pods-Budi.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -475,7 +475,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FD578F1D03F3385C8B7F62AA /* Pods_Budi.framework in Frameworks */,
+				BE1BFB467D2ED1A7125C98FE /* Pods_Budi.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -485,8 +485,8 @@
 		4ACE130FE2C1A6782D4E0BF9 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				CA7AE22DFC110BC7A1889E1A /* Pods-Budi.debug.xcconfig */,
-				431890E70909CACD17283C45 /* Pods-Budi.release.xcconfig */,
+				DFADA0C5B77CB0D65F495026 /* Pods-Budi.debug.xcconfig */,
+				9EB71E235D2689FB858EFCB3 /* Pods-Budi.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -771,14 +771,6 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
-		A306AAEA5C9C44D113513AD7 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				5BB91E1E1D24F6BCA931C5F6 /* Pods_Budi.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		A81D1064276482E90022D610 /* ReuseView */ = {
 			isa = PBXGroup;
 			children = (
@@ -990,7 +982,7 @@
 				B9BF787127004094000BE0EF /* Products */,
 				4ACE130FE2C1A6782D4E0BF9 /* Pods */,
 				B94DCA7E275214F0006A9E0D /* Recovered References */,
-				A306AAEA5C9C44D113513AD7 /* Frameworks */,
+				C08B17D02090387D5F4176D1 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1145,6 +1137,14 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		C08B17D02090387D5F4176D1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				28404891811DD25D41C22ABF /* Pods_Budi.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1152,12 +1152,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B9BF788427004096000BE0EF /* Build configuration list for PBXNativeTarget "Budi" */;
 			buildPhases = (
-				CFC946768E7524B042230CFC /* [CP] Check Pods Manifest.lock */,
+				A5725ABDD3B5F377A8D22793 /* [CP] Check Pods Manifest.lock */,
 				B9BF786C27004094000BE0EF /* Sources */,
 				B9BF786D27004094000BE0EF /* Frameworks */,
 				B9BF786E27004094000BE0EF /* Resources */,
 				B9BF788727004426000BE0EF /* ShellScript */,
-				56BF4C4AC35AEC20DE0B1389 /* [CP] Embed Pods Frameworks */,
+				7E72CE98F4A840789E53026F /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1273,7 +1273,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		56BF4C4AC35AEC20DE0B1389 /* [CP] Embed Pods Frameworks */ = {
+		7E72CE98F4A840789E53026F /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1290,24 +1290,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Budi/Pods-Budi-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		B9BF788727004426000BE0EF /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\n${PODS_ROOT}/SwiftLint/swiftlint\n";
-		};
-		CFC946768E7524B042230CFC /* [CP] Check Pods Manifest.lock */ = {
+		A5725ABDD3B5F377A8D22793 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1328,6 +1311,23 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
+		};
+		B9BF788727004426000BE0EF /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\n${PODS_ROOT}/SwiftLint/swiftlint\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1643,20 +1643,20 @@
 		};
 		B9BF788527004096000BE0EF /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CA7AE22DFC110BC7A1889E1A /* Pods-Budi.debug.xcconfig */;
+			baseConfigurationReference = DFADA0C5B77CB0D65F495026 /* Pods-Budi.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Budi/Budi.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = ZMXTCSPNUZ;
+				DEVELOPMENT_TEAM = V37X2D6JM3;
 				INFOPLIST_FILE = Budi/Resource/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = kr.dochoi.Budi2;
+				PRODUCT_BUNDLE_IDENTIFIER = kr.dochoi.Budi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -1666,20 +1666,20 @@
 		};
 		B9BF788627004096000BE0EF /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 431890E70909CACD17283C45 /* Pods-Budi.release.xcconfig */;
+			baseConfigurationReference = 9EB71E235D2689FB858EFCB3 /* Pods-Budi.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Budi/Budi.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = ZMXTCSPNUZ;
+				DEVELOPMENT_TEAM = V37X2D6JM3;
 				INFOPLIST_FILE = Budi/Resource/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = kr.dochoi.Budi2;
+				PRODUCT_BUNDLE_IDENTIFIER = kr.dochoi.Budi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;

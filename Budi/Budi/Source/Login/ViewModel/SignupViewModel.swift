@@ -377,7 +377,6 @@ final class SignupViewModel: ViewModel {
                     positionList: self.state.positionSelectData.value,
                     projectList: uploadProjectList
                 )
-                print("파라미터 ", param)
                 guard let accsessToken = accsessToken else { return }
                 self.provider.requestPublisher(.createInfo(acessToken: accsessToken, param: param))
                     .map(UserInfoUploadSuccess.self)

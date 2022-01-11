@@ -12,6 +12,7 @@ import CombineCocoa
 class PortfolioViewController: UIViewController {
 
     weak var coordinator: LoginCoordinator?
+    weak var myBudiCoordinator: MyBudiCoordinator?
     @IBOutlet weak var modalView: UIView!
     var viewModel: SignupViewModel
     @IBOutlet weak var emptyViewButton: UIButton!

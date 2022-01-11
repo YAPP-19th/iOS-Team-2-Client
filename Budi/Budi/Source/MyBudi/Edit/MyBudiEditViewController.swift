@@ -29,10 +29,9 @@ final class MyBudiEditViewController: UIViewController {
         super.viewDidLoad()
         configureNavigationBar()
         configureTableView()
+        setPublisher()
         print(viewModel.state.mySectionData.value)
         print(viewModel.state.mySectionData.value[1].items.count)
-        print("유저 정보", viewModel.state.loginUserData.value)
-        print(UserDefaults.standard.string(forKey: "accessToken"))
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -41,6 +40,27 @@ final class MyBudiEditViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         tabBarController?.tabBar.isHidden = false
+    }
+
+    func setPublisher() {
+        NotificationCenter.default.publisher(for: Notification.Name("Dismiss"))
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in
+                self?.modalViewBackgoundOff()
+            }
+            .store(in: &cancellables)
+    }
+
+    func modalViewBackgoundOn() {
+        UIView.animate(withDuration: 0.4, delay: 0, options: .curveEaseOut, animations: {
+            self.view.alpha = 0.5
+        })
+    }
+
+    func modalViewBackgoundOff() {
+        UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: {
+            self.view.alpha = 1.0
+        })
     }
 }
 
@@ -83,9 +103,9 @@ extension MyBudiEditViewController: UITableViewDelegate, UITableViewDataSource {
         if section == 0 {
             return 4
         } else if section == 1 {
-            return viewModel.state.loginUserData.value?.projectList.count ?? 1
+            return (viewModel.state.loginUserData.value?.projectList.count ?? 1) + 1
         } else {
-            return viewModel.state.loginUserData.value?.portfolioList.count ?? 1
+            return (viewModel.state.loginUserData.value?.portfolioList.count ?? 1) + 1
         }
     }
 
@@ -168,7 +188,7 @@ extension MyBudiEditViewController: UITableViewDelegate, UITableViewDataSource {
                 return cell
             } else if indexPath.row == 1 {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: LocationReplaceTableViewCell.cellId, for: indexPath) as? LocationReplaceTableViewCell else { return UITableViewCell() }
-                cell.configureLocation(location: location)
+                cell.configureLocation(location: viewModel.state.loginUserData.value?.address ?? "")
 
                 cell.replaceLocationButton.tapPublisher
                     .receive(on: DispatchQueue.main)
@@ -195,19 +215,41 @@ extension MyBudiEditViewController: UITableViewDelegate, UITableViewDataSource {
         } else if indexPath.section == 1 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: ProjectTableViewCell.cellId, for: indexPath) as? ProjectTableViewCell else { return UITableViewCell() }
             cell.configureButtonTitle(text: "프로젝트를 추가해 보세요")
-
-            let data = viewModel.state.loginUserData.value?.projectList[indexPath.row]
-            if let data = data {
-                cell.configureLabel(main: data.name, date: data.startDate + " ~ " + data.endDate, sub: data.description)
+            if viewModel.state.loginUserData.value?.projectList.count != indexPath.row {
+                let data = viewModel.state.loginUserData.value?.projectList[indexPath.row]
+                if let data = data {
+                    cell.configureLabel(main: data.name, date: data.startDate + " ~ " + data.endDate, sub: data.description)
+                }
             }
+
+            cell.addButton.tapPublisher
+                .receive(on: DispatchQueue.main)
+                .sink { [weak self] _ in
+                    guard let self = self else { return }
+                    self.coordinator?.showProjectViewController(self, viewModel: self.viewModel)
+                    self.modalViewBackgoundOn()
+                }
+                .store(in: &cell.cancellables)
             return cell
         } else {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: PortfolioURLTableViewCell.cellId, for: indexPath) as? PortfolioURLTableViewCell else { return UITableViewCell() }
-            let data = viewModel.state.loginUserData.value?.portfolioList[indexPath.row]
-            if let data = data {
-                cell.configureParsing(url: data)
+            if viewModel.state.loginUserData.value?.portfolioList.count != indexPath.row {
+                let data = viewModel.state.loginUserData.value?.portfolioList[indexPath.row]
+                if let data = data {
+                    cell.configureParsing(url: data)
+                }
+            } else {
+                cell.configureButtonLabel(text: "포트폴리오를 추가해 보세요")
             }
-            cell.configureButtonLabel(text: "포트폴리오를 추가해 보세요")
+
+            cell.addButton.tapPublisher
+                .receive(on: DispatchQueue.main)
+                .sink { [weak self] _ in
+                    guard let self = self else { return }
+                    self.coordinator?.showPortfolioController(viewModel: self.viewModel)
+                    self.modalViewBackgoundOn()
+                }
+                .store(in: &cell.cancellables)
             return cell
         }
 
@@ -218,9 +260,9 @@ extension MyBudiEditViewController: UITableViewDelegate, UITableViewDataSource {
 extension MyBudiEditViewController: HomeLocationSearchViewControllerDelegate {
     func getLocation(_ location: String) {
         // 아직 API에서 지역을 뽑아와주지 않아서 일단 대기
-        let changeData = viewModel.state.loginUserData.value
-        self.location = location
-        print(location, "왜 안바뀜")
+        var changeData = viewModel.state.loginUserData.value
+        changeData?.address = location
+        viewModel.state.loginUserData.send(changeData)
         tableView.reloadData()
     }
 
@@ -235,4 +277,19 @@ extension MyBudiEditViewController: ProjectMembersBottomViewControllerDelegate {
         tableView.reloadData()
     }
 
+}
+
+extension MyBudiEditViewController: HistoryWriteViewControllerDelegate {
+    func getProject(_ project: SignupInfoModel?) {
+        var changeData = viewModel.state.loginUserData.value
+        var changeProject = ProjectList(projectId: 0,
+                                        name: project?.mainName ?? "",
+                                        startDate: project?.startDate ?? "",
+                                        endDate: project?.endDate ?? "",
+                                        description: project?.description ?? "")
+        changeData?.projectList.append(changeProject)
+        viewModel.state.loginUserData.send(changeData)
+        print(viewModel.state.loginUserData.value?.projectList)
+        tableView.reloadData()
+    }
 }

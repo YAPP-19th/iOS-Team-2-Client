@@ -14,6 +14,7 @@ class MyBudiEditViewModel: ViewModel {
     struct Action {
         let fetch = PassthroughSubject<Void, Never>()
         let refresh = PassthroughSubject<Void, Never>()
+        let switchView = PassthroughSubject<ModalControl, Never>()
     }
 
     struct State {
@@ -21,6 +22,7 @@ class MyBudiEditViewModel: ViewModel {
         let designerPositions = CurrentValueSubject<[String], Never>([])
         let productManagerPositions = CurrentValueSubject<[String], Never>([])
         let loginUserData = CurrentValueSubject<LoginUserDetail?, Never>(nil)
+        
         let mySectionData = CurrentValueSubject<[HistorySectionModel], Never>(
             [
                 HistorySectionModel.init(
@@ -37,6 +39,13 @@ class MyBudiEditViewModel: ViewModel {
                         Item(itemInfo: ItemInfo(isInclude: false, buttonTitle: "포트폴리오를 추가해보세요"),
                              description: "", endDate: "", name: "", nowWork: false, startDate: "", portfolioLink: "")])
             ])
+
+        let writedInfoData = CurrentValueSubject<SignupInfoModel?, Never>(
+            SignupInfoModel(mainName: "", startDate: "", endDate: "", nowWorks: false, description: "", porflioLink: "")
+        )
+        let writedPortfolioData = CurrentValueSubject<SignupInfoModel, Never>(
+            SignupInfoModel(mainName: "", startDate: "", endDate: "", nowWorks: false, description: "", porflioLink: "")
+        )
     }
 
     let action = Action()

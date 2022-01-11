@@ -8,9 +8,15 @@
 import UIKit
 import CombineCocoa
 import Combine
+
+protocol HistoryWriteViewControllerDelegate: AnyObject {
+    func getProject(_ project: SignupInfoModel?)
+}
+
 class HistoryWriteViewController: UIViewController {
     var viewModel: SignupViewModel
     weak var coordinator: LoginCoordinator?
+    weak var myBudiCoordinator: MyBudiCoordinator?
     private var cancellables = Set<AnyCancellable>()
     private var currentButtonTag: Int = 0
     @IBOutlet weak var historyNoSwitchView: UIView!
@@ -34,7 +40,7 @@ class HistoryWriteViewController: UIViewController {
 
     private var leftDatePicker = UIDatePicker()
     private var rightDatePicker = UIDatePicker()
-    
+    weak var delegate: HistoryWriteViewControllerDelegate?
     private var flag = false
     private let panGesture = UIPanGestureRecognizer()
     private var currentKeyboard: CGFloat = 0.0
@@ -80,6 +86,7 @@ class HistoryWriteViewController: UIViewController {
         viewModel.state.editData
             .receive(on: DispatchQueue.main)
             .sink { [weak self] editData in
+                print(editData)
                 guard let self = self else { return }
                 guard let editData = editData else { return }
                 self.mainNameTextField.text = editData.name
@@ -156,9 +163,15 @@ class HistoryWriteViewController: UIViewController {
 
         saveButton.tapPublisher
             .receive(on: DispatchQueue.main)
-            .sink {
-                self.viewModel.action.fetchSignupInfoData.send(())
-                self.viewModel.state.editData.send(nil)
+            .sink { [weak self] _ in
+                guard let self = self else { return }
+                if self.myBudiCoordinator != nil {
+                    let send = self.viewModel.state.writedInfoData.value
+                    self.delegate?.getProject(send)
+                } else {
+                    self.viewModel.action.fetchSignupInfoData.send(())
+                    self.viewModel.state.editData.send(nil)
+                }
                 NotificationCenter.default.post(name: Notification.Name("Dismiss"), object: self)
                 self.dismiss(animated: true, completion: nil)
             }

@@ -67,7 +67,6 @@ final class MyBudiMainViewController: UIViewController {
                     self.collectionView.isHidden = false
                     self.collectionView.reloadData()
                 }
-
             }
             .store(in: &cancellables)
 
@@ -97,7 +96,6 @@ final class MyBudiMainViewController: UIViewController {
                 let loginSelectViewController = storyboard.instantiateViewController(identifier: "LoginSelectViewController")
                 let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate
                 sceneDelegate?.moveLoginController(loginSelectViewController, animated: true)
-
             }
             .store(in: &cancellables)
     }

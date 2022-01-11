@@ -279,7 +279,6 @@ class HistoryWriteViewController: UIViewController {
         panGesture.panPublisher
             .receive(on: DispatchQueue.main)
             .sink { sender in
-                print(self.viewTranslation.y)
                 switch sender.state {
                 case .changed:
                     self.viewTranslation = sender.translation(in: self.modalView)
@@ -293,7 +292,7 @@ class HistoryWriteViewController: UIViewController {
                         })
                     }
                 case .ended:
-                    print("왜 여기가 안찍히지?")
+                    break
                 default:
                     if self.viewTranslation.y < 250 {
                         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: .curveEaseOut, animations: {

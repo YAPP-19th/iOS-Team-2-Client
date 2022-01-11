@@ -109,7 +109,6 @@ class PositionViewController: UIViewController {
 
     init?(coder: NSCoder, viewModel: SignupViewModel) {
         self.viewModel = viewModel
-        print("뷰 넘어와서", self.viewModel.state.loginUserInfo?.id)
         super.init(coder: coder)
     }
 
@@ -204,7 +203,6 @@ class PositionViewController: UIViewController {
             .receive(on: DispatchQueue.main)
             .sink { positionData in
                 guard let data = positionData else { return }
-                print(data)
                 self.positionDetailCollectionView.reloadData()
             }
             .store(in: &cancellables)
@@ -213,7 +211,6 @@ class PositionViewController: UIViewController {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] data in
                 guard let self = self else { return }
-                print(data)
                 if data.isEmpty {
                     self.nextButton.isEnabled = false
                     self.nextButton.backgroundColor = UIColor.textDisabled
@@ -423,7 +420,6 @@ extension PositionViewController: UICollectionViewDelegate, UICollectionViewDele
             .receive(on: DispatchQueue.main)
             .sink {
                 cell.positionDetailButton.isSelected = !cell.positionDetailButton.isSelected
-                print(indexPath.row)
                 if cell.positionDetailButton.isSelected {
                     cell.positionDetailButton.backgroundColor = UIColor.primarySub
                     cell.positionDetailButton.layer.borderColor = UIColor.primary.cgColor

@@ -167,7 +167,7 @@ extension HistoryManagementViewController: UITableViewDelegate, UITableViewDataS
         if data.itemInfo.isInclude {
             if data.portfolioLink.count >= 1 {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: PortfolioURLTableViewCell.cellId, for: indexPath) as? PortfolioURLTableViewCell else { return UITableViewCell() }
-                cell.configureParsing(url: data.portfolioLink)
+                cell.configureParsing(urlString: data.portfolioLink)
 
                 cell.editButton.tapPublisher
                     .receive(on: DispatchQueue.main)

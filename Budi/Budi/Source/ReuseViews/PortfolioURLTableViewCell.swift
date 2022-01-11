@@ -29,21 +29,18 @@ class PortfolioURLTableViewCell: UITableViewCell {
 
     }
 
-    func configureParsing(url: String) {
-        let sep = url.split(separator: "/")
-        if sep[0] == "https:" {
-            switch sep[1] {
-            case "www.behance.net":
-                portfolioUrlFaviconImageView.image = UIImage(named: "Behance")
-            case "www.linkedin.com":
-                portfolioUrlFaviconImageView.image = UIImage(named: "Linkedin")
-            case "www.instagram.com":
-                portfolioUrlFaviconImageView.image = UIImage(named: "Instagram")
-            default:
-                portfolioUrlFaviconImageView.image = UIImage(named: "Others")
-            }
+    func configureParsing(urlString: String) {
+        portfolioUrlLabel.text = urlString
+        guard let url = URL(string: urlString) else { return }
+        switch url.host {
+        case "www.behance.net":
+            portfolioUrlFaviconImageView.image = UIImage(named: "Behance")
+        case "www.linkedin.com":
+            portfolioUrlFaviconImageView.image = UIImage(named: "Linkedin")
+        case "www.instagram.com":
+            portfolioUrlFaviconImageView.image = UIImage(named: "Instagram")
+        default:
+            portfolioUrlFaviconImageView.image = UIImage(named: "Others")
         }
-        portfolioUrlLabel.text = url
     }
-    
 }

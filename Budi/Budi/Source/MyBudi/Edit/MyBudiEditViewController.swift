@@ -62,6 +62,32 @@ final class MyBudiEditViewController: UIViewController {
             self.view.alpha = 1.0
         })
     }
+
+    private func showActionSheet(section: Int, index: Int) {
+        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+
+        let edit = UIAlertAction(title: "수정", style: .default, handler: { [weak self] _ in
+            guard let self = self else { return }
+            self.modalViewBackgoundOn()
+            if section == 0 {
+                self.coordinator?.showProjectViewController(self, viewModel: self.viewModel)
+            } else if section == 1 {
+                self.coordinator?.showPortfolioController(self,viewModel: self.viewModel)
+            }
+        })
+        let delete = UIAlertAction(title: "삭제", style: .destructive, handler: { _ in
+        })
+
+        let cancel = UIAlertAction(title: "완료", style: .cancel, handler: { _ in
+            print(section, index)
+        })
+
+        actionSheet.addAction(edit)
+        actionSheet.addAction(delete)
+        actionSheet.addAction(cancel)
+
+        present(actionSheet, animated: true, completion: nil)
+    }
 }
 
 // MARK: - CollectionView
@@ -226,10 +252,20 @@ extension MyBudiEditViewController: UITableViewDelegate, UITableViewDataSource {
                 .receive(on: DispatchQueue.main)
                 .sink { [weak self] _ in
                     guard let self = self else { return }
+                    self.coordinatzor?.showProjectViewController(self, viewModel: self.viewModel)
+                    self.modalViewBackgoundOn()
+                }
+                .store(in: &cell.cancellables)
+
+            cell.moreButton.tapPublisher
+                .receive(on: DispatchQueue.main)
+                .sink { [weak self] _ in
+                    guard let self = self else { return }
                     self.coordinator?.showProjectViewController(self, viewModel: self.viewModel)
                     self.modalViewBackgoundOn()
                 }
                 .store(in: &cell.cancellables)
+            
             return cell
         } else {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: PortfolioURLTableViewCell.cellId, for: indexPath) as? PortfolioURLTableViewCell else { return UITableViewCell() }
@@ -246,7 +282,7 @@ extension MyBudiEditViewController: UITableViewDelegate, UITableViewDataSource {
                 .receive(on: DispatchQueue.main)
                 .sink { [weak self] _ in
                     guard let self = self else { return }
-                    self.coordinator?.showPortfolioController(viewModel: self.viewModel)
+                    self.coordinator?.showPortfolioController(self, viewModel: self.viewModel)
                     self.modalViewBackgoundOn()
                 }
                 .store(in: &cell.cancellables)
@@ -291,5 +327,14 @@ extension MyBudiEditViewController: HistoryWriteViewControllerDelegate {
         viewModel.state.loginUserData.send(changeData)
         print(viewModel.state.loginUserData.value?.projectList)
         tableView.reloadData()
+    }
+}
+
+
+extension MyBudiEditViewController: PortfolioViewControllerDelegate {
+    func getPortfolio(_ portfolio: SignupInfoModel) {
+        var changeData = viewModel.state.loginUserData.value
+        print("입력받은 포트폴리오", portfolio)
+
     }
 }

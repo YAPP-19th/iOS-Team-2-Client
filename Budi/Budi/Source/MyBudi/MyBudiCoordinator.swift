@@ -72,6 +72,7 @@ extension MyBudiCoordinator {
 
     func showProjectViewController(_ vc: UIViewController, viewModel: MyBudiEditViewModel) {
         let sign = SignupViewModel()
+
         let viewController: HistoryWriteViewController = storyboard.instantiateViewController(identifier: HistoryWriteViewController.identifier) { coder -> HistoryWriteViewController? in
             return HistoryWriteViewController(coder: coder, viewModel: SignupViewModel())
         }
@@ -82,11 +83,12 @@ extension MyBudiCoordinator {
         navigationController?.present(viewController, animated: true, completion: nil)
     }
 
-    func showPortfolioController(viewModel: MyBudiEditViewModel) {
+    func showPortfolioController(_ vc: UIViewController, viewModel: MyBudiEditViewModel) {
         let signViewModel = SignupViewModel()
         let viewController: PortfolioViewController = storyboard.instantiateViewController(identifier: PortfolioViewController.identifier) { coder -> PortfolioViewController? in
-            return PortfolioViewController(coder: coder, viewModel: signViewModel)
+            return PortfolioViewController(coder: coder, viewModel: SignupViewModel())
         }
+        viewController.delegate = vc as? PortfolioViewControllerDelegate
         viewController.myBudiCoordinator = self
         viewController.modalPresentationStyle = .overFullScreen
         viewController.viewModel.action.switchView.send(ModalControl.portfolio)

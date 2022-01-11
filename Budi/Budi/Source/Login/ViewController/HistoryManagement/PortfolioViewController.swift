@@ -9,8 +9,13 @@ import UIKit
 import Combine
 import CombineCocoa
 
+protocol PortfolioViewControllerDelegate: AnyObject {
+    func getPortfolio(_ portfolio: SignupInfoModel)
+}
+
 class PortfolioViewController: UIViewController {
 
+    weak var delegate: PortfolioViewControllerDelegate?
     weak var coordinator: LoginCoordinator?
     weak var myBudiCoordinator: MyBudiCoordinator?
     @IBOutlet weak var modalView: UIView!
@@ -64,16 +69,26 @@ class PortfolioViewController: UIViewController {
                 print(data.porflioLink)
                 print(data.mainName)
                 data.porflioLink = text
+                print(data.porflioLink)
                 self?.viewModel.state.writedInfoData.send(data)
+                
             }
             .store(in: &cancellables)
 
         saveButton.tapPublisher
             .receive(on: RunLoop.main)
             .sink { [weak self] _ in
-                self?.viewModel.action.fetchSignupInfoData.send(())
+                guard let self = self else { return }
+                if self.myBudiCoordinator != nil {
+                    let send = self.viewModel.state.writedPortfolioData.value
+                    print("입력받은 텍스트", send)
+                    self.delegate?.getPortfolio(send)
+                } else {
+                    self.viewModel.action.fetchSignupInfoData.send(())
+                }
+
                 NotificationCenter.default.post(name: Notification.Name("Dismiss"), object: self)
-                self?.dismiss(animated: true, completion: nil)
+                self.dismiss(animated: true, completion: nil)
             }
             .store(in: &cancellables)
 

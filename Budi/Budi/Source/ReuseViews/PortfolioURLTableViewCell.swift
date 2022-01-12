@@ -37,6 +37,7 @@ class PortfolioURLTableViewCell: UITableViewCell {
         portfolioView.isHidden = false
         portfolioUrlLabel.text = urlString
         guard let url = URL(string: urlString) else { return }
+        print("왜 이럼", url.host)
         switch url.host {
         case "www.behance.net":
             portfolioUrlFaviconImageView.image = UIImage(named: "Behance")

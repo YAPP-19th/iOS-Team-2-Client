@@ -442,9 +442,14 @@ extension MyBudiEditViewController: HistoryWriteViewControllerDelegate {
 }
 
 extension MyBudiEditViewController: PortfolioViewControllerDelegate {
-    func getPortfolio(_ portfolio: SignupInfoModel?) {
+    func getPortfolio(_ portfolio: SignupInfoModel?, _ editItem: Item?) {
         guard var changeData = viewModel.state.loginUserData.value else { return }
-        changeData.portfolioList.append(portfolio?.porflioLink ?? "")
+
+        if editItem != nil {
+            changeData.portfolioList[editIndex] = portfolio?.porflioLink ?? ""
+        } else {
+            changeData.portfolioList.append(portfolio?.porflioLink ?? "")
+        }
         viewModel.state.loginUserData.send(changeData)
         tableView.reloadData()
     }

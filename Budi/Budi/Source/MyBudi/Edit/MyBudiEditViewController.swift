@@ -49,6 +49,14 @@ final class MyBudiEditViewController: UIViewController {
                 self?.modalViewBackgoundOff()
             }
             .store(in: &cancellables)
+
+        viewModel.state.loginUserData
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in
+                guard let self = self else { return }
+                //
+            }
+            .store(in: &cancellables)
     }
 
     func modalViewBackgoundOn() {
@@ -252,7 +260,7 @@ extension MyBudiEditViewController: UITableViewDelegate, UITableViewDataSource {
                 .receive(on: DispatchQueue.main)
                 .sink { [weak self] _ in
                     guard let self = self else { return }
-                    self.coordinatzor?.showProjectViewController(self, viewModel: self.viewModel)
+                    self.coordinator?.showProjectViewController(self, viewModel: self.viewModel)
                     self.modalViewBackgoundOn()
                 }
                 .store(in: &cell.cancellables)
@@ -330,11 +338,11 @@ extension MyBudiEditViewController: HistoryWriteViewControllerDelegate {
     }
 }
 
-
 extension MyBudiEditViewController: PortfolioViewControllerDelegate {
-    func getPortfolio(_ portfolio: SignupInfoModel) {
-        var changeData = viewModel.state.loginUserData.value
-        print("입력받은 포트폴리오", portfolio)
-
+    func getPortfolio(_ portfolio: SignupInfoModel?) {
+        guard var changeData = viewModel.state.loginUserData.value else { return }
+        changeData.portfolioList.append(portfolio?.porflioLink ?? "")
+        viewModel.state.loginUserData.send(changeData)
+        tableView.reloadData()
     }
 }

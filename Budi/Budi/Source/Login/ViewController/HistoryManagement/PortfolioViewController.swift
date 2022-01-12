@@ -10,7 +10,7 @@ import Combine
 import CombineCocoa
 
 protocol PortfolioViewControllerDelegate: AnyObject {
-    func getPortfolio(_ portfolio: SignupInfoModel)
+    func getPortfolio(_ portfolio: SignupInfoModel?)
 }
 
 class PortfolioViewController: UIViewController {
@@ -67,7 +67,7 @@ class PortfolioViewController: UIViewController {
                 guard let text = text else { return }
                 guard var data = self?.viewModel.state.writedInfoData.value else { return }
                 data.porflioLink = text
-                print(data.porflioLink)
+                print(data)
                 self?.viewModel.state.writedInfoData.send(data)
                 
             }
@@ -78,8 +78,7 @@ class PortfolioViewController: UIViewController {
             .sink { [weak self] _ in
                 guard let self = self else { return }
                 if self.myBudiCoordinator != nil {
-                    let send = self.viewModel.state.writedPortfolioData.value
-                    print("입력받은 텍스트", send)
+                    let send = self.viewModel.state.writedInfoData.value
                     self.delegate?.getPortfolio(send)
                 } else {
                     self.viewModel.action.fetchSignupInfoData.send(())

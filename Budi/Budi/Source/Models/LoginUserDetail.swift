@@ -14,7 +14,7 @@ struct LoginUserDetail: Codable {
     var address: String
     var description: String
     let level: String
-    let basePosition: Int
+    var basePosition: Int
     var positions: [String]
     let likeCount: Int
     var projectList: [ProjectList]

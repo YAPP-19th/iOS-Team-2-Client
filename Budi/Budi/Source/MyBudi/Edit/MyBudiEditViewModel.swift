@@ -131,6 +131,7 @@ class MyBudiEditViewModel: ViewModel {
 
                 let param = CreateInfo(
                     basePosition: self.state.loginUserData.value?.basePosition ?? 0,
+                    imgUrl: self.state.loginUserData.value?.imgUrl ?? "",
                     careerList: uploadCareerList,
                     description: self.state.loginUserData.value?.description ?? "",
                     memberAddress: self.state.loginUserData.value?.address ?? "",

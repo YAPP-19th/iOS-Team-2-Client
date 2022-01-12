@@ -36,6 +36,7 @@ final class MyBudiEditViewController: UIViewController {
         configureTableView()
         setPublisher()
         configureLayout()
+        print(UserDefaults.standard.string(forKey: "accessToken"))
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -174,6 +175,7 @@ private extension MyBudiEditViewController {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
                 guard let self = self else { return }
+                print(self.viewModel.state.loginUserData.value?.imgUrl)
                 self.viewModel.action.postUserData.send(())
                 self.navigationController?.popViewController(animated: true)
             }
@@ -367,7 +369,7 @@ extension MyBudiEditViewController: UITableViewDelegate, UITableViewDataSource {
             if viewModel.state.loginUserData.value?.portfolioList.count != indexPath.row {
                 let data = viewModel.state.loginUserData.value?.portfolioList[indexPath.row]
                 if let data = data {
-                    cell.configureParsing(url: data)
+                    cell.configureParsing(urlString: data)
                 }
             } else {
                 cell.configureButtonLabel(text: "포트폴리오를 추가해 보세요")
@@ -409,10 +411,11 @@ extension MyBudiEditViewController: HomeLocationSearchViewControllerDelegate {
 }
 
 extension MyBudiEditViewController: ProjectMembersBottomViewControllerDelegate {
-    func getRecruitingPositions(_ recruitingPositions: [RecruitingPosition]) {
+    func getRecruitingPositions(_ recruitingPositions: [RecruitingPosition], _ selectPostion: Int) {
         var changeData = viewModel.state.loginUserData.value
-        let position = recruitingPositions.map { $0.positionName }
+        var position = recruitingPositions.map { $0.positionName }
         changeData?.positions = position
+        changeData?.basePosition = selectPostion
         viewModel.state.loginUserData.send(changeData)
         tableView.reloadData()
     }
@@ -466,6 +469,7 @@ extension MyBudiEditViewController: UIImagePickerControllerDelegate & UINavigati
                           let imageUrl = data["imageUrl"] as? String else { return }
                     var changeData = self.viewModel.state.loginUserData.value
                     changeData?.imgUrl = imageUrl
+                    self.viewModel.state.loginUserData.send(changeData)
                     print("이미지 URL", imageUrl)
                     picker.dismiss(animated: true)
                 } catch {}

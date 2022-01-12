@@ -86,7 +86,6 @@ class HistoryWriteViewController: UIViewController {
         viewModel.state.editData
             .receive(on: DispatchQueue.main)
             .sink { [weak self] editData in
-                print(editData)
                 guard let self = self else { return }
                 guard let editData = editData else { return }
                 self.mainNameTextField.text = editData.name
@@ -94,19 +93,8 @@ class HistoryWriteViewController: UIViewController {
                 self.rightDateTextField.text = editData.endDate
                 self.descriptionTextField.text = editData.description
                 self.workingSwitchButton.isSelected = editData.nowWork
-                if self.workingSwitchButton.isSelected {
-                    self.workingSwitchButton.isSelected = true
-                    self.workingSwitchButton.imageView?.image = UIImage(systemName: "checkmark.circle.fill")
-                    self.workingSwitchButton.tintColor = UIColor.primary
-                    self.rightDateTextField.text = "현재"
-                    self.rightDateTextField.isSelected = false
-                } else {
-                    self.workingSwitchButton.isSelected = false
-                    self.workingSwitchButton.imageView?.image = UIImage(systemName: "checkmark.circle")
-                    self.workingSwitchButton.tintColor = UIColor.textDisabled
-                    self.rightDateTextField.isSelected = true
-                }
-
+                self.saveButton.backgroundColor = UIColor.primary
+                self.saveButton.isEnabled = true
                 guard var data = self.viewModel.state.writedInfoData.value else { return }
                 data.mainName = editData.name
                 data.startDate = editData.startDate

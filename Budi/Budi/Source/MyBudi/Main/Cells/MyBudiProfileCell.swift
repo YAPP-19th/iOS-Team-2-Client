@@ -44,7 +44,7 @@ final class MyBudiProfileCell: UICollectionViewCell {
         case 1:
             userCharacterImageView.image = UIImage(named: "Developer")
         case 2:
-            userCharacterImageView.image = UIImage(named: "Disnger")
+            userCharacterImageView.image = UIImage(named: "Designer")
         case 3:
             userCharacterImageView.image = UIImage(named: "Planner")
         default:

@@ -211,7 +211,6 @@ extension ChattingDetailViewController: UICollectionViewDelegateFlowLayout, UICo
         guard let currentUser = viewModel.state.currentUser.value else { return UICollectionViewCell() }
         
         let message = viewModel.state.messages.value[indexPath.row]
-        
         let isFromCurrentUser = (message.senderId == currentUser.id)
         
         if isFromCurrentUser {

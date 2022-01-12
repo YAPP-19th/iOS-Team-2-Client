@@ -105,12 +105,29 @@ private extension ChattingDetailViewController {
     
     @objc
     func ellipsisBarButtonTapped() {
-        // MARK: - Alert 띄우기
-        // 대화 삭제 누를 시에 대화를 삭제함
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        alert.addAction(.init(title: "대화 삭제", style: .destructive, handler: { [weak self] _ in
+            let alertVC = AlertViewController("킬러베어님과의 대화를 삭제하시겠습니까? 삭제한 대화는 복구가 불가능합니다.", "삭제", "취소")
+            alertVC.modalPresentationStyle = .overCurrentContext
+            alertVC.delegate = self
+            self?.present(alertVC, animated: false, completion: nil)
+        }))
+        alert.addAction(.init(title: "취소", style: .cancel, handler: { _ in
+            print("취소")
+        }))
+        self.present(alert, animated: false, completion: nil)
     }
 
     func configureTabBar() {
         tabBarController?.tabBar.isHidden = true
+    }
+}
+
+// MARK: - Delegate
+// MARK: - AlertVC 대화 삭제코드 추가
+extension ChattingDetailViewController: AlertViewControllerDelegate {
+    func okButtonTapped() {
+        print("대화를 삭제합니다")
     }
 }
 

@@ -10,7 +10,7 @@ import CombineCocoa
 import Combine
 
 protocol HistoryWriteViewControllerDelegate: AnyObject {
-    func getProject(_ project: SignupInfoModel?)
+    func getProject(_ project: SignupInfoModel?, _ editItem: Item?)
 }
 
 class HistoryWriteViewController: UIViewController {
@@ -167,7 +167,11 @@ class HistoryWriteViewController: UIViewController {
                 guard let self = self else { return }
                 if self.myBudiCoordinator != nil {
                     let send = self.viewModel.state.writedInfoData.value
-                    self.delegate?.getProject(send)
+                    if self.viewModel.state.editData.value != nil {
+                        self.delegate?.getProject(send, self.viewModel.state.editData.value)
+                    } else {
+                        self.delegate?.getProject(send, nil)
+                    }
                 } else {
                     self.viewModel.action.fetchSignupInfoData.send(())
                     self.viewModel.state.editData.send(nil)

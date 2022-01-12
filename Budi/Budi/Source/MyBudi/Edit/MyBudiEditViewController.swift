@@ -16,6 +16,8 @@ final class MyBudiEditViewController: UIViewController {
     var viewModel: MyBudiEditViewModel
     private var cancellables = Set<AnyCancellable>()
     var location: String = "충남 당진시"
+    var editIndex: Int = -1
+
     init(nibName: String?, bundle: Bundle?, viewModel: MyBudiEditViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nibName, bundle: bundle)
@@ -30,8 +32,6 @@ final class MyBudiEditViewController: UIViewController {
         configureNavigationBar()
         configureTableView()
         setPublisher()
-        print(viewModel.state.mySectionData.value)
-        print(viewModel.state.mySectionData.value[1].items.count)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -50,13 +50,14 @@ final class MyBudiEditViewController: UIViewController {
             }
             .store(in: &cancellables)
 
-        viewModel.state.loginUserData
+        viewModel.state.dataChanged
             .receive(on: DispatchQueue.main)
-            .sink { [weak self] _ in
+            .sink { [weak self] idx in
                 guard let self = self else { return }
-                //
+                self.tableView.reloadSections(IndexSet(integer: idx), with: .automatic)
             }
             .store(in: &cancellables)
+
     }
 
     func modalViewBackgoundOn() {
@@ -73,17 +74,42 @@ final class MyBudiEditViewController: UIViewController {
 
     private func showActionSheet(section: Int, index: Int) {
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-
+        editIndex = index
         let edit = UIAlertAction(title: "수정", style: .default, handler: { [weak self] _ in
             guard let self = self else { return }
             self.modalViewBackgoundOn()
             if section == 0 {
-                self.coordinator?.showProjectViewController(self, viewModel: self.viewModel)
+                let signViewModel = SignupViewModel()
+                guard let projectData = self.viewModel.state.loginUserData.value?.projectList[index] else { return }
+                signViewModel.state.editData.value = Item(itemInfo: ItemInfo(isInclude: true, buttonTitle: ""),
+                                                          description: projectData.description,
+                                                          endDate: projectData.endDate,
+                                                          name: projectData.name,
+                                                          nowWork: false,
+                                                          startDate: projectData.startDate,
+                                                          portfolioLink: "")
+
+                self.coordinator?.showProjectViewController(self, viewModel: signViewModel)
             } else if section == 1 {
-                self.coordinator?.showPortfolioController(self,viewModel: self.viewModel)
+                let signViewModel = SignupViewModel()
+                guard let portfolioData = self.viewModel.state.loginUserData.value?.portfolioList[index] else { return }
+                signViewModel.state.editData.value = Item(itemInfo: ItemInfo(isInclude: true, buttonTitle: ""),
+                                                          description: "",
+                                                          endDate: "",
+                                                          name: "",
+                                                          nowWork: false,
+                                                          startDate: "",
+                                                          portfolioLink: portfolioData)
+                self.coordinator?.showPortfolioController(self, viewModel: signViewModel)
             }
         })
-        let delete = UIAlertAction(title: "삭제", style: .destructive, handler: { _ in
+        let delete = UIAlertAction(title: "삭제", style: .destructive, handler: { [weak self] _ in
+            guard let self = self else { return }
+            if section == 0 {
+                self.viewModel.action.deleteProjectData.send(index)
+            } else {
+                self.viewModel.action.deletePortfolioData.send(index)
+            }
         })
 
         let cancel = UIAlertAction(title: "완료", style: .cancel, handler: { _ in
@@ -171,12 +197,10 @@ extension MyBudiEditViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section >= 1 {
             guard let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: MyBudiEditHeaderView.cellId) as? MyBudiEditHeaderView else { return UIView() }
-            let title = viewModel.state.mySectionData.value[section-1].sectionTitle
-            print("섹션", section)
             if section == 1 {
-                header.configureHeader(header: title)
+                header.configureHeader(header: "프로젝트 이력")
             } else {
-                header.configureHeader(header: title)
+                header.configureHeader(header: "포트폴리오")
             }
             return header
         }
@@ -213,6 +237,7 @@ extension MyBudiEditViewController: UITableViewDelegate, UITableViewDataSource {
                             guard let self = self else { return }
                             var changeData = self.viewModel.state.loginUserData.value
                             changeData?.description = text ?? ""
+                            print("여기 불림?")
                             self.viewModel.state.loginUserData.send(changeData)
                             print(self.viewModel.state.loginUserData.value?.description ?? "")
                         }
@@ -249,7 +274,7 @@ extension MyBudiEditViewController: UITableViewDelegate, UITableViewDataSource {
         } else if indexPath.section == 1 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: ProjectTableViewCell.cellId, for: indexPath) as? ProjectTableViewCell else { return UITableViewCell() }
             cell.configureButtonTitle(text: "프로젝트를 추가해 보세요")
-            if viewModel.state.loginUserData.value?.projectList.count != indexPath.row {
+            if (viewModel.state.loginUserData.value?.projectList.count ?? 1) != indexPath.row {
                 let data = viewModel.state.loginUserData.value?.projectList[indexPath.row]
                 if let data = data {
                     cell.configureLabel(main: data.name, date: data.startDate + " ~ " + data.endDate, sub: data.description)
@@ -260,7 +285,7 @@ extension MyBudiEditViewController: UITableViewDelegate, UITableViewDataSource {
                 .receive(on: DispatchQueue.main)
                 .sink { [weak self] _ in
                     guard let self = self else { return }
-                    self.coordinator?.showProjectViewController(self, viewModel: self.viewModel)
+                    self.coordinator?.showProjectViewController(self, viewModel: SignupViewModel())
                     self.modalViewBackgoundOn()
                 }
                 .store(in: &cell.cancellables)
@@ -269,8 +294,7 @@ extension MyBudiEditViewController: UITableViewDelegate, UITableViewDataSource {
                 .receive(on: DispatchQueue.main)
                 .sink { [weak self] _ in
                     guard let self = self else { return }
-                    self.coordinator?.showProjectViewController(self, viewModel: self.viewModel)
-                    self.modalViewBackgoundOn()
+                    self.showActionSheet(section: 0, index: indexPath.row)
                 }
                 .store(in: &cell.cancellables)
             
@@ -290,10 +314,19 @@ extension MyBudiEditViewController: UITableViewDelegate, UITableViewDataSource {
                 .receive(on: DispatchQueue.main)
                 .sink { [weak self] _ in
                     guard let self = self else { return }
-                    self.coordinator?.showPortfolioController(self, viewModel: self.viewModel)
+                    self.coordinator?.showPortfolioController(self, viewModel: SignupViewModel())
                     self.modalViewBackgoundOn()
                 }
                 .store(in: &cell.cancellables)
+
+            cell.editButton.tapPublisher
+                .receive(on: DispatchQueue.main)
+                .sink { [weak self] _ in
+                    guard let self = self else { return }
+                    self.showActionSheet(section: 1, index: indexPath.row)
+                }
+                .store(in: &cell.cancellables)
+
             return cell
         }
 
@@ -324,16 +357,20 @@ extension MyBudiEditViewController: ProjectMembersBottomViewControllerDelegate {
 }
 
 extension MyBudiEditViewController: HistoryWriteViewControllerDelegate {
-    func getProject(_ project: SignupInfoModel?) {
+    func getProject(_ project: SignupInfoModel?, _ editItem: Item?) {
         var changeData = viewModel.state.loginUserData.value
-        var changeProject = ProjectList(projectId: 0,
+        let changeProject = ProjectList(projectId: 0,
                                         name: project?.mainName ?? "",
                                         startDate: project?.startDate ?? "",
                                         endDate: project?.endDate ?? "",
                                         description: project?.description ?? "")
-        changeData?.projectList.append(changeProject)
+        if editItem != nil {
+            changeData?.projectList[editIndex] = changeProject
+        } else {
+            changeData?.projectList.append(changeProject)
+        }
         viewModel.state.loginUserData.send(changeData)
-        print(viewModel.state.loginUserData.value?.projectList)
+        editIndex = -1
         tableView.reloadData()
     }
 }

@@ -70,11 +70,10 @@ extension MyBudiCoordinator {
         vc.present(viewController, animated: false, completion: nil)
     }
 
-    func showProjectViewController(_ vc: UIViewController, viewModel: MyBudiEditViewModel) {
+    func showProjectViewController(_ vc: UIViewController, viewModel: SignupViewModel) {
         let sign = SignupViewModel()
-
         let viewController: HistoryWriteViewController = storyboard.instantiateViewController(identifier: HistoryWriteViewController.identifier) { coder -> HistoryWriteViewController? in
-            return HistoryWriteViewController(coder: coder, viewModel: SignupViewModel())
+            return HistoryWriteViewController(coder: coder, viewModel: viewModel)
         }
         viewController.delegate = vc as? HistoryWriteViewControllerDelegate
         viewController.myBudiCoordinator = self
@@ -83,10 +82,10 @@ extension MyBudiCoordinator {
         navigationController?.present(viewController, animated: true, completion: nil)
     }
 
-    func showPortfolioController(_ vc: UIViewController, viewModel: MyBudiEditViewModel) {
+    func showPortfolioController(_ vc: UIViewController, viewModel: SignupViewModel) {
         let signViewModel = SignupViewModel()
         let viewController: PortfolioViewController = storyboard.instantiateViewController(identifier: PortfolioViewController.identifier) { coder -> PortfolioViewController? in
-            return PortfolioViewController(coder: coder, viewModel: SignupViewModel())
+            return PortfolioViewController(coder: coder, viewModel: viewModel)
         }
         viewController.delegate = vc as? PortfolioViewControllerDelegate
         viewController.myBudiCoordinator = self

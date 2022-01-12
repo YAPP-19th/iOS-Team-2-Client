@@ -15,6 +15,8 @@ class MyBudiEditViewModel: ViewModel {
         let fetch = PassthroughSubject<Void, Never>()
         let refresh = PassthroughSubject<Void, Never>()
         let switchView = PassthroughSubject<ModalControl, Never>()
+        let deleteProjectData = PassthroughSubject<Int, Never>()
+        let deletePortfolioData = PassthroughSubject<Int, Never>()
     }
 
     struct State {
@@ -22,30 +24,7 @@ class MyBudiEditViewModel: ViewModel {
         let designerPositions = CurrentValueSubject<[String], Never>([])
         let productManagerPositions = CurrentValueSubject<[String], Never>([])
         let loginUserData = CurrentValueSubject<LoginUserDetail?, Never>(nil)
-        
-        let mySectionData = CurrentValueSubject<[HistorySectionModel], Never>(
-            [
-                HistorySectionModel.init(
-                    type: .project,
-                    sectionTitle: ModalControl.project.stringValue ,
-                    items: [
-                        Item(itemInfo: ItemInfo(isInclude: false, buttonTitle: "프로젝트 이력을 추가해보세요"),
-                             description: "", endDate: "", name: "", nowWork: false, startDate: "", portfolioLink: "")]),
-
-                HistorySectionModel.init(
-                    type: .portfolio,
-                    sectionTitle: ModalControl.portfolio.stringValue ,
-                    items: [
-                        Item(itemInfo: ItemInfo(isInclude: false, buttonTitle: "포트폴리오를 추가해보세요"),
-                             description: "", endDate: "", name: "", nowWork: false, startDate: "", portfolioLink: "")])
-            ])
-
-        let writedInfoData = CurrentValueSubject<SignupInfoModel?, Never>(
-            SignupInfoModel(mainName: "", startDate: "", endDate: "", nowWorks: false, description: "", porflioLink: "")
-        )
-        let writedPortfolioData = CurrentValueSubject<SignupInfoModel, Never>(
-            SignupInfoModel(mainName: "", startDate: "", endDate: "", nowWorks: false, description: "", porflioLink: "")
-        )
+        let dataChanged = CurrentValueSubject<Int, Never>(1)
     }
 
     let action = Action()
@@ -89,6 +68,31 @@ class MyBudiEditViewModel: ViewModel {
                     .store(in: &self.cancellables)
 
             }).store(in: &cancellables)
+
+        action.deleteProjectData
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] idx in
+                guard let self = self else { return }
+                var changeData = self.state.loginUserData.value
+                changeData?.projectList.remove(at: idx)
+                print("바뀐 데이터", changeData)
+                self.state.loginUserData.send(changeData)
+                self.state.dataChanged.send(1)
+                print("2")
+            }
+            .store(in: &cancellables)
+
+        action.deletePortfolioData
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] idx in
+                guard let self = self else { return }
+                var changeData = self.state.loginUserData.value
+                changeData?.portfolioList.remove(at: idx)
+                print("바뀐 데이터", changeData)
+                self.state.loginUserData.send(changeData)
+                self.state.dataChanged.send(2)
+            }
+            .store(in: &cancellables)
 
         action.refresh
             .sink { [weak self] _ in

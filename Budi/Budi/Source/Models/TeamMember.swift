@@ -27,10 +27,13 @@ struct SearchTeamMember: Codable {
     let introduce: String?
     let position: [String]
     let likeCount: Int
+    let projectList: [PersonalProject]?
+    let portfolioList: [String]?
+    let isLikedFromCurrentMember: Bool?
 
     enum CodingKeys: String, CodingKey {
         case id
         case imgURL = "imgUrl"
-        case nickName, address, introduce, position, likeCount
+        case nickName, address, introduce, position, likeCount, projectList, portfolioList, isLikedFromCurrentMember
     }
 }

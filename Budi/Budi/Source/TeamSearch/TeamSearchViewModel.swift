@@ -8,8 +8,23 @@
 import Combine
 import Moya
 
-struct TeamSearchViewModelSection {
+enum TeamSearchSectionType {
+    case position
+    case evalution
+    case review
+    case history
+    case portfolio
+}
+
+protocol TeamSearchSection {
+    var type: TeamSearchSectionType { get }
+    var title: String { get }
+}
+
+struct TeamSearchPositionSection: TeamSearchSection {
     let position: Position
+    var title: String { position.jobStringValue }
+    let type: TeamSearchSectionType = .position
     var items: [SearchTeamMember]
 }
 
@@ -21,7 +36,7 @@ final class TeamSearchViewModel: ViewModel {
     }
 
     struct State {
-        let sections = CurrentValueSubject<[TeamSearchViewModelSection], Never>([])
+        let sections = CurrentValueSubject<[TeamSearchPositionSection], Never>([])
     }
 
     let action = Action()

@@ -20,8 +20,8 @@
                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="LNC-ds-469">
                         <rect key="frame" x="20" y="0.0" width="382" height="91"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eqt-hV-IFa">
-                                <rect key="frame" x="0.0" y="33.5" width="24" height="24"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="face.smiling.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="eqt-hV-IFa">
+                                <rect key="frame" x="0.0" y="34" width="24" height="23"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="24" id="69c-vH-s2b"/>
                                     <constraint firstAttribute="height" constant="24" id="ttd-T3-h20"/>
@@ -60,4 +60,7 @@
             <point key="canvasLocation" x="-60.869565217391312" y="91.40625"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <image name="face.smiling.fill" catalog="system" width="128" height="121"/>
+    </resources>
 </document>

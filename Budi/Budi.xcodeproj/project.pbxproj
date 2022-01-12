@@ -208,6 +208,12 @@
 		B97DBB9527147D970018C1D2 /* UIViewController+identifer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B97DBB9427147D970018C1D2 /* UIViewController+identifer.swift */; };
 		B98E530A27396B3F00C73374 /* UINavigationController+translucent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98E530927396B3F00C73374 /* UINavigationController+translucent.swift */; };
 		B9A48F212789CAA70084F7A0 /* TeamSearchFilterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9A48F202789CAA70084F7A0 /* TeamSearchFilterViewModel.swift */; };
+		B9AC3357278DC95A00203698 /* TeamSearchProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9AC3356278DC95A00203698 /* TeamSearchProfileViewController.swift */; };
+		B9AC335A278DCA7200203698 /* ProjectHistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9AC3358278DCA7200203698 /* ProjectHistoryCell.swift */; };
+		B9AC335B278DCA7200203698 /* ProjectHistoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9AC3359278DCA7200203698 /* ProjectHistoryCell.xib */; };
+		B9AC335E278DCA8D00203698 /* PortfolioCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9AC335C278DCA8D00203698 /* PortfolioCell.swift */; };
+		B9AC335F278DCA8D00203698 /* PortfolioCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9AC335D278DCA8D00203698 /* PortfolioCell.xib */; };
+		B9AC3361278DD7E800203698 /* TeamSearchProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9AC3360278DD7E800203698 /* TeamSearchProfileViewModel.swift */; };
 		B9BEF8972767978E00C889B4 /* HomeContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9BEF8962767978E00C889B4 /* HomeContentViewController.swift */; };
 		B9BF787427004094000BE0EF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9BF787327004094000BE0EF /* AppDelegate.swift */; };
 		B9BF787627004095000BE0EF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9BF787527004095000BE0EF /* SceneDelegate.swift */; };
@@ -220,6 +226,8 @@
 		B9D66EC42714703B00668490 /* TeamSearchCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9D66EC32714703B00668490 /* TeamSearchCoordinator.swift */; };
 		B9D66EC62714706700668490 /* ChattingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9D66EC52714706700668490 /* ChattingCoordinator.swift */; };
 		B9D66EC82714707000668490 /* MyBudiCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9D66EC72714707000668490 /* MyBudiCoordinator.swift */; };
+		B9E5C4DC278F1861006F0087 /* Evaluation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E5C4DB278F1861006F0087 /* Evaluation.swift */; };
+		B9E5C4DE278F186B006F0087 /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E5C4DD278F186B006F0087 /* Review.swift */; };
 		BE1BFB467D2ED1A7125C98FE /* Pods_Budi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28404891811DD25D41C22ABF /* Pods_Budi.framework */; };
 /* End PBXBuildFile section */
 
@@ -429,6 +437,12 @@
 		B97DBB9427147D970018C1D2 /* UIViewController+identifer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+identifer.swift"; sourceTree = "<group>"; };
 		B98E530927396B3F00C73374 /* UINavigationController+translucent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationController+translucent.swift"; sourceTree = "<group>"; };
 		B9A48F202789CAA70084F7A0 /* TeamSearchFilterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamSearchFilterViewModel.swift; sourceTree = "<group>"; };
+		B9AC3356278DC95A00203698 /* TeamSearchProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamSearchProfileViewController.swift; sourceTree = "<group>"; };
+		B9AC3358278DCA7200203698 /* ProjectHistoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectHistoryCell.swift; sourceTree = "<group>"; };
+		B9AC3359278DCA7200203698 /* ProjectHistoryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProjectHistoryCell.xib; sourceTree = "<group>"; };
+		B9AC335C278DCA8D00203698 /* PortfolioCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioCell.swift; sourceTree = "<group>"; };
+		B9AC335D278DCA8D00203698 /* PortfolioCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PortfolioCell.xib; sourceTree = "<group>"; };
+		B9AC3360278DD7E800203698 /* TeamSearchProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamSearchProfileViewModel.swift; sourceTree = "<group>"; };
 		B9BEF8962767978E00C889B4 /* HomeContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeContentViewController.swift; sourceTree = "<group>"; };
 		B9BF787027004094000BE0EF /* Budi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Budi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9BF787327004094000BE0EF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -445,6 +459,8 @@
 		B9D66EC52714706700668490 /* ChattingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingCoordinator.swift; sourceTree = "<group>"; };
 		B9D66EC72714707000668490 /* MyBudiCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyBudiCoordinator.swift; sourceTree = "<group>"; };
 		B9D66ECB2714716400668490 /* HomeContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeContainerViewController.swift; sourceTree = "<group>"; };
+		B9E5C4DB278F1861006F0087 /* Evaluation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Evaluation.swift; sourceTree = "<group>"; };
+		B9E5C4DD278F186B006F0087 /* Review.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
 		DFADA0C5B77CB0D65F495026 /* Pods-Budi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Budi.debug.xcconfig"; path = "Target Support Files/Pods-Budi/Pods-Budi.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -718,6 +734,10 @@
 				B97A86302786D7C20016CF23 /* TeamSearchEvaluationCell.xib */,
 				B97A86332786D7D90016CF23 /* TeamSearchReviewCell.swift */,
 				B97A86342786D7D90016CF23 /* TeamSearchReviewCell.xib */,
+				B9AC3358278DCA7200203698 /* ProjectHistoryCell.swift */,
+				B9AC3359278DCA7200203698 /* ProjectHistoryCell.xib */,
+				B9AC335C278DCA8D00203698 /* PortfolioCell.swift */,
+				B9AC335D278DCA8D00203698 /* PortfolioCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -927,6 +947,8 @@
 				A8CE117D278AC682008AFEBC /* MyLikePost.swift */,
 				A8CE117F278ACD88008AFEBC /* MyBudiProject.swift */,
 				5EE7FB452787E11200D9C39F /* ErrorMessage.swift */,
+				B9E5C4DB278F1861006F0087 /* Evaluation.swift */,
+				B9E5C4DD278F186B006F0087 /* Review.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1052,6 +1074,8 @@
 				B94D2D9B277DFE2300DD7FDD /* TeamSearchViewModel.swift */,
 				B96F33BA27859A14000A0B42 /* TeamSearchFilterViewController.swift */,
 				B9A48F202789CAA70084F7A0 /* TeamSearchFilterViewModel.swift */,
+				B9AC3356278DC95A00203698 /* TeamSearchProfileViewController.swift */,
+				B9AC3360278DD7E800203698 /* TeamSearchProfileViewModel.swift */,
 			);
 			path = TeamSearch;
 			sourceTree = "<group>";
@@ -1214,12 +1238,14 @@
 				5E820B902769F963004A03E9 /* DatePickerBottomViewController.xib in Resources */,
 				5EFB0A462733E36800F39A4D /* TeamSearchCell.xib in Resources */,
 				5EC2FEFA275E191F00FF5BB0 /* HomeDetailStatusUnitCell.xib in Resources */,
+				B9AC335B278DCA7200203698 /* ProjectHistoryCell.xib in Resources */,
 				5EA453912731774100943C94 /* HomeDetailMemberCell.xib in Resources */,
 				B97A86322786D7C20016CF23 /* TeamSearchEvaluationCell.xib in Resources */,
 				5EFB0A4B2733EAA300F39A4D /* ChattingCell.xib in Resources */,
 				B9BF787B27004095000BE0EF /* Main.storyboard in Resources */,
 				5EB4303E2758956E00283239 /* HomeWritingAreaCell.xib in Resources */,
 				5EA453952731775600943C94 /* HomeDetailLeaderCell.xib in Resources */,
+				B9AC335F278DCA8D00203698 /* PortfolioCell.xib in Resources */,
 				B9535E16276DD8E2000081CF /* PositionLabelCell.xib in Resources */,
 				5EA453992731776900943C94 /* HomeDetailStatusCell.xib in Resources */,
 				5E915093277221F5000578D4 /* MyBudiProfileCell.xib in Resources */,
@@ -1376,6 +1402,7 @@
 				B9BF787427004094000BE0EF /* AppDelegate.swift in Sources */,
 				A81D105F2764828A0022D610 /* HistoryWriteViewController.swift in Sources */,
 				5E503E7727898D1400F13256 /* ProjectMembersBottomViewController.swift in Sources */,
+				B9AC3357278DC95A00203698 /* TeamSearchProfileViewController.swift in Sources */,
 				B96F33BD27859C6D000A0B42 /* UIView+gesturePublisher.swift in Sources */,
 				5EFB0A522734016600F39A4D /* MyChattingMessageCell.swift in Sources */,
 				B968416B277862ED002F5D3D /* TeamSearchDetailCell.swift in Sources */,
@@ -1385,10 +1412,12 @@
 				A8CD0CEE2771CDCA00FFDE64 /* BudiLogin.swift in Sources */,
 				5E2554612732DF8A00033723 /* GreetingAlertViewController.swift in Sources */,
 				5E9150A92772357C000578D4 /* MyBudiEditViewController.swift in Sources */,
+				B9AC335A278DCA7200203698 /* ProjectHistoryCell.swift in Sources */,
 				5EC2FF04275E5D8300FF5BB0 /* HomeWritingViewModel.swift in Sources */,
 				B94D2D9E277E035300DD7FDD /* MemberTarget.swift in Sources */,
 				5E820B8F2769F963004A03E9 /* DatePickerBottomViewController.swift in Sources */,
 				5E9150AC27723668000578D4 /* MyBudiMainViewModel.swift in Sources */,
+				B9E5C4DC278F1861006F0087 /* Evaluation.swift in Sources */,
 				A8CE1193278B1F82008AFEBC /* MyBudiProjectDetailCollectionViewCell.swift in Sources */,
 				B9D66EB927146DF900668490 /* TabBarCoordinator.swift in Sources */,
 				A8CE117C278AB628008AFEBC /* MyBudiLevelViewController.swift in Sources */,
@@ -1396,6 +1425,7 @@
 				5EFB0A4F2733FDD100F39A4D /* ChattingDetailViewController.swift in Sources */,
 				5EA453692731412A00943C94 /* HomeCell.swift in Sources */,
 				5EBD9D5F276DB5DC00615319 /* HomeWritingViewController.swift in Sources */,
+				B9E5C4DE278F186B006F0087 /* Review.swift in Sources */,
 				A8C8DA37278978B100FFF2D0 /* UISlider.swift in Sources */,
 				5EF986D82786E9A700874A40 /* HomeLocationSearchViewController.swift in Sources */,
 				5E801F1E2782A74400FFC2D3 /* RecruitingPosition.swift in Sources */,
@@ -1432,7 +1462,9 @@
 				5E820B8A2769F04A004A03E9 /* ProjectMembersBottomDetailCell.swift in Sources */,
 				B9D66EC42714703B00668490 /* TeamSearchCoordinator.swift in Sources */,
 				A8936FBC2777192500BE2C1D /* UserInfoUploadSuccess.swift in Sources */,
+				B9AC335E278DCA8D00203698 /* PortfolioCell.swift in Sources */,
 				A85325BB274773F90073FAFB /* SignupViewModel.swift in Sources */,
+				B9AC3361278DD7E800203698 /* TeamSearchProfileViewModel.swift in Sources */,
 				A8CD933C273676F800299AB4 /* NickNameView.swift in Sources */,
 				A8CE1194278B1F82008AFEBC /* MyBudiProjectDetailViewController.swift in Sources */,
 				5EC2FEF9275E191F00FF5BB0 /* HomeDetailStatusUnitCell.swift in Sources */,

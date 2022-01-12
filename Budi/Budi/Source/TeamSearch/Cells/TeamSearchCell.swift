@@ -15,7 +15,8 @@ final class TeamSearchCell: UICollectionViewCell {
     @IBOutlet private weak var headerTitleLabel: UILabel!
     @IBOutlet weak var headerStackView: UIStackView!
     var cancellables = Set<AnyCancellable>()
-    var section: TeamSearchViewModelSection?
+    var section: TeamSearchSection?
+    private weak var navigationVC: UINavigationController?
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -27,10 +28,20 @@ final class TeamSearchCell: UICollectionViewCell {
         cancellables.removeAll()
     }
 
-    func updateUI(_ section: TeamSearchViewModelSection) {
+    func bind(navigationVC: UINavigationController? = nil) {
+        self.navigationVC = navigationVC
+    }
+
+    func updateUI(_ section: TeamSearchSection) {
         self.section = section
-        headerTitleLabel.text = section.position.jobStringValue
-        headerImageView.image = section.position.teamSearchCharacter
+        headerTitleLabel.text = section.title
+        switch self.section?.type {
+        case .position:
+            guard let section = section as? TeamSearchPositionSection else { return }
+            headerImageView.image = section.position.teamSearchCharacter
+        default:
+            headerImageView.isHidden = true
+        }
         collectionView.reloadData()
     }
 }
@@ -54,14 +65,30 @@ extension TeamSearchCell: UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.section?.items.count ?? 0
+        switch self.section?.type {
+        case .position:
+            guard let section = self.section as? TeamSearchPositionSection else { return 0 }
+            return section.items.count
+        default: return 0
+        }
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TeamSearchDetailCell.identifier, for: indexPath) as? TeamSearchDetailCell, let member = self.section?.items[indexPath.item] else { return UICollectionViewCell() }
 
-        cell.updateUI(member, position: section?.position)
-        return cell
+        switch self.section?.type {
+        case .position:
+            guard let section = section as? TeamSearchPositionSection,
+                  let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TeamSearchDetailCell.identifier, for: indexPath) as? TeamSearchDetailCell else { return UICollectionViewCell() }
+            let member = section.items[indexPath.item]
+            cell.updateUI(member, position: section.position)
+            cell.gesturePublisher(.tap())
+                .sink { [weak self] _ in
+                    let vc = TeamSearchProfileViewController(viewModel: .init())
+                    self?.navigationVC?.pushViewController(vc, animated: true)
+                }.store(in: &cell.cancellables)
+            return cell
+        default: return UICollectionViewCell()
+        }
     }
 }
 

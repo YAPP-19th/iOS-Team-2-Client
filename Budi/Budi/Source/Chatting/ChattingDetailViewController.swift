@@ -94,13 +94,19 @@ private extension ChattingDetailViewController {
     }
     
     func configureNavigationBar() {
-        let ellipsisButton = UIBarButtonItem(image: UIImage(systemName: "ellipsis"), style: .plain, target: self, action: nil)
+        let ellipsisButton = UIBarButtonItem(image: UIImage(systemName: "ellipsis"), style: .plain, target: self, action: #selector(ellipsisBarButtonTapped))
         ellipsisButton.tintColor = .black
         navigationItem.rightBarButtonItem = ellipsisButton
         
         if let username = viewModel.state.oppositeUser.value?.username {
             title = username
         }
+    }
+    
+    @objc
+    func ellipsisBarButtonTapped() {
+        // MARK: - Alert 띄우기
+        // 대화 삭제 누를 시에 대화를 삭제함
     }
 
     func configureTabBar() {

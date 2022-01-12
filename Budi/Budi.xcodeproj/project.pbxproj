@@ -103,6 +103,7 @@
 		5EC00152278E6DF70091F7F3 /* Timestamp+date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC00151278E6DF70091F7F3 /* Timestamp+date.swift */; };
 		5EC00154278EA36A0091F7F3 /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC00153278EA36A0091F7F3 /* UIImage.swift */; };
 		5EC00156278EDF860091F7F3 /* FirebaseCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC00155278EDF860091F7F3 /* FirebaseCollection.swift */; };
+		5EC0015A278F2EF10091F7F3 /* String+emoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC00159278F2EF10091F7F3 /* String+emoji.swift */; };
 		5EC0328D27868ED00059BE92 /* String+testAccessToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC0328C27868ED00059BE92 /* String+testAccessToken.swift */; };
 		5EC2FEF9275E191F00FF5BB0 /* HomeDetailStatusUnitCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC2FEF7275E191E00FF5BB0 /* HomeDetailStatusUnitCell.swift */; };
 		5EC2FEFA275E191F00FF5BB0 /* HomeDetailStatusUnitCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EC2FEF8275E191E00FF5BB0 /* HomeDetailStatusUnitCell.xib */; };
@@ -330,6 +331,7 @@
 		5EC00151278E6DF70091F7F3 /* Timestamp+date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Timestamp+date.swift"; sourceTree = "<group>"; };
 		5EC00153278EA36A0091F7F3 /* UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
 		5EC00155278EDF860091F7F3 /* FirebaseCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseCollection.swift; sourceTree = "<group>"; };
+		5EC00159278F2EF10091F7F3 /* String+emoji.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+emoji.swift"; sourceTree = "<group>"; };
 		5EC0328C27868ED00059BE92 /* String+testAccessToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+testAccessToken.swift"; sourceTree = "<group>"; };
 		5EC2FEF7275E191E00FF5BB0 /* HomeDetailStatusUnitCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailStatusUnitCell.swift; sourceTree = "<group>"; };
 		5EC2FEF8275E191E00FF5BB0 /* HomeDetailStatusUnitCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeDetailStatusUnitCell.xib; sourceTree = "<group>"; };
@@ -1111,6 +1113,7 @@
 				A8CA17EA273EC267002CA2B9 /* UIResponder.swift */,
 				5EA575FD274E9C4800DF6974 /* String+baseURL.swift */,
 				5E240720275225CD00954BE7 /* String+date.swift */,
+				5EC00159278F2EF10091F7F3 /* String+emoji.swift */,
 				5EC00151278E6DF70091F7F3 /* Timestamp+date.swift */,
 				5EC0328C27868ED00059BE92 /* String+testAccessToken.swift */,
 				B96F33BC27859C6D000A0B42 /* UIView+gesturePublisher.swift */,
@@ -1310,6 +1313,7 @@
 				B9684168277853F3002F5D3D /* alertView.swift in Sources */,
 				B9684167277853EF002F5D3D /* HomeContentViewModel.swift in Sources */,
 				B9684166277853E7002F5D3D /* HomeContainerViewController.swift in Sources */,
+				5EC0015A278F2EF10091F7F3 /* String+emoji.swift in Sources */,
 				B9684165277853E3002F5D3D /* HomeDetailViewController.swift in Sources */,
 				5E43FB3D278A95EF0073574F /* ChattingProjectRequestCell.swift in Sources */,
 				B9684163277853DC002F5D3D /* HistoryManagementViewController.swift in Sources */,

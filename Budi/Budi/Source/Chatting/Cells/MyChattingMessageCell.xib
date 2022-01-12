@@ -71,6 +71,7 @@
             </constraints>
             <size key="customSize" width="375" height="100"/>
             <connections>
+                <outlet property="containerView" destination="eaf-YK-WDd" id="1Eh-Ef-eeG"/>
                 <outlet property="messageLabel" destination="kMi-Wu-l74" id="ftL-F0-zwN"/>
                 <outlet property="timeLabel" destination="jT0-eL-zZg" id="2ct-DL-rVh"/>
             </connections>

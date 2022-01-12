@@ -92,6 +92,7 @@
             </constraints>
             <size key="customSize" width="375" height="100"/>
             <connections>
+                <outlet property="containerView" destination="mYk-Aw-MI8" id="jim-zc-K16"/>
                 <outlet property="messageLabel" destination="xNX-Fl-Whq" id="uSL-IN-Yny"/>
                 <outlet property="profileImageView" destination="ZLi-Oz-XSU" id="gq1-CG-pdh"/>
                 <outlet property="timeLabel" destination="wWF-gG-Vig" id="Adb-2b-oHy"/>

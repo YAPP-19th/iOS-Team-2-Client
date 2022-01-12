@@ -9,6 +9,7 @@ import UIKit
 
 class MyChattingMessageCell: UICollectionViewCell {
     
+    @IBOutlet private weak var containerView: UIView!
     @IBOutlet private weak var messageLabel: UILabel!
     @IBOutlet private weak var timeLabel: UILabel!
     
@@ -18,6 +19,11 @@ class MyChattingMessageCell: UICollectionViewCell {
 
     func configureUI(_ message: ChatMessage) {
         messageLabel.text = message.text
-//        timeLabel.text = message.time
+        timeLabel.text = message.timestamp.convertToahhmm()
+        
+        if message.text.isSingleEmoji {
+            messageLabel.font = UIFont.systemFont(ofSize: 80)
+            containerView.backgroundColor = .clear
+        }
     }
 }

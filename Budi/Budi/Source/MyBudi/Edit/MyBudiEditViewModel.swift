@@ -101,4 +101,13 @@ class MyBudiEditViewModel: ViewModel {
 
         action.fetch.send(())
     }
+
+    func convertImageToURL(_ jpegData: Data, _ completion: @escaping (Result<Moya.Response, Error>) -> Void) {
+        provider.request(.convertImageToURL(jpegData: jpegData)) { result in
+            switch result {
+            case .success(let response): completion(.success(response))
+            case .failure(let error): completion(.failure(error))
+            }
+        }
+    }
 }

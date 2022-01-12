@@ -8,14 +8,17 @@
 import UIKit
 import Combine
 import CombineCocoa
+import Kingfisher
+import PhotosUI
 
 final class MyBudiEditViewController: UIViewController {
      
+    @IBOutlet weak var imageEditButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var userImageView: UIImageView!
     weak var coordinator: MyBudiCoordinator?
     var viewModel: MyBudiEditViewModel
     private var cancellables = Set<AnyCancellable>()
-    var location: String = "충남 당진시"
     var editIndex: Int = -1
 
     init(nibName: String?, bundle: Bundle?, viewModel: MyBudiEditViewModel) {
@@ -32,6 +35,7 @@ final class MyBudiEditViewController: UIViewController {
         configureNavigationBar()
         configureTableView()
         setPublisher()
+        configureLayout()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -55,6 +59,14 @@ final class MyBudiEditViewController: UIViewController {
             .sink { [weak self] idx in
                 guard let self = self else { return }
                 self.tableView.reloadSections(IndexSet(integer: idx), with: .automatic)
+            }
+            .store(in: &cancellables)
+
+        imageEditButton.tapPublisher
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in
+                guard let self = self else { return }
+                self.editUserImageAlert()
             }
             .store(in: &cancellables)
 
@@ -124,7 +136,7 @@ final class MyBudiEditViewController: UIViewController {
     }
 }
 
-// MARK: - CollectionView
+// MARK: - ConfigureTableView
 extension MyBudiEditViewController {
     private func configureTableView() {
         tableView.delegate = self
@@ -145,6 +157,7 @@ extension MyBudiEditViewController {
     }
 }
 
+// MARK: - ConfigureViewController
 private extension MyBudiEditViewController {
     func configureNavigationBar() {
         let saveButton = UIButton(type: .system)
@@ -155,8 +168,47 @@ private extension MyBudiEditViewController {
         navigationItem.rightBarButtonItem =  UIBarButtonItem(customView: stackview)
         title = "프로필 수정"
     }
+
+    func configureLayout() {
+        guard let url = URL(string: viewModel.state.loginUserData.value?.imgUrl ?? "") else { return }
+        userImageView.kf.setImage(with: url)
+        userImageView.contentMode = .scaleAspectFill
+    }
+
+    func editUserImageAlert() {
+        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let camera = UIAlertAction(title: "카메라", style: .default, handler: { [weak self] _ in
+            guard let self = self else { return }
+            let camera = UIImagePickerController()
+            camera.sourceType = .camera
+            camera.allowsEditing = true
+            camera.cameraDevice = .rear
+            camera.cameraCaptureMode = .photo
+            camera.delegate = self
+            self.present(camera, animated: true, completion: nil)
+        })
+
+        let album = UIAlertAction(title: "앨범", style: .default, handler: { [weak self] _ in
+            guard let self = self else { return }
+            let album = UIImagePickerController()
+            album.sourceType = .photoLibrary
+            album.delegate = self
+            album.allowsEditing = true
+
+            self.present(album, animated: true, completion: nil)
+        })
+
+        let cancel = UIAlertAction(title: "취소", style: .cancel, handler: {_ in })
+
+        actionSheet.addAction(camera)
+        actionSheet.addAction(album)
+        actionSheet.addAction(cancel)
+
+        present(actionSheet, animated: true, completion: nil)
+    }
 }
 
+// MARK: - TableViewDelegate
 extension MyBudiEditViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -381,5 +433,35 @@ extension MyBudiEditViewController: PortfolioViewControllerDelegate {
         changeData.portfolioList.append(portfolio?.porflioLink ?? "")
         viewModel.state.loginUserData.send(changeData)
         tableView.reloadData()
+    }
+}
+
+// MARK: - UIImagePicker
+extension MyBudiEditViewController: UIImagePickerControllerDelegate & UINavigationControllerDelegate {
+
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        guard let image = info[UIImagePickerController.InfoKey(rawValue: "UIImagePickerControllerEditedImage")] as? UIImage, let jpegData = image.jpegData(compressionQuality: 0.2) else {
+            picker.dismiss(animated: true, completion: nil)
+            return
+        }
+        userImageView.image = image
+
+        viewModel.convertImageToURL(jpegData, { result in
+            switch result {
+            case .success(let response):
+                do {
+                    guard let json = try JSONSerialization.jsonObject(with: response.data, options: []) as? [String: Any],
+                          let data = json["data"] as? [String: Any],
+                          let imageUrl = data["imageUrl"] as? String else { return }
+                    var changeData = self.viewModel.state.loginUserData.value
+                    changeData?.imgUrl = imageUrl
+                    print("이미지 URL", imageUrl)
+                    picker.dismiss(animated: true)
+                } catch {}
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+            
+        })
     }
 }

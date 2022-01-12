@@ -12,7 +12,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MyBudiEditViewController" customModule="Budi" customModuleProvider="target">
             <connections>
+                <outlet property="imageEditButton" destination="KXH-7h-0vc" id="6gq-2w-KAA"/>
                 <outlet property="tableView" destination="GkF-Il-M7b" id="lox-VS-Tbf"/>
+                <outlet property="userImageView" destination="eTX-aD-ITv" id="RfL-Ef-zrj"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -38,6 +40,11 @@
                                             <constraint firstAttribute="width" constant="84" id="ks9-mY-VpJ"/>
                                             <constraint firstAttribute="height" constant="84" id="uap-xW-o17"/>
                                         </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="42"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KXH-7h-0vc">
                                         <rect key="frame" x="139" y="116" width="96" height="30"/>

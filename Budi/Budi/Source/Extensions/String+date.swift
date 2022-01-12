@@ -61,7 +61,7 @@ extension Date {
     func convertStringahhmm() -> String {
         let formatter = DateFormatter()
         formatter.locale = Locale(identifier: "ko")
-        formatter.dateFormat = "a: hh:mm"
+        formatter.dateFormat = "a hh:mm"
         return formatter.string(from: self)
     }
 

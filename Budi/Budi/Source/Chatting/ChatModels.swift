@@ -9,7 +9,7 @@ import Firebase
 import FirebaseFirestoreSwift
 
 struct ChatUser: Identifiable, Codable {
-    @DocumentID var id: String? = UUID().uuidString
+    @DocumentID var id: String?
     let username: String
     let position: String
     let profileImageUrl: String
@@ -22,7 +22,7 @@ struct ChatUser: Identifiable, Codable {
 }
 
 struct ChatMessage: Identifiable, Codable {
-    @DocumentID var id: String? = UUID().uuidString
+    @DocumentID var id: String?
     let timestamp: Timestamp
     let text: String
 

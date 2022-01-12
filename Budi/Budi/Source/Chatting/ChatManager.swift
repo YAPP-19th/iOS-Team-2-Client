@@ -12,44 +12,21 @@ final class ChatManager {
     static var shared = ChatManager()
     
     private init() {}
-    
-    enum FirebaseCollection {
-        case users
-        case messages
-        case recentMessages(uid: String)
-
-        var ref: CollectionReference {
-            switch self {
-            case .users: return Firestore.firestore().collection("users")
-            case .messages: return Firestore.firestore().collection("messages")
-            case .recentMessages(let uid): return Firestore.firestore().collection("messages").document(uid).collection("recent-messages")
-            }
-        }
-    }
-    
-    let currentUser = ChatUser(id: "Yio3PM96OuRZtdhCcNJILzIQwbi1",
-                         username: "현재 유저",
-                         position: "iOS 개발자",
-                         profileImageUrl: "https://budi.s3.ap-northeast-2.amazonaws.com/post_image/default/education.jpg")
-    let oppositeUser = ChatUser(id: "3vUIvRoNGjVmBeX1Xr6DEawKf4U2",
-                         username: "상대 유저",
-                         position: "UX 디자이너",
-                         profileImageUrl: "https://budi.s3.ap-northeast-2.amazonaws.com/post_image/default/dating.jpg")
 }
 
-// MARK: - Register
+// MARK: - 경로
 // 메세지: messages/현재유저id/상대유저id/
 // 최신메세지: messages/현재유저id/recent-messages/상대유저id
 // 유저정보: users/user.id/
 
 // MARK: - Message
 extension ChatManager {
-    func sendMesasge(from sender: ChatUser, to recipient: ChatUser, _ text: String) {
-        guard let senderUid = sender.id, let recipientId = recipient.id else { return }
+    func sendMessage(from sender: ChatUser, to recipient: ChatUser, _ text: String) {
+        guard let senderId = sender.id, let recipientId = recipient.id else { return }
         
         let message = ChatMessage(timestamp: Timestamp(date: Date()),
                                   text: text,
-                                  senderId: senderUid,
+                                  senderId: senderId,
                                   senderUsername: sender.username,
                                   senderPosition: sender.position,
                                   senderProfileImageUrl: sender.profileImageUrl,
@@ -62,7 +39,7 @@ extension ChatManager {
     }
     
     private func registerMessage(_ message: ChatMessage) {
-        let messageData: [String: Any] = ["timestamp": Timestamp(date: Date()),
+        let messageData: [String: Any] = ["timestamp": message.timestamp,
                                           "text": message.text,
                                           "senderId": message.senderId,
                                           "senderUsername": message.senderUsername,
@@ -71,34 +48,20 @@ extension ChatManager {
                                           "recipientId": message.recipientId,
                                           "recipientUsername": message.recipientUsername,
                                           "recipientPosition":message.senderPosition,
-                                          "recipientProfileImageUrl": message.recipientProfileImageUrl
-        ]
+                                          "recipientProfileImageUrl": message.recipientProfileImageUrl]
         
-        FirebaseCollection.messages.ref.document(message.senderId).collection(message.recipientId).document().setData(messageData)
-        FirebaseCollection.messages.ref.document(message.recipientId).collection(message.senderId).document().setData(messageData)
+        let currentUserRef = FirebaseCollection.messages.ref.document(message.senderId).collection(message.recipientId).document()
+        let messageId = currentUserRef.documentID
+        let oppositeUserRef = FirebaseCollection.messages.ref.document(message.senderId).collection(message.recipientId).document(messageId)
         
-        FirebaseCollection.recentMessages(uid: message.senderId).ref.document(message.recipientId).setData(messageData)
-        FirebaseCollection.recentMessages(uid: message.recipientId).ref.document(message.senderId).setData(messageData)
-    }
-    
-    func fetchMessages(_ fromUid: String, _ toUid: String, _ completion: @escaping ([ChatMessage]) -> Void) {
-        FirebaseCollection.messages.ref.document(fromUid).collection(toUid).getDocuments { snapshot, error in
-            if let error = error { print("error: \(error.localizedDescription)") }
-            
-            guard let documents = snapshot?.documents else { return }
-            let messages = documents.compactMap { try? $0.data(as: ChatMessage.self) }
-            completion(messages)
-        }
-    }
-    
-    func fetchRecentMessages(_ uid: String, _ completion: @escaping ([ChatMessage]) -> Void) {
-        FirebaseCollection.recentMessages(uid: uid).ref.getDocuments { snapshot, error in
-            if let error = error { print("error: \(error.localizedDescription)") }
-  
-            guard let documents = snapshot?.documents else { return }
-            let recentMessages = documents.compactMap { try? $0.data(as: ChatMessage.self) }
-            completion(recentMessages)
-        }
+        let recentCurrentUserRef = FirebaseCollection.recentMessages(uid: message.senderId).ref.document(message.recipientId)
+        let recentOppositeUserRef = FirebaseCollection.recentMessages(uid: message.recipientId).ref.document(message.senderId)
+        
+        currentUserRef.setData(messageData)
+        oppositeUserRef.setData(messageData)
+        
+        recentCurrentUserRef.setData(messageData)
+        recentOppositeUserRef.setData(messageData)
     }
 }
 
@@ -122,6 +85,19 @@ extension ChatManager {
             completion(user)
         }
     }
+}
+
+// MARK: - Test/Remove Collection
+extension ChatManager {
+//    func removeAllDocument(_ currentUid: String, _ oppositeUid: String) {
+//        FirebaseCollection.users.ref.document(currentUid).delete()
+//        FirebaseCollection.messages.ref.document(currentUid).delete()
+//        FirebaseCollection.recentMessages(uid: currentUid).ref.document(oppositeUid).delete()
+//
+//        FirebaseCollection.users.ref.document(oppositeUid).delete()
+//        FirebaseCollection.messages.ref.document(oppositeUid).delete()
+//        FirebaseCollection.recentMessages(uid: oppositeUid).ref.document(currentUid).delete()
+//    }
 }
 
 // MARK: - Authentication

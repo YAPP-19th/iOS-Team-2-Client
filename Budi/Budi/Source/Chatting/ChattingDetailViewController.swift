@@ -67,7 +67,7 @@ private extension ChattingDetailViewController {
             .sink(receiveValue: { [weak self] _ in
                 guard let self = self else { return }
                 let messages = self.viewModel.state.messages.value
-                print("messages: \(messages)")
+                print("DetailVC messages: \(messages)")
                 self.collectionView.reloadData()
             }).store(in: &cancellables)
     }
@@ -98,9 +98,11 @@ private extension ChattingDetailViewController {
     func configureNavigationBar() {
         let ellipsisButton = UIBarButtonItem(image: UIImage(systemName: "ellipsis"), style: .plain, target: self, action: nil)
         ellipsisButton.tintColor = .black
-
         navigationItem.rightBarButtonItem = ellipsisButton
-        title = "킬러베어"
+        
+        if let username = viewModel.state.oppositeUser.value?.username {
+            title = username
+        }
     }
 
     func configureTabBar() {
@@ -112,10 +114,9 @@ private extension ChattingDetailViewController {
 extension ChattingDetailViewController: UITextFieldDelegate {
     private func sendMessage() {
         guard !textFieldText.isEmpty else { return }
-        let currentUser = manager.currentUser
-        let oppositeUser = manager.oppositeUser
+        guard let currentUser = viewModel.state.currentUser.value, let oppositeUser = viewModel.state.oppositeUser.value else { return }
         
-        ChatManager.shared.sendMesasge(from: currentUser, to: oppositeUser, textFieldText)
+        ChatManager.shared.sendMessage(from: currentUser, to: oppositeUser, textFieldText)
         
         self.textFieldText = ""
         self.textField.text = ""
@@ -209,8 +210,9 @@ extension ChattingDetailViewController: UICollectionViewDelegateFlowLayout, UICo
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let currentUser = viewModel.state.currentUser.value else { return UICollectionViewCell() }
+        
         let message = viewModel.state.messages.value[indexPath.row]
-        let currentUser = manager.currentUser
         
         let isFromCurrentUser = (message.senderId == currentUser.id)
         

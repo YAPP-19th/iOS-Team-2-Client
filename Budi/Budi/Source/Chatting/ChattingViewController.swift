@@ -12,8 +12,9 @@ import CombineCocoa
 
 final class ChattingViewController: UIViewController {
 
-    @IBOutlet weak var collecitonView: UICollectionView!
+    @IBOutlet weak var collectionView: UICollectionView!
     
+    private let manager = ChatManager.shared
     weak var coordinator: ChattingCoordinator?
     private let viewModel: ChattingViewModel
     private var cancellables = Set<AnyCancellable>()
@@ -43,10 +44,18 @@ final class ChattingViewController: UIViewController {
 
 private extension ChattingViewController {
     func bindViewModel() {
+        viewModel.state.currentUser
+            .receive(on: DispatchQueue.main)
+            .sink(receiveValue: { [weak self] currentUser in
+                print("mainVC currentUser: \(currentUser)")
+                self?.collectionView.reloadData()
+            }).store(in: &cancellables)
+        
         viewModel.state.recentMessages
             .receive(on: DispatchQueue.main)
-            .sink(receiveValue: { [weak self] _ in
-                self?.collecitonView.reloadData()
+            .sink(receiveValue: { [weak self] recentMessages in
+                print("mainVC recentMessages: \(recentMessages)")
+                self?.collectionView.reloadData()
             }).store(in: &cancellables)
     }
     
@@ -65,10 +74,10 @@ private extension ChattingViewController {
 // MARK: - CollectionView
 extension ChattingViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     private func configureCollectionView() {
-        collecitonView.dataSource = self
-        collecitonView.delegate = self
-        collecitonView.register(.init(nibName: ChattingCell.identifier, bundle: nil), forCellWithReuseIdentifier: ChattingCell.identifier)
-        collecitonView.backgroundColor = .systemGroupedBackground
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        collectionView.register(.init(nibName: ChattingCell.identifier, bundle: nil), forCellWithReuseIdentifier: ChattingCell.identifier)
+        collectionView.backgroundColor = .systemGroupedBackground
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -80,16 +89,39 @@ extension ChattingViewController: UICollectionViewDataSource, UICollectionViewDe
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ChattingCell.identifier, for: indexPath) as? ChattingCell else { return UICollectionViewCell() }
-        let recentMessage = viewModel.state.recentMessages.value[indexPath.row]
-        let currentUser = ChatManager.shared.currentUser
-        let isFromCurrentUser = recentMessage.senderId == currentUser.id
-        cell.configureUI(recentMessage, isFromCurrentUser)
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ChattingCell.identifier, for: indexPath) as? ChattingCell,
+              let currentUser = viewModel.state.currentUser.value else { return UICollectionViewCell() }
+        
+        let message = viewModel.state.recentMessages.value[indexPath.row]
+        let isFromCurrentUser = message.senderId == currentUser.id
+        cell.configureUI(message, isFromCurrentUser)
         return cell
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        coordinator?.showDetail()
+        print("select: \(indexPath.row)")
+        
+        guard let currentUid = viewModel.state.currentUser.value?.id else { return }
+        print("currentUid: \(currentUid)")
+        
+        guard let currentUser = viewModel.state.currentUser.value, let currentUid = currentUser.id else { return }
+        
+        print("currentUid: \(currentUid)")
+        
+        let message = viewModel.state.recentMessages.value[indexPath.row]
+        let oppositeUid = (message.recipientId == currentUid) ? message.senderId : message.recipientId
+        
+        print("oppositeUid: \(oppositeUid)")
+        
+        manager.fetchUserInfo(oppositeUid) { [weak self] oppositeUser in
+            guard let self = self else { return }
+            self.viewModel.state.oppositeUser.value = oppositeUser
+            print("oppositeUser: \(oppositeUser)")
+            
+            // MARK: - 뷰모델의 messages들 가져와 저장해야 함
+            self.viewModel.fetchMessages()
+            self.coordinator?.showDetail(self.viewModel)
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

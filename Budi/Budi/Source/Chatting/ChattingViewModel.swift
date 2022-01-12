@@ -34,7 +34,7 @@ final class ChattingViewModel: ViewModel {
     
     // MARK: - Test/Users
     let currentUser = ChatUser(id: "Yio3PM96OuRZtdhCcNJILzIQwbi1",
-                         username: "현재 유저",
+                         username: "현재 유저zz",
                          position: "iOS 개발자",
                          profileImageUrl: "https://budi.s3.ap-northeast-2.amazonaws.com/post_image/default/education.jpg")
     let oppositeUser = ChatUser(id: "3vUIvRoNGjVmBeX1Xr6DEawKf4U2",
@@ -46,19 +46,15 @@ final class ChattingViewModel: ViewModel {
 //        createTestUserWithEmail()
 //        loginWithEmail()
         
-        registerTestUsersInfo()
-        
-        manager.sendMessage(from: currentUser, to: oppositeUser, "\(Date().convertStringahhmm())에 보낸 테스트메세지")
-        
-        // MARK: - 파베 애플로그인 이후 let currentUser = Auth.auth().currentUser로 수정
-//        state.currentUser.value = currentUser
-        fetchCurrentUserInfo()
-        
+        state.currentUser.value = currentUser
         state.oppositeUser.value = oppositeUser
-        fetchMessages()
-
-//        fetchOppositeUserInfo()
         
+        registerTestUsersInfo()
+        fetchCurrentUserInfo()
+
+//        manager.sendMessage(from: currentUser, to: oppositeUser, "\(Date().convertStringahhmm())에 보낸 테스트메세지")
+        
+        fetchMessages()
         fetchRecentMessages()
     }
 }
@@ -121,9 +117,9 @@ extension ChattingViewModel {
 // MARK: - User
 private extension ChattingViewModel {
     func fetchCurrentUserInfo() {
-        guard let currentUid = Auth.auth().currentUser?.uid else { return }
-//        guard let currentUid = state.currentUser.value?.id else { return }
-
+//        guard let currentUid = Auth.auth().currentUser?.uid else { return }
+        guard let currentUser = state.currentUser.value, let currentUid = currentUser.id else { return }
+        
         manager.fetchUserInfo(currentUid) { [weak self] user in
             print("VM currentUser: \(user)")
             self?.state.currentUser.value = user
@@ -132,9 +128,7 @@ private extension ChattingViewModel {
     
     func fetchOppositeUserInfo() {
         guard let oppositeUid = state.oppositeUser.value?.id else { return }
-        
         manager.fetchUserInfo(oppositeUid) { [weak self] user in
-            print("VM oppositeUser: \(user)")
             self?.state.oppositeUser.value = user
         }
     }

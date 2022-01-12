@@ -81,7 +81,8 @@ extension ChatManager {
             if let error = error { print("error: \(error.localizedDescription)") }
             guard let data = snapshot?.data(),
                   let dict = try? JSONSerialization.data(withJSONObject: data),
-                  let user = try? JSONDecoder().decode(ChatUser.self, from: dict) else { return }
+                  var user = try? JSONDecoder().decode(ChatUser.self, from: dict) else { return }
+            user.id = uid
             completion(user)
         }
     }

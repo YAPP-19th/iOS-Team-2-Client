@@ -101,6 +101,8 @@ extension ChattingViewController: UICollectionViewDataSource, UICollectionViewDe
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("select: \(indexPath.row)")
         
+        print(viewModel.state.currentUser.value)
+        
         guard let currentUid = viewModel.state.currentUser.value?.id else { return }
         print("currentUid: \(currentUid)")
         

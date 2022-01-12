@@ -133,6 +133,8 @@ extension MyBudiMainViewController: UICollectionViewDataSource, UICollectionView
                 cell.setUserData(nickName: loginData?.nickName ?? "로딩중", position: "임시글", description: loginData?.description ?? "임시소개글")
             }
 
+            cell.configureUserImage(url: viewModel.state.loginStatusData.value?.imgUrl ?? "", basePosition: viewModel.state.loginStatusData.value?.basePosition ?? 1)
+
             cell.editButton.tapPublisher
                 .receive(on: DispatchQueue.main)
                 .sink { [weak self] _ in

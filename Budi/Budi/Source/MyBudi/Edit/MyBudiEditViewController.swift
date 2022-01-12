@@ -70,6 +70,8 @@ final class MyBudiEditViewController: UIViewController {
             }
             .store(in: &cancellables)
 
+
+
     }
 
     func modalViewBackgoundOn() {
@@ -167,6 +169,15 @@ private extension MyBudiEditViewController {
 
         navigationItem.rightBarButtonItem =  UIBarButtonItem(customView: stackview)
         title = "프로필 수정"
+
+        saveButton.tapPublisher
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in
+                guard let self = self else { return }
+                self.viewModel.action.postUserData.send(())
+                self.navigationController?.popViewController(animated: true)
+            }
+            .store(in: &cancellables)
     }
 
     func configureLayout() {

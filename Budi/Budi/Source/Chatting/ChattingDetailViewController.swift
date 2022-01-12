@@ -27,9 +27,7 @@ final class ChattingDetailViewController: UIViewController {
     weak var coordinator: ChattingCoordinator?
     private let viewModel: ChattingViewModel
     private var cancellables = Set<AnyCancellable>()
-    
-    let userId: String = "userId"
-    let toId: String = "toId"
+    private let manager = ChatManager.shared
     
     init(viewModel: ChattingViewModel) {
         self.viewModel = viewModel
@@ -55,8 +53,6 @@ final class ChattingDetailViewController: UIViewController {
         bindViewModel()
         setPublisher()
         configureCollectionView()
-        
-        firebaseTestLogin()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -65,15 +61,13 @@ final class ChattingDetailViewController: UIViewController {
 }
 
 private extension ChattingDetailViewController {
-    func firebaseTestLogin() {
-  
-    }
-    
     func bindViewModel() {
         viewModel.state.messages
             .receive(on: DispatchQueue.main)
             .sink(receiveValue: { [weak self] _ in
                 guard let self = self else { return }
+                let messages = self.viewModel.state.messages.value
+                print("messages: \(messages)")
                 self.collectionView.reloadData()
             }).store(in: &cancellables)
     }
@@ -118,8 +112,11 @@ private extension ChattingDetailViewController {
 extension ChattingDetailViewController: UITextFieldDelegate {
     private func sendMessage() {
         guard !textFieldText.isEmpty else { return }
-//        let newMessage = ChatMessage()
-//        viewModel.state.chatMessages.value.append(newMessage)
+        let currentUser = manager.currentUser
+        let oppositeUser = manager.oppositeUser
+        
+        ChatManager.shared.sendMesasge(from: currentUser, to: oppositeUser, textFieldText)
+        
         self.textFieldText = ""
         self.textField.text = ""
     }
@@ -213,8 +210,9 @@ extension ChattingDetailViewController: UICollectionViewDelegateFlowLayout, UICo
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let message = viewModel.state.messages.value[indexPath.row]
-
-        let isFromCurrentUser = (message.fromUserId == userId)
+        let currentUser = manager.currentUser
+        
+        let isFromCurrentUser = (message.senderId == currentUser.id)
         
         if isFromCurrentUser {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MyChattingMessageCell.identifier, for: indexPath) as? MyChattingMessageCell else { return UICollectionViewCell() }

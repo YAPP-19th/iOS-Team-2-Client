@@ -100,6 +100,8 @@
 		5EB430462758959600283239 /* HomeWritingDescriptionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EB430442758959600283239 /* HomeWritingDescriptionCell.xib */; };
 		5EBD9D5D276DB57B00615319 /* HomeDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBD9D5C276DB57B00615319 /* HomeDetailViewModel.swift */; };
 		5EBD9D5F276DB5DC00615319 /* HomeWritingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBD9D5E276DB5DC00615319 /* HomeWritingViewController.swift */; };
+		5EC00152278E6DF70091F7F3 /* Timestamp+date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC00151278E6DF70091F7F3 /* Timestamp+date.swift */; };
+		5EC00154278EA36A0091F7F3 /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC00153278EA36A0091F7F3 /* UIImage.swift */; };
 		5EC0328D27868ED00059BE92 /* String+testAccessToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC0328C27868ED00059BE92 /* String+testAccessToken.swift */; };
 		5EC2FEF9275E191F00FF5BB0 /* HomeDetailStatusUnitCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC2FEF7275E191E00FF5BB0 /* HomeDetailStatusUnitCell.swift */; };
 		5EC2FEFA275E191F00FF5BB0 /* HomeDetailStatusUnitCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EC2FEF8275E191E00FF5BB0 /* HomeDetailStatusUnitCell.xib */; };
@@ -324,6 +326,8 @@
 		5EB430442758959600283239 /* HomeWritingDescriptionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeWritingDescriptionCell.xib; sourceTree = "<group>"; };
 		5EBD9D5C276DB57B00615319 /* HomeDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HomeDetailViewModel.swift; path = HomeDetailCells/HomeDetailViewModel.swift; sourceTree = "<group>"; };
 		5EBD9D5E276DB5DC00615319 /* HomeWritingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWritingViewController.swift; sourceTree = "<group>"; };
+		5EC00151278E6DF70091F7F3 /* Timestamp+date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Timestamp+date.swift"; sourceTree = "<group>"; };
+		5EC00153278EA36A0091F7F3 /* UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
 		5EC0328C27868ED00059BE92 /* String+testAccessToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+testAccessToken.swift"; sourceTree = "<group>"; };
 		5EC2FEF7275E191E00FF5BB0 /* HomeDetailStatusUnitCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailStatusUnitCell.swift; sourceTree = "<group>"; };
 		5EC2FEF8275E191E00FF5BB0 /* HomeDetailStatusUnitCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeDetailStatusUnitCell.xib; sourceTree = "<group>"; };
@@ -1104,10 +1108,12 @@
 				A8CA17EA273EC267002CA2B9 /* UIResponder.swift */,
 				5EA575FD274E9C4800DF6974 /* String+baseURL.swift */,
 				5E240720275225CD00954BE7 /* String+date.swift */,
+				5EC00151278E6DF70091F7F3 /* Timestamp+date.swift */,
 				5EC0328C27868ED00059BE92 /* String+testAccessToken.swift */,
 				B96F33BC27859C6D000A0B42 /* UIView+gesturePublisher.swift */,
 				A8C8DA36278978B100FFF2D0 /* UISlider.swift */,
 				5E43FB45278B5C910073574F /* Ecodable+convert.swift */,
+				5EC00153278EA36A0091F7F3 /* UIImage.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1305,6 +1311,7 @@
 				5E43FB3D278A95EF0073574F /* ChattingProjectRequestCell.swift in Sources */,
 				B9684163277853DC002F5D3D /* HistoryManagementViewController.swift in Sources */,
 				A8936FBF27785B7400BE2C1D /* PortfolioURLTableViewCell.swift in Sources */,
+				5EC00154278EA36A0091F7F3 /* UIImage.swift in Sources */,
 				B9684162277853D8002F5D3D /* RecruitingStatusBottomCell.swift in Sources */,
 				A8C8DA352786E76C00FFF2D0 /* LoginUserDetail.swift in Sources */,
 				B9684161277853D0002F5D3D /* RecruitingStatusBottomViewController.swift in Sources */,
@@ -1327,6 +1334,7 @@
 				A82E49DF273111E50068218A /* LoginCoordinator.swift in Sources */,
 				A84F2673276DA9FA00C65DA1 /* SignupInfoModel.swift in Sources */,
 				A8CD9339273673C100299AB4 /* SpacingDarkLineView.swift in Sources */,
+				5EC00152278E6DF70091F7F3 /* Timestamp+date.swift in Sources */,
 				A8CA17EB273EC267002CA2B9 /* UIResponder.swift in Sources */,
 				5EB4303D2758956E00283239 /* HomeWritingAreaCell.swift in Sources */,
 				5E820B742769E41E004A03E9 /* UIButton+IBInspectable.swift in Sources */,

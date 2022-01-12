@@ -18,7 +18,7 @@ final class ChattingViewModel: ViewModel {
     }
 
     struct State {
-        let sender = CurrentValueSubject<ChatUser?, Never>(nil)
+        let currentUser = CurrentValueSubject<ChatUser?, Never>(nil)
         let recipient = CurrentValueSubject<ChatUser?, Never>(nil)
         
         let messages = CurrentValueSubject<[ChatMessage], Never>([])
@@ -35,60 +35,44 @@ final class ChattingViewModel: ViewModel {
     init() {
 //        createTestUserWithEmail()
 //        loginWithEmail()
-//        registerUserInfo()
-//        registerMessage()
-        fetchUsers()
-        fetchAllMessages()
+        registerUserInfo()
+        fetchCurrentUserInfo()
+        fetchRecentMessages()
     }
 }
 
 private extension ChattingViewModel {
-    func fetchUsers() {
-        let userA = manager.userA
-        let userB = manager.userB
-        guard let uidA = userA.id, let uidB = userB.id else { return }
+    func fetchRecentMessages() {
+        let currentUser = manager.currentUser
+        guard let currentUid = currentUser.id else { return }
 
-        manager.fetchUser(uidA) { [weak self] user in
-            self?.state.sender.value = user
+        manager.fetchRecentMessages(currentUid) { [weak self] recentMessages in
+            self?.state.recentMessages.value = recentMessages
         }
-        manager.fetchUser(uidB) { [weak self] user in
-            self?.state.recipient.value = user
-        }
-    }
-
-    func fetchAllMessages() {
-        let userA = manager.userA
-        let userB = manager.userB
-        guard let uidA = userA.id, let uidB = userB.id else { return }
-
-        manager.fetchMessages(uidA, uidB) { [weak self] messages in
-            self?.state.messages.value = messages
-        }
-
-        manager.fetchRecentMessages(uidA) { [weak self] messages in
-            self?.state.recentMessages.value = messages
-        }
-    }
-
-    func registerUserInfo() {
-        let userA = manager.userA
-        let userB = manager.userB
-        manager.registerUserInfo(userA)
-        manager.registerUserInfo(userB)
-    }
-
-    func registerMessage() {
-        let userA = manager.userA
-        let userB = manager.userB
-        guard let uidA = userA.id, let uidB = userB.id else { return }
-
-        let message = ChatMessage(text: "테스트 메세지입니다", fromUserId: uidA, toUserId: uidB)
-
-        manager.registerMessage(message)
     }
 }
 
-// MARK: - Authentication
+// MARK: - User
+private extension ChattingViewModel {
+    func fetchCurrentUserInfo() {
+        let currentUser = manager.currentUser
+        guard let currentUid = currentUser.id else { return }
+
+        manager.fetchUserInfo(currentUid) { [weak self] user in
+            self?.state.currentUser.value = user
+        }
+    }
+    
+    func registerUserInfo() {
+        let currentUser = manager.currentUser
+        let oppositeUser = manager.oppositeUser
+        
+        manager.registerUserInfo(currentUser)
+        manager.registerUserInfo(oppositeUser)
+    }
+}
+
+// MARK: - Test/Authentication
 private extension ChattingViewModel {
     func createTestUserWithEmail() {
         manager.createUserWithEmail("A@gmail.com", "123456")

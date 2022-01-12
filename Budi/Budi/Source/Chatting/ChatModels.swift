@@ -23,12 +23,19 @@ struct ChatUser: Identifiable, Codable {
 
 struct ChatMessage: Identifiable, Codable {
     @DocumentID var id: String? = UUID().uuidString
-    let timestamp: Timestamp = Timestamp(date: Date())
+    let timestamp: Timestamp
     let text: String
-    let fromUserId: String
-    let toUserId: String
 
+    let senderId: String
+    let senderUsername: String
+    let senderPosition: String
+    let senderProfileImageUrl: String
     
+    let recipientId: String
+    let recipientUsername: String
+    let recipientPosition: String
+    let recipientProfileImageUrl: String
+
 //    이후 프로젝트 수락하기 관련 프로퍼티 추가
 //    let isInvitation: Bool
 //    let projectName: String

@@ -45,16 +45,25 @@ private extension ChattingViewController {
     func bindViewModel() {
         viewModel.state.recentMessages
             .receive(on: DispatchQueue.main)
-            .sink(receiveValue: { _ in
+            .sink(receiveValue: { [weak self] _ in
+                self?.collecitonView.reloadData()
             }).store(in: &cancellables)
     }
     
     func setPublisher() {
     }
+    
+    func configureNavigationBar() {
+        let notifyButton = UIBarButtonItem(image: UIImage(systemName: "bell"), style: .plain, target: self, action: nil)
+        notifyButton.tintColor = .black
+
+        navigationItem.rightBarButtonItem = notifyButton
+        title = "채팅"
+    }
 }
 
 // MARK: - CollectionView
-extension ChattingViewController: UICollectionViewDataSource {
+extension ChattingViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     private func configureCollectionView() {
         collecitonView.dataSource = self
         collecitonView.delegate = self
@@ -67,39 +76,27 @@ extension ChattingViewController: UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        8
+        viewModel.state.recentMessages.value.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ChattingCell.identifier, for: indexPath) as UICollectionViewCell
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ChattingCell.identifier, for: indexPath) as? ChattingCell else { return UICollectionViewCell() }
+        let recentMessage = viewModel.state.recentMessages.value[indexPath.row]
+        let currentUser = ChatManager.shared.currentUser
+        let isFromCurrentUser = recentMessage.senderId == currentUser.id
+        cell.configureUI(recentMessage, isFromCurrentUser)
         return cell
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         coordinator?.showDetail()
     }
-}
-
-extension ChattingViewController: UICollectionViewDelegate {
-
-}
-
-extension ChattingViewController: UICollectionViewDelegateFlowLayout {
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         CGSize(width: collectionView.frame.width, height: 97)
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         1
-    }
-}
-
-private extension ChattingViewController {
-    func configureNavigationBar() {
-        let notifyButton = UIBarButtonItem(image: UIImage(systemName: "bell"), style: .plain, target: self, action: nil)
-        notifyButton.tintColor = .black
-
-        navigationItem.rightBarButtonItem = notifyButton
-        title = "채팅"
     }
 }

@@ -27,12 +27,12 @@ final class ChatManager {
         }
     }
     
-    let userA = ChatUser(id: "Yio3PM96OuRZtdhCcNJILzIQwbi1",
-                         username: "유저A",
+    let currentUser = ChatUser(id: "Yio3PM96OuRZtdhCcNJILzIQwbi1",
+                         username: "현재 유저",
                          position: "iOS 개발자",
                          profileImageUrl: "https://budi.s3.ap-northeast-2.amazonaws.com/post_image/default/education.jpg")
-    let userB = ChatUser(id: "3vUIvRoNGjVmBeX1Xr6DEawKf4U2",
-                         username: "유저B",
+    let oppositeUser = ChatUser(id: "3vUIvRoNGjVmBeX1Xr6DEawKf4U2",
+                         username: "상대 유저",
                          position: "UX 디자이너",
                          profileImageUrl: "https://budi.s3.ap-northeast-2.amazonaws.com/post_image/default/dating.jpg")
 }
@@ -41,39 +41,44 @@ final class ChatManager {
 // 메세지: messages/현재유저id/상대유저id/
 // 최신메세지: messages/현재유저id/recent-messages/상대유저id
 // 유저정보: users/user.id/
+
+// MARK: - Message
 extension ChatManager {
-    func registerMessage(_ message: ChatMessage) {
-        let messageData: [String: Any] = ["timestamp": Timestamp(date: Date()),
-                                          "text": message.text,
-                                          "fromUserId": message.fromUserId,
-                                          "toUserId": message.toUserId]
+    func sendMesasge(from sender: ChatUser, to recipient: ChatUser, _ text: String) {
+        guard let senderUid = sender.id, let recipientId = recipient.id else { return }
         
-        FirebaseCollection.messages.ref.document(message.fromUserId).collection(message.toUserId).document().setData(messageData)
-        FirebaseCollection.messages.ref.document(message.toUserId).collection(message.fromUserId).document().setData(messageData)
+        let message = ChatMessage(timestamp: Timestamp(date: Date()),
+                                  text: text,
+                                  senderId: senderUid,
+                                  senderUsername: sender.username,
+                                  senderPosition: sender.position,
+                                  senderProfileImageUrl: sender.profileImageUrl,
+                                  recipientId: recipientId,
+                                  recipientUsername: recipient.username,
+                                  recipientPosition: recipient.position,
+                                  recipientProfileImageUrl: recipient.profileImageUrl)
         
-        FirebaseCollection.recentMessages(uid: message.fromUserId).ref.document(message.fromUserId).setData(messageData)
+        registerMessage(message)
     }
     
-    func registerUserInfo(_ user: ChatUser) {
-        guard let uid = user.id else { return }
-        let userData: [String: Any] = ["username": user.username,
-                                       "position": user.position,
-                                       "profileImageUrl": user.profileImageUrl]
+    private func registerMessage(_ message: ChatMessage) {
+        let messageData: [String: Any] = ["timestamp": Timestamp(date: Date()),
+                                          "text": message.text,
+                                          "senderId": message.senderId,
+                                          "senderUsername": message.senderUsername,
+                                          "senderPosition":message.senderPosition,
+                                          "senderProfileImageUrl": message.senderProfileImageUrl,
+                                          "recipientId": message.recipientId,
+                                          "recipientUsername": message.recipientUsername,
+                                          "recipientPosition":message.senderPosition,
+                                          "recipientProfileImageUrl": message.recipientProfileImageUrl
+        ]
         
-        FirebaseCollection.users.ref.document(uid).setData(userData)
-    }
-}
-
-// MARK: - Fetch
-extension ChatManager {
-    func fetchUser(_ uid: String, _ completion: @escaping (ChatUser) -> Void) {
-        FirebaseCollection.users.ref.document(uid).getDocument { snapshot, error in
-            if let error = error { print("error: \(error.localizedDescription)") }
-            guard let data = snapshot?.data(),
-                  let dict = try? JSONSerialization.data(withJSONObject: data),
-                  let user = try? JSONDecoder().decode(ChatUser.self, from: dict) else { return }
-            completion(user)
-        }
+        FirebaseCollection.messages.ref.document(message.senderId).collection(message.recipientId).document().setData(messageData)
+        FirebaseCollection.messages.ref.document(message.recipientId).collection(message.senderId).document().setData(messageData)
+        
+        FirebaseCollection.recentMessages(uid: message.senderId).ref.document(message.recipientId).setData(messageData)
+        FirebaseCollection.recentMessages(uid: message.recipientId).ref.document(message.senderId).setData(messageData)
     }
     
     func fetchMessages(_ fromUid: String, _ toUid: String, _ completion: @escaping ([ChatMessage]) -> Void) {
@@ -93,6 +98,28 @@ extension ChatManager {
             guard let documents = snapshot?.documents else { return }
             let recentMessages = documents.compactMap { try? $0.data(as: ChatMessage.self) }
             completion(recentMessages)
+        }
+    }
+}
+
+// MARK: - User
+extension ChatManager {
+    func registerUserInfo(_ user: ChatUser) {
+        guard let uid = user.id else { return }
+        let userData: [String: Any] = ["username": user.username,
+                                       "position": user.position,
+                                       "profileImageUrl": user.profileImageUrl]
+        
+        FirebaseCollection.users.ref.document(uid).setData(userData)
+    }
+    
+    func fetchUserInfo(_ uid: String, _ completion: @escaping (ChatUser) -> Void) {
+        FirebaseCollection.users.ref.document(uid).getDocument { snapshot, error in
+            if let error = error { print("error: \(error.localizedDescription)") }
+            guard let data = snapshot?.data(),
+                  let dict = try? JSONSerialization.data(withJSONObject: data),
+                  let user = try? JSONDecoder().decode(ChatUser.self, from: dict) else { return }
+            completion(user)
         }
     }
 }

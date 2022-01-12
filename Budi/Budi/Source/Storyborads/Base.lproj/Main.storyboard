@@ -956,7 +956,7 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="PzR-cU-qYT">
-                                <rect key="frame" x="0.0" y="44" width="414" height="852"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="769"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="T1r-UQ-u1J">
                                     <size key="itemSize" width="128" height="128"/>
@@ -1021,10 +1021,10 @@
                             <constraint firstItem="PzR-cU-qYT" firstAttribute="top" secondItem="BTd-WE-tRh" secondAttribute="top" id="1BY-UL-Z7U"/>
                             <constraint firstItem="uqe-md-eIF" firstAttribute="trailing" secondItem="BTd-WE-tRh" secondAttribute="trailing" id="SD7-jY-wqR"/>
                             <constraint firstItem="uqe-md-eIF" firstAttribute="leading" secondItem="BTd-WE-tRh" secondAttribute="leading" id="WBA-01-knD"/>
+                            <constraint firstItem="uqe-md-eIF" firstAttribute="top" secondItem="PzR-cU-qYT" secondAttribute="bottom" id="duG-L4-uEl"/>
                             <constraint firstAttribute="bottom" secondItem="uqe-md-eIF" secondAttribute="bottom" id="epX-sH-jFp"/>
                             <constraint firstItem="PzR-cU-qYT" firstAttribute="trailing" secondItem="BTd-WE-tRh" secondAttribute="trailing" id="hlj-pc-Cjt"/>
                             <constraint firstItem="PzR-cU-qYT" firstAttribute="leading" secondItem="BTd-WE-tRh" secondAttribute="leading" id="keF-Ke-x0e"/>
-                            <constraint firstAttribute="bottom" secondItem="PzR-cU-qYT" secondAttribute="bottom" id="nXX-Or-4XZ"/>
                         </constraints>
                     </view>
                     <connections>

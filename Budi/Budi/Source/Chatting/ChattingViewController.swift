@@ -47,7 +47,6 @@ private extension ChattingViewController {
         viewModel.state.currentUser
             .receive(on: DispatchQueue.main)
             .sink(receiveValue: { [weak self] currentUser in
-                print("mainVC currentUser: \(currentUser)")
                 self?.collectionView.reloadData()
             }).store(in: &cancellables)
         
@@ -99,28 +98,14 @@ extension ChattingViewController: UICollectionViewDataSource, UICollectionViewDe
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("select: \(indexPath.row)")
-        
-        print(viewModel.state.currentUser.value)
-        
-        guard let currentUid = viewModel.state.currentUser.value?.id else { return }
-        print("currentUid: \(currentUid)")
-        
         guard let currentUser = viewModel.state.currentUser.value, let currentUid = currentUser.id else { return }
-        
-        print("currentUid: \(currentUid)")
         
         let message = viewModel.state.recentMessages.value[indexPath.row]
         let oppositeUid = (message.recipientId == currentUid) ? message.senderId : message.recipientId
         
-        print("oppositeUid: \(oppositeUid)")
-        
         manager.fetchUserInfo(oppositeUid) { [weak self] oppositeUser in
             guard let self = self else { return }
             self.viewModel.state.oppositeUser.value = oppositeUser
-            print("oppositeUser: \(oppositeUser)")
-            
-            // MARK: - 뷰모델의 messages들 가져와 저장해야 함
             self.viewModel.fetchMessages()
             self.coordinator?.showDetail(self.viewModel)
         }

@@ -66,8 +66,6 @@ private extension ChattingDetailViewController {
             .receive(on: DispatchQueue.main)
             .sink(receiveValue: { [weak self] _ in
                 guard let self = self else { return }
-                let messages = self.viewModel.state.messages.value
-                print("DetailVC messages: \(messages)")
                 self.collectionView.reloadData()
             }).store(in: &cancellables)
     }

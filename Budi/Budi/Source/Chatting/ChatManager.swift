@@ -15,7 +15,7 @@ final class ChatManager {
 }
 
 // MARK: - 경로
-// 메세지: messages/현재유저id/상대유저id/
+// 메세지: messages/현재유저id/상대유저id/messages/
 // 최신메세지: messages/현재유저id/recent-messages/상대유저id
 // 유저정보: users/user.id/
 
@@ -50,9 +50,8 @@ extension ChatManager {
                                           "recipientPosition":message.senderPosition,
                                           "recipientProfileImageUrl": message.recipientProfileImageUrl]
         
-        let currentUserRef = FirebaseCollection.messages.ref.document(message.senderId).collection(message.recipientId).document()
-        let messageId = currentUserRef.documentID
-        let oppositeUserRef = FirebaseCollection.messages.ref.document(message.senderId).collection(message.recipientId).document(messageId)
+        let currentUserRef = FirebaseCollection.messages.ref.document(message.senderId).collection(message.recipientId).document("messages")
+        let oppositeUserRef = FirebaseCollection.messages.ref.document(message.recipientId).collection(message.senderId).document("messages")
         
         let recentCurrentUserRef = FirebaseCollection.recentMessages(uid: message.senderId).ref.document(message.recipientId)
         let recentOppositeUserRef = FirebaseCollection.recentMessages(uid: message.recipientId).ref.document(message.senderId)
@@ -88,17 +87,20 @@ extension ChatManager {
     }
 }
 
-// MARK: - Test/Remove Collection
+// MARK: - Delete
 extension ChatManager {
-//    func removeAllDocument(_ currentUid: String, _ oppositeUid: String) {
-//        FirebaseCollection.users.ref.document(currentUid).delete()
-//        FirebaseCollection.messages.ref.document(currentUid).delete()
-//        FirebaseCollection.recentMessages(uid: currentUid).ref.document(oppositeUid).delete()
-//
-//        FirebaseCollection.users.ref.document(oppositeUid).delete()
-//        FirebaseCollection.messages.ref.document(oppositeUid).delete()
-//        FirebaseCollection.recentMessages(uid: oppositeUid).ref.document(currentUid).delete()
-//    }
+    func removeAllDocument(_ currentUid: String, _ oppositeUid: String) {
+        let currentUserRef = FirebaseCollection.messages.ref.document(currentUid).collection(oppositeUid).document("messages")
+        let oppositeUserRef = FirebaseCollection.messages.ref.document(oppositeUid).collection(currentUid).document("messages")
+        
+        let recentCurrentUserRef = FirebaseCollection.recentMessages(uid: currentUid).ref.document(oppositeUid)
+        let recentOppositeUserRef = FirebaseCollection.recentMessages(uid: oppositeUid).ref.document(currentUid)
+        
+        currentUserRef.delete()
+        oppositeUserRef.delete()
+        recentCurrentUserRef.delete()
+        recentOppositeUserRef.delete()
+    }
 }
 
 // MARK: - Authentication

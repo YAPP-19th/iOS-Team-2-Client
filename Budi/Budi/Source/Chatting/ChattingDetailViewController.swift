@@ -126,8 +126,9 @@ private extension ChattingDetailViewController {
 // MARK: - Delegate
 extension ChattingDetailViewController: AlertViewControllerDelegate {
     func okButtonTapped() {
-        // MARK: - AlertVC 대화 삭제코드 추가
-        print("대화를 삭제합니다")
+        guard let currentUid = viewModel.state.currentUser.value?.id, let oppositeUid = viewModel.state.oppositeUser.value?.id else { return }
+        manager.removeAllDocument(currentUid, oppositeUid)
+        navigationController?.popViewController(animated: false)
     }
 }
 

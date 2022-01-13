@@ -202,7 +202,7 @@ extension HomeWritingViewController: HomeLocationSearchViewControllerDelegate {
 }
 
 extension HomeWritingViewController: ProjectMembersBottomViewControllerDelegate {
-    func getRecruitingPositions(_ recruitingPositions: [RecruitingPosition]) {
+    func getRecruitingPositions(_ recruitingPositions: [RecruitingPosition], _ selectPosition: Int?) {
         viewModel.state.recruitingPositions.value = recruitingPositions
         collectionView.reloadData()
         isValid()

@@ -9,6 +9,7 @@ import UIKit
 import CombineCocoa
 import Combine
 
+
 class HistoryManagementViewController: UIViewController {
     weak var coordinator: LoginCoordinator?
     private let viewModel: SignupViewModel

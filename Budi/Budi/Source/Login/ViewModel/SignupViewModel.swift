@@ -362,6 +362,7 @@ final class SignupViewModel: ViewModel {
 
                 let param = CreateInfo(
                     basePosition: self.state.selectedPosition.value.integerValue,
+                    imgUrl: "https://budi.s3.ap-northeast-2.amazonaws.com/post_image/default/dating.jpg",
                     careerList: uploadCareerList,
                     description: self.state.signUpPersonalInfoData.value.description,
                     memberAddress: self.state.signUpPersonalInfoData.value.location,

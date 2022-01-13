@@ -11,17 +11,21 @@ class PortfolioURLTableViewCell: UITableViewCell {
 
     static let cellId = "PortfolioURLTableViewCell"
     var cancellables = Set<AnyCancellable>()
+    @IBOutlet weak var portfolioView: UIView!
     @IBOutlet weak var portfolioUrlFaviconImageView: UIImageView!
     @IBOutlet weak var portfolioUrlLabel: UILabel!
     @IBOutlet weak var editButton: UIButton!
-
+    @IBOutlet weak var addButton: UIButton!
     override func prepareForReuse() {
         super.prepareForReuse()
         cancellables.removeAll()
+        portfolioView.isHidden = true
     }
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        portfolioView.isHidden = true
+        self.selectionStyle = .none
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -29,8 +33,11 @@ class PortfolioURLTableViewCell: UITableViewCell {
     }
 
     func configureParsing(urlString: String) {
+
+        portfolioView.isHidden = false
         portfolioUrlLabel.text = urlString
         guard let url = URL(string: urlString) else { return }
+
         switch url.host {
         case "www.behance.net":
             portfolioUrlFaviconImageView.image = UIImage(named: "Behance")
@@ -41,5 +48,10 @@ class PortfolioURLTableViewCell: UITableViewCell {
         default:
             portfolioUrlFaviconImageView.image = UIImage(named: "Others")
         }
+
+    }
+
+    func configureButtonLabel(text: String) {
+        addButton.setTitle(text, for: .normal)
     }
 }

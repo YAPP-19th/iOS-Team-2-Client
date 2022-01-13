@@ -80,7 +80,6 @@ class NickNameView: UIView {
 
     func checkID(flag: Bool?) {
         if flag == nil {
-            checkTextLabel.text = ""
             return
         }
         guard let flag = flag else { return }
@@ -93,8 +92,13 @@ class NickNameView: UIView {
         }
     }
 
-    func emptyText() {
-        checkTextLabel.text = ""
+    func emptyText(text: String) {
+        if text.count == 0 {
+            checkTextLabel.text = ""
+        } else {
+            checkTextLabel.text = "닉네임은 3글자 이상입니다."
+            checkTextLabel.textColor = UIColor.primary
+        }
     }
 
     private func configureObserver() {

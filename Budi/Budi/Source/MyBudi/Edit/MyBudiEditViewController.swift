@@ -219,6 +219,10 @@ private extension MyBudiEditViewController {
 // MARK: - TableViewDelegate
 extension MyBudiEditViewController: UITableViewDelegate, UITableViewDataSource {
 
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        self.view.endEditing(true)
+    }
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
             return 4
@@ -393,7 +397,6 @@ extension MyBudiEditViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension MyBudiEditViewController: HomeLocationSearchViewControllerDelegate {
     func getLocation(_ location: String) {
-        // 아직 API에서 지역을 뽑아와주지 않아서 일단 대기
         var changeData = viewModel.state.loginUserData.value
         changeData?.address = location
         viewModel.state.loginUserData.send(changeData)

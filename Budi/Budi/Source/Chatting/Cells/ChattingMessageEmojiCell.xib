@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="zCW-7i-ZSB" customClass="ChattingMessageEmojiCell" customModule="Budi" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="110"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="110"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4AY-xz-H4p">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="110"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mYk-Aw-MI8">
+                                <rect key="frame" x="57" y="0.0" width="102" height="102"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🌱" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xNX-Fl-Whq">
+                                        <rect key="frame" x="0.0" y="0.0" width="102" height="102"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="80"/>
+                                        <color key="textColor" name="Black"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="xNX-Fl-Whq" secondAttribute="trailing" id="CLL-Sz-oiM"/>
+                                    <constraint firstAttribute="bottom" secondItem="xNX-Fl-Whq" secondAttribute="bottom" id="Drz-3E-DVl"/>
+                                    <constraint firstItem="xNX-Fl-Whq" firstAttribute="leading" secondItem="mYk-Aw-MI8" secondAttribute="leading" id="LHd-Nw-m3m"/>
+                                    <constraint firstItem="xNX-Fl-Whq" firstAttribute="top" secondItem="mYk-Aw-MI8" secondAttribute="top" id="YEv-ak-ecO"/>
+                                    <constraint firstAttribute="width" secondItem="mYk-Aw-MI8" secondAttribute="height" multiplier="1:1" id="asQ-nQ-D4h"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="오전 10:18" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wWF-gG-Vig">
+                                <rect key="frame" x="163" y="90" width="46" height="12"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                <color key="textColor" name="Text_disabled"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default_profile" translatesAutoresizingMaskIntoConstraints="NO" id="ZLi-Oz-XSU">
+                                <rect key="frame" x="13" y="0.0" width="36" height="36"/>
+                                <color key="tintColor" name="LightGray"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="36" id="He0-z7-Lez"/>
+                                    <constraint firstAttribute="height" constant="36" id="qcR-gN-sON"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="18"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="0.5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" name="Border"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </imageView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="wWF-gG-Vig" secondAttribute="bottom" constant="8" id="1qm-vD-Z4g"/>
+                            <constraint firstItem="wWF-gG-Vig" firstAttribute="leading" secondItem="mYk-Aw-MI8" secondAttribute="trailing" constant="4" id="8W4-TG-vUk"/>
+                            <constraint firstItem="mYk-Aw-MI8" firstAttribute="leading" secondItem="ZLi-Oz-XSU" secondAttribute="trailing" constant="8" id="ESn-Mn-jCw"/>
+                            <constraint firstItem="mYk-Aw-MI8" firstAttribute="top" secondItem="4AY-xz-H4p" secondAttribute="top" id="Em1-ED-vLe"/>
+                            <constraint firstItem="ZLi-Oz-XSU" firstAttribute="top" secondItem="4AY-xz-H4p" secondAttribute="top" id="TWb-DT-Duf"/>
+                            <constraint firstAttribute="bottom" secondItem="mYk-Aw-MI8" secondAttribute="bottom" constant="8" id="Tox-Fd-geY"/>
+                            <constraint firstItem="ZLi-Oz-XSU" firstAttribute="leading" secondItem="4AY-xz-H4p" secondAttribute="leading" constant="13" id="nWI-yx-ev5"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="8WA-me-9wI"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="4AY-xz-H4p" secondAttribute="bottom" id="b89-lw-PjY"/>
+                <constraint firstItem="4AY-xz-H4p" firstAttribute="leading" secondItem="zCW-7i-ZSB" secondAttribute="leading" id="eA7-Ck-dJm"/>
+                <constraint firstAttribute="trailing" secondItem="4AY-xz-H4p" secondAttribute="trailing" id="eBg-Sj-sV7"/>
+                <constraint firstItem="4AY-xz-H4p" firstAttribute="top" secondItem="zCW-7i-ZSB" secondAttribute="top" id="scz-Jo-3Gz"/>
+            </constraints>
+            <size key="customSize" width="375" height="109"/>
+            <connections>
+                <outlet property="containerView" destination="mYk-Aw-MI8" id="jim-zc-K16"/>
+                <outlet property="messageLabel" destination="xNX-Fl-Whq" id="uSL-IN-Yny"/>
+                <outlet property="profileImageView" destination="ZLi-Oz-XSU" id="gq1-CG-pdh"/>
+                <outlet property="timeLabel" destination="wWF-gG-Vig" id="Adb-2b-oHy"/>
+            </connections>
+            <point key="canvasLocation" x="367.39130434782612" y="119.86607142857142"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="default_profile" width="72" height="72"/>
+        <namedColor name="Black">
+            <color red="0.11699999868869781" green="0.11699999868869781" blue="0.11699999868869781" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Border">
+            <color red="0.87800002098083496" green="0.87800002098083496" blue="0.87800002098083496" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="LightGray">
+            <color red="0.86599999666213989" green="0.86599999666213989" blue="0.86599999666213989" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Text_disabled">
+            <color red="0.61960784313725492" green="0.61960784313725492" blue="0.61960784313725492" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

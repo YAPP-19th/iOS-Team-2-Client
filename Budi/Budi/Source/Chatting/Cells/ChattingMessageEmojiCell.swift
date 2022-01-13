@@ -1,15 +1,16 @@
 //
-//  MyChattingMessageCell.swift
+//  ChattingMessageEmojiCell.swift
 //  Budi
 //
-//  Created by leeesangheee on 2021/11/04.
+//  Created by leeesangheee on 2022/01/13.
 //
 
 import UIKit
 
-final class MyChattingMessageCell: UICollectionViewCell {
-    
+final class ChattingMessageEmojiCell: UICollectionViewCell {
+
     @IBOutlet private weak var containerView: UIView!
+    @IBOutlet private weak var profileImageView: UIImageView!
     @IBOutlet private weak var messageLabel: UILabel!
     @IBOutlet private weak var timeLabel: UILabel!
     

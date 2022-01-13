@@ -14,6 +14,10 @@
 		5E2554382732AD0800033723 /* UIView+IBInspectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2554372732AD0800033723 /* UIView+IBInspectable.swift */; };
 		5E2554612732DF8A00033723 /* GreetingAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E25545F2732DF8A00033723 /* GreetingAlertViewController.swift */; };
 		5E2554622732DF8A00033723 /* GreetingAlertViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E2554602732DF8A00033723 /* GreetingAlertViewController.xib */; };
+		5E3AE27C27906EC6000D40A0 /* ChattingMessageEmojiCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E3AE27A27906EC6000D40A0 /* ChattingMessageEmojiCell.swift */; };
+		5E3AE27D27906EC6000D40A0 /* ChattingMessageEmojiCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E3AE27B27906EC6000D40A0 /* ChattingMessageEmojiCell.xib */; };
+		5E3AE28027906EDA000D40A0 /* MyChattingMessageEmojiCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E3AE27E27906EDA000D40A0 /* MyChattingMessageEmojiCell.swift */; };
+		5E3AE28127906EDA000D40A0 /* MyChattingMessageEmojiCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E3AE27F27906EDA000D40A0 /* MyChattingMessageEmojiCell.xib */; };
 		5E43FB3D278A95EF0073574F /* ChattingProjectRequestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E43FB3B278A95EF0073574F /* ChattingProjectRequestCell.swift */; };
 		5E43FB3E278A95EF0073574F /* ChattingProjectRequestCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E43FB3C278A95EF0073574F /* ChattingProjectRequestCell.xib */; };
 		5E43FB40278B22F00073574F /* ChatModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E43FB3F278B22F00073574F /* ChatModels.swift */; };
@@ -238,6 +242,10 @@
 		5E2554372732AD0800033723 /* UIView+IBInspectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+IBInspectable.swift"; sourceTree = "<group>"; };
 		5E25545F2732DF8A00033723 /* GreetingAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GreetingAlertViewController.swift; sourceTree = "<group>"; };
 		5E2554602732DF8A00033723 /* GreetingAlertViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GreetingAlertViewController.xib; sourceTree = "<group>"; };
+		5E3AE27A27906EC6000D40A0 /* ChattingMessageEmojiCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingMessageEmojiCell.swift; sourceTree = "<group>"; };
+		5E3AE27B27906EC6000D40A0 /* ChattingMessageEmojiCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChattingMessageEmojiCell.xib; sourceTree = "<group>"; };
+		5E3AE27E27906EDA000D40A0 /* MyChattingMessageEmojiCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyChattingMessageEmojiCell.swift; sourceTree = "<group>"; };
+		5E3AE27F27906EDA000D40A0 /* MyChattingMessageEmojiCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyChattingMessageEmojiCell.xib; sourceTree = "<group>"; };
 		5E43FB3B278A95EF0073574F /* ChattingProjectRequestCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingProjectRequestCell.swift; sourceTree = "<group>"; };
 		5E43FB3C278A95EF0073574F /* ChattingProjectRequestCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChattingProjectRequestCell.xib; sourceTree = "<group>"; };
 		5E43FB3F278B22F00073574F /* ChatModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatModels.swift; sourceTree = "<group>"; };
@@ -735,12 +743,16 @@
 			children = (
 				5EFB0A482733EAA300F39A4D /* ChattingCell.swift */,
 				5EFB0A492733EAA300F39A4D /* ChattingCell.xib */,
-				5E43FB3B278A95EF0073574F /* ChattingProjectRequestCell.swift */,
-				5E43FB3C278A95EF0073574F /* ChattingProjectRequestCell.xib */,
 				5EFB0A5427340BF100F39A4D /* ChattingMessageCell.swift */,
 				5EFB0A5527340BF100F39A4D /* ChattingMessageCell.xib */,
 				5EFB0A502734016600F39A4D /* MyChattingMessageCell.swift */,
 				5EFB0A512734016600F39A4D /* MyChattingMessageCell.xib */,
+				5E3AE27A27906EC6000D40A0 /* ChattingMessageEmojiCell.swift */,
+				5E3AE27B27906EC6000D40A0 /* ChattingMessageEmojiCell.xib */,
+				5E3AE27E27906EDA000D40A0 /* MyChattingMessageEmojiCell.swift */,
+				5E3AE27F27906EDA000D40A0 /* MyChattingMessageEmojiCell.xib */,
+				5E43FB3B278A95EF0073574F /* ChattingProjectRequestCell.swift */,
+				5E43FB3C278A95EF0073574F /* ChattingProjectRequestCell.xib */,
 				5EFB0A5827341C1100F39A4D /* ChattingTimeCell.swift */,
 				5EFB0A5927341C1100F39A4D /* ChattingTimeCell.xib */,
 			);
@@ -1234,6 +1246,8 @@
 				5EA453952731775600943C94 /* HomeDetailLeaderCell.xib in Resources */,
 				B9535E16276DD8E2000081CF /* PositionLabelCell.xib in Resources */,
 				5EA453992731776900943C94 /* HomeDetailStatusCell.xib in Resources */,
+				5E3AE27D27906EC6000D40A0 /* ChattingMessageEmojiCell.xib in Resources */,
+				5E3AE28127906EDA000D40A0 /* MyChattingMessageEmojiCell.xib in Resources */,
 				5E915093277221F5000578D4 /* MyBudiProfileCell.xib in Resources */,
 				5E7EFE282732E06F007817C3 /* AlertViewController.xib in Resources */,
 				5E91509727722206000578D4 /* MyBudiLevelCell.xib in Resources */,
@@ -1360,6 +1374,7 @@
 				A81D1074276482F90022D610 /* DefaultHeaderView.swift in Sources */,
 				5E7CF4CC2770E134007315F1 /* HomeWritingMembersUnitCell.swift in Sources */,
 				5EFB0A412733CD7700F39A4D /* TeamSearchViewController.swift in Sources */,
+				5E3AE28027906EDA000D40A0 /* MyChattingMessageEmojiCell.swift in Sources */,
 				B98E530A27396B3F00C73374 /* UINavigationController+translucent.swift in Sources */,
 				5E886376276771E00022397A /* HomeWritingImageBottomViewController.swift in Sources */,
 				5EA453A02731778000943C94 /* HomeDetailMainCell.swift in Sources */,
@@ -1414,6 +1429,7 @@
 				A8C8DA37278978B100FFF2D0 /* UISlider.swift in Sources */,
 				5EF986D82786E9A700874A40 /* HomeLocationSearchViewController.swift in Sources */,
 				5E801F1E2782A74400FFC2D3 /* RecruitingPosition.swift in Sources */,
+				5E3AE27C27906EC6000D40A0 /* ChattingMessageEmojiCell.swift in Sources */,
 				5EFB0A452733E36800F39A4D /* TeamSearchCell.swift in Sources */,
 				5E88637A276771EE0022397A /* HomeWritingPartBottomViewController.swift in Sources */,
 				5E43FB40278B22F00073574F /* ChatModels.swift in Sources */,

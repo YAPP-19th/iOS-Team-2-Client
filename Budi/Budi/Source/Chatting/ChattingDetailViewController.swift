@@ -216,7 +216,7 @@ extension ChattingDetailViewController: UICollectionViewDelegateFlowLayout, UICo
     private func configureCollectionView() {
         collectionView.dataSource = self
         collectionView.delegate = self
-        let cellClasses = [ChattingMessageCell.self, MyChattingMessageCell.self]
+        let cellClasses = [ChattingMessageCell.self, MyChattingMessageCell.self, ChattingMessageEmojiCell.self, MyChattingMessageEmojiCell.self]
         cellClasses.forEach {
             collectionView.register(.init(nibName: $0.identifier, bundle: nil), forCellWithReuseIdentifier: $0.identifier)
         }
@@ -237,15 +237,28 @@ extension ChattingDetailViewController: UICollectionViewDelegateFlowLayout, UICo
         
         let message = viewModel.state.messages.value[indexPath.row]
         let isFromCurrentUser = (message.senderId == currentUser.id)
+        let isSingleEmojiMessage = message.text.isSingleEmoji
         
         if isFromCurrentUser {
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MyChattingMessageCell.identifier, for: indexPath) as? MyChattingMessageCell else { return UICollectionViewCell() }
-            cell.configureUI(message)
-            return cell
+            if !isSingleEmojiMessage {
+                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MyChattingMessageCell.identifier, for: indexPath) as? MyChattingMessageCell else { return UICollectionViewCell() }
+                cell.configureUI(message)
+                return cell
+            } else {
+                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MyChattingMessageEmojiCell.identifier, for: indexPath) as? MyChattingMessageEmojiCell else { return UICollectionViewCell() }
+                cell.configureUI(message)
+                return cell
+            }
         } else {
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ChattingMessageCell.identifier, for: indexPath) as? ChattingMessageCell else { return UICollectionViewCell() }
-            cell.configureUI(message)
-            return cell
+            if !isSingleEmojiMessage {
+                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ChattingMessageCell.identifier, for: indexPath) as? ChattingMessageCell else { return UICollectionViewCell() }
+                cell.configureUI(message)
+                return cell
+            } else {
+                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ChattingMessageEmojiCell.identifier, for: indexPath) as? ChattingMessageEmojiCell else { return UICollectionViewCell() }
+                cell.configureUI(message)
+                return cell
+            }
         }
     }
     

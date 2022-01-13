@@ -8,14 +8,19 @@
 import UIKit
 import Combine
 import CombineCocoa
+import Kingfisher
+import PhotosUI
 
 final class MyBudiEditViewController: UIViewController {
      
+    @IBOutlet weak var imageEditButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var userImageView: UIImageView!
     weak var coordinator: MyBudiCoordinator?
     var viewModel: MyBudiEditViewModel
     private var cancellables = Set<AnyCancellable>()
-    var location: String = "충남 당진시"
+    var editIndex: Int = -1
+
     init(nibName: String?, bundle: Bundle?, viewModel: MyBudiEditViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nibName, bundle: bundle)
@@ -30,8 +35,7 @@ final class MyBudiEditViewController: UIViewController {
         configureNavigationBar()
         configureTableView()
         setPublisher()
-        print(viewModel.state.mySectionData.value)
-        print(viewModel.state.mySectionData.value[1].items.count)
+        configureLayout()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -50,13 +54,24 @@ final class MyBudiEditViewController: UIViewController {
             }
             .store(in: &cancellables)
 
-        viewModel.state.loginUserData
+        viewModel.state.dataChanged
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] idx in
+                guard let self = self else { return }
+                self.tableView.reloadSections(IndexSet(integer: idx), with: .automatic)
+            }
+            .store(in: &cancellables)
+
+        imageEditButton.tapPublisher
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
                 guard let self = self else { return }
-                //
+                self.editUserImageAlert()
             }
             .store(in: &cancellables)
+
+
+
     }
 
     func modalViewBackgoundOn() {
@@ -73,21 +88,45 @@ final class MyBudiEditViewController: UIViewController {
 
     private func showActionSheet(section: Int, index: Int) {
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-
+        editIndex = index
         let edit = UIAlertAction(title: "수정", style: .default, handler: { [weak self] _ in
             guard let self = self else { return }
             self.modalViewBackgoundOn()
             if section == 0 {
-                self.coordinator?.showProjectViewController(self, viewModel: self.viewModel)
+                let signViewModel = SignupViewModel()
+                guard let projectData = self.viewModel.state.loginUserData.value?.projectList[index] else { return }
+                signViewModel.state.editData.value = Item(itemInfo: ItemInfo(isInclude: true, buttonTitle: ""),
+                                                          description: projectData.description,
+                                                          endDate: projectData.endDate,
+                                                          name: projectData.name,
+                                                          nowWork: false,
+                                                          startDate: projectData.startDate,
+                                                          portfolioLink: "")
+
+                self.coordinator?.showProjectViewController(self, viewModel: signViewModel)
             } else if section == 1 {
-                self.coordinator?.showPortfolioController(self,viewModel: self.viewModel)
+                let signViewModel = SignupViewModel()
+                guard let portfolioData = self.viewModel.state.loginUserData.value?.portfolioList[index] else { return }
+                signViewModel.state.editData.value = Item(itemInfo: ItemInfo(isInclude: true, buttonTitle: ""),
+                                                          description: "",
+                                                          endDate: "",
+                                                          name: "",
+                                                          nowWork: false,
+                                                          startDate: "",
+                                                          portfolioLink: portfolioData)
+                self.coordinator?.showPortfolioController(self, viewModel: signViewModel)
             }
         })
-        let delete = UIAlertAction(title: "삭제", style: .destructive, handler: { _ in
+        let delete = UIAlertAction(title: "삭제", style: .destructive, handler: { [weak self] _ in
+            guard let self = self else { return }
+            if section == 0 {
+                self.viewModel.action.deleteProjectData.send(index)
+            } else {
+                self.viewModel.action.deletePortfolioData.send(index)
+            }
         })
 
         let cancel = UIAlertAction(title: "완료", style: .cancel, handler: { _ in
-            print(section, index)
         })
 
         actionSheet.addAction(edit)
@@ -98,7 +137,7 @@ final class MyBudiEditViewController: UIViewController {
     }
 }
 
-// MARK: - CollectionView
+// MARK: - ConfigureTableView
 extension MyBudiEditViewController {
     private func configureTableView() {
         tableView.delegate = self
@@ -119,6 +158,7 @@ extension MyBudiEditViewController {
     }
 }
 
+// MARK: - ConfigureViewController
 private extension MyBudiEditViewController {
     func configureNavigationBar() {
         let saveButton = UIButton(type: .system)
@@ -128,9 +168,57 @@ private extension MyBudiEditViewController {
 
         navigationItem.rightBarButtonItem =  UIBarButtonItem(customView: stackview)
         title = "프로필 수정"
+
+        saveButton.tapPublisher
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in
+                guard let self = self else { return }
+                self.viewModel.action.postUserData.send(())
+                self.navigationController?.popViewController(animated: true)
+            }
+            .store(in: &cancellables)
+    }
+
+    func configureLayout() {
+        guard let url = URL(string: viewModel.state.loginUserData.value?.imgUrl ?? "") else { return }
+        userImageView.kf.setImage(with: url)
+        userImageView.contentMode = .scaleAspectFill
+    }
+
+    func editUserImageAlert() {
+        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let camera = UIAlertAction(title: "카메라", style: .default, handler: { [weak self] _ in
+            guard let self = self else { return }
+            let camera = UIImagePickerController()
+            camera.sourceType = .camera
+            camera.allowsEditing = true
+            camera.cameraDevice = .rear
+            camera.cameraCaptureMode = .photo
+            camera.delegate = self
+            self.present(camera, animated: true, completion: nil)
+        })
+
+        let album = UIAlertAction(title: "앨범", style: .default, handler: { [weak self] _ in
+            guard let self = self else { return }
+            let album = UIImagePickerController()
+            album.sourceType = .photoLibrary
+            album.delegate = self
+            album.allowsEditing = true
+
+            self.present(album, animated: true, completion: nil)
+        })
+
+        let cancel = UIAlertAction(title: "취소", style: .cancel, handler: {_ in })
+
+        actionSheet.addAction(camera)
+        actionSheet.addAction(album)
+        actionSheet.addAction(cancel)
+
+        present(actionSheet, animated: true, completion: nil)
     }
 }
 
+// MARK: - TableViewDelegate
 extension MyBudiEditViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -171,12 +259,10 @@ extension MyBudiEditViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section >= 1 {
             guard let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: MyBudiEditHeaderView.cellId) as? MyBudiEditHeaderView else { return UIView() }
-            let title = viewModel.state.mySectionData.value[section-1].sectionTitle
-            print("섹션", section)
             if section == 1 {
-                header.configureHeader(header: title)
+                header.configureHeader(header: "프로젝트 이력")
             } else {
-                header.configureHeader(header: title)
+                header.configureHeader(header: "포트폴리오")
             }
             return header
         }
@@ -200,7 +286,6 @@ extension MyBudiEditViewController: UITableViewDelegate, UITableViewDataSource {
                             var changeData = self.viewModel.state.loginUserData.value
                             changeData?.nickName = text ?? ""
                             self.viewModel.state.loginUserData.send(changeData)
-                            print(self.viewModel.state.loginUserData.value?.nickName ?? "")
                         }
                         .store(in: &cell.cancellables)
                 } else {
@@ -214,7 +299,6 @@ extension MyBudiEditViewController: UITableViewDelegate, UITableViewDataSource {
                             var changeData = self.viewModel.state.loginUserData.value
                             changeData?.description = text ?? ""
                             self.viewModel.state.loginUserData.send(changeData)
-                            print(self.viewModel.state.loginUserData.value?.description ?? "")
                         }
                         .store(in: &cell.cancellables)
                 }
@@ -249,7 +333,7 @@ extension MyBudiEditViewController: UITableViewDelegate, UITableViewDataSource {
         } else if indexPath.section == 1 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: ProjectTableViewCell.cellId, for: indexPath) as? ProjectTableViewCell else { return UITableViewCell() }
             cell.configureButtonTitle(text: "프로젝트를 추가해 보세요")
-            if viewModel.state.loginUserData.value?.projectList.count != indexPath.row {
+            if (viewModel.state.loginUserData.value?.projectList.count ?? 1) != indexPath.row {
                 let data = viewModel.state.loginUserData.value?.projectList[indexPath.row]
                 if let data = data {
                     cell.configureLabel(main: data.name, date: data.startDate + " ~ " + data.endDate, sub: data.description)
@@ -260,7 +344,7 @@ extension MyBudiEditViewController: UITableViewDelegate, UITableViewDataSource {
                 .receive(on: DispatchQueue.main)
                 .sink { [weak self] _ in
                     guard let self = self else { return }
-                    self.coordinator?.showProjectViewController(self, viewModel: self.viewModel)
+                    self.coordinator?.showProjectViewController(self, viewModel: SignupViewModel())
                     self.modalViewBackgoundOn()
                 }
                 .store(in: &cell.cancellables)
@@ -269,8 +353,7 @@ extension MyBudiEditViewController: UITableViewDelegate, UITableViewDataSource {
                 .receive(on: DispatchQueue.main)
                 .sink { [weak self] _ in
                     guard let self = self else { return }
-                    self.coordinator?.showProjectViewController(self, viewModel: self.viewModel)
-                    self.modalViewBackgoundOn()
+                    self.showActionSheet(section: 0, index: indexPath.row)
                 }
                 .store(in: &cell.cancellables)
             
@@ -280,7 +363,7 @@ extension MyBudiEditViewController: UITableViewDelegate, UITableViewDataSource {
             if viewModel.state.loginUserData.value?.portfolioList.count != indexPath.row {
                 let data = viewModel.state.loginUserData.value?.portfolioList[indexPath.row]
                 if let data = data {
-                    cell.configureParsing(url: data)
+                    cell.configureParsing(urlString: data)
                 }
             } else {
                 cell.configureButtonLabel(text: "포트폴리오를 추가해 보세요")
@@ -290,10 +373,19 @@ extension MyBudiEditViewController: UITableViewDelegate, UITableViewDataSource {
                 .receive(on: DispatchQueue.main)
                 .sink { [weak self] _ in
                     guard let self = self else { return }
-                    self.coordinator?.showPortfolioController(self, viewModel: self.viewModel)
+                    self.coordinator?.showPortfolioController(self, viewModel: SignupViewModel())
                     self.modalViewBackgoundOn()
                 }
                 .store(in: &cell.cancellables)
+
+            cell.editButton.tapPublisher
+                .receive(on: DispatchQueue.main)
+                .sink { [weak self] _ in
+                    guard let self = self else { return }
+                    self.showActionSheet(section: 1, index: indexPath.row)
+                }
+                .store(in: &cell.cancellables)
+
             return cell
         }
 
@@ -313,10 +405,11 @@ extension MyBudiEditViewController: HomeLocationSearchViewControllerDelegate {
 }
 
 extension MyBudiEditViewController: ProjectMembersBottomViewControllerDelegate {
-    func getRecruitingPositions(_ recruitingPositions: [RecruitingPosition]) {
+    func getRecruitingPositions(_ recruitingPositions: [RecruitingPosition], _ selectPostion: Int) {
         var changeData = viewModel.state.loginUserData.value
         let position = recruitingPositions.map { $0.positionName }
         changeData?.positions = position
+        changeData?.basePosition = selectPostion
         viewModel.state.loginUserData.send(changeData)
         tableView.reloadData()
     }
@@ -324,25 +417,64 @@ extension MyBudiEditViewController: ProjectMembersBottomViewControllerDelegate {
 }
 
 extension MyBudiEditViewController: HistoryWriteViewControllerDelegate {
-    func getProject(_ project: SignupInfoModel?) {
+    func getProject(_ project: SignupInfoModel?, _ editItem: Item?) {
         var changeData = viewModel.state.loginUserData.value
-        var changeProject = ProjectList(projectId: 0,
+        let changeProject = ProjectList(projectId: 0,
                                         name: project?.mainName ?? "",
                                         startDate: project?.startDate ?? "",
                                         endDate: project?.endDate ?? "",
                                         description: project?.description ?? "")
-        changeData?.projectList.append(changeProject)
+        if editItem != nil {
+            changeData?.projectList[editIndex] = changeProject
+        } else {
+            changeData?.projectList.append(changeProject)
+        }
         viewModel.state.loginUserData.send(changeData)
-        print(viewModel.state.loginUserData.value?.projectList)
+        editIndex = -1
         tableView.reloadData()
     }
 }
 
 extension MyBudiEditViewController: PortfolioViewControllerDelegate {
-    func getPortfolio(_ portfolio: SignupInfoModel?) {
+    func getPortfolio(_ portfolio: SignupInfoModel?, _ editItem: Item?) {
         guard var changeData = viewModel.state.loginUserData.value else { return }
-        changeData.portfolioList.append(portfolio?.porflioLink ?? "")
+
+        if editItem != nil {
+            changeData.portfolioList[editIndex] = portfolio?.porflioLink ?? ""
+        } else {
+            changeData.portfolioList.append(portfolio?.porflioLink ?? "")
+        }
         viewModel.state.loginUserData.send(changeData)
         tableView.reloadData()
+    }
+}
+
+// MARK: - UIImagePicker
+extension MyBudiEditViewController: UIImagePickerControllerDelegate & UINavigationControllerDelegate {
+
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        guard let image = info[UIImagePickerController.InfoKey(rawValue: "UIImagePickerControllerEditedImage")] as? UIImage, let jpegData = image.jpegData(compressionQuality: 0.2) else {
+            picker.dismiss(animated: true, completion: nil)
+            return
+        }
+        userImageView.image = image
+
+        viewModel.convertImageToURL(jpegData, { result in
+            switch result {
+            case .success(let response):
+                do {
+                    guard let json = try JSONSerialization.jsonObject(with: response.data, options: []) as? [String: Any],
+                          let data = json["data"] as? [String: Any],
+                          let imageUrl = data["imageUrl"] as? String else { return }
+                    var changeData = self.viewModel.state.loginUserData.value
+                    changeData?.imgUrl = imageUrl
+                    self.viewModel.state.loginUserData.send(changeData)
+                    picker.dismiss(animated: true)
+                } catch {}
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+            
+        })
     }
 }

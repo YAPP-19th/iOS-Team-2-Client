@@ -10,7 +10,7 @@ import CombineCocoa
 import Combine
 
 protocol HistoryWriteViewControllerDelegate: AnyObject {
-    func getProject(_ project: SignupInfoModel?)
+    func getProject(_ project: SignupInfoModel?, _ editItem: Item?)
 }
 
 class HistoryWriteViewController: UIViewController {
@@ -72,21 +72,10 @@ class HistoryWriteViewController: UIViewController {
     }
 
     private func bindViewModel() {
-        viewModel.state.writedInfoData
-            .receive(on: DispatchQueue.main)
-            .sink { data in
-                guard let data = data else { return }
-                self.saveButton.isEnabled = data.mainName.count >= 1 && data.description.count >= 1 && data.startDate.count >= 1 && data.endDate.count >= 1 ? true : false
-                self.saveButton.backgroundColor = data.mainName.count >= 1 && data.description.count >= 1 && data.startDate.count >= 1 && data.endDate.count >= 1 ? UIColor.primary : UIColor.textDisabled
-                self.saveButton.setTitleColor(UIColor.white, for: .normal)
-                self.saveButton.setTitleColor(UIColor.white, for: .disabled)
-            }
-            .store(in: &cancellables)
 
         viewModel.state.editData
             .receive(on: DispatchQueue.main)
             .sink { [weak self] editData in
-                print(editData)
                 guard let self = self else { return }
                 guard let editData = editData else { return }
                 self.mainNameTextField.text = editData.name
@@ -94,19 +83,8 @@ class HistoryWriteViewController: UIViewController {
                 self.rightDateTextField.text = editData.endDate
                 self.descriptionTextField.text = editData.description
                 self.workingSwitchButton.isSelected = editData.nowWork
-                if self.workingSwitchButton.isSelected {
-                    self.workingSwitchButton.isSelected = true
-                    self.workingSwitchButton.imageView?.image = UIImage(systemName: "checkmark.circle.fill")
-                    self.workingSwitchButton.tintColor = UIColor.primary
-                    self.rightDateTextField.text = "현재"
-                    self.rightDateTextField.isSelected = false
-                } else {
-                    self.workingSwitchButton.isSelected = false
-                    self.workingSwitchButton.imageView?.image = UIImage(systemName: "checkmark.circle")
-                    self.workingSwitchButton.tintColor = UIColor.textDisabled
-                    self.rightDateTextField.isSelected = true
-                }
-
+                self.saveButton.backgroundColor = UIColor.primary
+                self.saveButton.isEnabled = true
                 guard var data = self.viewModel.state.writedInfoData.value else { return }
                 data.mainName = editData.name
                 data.startDate = editData.startDate
@@ -115,6 +93,24 @@ class HistoryWriteViewController: UIViewController {
                 data.porflioLink = editData.portfolioLink
                 data.nowWorks = editData.nowWork
                 self.viewModel.state.writedInfoData.send(data)
+            }
+            .store(in: &cancellables)
+
+        viewModel.state.writedInfoData
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] data in
+                guard let self = self else { return }
+                guard let data = data else { return }
+                self.saveButton.isEnabled = data.mainName.count >= 1 && data.description.count >= 1 && data.startDate.count >= 1 && data.endDate.count >= 1 ? true : false
+                self.saveButton.backgroundColor = data.mainName.count >= 1 && data.description.count >= 1 && data.startDate.count >= 1 && data.endDate.count >= 1 ? UIColor.primary : UIColor.textDisabled
+                self.saveButton.setTitleColor(UIColor.white, for: .normal)
+                self.saveButton.setTitleColor(UIColor.white, for: .disabled)
+
+                if self.viewModel.state.editData.value != nil {
+                    self.saveButton.isEnabled = true
+                    self.saveButton.backgroundColor = UIColor.primary
+                }
+
             }
             .store(in: &cancellables)
 
@@ -167,7 +163,11 @@ class HistoryWriteViewController: UIViewController {
                 guard let self = self else { return }
                 if self.myBudiCoordinator != nil {
                     let send = self.viewModel.state.writedInfoData.value
-                    self.delegate?.getProject(send)
+                    if self.viewModel.state.editData.value != nil {
+                        self.delegate?.getProject(send, self.viewModel.state.editData.value)
+                    } else {
+                        self.delegate?.getProject(send, nil)
+                    }
                 } else {
                     self.viewModel.action.fetchSignupInfoData.send(())
                     self.viewModel.state.editData.send(nil)

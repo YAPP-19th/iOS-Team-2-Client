@@ -10,7 +10,7 @@ import Combine
 import CombineCocoa
 
 protocol PortfolioViewControllerDelegate: AnyObject {
-    func getPortfolio(_ portfolio: SignupInfoModel?)
+    func getPortfolio(_ portfolio: SignupInfoModel?, _ editItem: Item?)
 }
 
 class PortfolioViewController: UIViewController {
@@ -79,9 +79,14 @@ class PortfolioViewController: UIViewController {
                 guard let self = self else { return }
                 if self.myBudiCoordinator != nil {
                     let send = self.viewModel.state.writedInfoData.value
-                    self.delegate?.getPortfolio(send)
+                    if self.viewModel.state.editData.value != nil {
+                        self.delegate?.getPortfolio(send, self.viewModel.state.editData.value)
+                    } else {
+                        self.delegate?.getPortfolio(send, nil)
+                    }
                 } else {
                     self.viewModel.action.fetchSignupInfoData.send(())
+                    self.viewModel.state.editData.send(nil)
                 }
 
                 NotificationCenter.default.post(name: Notification.Name("Dismiss"), object: self)
@@ -109,6 +114,12 @@ class PortfolioViewController: UIViewController {
                 self.saveButton.backgroundColor = data.porflioLink.count >= 1 ? UIColor.primary : UIColor.textDisabled
                 self.saveButton.setTitleColor(UIColor.white, for: .normal)
                 self.saveButton.setTitleColor(UIColor.white, for: .disabled)
+
+                if self.viewModel.state.editData.value != nil {
+
+                    self.saveButton.isEnabled = true
+                    self.saveButton.backgroundColor = UIColor.primary
+                }
             }
             .store(in: &cancellables)
 

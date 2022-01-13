@@ -33,11 +33,12 @@ class PositionTableViewCell: UITableViewCell {
     }
 
     func configurePosition(position: [String]) {
-        var positionText = ""
-        for position in position {
-            positionText += "#\(position) "
+        if position.count != 0 {
+            var positionText = ""
+            for position in position {
+                positionText += "#\(position) "
+            }
+            positionTextField.text = positionText
         }
-        positionTextField.text = positionText
     }
 }
-

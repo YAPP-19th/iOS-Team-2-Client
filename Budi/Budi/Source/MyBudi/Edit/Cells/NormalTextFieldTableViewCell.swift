@@ -14,7 +14,7 @@ class NormalTextFieldTableViewCell: UITableViewCell {
     var cancellables = Set<AnyCancellable>()
     @IBOutlet weak var normalTextField: UITextField!
     @IBOutlet weak var normalTitleLabel: UILabel!
-
+    
     override func prepareForReuse() {
         super.prepareForReuse()
         cancellables.removeAll()

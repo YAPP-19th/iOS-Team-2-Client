@@ -91,7 +91,7 @@ final class MyBudiMainViewController: UIViewController {
             .store(in: &cancellables)
 
         loginButton.tapPublisher
-            .sink { [weak self] _ in
+            .sink { _ in
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 let loginSelectViewController = storyboard.instantiateViewController(identifier: "LoginSelectViewController")
                 let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate
@@ -132,6 +132,8 @@ extension MyBudiMainViewController: UICollectionViewDataSource, UICollectionView
             } else {
                 cell.setUserData(nickName: loginData?.nickName ?? "로딩중", position: "임시글", description: loginData?.description ?? "임시소개글")
             }
+
+            cell.configureUserImage(url: viewModel.state.loginStatusData.value?.imgUrl ?? "", basePosition: viewModel.state.loginStatusData.value?.basePosition ?? 1)
 
             cell.editButton.tapPublisher
                 .receive(on: DispatchQueue.main)

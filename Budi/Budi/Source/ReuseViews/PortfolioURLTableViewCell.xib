@@ -35,7 +35,7 @@
                         <rect key="frame" x="8" y="8" width="327" height="42"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ppZ-FT-cUB">
-                                <rect key="frame" x="16" y="5" width="28" height="28"/>
+                                <rect key="frame" x="16" y="8" width="28" height="28"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="28" id="Tcu-eT-WGf"/>
                                     <constraint firstAttribute="width" constant="28" id="V5T-kA-YK8"/>
@@ -60,7 +60,7 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="ppZ-FT-cUB" firstAttribute="top" secondItem="wuH-dm-qys" secondAttribute="top" constant="5" id="0IM-4q-ZOg"/>
+                            <constraint firstItem="ppZ-FT-cUB" firstAttribute="top" secondItem="wuH-dm-qys" secondAttribute="top" constant="8" id="0IM-4q-ZOg"/>
                             <constraint firstItem="Pio-mV-HSC" firstAttribute="leading" secondItem="ppZ-FT-cUB" secondAttribute="trailing" constant="8" symbolic="YES" id="0wI-re-sCa"/>
                             <constraint firstAttribute="trailing" secondItem="9Lk-RE-qft" secondAttribute="trailing" constant="22" id="13b-9c-bWa"/>
                             <constraint firstItem="9Lk-RE-qft" firstAttribute="top" secondItem="wuH-dm-qys" secondAttribute="top" constant="8" id="FiD-3U-rYX"/>

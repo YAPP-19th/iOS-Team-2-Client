@@ -22,6 +22,7 @@ class ProjectTableViewCell: UITableViewCell {
 
     override func prepareForReuse() {
         super.prepareForReuse()
+        selectView.isHidden = true
         cancellables.removeAll()
     }
 

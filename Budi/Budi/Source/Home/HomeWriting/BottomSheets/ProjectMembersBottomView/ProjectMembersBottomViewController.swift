@@ -9,7 +9,7 @@ import UIKit
 import Combine
 
 protocol ProjectMembersBottomViewControllerDelegate: AnyObject {
-    func getRecruitingPositions(_ recruitingPositions: [RecruitingPosition])
+    func getRecruitingPositions(_ recruitingPositions: [RecruitingPosition], _ selectPosition: Int?)
 }
 
 final class ProjectMembersBottomViewController: UIViewController {
@@ -29,16 +29,17 @@ final class ProjectMembersBottomViewController: UIViewController {
     private let developerPositions: [String]
     private let designerPositions: [String]
     private let productManagerPositions: [String]
-    
+    private var positionSwitch: PositionSwitch
     private var selectedPosition: Position?
     private var recruitingPositions: [RecruitingPosition] = []
-    
+    private var selectPosition: Int = 0
     weak var delegate: ProjectMembersBottomViewControllerDelegate?
 
-    init(nibName: String?, bundle: Bundle?, developerPositions: [String], designerPositions: [String], productManagerPositions: [String]) {
+    init(nibName: String?, bundle: Bundle?, developerPositions: [String], designerPositions: [String], productManagerPositions: [String], viewSwitch: PositionSwitch) {
         self.developerPositions = developerPositions
         self.designerPositions = designerPositions
         self.productManagerPositions = productManagerPositions
+        self.positionSwitch = viewSwitch
         super.init(nibName: nibName, bundle: bundle)
     }
     
@@ -67,7 +68,7 @@ private extension ProjectMembersBottomViewController {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
                 guard let self = self else { return }
-                self.delegate?.getRecruitingPositions(self.recruitingPositions)
+                self.delegate?.getRecruitingPositions(self.recruitingPositions, nil)
                 self.hideBottomView()
             }.store(in: &cancellables)
         
@@ -75,7 +76,12 @@ private extension ProjectMembersBottomViewController {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
                 guard let self = self else { return }
-                self.delegate?.getRecruitingPositions(self.recruitingPositions)
+                switch self.positionSwitch {
+                case .myBudi:
+                    self.delegate?.getRecruitingPositions(self.recruitingPositions, self.selectPosition)
+                case .writing:
+                    self.delegate?.getRecruitingPositions(self.recruitingPositions, nil)
+                }
                 self.hideBottomView()
             }.store(in: &cancellables)
     }
@@ -212,6 +218,7 @@ extension ProjectMembersBottomViewController: UICollectionViewDataSource, UIColl
             if selectedPosition == nil {
                 showBottomView(constant: 350)
             }
+            self.selectPosition = indexPath.row+1
             guard let newSelectedPosition = Position(rawValue: indexPath.row+1),
                     newSelectedPosition != self.selectedPosition else { return }
             self.selectedPosition = newSelectedPosition
@@ -240,7 +247,13 @@ extension ProjectMembersBottomViewController: UICollectionViewDataSource, UIColl
             self.configureCompleteButton(!recruitingPositions.isEmpty)
 
             let count = recruitingPositions.count < 4 ? recruitingPositions.count : 3
-            self.showBottomView(constant: 350+CGFloat(48*count)+40)
+
+            switch positionSwitch {
+            case .writing:
+                self.showBottomView(constant: 350+CGFloat(48*count)+40)
+            case .myBudi:
+                break
+            }
             
             self.detailCollectionView.reloadData()
             self.memberCollectionView.reloadData()

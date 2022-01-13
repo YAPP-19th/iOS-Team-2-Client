@@ -31,7 +31,33 @@ final class MyBudiLevelCell: UICollectionViewCell {
         
     }
 
-    func setLevel(level: String) {
+    func setLevel(level: String, position: Int) {
+        var levelImage: String = ""
+
+        switch position {
+        case 1:
+            levelImage += "Slider_Dev_"
+        case 2:
+            levelImage += "Slider_Design_"
+        case 3:
+            levelImage += "Slider_Plan_"
+        default:
+            break
+        }
+
+        switch level {
+        case _ where level.contains("씨앗"):
+            levelImage += "Lv1"
+        case _ where level.contains("새싹"):
+            levelImage += "Lv2"
+        case _ where level.contains("꽃잎"):
+            levelImage += "Lv3"
+        case _ where level.contains("열매"):
+            levelImage += "Lv4"
+        default:
+            levelImage += "Lv4"
+        }
+
         switch level {
         case _ where level.contains("씨앗"):
             levelSlider.value = 0
@@ -44,6 +70,7 @@ final class MyBudiLevelCell: UICollectionViewCell {
         default:
             levelSlider.value = 1.0
         }
+        levelSlider.setThumbImage(UIImage(named: levelImage), for: .normal)
     }
 
     private func thumbImage() -> UIImage {

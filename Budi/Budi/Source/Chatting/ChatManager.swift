@@ -59,8 +59,6 @@ final class ChatManager {
 //            let messages = documents.compactMap { (document) -> ChatMessage? in
 //                return try? document.data(as: ChatMessage.self)
 //            }
-            
-            print("messages: \(documents)")
         }
         
         return messages

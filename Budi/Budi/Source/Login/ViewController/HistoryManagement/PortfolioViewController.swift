@@ -9,9 +9,15 @@ import UIKit
 import Combine
 import CombineCocoa
 
+protocol PortfolioViewControllerDelegate: AnyObject {
+    func getPortfolio(_ portfolio: SignupInfoModel?, _ editItem: Item?)
+}
+
 class PortfolioViewController: UIViewController {
 
+    weak var delegate: PortfolioViewControllerDelegate?
     weak var coordinator: LoginCoordinator?
+    weak var myBudiCoordinator: MyBudiCoordinator?
     @IBOutlet weak var modalView: UIView!
     var viewModel: SignupViewModel
     @IBOutlet weak var emptyViewButton: UIButton!
@@ -61,16 +67,30 @@ class PortfolioViewController: UIViewController {
                 guard let text = text else { return }
                 guard var data = self?.viewModel.state.writedInfoData.value else { return }
                 data.porflioLink = text
+                print(data)
                 self?.viewModel.state.writedInfoData.send(data)
+                
             }
             .store(in: &cancellables)
 
         saveButton.tapPublisher
             .receive(on: RunLoop.main)
             .sink { [weak self] _ in
-                self?.viewModel.action.fetchSignupInfoData.send(())
+                guard let self = self else { return }
+                if self.myBudiCoordinator != nil {
+                    let send = self.viewModel.state.writedInfoData.value
+                    if self.viewModel.state.editData.value != nil {
+                        self.delegate?.getPortfolio(send, self.viewModel.state.editData.value)
+                    } else {
+                        self.delegate?.getPortfolio(send, nil)
+                    }
+                } else {
+                    self.viewModel.action.fetchSignupInfoData.send(())
+                    self.viewModel.state.editData.send(nil)
+                }
+
                 NotificationCenter.default.post(name: Notification.Name("Dismiss"), object: self)
-                self?.dismiss(animated: true, completion: nil)
+                self.dismiss(animated: true, completion: nil)
             }
             .store(in: &cancellables)
 
@@ -94,6 +114,12 @@ class PortfolioViewController: UIViewController {
                 self.saveButton.backgroundColor = data.porflioLink.count >= 1 ? UIColor.primary : UIColor.textDisabled
                 self.saveButton.setTitleColor(UIColor.white, for: .normal)
                 self.saveButton.setTitleColor(UIColor.white, for: .disabled)
+
+                if self.viewModel.state.editData.value != nil {
+
+                    self.saveButton.isEnabled = true
+                    self.saveButton.backgroundColor = UIColor.primary
+                }
             }
             .store(in: &cancellables)
 

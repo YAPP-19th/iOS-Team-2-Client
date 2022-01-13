@@ -12,12 +12,6 @@ protocol ProjectMembersBottomViewControllerDelegate: AnyObject {
     func getRecruitingPositions(_ recruitingPositions: [RecruitingPosition], _ selectPosition: Int)
 }
 
-extension ProjectMembersBottomViewControllerDelegate {
-    func getRecruitingPositions(_ recruitingPositions: [RecruitingPosition], _ selectPosition: Int = 0) {
-        getRecruitingPositions(recruitingPositions, selectPosition)
-    }
-}
-
 final class ProjectMembersBottomViewController: UIViewController {
 
     @IBOutlet private weak var backgroundView: UIView!
@@ -74,7 +68,7 @@ private extension ProjectMembersBottomViewController {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
                 guard let self = self else { return }
-                self.delegate?.getRecruitingPositions(self.recruitingPositions)
+                self.delegate?.getRecruitingPositions(self.recruitingPositions, 0)
                 self.hideBottomView()
             }.store(in: &cancellables)
         
@@ -86,7 +80,7 @@ private extension ProjectMembersBottomViewController {
                 case .myBudi:
                     self.delegate?.getRecruitingPositions(self.recruitingPositions, self.selectPosition)
                 case .writing:
-                    self.delegate?.getRecruitingPositions(self.recruitingPositions)
+                    self.delegate?.getRecruitingPositions(self.recruitingPositions, 0)
                 }
                 self.hideBottomView()
             }.store(in: &cancellables)

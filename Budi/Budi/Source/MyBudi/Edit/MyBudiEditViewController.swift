@@ -70,8 +70,6 @@ final class MyBudiEditViewController: UIViewController {
             }
             .store(in: &cancellables)
 
-
-
     }
 
     func modalViewBackgoundOn() {
@@ -291,7 +289,7 @@ extension MyBudiEditViewController: UITableViewDelegate, UITableViewDataSource {
                 } else {
                     cell.configureLabel(text: "한줄소개")
                     cell.configureText(text: self.viewModel.state.loginUserData.value?.description ?? "")
-
+                    
                     cell.normalTextField.textPublisher
                         .receive(on: DispatchQueue.main)
                         .sink { [weak self] text in

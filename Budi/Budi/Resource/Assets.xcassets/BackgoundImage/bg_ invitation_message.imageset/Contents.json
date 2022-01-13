@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "그림 04.png",
+      "filename" : "bg_ invitation_message.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "그림 04@2x.png",
+      "filename" : "bg_ invitation_message@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "그림 04@3x.png",
+      "filename" : "bg_ invitation_message@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

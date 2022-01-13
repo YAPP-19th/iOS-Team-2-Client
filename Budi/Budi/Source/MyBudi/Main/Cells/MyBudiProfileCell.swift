@@ -42,11 +42,11 @@ final class MyBudiProfileCell: UICollectionViewCell {
 
         switch basePosition {
         case 1:
-            userCharacterImageView.image = UIImage(named: "Developer")
+            userCharacterImageView.image = UIImage(named: "developer")
         case 2:
-            userCharacterImageView.image = UIImage(named: "Designer")
+            userCharacterImageView.image = UIImage(named: "designer")
         case 3:
-            userCharacterImageView.image = UIImage(named: "Planner")
+            userCharacterImageView.image = UIImage(named: "planner")
         default:
             break
         }

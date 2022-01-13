@@ -9,7 +9,7 @@ import UIKit
 import Combine
 
 protocol ProjectMembersBottomViewControllerDelegate: AnyObject {
-    func getRecruitingPositions(_ recruitingPositions: [RecruitingPosition], _ selectPosition: Int)
+    func getRecruitingPositions(_ recruitingPositions: [RecruitingPosition], _ selectPosition: Int?)
 }
 
 final class ProjectMembersBottomViewController: UIViewController {
@@ -68,7 +68,7 @@ private extension ProjectMembersBottomViewController {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
                 guard let self = self else { return }
-                self.delegate?.getRecruitingPositions(self.recruitingPositions, 0)
+                self.delegate?.getRecruitingPositions(self.recruitingPositions, nil)
                 self.hideBottomView()
             }.store(in: &cancellables)
         
@@ -80,7 +80,7 @@ private extension ProjectMembersBottomViewController {
                 case .myBudi:
                     self.delegate?.getRecruitingPositions(self.recruitingPositions, self.selectPosition)
                 case .writing:
-                    self.delegate?.getRecruitingPositions(self.recruitingPositions, 0)
+                    self.delegate?.getRecruitingPositions(self.recruitingPositions, nil)
                 }
                 self.hideBottomView()
             }.store(in: &cancellables)

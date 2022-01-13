@@ -403,10 +403,11 @@ extension MyBudiEditViewController: HomeLocationSearchViewControllerDelegate {
 }
 
 extension MyBudiEditViewController: ProjectMembersBottomViewControllerDelegate {
-    func getRecruitingPositions(_ recruitingPositions: [RecruitingPosition], _ selectPostion: Int) {
+    func getRecruitingPositions(_ recruitingPositions: [RecruitingPosition], _ selectPostion: Int?) {
         var changeData = viewModel.state.loginUserData.value
         let position = recruitingPositions.map { $0.positionName }
         changeData?.positions = position
+        guard let selectPostion = selectPostion else { return }
         changeData?.basePosition = selectPostion
         viewModel.state.loginUserData.send(changeData)
         tableView.reloadData()

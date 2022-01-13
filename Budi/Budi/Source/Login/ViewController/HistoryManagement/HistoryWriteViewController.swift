@@ -72,16 +72,6 @@ class HistoryWriteViewController: UIViewController {
     }
 
     private func bindViewModel() {
-        viewModel.state.writedInfoData
-            .receive(on: DispatchQueue.main)
-            .sink { data in
-                guard let data = data else { return }
-                self.saveButton.isEnabled = data.mainName.count >= 1 && data.description.count >= 1 && data.startDate.count >= 1 && data.endDate.count >= 1 ? true : false
-                self.saveButton.backgroundColor = data.mainName.count >= 1 && data.description.count >= 1 && data.startDate.count >= 1 && data.endDate.count >= 1 ? UIColor.primary : UIColor.textDisabled
-                self.saveButton.setTitleColor(UIColor.white, for: .normal)
-                self.saveButton.setTitleColor(UIColor.white, for: .disabled)
-            }
-            .store(in: &cancellables)
 
         viewModel.state.editData
             .receive(on: DispatchQueue.main)
@@ -103,6 +93,24 @@ class HistoryWriteViewController: UIViewController {
                 data.porflioLink = editData.portfolioLink
                 data.nowWorks = editData.nowWork
                 self.viewModel.state.writedInfoData.send(data)
+            }
+            .store(in: &cancellables)
+
+        viewModel.state.writedInfoData
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] data in
+                guard let self = self else { return }
+                guard let data = data else { return }
+                self.saveButton.isEnabled = data.mainName.count >= 1 && data.description.count >= 1 && data.startDate.count >= 1 && data.endDate.count >= 1 ? true : false
+                self.saveButton.backgroundColor = data.mainName.count >= 1 && data.description.count >= 1 && data.startDate.count >= 1 && data.endDate.count >= 1 ? UIColor.primary : UIColor.textDisabled
+                self.saveButton.setTitleColor(UIColor.white, for: .normal)
+                self.saveButton.setTitleColor(UIColor.white, for: .disabled)
+
+                if self.viewModel.state.editData.value != nil {
+                    self.saveButton.isEnabled = true
+                    self.saveButton.backgroundColor = UIColor.primary
+                }
+
             }
             .store(in: &cancellables)
 

@@ -48,7 +48,7 @@ final class MyBudiLevelCell: UICollectionViewCell {
         switch level {
         case _ where level.contains("씨앗"):
             levelImage += "Lv1"
-        case _ where level.contains("열매"):
+        case _ where level.contains("새싹"):
             levelImage += "Lv2"
         case _ where level.contains("꽃잎"):
             levelImage += "Lv3"

@@ -9,10 +9,8 @@ import Foundation
 
 extension String {
     var isSingleEmoji: Bool {
-        if unicodeScalars.count > 1 {
-            return false
-        }
-        
+        guard unicodeScalars.count == 1 else { return false }
+
         for scalar in unicodeScalars {
             switch scalar.value {
             case 0x1F600...0x1F64F, // Emoticons

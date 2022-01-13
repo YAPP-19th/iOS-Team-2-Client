@@ -20,10 +20,10 @@ class MyChattingMessageCell: UICollectionViewCell {
     func configureUI(_ message: ChatMessage) {
         messageLabel.text = message.text
         timeLabel.text = message.timestamp.convertToahhmm()
-        
-        if message.text.isSingleEmoji {
-            messageLabel.font = UIFont.systemFont(ofSize: 80)
-            containerView.backgroundColor = .clear
-        }
+//        
+//        if message.text.isSingleEmoji {
+//            messageLabel.font = UIFont.systemFont(ofSize: 80)
+//            containerView.backgroundColor = .clear
+//        }
     }
 }

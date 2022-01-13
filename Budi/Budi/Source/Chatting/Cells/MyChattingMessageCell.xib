@@ -22,10 +22,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eaf-YK-WDd">
-                                <rect key="frame" x="128" y="0.0" width="235" height="100"/>
+                                <rect key="frame" x="128" y="0.0" width="235" height="92"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="안녕하세요. 시간 괜찮으시면 몇 가지 여쭤봐도 될까요?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kMi-Wu-l74">
-                                        <rect key="frame" x="8" y="8" width="219" height="84"/>
+                                        <rect key="frame" x="8" y="8" width="219" height="76"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -46,18 +46,18 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="오전 10:18" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jT0-eL-zZg">
-                                <rect key="frame" x="78" y="88" width="46" height="12"/>
+                                <rect key="frame" x="78" y="80" width="46" height="12"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                 <color key="textColor" name="Text_disabled"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="eaf-YK-WDd" secondAttribute="bottom" id="NOo-1P-VUF"/>
+                            <constraint firstAttribute="bottom" secondItem="eaf-YK-WDd" secondAttribute="bottom" constant="8" id="NOo-1P-VUF"/>
                             <constraint firstItem="eaf-YK-WDd" firstAttribute="leading" secondItem="jT0-eL-zZg" secondAttribute="trailing" constant="4" id="ThB-gd-6Bh"/>
                             <constraint firstItem="eaf-YK-WDd" firstAttribute="top" secondItem="ok1-Qd-bf4" secondAttribute="top" id="XS0-J8-GOt"/>
                             <constraint firstAttribute="trailing" secondItem="eaf-YK-WDd" secondAttribute="trailing" constant="12" id="eWV-DZ-jH2"/>
-                            <constraint firstAttribute="bottom" secondItem="jT0-eL-zZg" secondAttribute="bottom" id="hBb-K9-r3l"/>
+                            <constraint firstAttribute="bottom" secondItem="jT0-eL-zZg" secondAttribute="bottom" constant="8" id="hBb-K9-r3l"/>
                         </constraints>
                     </view>
                 </subviews>

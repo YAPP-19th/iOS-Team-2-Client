@@ -48,7 +48,7 @@ final class ChattingDetailViewController: UIViewController {
         configureNavigationBar()
         configureTabBar()
         configureTextField()
-        configureKeyboardHeight()
+        configureKeyboard()
         
         bindViewModel()
         setPublisher()
@@ -67,6 +67,7 @@ private extension ChattingDetailViewController {
             .sink(receiveValue: { [weak self] _ in
                 guard let self = self else { return }
                 self.collectionView.reloadData()
+                self.scrollToBottom()
             }).store(in: &cancellables)
     }
     
@@ -80,7 +81,7 @@ private extension ChattingDetailViewController {
         collectionView.gesturePublisher(.tap())
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
-                self?.hideTextField()
+                self?.hideKeyboard()
             }.store(in: &cancellables)
         
         textFieldContainerView.gesturePublisher(.tap())
@@ -88,7 +89,8 @@ private extension ChattingDetailViewController {
             .sink { [weak self] _ in
                 guard let self = self else { return }
                 if !self.isKeyboardShown {
-                    self.showTextField()
+                    self.showKeyboard()
+                    self.scrollToBottom()
                 }
             }.store(in: &cancellables)
     }
@@ -112,9 +114,7 @@ private extension ChattingDetailViewController {
             alertVC.delegate = self
             self?.present(alertVC, animated: false, completion: nil)
         }))
-        alert.addAction(.init(title: "취소", style: .cancel, handler: { _ in
-            print("취소")
-        }))
+        alert.addAction(.init(title: "취소", style: .cancel, handler: nil))
         self.present(alert, animated: false, completion: nil)
     }
 
@@ -124,9 +124,9 @@ private extension ChattingDetailViewController {
 }
 
 // MARK: - Delegate
-// MARK: - AlertVC 대화 삭제코드 추가
 extension ChattingDetailViewController: AlertViewControllerDelegate {
     func okButtonTapped() {
+        // MARK: - AlertVC 대화 삭제코드 추가
         print("대화를 삭제합니다")
     }
 }
@@ -141,6 +141,14 @@ extension ChattingDetailViewController: UITextFieldDelegate {
         
         self.textFieldText = ""
         self.textField.text = ""
+        
+        scrollToBottom()
+    }
+    
+    private func scrollToBottom(_ animated: Bool = false) {
+        guard collectionView.numberOfSections > 0 else { return }
+        let indexPath = IndexPath(item: collectionView.numberOfItems(inSection: collectionView.numberOfSections - 1) - 1, section: collectionView.numberOfSections - 1)
+        collectionView.scrollToItem(at: indexPath, at: .bottom, animated: animated)
     }
     
     private func configureTextField() {
@@ -148,7 +156,7 @@ extension ChattingDetailViewController: UITextFieldDelegate {
         textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
     }
     
-    private func showTextField() {
+    private func showKeyboard() {
         self.isKeyboardShown = true
         self.textField.becomeFirstResponder()
         let animator = UIViewPropertyAnimator(duration: 0.25, curve: .linear) { [weak self] in
@@ -159,7 +167,7 @@ extension ChattingDetailViewController: UITextFieldDelegate {
         animator.startAnimation()
     }
     
-    private func hideTextField() {
+    private func hideKeyboard() {
         self.isKeyboardShown = false
         self.textField.becomeFirstResponder()
         self.textField.endEditing(true)
@@ -179,23 +187,17 @@ extension ChattingDetailViewController: UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        print("textFieldShouldReturn")
-        hideTextField()
         sendMessage()
         return true
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        print("textFieldDidBeginEditing")
-        showTextField()
+        showKeyboard()
     }
     
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        print("textFieldDidEndEditing")
-//        hideTextField()
-    }
-    
-    func configureKeyboardHeight() {
+    func configureKeyboard() {
+        textField.returnKeyType = .send
+        
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil
         )
     }
@@ -248,10 +250,10 @@ extension ChattingDetailViewController: UICollectionViewDelegateFlowLayout, UICo
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        CGSize(width: collectionView.frame.width, height: 100)
+        CGSize(width: collectionView.frame.width, height: 34)
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        12
+        0
     }
 }

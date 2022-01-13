@@ -114,12 +114,6 @@ class PortfolioViewController: UIViewController {
                 self.saveButton.backgroundColor = data.porflioLink.count >= 1 ? UIColor.primary : UIColor.textDisabled
                 self.saveButton.setTitleColor(UIColor.white, for: .normal)
                 self.saveButton.setTitleColor(UIColor.white, for: .disabled)
-
-                if self.viewModel.state.editData.value != nil {
-
-                    self.saveButton.isEnabled = true
-                    self.saveButton.backgroundColor = UIColor.primary
-                }
             }
             .store(in: &cancellables)
 

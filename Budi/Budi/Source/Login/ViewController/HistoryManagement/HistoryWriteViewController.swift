@@ -105,12 +105,6 @@ class HistoryWriteViewController: UIViewController {
                 self.saveButton.backgroundColor = data.mainName.count >= 1 && data.description.count >= 1 && data.startDate.count >= 1 && data.endDate.count >= 1 ? UIColor.primary : UIColor.textDisabled
                 self.saveButton.setTitleColor(UIColor.white, for: .normal)
                 self.saveButton.setTitleColor(UIColor.white, for: .disabled)
-
-                if self.viewModel.state.editData.value != nil {
-                    self.saveButton.isEnabled = true
-                    self.saveButton.backgroundColor = UIColor.primary
-                }
-
             }
             .store(in: &cancellables)
 

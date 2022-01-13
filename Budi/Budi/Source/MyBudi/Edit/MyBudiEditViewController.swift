@@ -175,7 +175,6 @@ private extension MyBudiEditViewController {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
                 guard let self = self else { return }
-                print(self.viewModel.state.loginUserData.value?.imgUrl)
                 self.viewModel.action.postUserData.send(())
                 self.navigationController?.popViewController(animated: true)
             }
@@ -413,7 +412,7 @@ extension MyBudiEditViewController: HomeLocationSearchViewControllerDelegate {
 extension MyBudiEditViewController: ProjectMembersBottomViewControllerDelegate {
     func getRecruitingPositions(_ recruitingPositions: [RecruitingPosition], _ selectPostion: Int) {
         var changeData = viewModel.state.loginUserData.value
-        var position = recruitingPositions.map { $0.positionName }
+        let position = recruitingPositions.map { $0.positionName }
         changeData?.positions = position
         changeData?.basePosition = selectPostion
         viewModel.state.loginUserData.send(changeData)

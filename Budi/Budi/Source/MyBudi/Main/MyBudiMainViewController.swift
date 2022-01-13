@@ -145,7 +145,7 @@ extension MyBudiMainViewController: UICollectionViewDataSource, UICollectionView
             
         case 1: guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MyBudiLevelCell.identifier, for: indexPath) as? MyBudiLevelCell else { return defaultCell }
 
-            cell.setLevel(level: loginData?.level ?? "")
+            cell.setLevel(level: loginData?.level ?? "", position: self.viewModel.state.loginStatusData.value?.basePosition ?? 1)
 
             return cell
             

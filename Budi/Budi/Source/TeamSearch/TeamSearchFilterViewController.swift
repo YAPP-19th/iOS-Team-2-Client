@@ -97,6 +97,18 @@ extension TeamSearchFilterViewController: UICollectionViewDataSource {
 
         let item = viewModel.state.sections.value[indexPath.section].items[indexPath.item]
         cell.updateUI(item, position: viewModel.position)
+        cell.gesturePublisher(.tap())
+            .sink { [weak self] _ in
+                if UserDefaults.standard.string(forKey: "accessToken")?.isEmpty ?? false {
+                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                    let loginSelectViewController = storyboard.instantiateViewController(identifier: "LoginSelectViewController")
+                    let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate
+                    sceneDelegate?.moveLoginController(loginSelectViewController, animated: true)
+                } else {
+                    let vc = TeamSearchProfileViewController(viewModel: .init(memberID: String(item.id)))
+                    self?.navigationController?.pushViewController(vc, animated: true)
+                }
+            }.store(in: &cell.cancellables)
         cell.postionLabel.superview?.backgroundColor = viewModel.position.labelBackgroundColor
         cell.postionLabel.textColor = viewModel.position.labelTextColor
         return cell

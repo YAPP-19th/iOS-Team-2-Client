@@ -56,7 +56,11 @@ final class HomeDetailViewController: UIViewController {
 
 private extension HomeDetailViewController {
     func bindViewModel() {
-        viewModel.state.post
+        Publishers.CombineLatest3(
+        viewModel.state.post,
+        viewModel.state.recruitingStatuses,
+        viewModel.state.teamMembers
+        )
             .receive(on: DispatchQueue.main)
             .sink(receiveValue: { [weak self] _ in
                 if UserDefaults.standard.string(forKey: "accessToken") != "" {

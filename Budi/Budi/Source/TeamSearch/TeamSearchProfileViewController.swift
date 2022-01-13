@@ -53,7 +53,10 @@ private extension TeamSearchProfileViewController {
     }
 
     func bindViewModel() {
-        viewModel.state.sections
+        Publishers.CombineLatest3(
+            viewModel.state.member,
+            viewModel.state.reviews,
+            viewModel.state.evaluations)
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
                 self?.collectionView.refreshControl?.endRefreshing()
@@ -101,23 +104,27 @@ extension TeamSearchProfileViewController: UICollectionViewDataSource {
         switch indexPath.section {
         case 0:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TeamSearchProfileCell.identifier, for: indexPath) as? TeamSearchProfileCell else { return UICollectionViewCell() }
-            cell.backgroundColor = .white
+            if let member = viewModel.state.member.value {
+                cell.updateUI(member: member)
+            }
             return cell
         case 1:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TeamSearchCell.identifier, for: indexPath) as? TeamSearchCell else { return UICollectionViewCell() }
-            cell.updateUI(TeamSearchEvalutionSection(items: []))
+            if let item = viewModel.state.evaluations.value {
+                cell.updateUI(TeamSearchEvalutionSection(item: item))
+            }
             return cell
         case 2:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TeamSearchCell.identifier, for: indexPath) as? TeamSearchCell else { return UICollectionViewCell() }
-            cell.updateUI(TeamSearchReviewSection(items: []))
+            cell.updateUI(TeamSearchReviewSection(items: viewModel.state.reviews.value))
             return cell
         case 3:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TeamSearchCell.identifier, for: indexPath) as? TeamSearchCell else { return UICollectionViewCell() }
-            cell.updateUI(TeamSearchHistorySection(items: []))
+            cell.updateUI(TeamSearchHistorySection(items: viewModel.state.member.value?.projectList ?? []))
             return cell
         case 4:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TeamSearchCell.identifier, for: indexPath) as? TeamSearchCell else { return UICollectionViewCell() }
-            cell.updateUI(TeamSearchPortfolioSection(items: []))
+            cell.updateUI(TeamSearchPortfolioSection(items: viewModel.state.member.value?.portfolioList ?? []))
             return cell
         default:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TeamSearchCell.identifier, for: indexPath) as? TeamSearchCell else { return UICollectionViewCell() }
@@ -138,35 +145,39 @@ extension TeamSearchProfileViewController: UICollectionViewDelegateFlowLayout {
         case 3:
             return .init(width: collectionView.bounds.width, height: 400)
         case 4:
-            return .init(width: collectionView.bounds.width, height: 232)
+            return .init(width: collectionView.bounds.width, height: 296)
         default:
             return .zero
         }
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return .init(top: 0, left: 0, bottom: 8, right: 0)
     }
 }
 //
 struct TeamSearchEvalutionSection: TeamSearchSection {
     let title: String = "버디 평가"
     let type: TeamSearchSectionType = .evalution
-    var items: [SearchTeamMember]
+    var item: Evaluation
 }
 
 struct TeamSearchReviewSection: TeamSearchSection {
     let title: String = "버디 후기"
     let type: TeamSearchSectionType = .review
-    var items: [SearchTeamMember]
+    var items: [Review]
 }
 
 struct TeamSearchHistorySection: TeamSearchSection {
     let title: String = "프로젝트 이력"
     let type: TeamSearchSectionType = .history
-    var items: [SearchTeamMember]
+    var items: [ProjectList]
 }
 
 struct TeamSearchPortfolioSection: TeamSearchSection {
     let title: String = "포트폴리오"
     let type: TeamSearchSectionType = .portfolio
-    var items: [SearchTeamMember]
+    var items: [String]
 }
 
 

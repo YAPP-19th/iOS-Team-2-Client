@@ -56,6 +56,10 @@ private extension TeamSearchCell {
         collectionView.isScrollEnabled = false
         collectionView.delegate = self
         collectionView.register(.init(nibName: TeamSearchDetailCell.identifier, bundle: nil), forCellWithReuseIdentifier: TeamSearchDetailCell.identifier)
+        collectionView.register(.init(nibName: TeamSearchEvaluationCell.identifier, bundle: nil), forCellWithReuseIdentifier: TeamSearchEvaluationCell.identifier)
+        collectionView.register(.init(nibName: TeamSearchReviewCell.identifier, bundle: nil), forCellWithReuseIdentifier: TeamSearchReviewCell.identifier)
+        collectionView.register(.init(nibName: ProjectHistoryCell.identifier, bundle: nil), forCellWithReuseIdentifier: ProjectHistoryCell.identifier)
+        collectionView.register(.init(nibName: PortfolioCell.identifier, bundle: nil), forCellWithReuseIdentifier: PortfolioCell.identifier)
     }
 }
 
@@ -69,6 +73,22 @@ extension TeamSearchCell: UICollectionViewDataSource {
         case .position:
             guard let section = self.section as? TeamSearchPositionSection else { return 0 }
             return section.items.count
+        case .evalution:
+            guard let section = self.section as? TeamSearchEvalutionSection else { return 0 }
+            let evalutions = section.item.negatives.merging(section.item.positives, uniquingKeysWith: { current, _ in
+                return current
+            })
+            return evalutions.count > 3 ? 3 : evalutions.count
+        case .review:
+            return 1
+//            guard let section = self.section as? TeamSearchReviewSection else { return 0 }
+//            return section.items.count > 2 ? 2 : section.items.count
+        case .history:
+            guard let section = self.section as? TeamSearchHistorySection else { return 0 }
+            return section.items.count > 3 ? 3 : section.items.count
+        case .portfolio:
+            guard let section = self.section as? TeamSearchPortfolioSection else { return 0 }
+            return section.items.count > 3 ? 3 : section.items.count
         default: return 0
         }
     }
@@ -83,9 +103,40 @@ extension TeamSearchCell: UICollectionViewDataSource {
             cell.updateUI(member, position: section.position)
             cell.gesturePublisher(.tap())
                 .sink { [weak self] _ in
-                    let vc = TeamSearchProfileViewController(viewModel: .init())
-                    self?.navigationVC?.pushViewController(vc, animated: true)
+                    if UserDefaults.standard.string(forKey: "accessToken")?.isEmpty ?? false {
+                        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                        let loginSelectViewController = storyboard.instantiateViewController(identifier: "LoginSelectViewController")
+                        let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate
+                        sceneDelegate?.moveLoginController(loginSelectViewController, animated: true)
+                    } else {
+                        let vc = TeamSearchProfileViewController(viewModel: .init(memberID: String(member.id)))
+                        self?.navigationVC?.pushViewController(vc, animated: true)
+                    }
                 }.store(in: &cell.cancellables)
+            return cell
+        case .evalution:
+            guard let section = self.section as? TeamSearchEvalutionSection,
+                  let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TeamSearchEvaluationCell.identifier, for: indexPath) as? TeamSearchEvaluationCell else { return UICollectionViewCell() }
+            let evalutions = Array(section.item.negatives.merging(section.item.positives, uniquingKeysWith: { current, _ in
+                return current
+            }))
+            cell.updateUI(title: evalutions[indexPath.item].key, count: evalutions[indexPath.item].value)
+            return cell
+        case .review:
+            guard let section = self.section as? TeamSearchReviewSection,
+                  let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TeamSearchReviewCell.identifier, for: indexPath) as? TeamSearchReviewCell else { return UICollectionViewCell() }
+//            let review = section.items[indexPath.item]
+            return cell
+        case .history:
+            guard let section = self.section as? TeamSearchHistorySection,
+                  let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProjectHistoryCell.identifier, for: indexPath) as? ProjectHistoryCell else { return UICollectionViewCell() }
+      let project = section.items[indexPath.item]
+            cell.updateUI(project: project)
+            return cell
+        case .portfolio:
+            guard let section = self.section as? TeamSearchPortfolioSection,
+                  let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PortfolioCell.identifier, for: indexPath) as? PortfolioCell else { return UICollectionViewCell() }
+            cell.updateUI(urlString: section.items[indexPath.item])
             return cell
         default: return UICollectionViewCell()
         }
@@ -94,9 +145,21 @@ extension TeamSearchCell: UICollectionViewDataSource {
 
 extension TeamSearchCell: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        switch self.section?.type {
+        case .position:
         let width = (collectionView.bounds.width.nextDown - 8) / 2
         let height = width * (178.0 / 167.5)
         return CGSize(width: width, height: height)
+        case .evalution:
+            return CGSize(width: collectionView.bounds.width, height: 53)
+        case .review:
+            return CGSize(width: collectionView.bounds.width, height: 254)
+        case .history:
+            return CGSize(width: collectionView.bounds.width, height: 100)
+        case .portfolio:
+            return CGSize(width: collectionView.bounds.width, height: 48)
+        default: return .zero
+        }
     }
 }
 

@@ -26,7 +26,7 @@ final class MyBudiCoordinator: NavigationCoordinator {
 }
 
 extension MyBudiCoordinator {
-    func showEditViewController(userData: LoginUserDetail?) {
+    func showEditViewController(userData: BudiMember?) {
         let viewModel = MyBudiEditViewModel()
         viewModel.state.loginUserData.value = userData
         let viewController: MyBudiEditViewController = MyBudiEditViewController(nibName: MyBudiEditViewController.identifier, bundle: nil, viewModel: viewModel)

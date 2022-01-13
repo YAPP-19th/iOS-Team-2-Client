@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -32,7 +33,7 @@
                                 <string key="text">https://instagram.com/
 </string>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" name="Black"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -47,10 +48,28 @@
                 <constraint firstItem="E9L-WX-ZH6" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="10" id="vtL-A9-J6M"/>
             </constraints>
             <size key="customSize" width="457" height="60"/>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                    <real key="value" value="8"/>
+                </userDefinedRuntimeAttribute>
+                <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                    <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </userDefinedRuntimeAttribute>
+                <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                    <real key="value" value="1"/>
+                </userDefinedRuntimeAttribute>
+            </userDefinedRuntimeAttributes>
+            <connections>
+                <outlet property="imageView" destination="fEQ-Cg-d1p" id="spF-Kx-hqf"/>
+                <outlet property="urlLabel" destination="Zjg-OH-N12" id="LAZ-pG-5K0"/>
+            </connections>
             <point key="canvasLocation" x="107.97101449275362" y="172.76785714285714"/>
         </collectionViewCell>
     </objects>
     <resources>
         <image name="Others" width="28" height="28"/>
+        <namedColor name="Black">
+            <color red="0.11699999868869781" green="0.11699999868869781" blue="0.11699999868869781" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

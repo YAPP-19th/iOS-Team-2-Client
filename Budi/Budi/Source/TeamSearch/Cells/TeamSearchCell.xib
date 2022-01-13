@@ -50,7 +50,7 @@
                                 </subviews>
                             </stackView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Wjw-ay-R5G">
-                                <rect key="frame" x="16" y="78" width="343" height="240"/>
+                                <rect key="frame" x="16" y="78" width="343" height="272"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="bn8-qy-cHY">
                                     <size key="itemSize" width="128" height="128"/>
@@ -64,7 +64,7 @@
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="B9Z-jb-7xe" secondAttribute="trailing" constant="20" id="5Jm-14-0tV"/>
                             <constraint firstItem="Wjw-ay-R5G" firstAttribute="leading" secondItem="xbf-pw-CRT" secondAttribute="leading" constant="16" id="9eV-Iw-Gak"/>
-                            <constraint firstAttribute="bottom" secondItem="Wjw-ay-R5G" secondAttribute="bottom" constant="32" id="Bkw-Ae-xqa"/>
+                            <constraint firstAttribute="bottom" secondItem="Wjw-ay-R5G" secondAttribute="bottom" id="Bkw-Ae-xqa"/>
                             <constraint firstItem="B9Z-jb-7xe" firstAttribute="leading" secondItem="xbf-pw-CRT" secondAttribute="leading" constant="20" id="SkK-Dy-J6f"/>
                             <constraint firstItem="Wjw-ay-R5G" firstAttribute="top" secondItem="B9Z-jb-7xe" secondAttribute="bottom" constant="24" id="e7G-xw-P0h"/>
                             <constraint firstItem="B9Z-jb-7xe" firstAttribute="top" secondItem="xbf-pw-CRT" secondAttribute="top" constant="24" id="hCl-Q1-DcU"/>

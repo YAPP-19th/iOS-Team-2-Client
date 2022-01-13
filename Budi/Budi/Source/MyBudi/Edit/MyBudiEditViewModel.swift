@@ -24,7 +24,7 @@ class MyBudiEditViewModel: ViewModel {
         let developerPositions = CurrentValueSubject<[String], Never>([])
         let designerPositions = CurrentValueSubject<[String], Never>([])
         let productManagerPositions = CurrentValueSubject<[String], Never>([])
-        let loginUserData = CurrentValueSubject<LoginUserDetail?, Never>(nil)
+        let loginUserData = CurrentValueSubject<BudiMember?, Never>(nil)
         let dataChanged = CurrentValueSubject<Int, Never>(1)
         let userInfoUploadStatus = CurrentValueSubject<String?, Never>(nil)
     }

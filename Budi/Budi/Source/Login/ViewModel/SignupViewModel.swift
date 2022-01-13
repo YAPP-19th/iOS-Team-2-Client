@@ -81,7 +81,7 @@ final class SignupViewModel: ViewModel {
 
         let userInfoUploadStatus = CurrentValueSubject<String?, Never>(nil)
 
-        let loginStatusData = CurrentValueSubject<LoginUserDetail?, Never>(nil)
+        let loginStatusData = CurrentValueSubject<BudiMember?, Never>(nil)
     }
 
     let action = Action()
@@ -111,7 +111,7 @@ final class SignupViewModel: ViewModel {
                 guard let self = self else { return }
                 self.provider
                     .requestPublisher(.signUpStatusCheck(memberId: UserDefaults.standard.integer(forKey: "memberId")))
-                    .map(APIResponse<LoginUserDetail>.self)
+                    .map(APIResponse<BudiMember>.self)
                     .map(\.data)
                     .sink(receiveCompletion: { [weak self] completion in
                         guard let self = self else { return }

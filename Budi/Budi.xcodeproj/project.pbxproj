@@ -150,7 +150,7 @@
 		A8A6D9F9273D2D1800C84C52 /* BackButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A6D9F8273D2D1800C84C52 /* BackButtonExtension.swift */; };
 		A8AB51DE2769D3EC003D151C /* LeftAlignedCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8AB51DD2769D3EB003D151C /* LeftAlignedCollectionViewFlowLayout.swift */; };
 		A8AB51E8276A0416003D151C /* ModalControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8AB51E7276A0416003D151C /* ModalControl.swift */; };
-		A8C8DA352786E76C00FFF2D0 /* LoginUserDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C8DA342786E76C00FFF2D0 /* LoginUserDetail.swift */; };
+		A8C8DA352786E76C00FFF2D0 /* BudiMember.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C8DA342786E76C00FFF2D0 /* BudiMember.swift */; };
 		A8C8DA37278978B100FFF2D0 /* UISlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C8DA36278978B100FFF2D0 /* UISlider.swift */; };
 		A8CA17EB273EC267002CA2B9 /* UIResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CA17EA273EC267002CA2B9 /* UIResponder.swift */; };
 		A8CD0CEE2771CDCA00FFDE64 /* BudiLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CD0CED2771CDCA00FFDE64 /* BudiLogin.swift */; };
@@ -397,7 +397,7 @@
 		A8AB51E7276A0416003D151C /* ModalControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalControl.swift; sourceTree = "<group>"; };
 		A8B6AD27277EC7100041945A /* Budi.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Budi.entitlements; sourceTree = "<group>"; };
 		A8C7AB88274E0E6C00B6E0E7 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
-		A8C8DA342786E76C00FFF2D0 /* LoginUserDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUserDetail.swift; sourceTree = "<group>"; };
+		A8C8DA342786E76C00FFF2D0 /* BudiMember.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudiMember.swift; sourceTree = "<group>"; };
 		A8C8DA36278978B100FFF2D0 /* UISlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISlider.swift; sourceTree = "<group>"; };
 		A8CA17EA273EC267002CA2B9 /* UIResponder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIResponder.swift; sourceTree = "<group>"; };
 		A8CD0CED2771CDCA00FFDE64 /* BudiLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudiLogin.swift; sourceTree = "<group>"; };
@@ -974,7 +974,7 @@
 				A8CD0CEF2771CE3A00FFDE64 /* BudiLoginResponse.swift */,
 				A8936FB72772F77600BE2C1D /* NameDuplication.swift */,
 				A8936FBB2777192500BE2C1D /* UserInfoUploadSuccess.swift */,
-				A8C8DA342786E76C00FFF2D0 /* LoginUserDetail.swift */,
+				A8C8DA342786E76C00FFF2D0 /* BudiMember.swift */,
 				5ED53D6F277F8DEF002871CD /* LikePosts.swift */,
 				A8CE117D278AC682008AFEBC /* MyLikePost.swift */,
 				A8CE117F278ACD88008AFEBC /* MyBudiProject.swift */,
@@ -1371,7 +1371,7 @@
 				B9684163277853DC002F5D3D /* HistoryManagementViewController.swift in Sources */,
 				A8936FBF27785B7400BE2C1D /* PortfolioURLTableViewCell.swift in Sources */,
 				B9684162277853D8002F5D3D /* RecruitingStatusBottomCell.swift in Sources */,
-				A8C8DA352786E76C00FFF2D0 /* LoginUserDetail.swift in Sources */,
+				A8C8DA352786E76C00FFF2D0 /* BudiMember.swift in Sources */,
 				B9684161277853D0002F5D3D /* RecruitingStatusBottomViewController.swift in Sources */,
 				B9684160277853C8002F5D3D /* MainTabBarCoordinator.swift in Sources */,
 				B968415F277853BC002F5D3D /* ProjectHistory.swift in Sources */,

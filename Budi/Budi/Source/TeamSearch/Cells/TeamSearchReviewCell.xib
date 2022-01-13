@@ -5,7 +5,6 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -38,7 +37,7 @@
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="안녕하세요" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hCb-GX-PU2">
                                 <rect key="frame" x="30" y="2.5" width="445" height="19.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -49,7 +48,7 @@
                     </stackView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bVB-lW-nMi">
                         <rect key="frame" x="16" y="53" width="491" height="0.5"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="0.5" id="cVf-YK-Ngo"/>
                         </constraints>
@@ -57,6 +56,7 @@
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <color key="backgroundColor" red="0.94510442019999996" green="0.94508665800000002" blue="0.94509869810000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="8gE-sH-iEd" secondAttribute="trailing" constant="16" id="Ase-hO-0Nh"/>
                 <constraint firstItem="8gE-sH-iEd" firstAttribute="top" secondItem="bVB-lW-nMi" secondAttribute="bottom" constant="16" id="Fkw-EU-gZG"/>
@@ -70,13 +70,18 @@
                 <constraint firstItem="bVB-lW-nMi" firstAttribute="top" secondItem="DoW-vf-w0r" secondAttribute="bottom" constant="13" id="yic-kb-rsm"/>
             </constraints>
             <size key="customSize" width="507" height="246"/>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                    <real key="value" value="8"/>
+                </userDefinedRuntimeAttribute>
+            </userDefinedRuntimeAttributes>
+            <connections>
+                <outlet property="descriptionLabel" destination="8gE-sH-iEd" id="c1T-0n-fVa"/>
+            </connections>
             <point key="canvasLocation" x="434.05797101449281" y="144.64285714285714"/>
         </collectionViewCell>
     </objects>
     <resources>
         <image name="smiley.fill" catalog="system" width="128" height="121"/>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
     </resources>
 </document>

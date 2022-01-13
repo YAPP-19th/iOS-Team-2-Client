@@ -6,3 +6,7 @@
 //
 
 import Foundation
+struct Evaluation: Codable {
+    let positives: [String: Int]
+    let negatives: [String: Int]
+}

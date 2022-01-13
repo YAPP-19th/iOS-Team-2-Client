@@ -77,10 +77,8 @@ class MyBudiEditViewModel: ViewModel {
                 guard let self = self else { return }
                 var changeData = self.state.loginUserData.value
                 changeData?.projectList.remove(at: idx)
-                print("바뀐 데이터", changeData)
                 self.state.loginUserData.send(changeData)
                 self.state.dataChanged.send(1)
-                print("2")
             }
             .store(in: &cancellables)
 
@@ -90,7 +88,6 @@ class MyBudiEditViewModel: ViewModel {
                 guard let self = self else { return }
                 var changeData = self.state.loginUserData.value
                 changeData?.portfolioList.remove(at: idx)
-                print("바뀐 데이터", changeData)
                 self.state.loginUserData.send(changeData)
                 self.state.dataChanged.send(2)
             }

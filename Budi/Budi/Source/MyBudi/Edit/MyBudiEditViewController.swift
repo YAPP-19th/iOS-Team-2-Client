@@ -36,7 +36,6 @@ final class MyBudiEditViewController: UIViewController {
         configureTableView()
         setPublisher()
         configureLayout()
-        print(UserDefaults.standard.string(forKey: "accessToken"))
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -128,7 +127,6 @@ final class MyBudiEditViewController: UIViewController {
         })
 
         let cancel = UIAlertAction(title: "완료", style: .cancel, handler: { _ in
-            print(section, index)
         })
 
         actionSheet.addAction(edit)
@@ -288,7 +286,6 @@ extension MyBudiEditViewController: UITableViewDelegate, UITableViewDataSource {
                             var changeData = self.viewModel.state.loginUserData.value
                             changeData?.nickName = text ?? ""
                             self.viewModel.state.loginUserData.send(changeData)
-                            print(self.viewModel.state.loginUserData.value?.nickName ?? "")
                         }
                         .store(in: &cell.cancellables)
                 } else {
@@ -301,9 +298,7 @@ extension MyBudiEditViewController: UITableViewDelegate, UITableViewDataSource {
                             guard let self = self else { return }
                             var changeData = self.viewModel.state.loginUserData.value
                             changeData?.description = text ?? ""
-                            print("여기 불림?")
                             self.viewModel.state.loginUserData.send(changeData)
-                            print(self.viewModel.state.loginUserData.value?.description ?? "")
                         }
                         .store(in: &cell.cancellables)
                 }
@@ -474,7 +469,6 @@ extension MyBudiEditViewController: UIImagePickerControllerDelegate & UINavigati
                     var changeData = self.viewModel.state.loginUserData.value
                     changeData?.imgUrl = imageUrl
                     self.viewModel.state.loginUserData.send(changeData)
-                    print("이미지 URL", imageUrl)
                     picker.dismiss(animated: true)
                 } catch {}
             case .failure(let error):

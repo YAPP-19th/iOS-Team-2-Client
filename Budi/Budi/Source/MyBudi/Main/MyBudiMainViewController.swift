@@ -91,7 +91,7 @@ final class MyBudiMainViewController: UIViewController {
             .store(in: &cancellables)
 
         loginButton.tapPublisher
-            .sink { [weak self] _ in
+            .sink { _ in
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 let loginSelectViewController = storyboard.instantiateViewController(identifier: "LoginSelectViewController")
                 let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate

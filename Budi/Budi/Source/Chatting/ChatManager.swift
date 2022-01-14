@@ -90,14 +90,47 @@ extension ChatManager {
         FirebaseCollection.users.ref.document(uid).setData(userData)
     }
     
+    
+    
     func fetchUserInfo(_ uid: String, _ completion: @escaping (ChatUser) -> Void) {
-        FirebaseCollection.users.ref.document(uid).getDocument { snapshot, error in
-            if let error = error { print("error: \(error.localizedDescription)") }
+        FirebaseCollection.users.ref.document(uid).getDocument { snapshot, _ in
             guard let data = snapshot?.data(),
                   let dict = try? JSONSerialization.data(withJSONObject: data),
                   var user = try? JSONDecoder().decode(ChatUser.self, from: dict) else { return }
             user.id = uid
             completion(user)
+        }
+    }
+}
+
+// MARK: - Update
+extension ChatManager {
+    func updateUserInfo(_ uid: String, _ username: String, _ position: String, _ profileImageUrl: String) {
+        let userData: [String: Any] = ["username": username,
+                                       "position": position,
+                                       "profileImageUrl": profileImageUrl]
+        
+        FirebaseCollection.users.ref.document(uid).setData(userData)
+    }
+    
+    func updateUsername(_ uid: String, _ newUsername: String) {
+        fetchUserInfo(uid) { user in
+            let newUser = ChatUser(id: user.id, username: newUsername, position: user.position, profileImageUrl: user.profileImageUrl)
+            self.registerUserInfo(newUser)
+        }
+    }
+    
+    func updateProfileImageUrl(_ uid: String, _ newProfileImageUrl: String) {
+        fetchUserInfo(uid) { user in
+            let newUser = ChatUser(id: user.id, username: user.username, position: user.position, profileImageUrl: newProfileImageUrl)
+            self.registerUserInfo(newUser)
+        }
+    }
+    
+    func updatePosition(_ uid: String, _ newPosition: String) {
+        fetchUserInfo(uid) { user in
+            let newUser = ChatUser(id: user.id, username: user.username, position: newPosition, profileImageUrl: user.profileImageUrl)
+            self.registerUserInfo(newUser)
         }
     }
 }
@@ -129,13 +162,6 @@ extension ChatManager {
 
 // MARK: - Authentication
 extension ChatManager {
-    func loginWithEmail(_ email: String, _ password: String) {
-        Auth.auth().signIn(withEmail: email, password: password) { result, error in
-            if let error = error { print("error: \(error.localizedDescription)") }
-//            guard let user = result?.user else { return }
-        }
-    }
-    
     func signOut() {
         do {
             try Auth.auth().signOut()
@@ -144,9 +170,14 @@ extension ChatManager {
         }
     }
     
+    func loginWithEmail(_ email: String, _ password: String) {
+        Auth.auth().signIn(withEmail: email, password: password) { result, _ in
+//            guard let user = result?.user else { return }
+        }
+    }
+    
     func createUserWithEmail(_ email: String, _ password: String) {
-        Auth.auth().createUser(withEmail: email, password: password) { result, error in
-            if let error = error { print("error: \(error.localizedDescription)") }
+        Auth.auth().createUser(withEmail: email, password: password) { result, _ in
 //            guard let user = result?.user else { return }
         }
     }

@@ -51,10 +51,6 @@ final class MyBudiMainViewController: UIViewController {
     func loginStatusCheck() {
         if UserDefaults.standard.string(forKey: "accessToken") == "" {
             collectionView.isHidden = true
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let loginSelectViewController = storyboard.instantiateViewController(identifier: "LoginSelectViewController")
-            let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate
-            sceneDelegate?.moveLoginController(loginSelectViewController, animated: true)
         } else {
             collectionView.isHidden = false
         }
@@ -63,9 +59,14 @@ final class MyBudiMainViewController: UIViewController {
     private func bindViewModel() {
         viewModel.state.loginStatusData
             .receive(on: DispatchQueue.main)
-            .sink { data in
-                self.collectionView.isHidden = false
-                self.collectionView.reloadData()
+            .sink { [weak self] data in
+                guard let self = self else { return }
+                if UserDefaults.standard.string(forKey: "accessToken") == "" {
+                    self.collectionView.isHidden = true
+                } else {
+                    self.collectionView.isHidden = false
+                    self.collectionView.reloadData()
+                }
             }
             .store(in: &cancellables)
 
@@ -90,13 +91,11 @@ final class MyBudiMainViewController: UIViewController {
             .store(in: &cancellables)
 
         loginButton.tapPublisher
-            .sink { [weak self] _ in
-                guard let self = self else { return }
+            .sink { _ in
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 let loginSelectViewController = storyboard.instantiateViewController(identifier: "LoginSelectViewController")
                 let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate
                 sceneDelegate?.moveLoginController(loginSelectViewController, animated: true)
-
             }
             .store(in: &cancellables)
     }
@@ -134,17 +133,19 @@ extension MyBudiMainViewController: UICollectionViewDataSource, UICollectionView
                 cell.setUserData(nickName: loginData?.nickName ?? "로딩중", position: "임시글", description: loginData?.description ?? "임시소개글")
             }
 
+            cell.configureUserImage(url: viewModel.state.loginStatusData.value?.imgUrl ?? "", basePosition: viewModel.state.loginStatusData.value?.basePosition ?? 1)
+
             cell.editButton.tapPublisher
                 .receive(on: DispatchQueue.main)
                 .sink { [weak self] _ in
                     guard let self = self else { return }
-                    self.coordinator?.showEditViewController()
+                    self.coordinator?.showEditViewController(userData: self.viewModel.state.loginStatusData.value ?? nil)
                 }.store(in: &cell.cancellables)
             return cell
             
         case 1: guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MyBudiLevelCell.identifier, for: indexPath) as? MyBudiLevelCell else { return defaultCell }
 
-            cell.setLevel(level: loginData?.level ?? "")
+            cell.setLevel(level: loginData?.level ?? "", position: self.viewModel.state.loginStatusData.value?.basePosition ?? 1)
 
             return cell
             

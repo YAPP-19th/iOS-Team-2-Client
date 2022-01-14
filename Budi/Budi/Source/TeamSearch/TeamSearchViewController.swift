@@ -84,6 +84,7 @@ extension TeamSearchViewController: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TeamSearchCell.identifier, for: indexPath) as? TeamSearchCell else { return UICollectionViewCell() }
         let item = viewModel.state.sections.value[indexPath.section]
         cell.updateUI(item)
+        cell.bind(navigationVC: self.navigationController)
         cell.headerStackView.gesturePublisher(.tap())
             .sink { [weak self] _ in
                 let vc = TeamSearchFilterViewController(viewModel: .init(position: item.position))

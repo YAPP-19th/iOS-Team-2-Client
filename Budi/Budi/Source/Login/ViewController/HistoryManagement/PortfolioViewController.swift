@@ -9,9 +9,15 @@ import UIKit
 import Combine
 import CombineCocoa
 
+protocol PortfolioViewControllerDelegate: AnyObject {
+    func getPortfolio(_ portfolio: SignupInfoModel?, _ editItem: Item?)
+}
+
 class PortfolioViewController: UIViewController {
 
+    weak var delegate: PortfolioViewControllerDelegate?
     weak var coordinator: LoginCoordinator?
+    weak var myBudiCoordinator: MyBudiCoordinator?
     @IBOutlet weak var modalView: UIView!
     var viewModel: SignupViewModel
     @IBOutlet weak var emptyViewButton: UIButton!
@@ -60,19 +66,31 @@ class PortfolioViewController: UIViewController {
             .sink { [weak self] text in
                 guard let text = text else { return }
                 guard var data = self?.viewModel.state.writedInfoData.value else { return }
-                print(data.porflioLink)
-                print(data.mainName)
                 data.porflioLink = text
+                print(data)
                 self?.viewModel.state.writedInfoData.send(data)
+                
             }
             .store(in: &cancellables)
 
         saveButton.tapPublisher
             .receive(on: RunLoop.main)
             .sink { [weak self] _ in
-                self?.viewModel.action.fetchSignupInfoData.send(())
+                guard let self = self else { return }
+                if self.myBudiCoordinator != nil {
+                    let send = self.viewModel.state.writedInfoData.value
+                    if self.viewModel.state.editData.value != nil {
+                        self.delegate?.getPortfolio(send, self.viewModel.state.editData.value)
+                    } else {
+                        self.delegate?.getPortfolio(send, nil)
+                    }
+                } else {
+                    self.viewModel.action.fetchSignupInfoData.send(())
+                    self.viewModel.state.editData.send(nil)
+                }
+
                 NotificationCenter.default.post(name: Notification.Name("Dismiss"), object: self)
-                self?.dismiss(animated: true, completion: nil)
+                self.dismiss(animated: true, completion: nil)
             }
             .store(in: &cancellables)
 
@@ -162,7 +180,6 @@ class PortfolioViewController: UIViewController {
         panGesture.panPublisher
             .receive(on: DispatchQueue.main)
             .sink { sender in
-                print(self.viewTranslation.y)
                 switch sender.state {
                 case .changed:
                     self.viewTranslation = sender.translation(in: self.modalView)
@@ -176,7 +193,7 @@ class PortfolioViewController: UIViewController {
                         })
                     }
                 case .ended:
-                    print("ended")
+                    break
                 default:
                     if self.viewTranslation.y < 100 {
                         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: .curveEaseOut, animations: {

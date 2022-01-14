@@ -8,11 +8,11 @@
 import Foundation
 
 struct MyBudiProject: Codable {
-    let participatedPosts: [ProjectLists]
-    let recruitedPosts: [ProjectLists]
+    let participatedPosts: [MyBudiPost]
+    let recruitedPosts: [MyBudiPost]
 }
 
-struct ProjectLists: Codable {
+struct MyBudiPost: Codable {
     let id: Int
     let imageUrl: String
     let title: String
@@ -21,4 +21,13 @@ struct ProjectLists: Codable {
     let onlineInfo: String
     let category: String
     let likeCount: Int
+}
+
+struct PersonalProject: Codable {
+    let projectId: Int
+    let name: String
+    let startDate: String
+    let endDate: String
+    let description: String
+
 }

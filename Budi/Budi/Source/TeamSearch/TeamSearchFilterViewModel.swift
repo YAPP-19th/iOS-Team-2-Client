@@ -16,7 +16,7 @@ final class TeamSearchFilterViewModel: ViewModel {
     }
 
     struct State {
-        let sections = CurrentValueSubject<[TeamSearchViewModelSection], Never>([])
+        let sections = CurrentValueSubject<[TeamSearchPositionSection], Never>([])
 
         let pageData = CurrentValueSubject<PageData, Never>(PageData())
     }
@@ -25,6 +25,8 @@ final class TeamSearchFilterViewModel: ViewModel {
     private let provider = MoyaProvider<MemberTarget>()
     var nextPageisLoading = false
     let position: Position
+    let action = Action()
+    let state = State()
     
     init(position: Position) {
 
@@ -79,6 +81,4 @@ final class TeamSearchFilterViewModel: ViewModel {
             .store(in: &cancellables)
     }
 
-    let action = Action()
-    let state = State()
 }

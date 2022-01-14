@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Combine
 
 final class TeamSearchDetailCell: UICollectionViewCell {
 
@@ -14,6 +15,7 @@ final class TeamSearchDetailCell: UICollectionViewCell {
     @IBOutlet private weak var profileImageView: UIImageView!
     @IBOutlet private weak var descriptionLabel: UILabel!
     @IBOutlet weak var postionLabel: UILabel!
+    var cancellables = Set<AnyCancellable>()
     
     override func awakeFromNib() {
         super.awakeFromNib()

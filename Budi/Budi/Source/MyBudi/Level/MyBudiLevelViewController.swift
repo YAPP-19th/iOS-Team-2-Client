@@ -37,6 +37,37 @@ class MyBudiLevelViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureLayout()
+        configureLevelImage()
+    }
+
+    func configureLevelImage() {
+        var levelImage: String = ""
+
+        switch viewModel.state.loginStatusData.value?.basePosition ?? 1 {
+        case 1:
+            levelImage += "Dev_"
+        case 2:
+            levelImage += "Design_"
+        case 3:
+            levelImage += "Plan_"
+        default:
+            break
+        }
+        let level = viewModel.state.loginStatusData.value?.level ?? ""
+        switch level {
+        case _ where level.contains("씨앗"):
+            levelImage += "Lv1"
+        case _ where level.contains("새싹"):
+            levelImage += "Lv2"
+        case _ where level.contains("꽃잎"):
+            levelImage += "Lv3"
+        case _ where level.contains("열매"):
+            levelImage += "Lv4"
+        default:
+            levelImage += "Lv4"
+        }
+
+        userLevelImageView.image = UIImage(named: levelImage)
     }
 
     private func configureLayout() {

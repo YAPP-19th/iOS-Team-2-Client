@@ -8,6 +8,7 @@
 import Combine
 import Foundation
 import Moya
+import Firebase
 
 final class ChattingViewModel: ViewModel {
     
@@ -23,6 +24,8 @@ final class ChattingViewModel: ViewModel {
         let messages = CurrentValueSubject<[ChatMessage], Never>([])
         let recentMessages = CurrentValueSubject<[ChatMessage], Never>([])
     }
+    
+    private var listener: ListenerRegistration?
 
     let action = Action()
     let state = State()
@@ -78,15 +81,17 @@ extension ChattingViewModel {
             .collection(oppositeUid)
             .order(by: "timestamp", descending: false)
         
-        query.addSnapshotListener { snapshot, error in
-            if let error = error { print("error: \(error.localizedDescription)") }
+        listener?.remove()
+        
+        listener = query.addSnapshotListener { [weak self] snapshot, _ in
+            guard let self = self else { return }
             guard let changes = snapshot?.documentChanges.filter({ $0.type == .added }) else { return }
             let newMessages = changes.compactMap { try? $0.document.data(as: ChatMessage.self) }
             self.state.messages.value.append(contentsOf: newMessages)
         }
         
-        query.getDocuments { snapshot, error in
-            if let error = error { print("error: \(error.localizedDescription)") }
+        query.getDocuments { [weak self] snapshot, _ in
+            guard let self = self else { return }
             guard let documents = snapshot?.documents else { return }
             let messages = documents.compactMap { try? $0.data(as: ChatMessage.self) }
             self.state.messages.value = messages

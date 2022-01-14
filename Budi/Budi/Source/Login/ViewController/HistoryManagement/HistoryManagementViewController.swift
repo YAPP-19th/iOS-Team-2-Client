@@ -9,6 +9,7 @@ import UIKit
 import CombineCocoa
 import Combine
 
+
 class HistoryManagementViewController: UIViewController {
     weak var coordinator: LoginCoordinator?
     private let viewModel: SignupViewModel
@@ -96,7 +97,6 @@ class HistoryManagementViewController: UIViewController {
     }
 
     func reloadCells(section: Int) {
-        print(section)
         tableView.reloadSections(IndexSet(section...section), with: .none)
     }
 
@@ -119,9 +119,7 @@ class HistoryManagementViewController: UIViewController {
             self.viewModel.action.deleteSignupInfoData.send(())
         })
 
-        let cancel = UIAlertAction(title: "완료", style: .cancel, handler: { _ in
-            print(section, index)
-        })
+        let cancel = UIAlertAction(title: "완료", style: .cancel)
 
         actionSheet.addAction(edit)
         actionSheet.addAction(delete)
@@ -155,7 +153,6 @@ extension HistoryManagementViewController: UITableViewDelegate, UITableViewDataS
             .sink { [weak self] _ in
                 guard let select = self?.viewModel.state.sectionData.value[section].type else { return }
                 self?.viewModel.action.appendSectionData.send(select)
-                print(select)
                 self?.section = section
             }
             .store(in: &header.cancellables)
@@ -171,7 +168,7 @@ extension HistoryManagementViewController: UITableViewDelegate, UITableViewDataS
         if data.itemInfo.isInclude {
             if data.portfolioLink.count >= 1 {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: PortfolioURLTableViewCell.cellId, for: indexPath) as? PortfolioURLTableViewCell else { return UITableViewCell() }
-                cell.configureParsing(url: data.portfolioLink)
+                cell.configureParsing(urlString: data.portfolioLink)
 
                 cell.editButton.tapPublisher
                     .receive(on: DispatchQueue.main)

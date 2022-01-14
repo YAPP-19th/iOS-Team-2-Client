@@ -19,7 +19,7 @@ class MyBudiMainViewModel: ViewModel {
     }
 
     struct State {
-        let loginStatusData = CurrentValueSubject<LoginUserDetail?, Never>(nil)
+        let loginStatusData = CurrentValueSubject<BudiMember?, Never>(nil)
         let likedData = CurrentValueSubject<MyLikePost?, Never>(nil)
         let projectData = CurrentValueSubject<MyBudiProject?, Never>(nil)
         let pageData = CurrentValueSubject<PageData, Never>(PageData())
@@ -49,7 +49,7 @@ class MyBudiMainViewModel: ViewModel {
                 guard let self = self else { return }
                 self.provider
                     .requestPublisher(.signUpStatusCheck(memberId: UserDefaults.standard.integer(forKey: "memberId")))
-                    .map(APIResponse<LoginUserDetail>.self)
+                    .map(APIResponse<BudiMember>.self)
                     .map(\.data)
                     .sink(receiveCompletion: { completion in
                         switch completion {

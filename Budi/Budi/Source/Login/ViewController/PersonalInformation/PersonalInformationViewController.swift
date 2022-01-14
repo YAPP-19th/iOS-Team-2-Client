@@ -101,7 +101,7 @@ class PersonalInformationViewController: UIViewController {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] flag in
                 guard let self = self else { return }
-                guard let flag = flag else { return }
+                //guard let flag = flag else { return }
                 self.nickNameView.checkID(flag: flag)
             }
             .store(in: &cancellables)
@@ -109,7 +109,6 @@ class PersonalInformationViewController: UIViewController {
         viewModel.state.signUpPersonalInfoData
             .receive(on: DispatchQueue.main)
             .sink { [weak self] data in
-                print(data)
                 guard let self = self else { return }
                 if !data.location.isEmpty {
                     self.locationSelectView.locationSelected(data.location)
@@ -139,11 +138,12 @@ class PersonalInformationViewController: UIViewController {
                 var changeData = self.viewModel.state.signUpPersonalInfoData.value
                 guard let text = text else { return }
                 changeData.nickName = text
-                if text == "" {
-                    self.nickNameView.emptyText()
+                if text == "" || text.count < 3 {
+                    self.nickNameView.emptyText(text: text)
+                } else {
+                    self.viewModel.action.checkSameId.send(text)
+                    self.viewModel.state.signUpPersonalInfoData.send(changeData)
                 }
-                self.viewModel.action.checkSameId.send(text)
-                self.viewModel.state.signUpPersonalInfoData.send(changeData)
             }
             .store(in: &cancellables)
 

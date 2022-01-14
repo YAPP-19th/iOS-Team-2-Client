@@ -229,9 +229,7 @@ extension LocationSearchViewController: UITableViewDelegate, UITableViewDataSour
 
         var changeData = viewModel.state.signUpPersonalInfoData.value
         changeData.location = correct[indexPath.row]
-        print(changeData)
         viewModel.state.signUpPersonalInfoData.send(changeData)
-        print(viewModel.state.signUpPersonalInfoData.value)
         self.view.endEditing(true)
         delegate?.getLocation(data)
     }

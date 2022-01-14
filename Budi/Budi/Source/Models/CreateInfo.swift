@@ -8,6 +8,7 @@ import Foundation
 // MARK: - CreateInfo
 struct CreateInfo: Codable {
     let basePosition: Int
+    let imgUrl: String
     let careerList: [CareerList]
     let description, memberAddress, nickName: String
     let portfolioLink, positionList: [String]
@@ -17,6 +18,7 @@ struct CreateInfo: Codable {
         case basePosition, careerList
         case description
         case memberAddress, nickName, portfolioLink, positionList, projectList
+        case imgUrl
     }
 }
 

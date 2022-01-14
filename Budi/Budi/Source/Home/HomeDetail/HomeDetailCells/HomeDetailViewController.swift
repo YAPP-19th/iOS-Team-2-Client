@@ -159,8 +159,9 @@ private extension HomeDetailViewController {
 // MARK: - Delegate
 extension HomeDetailViewController: RecruitingStatusBottomViewControllerDelegate {
     func getSelectedRecruitingStatus(_ selectedRecruitingStatus: RecruitingStatus) {
-        let postId = viewModel.state.postId.value
+        viewModel.state.selectedRecruitingStatus.value = selectedRecruitingStatus
 
+        let postId = viewModel.state.postId.value
         let param = AppliesRequest(postId: postId, recruitingPositionId: selectedRecruitingStatus.recruitingPositionId)
 
         viewModel.requestApplies(UserDefaults.standard.string(forKey: "accessToken") ?? "", param) { result in
@@ -171,7 +172,6 @@ extension HomeDetailViewController: RecruitingStatusBottomViewControllerDelegate
                     self.coordinator?.showGreetingAlertViewController(self)
                     self.viewModel.state.post.value?.isAlreadyApplied = true
                 }
-                // MARK: - 알림창 확인 클릭시 채팅방으로 이동
             case .failure(let error): print(error.localizedDescription)
             }
         }
@@ -183,10 +183,16 @@ extension HomeDetailViewController: RecruitingStatusBottomViewControllerDelegate
         let currentUid = 0
         guard let leaderUid = viewModel.state.post.value?.leader.leaderId else { return }
                 
-        guard let projectTitle = viewModel.state.post.value?.title else { return }
-        let messageText = "\(projectTitle) 프로젝트에 참여 요청을 보냈습니다."
+        guard let projectTitle = viewModel.state.post.value?.title, let positionName = viewModel.state.selectedRecruitingStatus.value?.positions.position else { return }
+        let messageText = "\(projectTitle) 프로젝트의 \(positionName) 파트에 참여 요청을 보냈습니다."
         
         ChatManager.shared.sendMessage(fromId: currentUid, toId: leaderUid, messageText)
+    }
+}
+
+extension HomeDetailViewController: GreetingAlertViewControllerDelegate {
+    func chattingButtonTapped() {
+        coordinator?.showChattingVC(self)
     }
 }
 

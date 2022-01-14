@@ -66,7 +66,6 @@ extension ChattingViewModel {
             guard let documents = snapshot?.documents else { return }
             let recentMessages = documents.compactMap { try? $0.data(as: ChatMessage.self) }
             self.state.recentMessages.value = recentMessages
-            print("recentMessages: \(recentMessages)")
         }
     }
     
@@ -84,7 +83,6 @@ extension ChattingViewModel {
             guard let changes = snapshot?.documentChanges.filter({ $0.type == .added }) else { return }
             let newMessages = changes.compactMap { try? $0.document.data(as: ChatMessage.self) }
             self.state.messages.value.append(contentsOf: newMessages)
-            print("newMessages: \(newMessages)")
         }
         
         query.getDocuments { snapshot, error in
@@ -92,7 +90,6 @@ extension ChattingViewModel {
             guard let documents = snapshot?.documents else { return }
             let messages = documents.compactMap { try? $0.data(as: ChatMessage.self) }
             self.state.messages.value = messages
-            print("messages: \(messages)")
         }
     }
 }

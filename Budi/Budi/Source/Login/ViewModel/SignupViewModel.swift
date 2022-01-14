@@ -94,6 +94,8 @@ final class SignupViewModel: ViewModel {
     init() {
         getPositions()
         switchView()
+
+
         fetchSectionData()
         appendSectionData()
         selectCellIndex()

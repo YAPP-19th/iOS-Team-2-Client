@@ -1714,7 +1714,7 @@
 				CODE_SIGN_ENTITLEMENTS = Budi/Budi.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = T53Y7GLJ7K;
+				DEVELOPMENT_TEAM = ZMXTCSPNUZ;
 				INFOPLIST_FILE = Budi/Resource/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

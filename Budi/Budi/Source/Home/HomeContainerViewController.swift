@@ -64,7 +64,6 @@ private extension HomeContainerViewController {
             }.store(in: &cancellables)
 
         contentScrollView.didScrollPublisher
-            .throttle(for: 0.05, scheduler: DispatchQueue.main, latest: true)
             .receive(on: DispatchQueue.main)
             .sink(receiveValue: { [weak self] _ in
                 guard let self = self else { return }
@@ -73,8 +72,7 @@ private extension HomeContainerViewController {
                 currentIndex = Int(((self.titleButtonStackView.arrangedSubviews[currentIndex].frame.width * CGFloat(self.contentViewControllers.count) / 2 ) + self.contentScrollView.contentOffset.x) / self.contentScrollView.frame.width)
                 UIViewPropertyAnimator(duration: 0.2, curve: .linear) { [weak self] in
                     guard let self = self else { return }
-                    self.indicatorViewWidthConstraint.constant = self.titleButtonStackView.arrangedSubviews[currentIndex].frame.width
-
+                    self.indicatorViewWidthConstraint.constant =  self.titleButtonStackView.frame.width / CGFloat(self.contentViewControllers.count)
                     self.indicatorViewLeadingConstraint.constant = CGFloat(self.contentScrollView.contentOffset.x / CGFloat(self.contentViewControllers.count))
                     self.titleButtonStackView.subviews.indices.forEach { index in
                         (self.titleButtonStackView.subviews[index] as? UIButton)?.setTitleColor(index == currentIndex ? .black : .systemGray5, for: .normal)

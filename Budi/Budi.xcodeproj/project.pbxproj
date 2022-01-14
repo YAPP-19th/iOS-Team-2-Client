@@ -158,7 +158,7 @@
 		A8A6D9F9273D2D1800C84C52 /* BackButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A6D9F8273D2D1800C84C52 /* BackButtonExtension.swift */; };
 		A8AB51DE2769D3EC003D151C /* LeftAlignedCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8AB51DD2769D3EB003D151C /* LeftAlignedCollectionViewFlowLayout.swift */; };
 		A8AB51E8276A0416003D151C /* ModalControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8AB51E7276A0416003D151C /* ModalControl.swift */; };
-		A8C8DA352786E76C00FFF2D0 /* LoginUserDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C8DA342786E76C00FFF2D0 /* LoginUserDetail.swift */; };
+		A8C8DA352786E76C00FFF2D0 /* BudiMember.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C8DA342786E76C00FFF2D0 /* BudiMember.swift */; };
 		A8C8DA37278978B100FFF2D0 /* UISlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C8DA36278978B100FFF2D0 /* UISlider.swift */; };
 		A8CA17EB273EC267002CA2B9 /* UIResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CA17EA273EC267002CA2B9 /* UIResponder.swift */; };
 		A8CD0CEE2771CDCA00FFDE64 /* BudiLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CD0CED2771CDCA00FFDE64 /* BudiLogin.swift */; };
@@ -184,6 +184,17 @@
 		A8CE1193278B1F82008AFEBC /* MyBudiProjectDetailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CE1190278B1F82008AFEBC /* MyBudiProjectDetailCollectionViewCell.swift */; };
 		A8CE1194278B1F82008AFEBC /* MyBudiProjectDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CE1191278B1F82008AFEBC /* MyBudiProjectDetailViewController.swift */; };
 		A8CE1196278B1F91008AFEBC /* MyBudiContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CE1195278B1F90008AFEBC /* MyBudiContentViewController.swift */; };
+		A8E03CCF278C68A40074DE4B /* NormalTextFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E03CCD278C68A40074DE4B /* NormalTextFieldTableViewCell.swift */; };
+		A8E03CD0278C68A40074DE4B /* NormalTextFieldTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A8E03CCE278C68A40074DE4B /* NormalTextFieldTableViewCell.xib */; };
+		A8E03CD3278C693C0074DE4B /* LocationReplaceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E03CD1278C693C0074DE4B /* LocationReplaceTableViewCell.swift */; };
+		A8E03CD4278C693C0074DE4B /* LocationReplaceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A8E03CD2278C693C0074DE4B /* LocationReplaceTableViewCell.xib */; };
+		A8E03CD7278C6B030074DE4B /* PositionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E03CD5278C6B030074DE4B /* PositionTableViewCell.swift */; };
+		A8E03CD8278C6B030074DE4B /* PositionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A8E03CD6278C6B030074DE4B /* PositionTableViewCell.xib */; };
+		A8E03CDB278C79870074DE4B /* ProjectTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E03CD9278C79870074DE4B /* ProjectTableViewCell.swift */; };
+		A8E03CDC278C79870074DE4B /* ProjectTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A8E03CDA278C79870074DE4B /* ProjectTableViewCell.xib */; };
+		A8E03CDE278C7C3E0074DE4B /* MyBudiEditHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E03CDD278C7C3E0074DE4B /* MyBudiEditHeaderView.swift */; };
+		A8E03CE0278C7C680074DE4B /* MyBudiEditHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A8E03CDF278C7C680074DE4B /* MyBudiEditHeaderView.xib */; };
+		A8E03CE2278C98E40074DE4B /* PositionSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E03CE1278C98E40074DE4B /* PositionSwitch.swift */; };
 		B92D54F9274C02EB00D0E851 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = B92D54F8274C02EB00D0E851 /* .swiftlint.yml */; };
 		B92D5505274C03AB00D0E851 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92D5504274C03AA00D0E851 /* Post.swift */; };
 		B94D2D9A277DE9E700DD7FDD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B94D2D99277DE9E700DD7FDD /* GoogleService-Info.plist */; };
@@ -216,6 +227,12 @@
 		B97DBB9527147D970018C1D2 /* UIViewController+identifer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B97DBB9427147D970018C1D2 /* UIViewController+identifer.swift */; };
 		B98E530A27396B3F00C73374 /* UINavigationController+translucent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98E530927396B3F00C73374 /* UINavigationController+translucent.swift */; };
 		B9A48F212789CAA70084F7A0 /* TeamSearchFilterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9A48F202789CAA70084F7A0 /* TeamSearchFilterViewModel.swift */; };
+		B9AC3357278DC95A00203698 /* TeamSearchProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9AC3356278DC95A00203698 /* TeamSearchProfileViewController.swift */; };
+		B9AC335A278DCA7200203698 /* ProjectHistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9AC3358278DCA7200203698 /* ProjectHistoryCell.swift */; };
+		B9AC335B278DCA7200203698 /* ProjectHistoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9AC3359278DCA7200203698 /* ProjectHistoryCell.xib */; };
+		B9AC335E278DCA8D00203698 /* PortfolioCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9AC335C278DCA8D00203698 /* PortfolioCell.swift */; };
+		B9AC335F278DCA8D00203698 /* PortfolioCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9AC335D278DCA8D00203698 /* PortfolioCell.xib */; };
+		B9AC3361278DD7E800203698 /* TeamSearchProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9AC3360278DD7E800203698 /* TeamSearchProfileViewModel.swift */; };
 		B9BEF8972767978E00C889B4 /* HomeContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9BEF8962767978E00C889B4 /* HomeContentViewController.swift */; };
 		B9BF787427004094000BE0EF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9BF787327004094000BE0EF /* AppDelegate.swift */; };
 		B9BF787627004095000BE0EF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9BF787527004095000BE0EF /* SceneDelegate.swift */; };
@@ -228,12 +245,13 @@
 		B9D66EC42714703B00668490 /* TeamSearchCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9D66EC32714703B00668490 /* TeamSearchCoordinator.swift */; };
 		B9D66EC62714706700668490 /* ChattingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9D66EC52714706700668490 /* ChattingCoordinator.swift */; };
 		B9D66EC82714707000668490 /* MyBudiCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9D66EC72714707000668490 /* MyBudiCoordinator.swift */; };
-		FD578F1D03F3385C8B7F62AA /* Pods_Budi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BB91E1E1D24F6BCA931C5F6 /* Pods_Budi.framework */; };
+		B9E5C4DC278F1861006F0087 /* Evaluation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E5C4DB278F1861006F0087 /* Evaluation.swift */; };
+		B9E5C4DE278F186B006F0087 /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E5C4DD278F186B006F0087 /* Review.swift */; };
+		BE1BFB467D2ED1A7125C98FE /* Pods_Budi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28404891811DD25D41C22ABF /* Pods_Budi.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		431890E70909CACD17283C45 /* Pods-Budi.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Budi.release.xcconfig"; path = "Target Support Files/Pods-Budi/Pods-Budi.release.xcconfig"; sourceTree = "<group>"; };
-		5BB91E1E1D24F6BCA931C5F6 /* Pods_Budi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Budi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		28404891811DD25D41C22ABF /* Pods_Budi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Budi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E24071C275225A600954BE7 /* BudiTarget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BudiTarget.swift; sourceTree = "<group>"; };
 		5E240720275225CD00954BE7 /* String+date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+date.swift"; sourceTree = "<group>"; };
 		5E24072227522BCE00954BE7 /* alertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = alertView.swift; sourceTree = "<group>"; };
@@ -365,6 +383,7 @@
 		5EFB0A5527340BF100F39A4D /* ChattingMessageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChattingMessageCell.xib; sourceTree = "<group>"; };
 		5EFB0A5827341C1100F39A4D /* ChattingTimeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingTimeCell.swift; sourceTree = "<group>"; };
 		5EFB0A5927341C1100F39A4D /* ChattingTimeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChattingTimeCell.xib; sourceTree = "<group>"; };
+		9EB71E235D2689FB858EFCB3 /* Pods-Budi.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Budi.release.xcconfig"; path = "Target Support Files/Pods-Budi/Pods-Budi.release.xcconfig"; sourceTree = "<group>"; };
 		A81D105C276482590022D610 /* HistoryManagementViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryManagementViewController.swift; sourceTree = "<group>"; };
 		A81D105E2764828A0022D610 /* HistoryWriteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryWriteViewController.swift; sourceTree = "<group>"; };
 		A81D1060276482950022D610 /* DefaultTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultTableViewCell.swift; sourceTree = "<group>"; };
@@ -394,7 +413,7 @@
 		A8AB51E7276A0416003D151C /* ModalControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalControl.swift; sourceTree = "<group>"; };
 		A8B6AD27277EC7100041945A /* Budi.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Budi.entitlements; sourceTree = "<group>"; };
 		A8C7AB88274E0E6C00B6E0E7 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
-		A8C8DA342786E76C00FFF2D0 /* LoginUserDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUserDetail.swift; sourceTree = "<group>"; };
+		A8C8DA342786E76C00FFF2D0 /* BudiMember.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudiMember.swift; sourceTree = "<group>"; };
 		A8C8DA36278978B100FFF2D0 /* UISlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISlider.swift; sourceTree = "<group>"; };
 		A8CA17EA273EC267002CA2B9 /* UIResponder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIResponder.swift; sourceTree = "<group>"; };
 		A8CD0CED2771CDCA00FFDE64 /* BudiLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudiLogin.swift; sourceTree = "<group>"; };
@@ -420,6 +439,17 @@
 		A8CE1190278B1F82008AFEBC /* MyBudiProjectDetailCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyBudiProjectDetailCollectionViewCell.swift; sourceTree = "<group>"; };
 		A8CE1191278B1F82008AFEBC /* MyBudiProjectDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyBudiProjectDetailViewController.swift; sourceTree = "<group>"; };
 		A8CE1195278B1F90008AFEBC /* MyBudiContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyBudiContentViewController.swift; sourceTree = "<group>"; };
+		A8E03CCD278C68A40074DE4B /* NormalTextFieldTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NormalTextFieldTableViewCell.swift; sourceTree = "<group>"; };
+		A8E03CCE278C68A40074DE4B /* NormalTextFieldTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NormalTextFieldTableViewCell.xib; sourceTree = "<group>"; };
+		A8E03CD1278C693C0074DE4B /* LocationReplaceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationReplaceTableViewCell.swift; sourceTree = "<group>"; };
+		A8E03CD2278C693C0074DE4B /* LocationReplaceTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LocationReplaceTableViewCell.xib; sourceTree = "<group>"; };
+		A8E03CD5278C6B030074DE4B /* PositionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositionTableViewCell.swift; sourceTree = "<group>"; };
+		A8E03CD6278C6B030074DE4B /* PositionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PositionTableViewCell.xib; sourceTree = "<group>"; };
+		A8E03CD9278C79870074DE4B /* ProjectTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectTableViewCell.swift; sourceTree = "<group>"; };
+		A8E03CDA278C79870074DE4B /* ProjectTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProjectTableViewCell.xib; sourceTree = "<group>"; };
+		A8E03CDD278C7C3E0074DE4B /* MyBudiEditHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyBudiEditHeaderView.swift; sourceTree = "<group>"; };
+		A8E03CDF278C7C680074DE4B /* MyBudiEditHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyBudiEditHeaderView.xib; sourceTree = "<group>"; };
+		A8E03CE1278C98E40074DE4B /* PositionSwitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositionSwitch.swift; sourceTree = "<group>"; };
 		B92D54F8274C02EB00D0E851 /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		B92D54FE274C037E00D0E851 /* String+date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+date.swift"; sourceTree = "<group>"; };
 		B92D5501274C039C00D0E851 /* HomeContentViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeContentViewModel.swift; sourceTree = "<group>"; };
@@ -445,6 +475,12 @@
 		B97DBB9427147D970018C1D2 /* UIViewController+identifer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+identifer.swift"; sourceTree = "<group>"; };
 		B98E530927396B3F00C73374 /* UINavigationController+translucent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationController+translucent.swift"; sourceTree = "<group>"; };
 		B9A48F202789CAA70084F7A0 /* TeamSearchFilterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamSearchFilterViewModel.swift; sourceTree = "<group>"; };
+		B9AC3356278DC95A00203698 /* TeamSearchProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamSearchProfileViewController.swift; sourceTree = "<group>"; };
+		B9AC3358278DCA7200203698 /* ProjectHistoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectHistoryCell.swift; sourceTree = "<group>"; };
+		B9AC3359278DCA7200203698 /* ProjectHistoryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProjectHistoryCell.xib; sourceTree = "<group>"; };
+		B9AC335C278DCA8D00203698 /* PortfolioCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioCell.swift; sourceTree = "<group>"; };
+		B9AC335D278DCA8D00203698 /* PortfolioCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PortfolioCell.xib; sourceTree = "<group>"; };
+		B9AC3360278DD7E800203698 /* TeamSearchProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamSearchProfileViewModel.swift; sourceTree = "<group>"; };
 		B9BEF8962767978E00C889B4 /* HomeContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeContentViewController.swift; sourceTree = "<group>"; };
 		B9BF787027004094000BE0EF /* Budi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Budi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9BF787327004094000BE0EF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -461,7 +497,9 @@
 		B9D66EC52714706700668490 /* ChattingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingCoordinator.swift; sourceTree = "<group>"; };
 		B9D66EC72714707000668490 /* MyBudiCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyBudiCoordinator.swift; sourceTree = "<group>"; };
 		B9D66ECB2714716400668490 /* HomeContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeContainerViewController.swift; sourceTree = "<group>"; };
-		CA7AE22DFC110BC7A1889E1A /* Pods-Budi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Budi.debug.xcconfig"; path = "Target Support Files/Pods-Budi/Pods-Budi.debug.xcconfig"; sourceTree = "<group>"; };
+		B9E5C4DB278F1861006F0087 /* Evaluation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Evaluation.swift; sourceTree = "<group>"; };
+		B9E5C4DD278F186B006F0087 /* Review.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
+		DFADA0C5B77CB0D65F495026 /* Pods-Budi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Budi.debug.xcconfig"; path = "Target Support Files/Pods-Budi/Pods-Budi.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -469,7 +507,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FD578F1D03F3385C8B7F62AA /* Pods_Budi.framework in Frameworks */,
+				BE1BFB467D2ED1A7125C98FE /* Pods_Budi.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -479,8 +517,8 @@
 		4ACE130FE2C1A6782D4E0BF9 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				CA7AE22DFC110BC7A1889E1A /* Pods-Budi.debug.xcconfig */,
-				431890E70909CACD17283C45 /* Pods-Budi.release.xcconfig */,
+				DFADA0C5B77CB0D65F495026 /* Pods-Budi.debug.xcconfig */,
+				9EB71E235D2689FB858EFCB3 /* Pods-Budi.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -610,6 +648,16 @@
 		5E9150A42772355B000578D4 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				A8E03CCD278C68A40074DE4B /* NormalTextFieldTableViewCell.swift */,
+				A8E03CCE278C68A40074DE4B /* NormalTextFieldTableViewCell.xib */,
+				A8E03CD1278C693C0074DE4B /* LocationReplaceTableViewCell.swift */,
+				A8E03CD2278C693C0074DE4B /* LocationReplaceTableViewCell.xib */,
+				A8E03CD5278C6B030074DE4B /* PositionTableViewCell.swift */,
+				A8E03CD6278C6B030074DE4B /* PositionTableViewCell.xib */,
+				A8E03CD9278C79870074DE4B /* ProjectTableViewCell.swift */,
+				A8E03CDA278C79870074DE4B /* ProjectTableViewCell.xib */,
+				A8E03CDD278C7C3E0074DE4B /* MyBudiEditHeaderView.swift */,
+				A8E03CDF278C7C680074DE4B /* MyBudiEditHeaderView.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -734,6 +782,10 @@
 				B97A86302786D7C20016CF23 /* TeamSearchEvaluationCell.xib */,
 				B97A86332786D7D90016CF23 /* TeamSearchReviewCell.swift */,
 				B97A86342786D7D90016CF23 /* TeamSearchReviewCell.xib */,
+				B9AC3358278DCA7200203698 /* ProjectHistoryCell.swift */,
+				B9AC3359278DCA7200203698 /* ProjectHistoryCell.xib */,
+				B9AC335C278DCA8D00203698 /* PortfolioCell.swift */,
+				B9AC335D278DCA8D00203698 /* PortfolioCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -757,14 +809,6 @@
 				5EFB0A5927341C1100F39A4D /* ChattingTimeCell.xib */,
 			);
 			path = Cells;
-			sourceTree = "<group>";
-		};
-		A306AAEA5C9C44D113513AD7 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				5BB91E1E1D24F6BCA931C5F6 /* Pods_Budi.framework */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		A81D1064276482E90022D610 /* ReuseView */ = {
@@ -950,11 +994,14 @@
 				A8CD0CEF2771CE3A00FFDE64 /* BudiLoginResponse.swift */,
 				A8936FB72772F77600BE2C1D /* NameDuplication.swift */,
 				A8936FBB2777192500BE2C1D /* UserInfoUploadSuccess.swift */,
-				A8C8DA342786E76C00FFF2D0 /* LoginUserDetail.swift */,
+				A8C8DA342786E76C00FFF2D0 /* BudiMember.swift */,
 				5ED53D6F277F8DEF002871CD /* LikePosts.swift */,
 				A8CE117D278AC682008AFEBC /* MyLikePost.swift */,
 				A8CE117F278ACD88008AFEBC /* MyBudiProject.swift */,
 				5EE7FB452787E11200D9C39F /* ErrorMessage.swift */,
+				B9E5C4DB278F1861006F0087 /* Evaluation.swift */,
+				B9E5C4DD278F186B006F0087 /* Review.swift */,
+				A8E03CE1278C98E40074DE4B /* PositionSwitch.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -977,7 +1024,7 @@
 				B9BF787127004094000BE0EF /* Products */,
 				4ACE130FE2C1A6782D4E0BF9 /* Pods */,
 				B94DCA7E275214F0006A9E0D /* Recovered References */,
-				A306AAEA5C9C44D113513AD7 /* Frameworks */,
+				C08B17D02090387D5F4176D1 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1080,6 +1127,8 @@
 				B94D2D9B277DFE2300DD7FDD /* TeamSearchViewModel.swift */,
 				B96F33BA27859A14000A0B42 /* TeamSearchFilterViewController.swift */,
 				B9A48F202789CAA70084F7A0 /* TeamSearchFilterViewModel.swift */,
+				B9AC3356278DC95A00203698 /* TeamSearchProfileViewController.swift */,
+				B9AC3360278DD7E800203698 /* TeamSearchProfileViewModel.swift */,
 			);
 			path = TeamSearch;
 			sourceTree = "<group>";
@@ -1136,6 +1185,14 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		C08B17D02090387D5F4176D1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				28404891811DD25D41C22ABF /* Pods_Budi.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1143,12 +1200,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B9BF788427004096000BE0EF /* Build configuration list for PBXNativeTarget "Budi" */;
 			buildPhases = (
-				CFC946768E7524B042230CFC /* [CP] Check Pods Manifest.lock */,
+				A5725ABDD3B5F377A8D22793 /* [CP] Check Pods Manifest.lock */,
 				B9BF786C27004094000BE0EF /* Sources */,
 				B9BF786D27004094000BE0EF /* Frameworks */,
 				B9BF786E27004094000BE0EF /* Resources */,
 				B9BF788727004426000BE0EF /* ShellScript */,
-				56BF4C4AC35AEC20DE0B1389 /* [CP] Embed Pods Frameworks */,
+				7E72CE98F4A840789E53026F /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1196,6 +1253,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A8E03CD0278C68A40074DE4B /* NormalTextFieldTableViewCell.xib in Resources */,
+				A8E03CDC278C79870074DE4B /* ProjectTableViewCell.xib in Resources */,
 				B92D54F9274C02EB00D0E851 /* .swiftlint.yml in Resources */,
 				5E43FB3E278A95EF0073574F /* ChattingProjectRequestCell.xib in Resources */,
 				5E820B8B2769F04A004A03E9 /* ProjectMembersBottomDetailCell.xib in Resources */,
@@ -1205,6 +1264,7 @@
 				5EB430362758953000283239 /* HomeWritingOnlineCell.xib in Resources */,
 				5EB4302A2758950400283239 /* HomeWritingNameCell.xib in Resources */,
 				5EFB0A5B27341C1100F39A4D /* ChattingTimeCell.xib in Resources */,
+				A8E03CE0278C7C680074DE4B /* MyBudiEditHeaderView.xib in Resources */,
 				5EA453A12731778000943C94 /* HomeDetailMainCell.xib in Resources */,
 				B94D2D9A277DE9E700DD7FDD /* GoogleService-Info.plist in Resources */,
 				5EB430322758952500283239 /* HomeWritingDurationCell.xib in Resources */,
@@ -1236,14 +1296,17 @@
 				5E91509B27722213000578D4 /* MyBudiProjectCell.xib in Resources */,
 				5E2554362732770B00033723 /* HomeDetailPersonCell.xib in Resources */,
 				5E820B902769F963004A03E9 /* DatePickerBottomViewController.xib in Resources */,
+				A8E03CD8278C6B030074DE4B /* PositionTableViewCell.xib in Resources */,
 				5EFB0A462733E36800F39A4D /* TeamSearchCell.xib in Resources */,
 				5EC2FEFA275E191F00FF5BB0 /* HomeDetailStatusUnitCell.xib in Resources */,
+				B9AC335B278DCA7200203698 /* ProjectHistoryCell.xib in Resources */,
 				5EA453912731774100943C94 /* HomeDetailMemberCell.xib in Resources */,
 				B97A86322786D7C20016CF23 /* TeamSearchEvaluationCell.xib in Resources */,
 				5EFB0A4B2733EAA300F39A4D /* ChattingCell.xib in Resources */,
 				B9BF787B27004095000BE0EF /* Main.storyboard in Resources */,
 				5EB4303E2758956E00283239 /* HomeWritingAreaCell.xib in Resources */,
 				5EA453952731775600943C94 /* HomeDetailLeaderCell.xib in Resources */,
+				B9AC335F278DCA8D00203698 /* PortfolioCell.xib in Resources */,
 				B9535E16276DD8E2000081CF /* PositionLabelCell.xib in Resources */,
 				5EA453992731776900943C94 /* HomeDetailStatusCell.xib in Resources */,
 				5E3AE27D27906EC6000D40A0 /* ChattingMessageEmojiCell.xib in Resources */,
@@ -1255,13 +1318,14 @@
 				5E503E7827898D1400F13256 /* ProjectMembersBottomViewController.xib in Resources */,
 				5E7CF4C92770B79E007315F1 /* ProjectMembersBottomPositionCell.xib in Resources */,
 				5E5517AA2768BCC300DC605E /* HomeWritingPartBottomCell.xib in Resources */,
+				A8E03CD4278C693C0074DE4B /* LocationReplaceTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		56BF4C4AC35AEC20DE0B1389 /* [CP] Embed Pods Frameworks */ = {
+		7E72CE98F4A840789E53026F /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1278,24 +1342,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Budi/Pods-Budi-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		B9BF788727004426000BE0EF /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\n${PODS_ROOT}/SwiftLint/swiftlint\n";
-		};
-		CFC946768E7524B042230CFC /* [CP] Check Pods Manifest.lock */ = {
+		A5725ABDD3B5F377A8D22793 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1317,6 +1364,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		B9BF788727004426000BE0EF /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\n${PODS_ROOT}/SwiftLint/swiftlint\n";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -1324,6 +1388,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A8E03CDE278C7C3E0074DE4B /* MyBudiEditHeaderView.swift in Sources */,
 				B9684168277853F3002F5D3D /* alertView.swift in Sources */,
 				B9684167277853EF002F5D3D /* HomeContentViewModel.swift in Sources */,
 				B9684166277853E7002F5D3D /* HomeContainerViewController.swift in Sources */,
@@ -1334,12 +1399,14 @@
 				A8936FBF27785B7400BE2C1D /* PortfolioURLTableViewCell.swift in Sources */,
 				5EC00154278EA36A0091F7F3 /* UIImage.swift in Sources */,
 				B9684162277853D8002F5D3D /* RecruitingStatusBottomCell.swift in Sources */,
-				A8C8DA352786E76C00FFF2D0 /* LoginUserDetail.swift in Sources */,
+				A8C8DA352786E76C00FFF2D0 /* BudiMember.swift in Sources */,
 				B9684161277853D0002F5D3D /* RecruitingStatusBottomViewController.swift in Sources */,
 				B9684160277853C8002F5D3D /* MainTabBarCoordinator.swift in Sources */,
 				B968415F277853BC002F5D3D /* ProjectHistory.swift in Sources */,
 				5E9150A62772356A000578D4 /* MyBudiEditCellType.swift in Sources */,
 				5E88636E2767450A0022397A /* HomeWritingCellType.swift in Sources */,
+				A8E03CD3278C693C0074DE4B /* LocationReplaceTableViewCell.swift in Sources */,
+				A8E03CDB278C79870074DE4B /* ProjectTableViewCell.swift in Sources */,
 				5E8863822767AE190022397A /* HomeWritingImageBottomCell.swift in Sources */,
 				5EF986CA2786E58600874A40 /* Leader.swift in Sources */,
 				A8CE1196278B1F91008AFEBC /* MyBudiContentViewController.swift in Sources */,
@@ -1362,6 +1429,7 @@
 				B97A862D2786D6DB0016CF23 /* TeamSearchProfileCell.swift in Sources */,
 				A8CD936127384C4900299AB4 /* SearchTableViewCell.swift in Sources */,
 				A85C920B276A35270097E444 /* PortfolioViewController.swift in Sources */,
+				A8E03CCF278C68A40074DE4B /* NormalTextFieldTableViewCell.swift in Sources */,
 				B94D2D9C277DFE2300DD7FDD /* TeamSearchViewModel.swift in Sources */,
 				B92D5505274C03AB00D0E851 /* Post.swift in Sources */,
 				5EB4302D2758951600283239 /* HomeWritingPartCell.swift in Sources */,
@@ -1406,6 +1474,8 @@
 				B9BF787427004094000BE0EF /* AppDelegate.swift in Sources */,
 				A81D105F2764828A0022D610 /* HistoryWriteViewController.swift in Sources */,
 				5E503E7727898D1400F13256 /* ProjectMembersBottomViewController.swift in Sources */,
+				B9AC3357278DC95A00203698 /* TeamSearchProfileViewController.swift in Sources */,
+				A8E03CE2278C98E40074DE4B /* PositionSwitch.swift in Sources */,
 				B96F33BD27859C6D000A0B42 /* UIView+gesturePublisher.swift in Sources */,
 				5EFB0A522734016600F39A4D /* MyChattingMessageCell.swift in Sources */,
 				B968416B277862ED002F5D3D /* TeamSearchDetailCell.swift in Sources */,
@@ -1415,10 +1485,12 @@
 				A8CD0CEE2771CDCA00FFDE64 /* BudiLogin.swift in Sources */,
 				5E2554612732DF8A00033723 /* GreetingAlertViewController.swift in Sources */,
 				5E9150A92772357C000578D4 /* MyBudiEditViewController.swift in Sources */,
+				B9AC335A278DCA7200203698 /* ProjectHistoryCell.swift in Sources */,
 				5EC2FF04275E5D8300FF5BB0 /* HomeWritingViewModel.swift in Sources */,
 				B94D2D9E277E035300DD7FDD /* MemberTarget.swift in Sources */,
 				5E820B8F2769F963004A03E9 /* DatePickerBottomViewController.swift in Sources */,
 				5E9150AC27723668000578D4 /* MyBudiMainViewModel.swift in Sources */,
+				B9E5C4DC278F1861006F0087 /* Evaluation.swift in Sources */,
 				A8CE1193278B1F82008AFEBC /* MyBudiProjectDetailCollectionViewCell.swift in Sources */,
 				B9D66EB927146DF900668490 /* TabBarCoordinator.swift in Sources */,
 				A8CE117C278AB628008AFEBC /* MyBudiLevelViewController.swift in Sources */,
@@ -1426,6 +1498,7 @@
 				5EFB0A4F2733FDD100F39A4D /* ChattingDetailViewController.swift in Sources */,
 				5EA453692731412A00943C94 /* HomeCell.swift in Sources */,
 				5EBD9D5F276DB5DC00615319 /* HomeWritingViewController.swift in Sources */,
+				B9E5C4DE278F186B006F0087 /* Review.swift in Sources */,
 				A8C8DA37278978B100FFF2D0 /* UISlider.swift in Sources */,
 				5EF986D82786E9A700874A40 /* HomeLocationSearchViewController.swift in Sources */,
 				5E801F1E2782A74400FFC2D3 /* RecruitingPosition.swift in Sources */,
@@ -1464,7 +1537,9 @@
 				5E820B8A2769F04A004A03E9 /* ProjectMembersBottomDetailCell.swift in Sources */,
 				B9D66EC42714703B00668490 /* TeamSearchCoordinator.swift in Sources */,
 				A8936FBC2777192500BE2C1D /* UserInfoUploadSuccess.swift in Sources */,
+				B9AC335E278DCA8D00203698 /* PortfolioCell.swift in Sources */,
 				A85325BB274773F90073FAFB /* SignupViewModel.swift in Sources */,
+				B9AC3361278DD7E800203698 /* TeamSearchProfileViewModel.swift in Sources */,
 				A8CD933C273676F800299AB4 /* NickNameView.swift in Sources */,
 				A8CE1194278B1F82008AFEBC /* MyBudiProjectDetailViewController.swift in Sources */,
 				5EC2FEF9275E191F00FF5BB0 /* HomeDetailStatusUnitCell.swift in Sources */,
@@ -1483,6 +1558,7 @@
 				5EBD9D5D276DB57B00615319 /* HomeDetailViewModel.swift in Sources */,
 				5E91508D27721D8B000578D4 /* MyBudiMainViewController.swift in Sources */,
 				5E58E6B1276B588C00ABBF1C /* AppliesRequest.swift in Sources */,
+				A8E03CD7278C6B030074DE4B /* PositionTableViewCell.swift in Sources */,
 				5EB430452758959600283239 /* HomeWritingDescriptionCell.swift in Sources */,
 				A81D1061276482950022D610 /* DefaultTableViewCell.swift in Sources */,
 				5E91509627722206000578D4 /* MyBudiLevelCell.swift in Sources */,
@@ -1631,20 +1707,20 @@
 		};
 		B9BF788527004096000BE0EF /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CA7AE22DFC110BC7A1889E1A /* Pods-Budi.debug.xcconfig */;
+			baseConfigurationReference = DFADA0C5B77CB0D65F495026 /* Pods-Budi.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Budi/Budi.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = T53Y7GLJ7K;
+				DEVELOPMENT_TEAM = V37X2D6JM3;
 				INFOPLIST_FILE = Budi/Resource/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = kr.dochoi.Budi1;
+				PRODUCT_BUNDLE_IDENTIFIER = kr.dochoi.Budi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -1654,20 +1730,20 @@
 		};
 		B9BF788627004096000BE0EF /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 431890E70909CACD17283C45 /* Pods-Budi.release.xcconfig */;
+			baseConfigurationReference = 9EB71E235D2689FB858EFCB3 /* Pods-Budi.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Budi/Budi.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = T53Y7GLJ7K;
+				DEVELOPMENT_TEAM = V37X2D6JM3;
 				INFOPLIST_FILE = Budi/Resource/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = kr.dochoi.Budi1;
+				PRODUCT_BUNDLE_IDENTIFIER = kr.dochoi.Budi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;

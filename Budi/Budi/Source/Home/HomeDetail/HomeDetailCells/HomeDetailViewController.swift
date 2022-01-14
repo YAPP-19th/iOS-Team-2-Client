@@ -57,7 +57,11 @@ final class HomeDetailViewController: UIViewController {
 
 private extension HomeDetailViewController {
     func bindViewModel() {
-        viewModel.state.post
+        Publishers.CombineLatest3(
+        viewModel.state.post,
+        viewModel.state.recruitingStatuses,
+        viewModel.state.teamMembers
+        )
             .receive(on: DispatchQueue.main)
             .sink(receiveValue: { [weak self] _ in
                 if UserDefaults.standard.string(forKey: "accessToken") != "" {
@@ -73,16 +77,12 @@ private extension HomeDetailViewController {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
                 guard let self = self, let isAlreadyApplied = self.viewModel.state.post.value?.isAlreadyApplied else { return }
-                
                 if UserDefaults.standard.string(forKey: "accessToken") == "" {
                     let storyboard = UIStoryboard(name: "Main", bundle: nil)
                     let loginSelectViewController = storyboard.instantiateViewController(identifier: "LoginSelectViewController")
                     let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate
                     sceneDelegate?.moveLoginController(loginSelectViewController, animated: true)
                 } else {
-
-                    guard let isAlreadyApplied = self.viewModel.state.post.value?.isAlreadyApplied else { return }
-
                     if isAlreadyApplied {
                         let errorAlertVC = ErrorAlertViewController(ErrorMessage.isAlreadyApplied)
                         errorAlertVC.modalPresentationStyle = .overCurrentContext
@@ -128,8 +128,6 @@ private extension HomeDetailViewController {
 
 private extension HomeDetailViewController {
     func configureNavigationBar() {
-//        let shareButton = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareButtonTapped))
-//        navigationItem.rightBarButtonItem = shareButton
         navigationController?.navigationBar.tintColor = .systemGray
     }
 

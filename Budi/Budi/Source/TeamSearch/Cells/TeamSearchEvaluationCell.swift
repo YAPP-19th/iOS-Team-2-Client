@@ -7,11 +7,18 @@
 
 import UIKit
 
-class TeamSearchEvaluationCell: UICollectionViewCell {
+final class TeamSearchEvaluationCell: UICollectionViewCell {
+
+    @IBOutlet weak var countLabel: UILabel!
+    @IBOutlet weak var titleLabel: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
 
+    func updateUI(title: String, count: Int) {
+        titleLabel.text = title
+        countLabel.text = String(count)
+    }
 }

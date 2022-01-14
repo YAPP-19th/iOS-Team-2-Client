@@ -8,8 +8,11 @@
 import Moya
 
 enum MemberTarget {
-    case memberDetails(accessToken: String, id: Int)
+    case memberDetails(accessToken: String, id: String)
     case memberList(postion: Position, page: Int, size: Int)
+
+    case evalutation(memberID: String)
+    case reviews(memberID: String)
 }
 
 extension MemberTarget: TargetType {
@@ -21,6 +24,10 @@ extension MemberTarget: TargetType {
         switch self {
         case .memberDetails(_, let id): return "/members/budiDetails/\(id)"
         case .memberList(let postion, _, _): return "/members/budiLists/\(postion.englishStringValue)"
+        case .evalutation:
+            return "/select-reviews"
+        case .reviews:
+            return "/text-reviews"
         }
     }
 
@@ -34,6 +41,10 @@ extension MemberTarget: TargetType {
             return .requestPlain
         case .memberList(_, let page, let size):
             return .requestParameters(parameters: ["page": page, "size": size], encoding: URLEncoding.default)
+        case .evalutation(memberID: let memberID):
+            return .requestParameters(parameters: ["memberId": memberID], encoding: URLEncoding.default)
+        case .reviews(memberID: let memberID):
+            return .requestParameters(parameters: ["memberId": memberID], encoding: URLEncoding.default)
         }
 
     }

@@ -81,7 +81,7 @@ final class SignupViewModel: ViewModel {
 
         let userInfoUploadStatus = CurrentValueSubject<String?, Never>(nil)
 
-        let loginStatusData = CurrentValueSubject<LoginUserDetail?, Never>(nil)
+        let loginStatusData = CurrentValueSubject<BudiMember?, Never>(nil)
     }
 
     let action = Action()
@@ -111,7 +111,7 @@ final class SignupViewModel: ViewModel {
                 guard let self = self else { return }
                 self.provider
                     .requestPublisher(.signUpStatusCheck(memberId: UserDefaults.standard.integer(forKey: "memberId")))
-                    .map(APIResponse<LoginUserDetail>.self)
+                    .map(APIResponse<BudiMember>.self)
                     .map(\.data)
                     .sink(receiveCompletion: { [weak self] completion in
                         guard let self = self else { return }
@@ -150,7 +150,6 @@ final class SignupViewModel: ViewModel {
                 guard let self = self else { return }
                 var oldPositionList = self.state.positionSelectData.value
                 guard let index = oldPositionList.firstIndex(of: position) else { return }
-                print(index)
                 oldPositionList.remove(at: index)
                 self.state.positionSelectData.send(oldPositionList)
             }
@@ -165,7 +164,6 @@ final class SignupViewModel: ViewModel {
                 let section = self.state.selectIndex.value[0]
                 let index = self.state.selectIndex.value[1]
                 let data = self.state.sectionData.value[section].items[index]
-                print(data)
                 self.state.editData.send(data)
             }
             .store(in: &cancellables)
@@ -225,7 +223,6 @@ final class SignupViewModel: ViewModel {
                     selectItems.insert(item, at: selectItems.count)
                     oldValue[index].items = selectItems
                     self.state.sectionData.send(oldValue)
-                    print(self.state.sectionData.value[index].items.count)
                 case .project:
 
                     let index = self.state.sectionData.value.firstIndex { $0.type == .project }
@@ -238,7 +235,6 @@ final class SignupViewModel: ViewModel {
                     selectItems.insert(item, at: selectItems.count)
                     oldValue[index].items = selectItems
                     self.state.sectionData.send(oldValue)
-                    print(self.state.sectionData.value[index].items.count)
                 case .portfolio:
 
                     let index = self.state.sectionData.value.firstIndex { $0.type == .portfolio }
@@ -251,7 +247,6 @@ final class SignupViewModel: ViewModel {
                     selectItems.insert(item, at: selectItems.count)
                     oldValue[index].items = selectItems
                     self.state.sectionData.send(oldValue)
-                    print(self.state.sectionData.value[index].items.count)
                 }
             }
             .store(in: &cancellables)
@@ -329,11 +324,9 @@ final class SignupViewModel: ViewModel {
                     .map(\.data)
                     .sink(receiveCompletion: { [weak self] completion in
                         guard case let .failure(error) = completion else { return }
-                        print(completion)
                         self?.state.positionData.send(nil)
                         print(error.localizedDescription)
                     }, receiveValue: { post in
-                        print("왜 안들어옴", post)
                         self.state.positionData.send(post)
                         self.state.selectedPosition.send(selectedPosition)
                     })
@@ -369,6 +362,7 @@ final class SignupViewModel: ViewModel {
 
                 let param = CreateInfo(
                     basePosition: self.state.selectedPosition.value.integerValue,
+                    imgUrl: "https://budi.s3.ap-northeast-2.amazonaws.com/post_image/default/dating.jpg",
                     careerList: uploadCareerList,
                     description: self.state.signUpPersonalInfoData.value.description,
                     memberAddress: self.state.signUpPersonalInfoData.value.location,
@@ -377,7 +371,6 @@ final class SignupViewModel: ViewModel {
                     positionList: self.state.positionSelectData.value,
                     projectList: uploadProjectList
                 )
-                print("파라미터 ", param)
                 guard let accsessToken = accsessToken else { return }
                 self.provider.requestPublisher(.createInfo(acessToken: accsessToken, param: param))
                     .map(UserInfoUploadSuccess.self)
@@ -388,7 +381,6 @@ final class SignupViewModel: ViewModel {
                         print(error.localizedDescription)
 
                     }, receiveValue: { post in
-                        print("업로드 완료")
                         UserDefaults.standard.set(post.data.memberId, forKey: "memberId")
                         UserDefaults.standard.set(accsessToken, forKey: "accessToken")
                         self.state.userInfoUploadStatus.send(post.message)
@@ -424,9 +416,7 @@ final class SignupViewModel: ViewModel {
 
     // MARK: - Budi 서버에 POST 보내는 viewModel
     func pushServer() {
-        print("여기서 안넘어오는듯")
         guard let id = state.loginUserInfo?.id else { return }
-        print("넘어온 id",id)
         let replaceId = id.replacingOccurrences(of: ".", with: "")
         let loginData = BudiLogin(loginId: "\(replaceId)")
         guard let uploadData = try? JSONEncoder().encode(loginData) else { return }
@@ -440,22 +430,18 @@ final class SignupViewModel: ViewModel {
                 NSLog("Error:\(error.localizedDescription)")
                 return
             }
-            print("응답 완료")
             guard let data = data else { return }
             do {
                 // 서버에 로그인 시도 하고 받은 데이터
                 let decodeData = try JSONDecoder().decode(APIResponse<BudiLoginResponse>.self, from: data)
 
                 self.state.budiLoginUserData.send(decodeData.data.accessToken)
-                print("로그인 유저 아이디 :", decodeData.data.userId)
-                print("로그인 고유 토큰 :", decodeData.data.accessToken)
-                print(decodeData.data.accessToken)
+
                 UserDefaults.standard.set(decodeData.data.memberId, forKey: "memberId")
                 UserDefaults.standard.set(decodeData.data.accessToken, forKey: "accessToken")
-                print("저장된 엑세스 토큰", UserDefaults.standard.string(forKey: "accessToken"))
-                print("저장된 멤버 ID", UserDefaults.standard.integer(forKey: "memberId"))
+
             } catch {
-                print("Error")
+                print(error.localizedDescription)
             }
         }
         .resume()

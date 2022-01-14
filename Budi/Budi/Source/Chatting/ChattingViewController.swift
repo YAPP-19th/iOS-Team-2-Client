@@ -14,6 +14,12 @@ final class ChattingViewController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
     
+    private var refreshControl: UIRefreshControl = {
+       let refreshControl = UIRefreshControl()
+        refreshControl.tintColor = .primary
+        return refreshControl
+    }()
+    
     private let manager = ChatManager.shared
     weak var coordinator: ChattingCoordinator?
     private let viewModel: ChattingViewModel
@@ -40,6 +46,11 @@ final class ChattingViewController: UIViewController {
         configureNavigationBar()
         configureCollectionView()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        viewModel.fetchRecentMessages()
+    }
 }
 
 private extension ChattingViewController {
@@ -53,7 +64,6 @@ private extension ChattingViewController {
         viewModel.state.recentMessages
             .receive(on: DispatchQueue.main)
             .sink(receiveValue: { [weak self] recentMessages in
-                print("mainVC recentMessages: \(recentMessages)")
                 self?.collectionView.reloadData()
             }).store(in: &cancellables)
     }
@@ -73,10 +83,24 @@ private extension ChattingViewController {
 // MARK: - CollectionView
 extension ChattingViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     private func configureCollectionView() {
+        collectionView.backgroundColor = .systemGroupedBackground
+        collectionView.refreshControl = refreshControl
+        refreshControl.addTarget(self, action: #selector(refreshCollectionView), for: .valueChanged)
+        
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.register(.init(nibName: ChattingCell.identifier, bundle: nil), forCellWithReuseIdentifier: ChattingCell.identifier)
-        collectionView.backgroundColor = .systemGroupedBackground
+    }
+    
+    @objc
+    private func refreshCollectionView() {
+        viewModel.fetchRecentMessages()
+    }
+    
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        if refreshControl.isRefreshing {
+            refreshControl.endRefreshing()
+        }
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {

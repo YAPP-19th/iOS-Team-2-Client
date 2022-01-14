@@ -15,12 +15,26 @@ final class ChatManager {
 }
 
 // MARK: - 경로
-// 메세지: messages/현재유저id/상대유저id/messages/
+// 메세지: messages/현재유저id/상대유저id/
 // 최신메세지: messages/현재유저id/recent-messages/상대유저id
 // 유저정보: users/user.id/
 
 // MARK: - Message
 extension ChatManager {
+    func sendMessage(fromId senderId: Int, toId recipientId: Int, _ text: String) {
+        var sender: ChatUser?
+
+        fetchUserInfo(String(senderId)) { [weak self] user in
+            guard let self = self else { return }
+            sender = user
+            
+            self.fetchUserInfo(String(recipientId)) { [weak self] recipient in
+                guard let self = self, let sender = sender else { return }
+                self.sendMessage(from: sender, to: recipient, text)
+            }
+        }
+    }
+    
     func sendMessage(from sender: ChatUser, to recipient: ChatUser, _ text: String) {
         guard let senderId = sender.id, let recipientId = recipient.id else { return }
         
@@ -50,8 +64,9 @@ extension ChatManager {
                                           "recipientPosition":message.senderPosition,
                                           "recipientProfileImageUrl": message.recipientProfileImageUrl]
         
-        let currentUserRef = FirebaseCollection.messages.ref.document(message.senderId).collection(message.recipientId).document("messages")
-        let oppositeUserRef = FirebaseCollection.messages.ref.document(message.recipientId).collection(message.senderId).document("messages")
+        let currentUserRef = FirebaseCollection.messages.ref.document(message.senderId).collection(message.recipientId).document()
+        let documentId = currentUserRef.documentID
+        let oppositeUserRef = FirebaseCollection.messages.ref.document(message.recipientId).collection(message.senderId).document(documentId)
         
         let recentCurrentUserRef = FirebaseCollection.recentMessages(uid: message.senderId).ref.document(message.recipientId)
         let recentOppositeUserRef = FirebaseCollection.recentMessages(uid: message.recipientId).ref.document(message.senderId)
@@ -89,15 +104,24 @@ extension ChatManager {
 
 // MARK: - Delete
 extension ChatManager {
-    func removeAllDocument(_ currentUid: String, _ oppositeUid: String) {
-        let currentUserRef = FirebaseCollection.messages.ref.document(currentUid).collection(oppositeUid).document("messages")
-        let oppositeUserRef = FirebaseCollection.messages.ref.document(oppositeUid).collection(currentUid).document("messages")
-        
+    func removeAllMessages(_ currentUid: String, _ oppositeUid: String) {
+        let currentUserRef = FirebaseCollection.messages.ref.document(currentUid).collection(oppositeUid)
+        let oppositeUserRef = FirebaseCollection.messages.ref.document(oppositeUid).collection(currentUid)
+
         let recentCurrentUserRef = FirebaseCollection.recentMessages(uid: currentUid).ref.document(oppositeUid)
         let recentOppositeUserRef = FirebaseCollection.recentMessages(uid: oppositeUid).ref.document(currentUid)
         
-        currentUserRef.delete()
-        oppositeUserRef.delete()
+        currentUserRef.getDocuments { snapshot, _ in
+            snapshot?.documents.forEach {
+                currentUserRef.document($0.documentID).delete()
+            }
+        }
+        oppositeUserRef.getDocuments { snapshot, _ in
+            snapshot?.documents.forEach {
+                currentUserRef.document($0.documentID).delete()
+            }
+        }
+
         recentCurrentUserRef.delete()
         recentOppositeUserRef.delete()
     }

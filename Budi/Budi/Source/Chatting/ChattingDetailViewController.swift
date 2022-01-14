@@ -127,7 +127,7 @@ private extension ChattingDetailViewController {
 extension ChattingDetailViewController: AlertViewControllerDelegate {
     func okButtonTapped() {
         guard let currentUid = viewModel.state.currentUser.value?.id, let oppositeUid = viewModel.state.oppositeUser.value?.id else { return }
-        manager.removeAllDocument(currentUid, oppositeUid)
+        manager.removeAllMessages(currentUid, oppositeUid)
         navigationController?.popViewController(animated: false)
     }
 }
@@ -222,7 +222,7 @@ extension ChattingDetailViewController: UICollectionViewDelegateFlowLayout, UICo
             collectionView.register(.init(nibName: $0.identifier, bundle: nil), forCellWithReuseIdentifier: $0.identifier)
         }
         collectionView.alwaysBounceVertical = true
-        collectionView.backgroundColor = .border
+        collectionView.backgroundColor = .background
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {

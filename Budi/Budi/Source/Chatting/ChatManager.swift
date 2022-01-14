@@ -90,8 +90,6 @@ extension ChatManager {
         FirebaseCollection.users.ref.document(uid).setData(userData)
     }
     
-    
-    
     func fetchUserInfo(_ uid: String, _ completion: @escaping (ChatUser) -> Void) {
         FirebaseCollection.users.ref.document(uid).getDocument { snapshot, _ in
             guard let data = snapshot?.data(),

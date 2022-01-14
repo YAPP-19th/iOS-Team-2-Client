@@ -109,10 +109,12 @@ private extension ChattingDetailViewController {
     func ellipsisBarButtonTapped() {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         alert.addAction(.init(title: "대화 삭제", style: .destructive, handler: { [weak self] _ in
-            let alertVC = AlertViewController("킬러베어님과의 대화를 삭제하시겠습니까? 삭제한 대화는 복구가 불가능합니다.", "삭제", "취소")
+            guard let self = self else { return }
+            let oppositeUsername = self.viewModel.state.oppositeUser.value?.username ?? "상대 유저"
+            let alertVC = AlertViewController("\(oppositeUsername)와의 대화를 삭제하시겠습니까? 삭제한 대화는 복구가 불가능합니다.", "삭제", "취소")
             alertVC.modalPresentationStyle = .overCurrentContext
             alertVC.delegate = self
-            self?.present(alertVC, animated: false, completion: nil)
+            self.present(alertVC, animated: false, completion: nil)
         }))
         alert.addAction(.init(title: "취소", style: .cancel, handler: nil))
         self.present(alert, animated: false, completion: nil)

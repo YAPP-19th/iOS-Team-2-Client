@@ -7,8 +7,9 @@
 
 import UIKit
 
-class MyChattingMessageCell: UICollectionViewCell {
+final class MyChattingMessageCell: UICollectionViewCell {
     
+    @IBOutlet private weak var containerView: UIView!
     @IBOutlet private weak var messageLabel: UILabel!
     @IBOutlet private weak var timeLabel: UILabel!
     
@@ -18,6 +19,6 @@ class MyChattingMessageCell: UICollectionViewCell {
 
     func configureUI(_ message: ChatMessage) {
         messageLabel.text = message.text
-        timeLabel.text = message.time
+        timeLabel.text = message.timestamp.convertToahhmm()
     }
 }

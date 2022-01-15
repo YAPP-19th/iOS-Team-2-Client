@@ -12,8 +12,15 @@ import CombineCocoa
 
 final class ChattingViewController: UIViewController {
 
-    @IBOutlet weak var collecitonView: UICollectionView!
+    @IBOutlet weak var collectionView: UICollectionView!
     
+    private var refreshControl: UIRefreshControl = {
+       let refreshControl = UIRefreshControl()
+        refreshControl.tintColor = .primary
+        return refreshControl
+    }()
+    
+    private let manager = ChatManager.shared
     weak var coordinator: ChattingCoordinator?
     private let viewModel: ChattingViewModel
     private var cancellables = Set<AnyCancellable>()
@@ -39,27 +46,61 @@ final class ChattingViewController: UIViewController {
         configureNavigationBar()
         configureCollectionView()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        viewModel.fetchRecentMessages()
+    }
 }
 
 private extension ChattingViewController {
     func bindViewModel() {
-        viewModel.state.chatMessages
+        viewModel.state.currentUser
             .receive(on: DispatchQueue.main)
-            .sink(receiveValue: { _ in
+            .sink(receiveValue: { [weak self] currentUser in
+                self?.collectionView.reloadData()
+            }).store(in: &cancellables)
+        
+        viewModel.state.recentMessages
+            .receive(on: DispatchQueue.main)
+            .sink(receiveValue: { [weak self] recentMessages in
+                self?.collectionView.reloadData()
             }).store(in: &cancellables)
     }
     
     func setPublisher() {
     }
+    
+    func configureNavigationBar() {
+        let notifyButton = UIBarButtonItem(image: UIImage(systemName: "bell"), style: .plain, target: self, action: nil)
+        notifyButton.tintColor = .black
+
+        navigationItem.rightBarButtonItem = notifyButton
+        title = "채팅"
+    }
 }
 
 // MARK: - CollectionView
-extension ChattingViewController: UICollectionViewDataSource {
+extension ChattingViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     private func configureCollectionView() {
-        collecitonView.dataSource = self
-        collecitonView.delegate = self
-        collecitonView.register(.init(nibName: ChattingCell.identifier, bundle: nil), forCellWithReuseIdentifier: ChattingCell.identifier)
-        collecitonView.backgroundColor = .systemGroupedBackground
+        collectionView.backgroundColor = .systemGroupedBackground
+        collectionView.refreshControl = refreshControl
+        refreshControl.addTarget(self, action: #selector(refreshCollectionView), for: .valueChanged)
+        
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        collectionView.register(.init(nibName: ChattingCell.identifier, bundle: nil), forCellWithReuseIdentifier: ChattingCell.identifier)
+    }
+    
+    @objc
+    private func refreshCollectionView() {
+        viewModel.fetchRecentMessages()
+    }
+    
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        if refreshControl.isRefreshing {
+            refreshControl.endRefreshing()
+        }
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -67,39 +108,38 @@ extension ChattingViewController: UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        8
+        viewModel.state.recentMessages.value.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ChattingCell.identifier, for: indexPath) as UICollectionViewCell
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ChattingCell.identifier, for: indexPath) as? ChattingCell,
+              let currentUser = viewModel.state.currentUser.value else { return UICollectionViewCell() }
+        
+        let message = viewModel.state.recentMessages.value[indexPath.row]
+        let isFromCurrentUser = message.senderId == currentUser.id
+        cell.configureUI(message, isFromCurrentUser)
         return cell
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        coordinator?.showDetail()
+        guard let currentUser = viewModel.state.currentUser.value, let currentUid = currentUser.id else { return }
+        
+        let message = viewModel.state.recentMessages.value[indexPath.row]
+        let oppositeUid = (message.recipientId == currentUid) ? message.senderId : message.recipientId
+        
+        manager.fetchUserInfo(oppositeUid) { [weak self] oppositeUser in
+            guard let self = self else { return }
+            self.viewModel.state.oppositeUser.value = oppositeUser
+            self.viewModel.fetchMessages()
+            self.coordinator?.showDetail(self.viewModel)
+        }
     }
-}
-
-extension ChattingViewController: UICollectionViewDelegate {
-
-}
-
-extension ChattingViewController: UICollectionViewDelegateFlowLayout {
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         CGSize(width: collectionView.frame.width, height: 97)
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         1
-    }
-}
-
-private extension ChattingViewController {
-    func configureNavigationBar() {
-        let notifyButton = UIBarButtonItem(image: UIImage(systemName: "bell"), style: .plain, target: self, action: nil)
-        notifyButton.tintColor = .black
-
-        navigationItem.rightBarButtonItem = notifyButton
-        title = "채팅"
     }
 }

@@ -22,10 +22,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mYk-Aw-MI8">
-                                <rect key="frame" x="57" y="0.0" width="250" height="100"/>
+                                <rect key="frame" x="57" y="0.0" width="229" height="92"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="안녕하세요. iOS 개발자로 참여하고 싶어서 연락드렸어요!" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xNX-Fl-Whq">
-                                        <rect key="frame" x="8" y="8" width="234" height="84"/>
+                                        <rect key="frame" x="8" y="8" width="213" height="76"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <color key="textColor" name="Black"/>
                                         <nil key="highlightedColor"/>
@@ -37,7 +37,7 @@
                                     <constraint firstAttribute="bottom" secondItem="xNX-Fl-Whq" secondAttribute="bottom" constant="8" id="Drz-3E-DVl"/>
                                     <constraint firstItem="xNX-Fl-Whq" firstAttribute="leading" secondItem="mYk-Aw-MI8" secondAttribute="leading" constant="8" id="LHd-Nw-m3m"/>
                                     <constraint firstItem="xNX-Fl-Whq" firstAttribute="top" secondItem="mYk-Aw-MI8" secondAttribute="top" constant="8" id="YEv-ak-ecO"/>
-                                    <constraint firstAttribute="width" constant="250" id="mRn-8U-skM"/>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="250" id="mRn-8U-skM"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -46,7 +46,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="오전 10:18" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wWF-gG-Vig">
-                                <rect key="frame" x="311" y="88" width="46" height="12"/>
+                                <rect key="frame" x="290" y="80" width="46" height="12"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                 <color key="textColor" name="Text_disabled"/>
                                 <nil key="highlightedColor"/>
@@ -72,12 +72,12 @@
                             </imageView>
                         </subviews>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="wWF-gG-Vig" secondAttribute="bottom" id="1qm-vD-Z4g"/>
+                            <constraint firstAttribute="bottom" secondItem="wWF-gG-Vig" secondAttribute="bottom" constant="8" id="1qm-vD-Z4g"/>
                             <constraint firstItem="wWF-gG-Vig" firstAttribute="leading" secondItem="mYk-Aw-MI8" secondAttribute="trailing" constant="4" id="8W4-TG-vUk"/>
                             <constraint firstItem="mYk-Aw-MI8" firstAttribute="leading" secondItem="ZLi-Oz-XSU" secondAttribute="trailing" constant="8" id="ESn-Mn-jCw"/>
                             <constraint firstItem="mYk-Aw-MI8" firstAttribute="top" secondItem="4AY-xz-H4p" secondAttribute="top" id="Em1-ED-vLe"/>
                             <constraint firstItem="ZLi-Oz-XSU" firstAttribute="top" secondItem="4AY-xz-H4p" secondAttribute="top" id="TWb-DT-Duf"/>
-                            <constraint firstAttribute="bottom" secondItem="mYk-Aw-MI8" secondAttribute="bottom" id="Tox-Fd-geY"/>
+                            <constraint firstAttribute="bottom" secondItem="mYk-Aw-MI8" secondAttribute="bottom" constant="8" id="Tox-Fd-geY"/>
                             <constraint firstItem="ZLi-Oz-XSU" firstAttribute="leading" secondItem="4AY-xz-H4p" secondAttribute="leading" constant="13" id="nWI-yx-ev5"/>
                         </constraints>
                     </view>
@@ -92,6 +92,7 @@
             </constraints>
             <size key="customSize" width="375" height="100"/>
             <connections>
+                <outlet property="containerView" destination="mYk-Aw-MI8" id="jim-zc-K16"/>
                 <outlet property="messageLabel" destination="xNX-Fl-Whq" id="uSL-IN-Yny"/>
                 <outlet property="profileImageView" destination="ZLi-Oz-XSU" id="gq1-CG-pdh"/>
                 <outlet property="timeLabel" destination="wWF-gG-Vig" id="Adb-2b-oHy"/>

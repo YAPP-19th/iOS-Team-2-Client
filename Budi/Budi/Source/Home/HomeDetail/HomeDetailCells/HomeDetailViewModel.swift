@@ -60,8 +60,9 @@ final class HomeDetailViewModel: ViewModel {
         action.fetch
             .sink(receiveValue: { [weak self] _ in
                 guard let self = self else { return }
-                guard var accessToken = UserDefaults.standard.string(forKey: "accessToken") else { return }
-//                if accessToken == "" { accessToken = .testAccessToken }
+                var accessToken = UserDefaults.standard.string(forKey: "accessToken") ?? ""
+                if accessToken == "" { accessToken = .testAccessToken }
+                
                  self.provider
                     .requestPublisher(.post(accessToken: accessToken, id: postId))
                     .map(APIResponse<Post>.self)

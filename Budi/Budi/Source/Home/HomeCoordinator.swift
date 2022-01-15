@@ -77,13 +77,13 @@ extension HomeCoordinator {
 // MARK: - HomeDetailViewController
 extension HomeCoordinator {
     func showDetail(_ postId: Int) {
-        let viewController: HomeDetailViewController = storyboard.instantiateViewController(
+        let homeDetailVC: HomeDetailViewController = storyboard.instantiateViewController(
             identifier: HomeDetailViewController.identifier) { coder -> HomeDetailViewController? in
                 let viewModel = HomeDetailViewModel(postId)
                 return HomeDetailViewController(coder: coder, viewModel: viewModel)
             }
-        viewController.coordinator = self
-        navigationController?.pushViewController(viewController, animated: true)
+        homeDetailVC.coordinator = self
+        navigationController?.pushViewController(homeDetailVC, animated: true)
     }
     
     func showRecruitingStatusBottomViewController(_ vc: UIViewController, _ viewModel: HomeDetailViewModel) {
@@ -95,8 +95,15 @@ extension HomeCoordinator {
     }
     
     func showGreetingAlertViewController(_ vc: UIViewController) {
-        let viewController: GreetingAlertViewController = GreetingAlertViewController(nibName: GreetingAlertViewController.identifier, bundle: nil)
-        viewController.modalPresentationStyle = .overCurrentContext
-        vc.present(viewController, animated: false, completion: nil)
+        let greetingVC: GreetingAlertViewController = GreetingAlertViewController(nibName: GreetingAlertViewController.identifier, bundle: nil)
+        greetingVC.modalPresentationStyle = .overCurrentContext
+        greetingVC.delegate = vc as? GreetingAlertViewControllerDelegate
+        vc.present(greetingVC, animated: false, completion: nil)
+    }
+    
+    func showChattingVC(_ vc: UIViewController) {
+        // MARK: - 일대일 채팅방으로 이동하기
+        navigationController?.popViewController(animated: true)
+        vc.tabBarController?.selectedIndex = 2
     }
 }

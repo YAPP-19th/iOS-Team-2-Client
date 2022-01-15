@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol GreetingAlertViewControllerDelegate: AnyObject {
+    func chattingButtonTapped()
+}
+
 final class GreetingAlertViewController: UIViewController {
 
     @IBOutlet private weak var textLabel: UILabel!
@@ -19,7 +23,11 @@ final class GreetingAlertViewController: UIViewController {
         dismiss(animated: false, completion: nil)
     }
     @IBAction private func chattingButtonTapped(_ sender: Any) {
+        delegate?.chattingButtonTapped()
+        dismiss(animated: false, completion: nil)
     }
+    
+    weak var delegate: GreetingAlertViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -8,6 +8,7 @@ import UIKit
 import Moya
 import Combine
 import CombineCocoa
+import FirebaseAuth
 
 final class HomeDetailViewController: UIViewController {
 
@@ -156,20 +157,40 @@ private extension HomeDetailViewController {
 // MARK: - Delegate
 extension HomeDetailViewController: RecruitingStatusBottomViewControllerDelegate {
     func getSelectedRecruitingStatus(_ selectedRecruitingStatus: RecruitingStatus) {
-        let postId = viewModel.state.postId.value
+        viewModel.state.selectedRecruitingStatus.value = selectedRecruitingStatus
 
+        let postId = viewModel.state.postId.value
         let param = AppliesRequest(postId: postId, recruitingPositionId: selectedRecruitingStatus.recruitingPositionId)
-        
+
         viewModel.requestApplies(UserDefaults.standard.string(forKey: "accessToken") ?? "", param) { result in
             switch result {
             case .success:
                 self.dismiss(animated: false) {
+                    self.sendRequestMessageToLeader()
                     self.coordinator?.showGreetingAlertViewController(self)
                     self.viewModel.state.post.value?.isAlreadyApplied = true
                 }
             case .failure(let error): print(error.localizedDescription)
             }
         }
+    }
+    
+    func sendRequestMessageToLeader() {
+        // MARK: - 현재유저 id값 아래의 주석처리된 코드로 변경
+//        let currentUid = UserDefaults.standard.integer(forKey: "memberId")
+        let currentUid = 0
+        guard let leaderUid = viewModel.state.post.value?.leader.leaderId else { return }
+                
+        guard let projectTitle = viewModel.state.post.value?.title, let positionName = viewModel.state.selectedRecruitingStatus.value?.positions.position else { return }
+        let messageText = "\(projectTitle) 프로젝트의 \(positionName) 파트에 참여 요청을 보냈습니다."
+        
+        ChatManager.shared.sendMessage(fromId: currentUid, toId: leaderUid, messageText)
+    }
+}
+
+extension HomeDetailViewController: GreetingAlertViewControllerDelegate {
+    func chattingButtonTapped() {
+        coordinator?.showChattingVC(self)
     }
 }
 

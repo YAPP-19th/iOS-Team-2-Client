@@ -27,9 +27,7 @@ final class ChattingDetailViewController: UIViewController {
     weak var coordinator: ChattingCoordinator?
     private let viewModel: ChattingViewModel
     private var cancellables = Set<AnyCancellable>()
-    
-    let userId: String = "userId"
-    let toId: String = "toId"
+    private let manager = ChatManager.shared
     
     init(viewModel: ChattingViewModel) {
         self.viewModel = viewModel
@@ -50,13 +48,11 @@ final class ChattingDetailViewController: UIViewController {
         configureNavigationBar()
         configureTabBar()
         configureTextField()
-        configureKeyboardHeight()
+        configureKeyboard()
         
         bindViewModel()
         setPublisher()
         configureCollectionView()
-        
-        firebaseTestLogin()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -65,16 +61,13 @@ final class ChattingDetailViewController: UIViewController {
 }
 
 private extension ChattingDetailViewController {
-    func firebaseTestLogin() {
-  
-    }
-    
     func bindViewModel() {
-        viewModel.state.chatMessages
+        viewModel.state.messages
             .receive(on: DispatchQueue.main)
             .sink(receiveValue: { [weak self] _ in
                 guard let self = self else { return }
                 self.collectionView.reloadData()
+                self.scrollToBottom()
             }).store(in: &cancellables)
     }
     
@@ -88,7 +81,7 @@ private extension ChattingDetailViewController {
         collectionView.gesturePublisher(.tap())
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
-                self?.hideTextField()
+                self?.hideKeyboard()
             }.store(in: &cancellables)
         
         textFieldContainerView.gesturePublisher(.tap())
@@ -96,17 +89,35 @@ private extension ChattingDetailViewController {
             .sink { [weak self] _ in
                 guard let self = self else { return }
                 if !self.isKeyboardShown {
-                    self.showTextField()
+                    self.showKeyboard()
+                    self.scrollToBottom()
                 }
             }.store(in: &cancellables)
     }
     
     func configureNavigationBar() {
-        let ellipsisButton = UIBarButtonItem(image: UIImage(systemName: "ellipsis"), style: .plain, target: self, action: nil)
+        let ellipsisButton = UIBarButtonItem(image: UIImage(systemName: "ellipsis"), style: .plain, target: self, action: #selector(ellipsisBarButtonTapped))
         ellipsisButton.tintColor = .black
-
         navigationItem.rightBarButtonItem = ellipsisButton
-        title = "킬러베어"
+        
+        if let username = viewModel.state.oppositeUser.value?.username {
+            title = username
+        }
+    }
+    
+    @objc
+    func ellipsisBarButtonTapped() {
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        alert.addAction(.init(title: "대화 삭제", style: .destructive, handler: { [weak self] _ in
+            guard let self = self else { return }
+            let oppositeUsername = self.viewModel.state.oppositeUser.value?.username ?? "상대 유저"
+            let alertVC = AlertViewController("\(oppositeUsername)와의 대화를 삭제하시겠습니까? 삭제한 대화는 복구가 불가능합니다.", "삭제", "취소")
+            alertVC.modalPresentationStyle = .overCurrentContext
+            alertVC.delegate = self
+            self.present(alertVC, animated: false, completion: nil)
+        }))
+        alert.addAction(.init(title: "취소", style: .cancel, handler: nil))
+        self.present(alert, animated: false, completion: nil)
     }
 
     func configureTabBar() {
@@ -114,14 +125,33 @@ private extension ChattingDetailViewController {
     }
 }
 
+// MARK: - Delegate
+extension ChattingDetailViewController: AlertViewControllerDelegate {
+    func okButtonTapped() {
+        guard let currentUid = viewModel.state.currentUser.value?.id, let oppositeUid = viewModel.state.oppositeUser.value?.id else { return }
+        manager.removeAllMessages(currentUid, oppositeUid)
+        navigationController?.popViewController(animated: false)
+    }
+}
+
 // MARK: - TextField
 extension ChattingDetailViewController: UITextFieldDelegate {
     private func sendMessage() {
         guard !textFieldText.isEmpty else { return }
-//        let newMessage = ChatMessage()
-//        viewModel.state.chatMessages.value.append(newMessage)
+        guard let currentUser = viewModel.state.currentUser.value, let oppositeUser = viewModel.state.oppositeUser.value else { return }
+        
+        ChatManager.shared.sendMessage(from: currentUser, to: oppositeUser, textFieldText)
+        
         self.textFieldText = ""
         self.textField.text = ""
+        
+        scrollToBottom()
+    }
+    
+    private func scrollToBottom(_ animated: Bool = false) {
+        guard collectionView.numberOfSections > 0 else { return }
+        let indexPath = IndexPath(item: collectionView.numberOfItems(inSection: collectionView.numberOfSections - 1) - 1, section: collectionView.numberOfSections - 1)
+        collectionView.scrollToItem(at: indexPath, at: .bottom, animated: animated)
     }
     
     private func configureTextField() {
@@ -129,7 +159,7 @@ extension ChattingDetailViewController: UITextFieldDelegate {
         textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
     }
     
-    private func showTextField() {
+    private func showKeyboard() {
         self.isKeyboardShown = true
         self.textField.becomeFirstResponder()
         let animator = UIViewPropertyAnimator(duration: 0.25, curve: .linear) { [weak self] in
@@ -140,7 +170,7 @@ extension ChattingDetailViewController: UITextFieldDelegate {
         animator.startAnimation()
     }
     
-    private func hideTextField() {
+    private func hideKeyboard() {
         self.isKeyboardShown = false
         self.textField.becomeFirstResponder()
         self.textField.endEditing(true)
@@ -160,23 +190,17 @@ extension ChattingDetailViewController: UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        print("textFieldShouldReturn")
-        hideTextField()
         sendMessage()
         return true
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        print("textFieldDidBeginEditing")
-        showTextField()
+        showKeyboard()
     }
     
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        print("textFieldDidEndEditing")
-//        hideTextField()
-    }
-    
-    func configureKeyboardHeight() {
+    func configureKeyboard() {
+        textField.returnKeyType = .send
+        
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil
         )
     }
@@ -195,12 +219,12 @@ extension ChattingDetailViewController: UICollectionViewDelegateFlowLayout, UICo
     private func configureCollectionView() {
         collectionView.dataSource = self
         collectionView.delegate = self
-        let cellClasses = [ChattingMessageCell.self, MyChattingMessageCell.self]
+        let cellClasses = [ChattingMessageCell.self, MyChattingMessageCell.self, ChattingMessageEmojiCell.self, MyChattingMessageEmojiCell.self]
         cellClasses.forEach {
             collectionView.register(.init(nibName: $0.identifier, bundle: nil), forCellWithReuseIdentifier: $0.identifier)
         }
         collectionView.alwaysBounceVertical = true
-        collectionView.backgroundColor = .border
+        collectionView.backgroundColor = .background
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -208,30 +232,44 @@ extension ChattingDetailViewController: UICollectionViewDelegateFlowLayout, UICo
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        viewModel.state.chatMessages.value.count
+        viewModel.state.messages.value.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let message = viewModel.state.chatMessages.value[indexPath.row]
-     
-        let isFromCurrentUser = (message.fromUserId == userId)
+        guard let currentUser = viewModel.state.currentUser.value else { return UICollectionViewCell() }
+        
+        let message = viewModel.state.messages.value[indexPath.row]
+        let isFromCurrentUser = (message.senderId == currentUser.id)
+        let isSingleEmojiMessage = message.text.isSingleEmoji
         
         if isFromCurrentUser {
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MyChattingMessageCell.identifier, for: indexPath) as? MyChattingMessageCell else { return UICollectionViewCell() }
-            cell.configureUI(message)
-            return cell
+            if !isSingleEmojiMessage {
+                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MyChattingMessageCell.identifier, for: indexPath) as? MyChattingMessageCell else { return UICollectionViewCell() }
+                cell.configureUI(message)
+                return cell
+            } else {
+                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MyChattingMessageEmojiCell.identifier, for: indexPath) as? MyChattingMessageEmojiCell else { return UICollectionViewCell() }
+                cell.configureUI(message)
+                return cell
+            }
         } else {
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ChattingMessageCell.identifier, for: indexPath) as? ChattingMessageCell else { return UICollectionViewCell() }
-            cell.configureUI(message)
-            return cell
+            if !isSingleEmojiMessage {
+                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ChattingMessageCell.identifier, for: indexPath) as? ChattingMessageCell else { return UICollectionViewCell() }
+                cell.configureUI(message)
+                return cell
+            } else {
+                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ChattingMessageEmojiCell.identifier, for: indexPath) as? ChattingMessageEmojiCell else { return UICollectionViewCell() }
+                cell.configureUI(message)
+                return cell
+            }
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        CGSize(width: collectionView.frame.width, height: 100)
+        CGSize(width: collectionView.frame.width, height: 34)
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        12
+        0
     }
 }

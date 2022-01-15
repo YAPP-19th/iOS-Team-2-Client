@@ -196,7 +196,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="close" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k1k-4p-khc">
-                                <rect key="frame" x="30" y="44" width="41.5" height="32"/>
+                                <rect key="frame" x="30" y="44" width="40.5" height="32"/>
                                 <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <buttonConfiguration key="configuration" style="plain" image="xmark" catalog="system"/>
                             </button>
@@ -544,7 +544,7 @@
                                     <size key="itemSize" width="128" height="128"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="8" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells/>
                             </collectionView>
@@ -559,7 +559,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="collecitonView" destination="Slt-k5-3PC" id="7jD-ac-WSE"/>
+                        <outlet property="collectionView" destination="Slt-k5-3PC" id="SRi-Kl-ln3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MMr-xa-3c8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -956,13 +956,13 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="PzR-cU-qYT">
-                                <rect key="frame" x="0.0" y="44" width="414" height="852"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="769"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="T1r-UQ-u1J">
                                     <size key="itemSize" width="128" height="128"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="8" maxX="0.0" maxY="8"/>
                                 </collectionViewFlowLayout>
                                 <cells/>
                             </collectionView>
@@ -1021,10 +1021,10 @@
                             <constraint firstItem="PzR-cU-qYT" firstAttribute="top" secondItem="BTd-WE-tRh" secondAttribute="top" id="1BY-UL-Z7U"/>
                             <constraint firstItem="uqe-md-eIF" firstAttribute="trailing" secondItem="BTd-WE-tRh" secondAttribute="trailing" id="SD7-jY-wqR"/>
                             <constraint firstItem="uqe-md-eIF" firstAttribute="leading" secondItem="BTd-WE-tRh" secondAttribute="leading" id="WBA-01-knD"/>
+                            <constraint firstItem="uqe-md-eIF" firstAttribute="top" secondItem="PzR-cU-qYT" secondAttribute="bottom" id="duG-L4-uEl"/>
                             <constraint firstAttribute="bottom" secondItem="uqe-md-eIF" secondAttribute="bottom" id="epX-sH-jFp"/>
                             <constraint firstItem="PzR-cU-qYT" firstAttribute="trailing" secondItem="BTd-WE-tRh" secondAttribute="trailing" id="hlj-pc-Cjt"/>
                             <constraint firstItem="PzR-cU-qYT" firstAttribute="leading" secondItem="BTd-WE-tRh" secondAttribute="leading" id="keF-Ke-x0e"/>
-                            <constraint firstAttribute="bottom" secondItem="PzR-cU-qYT" secondAttribute="bottom" id="nXX-Or-4XZ"/>
                         </constraints>
                     </view>
                     <connections>

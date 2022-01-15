@@ -7,11 +7,11 @@
 
 import UIKit
 
-final class AlertViewController: UIViewController {
+protocol AlertViewControllerDelegate: AnyObject {
+    func okButtonTapped()
+}
 
-    private var titleText: String = ""
-    private var okButtonText: String = ""
-    private var noButtonText: String = ""
+final class AlertViewController: UIViewController {
 
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var okButton: UIButton!
@@ -22,12 +22,19 @@ final class AlertViewController: UIViewController {
     }
 
     @IBAction func okButtonTapped(_ sender: Any) {
+        delegate?.okButtonTapped()
         dismiss(animated: true, completion: nil)
     }
 
     @IBAction func noButtonTapped(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
+    
+    private var titleText: String = ""
+    private var okButtonText: String = ""
+    private var noButtonText: String = ""
+    
+    weak var delegate: AlertViewControllerDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -22,13 +22,24 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yjh-1Y-Hed">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="97"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="ZwD-pl-0DH">
-                                <rect key="frame" x="20" y="16.5" width="52" height="51"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default_profile" translatesAutoresizingMaskIntoConstraints="NO" id="ZwD-pl-0DH">
+                                <rect key="frame" x="20" y="16" width="52" height="52"/>
                                 <color key="tintColor" name="LightGray"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="52" id="usH-O6-Fu0"/>
                                     <constraint firstAttribute="height" constant="52" id="v1z-E9-Irg"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="26"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="0.5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" name="Border"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="킬러베어" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MFs-u1-WlD">
                                 <rect key="frame" x="84" y="16" width="56" height="19"/>
@@ -39,22 +50,19 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="오후 04:23" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yvp-Jr-aE3">
                                 <rect key="frame" x="301" y="18" width="58" height="15"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <color key="textColor" name="Gray"/>
+                                <color key="textColor" name="Text_disabled"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="킬러베어님이 ‘비건 전용 딜리버리 서비스' 프로젝트에 ‘기획자’로 참여 요청을 보냈습니다." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pgz-eg-1HH">
-                                <rect key="frame" x="84" y="47" width="275" height="34"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="34" id="dBl-fx-rwA"/>
-                                </constraints>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="메세지입니다" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pgz-eg-1HH">
+                                <rect key="frame" x="84" y="43" width="275" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <color key="textColor" name="DarkGray"/>
+                                <color key="textColor" name="Text_medium"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="기획자" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wMa-C8-iSx">
                                 <rect key="frame" x="144" y="17" width="37" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <color key="textColor" name="Gray"/>
+                                <color key="textColor" name="Text_disabled"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -68,10 +76,9 @@
                             <constraint firstAttribute="trailing" secondItem="yvp-Jr-aE3" secondAttribute="trailing" constant="16" id="Qop-VS-Kz9"/>
                             <constraint firstItem="Pgz-eg-1HH" firstAttribute="leading" secondItem="ZwD-pl-0DH" secondAttribute="trailing" constant="12" id="RSR-cW-6Wm"/>
                             <constraint firstItem="yvp-Jr-aE3" firstAttribute="top" secondItem="Yjh-1Y-Hed" secondAttribute="top" constant="18" id="c9o-fa-muk"/>
-                            <constraint firstAttribute="bottom" secondItem="Pgz-eg-1HH" secondAttribute="bottom" constant="16" id="fSS-Xn-cF2"/>
                             <constraint firstItem="wMa-C8-iSx" firstAttribute="centerY" secondItem="MFs-u1-WlD" secondAttribute="centerY" id="mLN-uF-DSx"/>
                             <constraint firstItem="MFs-u1-WlD" firstAttribute="leading" secondItem="ZwD-pl-0DH" secondAttribute="trailing" constant="12" id="miT-nk-8ZT"/>
-                            <constraint firstItem="Pgz-eg-1HH" firstAttribute="top" secondItem="MFs-u1-WlD" secondAttribute="bottom" constant="12" id="wqb-2h-JMO"/>
+                            <constraint firstItem="Pgz-eg-1HH" firstAttribute="top" secondItem="MFs-u1-WlD" secondAttribute="bottom" constant="8" id="wqb-2h-JMO"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -84,19 +91,29 @@
                 <constraint firstAttribute="trailing" secondItem="Yjh-1Y-Hed" secondAttribute="trailing" id="qLz-Vp-ODw"/>
             </constraints>
             <size key="customSize" width="375" height="97"/>
+            <connections>
+                <outlet property="messageTextLabel" destination="Pgz-eg-1HH" id="pJF-8R-sAd"/>
+                <outlet property="positionLabel" destination="wMa-C8-iSx" id="gqp-in-THq"/>
+                <outlet property="profileImageView" destination="ZwD-pl-0DH" id="q7c-ms-o5j"/>
+                <outlet property="timeLabel" destination="yvp-Jr-aE3" id="KfG-Qi-chG"/>
+                <outlet property="usernameLabel" destination="MFs-u1-WlD" id="lDM-A2-LNX"/>
+            </connections>
             <point key="canvasLocation" x="370.28985507246381" y="128.90625"/>
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="person.circle.fill" catalog="system" width="128" height="121"/>
-        <namedColor name="DarkGray">
-            <color red="0.0" green="0.0" blue="0.0" alpha="0.60000002384185791" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="Gray">
-            <color red="0.0" green="0.0" blue="0.0" alpha="0.37999999523162842" colorSpace="custom" customColorSpace="sRGB"/>
+        <image name="default_profile" width="72" height="72"/>
+        <namedColor name="Border">
+            <color red="0.87800002098083496" green="0.87800002098083496" blue="0.87800002098083496" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="LightGray">
-            <color red="0.0" green="0.0" blue="0.0" alpha="0.11999999731779099" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.86599999666213989" green="0.86599999666213989" blue="0.86599999666213989" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Text_disabled">
+            <color red="0.61960784313725492" green="0.61960784313725492" blue="0.61960784313725492" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Text_medium">
+            <color red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

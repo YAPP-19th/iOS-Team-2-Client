@@ -60,7 +60,11 @@ class MyBudiMainViewModel: ViewModel {
                         }
                     }, receiveValue: { post in
                         if post.nickName != "" {
-                            self.state.loginStatusData.send(post)
+                            var data = post
+                            if data.portfolioList.count == 1 && data.portfolioList[0] == "" {
+                                data.portfolioList = ["포트폴리오 링크로 수정해보세요!"]
+                            }
+                            self.state.loginStatusData.send(data)
                         } else {
                             self.state.loginStatusData.send(nil)
                         }

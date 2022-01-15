@@ -41,7 +41,7 @@ class PositionViewController: UIViewController {
     @objc
     func nextAction() {
         configureAlert()
-
+        viewModel.action.postCreateInfo.send(())
     }
 
     private let positionLabel: UILabel = {
@@ -129,9 +129,19 @@ class PositionViewController: UIViewController {
     }
 
     private func bindButton() {
+
+        alertView.cancelButton.tapPublisher
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in
+                guard let self = self else { return }
+                self.dismiss(animated: true, completion: nil)
+            }
+            .store(in: &cancellables)
+
         alertView.doneButton.tapPublisher
             .receive(on: DispatchQueue.main)
-            .sink { _ in
+            .sink { [weak self] _ in
+                guard let self = self else { return }
                 self.coordinator?.showHistoryManagementViewController(viewModel: self.viewModel)
             }
             .store(in: &cancellables)

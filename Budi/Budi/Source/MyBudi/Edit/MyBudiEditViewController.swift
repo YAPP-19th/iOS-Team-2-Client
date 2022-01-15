@@ -365,7 +365,11 @@ extension MyBudiEditViewController: UITableViewDelegate, UITableViewDataSource {
             if viewModel.state.loginUserData.value?.portfolioList.count != indexPath.row {
                 let data = viewModel.state.loginUserData.value?.portfolioList[indexPath.row]
                 if let data = data {
-                    cell.configureParsing(urlString: data)
+                    if data != "" {
+                        cell.configureParsing(urlString: data)
+                    } else {
+                        cell.configureButtonLabel(text: "포트폴리오를 추가해 보세요")
+                    }
                 }
             } else {
                 cell.configureButtonLabel(text: "포트폴리오를 추가해 보세요")

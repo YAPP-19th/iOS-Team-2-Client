@@ -26,19 +26,14 @@ final class NotificationListCell: UICollectionViewCell {
         let title = notification.title
         messageLabel.text = title
 
-        if title.contains("프로젝트에 지원했습니다.") {
-            let suffix = "프로젝트에 지원했습니다."
-            var projectName = title
-                        
-            if let range = projectName.range(of: suffix) {
-                projectName.removeSubrange(range)
-                let attributedText = NSMutableAttributedString()
-                    .font(projectName, ofSize: 16, weight: .bold)
-                    .font(suffix, ofSize: 16, weight: .regular)
-                
-                messageLabel.attributedText = attributedText
-            }
+        let appliedSentence = "프로젝트에 지원했습니다."
+        
+        if title.contains(appliedSentence) {
+            let attributedText = NSMutableAttributedString()
+                .font(notification.postTitle, ofSize: 16, weight: .bold)
+                .font(" " + appliedSentence, ofSize: 16, weight: .regular)
+            
+            messageLabel.attributedText = attributedText
         }
     }
-
 }

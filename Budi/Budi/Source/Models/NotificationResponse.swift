@@ -25,6 +25,7 @@ struct NotificationResponse: Decodable {
     let date: Date
     let postId: Int
     let postImageUrl: String
+    let postTitle: String
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -34,6 +35,7 @@ struct NotificationResponse: Decodable {
         case date
         case postId
         case postImageUrl
+        case postTitle
     }
     
     init(from decoder: Decoder) throws {
@@ -46,6 +48,7 @@ struct NotificationResponse: Decodable {
         date = (try? container.decode(Date.self, forKey: .date)) ?? Date()
         postId = (try? container.decode(Int.self, forKey: .postId)) ?? 0
         postImageUrl = (try? container.decode(String.self, forKey: .postImageUrl)) ?? ""
+        postTitle = (try? container.decode(String.self, forKey: .postTitle)) ?? ""
     }
     
     init() {
@@ -56,5 +59,6 @@ struct NotificationResponse: Decodable {
         self.date = Date()
         self.postId = 0
         self.postImageUrl = ""
+        self.postTitle = ""
     }
 }

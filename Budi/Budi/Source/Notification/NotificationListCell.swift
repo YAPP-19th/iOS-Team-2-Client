@@ -25,14 +25,11 @@ final class NotificationListCell: UICollectionViewCell {
         
         let title = notification.title
         messageLabel.text = title
-
-        let appliedSentence = "프로젝트에 지원했습니다."
         
-        if title.contains(appliedSentence) {
-            let attributedText = NSMutableAttributedString()
-                .font(notification.postTitle, ofSize: 16, weight: .bold)
-                .font(" " + appliedSentence, ofSize: 16, weight: .regular)
+        if title.contains("프로젝트에 지원했습니다.") {
+            let attributedText = NSMutableAttributedString(string: title)
             
+            attributedText.addAttribute(.font, value: UIFont.systemFont(ofSize: 16, weight: .bold), range: (title as NSString).range(of: notification.postTitle))
             messageLabel.attributedText = attributedText
         }
     }

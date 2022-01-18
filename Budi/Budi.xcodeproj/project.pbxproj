@@ -56,6 +56,14 @@
 		5E88637B276771EE0022397A /* HomeWritingPartBottomViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E886379276771EE0022397A /* HomeWritingPartBottomViewController.xib */; };
 		5E8863822767AE190022397A /* HomeWritingImageBottomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8863802767AE190022397A /* HomeWritingImageBottomCell.swift */; };
 		5E8863832767AE190022397A /* HomeWritingImageBottomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E8863812767AE190022397A /* HomeWritingImageBottomCell.xib */; };
+		5E8DAA862796B7490019B0B7 /* NotificationTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8DAA852796B7490019B0B7 /* NotificationTarget.swift */; };
+		5E8DAA892796BDBE0019B0B7 /* NotificationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8DAA882796BDBE0019B0B7 /* NotificationResponse.swift */; };
+		5E8DAA8C2796CB7E0019B0B7 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8DAA8A2796CB7E0019B0B7 /* NotificationViewController.swift */; };
+		5E8DAA8D2796CB7E0019B0B7 /* NotificationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E8DAA8B2796CB7E0019B0B7 /* NotificationViewController.xib */; };
+		5E8DAA902796CBA80019B0B7 /* NotificationListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8DAA8E2796CBA80019B0B7 /* NotificationListCell.swift */; };
+		5E8DAA912796CBA80019B0B7 /* NotificationListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E8DAA8F2796CBA80019B0B7 /* NotificationListCell.xib */; };
+		5E8DAA932796D0940019B0B7 /* NotificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8DAA922796D0940019B0B7 /* NotificationViewModel.swift */; };
+		5E8DAA962796F0C60019B0B7 /* NSMutableAttributedString+font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8DAA952796F0C60019B0B7 /* NSMutableAttributedString+font.swift */; };
 		5E91508D27721D8B000578D4 /* MyBudiMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E91508B27721D8B000578D4 /* MyBudiMainViewController.swift */; };
 		5E91508E27721D8B000578D4 /* MyBudiMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E91508C27721D8B000578D4 /* MyBudiMainViewController.xib */; };
 		5E915092277221F5000578D4 /* MyBudiProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E915090277221F5000578D4 /* MyBudiProfileCell.swift */; };
@@ -304,6 +312,14 @@
 		5E886379276771EE0022397A /* HomeWritingPartBottomViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeWritingPartBottomViewController.xib; sourceTree = "<group>"; };
 		5E8863802767AE190022397A /* HomeWritingImageBottomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWritingImageBottomCell.swift; sourceTree = "<group>"; };
 		5E8863812767AE190022397A /* HomeWritingImageBottomCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeWritingImageBottomCell.xib; sourceTree = "<group>"; };
+		5E8DAA852796B7490019B0B7 /* NotificationTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTarget.swift; sourceTree = "<group>"; };
+		5E8DAA882796BDBE0019B0B7 /* NotificationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationResponse.swift; sourceTree = "<group>"; };
+		5E8DAA8A2796CB7E0019B0B7 /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
+		5E8DAA8B2796CB7E0019B0B7 /* NotificationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotificationViewController.xib; sourceTree = "<group>"; };
+		5E8DAA8E2796CBA80019B0B7 /* NotificationListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationListCell.swift; sourceTree = "<group>"; };
+		5E8DAA8F2796CBA80019B0B7 /* NotificationListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotificationListCell.xib; sourceTree = "<group>"; };
+		5E8DAA922796D0940019B0B7 /* NotificationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewModel.swift; sourceTree = "<group>"; };
+		5E8DAA952796F0C60019B0B7 /* NSMutableAttributedString+font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSMutableAttributedString+font.swift"; sourceTree = "<group>"; };
 		5E91508B27721D8B000578D4 /* MyBudiMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyBudiMainViewController.swift; sourceTree = "<group>"; };
 		5E91508C27721D8B000578D4 /* MyBudiMainViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyBudiMainViewController.xib; sourceTree = "<group>"; };
 		5E915090277221F5000578D4 /* MyBudiProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyBudiProfileCell.swift; sourceTree = "<group>"; };
@@ -604,6 +620,18 @@
 				5E820B822769EA04004A03E9 /* HomeWritingPart */,
 			);
 			path = BottomSheets;
+			sourceTree = "<group>";
+		};
+		5E8DAA872796B8800019B0B7 /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+				5E8DAA922796D0940019B0B7 /* NotificationViewModel.swift */,
+				5E8DAA8A2796CB7E0019B0B7 /* NotificationViewController.swift */,
+				5E8DAA8B2796CB7E0019B0B7 /* NotificationViewController.xib */,
+				5E8DAA8E2796CBA80019B0B7 /* NotificationListCell.swift */,
+				5E8DAA8F2796CBA80019B0B7 /* NotificationListCell.xib */,
+			);
+			path = Notification;
 			sourceTree = "<group>";
 		};
 		5E91508F277221D0000578D4 /* Cells */ = {
@@ -968,6 +996,7 @@
 			children = (
 				5E24071C275225A600954BE7 /* BudiTarget.swift */,
 				B94D2D9D277E035300DD7FDD /* MemberTarget.swift */,
+				5E8DAA852796B7490019B0B7 /* NotificationTarget.swift */,
 			);
 			path = APITarget;
 			sourceTree = "<group>";
@@ -1002,6 +1031,7 @@
 				B9E5C4DB278F1861006F0087 /* Evaluation.swift */,
 				B9E5C4DD278F186B006F0087 /* Review.swift */,
 				A8E03CE1278C98E40074DE4B /* PositionSwitch.swift */,
+				5E8DAA882796BDBE0019B0B7 /* NotificationResponse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1058,6 +1088,7 @@
 				B9D66EC027146FFC00668490 /* TeamSearch */,
 				B9D66EC12714700900668490 /* Chatting */,
 				B9D66EC22714701000668490 /* MyBudi */,
+				5E8DAA872796B8800019B0B7 /* Notification */,
 				A8CD93352736701500299AB4 /* ReuseViews */,
 				5EF5F327274158E600A5F6E2 /* Utilities */,
 				B9D66ECF27147B0E00668490 /* Extensions */,
@@ -1181,6 +1212,7 @@
 				A8C8DA36278978B100FFF2D0 /* UISlider.swift */,
 				5E43FB45278B5C910073574F /* Ecodable+convert.swift */,
 				5EC00153278EA36A0091F7F3 /* UIImage.swift */,
+				5E8DAA952796F0C60019B0B7 /* NSMutableAttributedString+font.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1253,6 +1285,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5E8DAA912796CBA80019B0B7 /* NotificationListCell.xib in Resources */,
 				A8E03CD0278C68A40074DE4B /* NormalTextFieldTableViewCell.xib in Resources */,
 				A8E03CDC278C79870074DE4B /* ProjectTableViewCell.xib in Resources */,
 				B92D54F9274C02EB00D0E851 /* .swiftlint.yml in Resources */,
@@ -1261,6 +1294,7 @@
 				5E2554622732DF8A00033723 /* GreetingAlertViewController.xib in Resources */,
 				5E45AD142732F47800F0A80C /* RecruitingStatusBottomViewController.xib in Resources */,
 				5E45AD182732F78200F0A80C /* RecruitingStatusBottomCell.xib in Resources */,
+				5E8DAA8D2796CB7E0019B0B7 /* NotificationViewController.xib in Resources */,
 				5EB430362758953000283239 /* HomeWritingOnlineCell.xib in Resources */,
 				5EB4302A2758950400283239 /* HomeWritingNameCell.xib in Resources */,
 				5EFB0A5B27341C1100F39A4D /* ChattingTimeCell.xib in Resources */,
@@ -1403,6 +1437,7 @@
 				B9684161277853D0002F5D3D /* RecruitingStatusBottomViewController.swift in Sources */,
 				B9684160277853C8002F5D3D /* MainTabBarCoordinator.swift in Sources */,
 				B968415F277853BC002F5D3D /* ProjectHistory.swift in Sources */,
+				5E8DAA962796F0C60019B0B7 /* NSMutableAttributedString+font.swift in Sources */,
 				5E9150A62772356A000578D4 /* MyBudiEditCellType.swift in Sources */,
 				5E88636E2767450A0022397A /* HomeWritingCellType.swift in Sources */,
 				A8E03CD3278C693C0074DE4B /* LocationReplaceTableViewCell.swift in Sources */,
@@ -1412,9 +1447,11 @@
 				A8CE1196278B1F91008AFEBC /* MyBudiContentViewController.swift in Sources */,
 				A8CD933E2736A93500299AB4 /* UIColor.swift in Sources */,
 				5EC0328D27868ED00059BE92 /* String+testAccessToken.swift in Sources */,
+				5E8DAA932796D0940019B0B7 /* NotificationViewModel.swift in Sources */,
 				A8CD93402736ABD300299AB4 /* LocationSelectView.swift in Sources */,
 				A84F266F276B7CD600C65DA1 /* SignupHistorySectionModel.swift in Sources */,
 				A82E49DD273111C50068218A /* LoginSelectViewController.swift in Sources */,
+				5E8DAA892796BDBE0019B0B7 /* NotificationResponse.swift in Sources */,
 				5E43FB46278B5C910073574F /* Ecodable+convert.swift in Sources */,
 				A8CD93472737B9AB00299AB4 /* NormalPositionView.swift in Sources */,
 				5EB430252758909800283239 /* HomeWritingImageCell.swift in Sources */,
@@ -1431,6 +1468,7 @@
 				A85C920B276A35270097E444 /* PortfolioViewController.swift in Sources */,
 				A8E03CCF278C68A40074DE4B /* NormalTextFieldTableViewCell.swift in Sources */,
 				B94D2D9C277DFE2300DD7FDD /* TeamSearchViewModel.swift in Sources */,
+				5E8DAA862796B7490019B0B7 /* NotificationTarget.swift in Sources */,
 				B92D5505274C03AB00D0E851 /* Post.swift in Sources */,
 				5EB4302D2758951600283239 /* HomeWritingPartCell.swift in Sources */,
 				A81D108C2764950F0022D610 /* Positions.swift in Sources */,
@@ -1457,6 +1495,7 @@
 				5EA453AC2731DDA700943C94 /* CALayer+addBorder.swift in Sources */,
 				5EFB0A4D2733EABF00F39A4D /* ChattingViewController.swift in Sources */,
 				A8AB51E8276A0416003D151C /* ModalControl.swift in Sources */,
+				5E8DAA8C2796CB7E0019B0B7 /* NotificationViewController.swift in Sources */,
 				A8CE117A278AABCC008AFEBC /* CircleProgress.swift in Sources */,
 				A81D10CC2765174E0022D610 /* PositionDetailCollectionViewCell.swift in Sources */,
 				B9BEF8972767978E00C889B4 /* HomeContentViewController.swift in Sources */,
@@ -1473,6 +1512,7 @@
 				A8CD93442736E82300299AB4 /* PositionViewController.swift in Sources */,
 				B9BF787427004094000BE0EF /* AppDelegate.swift in Sources */,
 				A81D105F2764828A0022D610 /* HistoryWriteViewController.swift in Sources */,
+				5E8DAA902796CBA80019B0B7 /* NotificationListCell.swift in Sources */,
 				5E503E7727898D1400F13256 /* ProjectMembersBottomViewController.swift in Sources */,
 				B9AC3357278DC95A00203698 /* TeamSearchProfileViewController.swift in Sources */,
 				A8E03CE2278C98E40074DE4B /* PositionSwitch.swift in Sources */,
@@ -1714,7 +1754,7 @@
 				CODE_SIGN_ENTITLEMENTS = Budi/Budi.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = ZMXTCSPNUZ;
+				DEVELOPMENT_TEAM = T53Y7GLJ7K;
 				INFOPLIST_FILE = Budi/Resource/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

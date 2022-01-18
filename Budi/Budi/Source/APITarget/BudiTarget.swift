@@ -34,7 +34,7 @@ extension BudiTarget: TargetType {
 
     var path: String {
         switch self {
-        case .getMyBudiProject(_): return "/posts/me"
+        case .getMyBudiProject: return "/posts/me"
         case .signUpStatusCheck(let memberId): return "/members/budiDetails/\(memberId)"
         case .posts: return "/posts"
         case .detailPositions: return "/infos/positions"
@@ -49,7 +49,7 @@ extension BudiTarget: TargetType {
         case .checkDuplicateName: return "/members/checkDuplicateName"
         case .postCategory: return "/infos/postCategory"
         case .likePosts(_, let id): return "/post/\(id)/like-posts"
-        case .myLikePosts(_): return "/post/like-posts"
+        case .myLikePosts: return "/post/like-posts"
         case .convertImageToURL: return "/imageUrls"
         }
     }
@@ -67,7 +67,7 @@ extension BudiTarget: TargetType {
 
     var task: Task {
         switch self {
-        case .signUpStatusCheck(_): return .requestParameters(parameters: ["accessToken": UserDefaults.standard.string(forKey: "accessToken") ?? ""], encoding: URLEncoding.default)
+        case .signUpStatusCheck: return .requestParameters(parameters: ["accessToken": UserDefaults.standard.string(forKey: "accessToken") ?? ""], encoding: URLEncoding.default)
         case .createInfo(_, let info) : return .requestJSONEncodable(info)
         case .checkDuplicateName(let name):
             return .requestParameters(parameters: ["name": name], encoding: URLEncoding.default)

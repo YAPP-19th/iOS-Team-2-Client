@@ -40,7 +40,7 @@ final class ChattingViewModel: ViewModel {
                          position: "iOS 개발자",
                          profileImageUrl: "https://budi.s3.ap-northeast-2.amazonaws.com/post_image/default/education.jpg")
     let oppositeUser = ChatUser(id: "21",
-                         username: "21번 유저",
+                         username: "상대 유저",
                          position: "UX 디자이너",
                          profileImageUrl: "https://budi.s3.ap-northeast-2.amazonaws.com/post_image/default/dating.jpg")
 

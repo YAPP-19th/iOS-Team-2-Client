@@ -297,10 +297,10 @@ extension ChattingDetailViewController: UICollectionViewDelegateFlowLayout, UICo
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        var size = CGSize(width: collectionView.frame.width, height: 170)
+        var size = CGSize(width: collectionView.frame.width, height: 150)
         let message = viewModel.state.messages.value[indexPath.row]
         
-        if message.isForApply { size.height = 170 }
+        if message.isForApply { size.height = 150 }
         
         return size
     }

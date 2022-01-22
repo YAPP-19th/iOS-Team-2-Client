@@ -21,7 +21,10 @@ final class NotificationListCell: UICollectionViewCell {
         if let url = URL(string: notification.postImageUrl), let data = try? Data(contentsOf: url) {
             imageView.image = UIImage(data: data)
         }
-        timeLabel.text = notification.date.convertTimePassedString()
+        print(notification.date)
+        if let date = notification.date.date() {
+            timeLabel.text = date.convertTimePassedString()
+        }
         
         let title = notification.title
         messageLabel.text = title

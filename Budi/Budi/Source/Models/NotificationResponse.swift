@@ -22,7 +22,7 @@ struct NotificationResponse: Decodable {
     let title: String
     let body: String
     let isRead: Bool
-    let date: Date
+    let date: String
     let postId: Int
     let postImageUrl: String
     let postTitle: String
@@ -45,7 +45,7 @@ struct NotificationResponse: Decodable {
         title = (try? container.decode(String.self, forKey: .title)) ?? ""
         body = (try? container.decode(String.self, forKey: .body)) ?? ""
         isRead = (try? container.decode(Bool.self, forKey: .isRead)) ?? false
-        date = (try? container.decode(Date.self, forKey: .date)) ?? Date()
+        date = (try? container.decode(String.self, forKey: .date)) ?? ""
         postId = (try? container.decode(Int.self, forKey: .postId)) ?? 0
         postImageUrl = (try? container.decode(String.self, forKey: .postImageUrl)) ?? ""
         postTitle = (try? container.decode(String.self, forKey: .postTitle)) ?? ""
@@ -56,7 +56,7 @@ struct NotificationResponse: Decodable {
         self.title = ""
         self.body = ""
         self.isRead = false
-        self.date = Date()
+        self.date = ""
         self.postId = 0
         self.postImageUrl = ""
         self.postTitle = ""

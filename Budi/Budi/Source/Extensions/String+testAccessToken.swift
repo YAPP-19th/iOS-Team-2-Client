@@ -8,5 +8,5 @@
 import Foundation
 
 extension String {
-    static var testAccessToken: String = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJFeHBpcmVkUGVyaW9kIjoiMzYwMCIsInVzZXJJZCI6IjEyMzQ1Njc4IiwiaXNzdWVyIjoiU1lKX0lTU1VFIiwibWVtYmVySWQiOjIsImV4cCI6MTY3MjMxOTMzNn0.DztjthO5BqH2A5vCDus0DZ0c2yntLT70BDcFP6keGkk"
+    static var testAccessToken: String = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJFeHBpcmVkUGVyaW9kIjoiMzYwMCIsInVzZXJJZCI6IjIxIiwiaXNzdWVyIjoiU1lKX0lTU1VFIiwibWVtYmVySWQiOjI4LCJleHAiOjE2NzQwMzY3MzB9.FgsLESBHtpG5G9FjNq0fb_mkTHT1kGf-eeD2w0cHRuw"
 }

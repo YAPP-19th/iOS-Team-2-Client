@@ -49,8 +49,6 @@ final class NotificationViewController: UIViewController {
             .receive(on: DispatchQueue.main)
             .sink(receiveValue: { [weak self] _ in
                 guard let self = self else { return }
-                let notifications = self.viewModel.state.notifications.value
-                print("vc notifications: \(notifications)")
                 self.collectionView.reloadData()
             }).store(in: &cancellables)
     }

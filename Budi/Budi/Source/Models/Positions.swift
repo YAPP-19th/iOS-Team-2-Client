@@ -119,4 +119,12 @@ enum Position: Int, CaseIterable {
             return .init(hexString: "#E96262") ?? .label
         }
     }
+    
+    var positionList: [String] {
+        switch self {
+        case .developer: return ["하이브리드 개발", "iOS 개발", "AOS 개발", "웹 프론트 개발", "웹 백엔드 개발", "블록체인 개발", "AI 개발", "개발 기타"]
+        case .designer: return ["UI/UX 디자인", "웹 디자인", "모바일 디자인", "일러스트레이터", "UX 디자인", "디자인 기타"]
+        case .productManager: return ["비즈니스 기획", "UI/UX 기획", "PM", "상품 기획", "서비스 기획", "기획 기타"]
+        }
+    }
 }

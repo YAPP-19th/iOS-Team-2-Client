@@ -140,7 +140,7 @@ extension ChattingDetailViewController: UITextFieldDelegate {
         guard !textFieldText.isEmpty else { return }
         guard let currentUser = viewModel.state.currentUser.value, let oppositeUser = viewModel.state.oppositeUser.value else { return }
         
-        ChatManager.shared.sendMessage(from: currentUser, to: oppositeUser, textFieldText)
+        ChatManager.shared.sendMessage(from: currentUser, to: oppositeUser, text: textFieldText)
         
         self.textFieldText = ""
         self.textField.text = ""
@@ -214,12 +214,28 @@ extension ChattingDetailViewController: UITextFieldDelegate {
     }
 }
 
+// MARK: - Delegate
+extension ChattingDetailViewController: ChattingProjectRequestCellDelegate, MyChattingProjectRequestCellDelegate {
+    func acceptApply() {
+        viewModel.acceptApply { result in
+            switch result {
+            case .success(let response):
+                do {
+                    guard let json = try JSONSerialization.jsonObject(with: response.data, options: []) as? [String: Any] else { return }
+                    print("json == \(json)")
+                } catch {}
+            case .failure(let error): print(error.localizedDescription)
+            }
+        }
+    }
+}
+
 // MARK: - CollectionView
 extension ChattingDetailViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     private func configureCollectionView() {
         collectionView.dataSource = self
         collectionView.delegate = self
-        let cellClasses = [ChattingMessageCell.self, MyChattingMessageCell.self, ChattingMessageEmojiCell.self, MyChattingMessageEmojiCell.self]
+        let cellClasses = [ChattingMessageCell.self, MyChattingMessageCell.self, ChattingMessageEmojiCell.self, MyChattingMessageEmojiCell.self, ChattingProjectRequestCell.self, MyChattingProjectRequestCell.self]
         cellClasses.forEach {
             collectionView.register(.init(nibName: $0.identifier, bundle: nil), forCellWithReuseIdentifier: $0.identifier)
         }
@@ -239,8 +255,23 @@ extension ChattingDetailViewController: UICollectionViewDelegateFlowLayout, UICo
         guard let currentUser = viewModel.state.currentUser.value else { return UICollectionViewCell() }
         
         let message = viewModel.state.messages.value[indexPath.row]
+        let isForApply = message.isForApply
         let isFromCurrentUser = (message.senderId == currentUser.id)
         let isSingleEmojiMessage = message.text.isSingleEmoji
+        
+        if isForApply {
+            if isFromCurrentUser {
+                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MyChattingProjectRequestCell.identifier, for: indexPath) as? MyChattingProjectRequestCell else { return UICollectionViewCell() }
+                cell.delegate = self
+                cell.configureUI(message)
+                return cell
+            } else {
+                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ChattingProjectRequestCell.identifier, for: indexPath) as? ChattingProjectRequestCell else { return UICollectionViewCell() }
+                cell.delegate = self
+                cell.configureUI(message)
+                return cell
+            }
+        }
         
         if isFromCurrentUser {
             if !isSingleEmojiMessage {
@@ -266,7 +297,12 @@ extension ChattingDetailViewController: UICollectionViewDelegateFlowLayout, UICo
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        CGSize(width: collectionView.frame.width, height: 34)
+        var size = CGSize(width: collectionView.frame.width, height: 170)
+        let message = viewModel.state.messages.value[indexPath.row]
+        
+        if message.isForApply { size.height = 170 }
+        
+        return size
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {

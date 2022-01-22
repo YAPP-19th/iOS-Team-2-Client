@@ -18,7 +18,6 @@ enum BudiTarget {
     case recruitingStatuses(id: Int)
     case postDefaultImageUrls
     case signUpStatusCheck(memberId: Int)
-    case applies(accessToken: String, param: AppliesRequest)
     case checkDuplicateName(name: String)
     case postCategory
     case likePosts(accessToken: String, id: Int)
@@ -45,7 +44,6 @@ extension BudiTarget: TargetType {
         case .teamMembers(let id): return "/posts/\(id)/members"
         case .recruitingStatuses(let id): return "/posts/\(id)/recruitingStatus"
         case .postDefaultImageUrls: return "/infos/postDefaultImageUrls"
-        case .applies: return "/applies"
         case .checkDuplicateName: return "/members/checkDuplicateName"
         case .postCategory: return "/infos/postCategory"
         case .likePosts(_, let id): return "/post/\(id)/like-posts"
@@ -58,7 +56,6 @@ extension BudiTarget: TargetType {
         switch self {
         case .createInfo: return .post
         case .createPost: return .post
-        case .applies: return .post
         case .likePosts: return .put
         case .convertImageToURL: return .post
         default: return .get
@@ -72,7 +69,6 @@ extension BudiTarget: TargetType {
         case .checkDuplicateName(let name):
             return .requestParameters(parameters: ["name": name], encoding: URLEncoding.default)
         case .createPost(_, let param): return .requestJSONEncodable(param)
-        case .applies(_, let param): return .requestJSONEncodable(param)
         case .posts(let page, let size):
             return .requestParameters(parameters: ["page": page, "size": size], encoding: URLEncoding.default)
         case .filteredPosts(_, let page, let size):
@@ -88,7 +84,7 @@ extension BudiTarget: TargetType {
 
     var headers: [String: String]? {
         switch self {
-        case .createInfo(let accessToken, _), .createPost(let accessToken, _), .applies(let accessToken, _), .post(let accessToken, _), .likePosts(let accessToken, _), .myLikePosts(let accessToken), .getMyBudiProject(let accessToken):
+        case .createInfo(let accessToken, _), .createPost(let accessToken, _),  .post(let accessToken, _), .likePosts(let accessToken, _), .myLikePosts(let accessToken), .getMyBudiProject(let accessToken):
             return ["Content-Type": "application/json", "accessToken": "\(accessToken)"]
         case .convertImageToURL: return ["Content-type": "multipart/form-data"]
         default: return ["Content-Type": "application/json"]

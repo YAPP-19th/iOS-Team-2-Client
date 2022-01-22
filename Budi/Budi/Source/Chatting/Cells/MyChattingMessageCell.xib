@@ -36,7 +36,7 @@
                                     <constraint firstAttribute="trailing" secondItem="kMi-Wu-l74" secondAttribute="trailing" constant="8" id="1ca-4v-ppz"/>
                                     <constraint firstAttribute="bottom" secondItem="kMi-Wu-l74" secondAttribute="bottom" constant="8" id="74c-1J-6fX"/>
                                     <constraint firstItem="kMi-Wu-l74" firstAttribute="leading" secondItem="eaf-YK-WDd" secondAttribute="leading" constant="8" id="9ui-uD-9rd"/>
-                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="250" id="PFb-Lv-U9g"/>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="280" id="PFb-Lv-U9g"/>
                                     <constraint firstItem="kMi-Wu-l74" firstAttribute="top" secondItem="eaf-YK-WDd" secondAttribute="top" constant="8" id="edB-Kz-SIa"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>

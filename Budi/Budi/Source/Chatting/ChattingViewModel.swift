@@ -23,6 +23,10 @@ final class ChattingViewModel: ViewModel {
         
         let messages = CurrentValueSubject<[ChatMessage], Never>([])
         let recentMessages = CurrentValueSubject<[ChatMessage], Never>([])
+        
+        let postId = CurrentValueSubject<Int, Never>(0)
+        let positionName = CurrentValueSubject<String, Never>("")
+        let applyId = CurrentValueSubject<Int, Never>(0)
     }
     
     private var listener: ListenerRegistration?
@@ -30,7 +34,7 @@ final class ChattingViewModel: ViewModel {
     let action = Action()
     let state = State()
     private var cancellables = Set<AnyCancellable>()
-    private let provider = MoyaProvider<BudiTarget>()
+    private let provider = MoyaProvider<ApplyTarget>()
     
     private let manager = ChatManager.shared
     
@@ -47,17 +51,66 @@ final class ChattingViewModel: ViewModel {
     init() {
         state.currentUser.value = currentUser
         state.oppositeUser.value = oppositeUser
-        registerTestUsersInfo()
-        
         fetchCurrentUserInfo()
-        fetchOppositeUserInfo()
         
+        // MARK: - 테스트를 위해 모든 메세지 삭제
+//        manager.removeAllMessages("0", "21")
+
         fetchRecentMessages()
     }
 }
 
-// MARK: - Message
 extension ChattingViewModel {
+    
+    // MARK: - Applies 조회
+    func getApplyId() {
+        // MARK: - 이후 AccessToken으로 변경
+        let accessToken = String.testAccessToken
+        var position = ""
+        let postId = state.postId.value
+        
+        let positionName = state.positionName.value
+        if Position.developer.positionList.contains(positionName) {
+            position = "developer"
+        } else if Position.designer.positionList.contains(positionName) {
+            position = "designer"
+        } else {
+            position = "planner"
+        }
+        
+        // MARK: - 지원자들 조회 -> applyId 얻은 후 state에 저장
+        provider.request(.applies(accessToken: accessToken, position: position, postId: postId)) { result in
+            switch result {
+            case .success(let response):
+                do {
+                    guard let json = try JSONSerialization.jsonObject(with: response.data, options: []) as? [String: Any], let data = json["data"] else { return }
+                    let dict = try JSONSerialization.data(withJSONObject: data)
+                    let appliesResults = try JSONDecoder().decode([AppliesResult].self, from: dict)
+                    
+                    guard let stringId = self.state.currentUser.value?.id, let id = Int(stringId), let appliesResult = appliesResults.filter({ $0.applyer.id == Int(id) }).first else { return }
+                                        
+                    let applyId = appliesResult.applyId
+                    self.state.applyId.value = applyId
+                } catch {}
+            case .failure(let error): print(error.localizedDescription)
+            }
+        }
+    }
+    
+    func acceptApply(_ completion: @escaping (Result<Moya.Response, Error>) -> Void) {
+        // MARK: - 이후 AccessToken으로 변경
+        let accessToken = String.testAccessToken
+        let applyId = state.applyId.value
+        
+        provider.request(.acceptApply(accessToken: accessToken, applyId: applyId)) { result in
+            switch result {
+            case .success(let response): completion(.success(response))
+            case .failure(let error): completion(.failure(error))
+            }
+        }
+    }
+    
+    // MARK: - Message
     func fetchRecentMessages() {
         guard let currentUid = currentUser.id else { return }
 
@@ -95,6 +148,11 @@ extension ChattingViewModel {
             guard let documents = snapshot?.documents else { return }
             let messages = documents.compactMap { try? $0.data(as: ChatMessage.self) }
             self.state.messages.value = messages
+            if let firstMessage = messages.first {
+                self.state.postId.value = firstMessage.postId
+                self.state.positionName.value = firstMessage.positionName
+                self.getApplyId()
+            }
         }
     }
 }
@@ -108,34 +166,5 @@ private extension ChattingViewModel {
             guard let self = self else { return }
             self.state.currentUser.value = user
         }
-    }
-}
-
-// MARK: - Test/User, Test/Authentication
-private extension ChattingViewModel {
-    func sendTestMessages(_ currentUser: ChatUser, _ oppositeUser: ChatUser) {
-        self.manager.sendMessage(from: oppositeUser, to: currentUser, "\(Date().convertStringahhmm())에 보낸 테스트 메세지")
-    }
-    
-    func fetchOppositeUserInfo() {
-        guard let oppositeUid = state.oppositeUser.value?.id else { return }
-        
-        manager.fetchUserInfo(oppositeUid) { [weak self] user in
-            self?.state.oppositeUser.value = user
-        }
-    }
-
-    func registerTestUsersInfo() {
-        manager.registerUserInfo(currentUser)
-        manager.registerUserInfo(oppositeUser)
-    }
-    
-    func createTestUserWithEmail() {
-        manager.createUserWithEmail("A@gmail.com", "123456")
-        manager.createUserWithEmail("B@gmail.com", "123456")
-    }
-
-    func loginWithEmail() {
-        manager.loginWithEmail("A@gmail.com", "123456")
     }
 }

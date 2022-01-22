@@ -50,7 +50,7 @@
                                 <color key="textColor" name="Text_disabled"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default_profile" translatesAutoresizingMaskIntoConstraints="NO" id="ZLi-Oz-XSU">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default_profile" translatesAutoresizingMaskIntoConstraints="NO" id="ZLi-Oz-XSU">
                                 <rect key="frame" x="13" y="0.0" width="36" height="36"/>
                                 <color key="tintColor" name="LightGray"/>
                                 <constraints>

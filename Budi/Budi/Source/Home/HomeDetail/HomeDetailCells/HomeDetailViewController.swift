@@ -160,9 +160,9 @@ extension HomeDetailViewController: RecruitingStatusBottomViewControllerDelegate
         viewModel.state.selectedRecruitingStatus.value = selectedRecruitingStatus
 
         let postId = viewModel.state.postId.value
-        let param = AppliesRequest(postId: postId, recruitingPositionId: selectedRecruitingStatus.recruitingPositionId)
+        let param = ApplyRequest(postId: postId, recruitingPositionId: selectedRecruitingStatus.recruitingPositionId)
 
-        viewModel.requestApplies(UserDefaults.standard.string(forKey: "accessToken") ?? "", param) { result in
+        viewModel.requestApply(UserDefaults.standard.string(forKey: "accessToken") ?? "", param) { result in
             switch result {
             case .success:
                 self.dismiss(animated: false) {
@@ -182,9 +182,9 @@ extension HomeDetailViewController: RecruitingStatusBottomViewControllerDelegate
         guard let leaderUid = viewModel.state.post.value?.leader.leaderId else { return }
                 
         guard let projectTitle = viewModel.state.post.value?.title, let positionName = viewModel.state.selectedRecruitingStatus.value?.positions.position else { return }
-        let messageText = "\(projectTitle) 프로젝트의 \(positionName) 파트에 참여 요청을 보냈습니다."
+        let messageText = "\(projectTitle) 프로젝트의 \(positionName) 분야에 참여 요청을 보냈습니다."
         
-        ChatManager.shared.sendMessage(fromId: currentUid, toId: leaderUid, messageText)
+        ChatManager.shared.sendMessageForApply(fromId: currentUid, toId: leaderUid, text: messageText, postId: viewModel.state.postId.value, projectTitle: projectTitle, positionName: positionName)
     }
 }
 

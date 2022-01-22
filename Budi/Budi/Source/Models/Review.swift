@@ -6,6 +6,7 @@
 //
 
 import Foundation
+
 struct Review: Codable {
     let title: String
     let description: String

@@ -21,7 +21,7 @@ final class ChatManager {
 
 // MARK: - Message
 extension ChatManager {
-    func sendMessage(fromId senderId: Int, toId recipientId: Int, _ text: String) {
+    func sendMessage(fromId senderId: Int, toId recipientId: Int, text: String) {
         var sender: ChatUser?
 
         fetchUserInfo(String(senderId)) { [weak self] user in
@@ -30,12 +30,26 @@ extension ChatManager {
             
             self.fetchUserInfo(String(recipientId)) { [weak self] recipient in
                 guard let self = self, let sender = sender else { return }
-                self.sendMessage(from: sender, to: recipient, text)
+                self.sendMessage(from: sender, to: recipient, text: text)
             }
         }
     }
     
-    func sendMessage(from sender: ChatUser, to recipient: ChatUser, _ text: String) {
+    func sendMessageForApply(fromId senderId: Int, toId recipientId: Int, text: String, postId: Int, projectTitle: String, positionName: String) {
+        var sender: ChatUser?
+
+        fetchUserInfo(String(senderId)) { [weak self] user in
+            guard let self = self else { return }
+            sender = user
+            
+            self.fetchUserInfo(String(recipientId)) { [weak self] recipient in
+                guard let self = self, let sender = sender else { return }
+                self.sendMessageForApply(from: sender, to: recipient, text: text, postId: postId, projectTitle: projectTitle, positionName: positionName)
+            }
+        }
+    }
+    
+    func sendMessage(from sender: ChatUser, to recipient: ChatUser, text: String) {
         guard let senderId = sender.id, let recipientId = recipient.id else { return }
         
         let message = ChatMessage(timestamp: Timestamp(date: Date()),
@@ -52,6 +66,27 @@ extension ChatManager {
         registerMessage(message)
     }
     
+    func sendMessageForApply(from sender: ChatUser, to recipient: ChatUser, text: String, postId: Int, projectTitle: String, positionName: String) {
+        guard let senderId = sender.id, let recipientId = recipient.id else { return }
+        
+        let message = ChatMessage(timestamp: Timestamp(date: Date()),
+                                  text: text,
+                                  senderId: senderId,
+                                  senderUsername: sender.username,
+                                  senderPosition: sender.position,
+                                  senderProfileImageUrl: sender.profileImageUrl,
+                                  recipientId: recipientId,
+                                  recipientUsername: recipient.username,
+                                  recipientPosition: recipient.position,
+                                  recipientProfileImageUrl: recipient.profileImageUrl,
+                                  isForApply: true,
+                                  postId: postId,
+                                  projectTitle: projectTitle,
+                                  positionName: positionName)
+        
+        registerMessage(message)
+    }
+    
     private func registerMessage(_ message: ChatMessage) {
         let messageData: [String: Any] = ["timestamp": message.timestamp,
                                           "text": message.text,
@@ -62,7 +97,11 @@ extension ChatManager {
                                           "recipientId": message.recipientId,
                                           "recipientUsername": message.recipientUsername,
                                           "recipientPosition":message.senderPosition,
-                                          "recipientProfileImageUrl": message.recipientProfileImageUrl]
+                                          "recipientProfileImageUrl": message.recipientProfileImageUrl,
+                                          "isForApply": message.isForApply,
+                                          "postId": message.postId,
+                                          "projectTitle": message.projectTitle,
+                                          "positionName": message.positionName]
         
         let currentUserRef = FirebaseCollection.messages.ref.document(message.senderId).collection(message.recipientId).document()
         let documentId = currentUserRef.documentID

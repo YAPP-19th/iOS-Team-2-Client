@@ -146,6 +146,7 @@ private extension HomeContainerViewController {
 
         let notifyButton = UIButton()
         notifyButton.setImage(.init(systemName: "bell"), for: .normal)
+        notifyButton.addTarget(self, action: #selector(showNotificationVC), for: .touchUpInside)
 
         let stackview = UIStackView(arrangedSubviews: [editButton, searchButton, notifyButton])
         stackview.distribution = .equalSpacing
@@ -155,5 +156,10 @@ private extension HomeContainerViewController {
 
         navigationItem.rightBarButtonItem =  UIBarButtonItem(customView: stackview)
         title = "버디 모집"
+    }
+    
+    @objc
+    func showNotificationVC() {
+        coordinator?.showNotificationVC(self)
     }
 }

@@ -36,7 +36,8 @@ struct ChatMessage: Identifiable, Codable {
     let recipientPosition: String
     let recipientProfileImageUrl: String
 
-//    이후 프로젝트 수락하기 관련 프로퍼티 추가
-//    let isInvitation: Bool
-//    let projectName: String
+    var isForApply: Bool = false
+    var postId: Int = 0
+    var projectTitle: String = ""
+    var positionName: String = ""
 }

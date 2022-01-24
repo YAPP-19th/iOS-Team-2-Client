@@ -42,7 +42,7 @@ extension Date {
         let day = Date().distance(from: date, only: .day)
         let month = Date().distance(from: date, only: .month)
         let year = Date().distance(from: date, only: .year)
-
+        
         if year != 0 {
             return "\(year)년 전"
         } else if  month != 0 {

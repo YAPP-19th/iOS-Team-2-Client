@@ -106,4 +106,9 @@ extension HomeCoordinator {
         navigationController?.popViewController(animated: true)
         vc.tabBarController?.selectedIndex = 2
     }
+    
+    func showNotificationVC(_ vc: UIViewController) {
+        let notificationVC: NotificationViewController = NotificationViewController(nibName: NotificationViewController.identifier, bundle: nil, viewModel: NotificationViewModel())
+        navigationController?.pushViewController(notificationVC, animated: true)
+    }
 }

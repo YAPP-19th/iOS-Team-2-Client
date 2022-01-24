@@ -1,5 +1,5 @@
 //
-//  AppliesRequest.swift
+//  ApplyRequest.swift
 //  Budi
 //
 //  Created by leeesangheee on 2021/12/16.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct AppliesRequest: Codable {
+struct ApplyRequest: Codable {
     let postId: Int
     let recruitingPositionId: Int
     

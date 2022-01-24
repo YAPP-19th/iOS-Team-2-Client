@@ -31,7 +31,7 @@
 		5E503E832789C86800F13256 /* UIView+addCornerRadius.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E503E822789C86800F13256 /* UIView+addCornerRadius.swift */; };
 		5E5517A92768BCC300DC605E /* HomeWritingPartBottomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5517A72768BCC300DC605E /* HomeWritingPartBottomCell.swift */; };
 		5E5517AA2768BCC300DC605E /* HomeWritingPartBottomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E5517A82768BCC300DC605E /* HomeWritingPartBottomCell.xib */; };
-		5E58E6B1276B588C00ABBF1C /* AppliesRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E58E6B0276B588C00ABBF1C /* AppliesRequest.swift */; };
+		5E58E6B1276B588C00ABBF1C /* ApplyRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E58E6B0276B588C00ABBF1C /* ApplyRequest.swift */; };
 		5E58E6B5276BA73500ABBF1C /* PostRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E58E6B4276BA73500ABBF1C /* PostRequest.swift */; };
 		5E7CF4C82770B79E007315F1 /* ProjectMembersBottomPositionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7CF4C62770B79E007315F1 /* ProjectMembersBottomPositionCell.swift */; };
 		5E7CF4C92770B79E007315F1 /* ProjectMembersBottomPositionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E7CF4C72770B79E007315F1 /* ProjectMembersBottomPositionCell.xib */; };
@@ -56,6 +56,14 @@
 		5E88637B276771EE0022397A /* HomeWritingPartBottomViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E886379276771EE0022397A /* HomeWritingPartBottomViewController.xib */; };
 		5E8863822767AE190022397A /* HomeWritingImageBottomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8863802767AE190022397A /* HomeWritingImageBottomCell.swift */; };
 		5E8863832767AE190022397A /* HomeWritingImageBottomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E8863812767AE190022397A /* HomeWritingImageBottomCell.xib */; };
+		5E8DAA862796B7490019B0B7 /* NotificationTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8DAA852796B7490019B0B7 /* NotificationTarget.swift */; };
+		5E8DAA892796BDBE0019B0B7 /* NotificationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8DAA882796BDBE0019B0B7 /* NotificationResponse.swift */; };
+		5E8DAA8C2796CB7E0019B0B7 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8DAA8A2796CB7E0019B0B7 /* NotificationViewController.swift */; };
+		5E8DAA8D2796CB7E0019B0B7 /* NotificationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E8DAA8B2796CB7E0019B0B7 /* NotificationViewController.xib */; };
+		5E8DAA902796CBA80019B0B7 /* NotificationListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8DAA8E2796CBA80019B0B7 /* NotificationListCell.swift */; };
+		5E8DAA912796CBA80019B0B7 /* NotificationListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E8DAA8F2796CBA80019B0B7 /* NotificationListCell.xib */; };
+		5E8DAA932796D0940019B0B7 /* NotificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8DAA922796D0940019B0B7 /* NotificationViewModel.swift */; };
+		5E8DAA962796F0C60019B0B7 /* NSMutableAttributedString+font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8DAA952796F0C60019B0B7 /* NSMutableAttributedString+font.swift */; };
 		5E91508D27721D8B000578D4 /* MyBudiMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E91508B27721D8B000578D4 /* MyBudiMainViewController.swift */; };
 		5E91508E27721D8B000578D4 /* MyBudiMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E91508C27721D8B000578D4 /* MyBudiMainViewController.xib */; };
 		5E915092277221F5000578D4 /* MyBudiProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E915090277221F5000578D4 /* MyBudiProfileCell.swift */; };
@@ -113,6 +121,11 @@
 		5EC2FEFA275E191F00FF5BB0 /* HomeDetailStatusUnitCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EC2FEF8275E191E00FF5BB0 /* HomeDetailStatusUnitCell.xib */; };
 		5EC2FF00275E504800FF5BB0 /* HomeDetailCellType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC2FEFF275E504800FF5BB0 /* HomeDetailCellType.swift */; };
 		5EC2FF04275E5D8300FF5BB0 /* HomeWritingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC2FF03275E5D8300FF5BB0 /* HomeWritingViewModel.swift */; };
+		5EC6989D279BB7AB006FF1D9 /* MyChattingProjectRequestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC6989B279BB7AB006FF1D9 /* MyChattingProjectRequestCell.swift */; };
+		5EC6989E279BB7AB006FF1D9 /* MyChattingProjectRequestCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EC6989C279BB7AB006FF1D9 /* MyChattingProjectRequestCell.xib */; };
+		5EC698A2279BCC8E006FF1D9 /* AppliesResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC698A1279BCC8E006FF1D9 /* AppliesResult.swift */; };
+		5EC698A4279C0171006FF1D9 /* ApplyTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC698A3279C0171006FF1D9 /* ApplyTarget.swift */; };
+		5EC698AB279C05E0006FF1D9 /* AcceptApplyRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC698AA279C05E0006FF1D9 /* AcceptApplyRequest.swift */; };
 		5ED53D70277F8DEF002871CD /* LikePosts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED53D6F277F8DEF002871CD /* LikePosts.swift */; };
 		5EE7FB462787E11200D9C39F /* ErrorMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE7FB452787E11200D9C39F /* ErrorMessage.swift */; };
 		5EF5F3292741590300A5F6E2 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF5F3282741590300A5F6E2 /* LocationManager.swift */; };
@@ -131,8 +144,6 @@
 		5EFB0A532734016600F39A4D /* MyChattingMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EFB0A512734016600F39A4D /* MyChattingMessageCell.xib */; };
 		5EFB0A5627340BF100F39A4D /* ChattingMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EFB0A5427340BF100F39A4D /* ChattingMessageCell.swift */; };
 		5EFB0A5727340BF100F39A4D /* ChattingMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EFB0A5527340BF100F39A4D /* ChattingMessageCell.xib */; };
-		5EFB0A5A27341C1100F39A4D /* ChattingTimeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EFB0A5827341C1100F39A4D /* ChattingTimeCell.swift */; };
-		5EFB0A5B27341C1100F39A4D /* ChattingTimeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EFB0A5927341C1100F39A4D /* ChattingTimeCell.xib */; };
 		A81D105F2764828A0022D610 /* HistoryWriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81D105E2764828A0022D610 /* HistoryWriteViewController.swift */; };
 		A81D1061276482950022D610 /* DefaultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81D1060276482950022D610 /* DefaultTableViewCell.swift */; };
 		A81D1063276482B70022D610 /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81D1062276482B70022D610 /* Section.swift */; };
@@ -279,7 +290,7 @@
 		5E503E822789C86800F13256 /* UIView+addCornerRadius.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+addCornerRadius.swift"; sourceTree = "<group>"; };
 		5E5517A72768BCC300DC605E /* HomeWritingPartBottomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWritingPartBottomCell.swift; sourceTree = "<group>"; };
 		5E5517A82768BCC300DC605E /* HomeWritingPartBottomCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeWritingPartBottomCell.xib; sourceTree = "<group>"; };
-		5E58E6B0276B588C00ABBF1C /* AppliesRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppliesRequest.swift; sourceTree = "<group>"; };
+		5E58E6B0276B588C00ABBF1C /* ApplyRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplyRequest.swift; sourceTree = "<group>"; };
 		5E58E6B4276BA73500ABBF1C /* PostRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRequest.swift; sourceTree = "<group>"; };
 		5E7CF4C62770B79E007315F1 /* ProjectMembersBottomPositionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectMembersBottomPositionCell.swift; sourceTree = "<group>"; };
 		5E7CF4C72770B79E007315F1 /* ProjectMembersBottomPositionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProjectMembersBottomPositionCell.xib; sourceTree = "<group>"; };
@@ -304,6 +315,14 @@
 		5E886379276771EE0022397A /* HomeWritingPartBottomViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeWritingPartBottomViewController.xib; sourceTree = "<group>"; };
 		5E8863802767AE190022397A /* HomeWritingImageBottomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWritingImageBottomCell.swift; sourceTree = "<group>"; };
 		5E8863812767AE190022397A /* HomeWritingImageBottomCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeWritingImageBottomCell.xib; sourceTree = "<group>"; };
+		5E8DAA852796B7490019B0B7 /* NotificationTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTarget.swift; sourceTree = "<group>"; };
+		5E8DAA882796BDBE0019B0B7 /* NotificationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationResponse.swift; sourceTree = "<group>"; };
+		5E8DAA8A2796CB7E0019B0B7 /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
+		5E8DAA8B2796CB7E0019B0B7 /* NotificationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotificationViewController.xib; sourceTree = "<group>"; };
+		5E8DAA8E2796CBA80019B0B7 /* NotificationListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationListCell.swift; sourceTree = "<group>"; };
+		5E8DAA8F2796CBA80019B0B7 /* NotificationListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotificationListCell.xib; sourceTree = "<group>"; };
+		5E8DAA922796D0940019B0B7 /* NotificationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewModel.swift; sourceTree = "<group>"; };
+		5E8DAA952796F0C60019B0B7 /* NSMutableAttributedString+font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSMutableAttributedString+font.swift"; sourceTree = "<group>"; };
 		5E91508B27721D8B000578D4 /* MyBudiMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyBudiMainViewController.swift; sourceTree = "<group>"; };
 		5E91508C27721D8B000578D4 /* MyBudiMainViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyBudiMainViewController.xib; sourceTree = "<group>"; };
 		5E915090277221F5000578D4 /* MyBudiProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyBudiProfileCell.swift; sourceTree = "<group>"; };
@@ -363,6 +382,11 @@
 		5EC2FEF8275E191E00FF5BB0 /* HomeDetailStatusUnitCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeDetailStatusUnitCell.xib; sourceTree = "<group>"; };
 		5EC2FEFF275E504800FF5BB0 /* HomeDetailCellType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailCellType.swift; sourceTree = "<group>"; };
 		5EC2FF03275E5D8300FF5BB0 /* HomeWritingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWritingViewModel.swift; sourceTree = "<group>"; };
+		5EC6989B279BB7AB006FF1D9 /* MyChattingProjectRequestCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyChattingProjectRequestCell.swift; sourceTree = "<group>"; };
+		5EC6989C279BB7AB006FF1D9 /* MyChattingProjectRequestCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyChattingProjectRequestCell.xib; sourceTree = "<group>"; };
+		5EC698A1279BCC8E006FF1D9 /* AppliesResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppliesResult.swift; sourceTree = "<group>"; };
+		5EC698A3279C0171006FF1D9 /* ApplyTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplyTarget.swift; sourceTree = "<group>"; };
+		5EC698AA279C05E0006FF1D9 /* AcceptApplyRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcceptApplyRequest.swift; sourceTree = "<group>"; };
 		5ED53D6F277F8DEF002871CD /* LikePosts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikePosts.swift; sourceTree = "<group>"; };
 		5EE7FB452787E11200D9C39F /* ErrorMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorMessage.swift; sourceTree = "<group>"; };
 		5EF5F3282741590300A5F6E2 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
@@ -381,8 +405,6 @@
 		5EFB0A512734016600F39A4D /* MyChattingMessageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyChattingMessageCell.xib; sourceTree = "<group>"; };
 		5EFB0A5427340BF100F39A4D /* ChattingMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingMessageCell.swift; sourceTree = "<group>"; };
 		5EFB0A5527340BF100F39A4D /* ChattingMessageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChattingMessageCell.xib; sourceTree = "<group>"; };
-		5EFB0A5827341C1100F39A4D /* ChattingTimeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingTimeCell.swift; sourceTree = "<group>"; };
-		5EFB0A5927341C1100F39A4D /* ChattingTimeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChattingTimeCell.xib; sourceTree = "<group>"; };
 		9EB71E235D2689FB858EFCB3 /* Pods-Budi.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Budi.release.xcconfig"; path = "Target Support Files/Pods-Budi/Pods-Budi.release.xcconfig"; sourceTree = "<group>"; };
 		A81D105C276482590022D610 /* HistoryManagementViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryManagementViewController.swift; sourceTree = "<group>"; };
 		A81D105E2764828A0022D610 /* HistoryWriteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryWriteViewController.swift; sourceTree = "<group>"; };
@@ -606,6 +628,18 @@
 			path = BottomSheets;
 			sourceTree = "<group>";
 		};
+		5E8DAA872796B8800019B0B7 /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+				5E8DAA922796D0940019B0B7 /* NotificationViewModel.swift */,
+				5E8DAA8A2796CB7E0019B0B7 /* NotificationViewController.swift */,
+				5E8DAA8B2796CB7E0019B0B7 /* NotificationViewController.xib */,
+				5E8DAA8E2796CBA80019B0B7 /* NotificationListCell.swift */,
+				5E8DAA8F2796CBA80019B0B7 /* NotificationListCell.xib */,
+			);
+			path = Notification;
+			sourceTree = "<group>";
+		};
 		5E91508F277221D0000578D4 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -751,6 +785,66 @@
 			path = HomeWriting;
 			sourceTree = "<group>";
 		};
+		5EC698A5279C03FB006FF1D9 /* Apply */ = {
+			isa = PBXGroup;
+			children = (
+				5E58E6B0276B588C00ABBF1C /* ApplyRequest.swift */,
+				5EC698A1279BCC8E006FF1D9 /* AppliesResult.swift */,
+				5EC698AA279C05E0006FF1D9 /* AcceptApplyRequest.swift */,
+			);
+			path = Apply;
+			sourceTree = "<group>";
+		};
+		5EC698A6279C040E006FF1D9 /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+				5E8DAA882796BDBE0019B0B7 /* NotificationResponse.swift */,
+			);
+			path = Notification;
+			sourceTree = "<group>";
+		};
+		5EC698A7279C0418006FF1D9 /* Like */ = {
+			isa = PBXGroup;
+			children = (
+				5ED53D6F277F8DEF002871CD /* LikePosts.swift */,
+				A8CE117D278AC682008AFEBC /* MyLikePost.swift */,
+			);
+			path = Like;
+			sourceTree = "<group>";
+		};
+		5EC698A8279C0427006FF1D9 /* Post */ = {
+			isa = PBXGroup;
+			children = (
+				B92D5504274C03AA00D0E851 /* Post.swift */,
+				5EF986C92786E58600874A40 /* Leader.swift */,
+				5E820B91276A3699004A03E9 /* TeamMember.swift */,
+				5E820B93276A36DA004A03E9 /* RecruitingStatus.swift */,
+				5E58E6B4276BA73500ABBF1C /* PostRequest.swift */,
+				5E801F1D2782A74400FFC2D3 /* RecruitingPosition.swift */,
+			);
+			path = Post;
+			sourceTree = "<group>";
+		};
+		5EC698A9279C0451006FF1D9 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				A8C8DA342786E76C00FFF2D0 /* BudiMember.swift */,
+				A8936FBB2777192500BE2C1D /* UserInfoUploadSuccess.swift */,
+				A8936FB72772F77600BE2C1D /* NameDuplication.swift */,
+				A81D1085276485590022D610 /* ProjectHistory.swift */,
+				A85C920C276A42210097E444 /* CreateInfo.swift */,
+				A81D1086276485590022D610 /* WorkHistory.swift */,
+				A84F266E276B7CD500C65DA1 /* SignupHistorySectionModel.swift */,
+				A84F2672276DA9FA00C65DA1 /* SignupInfoModel.swift */,
+				A84F2674276DE9F200C65DA1 /* SignupPersonalInfo.swift */,
+				A8CD0CED2771CDCA00FFDE64 /* BudiLogin.swift */,
+				A8CD0CEF2771CE3A00FFDE64 /* BudiLoginResponse.swift */,
+				B9E5C4DB278F1861006F0087 /* Evaluation.swift */,
+				A8CE117F278ACD88008AFEBC /* MyBudiProject.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
 		5EF5F327274158E600A5F6E2 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
@@ -805,8 +899,8 @@
 				5E3AE27F27906EDA000D40A0 /* MyChattingMessageEmojiCell.xib */,
 				5E43FB3B278A95EF0073574F /* ChattingProjectRequestCell.swift */,
 				5E43FB3C278A95EF0073574F /* ChattingProjectRequestCell.xib */,
-				5EFB0A5827341C1100F39A4D /* ChattingTimeCell.swift */,
-				5EFB0A5927341C1100F39A4D /* ChattingTimeCell.xib */,
+				5EC6989B279BB7AB006FF1D9 /* MyChattingProjectRequestCell.swift */,
+				5EC6989C279BB7AB006FF1D9 /* MyChattingProjectRequestCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -968,6 +1062,8 @@
 			children = (
 				5E24071C275225A600954BE7 /* BudiTarget.swift */,
 				B94D2D9D277E035300DD7FDD /* MemberTarget.swift */,
+				5E8DAA852796B7490019B0B7 /* NotificationTarget.swift */,
+				5EC698A3279C0171006FF1D9 /* ApplyTarget.swift */,
 			);
 			path = APITarget;
 			sourceTree = "<group>";
@@ -975,31 +1071,14 @@
 		B92D5503274C03AA00D0E851 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				A85C920C276A42210097E444 /* CreateInfo.swift */,
-				A84F266E276B7CD500C65DA1 /* SignupHistorySectionModel.swift */,
-				A84F2672276DA9FA00C65DA1 /* SignupInfoModel.swift */,
-				A84F2674276DE9F200C65DA1 /* SignupPersonalInfo.swift */,
-				A81D1085276485590022D610 /* ProjectHistory.swift */,
-				A81D1086276485590022D610 /* WorkHistory.swift */,
-				B92D5504274C03AA00D0E851 /* Post.swift */,
-				5EF986C92786E58600874A40 /* Leader.swift */,
-				5E820B91276A3699004A03E9 /* TeamMember.swift */,
-				5E820B93276A36DA004A03E9 /* RecruitingStatus.swift */,
-				5E58E6B4276BA73500ABBF1C /* PostRequest.swift */,
-				5E801F1D2782A74400FFC2D3 /* RecruitingPosition.swift */,
-				5E58E6B0276B588C00ABBF1C /* AppliesRequest.swift */,
 				B94DCA8227521648006A9E0D /* APIResponse.swift */,
 				A81D108B2764950F0022D610 /* Positions.swift */,
-				A8CD0CED2771CDCA00FFDE64 /* BudiLogin.swift */,
-				A8CD0CEF2771CE3A00FFDE64 /* BudiLoginResponse.swift */,
-				A8936FB72772F77600BE2C1D /* NameDuplication.swift */,
-				A8936FBB2777192500BE2C1D /* UserInfoUploadSuccess.swift */,
-				A8C8DA342786E76C00FFF2D0 /* BudiMember.swift */,
-				5ED53D6F277F8DEF002871CD /* LikePosts.swift */,
-				A8CE117D278AC682008AFEBC /* MyLikePost.swift */,
-				A8CE117F278ACD88008AFEBC /* MyBudiProject.swift */,
+				5EC698A9279C0451006FF1D9 /* Auth */,
+				5EC698A8279C0427006FF1D9 /* Post */,
+				5EC698A7279C0418006FF1D9 /* Like */,
+				5EC698A6279C040E006FF1D9 /* Notification */,
+				5EC698A5279C03FB006FF1D9 /* Apply */,
 				5EE7FB452787E11200D9C39F /* ErrorMessage.swift */,
-				B9E5C4DB278F1861006F0087 /* Evaluation.swift */,
 				B9E5C4DD278F186B006F0087 /* Review.swift */,
 				A8E03CE1278C98E40074DE4B /* PositionSwitch.swift */,
 			);
@@ -1058,6 +1137,7 @@
 				B9D66EC027146FFC00668490 /* TeamSearch */,
 				B9D66EC12714700900668490 /* Chatting */,
 				B9D66EC22714701000668490 /* MyBudi */,
+				5E8DAA872796B8800019B0B7 /* Notification */,
 				A8CD93352736701500299AB4 /* ReuseViews */,
 				5EF5F327274158E600A5F6E2 /* Utilities */,
 				B9D66ECF27147B0E00668490 /* Extensions */,
@@ -1181,6 +1261,7 @@
 				A8C8DA36278978B100FFF2D0 /* UISlider.swift */,
 				5E43FB45278B5C910073574F /* Ecodable+convert.swift */,
 				5EC00153278EA36A0091F7F3 /* UIImage.swift */,
+				5E8DAA952796F0C60019B0B7 /* NSMutableAttributedString+font.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1253,6 +1334,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5E8DAA912796CBA80019B0B7 /* NotificationListCell.xib in Resources */,
 				A8E03CD0278C68A40074DE4B /* NormalTextFieldTableViewCell.xib in Resources */,
 				A8E03CDC278C79870074DE4B /* ProjectTableViewCell.xib in Resources */,
 				B92D54F9274C02EB00D0E851 /* .swiftlint.yml in Resources */,
@@ -1261,9 +1343,9 @@
 				5E2554622732DF8A00033723 /* GreetingAlertViewController.xib in Resources */,
 				5E45AD142732F47800F0A80C /* RecruitingStatusBottomViewController.xib in Resources */,
 				5E45AD182732F78200F0A80C /* RecruitingStatusBottomCell.xib in Resources */,
+				5E8DAA8D2796CB7E0019B0B7 /* NotificationViewController.xib in Resources */,
 				5EB430362758953000283239 /* HomeWritingOnlineCell.xib in Resources */,
 				5EB4302A2758950400283239 /* HomeWritingNameCell.xib in Resources */,
-				5EFB0A5B27341C1100F39A4D /* ChattingTimeCell.xib in Resources */,
 				A8E03CE0278C7C680074DE4B /* MyBudiEditHeaderView.xib in Resources */,
 				5EA453A12731778000943C94 /* HomeDetailMainCell.xib in Resources */,
 				B94D2D9A277DE9E700DD7FDD /* GoogleService-Info.plist in Resources */,
@@ -1285,6 +1367,7 @@
 				B97A862E2786D6DB0016CF23 /* TeamSearchProfileCell.xib in Resources */,
 				B9BF788027004096000BE0EF /* LaunchScreen.storyboard in Resources */,
 				5EB4303A2758954A00283239 /* HomeWritingMembersCell.xib in Resources */,
+				5EC6989E279BB7AB006FF1D9 /* MyChattingProjectRequestCell.xib in Resources */,
 				5EA4536A2731412A00943C94 /* HomeCell.xib in Resources */,
 				B9BF787D27004096000BE0EF /* Assets.xcassets in Resources */,
 				5E91509F27722D85000578D4 /* MyBudiHelpCell.xib in Resources */,
@@ -1403,8 +1486,10 @@
 				B9684161277853D0002F5D3D /* RecruitingStatusBottomViewController.swift in Sources */,
 				B9684160277853C8002F5D3D /* MainTabBarCoordinator.swift in Sources */,
 				B968415F277853BC002F5D3D /* ProjectHistory.swift in Sources */,
+				5E8DAA962796F0C60019B0B7 /* NSMutableAttributedString+font.swift in Sources */,
 				5E9150A62772356A000578D4 /* MyBudiEditCellType.swift in Sources */,
 				5E88636E2767450A0022397A /* HomeWritingCellType.swift in Sources */,
+				5EC6989D279BB7AB006FF1D9 /* MyChattingProjectRequestCell.swift in Sources */,
 				A8E03CD3278C693C0074DE4B /* LocationReplaceTableViewCell.swift in Sources */,
 				A8E03CDB278C79870074DE4B /* ProjectTableViewCell.swift in Sources */,
 				5E8863822767AE190022397A /* HomeWritingImageBottomCell.swift in Sources */,
@@ -1412,9 +1497,12 @@
 				A8CE1196278B1F91008AFEBC /* MyBudiContentViewController.swift in Sources */,
 				A8CD933E2736A93500299AB4 /* UIColor.swift in Sources */,
 				5EC0328D27868ED00059BE92 /* String+testAccessToken.swift in Sources */,
+				5EC698A2279BCC8E006FF1D9 /* AppliesResult.swift in Sources */,
+				5E8DAA932796D0940019B0B7 /* NotificationViewModel.swift in Sources */,
 				A8CD93402736ABD300299AB4 /* LocationSelectView.swift in Sources */,
 				A84F266F276B7CD600C65DA1 /* SignupHistorySectionModel.swift in Sources */,
 				A82E49DD273111C50068218A /* LoginSelectViewController.swift in Sources */,
+				5E8DAA892796BDBE0019B0B7 /* NotificationResponse.swift in Sources */,
 				5E43FB46278B5C910073574F /* Ecodable+convert.swift in Sources */,
 				A8CD93472737B9AB00299AB4 /* NormalPositionView.swift in Sources */,
 				5EB430252758909800283239 /* HomeWritingImageCell.swift in Sources */,
@@ -1431,6 +1519,7 @@
 				A85C920B276A35270097E444 /* PortfolioViewController.swift in Sources */,
 				A8E03CCF278C68A40074DE4B /* NormalTextFieldTableViewCell.swift in Sources */,
 				B94D2D9C277DFE2300DD7FDD /* TeamSearchViewModel.swift in Sources */,
+				5E8DAA862796B7490019B0B7 /* NotificationTarget.swift in Sources */,
 				B92D5505274C03AB00D0E851 /* Post.swift in Sources */,
 				5EB4302D2758951600283239 /* HomeWritingPartCell.swift in Sources */,
 				A81D108C2764950F0022D610 /* Positions.swift in Sources */,
@@ -1452,11 +1541,11 @@
 				5E91509A27722213000578D4 /* MyBudiProjectCell.swift in Sources */,
 				5ED53D70277F8DEF002871CD /* LikePosts.swift in Sources */,
 				5E9150AE277236F7000578D4 /* MyBudiEditViewModel.swift in Sources */,
-				5EFB0A5A27341C1100F39A4D /* ChattingTimeCell.swift in Sources */,
 				5EFB0A5627340BF100F39A4D /* ChattingMessageCell.swift in Sources */,
 				5EA453AC2731DDA700943C94 /* CALayer+addBorder.swift in Sources */,
 				5EFB0A4D2733EABF00F39A4D /* ChattingViewController.swift in Sources */,
 				A8AB51E8276A0416003D151C /* ModalControl.swift in Sources */,
+				5E8DAA8C2796CB7E0019B0B7 /* NotificationViewController.swift in Sources */,
 				A8CE117A278AABCC008AFEBC /* CircleProgress.swift in Sources */,
 				A81D10CC2765174E0022D610 /* PositionDetailCollectionViewCell.swift in Sources */,
 				B9BEF8972767978E00C889B4 /* HomeContentViewController.swift in Sources */,
@@ -1473,11 +1562,13 @@
 				A8CD93442736E82300299AB4 /* PositionViewController.swift in Sources */,
 				B9BF787427004094000BE0EF /* AppDelegate.swift in Sources */,
 				A81D105F2764828A0022D610 /* HistoryWriteViewController.swift in Sources */,
+				5E8DAA902796CBA80019B0B7 /* NotificationListCell.swift in Sources */,
 				5E503E7727898D1400F13256 /* ProjectMembersBottomViewController.swift in Sources */,
 				B9AC3357278DC95A00203698 /* TeamSearchProfileViewController.swift in Sources */,
 				A8E03CE2278C98E40074DE4B /* PositionSwitch.swift in Sources */,
 				B96F33BD27859C6D000A0B42 /* UIView+gesturePublisher.swift in Sources */,
 				5EFB0A522734016600F39A4D /* MyChattingMessageCell.swift in Sources */,
+				5EC698AB279C05E0006FF1D9 /* AcceptApplyRequest.swift in Sources */,
 				B968416B277862ED002F5D3D /* TeamSearchDetailCell.swift in Sources */,
 				B97DBB9527147D970018C1D2 /* UIViewController+identifer.swift in Sources */,
 				5E43FB44278B499E0073574F /* ChatManager.swift in Sources */,
@@ -1557,11 +1648,12 @@
 				5EE7FB462787E11200D9C39F /* ErrorMessage.swift in Sources */,
 				5EBD9D5D276DB57B00615319 /* HomeDetailViewModel.swift in Sources */,
 				5E91508D27721D8B000578D4 /* MyBudiMainViewController.swift in Sources */,
-				5E58E6B1276B588C00ABBF1C /* AppliesRequest.swift in Sources */,
+				5E58E6B1276B588C00ABBF1C /* ApplyRequest.swift in Sources */,
 				A8E03CD7278C6B030074DE4B /* PositionTableViewCell.swift in Sources */,
 				5EB430452758959600283239 /* HomeWritingDescriptionCell.swift in Sources */,
 				A81D1061276482950022D610 /* DefaultTableViewCell.swift in Sources */,
 				5E91509627722206000578D4 /* MyBudiLevelCell.swift in Sources */,
+				5EC698A4279C0171006FF1D9 /* ApplyTarget.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1714,7 +1806,7 @@
 				CODE_SIGN_ENTITLEMENTS = Budi/Budi.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = ZMXTCSPNUZ;
+				DEVELOPMENT_TEAM = T53Y7GLJ7K;
 				INFOPLIST_FILE = Budi/Resource/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

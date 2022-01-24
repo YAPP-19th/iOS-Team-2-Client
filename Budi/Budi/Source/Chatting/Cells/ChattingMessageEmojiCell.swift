@@ -21,5 +21,8 @@ final class ChattingMessageEmojiCell: UICollectionViewCell {
     func configureUI(_ message: ChatMessage) {
         messageLabel.text = message.text
         timeLabel.text = message.timestamp.convertToahhmm()
+        if let url = URL(string: message.senderProfileImageUrl), let data = try? Data(contentsOf: url) {
+            profileImageView.image = UIImage(data: data)
+        }
     }
 }

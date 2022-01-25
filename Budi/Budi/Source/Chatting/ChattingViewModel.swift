@@ -37,7 +37,6 @@ final class ChattingViewModel: ViewModel {
     private let provider = MoyaProvider<ApplyTarget>()
     
     private let manager = ChatManager.shared
-
     init() {
         fetchCurrentUserInfo()
         fetchRecentMessages()

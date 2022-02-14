@@ -37,35 +37,18 @@ final class ChattingViewModel: ViewModel {
     private let provider = MoyaProvider<ApplyTarget>()
     
     private let manager = ChatManager.shared
-    
-    // MARK: - Test/Users
-    let currentUser = ChatUser(id: "0",
-                         username: "현재 유저",
-                         position: "iOS 개발자",
-                         profileImageUrl: "https://budi.s3.ap-northeast-2.amazonaws.com/post_image/default/education.jpg")
-    let oppositeUser = ChatUser(id: "21",
-                         username: "상대 유저",
-                         position: "UX 디자이너",
-                         profileImageUrl: "https://budi.s3.ap-northeast-2.amazonaws.com/post_image/default/dating.jpg")
-
     init() {
-        state.currentUser.value = currentUser
-        state.oppositeUser.value = oppositeUser
         fetchCurrentUserInfo()
-        
-        // MARK: - 테스트를 위해 모든 메세지 삭제
-//        manager.removeAllMessages("0", "21")
-
         fetchRecentMessages()
     }
 }
 
 extension ChattingViewModel {
-    
     // MARK: - Applies 조회
     func getApplyId() {
-        // MARK: - 이후 AccessToken으로 변경
-        let accessToken = String.testAccessToken
+        var accessToken = UserDefaults.standard.string(forKey: "accessToken") ?? ""
+        if accessToken == "" { accessToken = .testAccessToken }
+
         var position = ""
         let postId = state.postId.value
         
@@ -98,8 +81,8 @@ extension ChattingViewModel {
     }
     
     func acceptApply(_ completion: @escaping (Result<Moya.Response, Error>) -> Void) {
-        // MARK: - 이후 AccessToken으로 변경
-        let accessToken = String.testAccessToken
+        var accessToken = UserDefaults.standard.string(forKey: "accessToken") ?? ""
+        if accessToken == "" { accessToken = .testAccessToken }
         let applyId = state.applyId.value
         
         provider.request(.acceptApply(accessToken: accessToken, applyId: applyId)) { result in
@@ -112,7 +95,7 @@ extension ChattingViewModel {
     
     // MARK: - Message
     func fetchRecentMessages() {
-        guard let currentUid = currentUser.id else { return }
+        guard let currentUser = state.currentUser.value, let currentUid = currentUser.id else { return }
 
         let query = FirebaseCollection.recentMessages(uid: currentUid).ref
             .order(by: "timestamp", descending: true)
@@ -160,7 +143,7 @@ extension ChattingViewModel {
 // MARK: - User
 private extension ChattingViewModel {
     func fetchCurrentUserInfo() {
-        guard let currentUid = currentUser.id  else { return }
+        guard let currentUser = state.currentUser.value, let currentUid = currentUser.id else { return }
         
         manager.fetchUserInfo(currentUid) { [weak self] user in
             guard let self = self else { return }
